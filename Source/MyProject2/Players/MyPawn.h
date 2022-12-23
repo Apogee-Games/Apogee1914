@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
-#include "MyProject2/World/World.h"
+#include "Kismet/GameplayStatics.h"
 #include "MyProject2/World/MapManager.h"
 #include "MyPawn.generated.h"
 
@@ -57,10 +57,7 @@ protected:
 	double MaxZPosition = 120;
 
 private:
-	FWorld World = FWorld(
-		"C:\\Users\\Dklishch\\Documents\\Unreal Projects\\MyProject2\\Content\\provinces_description.csv");
-
-	FMapManager MapManager = FMapManager(FString("/Game/provinces"));
+	FMapManager MapManager = FMapManager("/Game/maps/provinces", "/Game/maps/province", "/Game/maps/country");
 
 	const FVector PlaneNormal = FVector(1, 0, 0);
 	const FVector PlaneBase = FVector(0, 0, 0);

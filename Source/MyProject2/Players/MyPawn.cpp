@@ -4,7 +4,6 @@
 #include "MyPawn.h"
 #include "EngineUtils.h"
 #include "MyProject2/MousePosition.h"
-#include "MyProject2/World/Province.h"
 
 // Sets default values
 AMyPawn::AMyPawn()
@@ -35,9 +34,8 @@ void AMyPawn::LeftClick()
 
 	MapManager.Select(Color);
 
-	FProvince Province = World.GetProvince(Color);
+	const FProvince Province = ((AMyGameState*)GetWorld()->GetGameState())->GetProvince(Color);
 
-	std::cout << (int)Color.R << " " << (int)Color.G << " " << (int)Color.B << " ";
 	for (auto& c : Province.GetName())
 	{
 		std::cout << (char)c;
@@ -63,6 +61,10 @@ FVector AMyPawn::GetNormalizedPositionOnPlane() const
 void AMyPawn::BeginPlay()
 {
 	Super::BeginPlay();
+
+	MapManager.SetGameState((AMyGameState*)GetWorld()->GetGameState());
+
+	MapManager.UpdateCountriesMapColors();
 }
 
 // Called every frame
