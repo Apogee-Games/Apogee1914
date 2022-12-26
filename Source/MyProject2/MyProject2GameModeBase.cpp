@@ -10,6 +10,7 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
 	DefaultPawnClass = AMyPawn::StaticClass();
 	PlayerControllerClass = AMyPlayerController::StaticClass();
+	GameStateClass = AMyGameState::StaticClass();
 }
 
 void AMyProject2GameModeBase::BeginPlay()
