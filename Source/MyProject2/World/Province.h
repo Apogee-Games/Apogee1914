@@ -7,20 +7,20 @@ public:
 	{
 	}
 
-	FProvince(const FColor& Color, const FString& Name, const FColor& CountryColor, const int& Population) : Color(Color), Name(Name),
-		CountryColor(CountryColor), Population(Population)
+	FProvince(const FColor& Color, const FString& Name, const FString& CountryTag, const int& Population) : Color(Color), Name(Name),
+		CountryTag(CountryTag), Population(Population)
 	{
 	}
 
 	FColor GetColor() const;
 
-	FColor GetCountryColor() const;
+	FString GetCountryTag() const;
 
 	FString GetName() const;
 
 private:
 	FColor Color;
 	FString Name;
-	FColor CountryColor;
+	FString CountryTag;
 	int Population;
 };

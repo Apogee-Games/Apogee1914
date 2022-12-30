@@ -6,9 +6,9 @@ FColor FProvince::GetColor() const
 	return Color;
 }
 
-FColor FProvince::GetCountryColor() const
+FString FProvince::GetCountryTag() const
 {
-	return CountryColor;
+	return CountryTag;
 }
 
 FString FProvince::GetName() const
