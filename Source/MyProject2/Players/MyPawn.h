@@ -57,7 +57,7 @@ protected:
 	double MaxZPosition = 120;
 
 private:
-	FMapManager MapManager = FMapManager("/Game/maps/provinces", "/Game/maps/province", "/Game/maps/country");
+	FMapManager MapManager = FMapManager("/Game/maps/provinces", "/Game/maps/province", "/Game/maps/country", "/Game/maps/outlines");
 
 	const FVector PlaneNormal = FVector(1, 0, 0);
 	const FVector PlaneBase = FVector(0, 0, 0);

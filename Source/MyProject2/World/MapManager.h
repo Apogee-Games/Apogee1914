@@ -5,13 +5,15 @@
 class FMapManager
 {
 public:
-	FMapManager(const FString& ProvincesMapTexturePath, const FString& BlankMapTexturePath,  const FString& CountriesColorsMapTexturePath):
+	FMapManager(const FString& ProvincesMapTexturePath, const FString& BlankMapTexturePath,  const FString& CountriesColorsMapTexturePath, const FString& OutlinesMapTexturePath):
 		GameState(nullptr)
 	{
 		ProvincesMapTexture = LoadTexture(ProvincesMapTexturePath);
 		BlankMapTexture = LoadTexture(BlankMapTexturePath);
 		CountriesColorsMapTexture = LoadTexture(CountriesColorsMapTexturePath);
+		OutlinesMapTexture = LoadTexture(OutlinesMapTexturePath);
 		SizeVector = GetTextureSizeVector(ProvincesMapTexture);
+		CreateOutline();
 	}
 
 	void SetGameState(const AMyGameState* NewGameState)
@@ -84,12 +86,53 @@ private:
 	UTexture2D* BlankMapTexture;
 	
 	UTexture2D* CountriesColorsMapTexture;
+	
+	UTexture2D* OutlinesMapTexture;
 
 	FVector2d SizeVector;
 
 	const FColor DefaultCurrentlySelectedProvinceColor = FColor(75, 75, 150);
 
 	FColor CurrentlySelectedProvinceColor = DefaultCurrentlySelectedProvinceColor;
+
+	void CreateOutline()
+	{
+		FColor* OutlineColors = static_cast<FColor*>(OutlinesMapTexture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_WRITE));
+		const FColor* ProvincesColor = static_cast<const FColor*>(ProvincesMapTexture->GetPlatformData()->Mips[0].BulkData.LockReadOnly());
+		
+		for (int i = 0; i < GetMapSize(); ++i)
+		{
+			int y = i / static_cast<int>(SizeVector.Y);
+			int x = i % static_cast<int>(SizeVector.Y);
+			if (x > 0 && ProvincesColor[i] != ProvincesColor[i - 1])
+			{
+				OutlineColors[i] = FColor(0, 0, 0);
+				continue;
+			}
+			if (x + 1 < SizeVector.X && ProvincesColor[i] != ProvincesColor[i + 1])
+			{
+				OutlineColors[i] = FColor(0, 0, 0);
+				continue;
+			}
+			
+			if (y > 0 && ProvincesColor[i] != ProvincesColor[i - static_cast<int>(SizeVector.X)])
+			{
+				OutlineColors[i] = FColor(0, 0, 0);
+				continue;
+			}
+			if (y + 1 < SizeVector.Y && ProvincesColor[i] != ProvincesColor[i + 1])
+			{
+				OutlineColors[i] = FColor(0, 0, 0);
+				continue;
+			}
+			OutlineColors[i] = FColor(255, 255, 255);
+		}
+		
+		OutlinesMapTexture->GetPlatformData()->Mips[0].BulkData.Unlock();
+		ProvincesMapTexture->GetPlatformData()->Mips[0].BulkData.Unlock();
+
+		OutlinesMapTexture->UpdateResource();
+	}
 
 	static int GetPixelPosition(const FVector2d& ImagePosition, const FVector2d& SizeVector)
 	{
