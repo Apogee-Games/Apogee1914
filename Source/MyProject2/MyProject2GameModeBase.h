@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "MyProject2GameModeBase.generated.h"
 
+class UProvinceData;
 /**
  * 
  */
@@ -17,7 +18,4 @@ public:
 	AMyProject2GameModeBase();
 
 	virtual void BeginPlay() override;
-	
-	UPROPERTY()
-	class UMyUserWidget* Widget;
 };

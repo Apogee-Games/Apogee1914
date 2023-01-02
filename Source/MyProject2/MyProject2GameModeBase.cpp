@@ -16,7 +16,4 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 void AMyProject2GameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//Widget = CreateWidget<UMyUserWidget>(GetWorld(), WidgetClass);
-	//Widget->AddToViewport();
 }
