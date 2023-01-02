@@ -60,4 +60,5 @@ private:
 
 	int GetMapSize() const;
 	static FColor* GetPixels(UTexture2D* Texture, uint32 LockFlags);
+	static void UnlockPixels(UTexture2D* Texture);
 };
