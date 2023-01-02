@@ -18,6 +18,8 @@ public:
 
 	FString GetName() const;
 
+	int GetPopulation() const;
+
 private:
 	FColor Color;
 	FString Name;

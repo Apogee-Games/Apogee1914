@@ -15,3 +15,8 @@ FString FProvince::GetName() const
 {
 	return Name;
 }
+
+int FProvince::GetPopulation() const
+{
+	return Population;
+}
