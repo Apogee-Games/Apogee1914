@@ -126,7 +126,7 @@ void FMapManager::CreateOutline()
 		else if (x + 1 < SizeVector.X && ProvincesColor[i] != ProvincesColor[i + 1]) OutlineColors[i] = OutlineDefaultColor;
 		else if (y > 0 && ProvincesColor[i] != ProvincesColor[i - static_cast<int>(SizeVector.X)]) OutlineColors[i] = OutlineDefaultColor;
 		else if (y + 1 < SizeVector.Y && ProvincesColor[i] != ProvincesColor[i + 1]) OutlineColors[i] = OutlineDefaultColor;
-		OutlineColors[i] = FColor(255, 255, 255);
+		else OutlineColors[i] = FColor(255, 255, 255);
 	}
 
 
