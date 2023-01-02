@@ -3,6 +3,7 @@
 
 #include "MyPawn.h"
 #include "EngineUtils.h"
+#include "MyPlayerController.h"
 #include "MyProject2/MousePosition.h"
 
 // Sets default values
@@ -36,11 +37,8 @@ void AMyPawn::LeftClick()
 
 	const FProvince Province = ((AMyGameState*)GetWorld()->GetGameState())->GetProvince(Color);
 
-	for (auto& c : Province.GetName())
-	{
-		std::cout << (char)c;
-	}
-	std::cout << std::endl;
+	ProvinceDataWidget->SetProvinceName(Province.GetName());
+	ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province.GetPopulation()));
 }
 
 FVector AMyPawn::GetNormalizedPositionOnPlane() const
@@ -65,7 +63,27 @@ void AMyPawn::BeginPlay()
 	MapManager.SetGameState((AMyGameState*)GetWorld()->GetGameState());
 
 	MapManager.UpdateCountriesMapColors();
+
+	if (IsLocallyControlled() && ProvinceDataWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		ProvinceDataWidget = CreateWidget<UProvinceData>(PlayerController, ProvinceDataWidgetClass);
+		if (ProvinceDataWidget)
+		{
+			ProvinceDataWidget->AddToPlayerScreen();
+		}
+	}
 }
+
+void AMyPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (ProvinceDataWidget)
+	{
+		ProvinceDataWidget->RemoveFromParent();
+	}
+	Super::EndPlay(EndPlayReason);
+}
+
 
 // Called every frame
 void AMyPawn::Tick(float DeltaTime)

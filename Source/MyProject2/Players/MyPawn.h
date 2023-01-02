@@ -6,6 +6,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
+#include "MyProject2/Widgets/ProvinceData.h"
 #include "MyProject2/World/MapManager.h"
 #include "MyPawn.generated.h"
 
@@ -26,6 +27,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UCameraComponent* Camera;
 
@@ -56,8 +59,14 @@ protected:
 	UPROPERTY(EditAnywhere)
 	double MaxZPosition = 120;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UProvinceData> ProvinceDataWidgetClass;
+
 private:
 	FMapManager MapManager = FMapManager("/Game/maps/provinces", "/Game/maps/province", "/Game/maps/country", "/Game/maps/outlines");
+
+	UPROPERTY()
+	UProvinceData* ProvinceDataWidget;
 
 	const FVector PlaneNormal = FVector(1, 0, 0);
 	const FVector PlaneBase = FVector(0, 0, 0);
