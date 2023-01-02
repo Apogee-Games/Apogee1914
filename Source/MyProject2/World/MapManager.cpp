@@ -20,9 +20,9 @@ void FMapManager::SetGameState(const AMyGameState* NewGameState)
 
 void FMapManager::UpdateCountriesMapColors() const
 {
-	const FColor* ProvincesColors = static_cast<const FColor*>(ProvincesMapTexture->GetPlatformData()->Mips[0].BulkData.LockReadOnly());
+	const FColor* ProvincesColors = GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 	
-	FColor* CountriesColors = static_cast<FColor*>(CountriesColorsMapTexture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_WRITE));
+	FColor* CountriesColors = GetPixels(CountriesColorsMapTexture, LOCK_READ_WRITE);
 		
 	for (int i = 0; i < GetMapSize(); ++i)
 	{
@@ -40,8 +40,7 @@ FColor FMapManager::GetProvinceColor(const FVector2d& Point) const
 {
 	const FVector2d ImagePosition = Point * SizeVector;
 
-	const FColor* Colors = static_cast<const FColor*>(ProvincesMapTexture->GetPlatformData()->Mips[0].BulkData.
-		LockReadOnly());
+	const FColor* Colors = GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 
 	const FColor Color = Colors[GetPixelPosition(ImagePosition, SizeVector)];
 
@@ -54,10 +53,9 @@ void FMapManager::Select(const FColor& Color)
 {
 	if (Color == CurrentlySelectedProvinceColor) return;
 
-	FColor* BlankMapColors = static_cast<FColor*>(BlankMapTexture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_WRITE));
+	FColor* BlankMapColors = GetPixels(BlankMapTexture, LOCK_READ_WRITE);
 
-	const FColor* ProvinceMapColors = static_cast<const FColor*>(ProvincesMapTexture->GetPlatformData()->Mips[0].
-	                                                             BulkData.LockReadOnly());
+	const FColor* ProvinceMapColors = GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 
 	UpdateColors(ProvinceMapColors, CurrentlySelectedProvinceColor, BlankMapColors, FColor(0, 0, 0, 0), GetMapSize());
 
@@ -77,7 +75,7 @@ void FMapManager::CalculateProvincesCenters()
 	TMap<FColor, unsigned long long> Counts;
 	TMap<FColor, FVector2d> Sums;
 
-	const FColor* Colors = static_cast<const FColor*>(ProvincesMapTexture->GetPlatformData()->Mips[0].BulkData.LockReadOnly());
+	const FColor* Colors = GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 
 	for (unsigned long long i = 0; i < GetMapSize(); ++i)
 	{
@@ -99,7 +97,7 @@ void FMapManager::CalculateProvincesCenters()
 
 void FMapManager::DisplayCenters()
 {
-	FColor* Colors = static_cast<FColor*>(CentersMapTexture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_WRITE));
+	FColor* Colors = GetPixels(CentersMapTexture, LOCK_READ_WRITE);
 		
 	for (const auto Pair: ProvincesCenters)
 	{
@@ -117,34 +115,17 @@ void FMapManager::DisplayCenters()
 
 void FMapManager::CreateOutline()
 {
-	FColor* OutlineColors = static_cast<FColor*>(OutlinesMapTexture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_WRITE));
-	const FColor* ProvincesColor = static_cast<const FColor*>(ProvincesMapTexture->GetPlatformData()->Mips[0].BulkData.LockReadOnly());
+	FColor* OutlineColors = GetPixels(OutlinesMapTexture, LOCK_READ_WRITE);
+	const FColor* ProvincesColor = GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 		
 	for (int i = 0; i < GetMapSize(); ++i)
 	{
-		int y = i / static_cast<int>(SizeVector.Y);
-		int x = i % static_cast<int>(SizeVector.Y);
-		if (x > 0 && ProvincesColor[i] != ProvincesColor[i - 1])
-		{
-			OutlineColors[i] = FColor(0, 0, 0);
-			continue;
-		}
-		if (x + 1 < SizeVector.X && ProvincesColor[i] != ProvincesColor[i + 1])
-		{
-			OutlineColors[i] = OutlineDefaultColor;
-			continue;
-		}
-			
-		if (y > 0 && ProvincesColor[i] != ProvincesColor[i - static_cast<int>(SizeVector.X)])
-		{
-			OutlineColors[i] = OutlineDefaultColor;
-			continue;
-		}
-		if (y + 1 < SizeVector.Y && ProvincesColor[i] != ProvincesColor[i + 1])
-		{
-			OutlineColors[i] = OutlineDefaultColor;
-			continue;
-		}
+		const int y = i / static_cast<int>(SizeVector.Y);
+		const int x = i % static_cast<int>(SizeVector.Y);
+		if (x > 0 && ProvincesColor[i] != ProvincesColor[i - 1]) OutlineColors[i] = OutlineDefaultColor;
+		else if (x + 1 < SizeVector.X && ProvincesColor[i] != ProvincesColor[i + 1]) OutlineColors[i] = OutlineDefaultColor;
+		else if (y > 0 && ProvincesColor[i] != ProvincesColor[i - static_cast<int>(SizeVector.X)]) OutlineColors[i] = OutlineDefaultColor;
+		else if (y + 1 < SizeVector.Y && ProvincesColor[i] != ProvincesColor[i + 1]) OutlineColors[i] = OutlineDefaultColor;
 		OutlineColors[i] = FColor(255, 255, 255);
 	}
 		
@@ -195,4 +176,9 @@ FVector2d FMapManager::GetTextureSizeVector(const UTexture2D* Texture)
 int FMapManager::GetMapSize() const
 {
 	return SizeVector.X * SizeVector.Y;
+}
+
+FColor* FMapManager::GetPixels(UTexture2D* Texture, uint32 LockFlags)
+{
+	return static_cast<FColor*>(Texture->GetPlatformData()->Mips[0].BulkData.Lock(LockFlags));
 }
