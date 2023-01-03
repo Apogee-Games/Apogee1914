@@ -35,12 +35,14 @@ public:
 
 	FProvince GetProvince(const FColor& ProvinceColor) const
 	{
+		if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FProvince();
 		const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
 		return Province ? *Province : FProvince();
 	}
 
 	FColor GetCountryColor(const FColor& ProvinceColor) const
-	{		
+	{
+		if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FColor(20, 20, 20);
 		const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
 		if (!Province) return FColor(20, 20, 20);
 
