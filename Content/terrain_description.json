@@ -1,0 +1,17 @@
+[
+	{
+		"Name": "Highlands",
+		"MovementSpeed": 0.7
+	},
+	{
+		"Name": "Woods"
+	},
+	{
+		"Name": "FlatLands",
+		"MovementSpeed": 1.1
+	},
+	{
+		"Name": "Mountain",
+		"MovementSpeed": 0.4
+	}
+]
