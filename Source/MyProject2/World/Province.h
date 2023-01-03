@@ -1,16 +1,15 @@
 ﻿#pragma once
+#include "Engine/DataTable.h"
+#include "Province.generated.h"
 
-class FProvince
+USTRUCT()
+struct FProvince : public FTableRowBase
 {
+	GENERATED_BODY()
 public:
-	FProvince()
-	{
-	}
+	FProvince();
 
-	FProvince(const FColor& Color, const FString& Name, const FString& CountryTag, const int& Population) : Color(Color), Name(Name),
-		CountryTag(CountryTag), Population(Population)
-	{
-	}
+	FProvince(const FColor& Color, const FString& Name, const FString& CountryTag, const int& Population);
 
 	FColor GetColor() const;
 
@@ -20,9 +19,15 @@ public:
 
 	int GetPopulation() const;
 
-private:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FColor Color;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString CountryTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int Population;
 };

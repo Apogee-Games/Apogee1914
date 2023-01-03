@@ -1,28 +1,24 @@
 ﻿#pragma once
+#include "Engine/DataTable.h"
+#include "Country.generated.h"
 
-class FCountry
+
+USTRUCT(BlueprintType)
+struct FCountry : public FTableRowBase
 {
+	GENERATED_BODY()	
 public:
-	FCountry()
-	{
-	}
+	FCountry();
 
-	FCountry(const FString& Tag, const FColor& Color): Tag(Tag), Color(Color)
-	{
-	}
-
-
-	FString GetTag() const
-	{
-		return Tag;
-	}
-
-	FColor GetColor() const
-	{
-		return Color;
-	}
+	FCountry(const FString& Tag, const FColor& Color);
 	
-private:
+	FString GetTag() const;
+
+	FColor GetColor() const;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Tag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FColor Color;
 };
