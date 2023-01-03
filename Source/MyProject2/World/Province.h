@@ -6,7 +6,7 @@ USTRUCT()
 struct FProvince : public FTableRowBase
 {
 	GENERATED_BODY()
-public:
+
 	FProvince();
 
 	FProvince(const FColor& Color, const FString& Name, const FString& CountryTag, const int& Population);
@@ -30,4 +30,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int Population;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString TerrainName;
 };
