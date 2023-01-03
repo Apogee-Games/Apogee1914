@@ -84,11 +84,11 @@ void FMapManager::CalculateProvincesCenters()
 		Counts[Colors[i]]++;
 		Sums[Colors[i]] += GetPositionVector(i, SizeVector);
 	}
-		
-	for (FColor ProvinceColor: GameState->GetProvincesColors())
+	
+	for (const auto& SumPair: Counts)
 	{
-		const FVector2d Center = Sums[ProvinceColor] / Counts[ProvinceColor];
-		ProvincesCenters.Add(ProvinceColor, GetPixelPosition(Center, SizeVector));
+		const FVector2d Center = Sums[SumPair.Key] / Counts[SumPair.Key];
+		ProvincesCenters.Add(SumPair.Key, GetPixelPosition(Center, SizeVector));
 	}
 
 	UnlockPixels(ProvincesMapTexture);
