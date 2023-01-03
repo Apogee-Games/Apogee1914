@@ -23,7 +23,7 @@ struct FProvince : public FTableRowBase
 	FColor Color;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Name;
+	FString ProvinceName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString CountryTag;
@@ -33,4 +33,7 @@ struct FProvince : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString TerrainName;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TMap<FString, int> Resources;
 };

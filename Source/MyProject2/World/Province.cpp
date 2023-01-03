@@ -8,7 +8,7 @@ FProvince::FProvince()
 }
 
 FProvince::FProvince(const FColor& Color, const FString& Name, const FString& CountryTag, const int& Population):
-	Color(Color), Name(Name),
+	Color(Color), ProvinceName(Name),
 	CountryTag(CountryTag), Population(Population)
 {
 }
@@ -25,7 +25,7 @@ FString FProvince::GetCountryTag() const
 
 FString FProvince::GetName() const
 {
-	return Name;
+	return ProvinceName;
 }
 
 int FProvince::GetPopulation() const
