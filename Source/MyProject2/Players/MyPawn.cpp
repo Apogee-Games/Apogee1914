@@ -36,9 +36,12 @@ void AMyPawn::LeftClick()
 	MapManager.Select(Color);
 
 	const FProvince Province = ((AMyGameState*)GetWorld()->GetGameState())->GetProvince(Color);
+	const FState State = ((AMyGameState*)GetWorld()->GetGameState())->GetState(Province.StateId);
 
 	ProvinceDataWidget->SetProvinceName(Province.GetName());
 	ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province.GetPopulation()));
+	ProvinceDataWidget->SetStateName(State.StateName);
+	ProvinceDataWidget->SetResources(Province.Resources);
 }
 
 FVector AMyPawn::GetNormalizedPositionOnPlane() const
