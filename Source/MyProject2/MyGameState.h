@@ -8,6 +8,7 @@
 #include "Engine/DataTable.h"
 #include "World/Country.h"
 #include "World/Province.h"
+#include "World/State.h"
 #include "MyGameState.generated.h"
 
 /**
@@ -31,6 +32,12 @@ public:
 		{
 			CountryDescriptionDataTable = CountriesDescriptionFinder.Object;
 		}
+		
+		const ConstructorHelpers::FObjectFinder<UDataTable> StateDescriptionFinder(TEXT("/Game/Sources/states_description"));
+		if (StateDescriptionFinder.Succeeded())
+		{
+			StateDescriptionDataTable = StateDescriptionFinder.Object;
+		}
 	}
 
 	FProvince GetProvince(const FColor& ProvinceColor) const
@@ -39,7 +46,7 @@ public:
 		const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
 		return Province ? *Province : FProvince();
 	}
-
+	
 	FColor GetCountryColor(const FColor& ProvinceColor) const
 	{
 		if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FColor(20, 20, 20);
@@ -49,10 +56,19 @@ public:
 		const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->CountryTag)));
 		return Country ? Country->Color : FColor(20, 20, 20);
 	}
+
+	FState GetState(const FString& StateId) const 
+	{
+		const FState* State = reinterpret_cast<FState*>(StateDescriptionDataTable->FindRowUnchecked(FName(StateId)));
+		return State ? *State : FState();
+	}
 	
 	UPROPERTY()
 	UDataTable* CountryDescriptionDataTable;
 
 	UPROPERTY()
 	UDataTable* ProvinceDescriptionDataTable;
+
+	UPROPERTY()
+	UDataTable* StateDescriptionDataTable;
 };

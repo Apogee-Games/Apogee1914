@@ -1,0 +1,9 @@
+[
+	{
+		"Name": "Bohemia",
+		"StateName": "Bohemia",
+		"Provinces": [
+			"FF6402FF", "B4C802FF", "F75402FF", "F7BE02FF", "F73902FF"
+		]
+	}
+]
