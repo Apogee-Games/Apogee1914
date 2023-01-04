@@ -29,6 +29,9 @@ struct FProvince : public FTableRowBase
 	FString CountryTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString StateId;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int Population;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
