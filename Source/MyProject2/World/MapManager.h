@@ -16,6 +16,8 @@ public:
 
 	void Select(const FColor& Color);
 
+	void BeginPlay();
+	
 private:
 	const AMyGameState* GameState;
 
@@ -59,6 +61,8 @@ private:
 	static FVector2d GetTextureSizeVector(const UTexture2D* Texture);
 
 	int GetMapSize() const;
+
 	static FColor* GetPixels(UTexture2D* Texture, uint32 LockFlags);
+	
 	static void UnlockPixels(UTexture2D* Texture);
 };

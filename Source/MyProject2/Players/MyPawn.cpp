@@ -65,7 +65,7 @@ void AMyPawn::BeginPlay()
 
 	MapManager.SetGameState((AMyGameState*)GetWorld()->GetGameState());
 
-	MapManager.UpdateCountriesMapColors();
+	MapManager.BeginPlay();
 
 	if (IsLocallyControlled() && ProvinceDataWidgetClass)
 	{
