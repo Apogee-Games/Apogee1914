@@ -31,22 +31,30 @@ void AMyPawn::LeftClick()
 
 	const FVector Point = GetNormalizedPositionOnPlane();
 
-	const FColor Color = MapManager.GetProvinceColor(FVector2D(Point.Y, Point.Z));
+	const FColor Color = SelectionMap->GetProvinceColor(FVector2D(Point.Y, Point.Z));
 
-	MapManager.Select(Color);
+	SelectionMap->SelectProvince(Color);
 
-	const FProvince Province = ((AMyGameState*)GetWorld()->GetGameState())->GetProvince(Color);
-	const FState State = ((AMyGameState*)GetWorld()->GetGameState())->GetState(Province.StateId);
+	const FProvince* Province = GetGameState()->GetProvince(Color);
 
-	ProvinceDataWidget->SetProvinceName(Province.GetName());
-	ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province.GetPopulation()));
-	ProvinceDataWidget->SetStateName(State.StateName);
-	ProvinceDataWidget->SetResources(Province.Resources);
+	if (Province)
+	{
+		ProvinceDataWidget->SetProvinceName(Province->GetName());
+		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()));
+		ProvinceDataWidget->SetResources(Province->Resources);
+
+		const FState* State = GetGameState()->GetState(Province->StateId);
+
+		if (State)
+		{
+			ProvinceDataWidget->SetStateName(State->StateName);
+		}
+	}
 }
 
 FVector AMyPawn::GetNormalizedPositionOnPlane() const
 {
-	FMousePosition MousePosition(GetWorld()->GetFirstPlayerController());
+	const FMousePosition MousePosition(GetWorld()->GetFirstPlayerController());
 	FVector Point = FMath::RayPlaneIntersection(MousePosition.GetMouseLocation(),
 	                                            MousePosition.GetMouseDirection(),
 	                                            Plane);
@@ -58,15 +66,26 @@ FVector AMyPawn::GetNormalizedPositionOnPlane() const
 	return Point;
 }
 
+AMyGameState* AMyPawn::GetGameState() const
+{
+	return static_cast<AMyGameState*>(GetWorld()->GetGameState());
+}
+
 // Called when the game starts or when spawned
 void AMyPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	MapManager.SetGameState((AMyGameState*)GetWorld()->GetGameState());
+	SelectionMap = new FSelectionMap(GetGameState());
 
-	MapManager.BeginPlay();
+	OutlineMap = new FOutlineMap(GetGameState());
+	
+	CountriesMap = new FCountriesMap(GetGameState());
 
+	CountriesMap->UpdateCountriesMapColors();
+
+	OutlineMap->CreateOutline();
+	
 	if (IsLocallyControlled() && ProvinceDataWidgetClass)
 	{
 		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
@@ -84,6 +103,13 @@ void AMyPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	{
 		ProvinceDataWidget->RemoveFromParent();
 	}
+
+	delete SelectionMap;
+
+	delete OutlineMap;
+	
+	delete CountriesMap;
+	
 	Super::EndPlay(EndPlayReason);
 }
 

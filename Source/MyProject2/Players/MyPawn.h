@@ -6,8 +6,10 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
+#include "MyProject2/Maps/CountriesMap.h"
+#include "MyProject2/Maps/OutlineMap.h"
+#include "MyProject2/Maps/SelectionMap.h"
 #include "MyProject2/Widgets/ProvinceData.h"
-#include "MyProject2/World/MapManager.h"
 #include "MyPawn.generated.h"
 
 UCLASS()
@@ -63,8 +65,12 @@ protected:
 	TSubclassOf<UProvinceData> ProvinceDataWidgetClass;
 
 private:
-	FMapManager MapManager = FMapManager("/Game/maps/provinces", "/Game/maps/province", "/Game/maps/country", "/Game/maps/outlines");
+	FSelectionMap* SelectionMap;
 
+	FOutlineMap* OutlineMap;
+	
+	FCountriesMap* CountriesMap;
+	
 	UPROPERTY()
 	UProvinceData* ProvinceDataWidget;
 
@@ -92,4 +98,6 @@ private:
 	bool IsInside(const FVector& Position) const;
 
 	FVector GetNormalizedPositionOnPlane() const;
+
+	AMyGameState* GetGameState() const;
 };
