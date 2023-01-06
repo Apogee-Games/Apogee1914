@@ -21,6 +21,14 @@ class MYPROJECT2_API AMyGameState : public AGameStateBase
 public:
 	AMyGameState();
 
+	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaSeconds) override;
+
+	void UpdateCurrentTime(float DeltaSeconds);
+
+	FDateTime* GetTime();
+	
 	FProvince* GetProvince(const FColor& ProvinceColor) const;
 
 	FColor GetCountryColor(const FColor& ProvinceColor) const;
@@ -31,6 +39,14 @@ public:
 	
 	bool AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
 
+	bool IsGamePaused() const;
+
+	void PauseGame();
+
+	void ResumeGame();
+
+	void SwitchPauseFlag();
+	
 	UTexture2D* GetProvincesMapTexture() const;
 
 	UTexture2D* GetSelectionMapTexture() const;
@@ -38,6 +54,10 @@ public:
 	UTexture2D* GetCountriesMapTexture() const;
 
 	UTexture2D* GetOutlinesMapTexture() const;
+
+	void SpeedUpTime();
+
+	void SlowDownTime();
 
 	UPROPERTY()
 	UDataTable* CountryDescriptionDataTable;
@@ -60,5 +80,10 @@ private:
 
 	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
-};
 
+	FDateTime* CurrentTime;
+
+	bool bIsGamePaused = true;
+	
+	int TimeSpeed = 1;
+};

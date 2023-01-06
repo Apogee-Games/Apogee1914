@@ -7,6 +7,8 @@
 
 AMyGameState::AMyGameState()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	
 	const ConstructorHelpers::FObjectFinder<UDataTable> ProvincesDescriptionFinder(TEXT("/Game/Sources/provinces_description"));
 	if (ProvincesDescriptionFinder.Succeeded())
 	{
@@ -32,6 +34,30 @@ AMyGameState::AMyGameState()
 	CountriesMapTexture = FTextureUtils::LoadTexture("/Game/maps/country");
 
 	OutlinesMapTexture = FTextureUtils::LoadTexture("/Game/maps/outlines");
+}
+
+void AMyGameState::BeginPlay()
+{
+	CurrentTime = new FDateTime(1914, 1, 1);
+	Super::BeginPlay();
+}
+
+void AMyGameState::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	if (!bIsGamePaused) {
+		UpdateCurrentTime(DeltaSeconds * 1000);
+	}
+}
+
+void AMyGameState::UpdateCurrentTime(float DeltaSeconds)
+{
+	(*CurrentTime) += FTimespan(0, DeltaSeconds * TimeSpeed / 5, 0);
+}
+
+FDateTime* AMyGameState::GetTime()
+{
+	return CurrentTime;
 }
 
 FProvince* AMyGameState::GetProvince(const FColor& ProvinceColor) const
@@ -89,3 +115,36 @@ UTexture2D* AMyGameState::GetOutlinesMapTexture() const
 {
 	return OutlinesMapTexture;
 }
+
+void AMyGameState::SpeedUpTime()
+{
+	if (TimeSpeed >= 9) return;
+	++TimeSpeed;
+}
+
+void AMyGameState::SlowDownTime()
+{
+	if (TimeSpeed <= 1) return;
+	--TimeSpeed;
+}
+
+inline bool AMyGameState::IsGamePaused() const
+{
+	return bIsGamePaused;
+}
+
+void AMyGameState::PauseGame()
+{
+	bIsGamePaused = true;
+}
+
+void AMyGameState::ResumeGame()
+{
+	bIsGamePaused = false;
+}
+
+void AMyGameState::SwitchPauseFlag()
+{
+	bIsGamePaused = !bIsGamePaused;
+}
+
