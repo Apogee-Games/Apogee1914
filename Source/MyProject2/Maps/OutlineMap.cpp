@@ -8,8 +8,8 @@ FOutlineMap::FOutlineMap(): GameState(nullptr), OutlinesMapTexture(nullptr), Pro
 
 FOutlineMap::FOutlineMap(AMyGameState* GameState):
 	GameState(GameState),
-	OutlinesMapTexture(GameState->GetOutlinesMapTexture()),
-	ProvincesMapTexture(GameState->GetProvincesMapTexture())
+	OutlinesMapTexture(GameState->GetProvinceManager()->GetOutlinesMapTexture()),
+	ProvincesMapTexture(GameState->GetProvinceManager()->GetProvincesMapTexture())
 {
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }
@@ -36,25 +36,25 @@ void FOutlineMap::CreateOutline()
 		const int x = i % static_cast<int>(SizeVector.Y);
 
 		if (x > 0 && ProvincesColor[i] != ProvincesColor[i - 1] &&
-			GameState && GameState->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - 1]))
+			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - 1]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (x + 1 < Width && ProvincesColor[i] != ProvincesColor[i + 1] &&
-			GameState && GameState->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + 1]))
+			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + 1]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (y > 0 && ProvincesColor[i] != ProvincesColor[i - Width] &&
-			GameState && GameState->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - Width]))
+			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - Width]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (y + 1 < Height && ProvincesColor[i] != ProvincesColor[i + Width] &&
-			GameState && GameState->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + Width]))
+			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + Width]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;

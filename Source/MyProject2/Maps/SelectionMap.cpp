@@ -8,8 +8,8 @@ FSelectionMap::FSelectionMap(): GameState(nullptr), SelectionMapTexture(nullptr)
 
 FSelectionMap::FSelectionMap(AMyGameState* GameState):
 	GameState(GameState),
-	SelectionMapTexture(GameState->GetSelectionMapTexture()),
-	ProvincesMapTexture(GameState->GetProvincesMapTexture())
+	SelectionMapTexture(GameState->GetProvinceManager()->GetSelectionMapTexture()),
+	ProvincesMapTexture(GameState->GetProvinceManager()->GetProvincesMapTexture())
 {
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }

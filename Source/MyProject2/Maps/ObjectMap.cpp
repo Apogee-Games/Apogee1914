@@ -7,7 +7,7 @@ FObjectMap::FObjectMap(): GameState(nullptr), ProvincesMapTexture(nullptr)
 }
 
 FObjectMap::FObjectMap(AMyGameState* GameState):
-	GameState(GameState), ProvincesMapTexture(GameState->GetProvincesMapTexture())
+	GameState(GameState), ProvincesMapTexture(GameState->GetProvinceManager()->GetProvincesMapTexture())
 {
 }
 

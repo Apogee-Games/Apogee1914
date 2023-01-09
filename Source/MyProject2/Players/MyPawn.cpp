@@ -35,7 +35,9 @@ void AMyPawn::LeftClick()
 
 	SelectionMap->SelectProvince(Color);
 
-	const FProvince* Province = GetGameState()->GetProvince(Color);
+	const auto ProvinceManager = GetGameState()->GetProvinceManager();
+	
+	const FProvince* Province = ProvinceManager->GetProvince(Color);
 
 	if (Province)
 	{
@@ -43,7 +45,7 @@ void AMyPawn::LeftClick()
 		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()));
 		ProvinceDataWidget->SetResources(Province->Resources);
 
-		const FState* State = GetGameState()->GetState(Province->StateId);
+		const FState* State = ProvinceManager->GetState(Province->StateId);
 
 		if (State)
 		{

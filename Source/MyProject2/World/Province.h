@@ -19,15 +19,17 @@ struct FProvince : public FTableRowBase
 
 	int GetPopulation() const;
 
+	FString GetStateId() const;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FColor Color;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString ProvinceName;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString CountryTag;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString StateId;
 	

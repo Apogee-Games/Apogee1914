@@ -8,8 +8,8 @@ FCountriesMap::FCountriesMap(): GameState(nullptr), CountriesMapTexture(nullptr)
 
 FCountriesMap::FCountriesMap(AMyGameState* GameState):
 	GameState(GameState),
-	CountriesMapTexture(GameState->GetCountriesMapTexture()),
-	ProvincesMapTexture(GameState->GetProvincesMapTexture())
+	CountriesMapTexture(GameState->GetProvinceManager()->GetCountriesMapTexture()),
+	ProvincesMapTexture(GameState->GetProvinceManager()->GetProvincesMapTexture())
 {
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }
@@ -30,7 +30,7 @@ void FCountriesMap::UpdateCountriesMapColors() const
 
 	for (int i = 0; i < Size; ++i)
 	{
-		CountriesColors[i] = GameState->GetCountryColor(ProvincesColors[i]);
+		CountriesColors[i] = GameState->GetProvinceManager()->GetCountryColor(ProvincesColors[i]);
 	}
 
 	FTextureUtils::UnlockPixels(CountriesMapTexture);

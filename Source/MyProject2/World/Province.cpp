@@ -32,3 +32,8 @@ int FProvince::GetPopulation() const
 {
 	return Population;
 }
+
+FString FProvince::GetStateId() const
+{
+	return StateId;
+}
