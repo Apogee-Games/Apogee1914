@@ -18,11 +18,12 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (!static_cast<AMyGameState*>(GameState)->IsGamePaused())
+	const FInGameTime* GameTime = static_cast<AMyGameState*>(GameState)->GetInGameTime();
+	if (!GameTime->IsGamePaused())
 	{
 		if (TimeControllerWidget)
 		{
-			const FString Time = static_cast<AMyGameState*>(GameState)->GetTime()->ToString(TEXT("%Y-%m-%d %H"));
+			const FString Time = GameTime->GetTime()->ToString(TEXT("%Y-%m-%d %H"));
 			TimeControllerWidget->SetTime(Time);
 		}
 	}
@@ -30,6 +31,7 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 
 void AMyProject2GameModeBase::BeginPlay()
 {
+	Super::BeginPlay();
 	if (TimeControllerClass)
 	{
 		TimeControllerWidget = CreateWidget<UTimeController>(GetWorld(), TimeControllerClass);
@@ -39,7 +41,6 @@ void AMyProject2GameModeBase::BeginPlay()
 			TimeControllerWidget->AddToViewport();
 		}
 	}
-	Super::BeginPlay();
 }
 
 void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)

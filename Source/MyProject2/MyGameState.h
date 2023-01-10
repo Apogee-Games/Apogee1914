@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
 
 #include "Engine/DataTable.h"
@@ -23,12 +24,12 @@ public:
 
 	virtual void BeginPlay() override;
 
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 	virtual void Tick(float DeltaSeconds) override;
 
-	void UpdateCurrentTime(float DeltaSeconds);
+	FInGameTime* GetInGameTime() const;
 
-	FDateTime* GetTime();
-	
 	FProvince* GetProvince(const FColor& ProvinceColor) const;
 
 	FColor GetCountryColor(const FColor& ProvinceColor) const;
@@ -36,17 +37,9 @@ public:
 	FState* GetState(const FString& StateId) const;
 
 	bool AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
-	
+
 	bool AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
 
-	bool IsGamePaused() const;
-
-	void PauseGame();
-
-	void ResumeGame();
-
-	void SwitchPauseFlag();
-	
 	UTexture2D* GetProvincesMapTexture() const;
 
 	UTexture2D* GetSelectionMapTexture() const;
@@ -54,10 +47,6 @@ public:
 	UTexture2D* GetCountriesMapTexture() const;
 
 	UTexture2D* GetOutlinesMapTexture() const;
-
-	void SpeedUpTime();
-
-	void SlowDownTime();
 
 	UPROPERTY()
 	UDataTable* CountryDescriptionDataTable;
@@ -67,6 +56,12 @@ public:
 
 	UPROPERTY()
 	UDataTable* StateDescriptionDataTable;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	FDateTime StartTime = FDateTime(1914, 1, 1);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	int MaxTimeSpeed = 5;
 
 private:
 	UPROPERTY()
@@ -81,9 +76,5 @@ private:
 	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
 
-	FDateTime* CurrentTime;
-
-	bool bIsGamePaused = true;
-	
-	int TimeSpeed = 1;
+	FInGameTime* GameTime;
 };

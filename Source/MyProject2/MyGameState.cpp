@@ -8,20 +8,23 @@
 AMyGameState::AMyGameState()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	
-	const ConstructorHelpers::FObjectFinder<UDataTable> ProvincesDescriptionFinder(TEXT("/Game/Sources/provinces_description"));
+
+	const ConstructorHelpers::FObjectFinder<UDataTable> ProvincesDescriptionFinder(
+		TEXT("/Game/Sources/provinces_description"));
 	if (ProvincesDescriptionFinder.Succeeded())
 	{
 		ProvinceDescriptionDataTable = ProvincesDescriptionFinder.Object;
 	}
 
-	const ConstructorHelpers::FObjectFinder<UDataTable> CountriesDescriptionFinder(TEXT("/Game/Sources/countries_description"));
+	const ConstructorHelpers::FObjectFinder<UDataTable> CountriesDescriptionFinder(
+		TEXT("/Game/Sources/countries_description"));
 	if (CountriesDescriptionFinder.Succeeded())
 	{
 		CountryDescriptionDataTable = CountriesDescriptionFinder.Object;
 	}
-		
-	const ConstructorHelpers::FObjectFinder<UDataTable> StateDescriptionFinder(TEXT("/Game/Sources/states_description"));
+
+	const ConstructorHelpers::FObjectFinder<UDataTable>
+		StateDescriptionFinder(TEXT("/Game/Sources/states_description"));
 	if (StateDescriptionFinder.Succeeded())
 	{
 		StateDescriptionDataTable = StateDescriptionFinder.Object;
@@ -38,26 +41,28 @@ AMyGameState::AMyGameState()
 
 void AMyGameState::BeginPlay()
 {
-	CurrentTime = new FDateTime(1914, 1, 1);
 	Super::BeginPlay();
+	GameTime = new FInGameTime(&StartTime, MaxTimeSpeed);
+}
+
+void AMyGameState::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	delete GameTime;
+	Super::EndPlay(EndPlayReason);
 }
 
 void AMyGameState::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (!bIsGamePaused) {
-		UpdateCurrentTime(DeltaSeconds * 1000);
+	if (!GameTime->IsGamePaused())
+	{
+		GameTime->UpdateCurrentTime(DeltaSeconds * 1000);
 	}
 }
 
-void AMyGameState::UpdateCurrentTime(float DeltaSeconds)
+FInGameTime* AMyGameState::GetInGameTime() const
 {
-	(*CurrentTime) += FTimespan(0, DeltaSeconds * TimeSpeed / 5, 0);
-}
-
-FDateTime* AMyGameState::GetTime()
-{
-	return CurrentTime;
+	return GameTime;
 }
 
 FProvince* AMyGameState::GetProvince(const FColor& ProvinceColor) const
@@ -69,10 +74,12 @@ FProvince* AMyGameState::GetProvince(const FColor& ProvinceColor) const
 FColor AMyGameState::GetCountryColor(const FColor& ProvinceColor) const
 {
 	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FColor(20, 20, 20);
-	const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
+	const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(
+		FName(ProvinceColor.ToHex())));
 	if (!Province) return FColor(20, 20, 20);
 
-	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->CountryTag)));
+	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(
+		FName(Province->CountryTag)));
 	return Country ? Country->Color : FColor(20, 20, 20);
 }
 
@@ -86,7 +93,6 @@ bool AMyGameState::AreProvincesInTheSameState(FColor ProvinceAColor, FColor Prov
 	const FProvince* ProvinceA = GetProvince(ProvinceAColor);
 	const FProvince* ProvinceB = GetProvince(ProvinceBColor);
 	return ProvinceA && ProvinceB && ProvinceA->StateId == ProvinceB->StateId;
-
 }
 
 bool AMyGameState::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
@@ -115,36 +121,3 @@ UTexture2D* AMyGameState::GetOutlinesMapTexture() const
 {
 	return OutlinesMapTexture;
 }
-
-void AMyGameState::SpeedUpTime()
-{
-	if (TimeSpeed >= 9) return;
-	++TimeSpeed;
-}
-
-void AMyGameState::SlowDownTime()
-{
-	if (TimeSpeed <= 1) return;
-	--TimeSpeed;
-}
-
-inline bool AMyGameState::IsGamePaused() const
-{
-	return bIsGamePaused;
-}
-
-void AMyGameState::PauseGame()
-{
-	bIsGamePaused = true;
-}
-
-void AMyGameState::ResumeGame()
-{
-	bIsGamePaused = false;
-}
-
-void AMyGameState::SwitchPauseFlag()
-{
-	bIsGamePaused = !bIsGamePaused;
-}
-
