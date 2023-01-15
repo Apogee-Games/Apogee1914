@@ -41,8 +41,8 @@ AMyGameState::AMyGameState()
 
 void AMyGameState::BeginPlay()
 {
-	Super::BeginPlay();
 	GameTime = new FInGameTime(&StartTime, MaxTimeSpeed);
+	Super::BeginPlay();
 }
 
 void AMyGameState::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -120,4 +120,14 @@ UTexture2D* AMyGameState::GetCountriesMapTexture() const
 UTexture2D* AMyGameState::GetOutlinesMapTexture() const
 {
 	return OutlinesMapTexture;
+}
+
+int AMyGameState::GetStability() const
+{
+	return Stability;
+}
+
+void AMyGameState::SetStability(int NewStability)
+{
+	Stability = NewStability;
 }

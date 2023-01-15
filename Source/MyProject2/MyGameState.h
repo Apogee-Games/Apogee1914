@@ -63,7 +63,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	int MaxTimeSpeed = 5;
 
+	int GetStability() const;
+
+	void SetStability(int Stability);
 private:
+
 	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 
@@ -77,4 +81,6 @@ private:
 	UTexture2D* OutlinesMapTexture;
 
 	FInGameTime* GameTime;
+
+	int Stability = 0;
 };
