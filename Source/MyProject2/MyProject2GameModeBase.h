@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 #include "GameFramework/GameModeBase.h"
+#include "Widgets/EventWidget.h"
 #include "Widgets/TimeController.h"
 #include "MyProject2GameModeBase.generated.h"
 
@@ -19,6 +21,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UTimeController> TimeControllerClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UEventWidget> EventWidgetClass;
 	
 	AMyProject2GameModeBase();
 
@@ -29,6 +34,15 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 private:
 
+	void InitializeEventModules() const;
+	
+	UPROPERTY()
+	UDataTable* EventsDataTable;
+
 	UPROPERTY()
 	UTimeController* TimeControllerWidget;
+	
+	FEventManager* EventManager;
+
+	bool AreEventConditionCheckersInitialized = false;
 };
