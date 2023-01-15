@@ -1,0 +1,88 @@
+[
+	{
+		"Name": "welcome",
+		"ImagePath": "/Game/Images/welcome",
+		"Title": "Welcome in the game",
+		"Text": "Welcome in the game",
+		"Conditions": [
+			{
+				"Name": "ExactDate",
+				"Values": {
+					"Date": "1914-01-02 01"
+				}
+			}
+		],
+		"Choices": [
+			{
+				"Name": "Play3",
+				"Text": "Play3",
+				"OutComes": [
+					{
+						"Name": "Stability",
+						"Values": {
+							"Stability": 10
+						}
+					}
+				],
+				"Conditions": [
+				]
+			},
+			{
+				"Name": "Play2",
+				"Text": "Play2",
+				"OutComes": [
+					{
+						"Name": "AddStability",
+						"Values": {
+							"Stability": 10
+						}
+					}
+				],
+				"Conditions": [
+				]
+			},
+			{
+				"Name": "Play1",
+				"Text": "Play1",
+				"OutComes": [
+					{
+						"Name": "AddStability",
+						"Values": {
+							"Stability": 10
+						}
+					}
+				],
+				"Conditions": [
+				]
+			},
+			{
+				"Name": "Play4",
+				"Text": "Play4",
+				"OutComes": [
+					{
+						"Name": "AddStability",
+						"Values": {
+							"Stability": 10
+						}
+					}
+				],
+				"Conditions": [
+				]
+			},
+			{
+				"Name": "Play5",
+				"Text": "Play5",
+				"OutComes": [
+					{
+						"Name": "AddStability",
+						"Values": {
+							"Stability": 10
+						}
+					}
+				],
+				"Conditions": [
+				]
+			}
+		]
+	}
+]
