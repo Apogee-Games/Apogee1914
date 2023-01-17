@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "MyPawn.generated.h"
+#include "AIPlayerPawn.generated.h"
 
 UCLASS()
 class MYPROJECT2_API AAIPlayerPawn : public APawn
