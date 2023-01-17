@@ -35,6 +35,10 @@ public:
 private:
 
 	void InitializeEventModules() const;
+
+	TSet<FString> InitializeRuledCountry() const;
+	
+	void InitializeRuledCountryForLocalPlayers(TSet<FString>& PlayersSelectedCountriesTags) const;
 	
 	UPROPERTY()
 	UDataTable* EventsDataTable;
