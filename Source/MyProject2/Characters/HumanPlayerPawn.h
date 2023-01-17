@@ -26,6 +26,9 @@ public:
 	// Sets default values for this pawn's properties
 	AHumanPlayerPawn();
 
+	// Sets tag of country controlled by this Pawn
+	void SetRuledCountryTag(const FString& NewRuledCountryTag);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -65,6 +68,10 @@ protected:
 	TSubclassOf<UProvinceData> ProvinceDataWidgetClass;
 
 private:
+	
+	/* Tag of country that current pawn controls */
+	FString RuledCountryTag;
+	
 	FSelectionMap* SelectionMap;
 
 	FOutlineMap* OutlineMap;

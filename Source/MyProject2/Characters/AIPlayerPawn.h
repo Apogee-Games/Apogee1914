@@ -14,6 +14,9 @@ class MYPROJECT2_API AAIPlayerPawn : public APawn
 public:
 	// Sets default values for this pawn's properties
 	AAIPlayerPawn();
+	
+	// Sets tag of country controlled by this Pawn
+	void SetRuledCountryTag(const FString& NewRuledCountryTag);
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,5 +28,9 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
+private:
+	/* Tag of country that current pawn controls */
+	FString RuledCountryTag;
+	
 };

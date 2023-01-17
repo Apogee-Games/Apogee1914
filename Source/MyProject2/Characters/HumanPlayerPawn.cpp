@@ -15,6 +15,11 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 }
 
+void AHumanPlayerPawn::SetRuledCountryTag(const FString& NewRuledCountryTag)
+{
+	RuledCountryTag = NewRuledCountryTag;
+}
+
 void AHumanPlayerPawn::MoveUp(float Value)
 {
 	MovementDirection.Y = FMath::Clamp(Value, -1.f, 1.f);

@@ -10,6 +10,11 @@ AAIPlayerPawn::AAIPlayerPawn()
 
 }
 
+void AAIPlayerPawn::SetRuledCountryTag(const FString& NewRuledCountryTag)
+{
+	RuledCountryTag = NewRuledCountryTag;
+}
+
 // Called when the game starts or when spawned
 void AAIPlayerPawn::BeginPlay()
 {
