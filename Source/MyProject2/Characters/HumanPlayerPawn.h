@@ -10,10 +10,10 @@
 #include "MyProject2/Maps/OutlineMap.h"
 #include "MyProject2/Maps/SelectionMap.h"
 #include "MyProject2/Widgets/ProvinceData.h"
-#include "MyPawn.generated.h"
+#include "HumanPlayerPawn.generated.h"
 
 UCLASS()
-class MYPROJECT2_API AMyPawn : public APawn
+class MYPROJECT2_API AHumanPlayerPawn : public APawn
 {
 	GENERATED_BODY()
 public:
@@ -24,7 +24,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Sets default values for this pawn's properties
-	AMyPawn();
+	AHumanPlayerPawn();
 
 protected:
 	// Called when the game starts or when spawned

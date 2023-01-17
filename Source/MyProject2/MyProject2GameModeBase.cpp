@@ -5,8 +5,8 @@
 
 #include "Events/ConditionCheckers/Headers/ExactDateConditionChecker.h"
 #include "Events/ConditionCheckers/Headers/StabilityConditionChecker.h"
-#include "Players/MyPawn.h"
-#include "Players/MyPlayerController.h"
+#include "Characters/HumanPlayerPawn.h"
+#include "Characters/MyPlayerController.h"
 #include "Events/EventManager.h"
 #include "Events/OutcomeAppliers/Headers/StabilityOutcomeApplier.h"
 
@@ -14,7 +14,7 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	
-	DefaultPawnClass = AMyPawn::StaticClass();
+	DefaultPawnClass = AHumanPlayerPawn::StaticClass();
 	PlayerControllerClass = AMyPlayerController::StaticClass();
 	GameStateClass = AMyGameState::StaticClass();
 

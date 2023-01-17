@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyPawn.h"
+#include "HumanPlayerPawn.h"
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
 #include "MyProject2/MousePosition.h"
 
 // Sets default values
-AMyPawn::AMyPawn()
+AHumanPlayerPawn::AHumanPlayerPawn()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -15,17 +15,17 @@ AMyPawn::AMyPawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 }
 
-void AMyPawn::MoveUp(float Value)
+void AHumanPlayerPawn::MoveUp(float Value)
 {
 	MovementDirection.Y = FMath::Clamp(Value, -1.f, 1.f);
 }
 
-void AMyPawn::MoveRight(float Value)
+void AHumanPlayerPawn::MoveRight(float Value)
 {
 	MovementDirection.Z = FMath::Clamp(Value, -1.f, 1.f);
 }
 
-void AMyPawn::LeftClick()
+void AHumanPlayerPawn::LeftClick()
 {
 	std::cout << "Clicked" << std::endl;
 
@@ -52,7 +52,7 @@ void AMyPawn::LeftClick()
 	}
 }
 
-FVector AMyPawn::GetNormalizedPositionOnPlane() const
+FVector AHumanPlayerPawn::GetNormalizedPositionOnPlane() const
 {
 	const FMousePosition MousePosition(GetWorld()->GetFirstPlayerController());
 	FVector Point = FMath::RayPlaneIntersection(MousePosition.GetMouseLocation(),
@@ -66,13 +66,13 @@ FVector AMyPawn::GetNormalizedPositionOnPlane() const
 	return Point;
 }
 
-AMyGameState* AMyPawn::GetGameState() const
+AMyGameState* AHumanPlayerPawn::GetGameState() const
 {
 	return static_cast<AMyGameState*>(GetWorld()->GetGameState());
 }
 
 // Called when the game starts or when spawned
-void AMyPawn::BeginPlay()
+void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -97,7 +97,7 @@ void AMyPawn::BeginPlay()
 	}
 }
 
-void AMyPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
+void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	if (ProvinceDataWidget)
 	{
@@ -115,14 +115,14 @@ void AMyPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 
 // Called every frame
-void AMyPawn::Tick(float DeltaTime)
+void AHumanPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	Move(DeltaTime);
 }
 
-void AMyPawn::Move(float DeltaTime)
+void AHumanPlayerPawn::Move(float DeltaTime)
 {
 	if ((MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0)) ||
 		SpeedVector == FVector(0, 0, 0))
@@ -139,13 +139,13 @@ void AMyPawn::Move(float DeltaTime)
 	}
 }
 
-void AMyPawn::Scroll(float Value)
+void AHumanPlayerPawn::Scroll(float Value)
 {
 	MovementDirection.X = FMath::Clamp(Value, -1, 1);
 	RotationDirection.Pitch = FMath::Clamp(Value, -1, 1);
 }
 
-bool AMyPawn::IsInside(const FVector& Position) const
+bool AHumanPlayerPawn::IsInside(const FVector& Position) const
 {
 	return Position.X >= MinXPosition && Position.X <= MaxXPosition &&
 		Position.Y >= MinYPosition && Position.Y <= MaxYPosition &&
@@ -153,12 +153,12 @@ bool AMyPawn::IsInside(const FVector& Position) const
 }
 
 // Called to bind functionality to input
-void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AMyPawn::MoveUp);
-	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AMyPawn::MoveRight);
-	PlayerInputComponent->BindAxis(TEXT("Scroll"), this, &AMyPawn::Scroll);
-	PlayerInputComponent->BindAction(TEXT("Click"), IE_Pressed, this, &AMyPawn::LeftClick);
+	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AHumanPlayerPawn::MoveUp);
+	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AHumanPlayerPawn::MoveRight);
+	PlayerInputComponent->BindAxis(TEXT("Scroll"), this, &AHumanPlayerPawn::Scroll);
+	PlayerInputComponent->BindAction(TEXT("Click"), IE_Pressed, this, &AHumanPlayerPawn::LeftClick);
 }
