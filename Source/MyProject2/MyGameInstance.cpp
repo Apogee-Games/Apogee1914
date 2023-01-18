@@ -10,5 +10,15 @@ FString UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
 
 void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FString& CountryTag)
 {
+	if (PlayersRuledCountries.Contains(PlayerId)) CountriesRuledByPlayers[PlayersRuledCountries[PlayerId]]--;
 	PlayersRuledCountries.Add(PlayerId, CountryTag);
+	CountriesRuledByPlayers.Add(CountryTag,
+	                            CountriesRuledByPlayers.Contains(CountryTag)
+		                            ? CountriesRuledByPlayers[CountryTag] + 1
+		                            : 1);
+}
+
+bool UMyGameInstance::IsCountryRuledByPlayer(const FString& CountryTag)
+{
+	return CountriesRuledByPlayers.Contains(CountryTag) && CountriesRuledByPlayers[CountryTag];
 }

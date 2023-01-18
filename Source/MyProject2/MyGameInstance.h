@@ -15,12 +15,14 @@ class MYPROJECT2_API UMyGameInstance : public UGameInstance
 	GENERATED_BODY()
 
 public:
-
 	FString GetRuledCountry(int32 PlayerId) const;
 
 	void SetRuledCountry(int32 PlayerId, const FString& CountryTag);
-	
+
+	bool IsCountryRuledByPlayer(const FString& CountryTag);
+
 private:
-	
 	TMap<int32, FString> PlayersRuledCountries;
+
+	TMap<FString, int32> CountriesRuledByPlayers;
 };
