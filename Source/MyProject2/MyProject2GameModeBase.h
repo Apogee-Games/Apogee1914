@@ -7,6 +7,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "Widgets/EventWidget.h"
 #include "Widgets/TimeController.h"
+#include "Characters/AIPlayerPawn.h"
 #include "MyProject2GameModeBase.generated.h"
 
 class UProvinceData;
@@ -36,9 +37,11 @@ private:
 
 	void InitializeEventModules() const;
 
-	TSet<FString> InitializeRuledCountry() const;
+	void InitializeRuledCountry() const;
 	
-	void InitializeRuledCountryForLocalPlayers(TSet<FString>& PlayersSelectedCountriesTags) const;
+	void InitializeRuledCountryForLocalPlayers() const;
+	
+	void CreateAIPawns();
 	
 	UPROPERTY()
 	UDataTable* EventsDataTable;
@@ -49,4 +52,7 @@ private:
 	FEventManager* EventManager;
 
 	bool AreEventConditionCheckersInitialized = false;
+
+	UPROPERTY()
+	TMap<FString, AAIPlayerPawn*> AIPawns;
 };

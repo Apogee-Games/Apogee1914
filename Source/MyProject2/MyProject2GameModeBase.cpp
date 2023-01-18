@@ -11,6 +11,7 @@
 #include "Events/EventManager.h"
 #include "Events/OutcomeAppliers/Headers/StabilityOutcomeApplier.h"
 #include "GameFramework/PlayerState.h"
+#include "Characters/AIPlayerPawn.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -71,7 +72,9 @@ void AMyProject2GameModeBase::BeginPlay()
 		GameInstance->SetRuledCountry(PlayerId, "GER");
 	}
 	
-	TSet<FString> PlayersSelectedCountriesTags = InitializeRuledCountry();
+	InitializeRuledCountry();
+
+	CreateAIPawns();
 	
 	if (TimeControllerClass)
 	{
@@ -110,15 +113,13 @@ void AMyProject2GameModeBase::InitializeEventModules() const
 	EventManager->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
 }
 
-TSet<FString> AMyProject2GameModeBase::InitializeRuledCountry() const
+void AMyProject2GameModeBase::InitializeRuledCountry() const
 {
-	TSet<FString> PlayersSelectedCountriesTags;
-	InitializeRuledCountryForLocalPlayers(PlayersSelectedCountriesTags);
+	InitializeRuledCountryForLocalPlayers();
 	// TODO:: Add Ruled Country initialization for net Players
-	return  PlayersSelectedCountriesTags;
 }
 
-void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers(TSet<FString>& PlayersSelectedCountriesTags) const
+void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 {
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
 	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex) {
@@ -131,6 +132,16 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers(TSet<FString
 		const FString RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
 		
 		Pawn->SetRuledCountryTag(RuledCountryTag);
-		PlayersSelectedCountriesTags.Add(RuledCountryTag);
+	}
+}
+
+void AMyProject2GameModeBase::CreateAIPawns()
+{
+	for (const auto& CountryTag: GetGameState<AMyGameState>()->GetCountriesTagsList())
+	{
+		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
+		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
+		Pawn->SetRuledCountryTag(CountryTag);
+		AIPawns.Add(CountryTag, Pawn);
 	}
 }
