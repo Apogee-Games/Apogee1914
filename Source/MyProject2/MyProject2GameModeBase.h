@@ -37,10 +37,13 @@ private:
 
 	void InitializeEventModules() const;
 
+	/* Initializes Ruled Country for all human players */
 	void InitializeRuledCountry() const;
-	
+
+	/* Initializes Ruled Country for all local human players */
 	void InitializeRuledCountryForLocalPlayers() const;
-	
+
+	/* Creates AIPawns for all non user played countries */
 	void CreateAIPawns();
 	
 	UPROPERTY()
