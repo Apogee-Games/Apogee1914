@@ -21,6 +21,10 @@ AMyGameState::AMyGameState()
 	if (CountriesDescriptionFinder.Succeeded())
 	{
 		CountryDescriptionDataTable = CountriesDescriptionFinder.Object;
+		for (const auto& Pair: CountryDescriptionDataTable->GetRowMap())
+		{
+			CountriesTagsList.Add(reinterpret_cast<FCountry*>(Pair.Value)->Tag);
+		}
 	}
 
 	const ConstructorHelpers::FObjectFinder<UDataTable>
@@ -100,6 +104,11 @@ bool AMyGameState::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor P
 	const FProvince* ProvinceA = GetProvince(ProvinceAColor);
 	const FProvince* ProvinceB = GetProvince(ProvinceBColor);
 	return ProvinceA && ProvinceB && ProvinceA->StateId != ProvinceB->StateId;
+}
+
+TArray<FString> AMyGameState::GetCountriesTagsList() const
+{
+	return CountriesTagsList;
 }
 
 UTexture2D* AMyGameState::GetProvincesMapTexture() const

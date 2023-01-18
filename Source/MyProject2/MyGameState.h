@@ -40,6 +40,8 @@ public:
 
 	bool AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
 
+	TArray<FString> GetCountriesTagsList() const;
+
 	UTexture2D* GetProvincesMapTexture() const;
 
 	UTexture2D* GetSelectionMapTexture() const;
@@ -81,6 +83,8 @@ private:
 	UTexture2D* OutlinesMapTexture;
 
 	FInGameTime* GameTime;
+
+	TArray<FString> CountriesTagsList;
 
 	int Stability = 0;
 };
