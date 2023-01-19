@@ -4,6 +4,10 @@
 		"ImagePath": "/Game/Images/welcome",
 		"Title": "Welcome in the game",
 		"Text": "Welcome in the game",
+		"CountriesConditions": {
+			"ForAll": true,
+			"CountriesTags": []
+		},
 		"Conditions": [
 			{
 				"Name": "ExactDate",
