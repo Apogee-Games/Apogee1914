@@ -22,10 +22,10 @@ void FEventInstancesController::CreateEvent(const FString& EventName, const FEve
                                             const TMap<FString, bool>& ChoicesConditionsEvaluated,
                                             const FString& CountryTag)
 {
-	if (WidgetsInstances.Contains({EventName, CountryTag})) return; // Event is already created 
+	if (WidgetsInstances.Contains({EventName, CountryTag})) return; // Event is already created
+	if (Event->TriggerOnce && FiredEvents.Contains({EventName, CountryTag})) return;
 	if (GameState->GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag))
-		CreateEventForPlayer(
-			EventName, Event, ChoicesConditionsEvaluated, CountryTag);
+		CreateEventForPlayer(EventName, Event, ChoicesConditionsEvaluated, CountryTag);
 	else CreateEventForAI(EventName, Event, ChoicesConditionsEvaluated, CountryTag);
 }
 
@@ -43,12 +43,12 @@ void FEventInstancesController::CreateEventForAI(const FString& EventName, const
                                                  const TMap<FString, bool>& ChoicesConditionsEvaluated,
                                                  const FString& CountryTag)
 {
-	FiredEvents.Add(EventName); // Added this event to history of all events
+	FiredEvents.Add({EventName, CountryTag}); // Added this event to history of all events
 
 	const FString AISelectedChoice = FindAISelectedChoice(Event->Choices, ChoicesConditionsEvaluated);
-	
+
 	EventManager->RegisterChoice(EventName, AISelectedChoice, CountryTag);
-	
+
 	for (const auto& c : CountryTag)
 	{
 		std::cout << static_cast<char>(c);
@@ -59,14 +59,13 @@ void FEventInstancesController::CreateEventForAI(const FString& EventName, const
 		std::cout << static_cast<char>(c);
 	}
 	std::cout << std::endl;
-	
 }
 
 void FEventInstancesController::CreateEventForPlayer(const FString& EventName, const FEventDescription* Event,
                                                      const TMap<FString, bool>& ChoicesConditionsEvaluated,
                                                      const FString& CountryTag)
 {
-	FiredEvents.Add(EventName); // Added this event to history of all events
+	FiredEvents.Add({EventName, CountryTag}); // Added this event to history of all events
 
 	UEventWidget* EventWidget = CreateWidget<UEventWidget>(World, EventWidgetClass);
 	EventWidget->Init(Event->Title, Event->Text, Event->ImagePath);
@@ -84,7 +83,8 @@ void FEventInstancesController::CreateEventForPlayer(const FString& EventName, c
 	EventWidget->AddToViewport();
 }
 
-inline float FEventInstancesController::CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated)
+inline float FEventInstancesController::CalculateSumOfAIChancesForChoices(
+	const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated)
 {
 	float SummedChance = 0;
 	for (const auto& Choice : Choices)
@@ -95,13 +95,14 @@ inline float FEventInstancesController::CalculateSumOfAIChancesForChoices(const 
 	return SummedChance;
 }
 
-FString FEventInstancesController::FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated) const
+FString FEventInstancesController::FindAISelectedChoice(const TArray<FEventChoice>& Choices,
+                                                        const TMap<FString, bool>& ChoicesConditionsEvaluated) const
 {
 	// Use Geometrical Probability to find which choice to select
 	const float SummedChance = CalculateSumOfAIChancesForChoices(Choices, ChoicesConditionsEvaluated);
 
 	FString SelectedChoice;
-	
+
 	float Point = FMath::FRandRange(0.0, SummedChance);
 	for (const auto& Choice : Choices)
 	{
@@ -109,12 +110,12 @@ FString FEventInstancesController::FindAISelectedChoice(const TArray<FEventChoic
 
 		if (Point <= Choice.AIChance)
 		{
-			SelectedChoice =  Choice.Name;
+			SelectedChoice = Choice.Name;
 			break;
 		}
-		
+
 		Point -= Choice.AIChance;
 	}
-	
+
 	return SelectedChoice;
 }

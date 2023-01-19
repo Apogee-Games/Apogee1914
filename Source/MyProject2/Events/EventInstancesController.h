@@ -37,7 +37,7 @@ private:
 
 	AMyGameState* GameState;
 	
-	TSet<FString> FiredEvents;
+	TSet<TPair<FString, FString>> FiredEvents;
 
 	TMap<FString, bool> ActiveEvents;
 
