@@ -14,6 +14,9 @@ struct FEventChoice: public FTableRowBase
 	
 	UPROPERTY()
 	FString Text;
+	
+	UPROPERTY()
+	float AIChance;
 
 	UPROPERTY()
 	TArray<FEventOutcome> Outcomes;
