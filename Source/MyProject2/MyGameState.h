@@ -40,7 +40,7 @@ public:
 
 	bool AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
 
-	TArray<FString> GetCountriesTagsList() const;
+	TArray<FString>* GetCountriesTagsList();
 
 	UTexture2D* GetProvincesMapTexture() const;
 

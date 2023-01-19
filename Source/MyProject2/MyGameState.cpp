@@ -106,9 +106,9 @@ bool AMyGameState::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor P
 	return ProvinceA && ProvinceB && ProvinceA->StateId != ProvinceB->StateId;
 }
 
-TArray<FString> AMyGameState::GetCountriesTagsList() const
+TArray<FString>* AMyGameState::GetCountriesTagsList()
 {
-	return CountriesTagsList;
+	return &CountriesTagsList;
 }
 
 UTexture2D* AMyGameState::GetProvincesMapTexture() const
