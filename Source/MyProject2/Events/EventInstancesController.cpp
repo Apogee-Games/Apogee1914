@@ -12,7 +12,6 @@ FEventInstancesController::FEventInstancesController(const TSubclassOf<UEventWid
 
 void FEventInstancesController::Tick()
 {
-	AIEventsFiredRecently.Empty();
 	for (const auto& Pair : WidgetsInstances)
 	{
 		Pair.Value->Tick();
@@ -44,10 +43,7 @@ void FEventInstancesController::CreateEventForAI(const FString& EventName, const
                                                  const TMap<FString, bool>& ChoicesConditionsEvaluated,
                                                  const FString& CountryTag)
 {
-	if (AIEventsFiredRecently.Contains({EventName, CountryTag})) return;
-
 	FiredEvents.Add(EventName); // Added this event to history of all events
-	AIEventsFiredRecently.Add({EventName, CountryTag}); // Added this ai event to recently fired to avoid firing it again
 
 	const FString AISelectedChoice = FindAISelectedChoice(Event->Choices, ChoicesConditionsEvaluated);
 	

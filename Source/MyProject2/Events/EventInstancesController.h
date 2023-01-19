@@ -39,8 +39,6 @@ private:
 	
 	TSet<FString> FiredEvents;
 
-	TSet<TPair<FString, FString>> AIEventsFiredRecently;
-	
 	TMap<FString, bool> ActiveEvents;
 
 	TSubclassOf<UEventWidget> EventWidgetClass;
