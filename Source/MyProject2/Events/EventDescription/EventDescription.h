@@ -20,6 +20,9 @@ struct FEventDescription: public FTableRowBase
 	FString Text;
 
 	UPROPERTY()
+	bool TriggerOnce;
+	
+	UPROPERTY()
 	FEventCountriesConditions CountriesConditions;
 
 	UPROPERTY()
