@@ -1,5 +1,8 @@
 #include "EventManager.h"
 
+#include "MyProject2/MyGameInstance.h"
+#include "MyProject2/MyGameState.h"
+
 FEventManager::~FEventManager()
 {
 	delete ConditionsChecker;
@@ -7,16 +10,25 @@ FEventManager::~FEventManager()
 	delete OutcomesApplier;
 }
 
+TArray<FString>* FEventManager::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
+{
+	return Event->CountriesConditions.ForAll
+		       ? GameState->GetCountriesTagsList()
+		       : &Event->CountriesConditions.CountriesTags;
+}
+
+
 void FEventManager::Tick() const
 {
 	InstancesController->Tick();
 }
 
-FEventManager::FEventManager(UDataTable* Events, const TSubclassOf<UEventWidget>& NewEventWidgetClass, UWorld* World): EventWidgetClass(NewEventWidgetClass)
+FEventManager::FEventManager(UDataTable* Events, const TSubclassOf<UEventWidget>& NewEventWidgetClass, UWorld* World,
+                             AMyGameState* GameState): GameState(GameState), EventWidgetClass(NewEventWidgetClass)
 {
 	ConditionsChecker = new FEventConditionsChecker;
 	OutcomesApplier = new FEventsOutcomesApplier;
-	InstancesController = new FEventInstancesController(NewEventWidgetClass, this, World);
+	InstancesController = new FEventInstancesController(NewEventWidgetClass, this, World, GameState);
 
 	for (const auto Pair : Events->GetRowMap())
 	{
@@ -26,31 +38,37 @@ FEventManager::FEventManager(UDataTable* Events, const TSubclassOf<UEventWidget>
 
 void FEventManager::CheckEvents()
 {
-	for (const auto& Pair: Events)
+	for (const auto& Pair : Events)
 	{
-		if (!ConditionsChecker->CheckConditions(Pair.Value->Conditions)) continue; // Skip current event because conditions are not meet 
+		TArray<FString>* CountriesTags = GetCountriesForWhichEventCanBeFired(Pair.Value);
 
-		TMap<FString, bool> ChoicesConditionsEvaluated; // Holds results for choice condition check
-
-		for (const auto& Choice: Pair.Value->Choices)
+		for (auto& CountryTag : *CountriesTags)
 		{
-			ChoicesConditionsEvaluated.Add(Choice.Name, ConditionsChecker->CheckConditions(Choice.Conditions));
+			if (!ConditionsChecker->CheckConditions(Pair.Value->Conditions, CountryTag)) continue;
+			// Skip current event because conditions are not meet 
+
+			TMap<FString, bool> ChoicesConditionsEvaluated; // Holds results for choice condition check
+
+			for (auto& Choice : Pair.Value->Choices)
+			{
+				ChoicesConditionsEvaluated.Add(Choice.Name, ConditionsChecker->CheckConditions(Choice.Conditions, CountryTag));
+			}
+
+			InstancesController->CreateEvent(Pair.Key, Pair.Value, ChoicesConditionsEvaluated, CountryTag);
 		}
-		
-		InstancesController->CreateEventWidget(Pair.Key, Pair.Value, ChoicesConditionsEvaluated);
 	}
 }
 
-void FEventManager::RegisterChoice(const FString& EventName, const FString& ChoiceName)
+void FEventManager::RegisterChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag)
 {
 	// Removing Event widget
-	InstancesController->DeleteEventWidget(EventName); 
+	InstancesController->DeleteEventWidget(EventName, CountryTag);
 
 	// Applying selected choice outcomes
-	for (const auto& Choice: Events[EventName]->Choices)
+	for (auto& Choice : Events[EventName]->Choices)
 	{
 		if (Choice.Name != ChoiceName) continue;
-		OutcomesApplier->ApplyOutcomes(Choice.Outcomes);
+		OutcomesApplier->ApplyOutcomes(Choice.Outcomes, CountryTag);
 	}
 }
 
