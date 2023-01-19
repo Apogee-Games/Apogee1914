@@ -1,5 +1,6 @@
 #pragma once
 #include "EventDescription/EventDescription.h"
+#include "MyProject2/MyGameState.h"
 #include "MyProject2/Widgets/EventWidget.h"
 
 class FEventManager;
@@ -10,7 +11,7 @@ class FEventManager;
 class FEventInstancesController
 {
 public:
-	FEventInstancesController(const TSubclassOf<UEventWidget>& EventWidgetClass, FEventManager* EventManager, UWorld* World);
+	FEventInstancesController(const TSubclassOf<UEventWidget>& EventWidgetClass, FEventManager* EventManager, UWorld* World, AMyGameState* GameState);
 
 	/**
 	 *	Method for all per frame updates such as events widgets moving 
@@ -20,12 +21,12 @@ public:
 	/**
 	 * Creates and displays event widget with required data
 	 */
-	void CreateEventWidget(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated);
+	void CreateEvent(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
 
 	/**
 	 *	Removes event widget 
 	 */
-	void DeleteEventWidget(const FString& EventName);
+	void DeleteEventWidget(const FString& EventName, const FString& CountryTag);
 
 	~FEventInstancesController() = default;
 
@@ -34,11 +35,23 @@ private:
 
 	UWorld* World;
 
+	AMyGameState* GameState;
+	
 	TSet<FString> FiredEvents;
 
+	TSet<TPair<FString, FString>> AIEventsFiredRecently;
+	
 	TMap<FString, bool> ActiveEvents;
 
 	TSubclassOf<UEventWidget> EventWidgetClass;
 
-	TMap<FString, UEventWidget*> WidgetsInstances;
+	TMap<TPair<FString, FString>, UEventWidget*> WidgetsInstances;
+
+	void CreateEventForAI(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
+	
+	void CreateEventForPlayer(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
+
+	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated);
+
+	FString FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated) const;
 };
