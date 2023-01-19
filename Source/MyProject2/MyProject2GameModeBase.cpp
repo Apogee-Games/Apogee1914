@@ -38,9 +38,6 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 		InitializeEventModules();
 		AreEventConditionCheckersInitialized = true;
 	}
-	
-	EventManager->CheckEvents();
-	EventManager->Tick();
 
 	const FInGameTime* GameTime = static_cast<AMyGameState*>(GameState)->GetInGameTime();
 
@@ -52,17 +49,21 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 			TimeControllerWidget->SetTime(Time);
 		}
 	}
+
+	EventManager->CheckEvents();
+	EventManager->Tick();
 }
 
 void AMyProject2GameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
-	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex) {
-		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(GetWorld(), PlayerIndex));
+	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
+	{
+		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(
+			GetWorld(), PlayerIndex));
 
 		const AHumanPlayerPawn* Pawn = Controller->GetPawn<AHumanPlayerPawn>();
 		const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
@@ -88,7 +89,7 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	if (EventsDataTable)
 	{
-		EventManager = new FEventManager(EventsDataTable, EventWidgetClass, GetWorld());
+		EventManager = new FEventManager(EventsDataTable, EventWidgetClass, GetWorld(), GetGameState<AMyGameState>());
 	}
 }
 
@@ -122,8 +123,10 @@ void AMyProject2GameModeBase::InitializeRuledCountry() const
 void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 {
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
-	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex) {
-		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(GetWorld(), PlayerIndex));
+	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
+	{
+		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(
+			GetWorld(), PlayerIndex));
 
 		AHumanPlayerPawn* Pawn = Controller->GetPawn<AHumanPlayerPawn>();
 		const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
@@ -137,7 +140,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag: GetGameState<AMyGameState>()->GetCountriesTagsList())
+	for (const auto& CountryTag : *GetGameState<AMyGameState>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
