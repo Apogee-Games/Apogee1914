@@ -64,7 +64,7 @@ public:
 	 * Method used to add event choice
 	 * Updates background sizes, so that choices button won't be outside of the event them 
 	 */
-	void AddChoice(const FString& EventName, const FString& ChoiceName, const FString& ChoiceText, FEventManager* EventManager);
+	void AddChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag, const FString& ChoiceText, FEventManager* EventManager);
 
 	/**
 	 * Method used for tracking per frame actions, such as moving
