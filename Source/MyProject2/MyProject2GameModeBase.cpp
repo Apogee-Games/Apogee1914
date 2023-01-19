@@ -12,6 +12,7 @@
 #include "Events/OutcomeAppliers/Headers/StabilityOutcomeApplier.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Events/ConditionCheckers/Headers/DatePassedConditionChecker.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -50,8 +51,7 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 		}
 	}
 
-	EventManager->CheckEvents();
-	EventManager->Tick();
+	EventManager->Tick(*GameTime->GetTime());
 }
 
 void AMyProject2GameModeBase::BeginPlay()
@@ -89,7 +89,7 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	if (EventsDataTable)
 	{
-		EventManager = new FEventManager(EventsDataTable, EventWidgetClass, GetWorld(), GetGameState<AMyGameState>());
+		EventManager = new FEventManager(EventsDataTable, EventWidgetClass, GetWorld(), GetGameState<AMyGameState>(), MinDeltaBetweenEventChecks);
 	}
 }
 
@@ -111,6 +111,7 @@ void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void AMyProject2GameModeBase::InitializeEventModules() const
 {
 	EventManager->RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
+	EventManager->RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
 	EventManager->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
 }
 

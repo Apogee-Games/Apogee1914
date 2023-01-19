@@ -18,13 +18,24 @@ TArray<FString>* FEventManager::GetCountriesForWhichEventCanBeFired(FEventDescri
 }
 
 
-void FEventManager::Tick() const
+void FEventManager::Tick(const FDateTime& CurrentInGameTime)
 {
+	if (LastDateEventWereChecked.GetTicks() == 0)
+	{
+		LastDateEventWereChecked = CurrentInGameTime;
+	}
+	if (CurrentInGameTime - LastDateEventWereChecked >= MinDeltaBetweenEventChecks)
+	{
+		CheckEvents();
+		LastDateEventWereChecked = CurrentInGameTime;
+	}
+
 	InstancesController->Tick();
 }
 
 FEventManager::FEventManager(UDataTable* Events, const TSubclassOf<UEventWidget>& NewEventWidgetClass, UWorld* World,
-                             AMyGameState* GameState): GameState(GameState), EventWidgetClass(NewEventWidgetClass)
+                             AMyGameState* GameState, const FTimespan& MinDeltaBetweenEventChecks):
+	MinDeltaBetweenEventChecks(MinDeltaBetweenEventChecks), GameState(GameState), EventWidgetClass(NewEventWidgetClass)
 {
 	ConditionsChecker = new FEventConditionsChecker;
 	OutcomesApplier = new FEventsOutcomesApplier;
@@ -51,7 +62,8 @@ void FEventManager::CheckEvents()
 
 			for (auto& Choice : Pair.Value->Choices)
 			{
-				ChoicesConditionsEvaluated.Add(Choice.Name, ConditionsChecker->CheckConditions(Choice.Conditions, CountryTag));
+				ChoicesConditionsEvaluated.Add(Choice.Name,
+				                               ConditionsChecker->CheckConditions(Choice.Conditions, CountryTag));
 			}
 
 			InstancesController->CreateEvent(Pair.Key, Pair.Value, ChoicesConditionsEvaluated, CountryTag);

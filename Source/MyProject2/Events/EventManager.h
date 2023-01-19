@@ -14,7 +14,7 @@ class FEventManager
 {
 public:
 	
-	FEventManager(UDataTable* Events, const TSubclassOf<UEventWidget>& NewEventWidgetClass, UWorld* World, AMyGameState* GameState);
+	FEventManager(UDataTable* Events, const TSubclassOf<UEventWidget>& NewEventWidgetClass, UWorld* World, AMyGameState* GameState, const FTimespan& MinDeltaBetweenEventChecks);
 
 	/**
 	 *	Method to check all events and fire those that pass all conditions
@@ -24,7 +24,7 @@ public:
 	/**
 	 *	Method for all per frame updates
 	 */
-	void Tick() const;
+	void Tick(const FDateTime& CurrentInGameTime);
 
 	/**
 	 *	Method used to record selected choice for specific event
@@ -43,6 +43,10 @@ public:
 
 	~FEventManager();
 private:
+	FDateTime LastDateEventWereChecked;
+
+	FTimespan MinDeltaBetweenEventChecks;
+	
 	FEventConditionsChecker* ConditionsChecker;
 
 	FEventInstancesController* InstancesController;
