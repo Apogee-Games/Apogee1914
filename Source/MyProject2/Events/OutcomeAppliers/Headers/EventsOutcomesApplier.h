@@ -16,7 +16,7 @@ public:
 	/**
 	 * Method used to apply event choice outcomes
 	 */
-	void ApplyOutcomes(TArray<FEventOutcome> Outcomes);
+	void ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag);
 
 	~FEventsOutcomesApplier() = default;
 private:

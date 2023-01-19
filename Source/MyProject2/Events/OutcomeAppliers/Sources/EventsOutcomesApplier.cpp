@@ -5,11 +5,24 @@ void FEventsOutcomesApplier::RegisterOutcomeApplier(const FString& Name, FEventO
 	OutcomeAppliers.Add(Name, OutcomeApplier);
 }
 
-void FEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome> Outcomes)
+void FEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag)
 {
-	for (const auto& Outcome: Outcomes)
+	for (auto& Outcome: Outcomes)
 	{
 		if (!OutcomeAppliers.Contains(Outcome.Name)) continue;
+		bool AddedCountry = false;
+
+		if (!Outcome.Values.Contains("Country"))
+		{
+			Outcome.Values.Add("Country", CountryTag);
+			AddedCountry = true;
+		}
+
 		OutcomeAppliers[Outcome.Name]->Apply(Outcome.Values);
+
+		if (AddedCountry)
+		{
+			Outcome.Values.Remove("Country");
+		}
 	}
 }

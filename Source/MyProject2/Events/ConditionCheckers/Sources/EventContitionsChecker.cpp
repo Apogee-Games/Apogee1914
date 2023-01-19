@@ -5,12 +5,28 @@ void FEventConditionsChecker::RegisterConditionChecker(const FString& Name, FEve
 	ConditionsCheckers.Add(Name, Checker);
 }
 
-bool FEventConditionsChecker::CheckConditions(const TArray<FEventCondition>& Conditions)
+bool FEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Conditions, const FString& CountryTag)
 {
-	for (const auto& EventConditions : Conditions)
+	for (auto& EventConditions : Conditions)
 	{
 		if (!ConditionsCheckers.Contains(EventConditions.Name)) return false;
-		if (!ConditionsCheckers[EventConditions.Name]->Check(EventConditions.Values)) return false;
+		bool AddedCountry = false;
+
+		if (!EventConditions.Values.Contains("Country"))
+		{
+			EventConditions.Values.Add("Country", CountryTag);
+			AddedCountry = true;
+		}
+
+		const bool HasPassed = ConditionsCheckers[EventConditions.Name]->Check(EventConditions.Values);
+
+		if (AddedCountry)
+		{
+			EventConditions.Values.Remove("Country");
+		}
+
+		if (!HasPassed) return false;
 	}
+	
 	return true;
 }

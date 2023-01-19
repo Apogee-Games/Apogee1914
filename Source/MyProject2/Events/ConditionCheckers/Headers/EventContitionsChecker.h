@@ -16,7 +16,7 @@ public:
 	/**
 	 * Method used to check event or choice conditions
 	 */
-	bool CheckConditions(const TArray<FEventCondition>& Conditions);
+	bool CheckConditions(TArray<FEventCondition>& Conditions, const FString& CountryTag);
 
 	~FEventConditionsChecker() = default;
 private:
