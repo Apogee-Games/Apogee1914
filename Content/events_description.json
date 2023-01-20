@@ -22,79 +22,11 @@
 		],
 		"Choices": [
 			{
-				"Name": "Play3",
-				"Text": "Play3",
+				"Name": "Play",
+				"Text": "Play",
 				"AIChance": 1,
-				"OutComes": [
-					{
-						"Name": "Stability",
-						"Values": {
-							"Stability": 10
-						}
-					}
-				],
-				"Conditions": [
-				]
-			},
-			{
-				"Name": "Play2",
-				"Text": "Play2",
-				"AIChance": 0.5,
-				"OutComes": [
-					{
-						"Name": "AddStability",
-						"Values": {
-							"Stability": 10
-						}
-					}
-				],
-				"Conditions": [
-				]
-			},
-			{
-				"Name": "Play1",
-				"Text": "Play1",
-				"AIChance": 0.5,
-				"OutComes": [
-					{
-						"Name": "AddStability",
-						"Values": {
-							"Stability": 10
-						}
-					}
-				],
-				"Conditions": [
-				]
-			},
-			{
-				"Name": "Play4",
-				"Text": "Play4",
-				"AIChance": 0.5,
-				"OutComes": [
-					{
-						"Name": "AddStability",
-						"Values": {
-							"Stability": 10
-						}
-					}
-				],
-				"Conditions": [
-				]
-			},
-			{
-				"Name": "Play5",
-				"Text": "Play5",
-				"AIChance": 0.5,
-				"OutComes": [
-					{
-						"Name": "AddStability",
-						"Values": {
-							"Stability": 10
-						}
-					}
-				],
-				"Conditions": [
-				]
+				"OutComes": [],
+				"Conditions": []
 			}
 		]
 	}
