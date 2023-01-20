@@ -4,6 +4,8 @@
 
 /**
  * Checks current date
+ * Unreliable condition because there is no guarantee that events will be checked at exact date.
+ * So it is better to DatePassed
  */
 class FExactDateConditionChecker: public FEventConditionChecker
 {
@@ -14,7 +16,8 @@ public:
 	explicit FExactDateConditionChecker(FInGameTime* GameTime);
 
 	/**
-	 *	Checks current data with provided values
+	 *	@brief Checks current data with provided values
+	 *	@param Values - provided values, should have Date field to represent desired date
 	 */
 	virtual bool Check(TMap<FString, FString> Values) override;
 
