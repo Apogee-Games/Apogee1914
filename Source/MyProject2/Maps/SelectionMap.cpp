@@ -1,6 +1,6 @@
 #include "SelectionMap.h"
 
-#include "MyProject2/TextureUtils.h"
+#include "MyProject2/Utils/TextureUtils.h"
 
 FSelectionMap::FSelectionMap(): GameState(nullptr), SelectionMapTexture(nullptr), ProvincesMapTexture(nullptr)
 {

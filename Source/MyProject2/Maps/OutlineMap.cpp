@@ -1,6 +1,6 @@
 #include "OutlineMap.h"
 
-#include "MyProject2/TextureUtils.h"
+#include "MyProject2/Utils/TextureUtils.h"
 
 FOutlineMap::FOutlineMap(): GameState(nullptr), OutlinesMapTexture(nullptr), ProvincesMapTexture(nullptr)
 {

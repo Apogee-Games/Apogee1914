@@ -7,7 +7,7 @@
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "Engine/Canvas.h"
-#include "MyProject2/TextureUtils.h"
+#include "MyProject2/Utils/TextureUtils.h"
 #include "EventChoiceButtonWidget.h"
 
 void UEventWidget::SetTitle(const FString& Title) const

@@ -21,4 +21,8 @@ private:
 	UTexture2D* ProvincesMapTexture;
 
 	FVector2D SizeVector;
+
+	TArray<int> FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height) const;
+
+	int* FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const;
 };
