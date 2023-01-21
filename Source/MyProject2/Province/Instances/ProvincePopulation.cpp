@@ -2,22 +2,22 @@
 
 UProvincePopulation::UProvincePopulation()
 {
-	
+	Population = 0;
 }
 
-UProvincePopulation::UProvincePopulation(int Population)
+UProvincePopulation::UProvincePopulation(const int Population)
 	: Population(Population)
 {
 	
 }
 
-void UProvincePopulation::Init(int ArgPopulation)
+void UProvincePopulation::Init(const int ArgPopulation)
 {
 	this->Population = ArgPopulation;
 }
 
 
-int UProvincePopulation::GetPopulation()
+int UProvincePopulation::GetPopulation() const
 {
 	return this->Population;
 }

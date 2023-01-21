@@ -33,20 +33,20 @@ UProvinceManager::UProvinceManager()
 
 }
 
-FProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
+FProvinceDescription* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
 {
 	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return nullptr;
-	return reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
+	return reinterpret_cast<FProvinceDescription*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
 
 }
 
 FColor UProvinceManager::GetCountryColor(const FColor& ProvinceColor) const
 {
 	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FColor(20, 20, 20);
-	const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
+	const FProvinceDescription* Province = reinterpret_cast<FProvinceDescription*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
 	if (!Province) return FColor(20, 20, 20);
 
-	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
+	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->CountryTag)));
 	return Country ? Country->GetColor() : FColor(20, 20, 20);
 }
 
@@ -57,17 +57,17 @@ FState* UProvinceManager::GetState(const FString& StateId) const
 
 bool UProvinceManager::AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
 {
-	const FProvince* ProvinceA = GetProvince(ProvinceAColor);
-	const FProvince* ProvinceB = GetProvince(ProvinceBColor);
-	return ProvinceA && ProvinceB && ProvinceA->GetStateId() == ProvinceB->GetStateId();
+	const FProvinceDescription* ProvinceA = GetProvince(ProvinceAColor);
+	const FProvinceDescription* ProvinceB = GetProvince(ProvinceBColor);
+	return ProvinceA && ProvinceB && ProvinceA->StateId == ProvinceB->StateId;
 }
 
 bool UProvinceManager::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
 {
 	
-	const FProvince* ProvinceA = GetProvince(ProvinceAColor);
-	const FProvince* ProvinceB = GetProvince(ProvinceBColor);
-	return ProvinceA && ProvinceB && ProvinceA->GetStateId() != ProvinceB->GetStateId();
+	const FProvinceDescription* ProvinceA = GetProvince(ProvinceAColor);
+	const FProvinceDescription* ProvinceB = GetProvince(ProvinceBColor);
+	return ProvinceA && ProvinceB && ProvinceA->StateId != ProvinceB->StateId;
 }
 
 UTexture2D* UProvinceManager::GetProvincesMapTexture() const

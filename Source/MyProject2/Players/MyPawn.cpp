@@ -37,12 +37,12 @@ void AMyPawn::LeftClick()
 
 	const auto ProvinceManager = GetGameState()->GetProvinceManager();
 	
-	const FProvince* Province = ProvinceManager->GetProvince(Color);
+	const FProvinceDescription* Province = ProvinceManager->GetProvince(Color);
 
 	if (Province)
 	{
-		ProvinceDataWidget->SetProvinceName(Province->GetName());
-		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()));
+		ProvinceDataWidget->SetProvinceName(Province->ProvinceName);
+		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->Population));
 		ProvinceDataWidget->SetResources(Province->Resources);
 
 		const FState* State = ProvinceManager->GetState(Province->StateId);

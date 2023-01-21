@@ -8,7 +8,10 @@ struct FFactoryDescription : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY();
 public:
-	FFactoryDescription();
+	FFactoryDescription()
+	{
+		MaxLabours = 0;
+	};
 
 	// [Good ID:Amount]
 	UPROPERTY()
@@ -23,5 +26,5 @@ public:
 	TMap<FString, int32> GoodOutput;
 
 	UPROPERTY()
-	int32 MaxLabours;
+	int32 MaxLabours{};
 };

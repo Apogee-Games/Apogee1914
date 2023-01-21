@@ -6,13 +6,14 @@ class UProvincePopulation : public UObject
 	GENERATED_BODY()
 public:
 	UProvincePopulation();
-	
-	UProvincePopulation(int Population);
 
-	void Init(int ArgPopulation);
+	explicit UProvincePopulation(const int Population);
+
+	void Init(const int ArgPopulation);
 	
-	int GetPopulation();
-	
+	int GetPopulation() const;
+
+private:
 	UPROPERTY()
 	int Population;
 	

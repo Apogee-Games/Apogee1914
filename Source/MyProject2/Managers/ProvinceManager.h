@@ -1,7 +1,6 @@
 ﻿#pragma once
-#include "MyProject2/World/Province.h"
+#include "MyProject2/Province/Descriptions/ProvinceDescription.h"
 #include "MyProject2/World/Country.h"
-#include "MyProject2/World/Province.h"
 #include "MyProject2/World/State.h"
 #include "Engine/DataTable.h"
 #include "ProvinceManager.generated.h"
@@ -14,7 +13,7 @@ class UProvinceManager : public UObject
 public:
 	UProvinceManager();
 
-	FProvince* GetProvince(const FColor& ProvinceColor) const;	
+	FProvinceDescription* GetProvince(const FColor& ProvinceColor) const;	
 	
 	FColor GetCountryColor(const FColor& ProvinceColor) const;
 

@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
+#include "FactoryInstanceDescription.generated.h"
 
 USTRUCT()
 struct FFactoryInstanceDescription : public FTableRowBase
