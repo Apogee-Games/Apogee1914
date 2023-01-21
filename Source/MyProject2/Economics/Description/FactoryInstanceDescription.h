@@ -2,7 +2,7 @@
 #include "Engine/DataTable.h"
 
 USTRUCT()
-struct FFactoryInstance : public FTableRowBase
+struct FFactoryInstanceDescription : public FTableRowBase
 {
 	GENERATED_BODY()
 
