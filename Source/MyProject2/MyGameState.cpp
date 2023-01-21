@@ -92,18 +92,28 @@ FState* AMyGameState::GetState(const FString& StateId) const
 	return reinterpret_cast<FState*>(StateDescriptionDataTable->FindRowUnchecked(FName(StateId)));
 }
 
-bool AMyGameState::AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
+bool AMyGameState::AreProvincesInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
 {
 	const FProvince* ProvinceA = GetProvince(ProvinceAColor);
 	const FProvince* ProvinceB = GetProvince(ProvinceBColor);
 	return ProvinceA && ProvinceB && ProvinceA->StateId == ProvinceB->StateId;
 }
 
-bool AMyGameState::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
+bool AMyGameState::AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
 {
 	const FProvince* ProvinceA = GetProvince(ProvinceAColor);
 	const FProvince* ProvinceB = GetProvince(ProvinceBColor);
 	return ProvinceA && ProvinceB && ProvinceA->StateId != ProvinceB->StateId;
+}
+
+bool AMyGameState::ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const
+{
+	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return false;
+	const FProvince* Province = reinterpret_cast<FProvince*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
+	if (!Province) return false;
+
+	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->CountryTag)));
+	return Country != nullptr;
 }
 
 TArray<FString>* AMyGameState::GetCountriesTagsList()

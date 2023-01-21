@@ -36,9 +36,11 @@ public:
 
 	FState* GetState(const FString& StateId) const;
 
-	bool AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
+	bool AreProvincesInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 
-	bool AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
+	bool AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
+
+	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
 
 	TArray<FString>* GetCountriesTagsList();
 
