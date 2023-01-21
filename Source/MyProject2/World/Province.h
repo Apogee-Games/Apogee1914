@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
+#include "MyProject2/Economics/Instances/FactoryInstance.h"
 #include "Province.generated.h"
 
 USTRUCT()
@@ -41,4 +42,8 @@ struct FProvince : public FTableRowBase
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<FString, int> Resources;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FFactoryInstance> Factories; 
+	
 };

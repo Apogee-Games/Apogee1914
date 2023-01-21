@@ -14,8 +14,7 @@ class UProvinceManager : public UObject
 public:
 	UProvinceManager();
 
-	FProvince* GetProvince(const FColor& ProvinceColor) const;
-
+	FProvince* GetProvince(const FColor& ProvinceColor) const;	
 	
 	FColor GetCountryColor(const FColor& ProvinceColor) const;
 
