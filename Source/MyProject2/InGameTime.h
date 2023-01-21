@@ -4,7 +4,7 @@ class FInGameTime
 {
 
 public:
-	FInGameTime(FDateTime* CurrentTime, int MaxTimeSpeed);
+	FInGameTime(FDateTime* CurrentTime, int MaxTimeSpeed, float SpeedMultiplier);
 
 	int GetTimeSpeed() const;
 
@@ -24,7 +24,7 @@ public:
 	
 	FDateTime* GetTime() const;
 
-	void UpdateCurrentTime(float DeltaSeconds);
+	void UpdateCurrentTime(const float DeltaSeconds) const;
 
 private:
 	
@@ -34,5 +34,7 @@ private:
 	
 	int TimeSpeed = 1;
 
+	float SpeedMultiplier;
+	
 	int MaxTimeSpeed;
 };

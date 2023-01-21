@@ -1,7 +1,7 @@
 #include "InGameTime.h"
 
-FInGameTime::FInGameTime(FDateTime* CurrentTime, int MaxTimeSpeed):
-	CurrentTime(CurrentTime), MaxTimeSpeed(MaxTimeSpeed)
+FInGameTime::FInGameTime(FDateTime* CurrentTime, int MaxTimeSpeed, float SpeedMultiplier):
+	CurrentTime(CurrentTime), SpeedMultiplier(SpeedMultiplier), MaxTimeSpeed(MaxTimeSpeed)
 {
 }
 
@@ -15,16 +15,15 @@ int FInGameTime::GetMaxTimeSpeed() const
 	return MaxTimeSpeed;
 }
 
-void FInGameTime::UpdateCurrentTime(float DeltaSeconds)
+void FInGameTime::UpdateCurrentTime(const float DeltaSeconds) const
 {
-	(*CurrentTime) += FTimespan(0, DeltaSeconds * TimeSpeed / 5, 0);
+	(*CurrentTime) += FTimespan(0, DeltaSeconds * TimeSpeed * SpeedMultiplier, 0);
 }
 
 FDateTime* FInGameTime::GetTime() const
 {
 	return CurrentTime;
 }
-
 
 void FInGameTime::SpeedUpTime()
 {

@@ -45,7 +45,7 @@ AMyGameState::AMyGameState()
 
 void AMyGameState::BeginPlay()
 {
-	GameTime = new FInGameTime(&StartTime, MaxTimeSpeed);
+	GameTime = new FInGameTime(&StartTime, MaxTimeSpeed, SpeedMultiplier);
 	Super::BeginPlay();
 }
 

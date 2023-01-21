@@ -65,6 +65,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	int MaxTimeSpeed = 5;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	float SpeedMultiplier;
+
 	int GetStability() const;
 
 	void SetStability(int Stability);
