@@ -38,6 +38,8 @@ private:
 
 	FString StateId;
 
+	TMap<FString, int32> UnitsRenderingPosition;
+
 	UPROPERTY()
 	UProvincePopulation* Population;
 	

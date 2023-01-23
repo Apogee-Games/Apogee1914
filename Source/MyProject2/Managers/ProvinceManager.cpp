@@ -58,7 +58,7 @@ FColor UProvinceManager::GetCountryColor(const FColor& ProvinceColor) const
 	UProvince* Province = GetProvince(ProvinceColor);
 	if (!Province) return FColor(20, 20, 20);
 
-	const FCountry* Country = CountryDescriptionDataTable->FindRow<FCountry>(FName(Province->GetCountryTag()),"");
+	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
 	return Country ? Country->GetColor() : FColor(20, 20, 20);
 }
 
