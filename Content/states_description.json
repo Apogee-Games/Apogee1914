@@ -299,5 +299,145 @@
 		"Provinces": [
 			"FE3001FF", "48FF01FF"
 		]
+	},
+	{
+		"Name": "Catalonia",
+		"StateName": "Catalonia",
+		"Provinces": [
+			"C75903FF", "71DD03FF", "C71C03FF", "6A8D03FF"
+		]
+	},
+	{
+		"Name": "Aragon",
+		"StateName": "Aragon",
+		"Provinces": [
+			"C4D003FF", "A96103FF", "55D003FF"
+		]
+	},
+	{
+		"Name": "Valencia",
+		"StateName": "Valencia",
+		"Provinces": [
+			"F4D403FF", "A9DB03FF", "A91903FF"
+		]
+	},
+	{
+		"Name": "Murcia",
+		"StateName": "Murcia",
+		"Provinces": [
+			"B71903FF"
+		]
+	},
+	{
+		"Name": "Castilla–La-Mancha",
+		"StateName": "Castilla–La Mancha",
+		"Provinces": [
+			"1F7C03FF", "EBE003FF", "361903FF", "E56403FF", "F51B03FF"
+		]
+	},
+	{
+		"Name": "Madrid",
+		"StateName": "Madrid",
+		"Provinces": [
+			"395D03FF"
+		]
+	},
+	{
+		"Name": "Andalusia",
+		"StateName": "Andalusia",
+		"Provinces": [
+			"5DB603FF", "D0E903FF", "215903FF", "BB8B03FF", "BA5208FF", "F42C03FF", "D05D03FF", "E11103FF"
+		]
+	},
+	{
+		"Name": "Extremadura",
+		"StateName": "Extremadura",
+		"Provinces": [
+			"566203FF", "31B603FF"
+		]
+	},
+	{
+		"Name": "Castile-and-León",
+		"StateName": "Castile and León",
+		"Provinces": [
+			"4CCF03FF", "28E303FF", "46DE03FF", "E7B703FF", "BDCF03FF", "DAD403FF", "B41603FF", "D90603FF", "AA3E03FF"
+		]
+	},
+	{
+		"Name": "Navarre",
+		"StateName": "Navarre",
+		"Provinces": [
+			"6E5703FF"
+		]
+	},
+	{
+		"Name": "La-Rioja",
+		"StateName": "La Rioja",
+		"Provinces": [
+			"B45003FF"
+		]
+	},
+	{
+		"Name": "Basque",
+		"StateName": "Basque",
+		"Provinces": [
+			"CB1003FF", "77A103FF", "CB5703FF"
+		]
+	},
+	{
+		"Name": "Cantabria",
+		"StateName": "Cantabria",
+		"Provinces": [
+			"A81603FF"
+		]
+	},
+	{
+		"Name": "Asturias",
+		"StateName": "Asturias",
+		"Provinces": [
+			"795603FF"
+		]
+	},
+	{
+		"Name": "Galicia",
+		"StateName": "Galicia",
+		"Provinces": [
+			"54E303FF", "E35603FF", "AAAF03FF", "AA1A03FF"
+		]
+	},
+	{
+		"Name": "Balearic-Islands",
+		"StateName": "Balearic-Islands",
+		"Provinces": [
+			"0EAC03FF"
+		]
+	},
+	{
+		"Name": "North-Portugal",
+		"StateName": "North Portugal",
+		"Provinces": [
+			"6D2303FF", "29AC03FF", "F8CA03FF", "5E4803FF", "F82C03FF"
+		]	
+	},
+	{
+		"Name": "Beiras",
+		"StateName": "Beiras",
+		"Provinces": [
+			"D2AC03FF", "DA2303FF", "D6E303FF", "56D703FF", "AD1703FF"
+		]	
+	},
+	{
+		"Name": "Tejo-Valley",
+		"StateName": "Tejo Valley",
+		"Provinces": [
+			"E14403FF", "5EBE03FF", "D1CE03FF", "0F5103FF"
+		]	
+	},
+	{
+		"Name": "Alentejo",
+		"StateName": "Alentejo",
+		"Provinces": [
+			"5EAC03FF", "D1AC03FF", "861603FF", "866903FF"
+		]	
 	}
 ]
