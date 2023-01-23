@@ -29,7 +29,7 @@ struct FProvinceDescription : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<FString, int> Resources;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FFactoryInstanceDescription> Factories; 
+	// UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	// TArray<FFactoryInstanceDescription> Factories; 
 	
 };

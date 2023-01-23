@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "MyProject2/Province/Descriptions/ProvinceDescription.h"
 #include "MyProject2/World/Country.h"
 #include "MyProject2/World/State.h"
 #include "Engine/DataTable.h"
+#include "MyProject2/Province/Province.h"
 #include "ProvinceManager.generated.h"
 
 UCLASS()
@@ -13,8 +13,9 @@ class UProvinceManager : public UObject
 public:
 	UProvinceManager();
 
-	FProvinceDescription* GetProvince(const FColor& ProvinceColor) const;	
-	
+	UProvince* GetProvince(const FColor& ProvinceColor) const;
+	UProvince* GetProvince(const FString& ProvinceColorHex) const;
+
 	FColor GetCountryColor(const FColor& ProvinceColor) const;
 
 	FState* GetState(const FString& StateId) const;
@@ -31,9 +32,13 @@ public:
 
 	UTexture2D* GetOutlinesMapTexture() const;
 
-	
+	void InitProvinces();
 	
 private:
+
+	UPROPERTY()
+	TMap<FName, UProvince*> ProvinceMap;
+	
 	UPROPERTY()
 	UDataTable* CountryDescriptionDataTable;
 	
@@ -42,6 +47,9 @@ private:
 	
 	UPROPERTY()
 	UDataTable* ProvinceDescriptionDataTable;
+	
+	UPROPERTY()
+	UDataTable* TerrainDescriptionDataTable;
 	
 	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
@@ -54,4 +62,5 @@ private:
 
 	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
+
 };

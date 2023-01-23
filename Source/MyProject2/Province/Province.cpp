@@ -2,28 +2,28 @@
 
 UProvince::UProvince()
 {
+	Population = NewObject<UProvincePopulation>();
 }
 
 
-UProvince::UProvince(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT,const UDataTable* FactoryDT)
-	:
-Id(ProvinceDescription->Color),
-ProvinceName(ProvinceDescription->ProvinceName),
-CountryTag(ProvinceDescription->CountryTag),
-StateId(ProvinceDescription->StateId),
-Resources(ProvinceDescription->Resources)
-
+void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT,const UDataTable* FactoryDT)
 {
+	Id = ProvinceDescription->Color;
+	ProvinceName = ProvinceDescription->ProvinceName;
+	CountryTag = ProvinceDescription->CountryTag;
+	StateId = ProvinceDescription->StateId;
+	Resources = ProvinceDescription->Resources;
 	Population->Init(ProvinceDescription->Population);
-	Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
-	for(const auto& FactoryInstanceDescription : ProvinceDescription->Factories)
-	{
-		FFactoryDescription* FactoryDescription = reinterpret_cast<FFactoryDescription*>(FactoryDT->FindRowUnchecked(FName(FactoryInstanceDescription.Type)));
-		
-		UProvinceFactory* ProvinceFactory = NewObject<UProvinceFactory>();
-		ProvinceFactory->Init(FactoryInstanceDescription, FactoryDescription);
-		Factories.Add(ProvinceFactory);
-	}
+	// Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
+	
+	// for(const auto& FactoryInstanceDescription : ProvinceDescription->Factories)
+	// {
+	// 	FFactoryDescription* FactoryDescription = reinterpret_cast<FFactoryDescription*>(FactoryDT->FindRowUnchecked(FName(FactoryInstanceDescription.Type)));
+	// 	
+	// 	UProvinceFactory* ProvinceFactory = NewObject<UProvinceFactory>();
+	// 	ProvinceFactory->Init(FactoryInstanceDescription, FactoryDescription);
+	// 	Factories.Add(ProvinceFactory);
+	// }
 }
 
 const FColor& UProvince::GetId() const
@@ -36,12 +36,17 @@ const FString& UProvince::GetCountryTag() const
 	return CountryTag;
 }
 
+const FString& UProvince::GetStateId() const
+{
+	return StateId;
+}
+
 const FString& UProvince::GetProvinceName() const
 {
 	return ProvinceName;
 }
 
-const TObjectPtr<UProvincePopulation> UProvince::GetPopulation() const
+const UProvincePopulation* UProvince::GetPopulation() const
 {
 	return Population;
 }
@@ -50,6 +55,11 @@ const TObjectPtr<UProvincePopulation> UProvince::GetPopulation() const
 const FTerrainDescription* UProvince::GetTerrain() const
 {
 	return Terrain;
+}
+
+const TMap<FString, int> UProvince::GetResources() const
+{
+	return Resources;
 }
 
 

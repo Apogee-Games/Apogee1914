@@ -9,6 +9,7 @@ UProvinceManager::UProvinceManager()
 	if (ProvincesDescriptionFinder.Succeeded())
 	{
 		ProvinceDescriptionDataTable = ProvincesDescriptionFinder.Object;
+		InitProvinces();
 	}
 
 	const ConstructorHelpers::FObjectFinder<UDataTable> CountriesDescriptionFinder(TEXT("/Game/Sources/countries_description"));
@@ -23,6 +24,12 @@ UProvinceManager::UProvinceManager()
 		StateDescriptionDataTable = StateDescriptionFinder.Object;
 	}
 
+	const ConstructorHelpers::FObjectFinder<UDataTable> TerrainDescriptionFinder(TEXT("/Game/Sources/terrain_description"));
+	if (TerrainDescriptionFinder.Succeeded())
+	{
+		TerrainDescriptionDataTable = TerrainDescriptionFinder.Object;
+	}
+
 	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
 
 	SelectionMapTexture = FTextureUtils::LoadTexture("/Game/maps/province");
@@ -31,22 +38,27 @@ UProvinceManager::UProvinceManager()
 
 	OutlinesMapTexture = FTextureUtils::LoadTexture("/Game/maps/outlines");
 
+	
 }
 
-FProvinceDescription* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
+UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
 {
-	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return nullptr;
-	return reinterpret_cast<FProvinceDescription*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
+	return GetProvince(ProvinceColor.ToHex());
+}
 
+UProvince* UProvinceManager::GetProvince(const FString& ProvinceColorHex) const
+{
+	return ProvinceMap.FindRef(FName(ProvinceColorHex));
 }
 
 FColor UProvinceManager::GetCountryColor(const FColor& ProvinceColor) const
 {
 	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FColor(20, 20, 20);
-	const FProvinceDescription* Province = reinterpret_cast<FProvinceDescription*>(ProvinceDescriptionDataTable->FindRowUnchecked(FName(ProvinceColor.ToHex())));
+
+	UProvince* Province = GetProvince(ProvinceColor);
 	if (!Province) return FColor(20, 20, 20);
 
-	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->CountryTag)));
+	const FCountry* Country = CountryDescriptionDataTable->FindRow<FCountry>(FName(Province->GetCountryTag()),"");
 	return Country ? Country->GetColor() : FColor(20, 20, 20);
 }
 
@@ -57,17 +69,15 @@ FState* UProvinceManager::GetState(const FString& StateId) const
 
 bool UProvinceManager::AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
 {
-	const FProvinceDescription* ProvinceA = GetProvince(ProvinceAColor);
-	const FProvinceDescription* ProvinceB = GetProvince(ProvinceBColor);
-	return ProvinceA && ProvinceB && ProvinceA->StateId == ProvinceB->StateId;
+	const UProvince* ProvinceA = GetProvince(ProvinceAColor);
+	const UProvince* ProvinceB = GetProvince(ProvinceBColor);
+	return ProvinceA && ProvinceB && ProvinceA->GetStateId() == ProvinceB->GetStateId();
 }
 
 bool UProvinceManager::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
 {
 	
-	const FProvinceDescription* ProvinceA = GetProvince(ProvinceAColor);
-	const FProvinceDescription* ProvinceB = GetProvince(ProvinceBColor);
-	return ProvinceA && ProvinceB && ProvinceA->StateId != ProvinceB->StateId;
+	return !AreProvincesInTheSameState(ProvinceAColor, ProvinceBColor);
 }
 
 UTexture2D* UProvinceManager::GetProvincesMapTexture() const
@@ -90,6 +100,18 @@ UTexture2D* UProvinceManager::GetCountriesMapTexture() const
 UTexture2D* UProvinceManager::GetOutlinesMapTexture() const
 {
 	return OutlinesMapTexture;
+}
+
+void UProvinceManager::InitProvinces()
+{
+	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
+		if(Value == nullptr) continue;
+		// GetProvinceData
+		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
+		UProvince* Province = NewObject<UProvince>(); // Get New Province
+		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr); // Init Province Data
+		ProvinceMap.Add(Key, Province); // Save Province Data to ProvinceMap<Name, UProvince*>
+	}
 }
 
 

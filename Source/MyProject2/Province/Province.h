@@ -12,31 +12,36 @@ class UProvince : public UObject
 public:
 	UProvince();
 
-	UProvince(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT);
+	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT);
 
 	const FColor& GetId() const;
 
 	const FString& GetCountryTag() const;
 
+	const FString& GetStateId() const;
+	
 	const FString& GetProvinceName() const;
 
-	const TObjectPtr<UProvincePopulation> GetPopulation() const;
+	const UProvincePopulation* GetPopulation() const;
 
 	const FTerrainDescription* GetTerrain() const;
+
+	const TMap<FString, int> GetResources() const;
 	
 private:
 	
-	const FColor Id;
+	FColor Id;
 
 	FString ProvinceName;
 
 	FString CountryTag;
 
-	const FString StateId;
+	FString StateId;
 
-	const TObjectPtr<UProvincePopulation> Population;
+	UPROPERTY()
+	UProvincePopulation* Population;
 	
-	const FTerrainDescription* Terrain;
+	FTerrainDescription* Terrain;
 	
 	TMap<FString, int> Resources;
 	
