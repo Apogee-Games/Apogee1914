@@ -33,8 +33,8 @@ void FCountriesMap::UpdateCountriesMapColors() const
 
 	for (int i = 0; i < Size; ++i)
 	{
-		if (!GameState->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
-		else CountriesColors[i] = GameState->GetCountryColor(ProvincesColors[i]).WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
+		if (!GameState->GetProvinceManager()->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
+		else CountriesColors[i] = GameState->GetProvinceManager()->GetCountryColor(ProvincesColors[i]).WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
 	}
 
 	FTextureUtils::UnlockPixels(CountriesMapTexture);
@@ -55,19 +55,19 @@ TArray<int> FCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 		const int y = i / static_cast<int>(SizeVector.Y);
 		const int x = i % static_cast<int>(SizeVector.Y);
 
-		if (x > 0 && GameState->GetCountryColor(ProvincesColor[i]) != GameState->GetCountryColor(ProvincesColor[i - 1])) {
+		if (x > 0 && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i - 1])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (x + 1 < Width && GameState->GetCountryColor(ProvincesColor[i]) != GameState->GetCountryColor(ProvincesColor[i + 1])) {
+		if (x + 1 < Width && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i + 1])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (y > 0 && GameState->GetCountryColor(ProvincesColor[i]) != GameState->GetCountryColor(ProvincesColor[i - Width])) {
+		if (y > 0 && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i - Width])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (y + 1 < Height && GameState->GetCountryColor(ProvincesColor[i]) != GameState->GetCountryColor(ProvincesColor[i + Width])) {
+		if (y + 1 < Height && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i + Width])) {
 			Borders.Add(i);
 			continue;
 		}

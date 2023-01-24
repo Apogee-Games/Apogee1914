@@ -4,7 +4,8 @@
 		"MovementSpeed": 0.7
 	},
 	{
-		"Name": "Woods"
+		"Name": "Woods",
+		"MovementSpeed": 1
 	},
 	{
 		"Name": "FlatLands",

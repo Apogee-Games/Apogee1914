@@ -75,7 +75,7 @@ void AMyProject2GameModeBase::BeginPlay()
 	
 	InitializeRuledCountry();
 
-	CreateAIPawns();
+	//CreateAIPawns();
 	
 	if (TimeControllerClass)
 	{
@@ -141,7 +141,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetGameState<AMyGameState>()->GetCountriesTagsList())
+	for (const auto& CountryTag : *GetGameState<AMyGameState>()->GetProvinceManager()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());

@@ -13,7 +13,7 @@ FEventManager::~FEventManager()
 TArray<FString>* FEventManager::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
-		       ? GameState->GetCountriesTagsList()
+		       ? GameState->GetProvinceManager()->GetCountriesTagsList()
 		       : &Event->CountriesConditions.CountriesTags;
 }
 

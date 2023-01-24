@@ -1,33 +1,22 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "Province.generated.h"
+#include "MyProject2/Economics/Description/FactoryInstanceDescription.h"
+#include "ProvinceDescription.generated.h"
 
 USTRUCT()
-struct FProvince : public FTableRowBase
+struct FProvinceDescription : public FTableRowBase
 {
 	GENERATED_BODY()
-
-	FProvince();
-
-	FProvince(const FColor& Color, const FString& Name, const FString& CountryTag, const int& Population);
-
-	FColor GetColor() const;
-
-	FString GetCountryTag() const;
-
-	FString GetName() const;
-
-	int GetPopulation() const;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FColor Color;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString ProvinceName;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString CountryTag;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString StateId;
 	
@@ -39,4 +28,8 @@ struct FProvince : public FTableRowBase
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<FString, int> Resources;
+
+	// UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	// TArray<FFactoryInstanceDescription> Factories; 
+	
 };

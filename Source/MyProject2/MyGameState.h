@@ -6,10 +6,7 @@
 #include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
 
-#include "Engine/DataTable.h"
-#include "World/Country.h"
-#include "World/Province.h"
-#include "World/State.h"
+#include "Managers/ProvinceManager.h"
 #include "MyGameState.generated.h"
 
 /**
@@ -30,20 +27,6 @@ public:
 
 	FInGameTime* GetInGameTime() const;
 
-	FProvince* GetProvince(const FColor& ProvinceColor) const;
-
-	FColor GetCountryColor(const FColor& ProvinceColor) const;
-
-	FState* GetState(const FString& StateId) const;
-
-	bool AreProvincesInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
-
-	bool AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
-
-	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
-
-	TArray<FString>* GetCountriesTagsList();
-
 	UTexture2D* GetProvincesMapTexture() const;
 
 	UTexture2D* GetSelectionMapTexture() const;
@@ -52,14 +35,7 @@ public:
 
 	UTexture2D* GetOutlinesMapTexture() const;
 
-	UPROPERTY()
-	UDataTable* CountryDescriptionDataTable;
-
-	UPROPERTY()
-	UDataTable* ProvinceDescriptionDataTable;
-
-	UPROPERTY()
-	UDataTable* StateDescriptionDataTable;
+	UProvinceManager* GetProvinceManager() const;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	FDateTime StartTime = FDateTime(1914, 1, 1);
@@ -73,6 +49,7 @@ public:
 	int GetStability() const;
 
 	void SetStability(int Stability);
+	
 private:
 
 	UPROPERTY()
@@ -87,9 +64,10 @@ private:
 	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
 
+	UPROPERTY()
+	UProvinceManager* ProvinceManager;
+
 	FInGameTime* GameTime;
-
-	TArray<FString> CountriesTagsList;
-
+	
 	int Stability = 0;
 };

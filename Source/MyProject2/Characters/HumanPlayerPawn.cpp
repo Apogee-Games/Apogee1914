@@ -40,15 +40,17 @@ void AHumanPlayerPawn::LeftClick()
 
 	SelectionMap->SelectProvince(Color);
 
-	const FProvince* Province = GetGameState()->GetProvince(Color);
+	const auto ProvinceManager = GetGameState()->GetProvinceManager();
+	
+	const UProvince* Province = ProvinceManager->GetProvince(Color);
 
 	if (Province)
 	{
-		ProvinceDataWidget->SetProvinceName(Province->GetName());
-		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()));
-		ProvinceDataWidget->SetResources(Province->Resources);
+		ProvinceDataWidget->SetProvinceName(Province->GetProvinceName());
+		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()->GetPopulation()));
+		ProvinceDataWidget->SetResources(Province->GetResources());
 
-		const FState* State = GetGameState()->GetState(Province->StateId);
+		const FState* State = ProvinceManager->GetState(Province->GetStateId());
 
 		if (State)
 		{
