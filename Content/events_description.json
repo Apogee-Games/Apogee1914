@@ -1,0 +1,33 @@
+[
+	{
+		"Name": "welcome",
+		"ImagePath": "/Game/Images/welcome",
+		"Title": "Welcome in the game",
+		"Text": "Welcome in the game",
+		"TriggerOnce": true,
+		"CountriesConditions": {
+			"ForAll": true,
+			"CountriesTags": []
+		},
+		"Conditions": [
+			{
+				"Name": "DatePassed",
+				"Values": {
+					"Year": 1914,
+					"Month": 1,
+					"Day": 2,
+					"Hour": 1
+				}
+			}
+		],
+		"Choices": [
+			{
+				"Name": "Play",
+				"Text": "Play",
+				"AIChance": 1,
+				"OutComes": [],
+				"Conditions": []
+			}
+		]
+	}
+]
