@@ -2,22 +2,7 @@
 
 #include "MyProject2/Utils/TextureUtils.h"
 
-FObjectMap::FObjectMap(): GameState(nullptr), ProvincesMapTexture(nullptr)
-{
-}
-
-FObjectMap::FObjectMap(AMyGameState* GameState):
-	GameState(GameState), ProvincesMapTexture(GameState->GetProvincesMapTexture())
-{
-}
-
-FObjectMap::FObjectMap(UTexture2D* ProvincesMapTexture, AMyGameState* GameState):
-	GameState(GameState), ProvincesMapTexture(ProvincesMapTexture)
-{
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
-TMap<FColor, int> FObjectMap::CalculateProvincesCenters() const
+TMap<FColor, int> UObjectMap::CalculateProvincesCenters() const
 {
 	TMap<FColor, unsigned long long> Counts;
 	TMap<FColor, FVector2d> Sums;
@@ -45,4 +30,11 @@ TMap<FColor, int> FObjectMap::CalculateProvincesCenters() const
 	FTextureUtils::UnlockPixels(ProvincesMapTexture);
 
 	return Centers;
+}
+
+void UObjectMap::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
+	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }

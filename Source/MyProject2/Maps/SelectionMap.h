@@ -1,27 +1,25 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
+#include "SelectionMap.generated.h"
 
-class FSelectionMap
+UCLASS()
+class USelectionMap : public UGameInstanceSubsystem
 {
+	GENERATED_BODY()
 public:
-	FSelectionMap();
-
-	explicit FSelectionMap(AMyGameState* GameState);
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	FSelectionMap(UTexture2D* SelectionMapTexture, UTexture2D* ProvincesMapTexture, AMyGameState* GameState);
-
 	void SelectProvince(const FColor& Color);
 
 	void SelectProvince(const FVector2d& Point);
 	
 	FColor GetProvinceColor(const FVector2d& Point) const;
 
-	
 private:
-	AMyGameState* GameState;
-
+	UPROPERTY()
 	UTexture2D* SelectionMapTexture;
 
+	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 	
 	FVector2D SizeVector;
@@ -31,6 +29,4 @@ private:
 	const FColor NonSelectedProvinceColor = FColor(0, 0, 0);
 
 	FColor SelectedProvince = FColor(0, 0, 0);
-	
-	
 };

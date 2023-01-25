@@ -1,22 +1,22 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
+#include "OutlineMap.generated.h"
 
-class FOutlineMap
+UCLASS()
+class UOutlineMap: public UGameInstanceSubsystem
 {
+	GENERATED_BODY()
 public:
-	FOutlineMap();
 
-	explicit FOutlineMap(AMyGameState* GameState);
-
-	FOutlineMap(UTexture2D* OutlinesMapTexture, UTexture2D* ProvincesMapTexture, AMyGameState* GameState);
-
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	
 	void CreateOutline();
 
 private:
-	AMyGameState* GameState;
-	
+	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
 	
+	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 
 	FVector2D SizeVector;

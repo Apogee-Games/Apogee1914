@@ -1,26 +1,9 @@
 #include "SelectionMap.h"
 
+#include "MyProject2/Characters/HumanPlayerPawn.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
-FSelectionMap::FSelectionMap(): GameState(nullptr), SelectionMapTexture(nullptr), ProvincesMapTexture(nullptr)
-{
-}
-
-FSelectionMap::FSelectionMap(AMyGameState* GameState):
-	GameState(GameState),
-	SelectionMapTexture(GameState->GetSelectionMapTexture()),
-	ProvincesMapTexture(GameState->GetProvincesMapTexture())
-{
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
-FSelectionMap::FSelectionMap(UTexture2D* SelectionMapTexture, UTexture2D* ProvincesMapTexture, AMyGameState* GameState):
-	GameState(GameState), SelectionMapTexture(SelectionMapTexture), ProvincesMapTexture(ProvincesMapTexture)
-{
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
-void FSelectionMap::SelectProvince(const FColor& Color)
+void USelectionMap::SelectProvince(const FColor& Color)
 {
 	if (Color == SelectedProvince) return;
 
@@ -44,13 +27,13 @@ void FSelectionMap::SelectProvince(const FColor& Color)
 	SelectionMapTexture->UpdateResource();
 }
 
-void FSelectionMap::SelectProvince(const FVector2d& Point)
+void USelectionMap::SelectProvince(const FVector2d& Point)
 {
 	const FColor Color = GetProvinceColor(Point);
 	SelectProvince(Color);
 }
 
-FColor FSelectionMap::GetProvinceColor(const FVector2d& Point) const
+FColor USelectionMap::GetProvinceColor(const FVector2d& Point) const
 {
 	const FVector2d ImagePosition = Point * SizeVector;
 
@@ -61,4 +44,12 @@ FColor FSelectionMap::GetProvinceColor(const FVector2d& Point) const
 	FTextureUtils::UnlockPixels(ProvincesMapTexture);
 
 	return Color;
+}
+
+void USelectionMap::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	SelectionMapTexture = FTextureUtils::LoadTexture("/Game/maps/province");
+	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
+	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }

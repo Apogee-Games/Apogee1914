@@ -1,28 +1,26 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
+#include "CountriesMap.generated.h"
 
-class FCountriesMap
+UCLASS()
+class UCountriesMap: public UGameInstanceSubsystem
 {
+	GENERATED_BODY()
 public:
-	FCountriesMap();
-
-	explicit FCountriesMap(AMyGameState* GameState);
-
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	FCountriesMap(UTexture2D* CountriesMapTexture, UTexture2D* ProvincesMapTexture, AMyGameState* GameState);
-
 	void UpdateCountriesMapColors() const;
 
 private:
-	AMyGameState* GameState;
-	
+	UPROPERTY()	
 	UTexture2D* CountriesMapTexture;
 
+	UPROPERTY()	
 	UTexture2D* ProvincesMapTexture;
 
 	FVector2D SizeVector;
 
-	TArray<int> FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height) const;
+	TArray<int> FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UProvinceManager* GameState) const;
 
 	int* FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const;
 };
