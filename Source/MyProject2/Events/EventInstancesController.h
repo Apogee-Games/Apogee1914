@@ -1,22 +1,27 @@
 #pragma once
+#include "EditorSubsystem.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 #include "EventDescription/EventDescription.h"
 #include "MyProject2/MyGameState.h"
 #include "MyProject2/Widgets/EventWidget.h"
-
-class FEventManager;
+#include "EventInstancesController.generated.h"
 
 /**
  * Class used to control all events instances
- */ 
-class FEventInstancesController
+ */
+UCLASS()
+class UEventInstancesController: public UGameInstanceSubsystem
 {
+	GENERATED_BODY()
 public:
-	FEventInstancesController(const TSubclassOf<UEventWidget>& EventWidgetClass, FEventManager* EventManager, UWorld* World, AMyGameState* GameState);
-
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	
 	/**
 	 *	Method for all per frame updates such as events widgets moving 
 	 */
-	void Tick();
+	void Tick(const FDateTime& CurrentInGameTime);
+
+	void CheckEvents();
 
 	/**
 	 * Creates and displays event widget with required data
@@ -28,21 +33,26 @@ public:
 	 */
 	void DeleteEventWidget(const FString& EventName, const FString& CountryTag);
 
-	~FEventInstancesController() = default;
+	/**
+	 *	Method used to record selected choice for specific event
+	 */
+	void RegisterChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag);
+
+	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
-	FEventManager* EventManager;
+	TSubclassOf<UEventWidget> EventWidgetClass;
 
-	UWorld* World;
+	FDateTime LastDateEventWereChecked;
 
-	AMyGameState* GameState;
+	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
 	
 	TSet<TPair<FString, FString>> FiredEvents;
 
+	TMap<FString, FEventDescription*> Events;
+
 	TMap<FString, bool> ActiveEvents;
-
-	TSubclassOf<UEventWidget> EventWidgetClass;
-
+	
 	TMap<TPair<FString, FString>, UEventWidget*> WidgetsInstances;
 
 	void CreateEventForAI(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
@@ -52,4 +62,6 @@ private:
 	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated);
 
 	FString FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated) const;
+
+	TArray<FString>* GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
 };

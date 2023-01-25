@@ -1,11 +1,11 @@
 #include "MyProject2/Events/ConditionCheckers/Headers/EventContitionsChecker.h"
 
-void FEventConditionsChecker::RegisterConditionChecker(const FString& Name, FEventConditionChecker* Checker)
+void UEventConditionsChecker::RegisterConditionChecker(const FString& Name, FEventConditionChecker* Checker)
 {
 	ConditionsCheckers.Add(Name, Checker);
 }
 
-bool FEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Conditions, const FString& CountryTag)
+bool UEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Conditions, const FString& CountryTag)
 {
 	for (auto& EventConditions : Conditions)
 	{

@@ -1,11 +1,11 @@
 #include "MyProject2/Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 
-void FEventsOutcomesApplier::RegisterOutcomeApplier(const FString& Name, FEventOutcomeApplier* OutcomeApplier)
+void UEventsOutcomesApplier::RegisterOutcomeApplier(const FString& Name, FEventOutcomeApplier* OutcomeApplier)
 {
 	OutcomeAppliers.Add(Name, OutcomeApplier);
 }
 
-void FEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag)
+void UEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag)
 {
 	for (auto& Outcome: Outcomes)
 	{
