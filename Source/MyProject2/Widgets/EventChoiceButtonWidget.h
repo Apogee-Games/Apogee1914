@@ -2,7 +2,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
-#include "MyProject2/Events/EventManager.h"
 #include "EventChoiceButtonWidget.generated.h"
 
 /**

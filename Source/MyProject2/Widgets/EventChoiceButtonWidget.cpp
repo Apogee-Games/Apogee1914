@@ -1,5 +1,7 @@
 #include "EventChoiceButtonWidget.h"
 
+#include "MyProject2/Events/EventInstancesController.h"
+
 void UEventChoiceButtonWidget::SetChoiceText(const FString& Text) const
 {
 	ChoiceTextBlock->SetText(FText::FromString(Text));
