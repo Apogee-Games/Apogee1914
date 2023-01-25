@@ -7,14 +7,13 @@ void UEventChoiceButtonWidget::SetChoiceText(const FString& Text) const
 
 void UEventChoiceButtonWidget::OnChoiceButtonClick()
 {
-	EventManager->RegisterChoice(EventName, ChoiceName, CountryTag);
+	GetGameInstance()->GetSubsystem<UEventInstancesController>()->RegisterChoice(EventName, ChoiceName, CountryTag);
 }
 
-void UEventChoiceButtonWidget::Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText, FEventManager* NewEventManager)
+void UEventChoiceButtonWidget::Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText)
 {
 	EventName = NewEventName;
 	ChoiceName = NewChoiceName;
-	EventManager = NewEventManager;
 	CountryTag = NewCountryTag;
 	SetChoiceText(NewChoiceText);
 	

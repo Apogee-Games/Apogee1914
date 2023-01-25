@@ -27,10 +27,10 @@ void UEventWidget::SetText(const FString& Text) const
 	TextTextBlock->SetText(FText::FromString(Text));
 }
 
-void UEventWidget::AddChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag, const FString& ChoiceText, FEventManager* EventManager)
+void UEventWidget::AddChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag, const FString& ChoiceText)
 {
 	UEventChoiceButtonWidget* ChoiceButtonWidget = CreateWidget<UEventChoiceButtonWidget>(GetWorld(), ChoiceButtonWidgetClass);
-	ChoiceButtonWidget->Init(EventName, ChoiceName, CountryTag, ChoiceText, EventManager);
+	ChoiceButtonWidget->Init(EventName, ChoiceName, CountryTag, ChoiceText);
 	
 	ChoicesGridPanel->AddChildToGrid(ChoiceButtonWidget, CurrentChoice, 0);
 	CurrentChoice++;
