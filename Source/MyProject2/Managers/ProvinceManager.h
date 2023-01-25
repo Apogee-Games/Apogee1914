@@ -6,12 +6,12 @@
 #include "ProvinceManager.generated.h"
 
 UCLASS()
-class UProvinceManager : public UObject
+class UProvinceManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 	
 public:
-	UProvinceManager();
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	UProvince* GetProvince(const FColor& ProvinceColor) const;
 	

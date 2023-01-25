@@ -1,35 +1,22 @@
 ﻿#include "ProvinceManager.h"
 
-UProvinceManager::UProvinceManager()
+void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
-	const ConstructorHelpers::FObjectFinder<UDataTable> CountriesDescriptionFinder(TEXT("/Game/Sources/countries_description"));
-	if (CountriesDescriptionFinder.Succeeded())
+	Super::Initialize(Collection);
+	CountryDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/countries_description"));
+
+	for (const auto& Pair: CountryDescriptionDataTable->GetRowMap())
 	{
-		CountryDescriptionDataTable = CountriesDescriptionFinder.Object;
-		for (const auto& Pair: CountryDescriptionDataTable->GetRowMap())
-		{
-			CountriesTagsList.Add(Pair.Key.ToString());
-		}
-	}
-		
-	const ConstructorHelpers::FObjectFinder<UDataTable> StateDescriptionFinder(TEXT("/Game/Sources/states_description"));
-	if (StateDescriptionFinder.Succeeded())
-	{
-		StateDescriptionDataTable = StateDescriptionFinder.Object;
+		CountriesTagsList.Add(Pair.Key.ToString());
 	}
 
-	const ConstructorHelpers::FObjectFinder<UDataTable> TerrainDescriptionFinder(TEXT("/Game/Sources/terrain_description"));
-	if (TerrainDescriptionFinder.Succeeded())
-	{
-		TerrainDescriptionDataTable = TerrainDescriptionFinder.Object;
-	}
+	StateDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/states_description"));
+
+	TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
 	
-	const ConstructorHelpers::FObjectFinder<UDataTable> ProvincesDescriptionFinder(TEXT("/Game/Sources/provinces_description"));
-	if (ProvincesDescriptionFinder.Succeeded())
-	{
-		ProvinceDescriptionDataTable = ProvincesDescriptionFinder.Object;
-		InitProvinces();
-	}
+	ProvinceDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/provinces_description"));
+
+	InitProvinces();
 }
 
 UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
