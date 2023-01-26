@@ -2,7 +2,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
-#include "MyProject2/Events/EventManager.h"
 #include "EventChoiceButtonWidget.generated.h"
 
 /**
@@ -29,7 +28,7 @@ public:
 	 *	Method used to initialize widget
 	 *	Sets all necessary data to be able to report selected choice back to event manager
 	 */
-	void Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText, FEventManager* NewEventManager);
+	void Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText);
 	
 private:
 	FString EventName;
@@ -37,8 +36,6 @@ private:
 	FString ChoiceName;
 
 	FString CountryTag;
-
-	FEventManager* EventManager;
 
 	UFUNCTION()
 	void OnChoiceButtonClick();

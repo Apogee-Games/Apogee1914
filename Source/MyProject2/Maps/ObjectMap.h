@@ -1,20 +1,17 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
+#include "ObjectMap.generated.h"
 
-class FObjectMap
+UCLASS()
+class UObjectMap : public UGameInstanceSubsystem
 {
+	GENERATED_BODY()
 public:
-	FObjectMap();
-
-	explicit FObjectMap(AMyGameState* GameState);
-	
-	FObjectMap(UTexture2D* ProvincesMapTexture, AMyGameState* GameState);
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	TMap<FColor, int> CalculateProvincesCenters() const;
-
 private:
-	AMyGameState* GameState;
-	
+	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 
 	FVector2D SizeVector;

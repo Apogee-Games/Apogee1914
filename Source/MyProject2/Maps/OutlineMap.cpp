@@ -2,26 +2,11 @@
 
 #include "MyProject2/Utils/TextureUtils.h"
 
-FOutlineMap::FOutlineMap(): GameState(nullptr), OutlinesMapTexture(nullptr), ProvincesMapTexture(nullptr)
-{
-}
 
-FOutlineMap::FOutlineMap(AMyGameState* GameState):
-	GameState(GameState),
-	OutlinesMapTexture(GameState->GetOutlinesMapTexture()),
-	ProvincesMapTexture(GameState->GetProvincesMapTexture())
+void UOutlineMap::CreateOutline()
 {
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
-FOutlineMap::FOutlineMap(UTexture2D* OutlinesMapTexture, UTexture2D* ProvincesMapTexture, AMyGameState* GameState):
-	GameState(GameState), OutlinesMapTexture(OutlinesMapTexture), ProvincesMapTexture(ProvincesMapTexture)
-{
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
-void FOutlineMap::CreateOutline()
-{
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	
 	FColor* OutlineColors = FTextureUtils::GetPixels(OutlinesMapTexture, LOCK_READ_WRITE);
 
 	const FColor* ProvincesColor = FTextureUtils::GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
@@ -36,25 +21,25 @@ void FOutlineMap::CreateOutline()
 		const int x = i % static_cast<int>(SizeVector.Y);
 
 		if (x > 0 && ProvincesColor[i] != ProvincesColor[i - 1] &&
-			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - 1]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - 1]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (x + 1 < Width && ProvincesColor[i] != ProvincesColor[i + 1] &&
-			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + 1]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + 1]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (y > 0 && ProvincesColor[i] != ProvincesColor[i - Width] &&
-			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - Width]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - Width]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (y + 1 < Height && ProvincesColor[i] != ProvincesColor[i + Width] &&
-			GameState && GameState->GetProvinceManager()->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + Width]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + Width]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
@@ -67,4 +52,12 @@ void FOutlineMap::CreateOutline()
 	FTextureUtils::UnlockPixels(ProvincesMapTexture);
 
 	OutlinesMapTexture->UpdateResource();
+}
+
+void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	OutlinesMapTexture = FTextureUtils::LoadTexture("/Game/maps/outlines");
+	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
+	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }

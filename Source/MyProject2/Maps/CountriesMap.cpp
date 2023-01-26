@@ -2,39 +2,31 @@
 
 #include "MyProject2/Utils/TextureUtils.h"
 
-FCountriesMap::FCountriesMap(): GameState(nullptr), CountriesMapTexture(nullptr), ProvincesMapTexture(nullptr)
+void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 {
-}
-
-FCountriesMap::FCountriesMap(AMyGameState* GameState):
-	GameState(GameState),
-	CountriesMapTexture(GameState->GetCountriesMapTexture()),
-	ProvincesMapTexture(GameState->GetProvincesMapTexture())
-{
+	Super::Initialize(Collection);
+	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
+	CountriesMapTexture = FTextureUtils::LoadTexture("/Game/maps/country");
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }
 
-FCountriesMap::FCountriesMap(UTexture2D* CountriesMapTexture, UTexture2D* ProvincesMapTexture, AMyGameState* GameState):
-	GameState(GameState), CountriesMapTexture(CountriesMapTexture), ProvincesMapTexture(ProvincesMapTexture)
+void UCountriesMap::UpdateCountriesMapColors() const
 {
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
+	UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
 
-void FCountriesMap::UpdateCountriesMapColors() const
-{
 	const FColor* ProvincesColors = FTextureUtils::GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 
 	FColor* CountriesColors = FTextureUtils::GetPixels(CountriesMapTexture, LOCK_READ_WRITE);
 
 	const int Size = SizeVector.X * SizeVector.Y;
 
-	const TArray<int> Borders = FindProvincesBorders(ProvincesColors, SizeVector.X, SizeVector.Y);
+	const TArray<int> Borders = FindProvincesBorders(ProvincesColors, SizeVector.X, SizeVector.Y, ProvinceManager);
 	const int* Distances = FindDistancesFromBorders(Borders, SizeVector.X, SizeVector.Y);
 
 	for (int i = 0; i < Size; ++i)
 	{
-		if (!GameState->GetProvinceManager()->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
-		else CountriesColors[i] = GameState->GetProvinceManager()->GetCountryColor(ProvincesColors[i]).WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
+		if (!ProvinceManager->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
+		else CountriesColors[i] = ProvinceManager->GetCountryColor(ProvincesColors[i]).WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
 	}
 
 	FTextureUtils::UnlockPixels(CountriesMapTexture);
@@ -46,8 +38,9 @@ void FCountriesMap::UpdateCountriesMapColors() const
 	delete Distances;
 }
 
-TArray<int> FCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height) const
+TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UProvinceManager* ProvinceManager) const
 {
+	
 	TArray<int> Borders;
 	const int Size = Width * Height;
 	for (int i = 0; i < Size; ++i)
@@ -55,19 +48,19 @@ TArray<int> FCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 		const int y = i / static_cast<int>(SizeVector.Y);
 		const int x = i % static_cast<int>(SizeVector.Y);
 
-		if (x > 0 && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i - 1])) {
+		if (x > 0 && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i - 1])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (x + 1 < Width && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i + 1])) {
+		if (x + 1 < Width && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i + 1])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (y > 0 && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i - Width])) {
+		if (y > 0 && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i - Width])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (y + 1 < Height && GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i]) != GameState->GetProvinceManager()->GetCountryColor(ProvincesColor[i + Width])) {
+		if (y + 1 < Height && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i + Width])) {
 			Borders.Add(i);
 			continue;
 		}
@@ -75,7 +68,7 @@ TArray<int> FCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 	return Borders;
 }
 
-int* FCountriesMap::FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const
+int* UCountriesMap::FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const
 {
 	const int Size = Width * Height;
 	

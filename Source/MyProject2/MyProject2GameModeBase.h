@@ -38,7 +38,6 @@ public:
 	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
 	
 private:
-
 	void InitializeEventModules() const;
 
 	/* Initializes Ruled Country for all human players */
@@ -56,8 +55,6 @@ private:
 	UPROPERTY()
 	UTimeController* TimeControllerWidget;
 	
-	FEventManager* EventManager;
-
 	bool AreEventConditionCheckersInitialized = false;
 
 	UPROPERTY()

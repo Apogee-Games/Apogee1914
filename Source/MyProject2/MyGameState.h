@@ -26,17 +26,7 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	FInGameTime* GetInGameTime() const;
-
-	UTexture2D* GetProvincesMapTexture() const;
-
-	UTexture2D* GetSelectionMapTexture() const;
-
-	UTexture2D* GetCountriesMapTexture() const;
-
-	UTexture2D* GetOutlinesMapTexture() const;
-
-	UProvinceManager* GetProvinceManager() const;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	FDateTime StartTime = FDateTime(1914, 1, 1);
 	
@@ -51,22 +41,6 @@ public:
 	void SetStability(int Stability);
 	
 private:
-
-	UPROPERTY()
-	UTexture2D* ProvincesMapTexture;
-
-	UPROPERTY()
-	UTexture2D* SelectionMapTexture;
-
-	UPROPERTY()
-	UTexture2D* CountriesMapTexture;
-
-	UPROPERTY()
-	UTexture2D* OutlinesMapTexture;
-
-	UPROPERTY()
-	UProvinceManager* ProvinceManager;
-
 	FInGameTime* GameTime;
 	
 	int Stability = 0;

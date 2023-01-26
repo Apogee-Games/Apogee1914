@@ -5,14 +5,15 @@
 
 #include "MyGameInstance.h"
 #include "Events/ConditionCheckers/Headers/ExactDateConditionChecker.h"
-#include "Events/ConditionCheckers/Headers/StabilityConditionChecker.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Characters/MyPlayerController.h"
-#include "Events/EventManager.h"
 #include "Events/OutcomeAppliers/Headers/StabilityOutcomeApplier.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Events/EventInstancesController.h"
 #include "Events/ConditionCheckers/Headers/DatePassedConditionChecker.h"
+#include "Events/ConditionCheckers/Headers/EventContitionsChecker.h"
+#include "Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -21,13 +22,6 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 	DefaultPawnClass = AHumanPlayerPawn::StaticClass();
 	PlayerControllerClass = AMyPlayerController::StaticClass();
 	GameStateClass = AMyGameState::StaticClass();
-
-	const ConstructorHelpers::FObjectFinder<UDataTable> EventsDescription(TEXT("/Game/Sources/events_description"));
-
-	if (EventsDescription.Succeeded())
-	{
-		EventsDataTable = EventsDescription.Object;
-	}
 }
 
 void AMyProject2GameModeBase::Tick(float DeltaSeconds)
@@ -39,7 +33,7 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 		InitializeEventModules();
 		AreEventConditionCheckersInitialized = true;
 	}
-
+	
 	const FInGameTime* GameTime = static_cast<AMyGameState*>(GameState)->GetInGameTime();
 
 	if (!GameTime->IsGamePaused())
@@ -51,13 +45,19 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 		}
 	}
 
-	EventManager->Tick(*GameTime->GetTime());
+	GetGameInstance()->GetSubsystem<UEventInstancesController>()->Tick(*GameTime->GetTime());
 }
 
 void AMyProject2GameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
+	GetGameInstance()->GetSubsystem<UEventInstancesController>()->SetEventWidgetClass(EventWidgetClass);
+	
+	GetGameInstance()->GetSubsystem<UCountriesMap>()->UpdateCountriesMapColors();
+
+	GetGameInstance()->GetSubsystem<UOutlineMap>()->CreateOutline();
+	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
 	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
@@ -87,18 +87,10 @@ void AMyProject2GameModeBase::BeginPlay()
 		}
 	}
 
-	if (EventsDataTable)
-	{
-		EventManager = new FEventManager(EventsDataTable, EventWidgetClass, GetWorld(), GetGameState<AMyGameState>(), MinDeltaBetweenEventChecks);
-	}
 }
 
 void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	if (EventManager)
-	{
-		delete EventManager;
-	}
 
 	if (TimeControllerWidget)
 	{
@@ -110,9 +102,9 @@ void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AMyProject2GameModeBase::InitializeEventModules() const
 {
-	EventManager->RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
-	EventManager->RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
-	EventManager->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
+	GetGameInstance()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
+	GetGameInstance()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
+	GetGameInstance()->GetSubsystem<UEventsOutcomesApplier>()->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
 }
 
 void AMyProject2GameModeBase::InitializeRuledCountry() const
@@ -141,7 +133,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetGameState<AMyGameState>()->GetProvinceManager()->GetCountriesTagsList())
+	for (const auto& CountryTag : *GetGameInstance()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());

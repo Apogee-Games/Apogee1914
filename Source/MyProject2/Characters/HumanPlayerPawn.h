@@ -6,9 +6,6 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
-#include "MyProject2/Maps/CountriesMap.h"
-#include "MyProject2/Maps/OutlineMap.h"
-#include "MyProject2/Maps/SelectionMap.h"
 #include "MyProject2/Widgets/ProvinceData.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -35,6 +32,7 @@ protected:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	UPROPERTY()
 	UCameraComponent* Camera;
 
 	UPROPERTY(EditAnywhere)
@@ -71,12 +69,6 @@ private:
 	
 	/* Tag of country that current pawn controls */
 	FString RuledCountryTag;
-	
-	FSelectionMap* SelectionMap;
-
-	FOutlineMap* OutlineMap;
-	
-	FCountriesMap* CountriesMap;
 	
 	UPROPERTY()
 	UProvinceData* ProvinceDataWidget;

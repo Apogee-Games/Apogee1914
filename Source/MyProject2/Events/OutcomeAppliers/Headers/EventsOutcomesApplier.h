@@ -1,12 +1,14 @@
 #pragma once
 #include "EventOutcomeApplier.h"
 #include "MyProject2/Events/EventDescription/EventOutcome.h"
-
+#include "EventsOutcomesApplier.generated.h"
 /**
  * Class manages separate outcome appliers and allows to apply choice outcomes
  */
-class FEventsOutcomesApplier
+UCLASS()
+class UEventsOutcomesApplier: public UGameInstanceSubsystem
 {
+	GENERATED_BODY()
 public:
 	/**
 	 * Method used to add choice outcome applier
@@ -18,7 +20,6 @@ public:
 	 */
 	void ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag);
 
-	~FEventsOutcomesApplier() = default;
 private:
 	TMap<FString, FEventOutcomeApplier*> OutcomeAppliers;
 };

@@ -5,6 +5,8 @@
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
 #include "MyProject2/MousePosition.h"
+#include "MyProject2/Managers/ProvinceManager.h"
+#include "MyProject2/Maps/SelectionMap.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()
@@ -32,7 +34,7 @@ void AHumanPlayerPawn::MoveRight(float Value)
 
 void AHumanPlayerPawn::LeftClick()
 {
-	std::cout << "Clicked" << std::endl;
+	USelectionMap* SelectionMap = GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	const FVector Point = GetNormalizedPositionOnPlane();
 
@@ -40,8 +42,8 @@ void AHumanPlayerPawn::LeftClick()
 
 	SelectionMap->SelectProvince(Color);
 
-	const auto ProvinceManager = GetGameState()->GetProvinceManager();
-	
+	const auto ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+
 	const UProvince* Province = ProvinceManager->GetProvince(Color);
 
 	if (Province)
@@ -83,16 +85,6 @@ void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SelectionMap = new FSelectionMap(GetGameState());
-
-	OutlineMap = new FOutlineMap(GetGameState());
-	
-	CountriesMap = new FCountriesMap(GetGameState());
-
-	CountriesMap->UpdateCountriesMapColors();
-
-	OutlineMap->CreateOutline();
-	
 	if (IsLocallyControlled() && ProvinceDataWidgetClass)
 	{
 		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
@@ -111,12 +103,6 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		ProvinceDataWidget->RemoveFromParent();
 	}
 
-	delete SelectionMap;
-
-	delete OutlineMap;
-	
-	delete CountriesMap;
-	
 	Super::EndPlay(EndPlayReason);
 }
 
