@@ -3,7 +3,7 @@
 #include "SelectionMap.generated.h"
 
 UCLASS()
-class USelectionMap : public UGameInstanceSubsystem
+class USelectionMap : public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

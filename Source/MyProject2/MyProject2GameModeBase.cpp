@@ -14,6 +14,8 @@
 #include "Events/ConditionCheckers/Headers/DatePassedConditionChecker.h"
 #include "Events/ConditionCheckers/Headers/EventContitionsChecker.h"
 #include "Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
+#include "Maps/CountriesMap.h"
+#include "Maps/OutlineMap.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -45,18 +47,18 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 		}
 	}
 
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->Tick(*GameTime->GetTime());
+	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(*GameTime->GetTime());
 }
 
 void AMyProject2GameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->SetEventWidgetClass(EventWidgetClass);
+	GetWorld()->GetSubsystem<UEventInstancesController>()->SetEventWidgetClass(EventWidgetClass);
 	
-	GetGameInstance()->GetSubsystem<UCountriesMap>()->UpdateCountriesMapColors();
+	GetWorld()->GetSubsystem<UCountriesMap>()->UpdateCountriesMapColors();
 
-	GetGameInstance()->GetSubsystem<UOutlineMap>()->CreateOutline();
+	GetWorld()->GetSubsystem<UOutlineMap>()->CreateOutline();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
@@ -102,9 +104,9 @@ void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AMyProject2GameModeBase::InitializeEventModules() const
 {
-	GetGameInstance()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
-	GetGameInstance()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
-	GetGameInstance()->GetSubsystem<UEventsOutcomesApplier>()->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
+	GetWorld()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
+	GetWorld()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
+	GetWorld()->GetSubsystem<UEventsOutcomesApplier>()->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
 }
 
 void AMyProject2GameModeBase::InitializeRuledCountry() const
@@ -133,7 +135,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetGameInstance()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList())
+	for (const auto& CountryTag : *GetWorld()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());

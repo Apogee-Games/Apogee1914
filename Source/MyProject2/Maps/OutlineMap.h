@@ -3,7 +3,7 @@
 #include "OutlineMap.generated.h"
 
 UCLASS()
-class UOutlineMap: public UGameInstanceSubsystem
+class UOutlineMap: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

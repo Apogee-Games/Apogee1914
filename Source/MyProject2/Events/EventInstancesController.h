@@ -9,7 +9,7 @@
  * Class used to control all events instances
  */
 UCLASS()
-class UEventInstancesController: public UGameInstanceSubsystem
+class UEventInstancesController: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

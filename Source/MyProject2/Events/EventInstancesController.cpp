@@ -30,7 +30,7 @@ void UEventInstancesController::CreateEvent(const FString& EventName, const FEve
 {
 	if (WidgetsInstances.Contains({EventName, CountryTag})) return; // Event is already created
 	if (Event->TriggerOnce && FiredEvents.Contains({EventName, CountryTag})) return;
-	if (static_cast<UMyGameInstance*>(GetGameInstance())->IsCountryRuledByPlayer(CountryTag))
+	if (static_cast<UMyGameInstance*>(GetWorld()->GetGameInstance())->IsCountryRuledByPlayer(CountryTag))
 		CreateEventForPlayer(EventName, Event, ChoicesConditionsEvaluated, CountryTag);
 	else CreateEventForAI(EventName, Event, ChoicesConditionsEvaluated, CountryTag);
 }
@@ -137,7 +137,7 @@ void UEventInstancesController::RegisterChoice(const FString& EventName, const F
 	for (auto& Choice : Events[EventName]->Choices)
 	{
 		if (Choice.Name != ChoiceName) continue;
-		GetGameInstance()->GetSubsystem<UEventsOutcomesApplier>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
+		GetWorld()->GetSubsystem<UEventsOutcomesApplier>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
 	}
 }
 
@@ -148,7 +148,7 @@ void UEventInstancesController::SetEventWidgetClass(const TSubclassOf<UEventWidg
 
 void UEventInstancesController::CheckEvents()
 {
-	UEventConditionsChecker* ConditionsChecker = GetGameInstance()->GetSubsystem<UEventConditionsChecker>();
+	UEventConditionsChecker* ConditionsChecker = GetWorld()->GetSubsystem<UEventConditionsChecker>();
 	for (const auto& Pair : Events)
 	{
 		TArray<FString>* CountriesTags = GetCountriesForWhichEventCanBeFired(Pair.Value);
@@ -175,6 +175,6 @@ void UEventInstancesController::CheckEvents()
 TArray<FString>* UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
-		       ? GetGameInstance()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList()
+		       ? GetWorld()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList()
 		       : &Event->CountriesConditions.CountriesTags;
 }

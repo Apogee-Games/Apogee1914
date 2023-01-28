@@ -3,7 +3,7 @@
 #include "CountriesMap.generated.h"
 
 UCLASS()
-class UCountriesMap: public UGameInstanceSubsystem
+class UCountriesMap: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

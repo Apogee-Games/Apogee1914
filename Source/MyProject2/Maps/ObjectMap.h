@@ -3,7 +3,7 @@
 #include "ObjectMap.generated.h"
 
 UCLASS()
-class UObjectMap : public UGameInstanceSubsystem
+class UObjectMap : public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

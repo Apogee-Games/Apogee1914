@@ -6,7 +6,7 @@
  * Class manages separate conditions checkers and allows to check event and choice conditions
  */
 UCLASS()
-class UEventConditionsChecker: public UGameInstanceSubsystem
+class UEventConditionsChecker: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

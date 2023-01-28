@@ -34,7 +34,7 @@ void AHumanPlayerPawn::MoveRight(float Value)
 
 void AHumanPlayerPawn::LeftClick()
 {
-	USelectionMap* SelectionMap = GetGameInstance()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = GetWorld()->GetSubsystem<USelectionMap>();
 
 	const FVector Point = GetNormalizedPositionOnPlane();
 
@@ -42,7 +42,7 @@ void AHumanPlayerPawn::LeftClick()
 
 	SelectionMap->SelectProvince(Color);
 
-	const auto ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	const auto ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 
 	const UProvince* Province = ProvinceManager->GetProvince(Color);
 

@@ -6,7 +6,7 @@
  * Class manages separate outcome appliers and allows to apply choice outcomes
  */
 UCLASS()
-class UEventsOutcomesApplier: public UGameInstanceSubsystem
+class UEventsOutcomesApplier: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:

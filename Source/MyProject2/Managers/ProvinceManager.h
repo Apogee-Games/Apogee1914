@@ -6,7 +6,7 @@
 #include "ProvinceManager.generated.h"
 
 UCLASS()
-class UProvinceManager : public UGameInstanceSubsystem
+class UProvinceManager : public UWorldSubsystem
 {
 	GENERATED_BODY()
 	

@@ -12,7 +12,7 @@ void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 
 void UCountriesMap::UpdateCountriesMapColors() const
 {
-	UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 
 	const FColor* ProvincesColors = FTextureUtils::GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 

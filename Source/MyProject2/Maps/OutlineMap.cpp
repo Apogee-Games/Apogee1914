@@ -5,7 +5,7 @@
 
 void UOutlineMap::CreateOutline()
 {
-	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	
 	FColor* OutlineColors = FTextureUtils::GetPixels(OutlinesMapTexture, LOCK_READ_WRITE);
 
