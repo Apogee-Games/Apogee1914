@@ -75,11 +75,6 @@ FVector AHumanPlayerPawn::GetNormalizedPositionOnPlane() const
 	return Point;
 }
 
-AMyGameState* AHumanPlayerPawn::GetGameState() const
-{
-	return static_cast<AMyGameState*>(GetWorld()->GetGameState());
-}
-
 // Called when the game starts or when spawned
 void AHumanPlayerPawn::BeginPlay()
 {

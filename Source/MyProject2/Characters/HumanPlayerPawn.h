@@ -97,6 +97,4 @@ private:
 	bool IsInside(const FVector& Position) const;
 
 	FVector GetNormalizedPositionOnPlane() const;
-
-	AMyGameState* GetGameState() const;
 };
