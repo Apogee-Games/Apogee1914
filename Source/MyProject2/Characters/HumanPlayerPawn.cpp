@@ -5,7 +5,6 @@
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
 #include "MyProject2/MousePosition.h"
-#include "MyProject2/Administration/Descriptions/State.h"
 #include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/SelectionMap.h"
@@ -54,7 +53,7 @@ void AHumanPlayerPawn::LeftClick()
 		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()->GetPopulation()));
 		ProvinceDataWidget->SetResources(Province->GetResources());
 
-		const FState* State = ProvinceManager->GetState(Province->GetStateId());
+		const FStateDescription* State = ProvinceManager->GetState(Province->GetStateId());
 
 		if (State)
 		{

@@ -1,6 +1,6 @@
 ﻿#include "ProvinceManager.h"
 
-#include "MyProject2/Administration/Descriptions/Country.h"
+#include "MyProject2/Administration/Descriptions/CountryDescription.h"
 
 void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -38,13 +38,13 @@ FColor UProvinceManager::GetCountryColor(const FColor& ProvinceColor) const
 	UProvince* Province = GetProvince(ProvinceColor);
 	if (!Province) return FColor(20, 20, 20);
 
-	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
-	return Country ? Country->GetColor() : FColor(20, 20, 20);
+	const FCountryDescription* Country = reinterpret_cast<FCountryDescription*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
+	return Country ? Country->Color : FColor(20, 20, 20);
 }
 
-FState* UProvinceManager::GetState(const FString& StateId) const
+FStateDescription* UProvinceManager::GetState(const FString& StateId) const
 {
-	return reinterpret_cast<FState*>(StateDescriptionDataTable->FindRowUnchecked(FName(StateId)));
+	return reinterpret_cast<FStateDescription*>(StateDescriptionDataTable->FindRowUnchecked(FName(StateId)));
 }
 
 bool UProvinceManager::AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
@@ -84,7 +84,7 @@ bool UProvinceManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColor
 	UProvince* Province = GetProvince(ProvinceColor);
 	if (!Province) return false;
 
-	const FCountry* Country = reinterpret_cast<FCountry*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
+	const FCountryDescription* Country = reinterpret_cast<FCountryDescription*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
 	return Country != nullptr;
 }
 

@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "MyProject2/Administration/Descriptions/State.h"
+#include "MyProject2/Administration/Descriptions/StateDescription.h"
 #include "MyProject2/Administration/Instances/Province.h"
 #include "ProvinceManager.generated.h"
 
@@ -18,7 +18,7 @@ public:
 
 	FColor GetCountryColor(const FColor& ProvinceColor) const;
 
-	FState* GetState(const FString& StateId) const;
+	FStateDescription* GetState(const FString& StateId) const;
 
 	bool AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
 	
