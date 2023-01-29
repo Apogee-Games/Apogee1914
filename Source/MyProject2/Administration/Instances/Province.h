@@ -20,7 +20,7 @@ public:
 
 	const FString& GetStateId() const;
 	
-	const FString& GetProvinceName() const;
+	const FString& GetName();
 
 	const UProvincePopulation* GetPopulation() const;
 
@@ -32,7 +32,7 @@ private:
 	
 	FColor Id;
 
-	FString ProvinceName;
+	FString Name;
 
 	FString CountryTag;
 

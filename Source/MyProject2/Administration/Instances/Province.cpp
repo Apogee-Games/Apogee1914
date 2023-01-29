@@ -9,7 +9,7 @@ UProvince::UProvince()
 void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT,const UDataTable* FactoryDT)
 {
 	Id = ProvinceDescription->Color;
-	ProvinceName = ProvinceDescription->ProvinceName;
+	Name = ProvinceDescription->ProvinceName;
 	CountryTag = ProvinceDescription->CountryTag;
 	StateId = ProvinceDescription->StateId;
 	Resources = ProvinceDescription->Resources;
@@ -41,9 +41,9 @@ const FString& UProvince::GetStateId() const
 	return StateId;
 }
 
-const FString& UProvince::GetProvinceName() const
+const FString& UProvince::GetName()
 {
-	return ProvinceName;
+	return Name;
 }
 
 const UProvincePopulation* UProvince::GetPopulation() const
