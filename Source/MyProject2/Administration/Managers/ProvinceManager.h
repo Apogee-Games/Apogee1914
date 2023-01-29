@@ -16,37 +16,9 @@ public:
 	
 	UProvince* GetProvince(const FString& ProvinceColorHex) const;
 
-	FColor GetCountryColor(const FColor& ProvinceColor) const;
-
-	FStateDescription* GetState(const FString& StateId) const;
-
-	bool AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
-	
-	bool AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const;
-	
-	void InitProvinces();
-
-	TArray<FString>* GetCountriesTagsList();
-
-	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
-
 private:
+	UPROPERTY()
+	TMap<FString, UProvince*> ProvinceMap;
 
-	TArray<FString> CountriesTagsList;
-
-	UPROPERTY()
-	TMap<FName, UProvince*> ProvinceMap;
-	
-	UPROPERTY()
-	UDataTable* CountryDescriptionDataTable;
-	
-	UPROPERTY()
-	UDataTable* StateDescriptionDataTable;
-	
-	UPROPERTY()
-	UDataTable* ProvinceDescriptionDataTable;
-	
-	UPROPERTY()
-	UDataTable* TerrainDescriptionDataTable;
-
+	void InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable);
 };

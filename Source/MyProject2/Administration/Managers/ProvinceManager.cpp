@@ -5,20 +5,12 @@
 void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	CountryDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/countries_description"));
-
-	for (const auto& Pair: CountryDescriptionDataTable->GetRowMap())
-	{
-		CountriesTagsList.Add(Pair.Key.ToString());
-	}
-
-	StateDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/states_description"));
-
-	TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
 	
-	ProvinceDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/provinces_description"));
+	UDataTable* ProvinceDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/provinces_description"));
 
-	InitProvinces();
+	UDataTable* TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
+
+	InitProvinces(ProvinceDescriptionDataTable, TerrainDescriptionDataTable);
 }
 
 UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
@@ -28,39 +20,10 @@ UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
 
 UProvince* UProvinceManager::GetProvince(const FString& ProvinceColorHex) const
 {
-	return ProvinceMap.Contains(FName(ProvinceColorHex)) ? ProvinceMap[FName(ProvinceColorHex)] : nullptr;
+	return ProvinceMap.Contains(ProvinceColorHex) ? ProvinceMap[ProvinceColorHex] : nullptr;
 }
 
-FColor UProvinceManager::GetCountryColor(const FColor& ProvinceColor) const
-{
-	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return FColor(20, 20, 20);
-
-	UProvince* Province = GetProvince(ProvinceColor);
-	if (!Province) return FColor(20, 20, 20);
-
-	const FCountryDescription* Country = reinterpret_cast<FCountryDescription*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
-	return Country ? Country->Color : FColor(20, 20, 20);
-}
-
-FStateDescription* UProvinceManager::GetState(const FString& StateId) const
-{
-	return reinterpret_cast<FStateDescription*>(StateDescriptionDataTable->FindRowUnchecked(FName(StateId)));
-}
-
-bool UProvinceManager::AreProvincesInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
-{
-	const UProvince* ProvinceA = GetProvince(ProvinceAColor);
-	const UProvince* ProvinceB = GetProvince(ProvinceBColor);
-	return ProvinceA && ProvinceB && ProvinceA->GetStateId() == ProvinceB->GetStateId();
-}
-
-bool UProvinceManager::AreProvincesNotInTheSameState(FColor ProvinceAColor, FColor ProvinceBColor) const
-{
-	
-	return !AreProvincesInTheSameState(ProvinceAColor, ProvinceBColor);
-}
-
-void UProvinceManager::InitProvinces()
+void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable)
 {
 	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
 		if(Value == nullptr) continue;
@@ -68,24 +31,6 @@ void UProvinceManager::InitProvinces()
 		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
 		UProvince* Province = NewObject<UProvince>(); // Get New Province
 		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr); // Init Province Data
-		ProvinceMap.Add(Key, Province); // Save Province Data to ProvinceMap<Name, UProvince*>
+		ProvinceMap.Add(Key.ToString(), Province); // Save Province Data to ProvinceMap<Name, UProvince*>
 	}
 }
-
-TArray<FString>* UProvinceManager::GetCountriesTagsList()
-{
-	return &CountriesTagsList;
-}
-
-bool UProvinceManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const
-{
-	if (ProvinceColor == FColor(0, 0, 0) || ProvinceColor == FColor(255, 255, 255)) return false;
-
-	UProvince* Province = GetProvince(ProvinceColor);
-	if (!Province) return false;
-
-	const FCountryDescription* Country = reinterpret_cast<FCountryDescription*>(CountryDescriptionDataTable->FindRowUnchecked(FName(Province->GetCountryTag())));
-	return Country != nullptr;
-}
-
-
