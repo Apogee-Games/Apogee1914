@@ -1,6 +1,6 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
-#include "MyProject2/Administration/Managers/ProvinceManager.h"
+#include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "CountriesMap.generated.h"
 
 UCLASS()
@@ -21,7 +21,7 @@ private:
 
 	FVector2D SizeVector;
 
-	TArray<int> FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UProvinceManager* GameState) const;
+	TArray<int> FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UCountriesManager* CountriesManager) const;
 
 	int* FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const;
 };

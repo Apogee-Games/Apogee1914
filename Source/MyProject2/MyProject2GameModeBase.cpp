@@ -135,7 +135,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetWorld()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList())
+	for (const auto& CountryTag : *GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
