@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "MyProject2/Economics/Description/FactoryInstanceDescription.h"
 #include "ProvinceDescription.generated.h"
 
 USTRUCT()

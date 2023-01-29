@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "ProvincePopulation.generated.h"
+
 UCLASS()
 class UProvincePopulation : public UObject
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "CountriesMap.generated.h"
 
 UCLASS()

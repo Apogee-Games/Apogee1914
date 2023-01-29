@@ -3,7 +3,7 @@
 #include "ConditionCheckers/Headers/EventContitionsChecker.h"
 #include "UObject/UObjectGlobals.h"
 #include "MyProject2/MyGameInstance.h"
-#include "MyProject2/Managers/ProvinceManager.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 
 void UEventInstancesController::Tick(const FDateTime& CurrentInGameTime)
 {

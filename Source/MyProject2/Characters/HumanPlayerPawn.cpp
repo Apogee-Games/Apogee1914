@@ -5,7 +5,9 @@
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
 #include "MyProject2/MousePosition.h"
-#include "MyProject2/Managers/ProvinceManager.h"
+#include "MyProject2/Administration/Descriptions/State.h"
+#include "MyProject2/Administration/Instances/Province.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/SelectionMap.h"
 
 // Sets default values

@@ -1,5 +1,6 @@
 #include "OutlineMap.h"
 
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
 

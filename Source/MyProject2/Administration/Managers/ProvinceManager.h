@@ -1,8 +1,7 @@
 ﻿#pragma once
-#include "MyProject2/World/Country.h"
-#include "MyProject2/World/State.h"
 #include "Engine/DataTable.h"
-#include "MyProject2/Province/Province.h"
+#include "MyProject2/Administration/Descriptions/State.h"
+#include "MyProject2/Administration/Instances/Province.h"
 #include "ProvinceManager.generated.h"
 
 UCLASS()

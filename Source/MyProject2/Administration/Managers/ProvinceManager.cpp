@@ -1,5 +1,7 @@
 ﻿#include "ProvinceManager.h"
 
+#include "MyProject2/Administration/Descriptions/Country.h"
+
 void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
