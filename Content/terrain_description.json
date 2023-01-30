@@ -1,22 +1,18 @@
 [
 	{
 		"Name": "Highlands",
-		"TerrainName": "Highlands",
 		"MovementSpeed": 0.7
 	},
 	{
 		"Name": "Woods",
-		"TerrainName": "Woods",
 		"MovementSpeed": 1
 	},
 	{
 		"Name": "FlatLands",
-		"TerrainName": "FlatLands",
 		"MovementSpeed": 1.1
 	},
 	{
-		"Name": "Mountains",
-		"TerrainName": "Mountains",
+		"Name": "Mountain",
 		"MovementSpeed": 0.4
 	}
 ]
