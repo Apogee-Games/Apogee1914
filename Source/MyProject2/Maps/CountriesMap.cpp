@@ -1,6 +1,5 @@
 #include "CountriesMap.h"
 
-#include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
 void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
@@ -13,7 +12,7 @@ void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 
 void UCountriesMap::UpdateCountriesMapColors() const
 {
-	UCountriesManager* CountriesManager = GetWorld()->GetSubsystem<UCountriesManager>();
+	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 
 	const FColor* ProvincesColors = FTextureUtils::GetPixels(ProvincesMapTexture, LOCK_READ_ONLY);
 
@@ -21,18 +20,13 @@ void UCountriesMap::UpdateCountriesMapColors() const
 
 	const int Size = SizeVector.X * SizeVector.Y;
 
-	const TArray<int> Borders = FindProvincesBorders(ProvincesColors, SizeVector.X, SizeVector.Y, CountriesManager);
+	const TArray<int> Borders = FindProvincesBorders(ProvincesColors, SizeVector.X, SizeVector.Y, ProvinceManager);
 	const int* Distances = FindDistancesFromBorders(Borders, SizeVector.X, SizeVector.Y);
 
 	for (int i = 0; i < Size; ++i)
 	{
-		if (!CountriesManager->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
-		else
-		{
-			if (const FColor* Color = CountriesManager->GetCountryColor(ProvincesColors[i])) {
-				CountriesColors[i] = Color->WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
-			}
-		}
+		if (!ProvinceManager->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
+		else CountriesColors[i] = ProvinceManager->GetCountryColor(ProvincesColors[i]).WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
 	}
 
 	FTextureUtils::UnlockPixels(CountriesMapTexture);
@@ -44,7 +38,7 @@ void UCountriesMap::UpdateCountriesMapColors() const
 	delete Distances;
 }
 
-TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UCountriesManager* CountriesManager) const
+TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UProvinceManager* ProvinceManager) const
 {
 	
 	TArray<int> Borders;
@@ -54,19 +48,19 @@ TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 		const int y = i / static_cast<int>(SizeVector.Y);
 		const int x = i % static_cast<int>(SizeVector.Y);
 
-		if (x > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - 1])) {
+		if (x > 0 && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i - 1])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (x + 1 < Width && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + 1])) {
+		if (x + 1 < Width && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i + 1])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (y > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - Width])) {
+		if (y > 0 && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i - Width])) {
 			Borders.Add(i);
 			continue;
 		}
-		if (y + 1 < Height && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + Width])) {
+		if (y + 1 < Height && ProvinceManager->GetCountryColor(ProvincesColor[i]) != ProvinceManager->GetCountryColor(ProvincesColor[i + Width])) {
 			Borders.Add(i);
 			continue;
 		}

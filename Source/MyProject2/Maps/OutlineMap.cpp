@@ -1,12 +1,11 @@
 #include "OutlineMap.h"
 
-#include "MyProject2/Administration/Managers/StateManager.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
 
 void UOutlineMap::CreateOutline()
 {
-	const UStateManager* StateManager = GetWorld()->GetSubsystem<UStateManager>();
+	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	
 	FColor* OutlineColors = FTextureUtils::GetPixels(OutlinesMapTexture, LOCK_READ_WRITE);
 
@@ -22,25 +21,25 @@ void UOutlineMap::CreateOutline()
 		const int x = i % static_cast<int>(SizeVector.Y);
 
 		if (x > 0 && ProvincesColor[i] != ProvincesColor[i - 1] &&
-			StateManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - 1]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - 1]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (x + 1 < Width && ProvincesColor[i] != ProvincesColor[i + 1] &&
-			StateManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + 1]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + 1]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (y > 0 && ProvincesColor[i] != ProvincesColor[i - Width] &&
-			StateManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - Width]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i - Width]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
 		}
 		if (y + 1 < Height && ProvincesColor[i] != ProvincesColor[i + Width] &&
-			StateManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + Width]))
+			ProvinceManager->AreProvincesNotInTheSameState(ProvincesColor[i], ProvincesColor[i + Width]))
 		{
 			OutlineColors[i] = OutlineColor;
 			continue;
