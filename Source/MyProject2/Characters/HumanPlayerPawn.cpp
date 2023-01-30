@@ -5,7 +5,9 @@
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
 #include "MyProject2/MousePosition.h"
-#include "MyProject2/Managers/ProvinceManager.h"
+#include "MyProject2/Administration/Instances/Province.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
+#include "MyProject2/Administration/Managers/StateManager.h"
 #include "MyProject2/Maps/SelectionMap.h"
 
 // Sets default values
@@ -42,21 +44,19 @@ void AHumanPlayerPawn::LeftClick()
 
 	SelectionMap->SelectProvince(Color);
 
-	const auto ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-
-	const UProvince* Province = ProvinceManager->GetProvince(Color);
+	UProvince* Province = GetWorld()->GetSubsystem<UProvinceManager>()->GetProvince(Color);
 
 	if (Province)
 	{
-		ProvinceDataWidget->SetProvinceName(Province->GetProvinceName());
+		ProvinceDataWidget->SetProvinceName(Province->GetName());
 		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()->GetPopulation()));
 		ProvinceDataWidget->SetResources(Province->GetResources());
 
-		const FState* State = ProvinceManager->GetState(Province->GetStateId());
+		const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
 
 		if (State)
 		{
-			ProvinceDataWidget->SetStateName(State->StateName);
+			ProvinceDataWidget->SetStateName(State->GetName());
 		}
 	}
 }

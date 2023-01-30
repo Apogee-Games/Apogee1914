@@ -1,11 +1,14 @@
 #pragma once
 #include "Engine/DataTable.h"
-#include "Resource.generated.h"
+#include "ResourceDescription.generated.h"
 
 USTRUCT()
-struct FResource: public FTableRowBase
+struct FResourceDescription: public FTableRowBase
 {
 	GENERATED_BODY()
+
+	UPROPERTY()
+	FString ResourceName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Description;

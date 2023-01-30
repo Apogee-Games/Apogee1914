@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "Descriptions/ProvinceDescription.h"
-#include "Descriptions/TerrainDescription.h"
+#include "ProvincePopulation.h"
+#include "MyProject2/Administration/Descriptions/ProvinceDescription.h"
+#include "MyProject2/Administration/Descriptions/TerrainDescription.h"
 #include "MyProject2/Economics/ProvinceFactory.h"
-#include "Instances/ProvincePopulation.h"
 #include "Province.generated.h"
 
 UCLASS()
@@ -20,7 +20,7 @@ public:
 
 	const FString& GetStateId() const;
 	
-	const FString& GetProvinceName() const;
+	const FString& GetName();
 
 	const UProvincePopulation* GetPopulation() const;
 
@@ -32,7 +32,7 @@ private:
 	
 	FColor Id;
 
-	FString ProvinceName;
+	FString Name;
 
 	FString CountryTag;
 

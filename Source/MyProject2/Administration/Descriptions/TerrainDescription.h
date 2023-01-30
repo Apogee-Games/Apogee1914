@@ -6,7 +6,10 @@ USTRUCT()
 struct FTerrainDescription : public FTableRowBase
 {
 	GENERATED_BODY()
+
+	UPROPERTY()
+	FString TerrainName;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY()
 	float MovementSpeed = 1;
 };
