@@ -14,17 +14,31 @@ void UCountriesManager::Initialize(FSubsystemCollectionBase& Collection)
 	}
 }
 
-const FColor* UCountriesManager::GetCountryColor(const FColor& ProvinceColor)
+const FColor* UCountriesManager::GetOwnerCountryColor(const FColor& ProvinceColor)
 {
 	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	const UProvince* Province = ProvinceManager->GetProvince(ProvinceColor);
-	return GetCountryColor(Province);
+	return GetOwnerCountryColor(Province);
 }
 
-const FColor* UCountriesManager::GetCountryColor(const UProvince* Province)
+const FColor* UCountriesManager::GetOwnerCountryColor(const UProvince* Province)
 {
-	if (!Province || !CountryMap.Contains(Province->GetCountryTag())) return nullptr;
-	UCountry* Country = CountryMap[Province->GetCountryTag()];
+	if (!Province || !CountryMap.Contains(Province->GetOwnerCountryTag())) return nullptr;
+	UCountry* Country = CountryMap[Province->GetOwnerCountryTag()];
+	return Country ? Country->GetColor(): nullptr;
+}
+
+const FColor* UCountriesManager::GetControllerCountryColor(const FColor& ProvinceColor)
+{
+	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvince* Province = ProvinceManager->GetProvince(ProvinceColor);
+	return GetControllerCountryColor(Province);
+}
+
+const FColor* UCountriesManager::GetControllerCountryColor(const UProvince* Province)
+{
+	if (!Province || !CountryMap.Contains(Province->GetControllerCountryTag())) return nullptr;
+	UCountry* Country = CountryMap[Province->GetControllerCountryTag()];
 	return Country ? Country->GetColor(): nullptr;
 }
 
@@ -42,21 +56,36 @@ bool UCountriesManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColo
 
 bool UCountriesManager::ExistsCountryWithSuchProvince(const UProvince* Province) const
 {
-	return Province && CountryMap.Contains(Province->GetCountryTag());
+	return Province && CountryMap.Contains(Province->GetOwnerCountryTag());
 }
 
-bool UCountriesManager::AreProvincesInSameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
+bool UCountriesManager::AreProvincesOwnedBySameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
 {
 	if (ProvinceAColor == ProvinceBColor) return true;
 	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	const UProvince* ProvinceA = ProvinceManager->GetProvince(ProvinceAColor);
 	const UProvince* ProvinceB = ProvinceManager->GetProvince(ProvinceBColor);
-	return AreProvincesInSameCountry(ProvinceA, ProvinceB);
+	return AreProvincesOwnedBySameCountry(ProvinceA, ProvinceB);
 }
 
-bool UCountriesManager::AreProvincesInSameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const 
+bool UCountriesManager::AreProvincesOwnedBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const 
 {
-	return ProvinceA && ProvinceB && ProvinceA->GetCountryTag() == ProvinceB->GetCountryTag();
+	return ProvinceA && ProvinceB && ProvinceA->GetOwnerCountryTag() == ProvinceB->GetOwnerCountryTag();
+}
+
+
+bool UCountriesManager::AreProvincesControlledBySameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
+{
+	if (ProvinceAColor == ProvinceBColor) return true;
+	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvince* ProvinceA = ProvinceManager->GetProvince(ProvinceAColor);
+	const UProvince* ProvinceB = ProvinceManager->GetProvince(ProvinceBColor);
+	return AreProvincesControlledBySameCountry(ProvinceA, ProvinceB);
+}
+
+bool UCountriesManager::AreProvincesControlledBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const 
+{
+	return ProvinceA && ProvinceB && ProvinceA->GetControllerCountryTag() == ProvinceB->GetControllerCountryTag();
 }
 
 UCountry* UCountriesManager::GetCountry(const FString& Tag)
