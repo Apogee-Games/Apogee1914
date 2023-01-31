@@ -27,14 +27,18 @@ void UCountriesMap::UpdateCountriesMapColors() const
 	for (int i = 0; i < Size; ++i)
 	{
 		if (!CountriesManager->ExistsCountryWithSuchProvince(ProvincesColors[i]))
-			CountriesColors[i] =
-				FColor(0, 0, 0, 0);
-		else
 		{
-			if (const FColor* Color = CountriesManager->GetCountryColor(ProvincesColors[i]))
-			{
-				CountriesColors[i] = Color->WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
-			}
+			CountriesColors[i] = FColor(0, 0, 0, 0);
+			continue;
+		}
+
+		FVector2D Position = FTextureUtils::GetPositionVector(i, SizeVector);
+
+		const FColor* Color = GetColor(Position, ProvincesColors[i], CountriesManager);
+
+		if (Color)
+		{
+			CountriesColors[i] = Color->WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
 		}
 	}
 
@@ -57,23 +61,25 @@ TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 		const int y = i / static_cast<int>(SizeVector.Y);
 		const int x = i % static_cast<int>(SizeVector.Y);
 
-		if (x > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - 1]))
+		if (x > 0 && !CountriesManager->AreProvincesControlledBySameCountry(ProvincesColor[i], ProvincesColor[i - 1]))
 		{
 			Borders.Add(i);
 			continue;
 		}
-		if (x + 1 < Width && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + 1]))
+		if (x + 1 < Width && !CountriesManager->AreProvincesControlledBySameCountry(
+			ProvincesColor[i], ProvincesColor[i + 1]))
 		{
 			Borders.Add(i);
 			continue;
 		}
-		if (y > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - Width]))
+		if (y > 0 && !CountriesManager->AreProvincesControlledBySameCountry(
+			ProvincesColor[i], ProvincesColor[i - Width]))
 		{
 			Borders.Add(i);
 			continue;
 		}
-		if (y + 1 < Height && !CountriesManager->
-			AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + Width]))
+		if (y + 1 < Height && !CountriesManager->AreProvincesControlledBySameCountry(
+			ProvincesColor[i], ProvincesColor[i + Width]))
 		{
 			Borders.Add(i);
 			continue;
@@ -130,4 +136,12 @@ int* UCountriesMap::FindDistancesFromBorders(const TArray<int>& Borders, const i
 		}
 	}
 	return Distances;
+}
+
+const FColor* UCountriesMap::GetColor(const FVector2D& Position, const FColor& ProvinceColor,
+                                      UCountriesManager* CountriesManager) const
+{
+	return FMath::Abs<int>(Position.X - Position.Y) % (2 * CrossLineWidth) < CrossLineWidth
+		       ? CountriesManager->GetControllerCountryColor(ProvinceColor)
+		       : CountriesManager->GetOwnerCountryColor(ProvinceColor);
 }
