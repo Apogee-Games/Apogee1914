@@ -10,7 +10,8 @@ void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable
 {
 	Id = ProvinceDescription->Color;
 	Name = ProvinceDescription->ProvinceName;
-	CountryTag = ProvinceDescription->CountryTag;
+	OwnerCountryTag = ProvinceDescription->CountryTag;
+	ControllerCountryTag = ProvinceDescription->CountryTag;
 	StateId = ProvinceDescription->StateId;
 	Resources = ProvinceDescription->Resources;
 	Population->Init(ProvinceDescription->Population);
@@ -31,9 +32,25 @@ const FColor& UProvince::GetId() const
 	return Id;
 }
 
-const FString& UProvince::GetCountryTag() const
+const FString& UProvince::GetOwnerCountryTag() const
 {
-	return CountryTag;
+	return OwnerCountryTag;
+}
+
+const FString& UProvince::GetControllerCountryTag() const
+{
+	return ControllerCountryTag;
+}
+
+void UProvince::TakeControl(const FString& CountryTag)
+{
+	ControllerCountryTag = CountryTag;
+}
+
+void UProvince::Conquer(const FString& CountryTag)
+{
+	OwnerCountryTag = CountryTag;
+	ControllerCountryTag = CountryTag;
 }
 
 const FString& UProvince::GetStateId() const
