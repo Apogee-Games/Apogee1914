@@ -16,6 +16,8 @@ public:
 	const FString& GetName();
 
 	const FString& GetTag() const;
+
+	UTexture2D* GetFlag();
 	
 private:
 	FString Name;
@@ -23,5 +25,7 @@ private:
 	FString Tag;
 
 	FColor Color;
-	
+
+	UPROPERTY()
+	UTexture2D* Flag = nullptr;
 };

@@ -27,6 +27,8 @@ public:
 
 	bool AreProvincesInSameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 
+	UCountry* GetCountry(const FString& Tag);
+	
 private:
 	UPROPERTY()
 	TMap<FString, UCountry*> CountryMap;
