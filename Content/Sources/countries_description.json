@@ -155,4 +155,16 @@
 			"A": 0
 		}
 	},
+	{
+		"Name": "BRA",
+		"CountryName": "Brazil",
+		"Tag": "BRA",
+		"Color":
+		{
+			"B": 0,
+			"G": 100,
+			"R": 0,
+			"A": 0
+		}
+	},
 ]

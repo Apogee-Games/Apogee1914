@@ -16,8 +16,14 @@ public:
 
 	const FColor& GetId() const;
 
-	const FString& GetCountryTag() const;
+	const FString& GetOwnerCountryTag() const;
 
+	const FString& GetControllerCountryTag() const;
+
+	void TakeControl(const FString& CountryTag);
+
+	void Conquer(const FString& CountryTag);
+	
 	const FString& GetStateId() const;
 	
 	const FString& GetName();
@@ -34,7 +40,9 @@ private:
 
 	FString Name;
 
-	FString CountryTag;
+	FString OwnerCountryTag;
+
+	FString ControllerCountryTag;
 
 	FString StateId;
 

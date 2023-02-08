@@ -1,4 +1,3 @@
-/*
 #pragma once
 
 class FGraph
@@ -11,4 +10,3 @@ public:
 private:
 	TMap<FColor, TSet<FColor>> AdjacencyList;
 };
-*/

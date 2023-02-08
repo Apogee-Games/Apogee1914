@@ -3,6 +3,8 @@
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
+#define UpdateResource UpdateResource
+
 void USelectionMap::SelectProvince(const FColor& Color)
 {
 	if (Color == SelectedProvince) return;

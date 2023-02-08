@@ -13,19 +13,27 @@ public:
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	const FColor* GetCountryColor(const FColor& ProvinceColor);
+	const FColor* GetOwnerCountryColor(const FColor& ProvinceColor);
 	
-	const FColor* GetCountryColor(const UProvince* Province);
+	const FColor* GetOwnerCountryColor(const UProvince* Province);
 
+	const FColor* GetControllerCountryColor(const FColor& ProvinceColor);
+	
+	const FColor* GetControllerCountryColor(const UProvince* Province);
+	
 	TArray<FString>* GetCountriesTagsList();
 	
 	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
 
 	bool ExistsCountryWithSuchProvince(const UProvince* Province) const;
 	
-	bool AreProvincesInSameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
+	bool AreProvincesOwnedBySameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 
-	bool AreProvincesInSameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
+	bool AreProvincesOwnedBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
+
+	bool AreProvincesControlledBySameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
+
+	bool AreProvincesControlledBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 
 	UCountry* GetCountry(const FString& Tag);
 	

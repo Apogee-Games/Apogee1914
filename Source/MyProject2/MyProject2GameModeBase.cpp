@@ -16,7 +16,10 @@
 #include "Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 #include "Maps/CountriesMap.h"
 #include "Maps/FlagsMap.h"
+#include "Maps/ObjectMap.h"
 #include "Maps/OutlineMap.h"
+#include "Military/Instances/Unit.h"
+#include "Military/Managers/UnitsFactory.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -53,15 +56,34 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 
 void AMyProject2GameModeBase::BeginPlay()
 {
+	GetWorld()->GetSubsystem<UUnitsRenderer>()->SetUnitInformationWidgetClass(UnitInformationListWidgetClass);
+
+	GetWorld()->GetSubsystem<UUnitsRenderer>()->BeginPlay();
+	
 	Super::BeginPlay();
+
+	// Beginning of Units Renderer/Factory Test Logic
+	
+	FUnitDescription* Description = new FUnitDescription();
+	Description->CanTransport = true;
+	Description->CanAccessProvincesTypes.Add("Land");
+
+	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
+	
+	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1, 0), "GER",Renderer);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1, 0), "GER",Renderer);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1, 0), "GER",Renderer)->Move(FColor(246, 39, 1, 0));
+	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1, 0), "NET",Renderer)->Move(FColor(246, 39, 1, 0));
+
+	// End of Test Logic
 
 	GetWorld()->GetSubsystem<UEventInstancesController>()->SetEventWidgetClass(EventWidgetClass);
 	
 	GetWorld()->GetSubsystem<UCountriesMap>()->UpdateCountriesMapColors();
-	
-	GetWorld()->GetSubsystem<UFlagsMap>()->UpdateFlagsMapColors();
 
-	GetWorld()->GetSubsystem<UOutlineMap>()->CreateOutline();
+	//GetWorld()->GetSubsystem<UFlagsMap>()->UpdateFlagsMapColors();
+
+	//GetWorld()->GetSubsystem<UOutlineMap>()->CreateOutline();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());

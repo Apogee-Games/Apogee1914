@@ -13,6 +13,8 @@ public:
 	void UpdateCountriesMapColors() const;
 
 private:
+	int CrossLineWidth = 10;
+	
 	UPROPERTY()	
 	UTexture2D* CountriesMapTexture;
 
@@ -24,4 +26,6 @@ private:
 	TArray<int> FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UCountriesManager* CountriesManager) const;
 
 	int* FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const;
+
+	const FColor* GetColor(const FVector2D& Position, const FColor& ProvinceColor, UCountriesManager* CountriesManager) const;
 };

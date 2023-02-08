@@ -1,8 +1,9 @@
 #include "ObjectMap.h"
 
+#include "../../../Plugins/Developer/RiderLink/Source/RD/thirdparty/clsocket/src/ActiveSocket.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
-TMap<FColor, int> UObjectMap::CalculateProvincesCenters() const
+void UObjectMap::CalculateProvincesCenters()
 {
 	TMap<FColor, unsigned long long> Counts;
 	TMap<FColor, FVector2d> Sums;
@@ -19,17 +20,14 @@ TMap<FColor, int> UObjectMap::CalculateProvincesCenters() const
 		Sums[Colors[i]] += FTextureUtils::GetPositionVector(i, SizeVector);
 	}
 
-	TMap<FColor, int> Centers;
 
-	for (const auto& SumPair : Counts)
+	for (const auto& [ProvinceColor, Value] : Counts)
 	{
-		const FVector2d Center = Sums[SumPair.Key] / Counts[SumPair.Key];
-		Centers.Add(SumPair.Key, FTextureUtils::GetPixelPosition(Center, SizeVector));
+		const FVector2d Center = Sums[ProvinceColor] / Counts[ProvinceColor] / SizeVector;
+		ProvinceCenters.Add(ProvinceColor.WithAlpha(0), Center);
 	}
 
 	FTextureUtils::UnlockPixels(ProvincesMapTexture);
-
-	return Centers;
 }
 
 void UObjectMap::Initialize(FSubsystemCollectionBase& Collection)
@@ -37,4 +35,10 @@ void UObjectMap::Initialize(FSubsystemCollectionBase& Collection)
 	Super::Initialize(Collection);
 	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
+}
+
+FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)
+{
+	if (ProvinceCenters.IsEmpty()) CalculateProvincesCenters();
+	return ProvinceCenters[Color];
 }

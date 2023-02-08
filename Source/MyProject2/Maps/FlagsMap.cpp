@@ -27,14 +27,14 @@ TMap<FString, FVector4> UFlagsMap::FindCountriesBoxes(const FColor* ProvincesCol
 		
 		
 		const FVector2d Position = FTextureUtils::GetPositionVector(i, SizeVector);
-		if (Boxes.Contains(Province->GetCountryTag()))
+		if (Boxes.Contains(Province->GetOwnerCountryTag()))
 		{
-			const FVector4 Box = Boxes[Province->GetCountryTag()];
-			Boxes.Add(Province->GetCountryTag(), UpdateBox(Box, Position));
+			const FVector4 Box = Boxes[Province->GetOwnerCountryTag()];
+			Boxes.Add(Province->GetOwnerCountryTag(), UpdateBox(Box, Position));
 		}
 		else
 		{
-			Boxes.Add(Province->GetCountryTag(),
+			Boxes.Add(Province->GetOwnerCountryTag(),
 			          FVector4(Position.X, Position.Y, Position.X, Position.Y));
 		}
 	}
@@ -90,13 +90,13 @@ void UFlagsMap::UpdateFlagsMapColors()
 		const UProvince* Province = ProvinceManager->GetProvince(ProvincesColors[i]);
 		if (!Province) continue;
 
-		const FVector4 Box = Boxes[Province->GetCountryTag()];
+		const FVector4 Box = Boxes[Province->GetOwnerCountryTag()];
 
 		const FVector2d Position = FTextureUtils::GetPositionVector(i, SizeVector);
 
 		FVector2d RelativePosition = GetRelativePosition(Position, Box);
 
-		UCountry* Country = CountriesManager->GetCountry(Province->GetCountryTag());
+		UCountry* Country = CountriesManager->GetCountry(Province->GetOwnerCountryTag());
 
 		UTexture2D* Flag = Country->GetFlag();
 

@@ -3,6 +3,7 @@
 #include "MyProject2/Administration/Managers/StateManager.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
+#define UpdateResource UpdateResource
 
 void UOutlineMap::CreateOutline()
 {
