@@ -15,6 +15,7 @@
 #include "Events/ConditionCheckers/Headers/EventContitionsChecker.h"
 #include "Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 #include "Maps/CountriesMap.h"
+#include "Maps/FlagsMap.h"
 #include "Maps/OutlineMap.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
@@ -57,6 +58,8 @@ void AMyProject2GameModeBase::BeginPlay()
 	GetWorld()->GetSubsystem<UEventInstancesController>()->SetEventWidgetClass(EventWidgetClass);
 	
 	GetWorld()->GetSubsystem<UCountriesMap>()->UpdateCountriesMapColors();
+	
+	GetWorld()->GetSubsystem<UFlagsMap>()->UpdateFlagsMapColors();
 
 	GetWorld()->GetSubsystem<UOutlineMap>()->CreateOutline();
 	

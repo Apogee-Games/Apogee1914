@@ -26,10 +26,13 @@ void UCountriesMap::UpdateCountriesMapColors() const
 
 	for (int i = 0; i < Size; ++i)
 	{
-		if (!CountriesManager->ExistsCountryWithSuchProvince(ProvincesColors[i])) CountriesColors[i] = FColor(0, 0, 0, 0);
+		if (!CountriesManager->ExistsCountryWithSuchProvince(ProvincesColors[i]))
+			CountriesColors[i] =
+				FColor(0, 0, 0, 0);
 		else
 		{
-			if (const FColor* Color = CountriesManager->GetCountryColor(ProvincesColors[i])) {
+			if (const FColor* Color = CountriesManager->GetCountryColor(ProvincesColors[i]))
+			{
 				CountriesColors[i] = Color->WithAlpha(255 - FMath::Min(10, Distances[i] + 1) * 10);
 			}
 		}
@@ -44,9 +47,9 @@ void UCountriesMap::UpdateCountriesMapColors() const
 	delete Distances;
 }
 
-TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height, UCountriesManager* CountriesManager) const
+TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height,
+                                                UCountriesManager* CountriesManager) const
 {
-	
 	TArray<int> Borders;
 	const int Size = Width * Height;
 	for (int i = 0; i < Size; ++i)
@@ -54,19 +57,24 @@ TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 		const int y = i / static_cast<int>(SizeVector.Y);
 		const int x = i % static_cast<int>(SizeVector.Y);
 
-		if (x > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - 1])) {
+		if (x > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - 1]))
+		{
 			Borders.Add(i);
 			continue;
 		}
-		if (x + 1 < Width && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + 1])) {
+		if (x + 1 < Width && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + 1]))
+		{
 			Borders.Add(i);
 			continue;
 		}
-		if (y > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - Width])) {
+		if (y > 0 && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i - Width]))
+		{
 			Borders.Add(i);
 			continue;
 		}
-		if (y + 1 < Height && !CountriesManager->AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + Width])) {
+		if (y + 1 < Height && !CountriesManager->
+			AreProvincesInSameCountry(ProvincesColor[i], ProvincesColor[i + Width]))
+		{
 			Borders.Add(i);
 			continue;
 		}
@@ -77,42 +85,46 @@ TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, co
 int* UCountriesMap::FindDistancesFromBorders(const TArray<int>& Borders, const int Width, const int Height) const
 {
 	const int Size = Width * Height;
-	
+
 	int* Distances = new int[Size];
-	
+
 	for (int i = 0; i < Size; ++i)
 	{
 		Distances[i] = INT_MAX;
 	}
-	
+
 	TQueue<int> Queue;
-	for (const auto& Point: Borders)
+	for (const auto& Point : Borders)
 	{
 		Queue.Enqueue(Point);
 		Distances[Point] = 0;
 	}
-	
+
 	while (!Queue.IsEmpty())
 	{
 		int Point;
 		Queue.Dequeue(Point);
-		
+
 		const int y = Point / static_cast<int>(SizeVector.Y);
 		const int x = Point % static_cast<int>(SizeVector.Y);
 
-		if (x > 0 && Distances[Point - 1] > Distances[Point] + 1) {
+		if (x > 0 && Distances[Point - 1] > Distances[Point] + 1)
+		{
 			Distances[Point - 1] = Distances[Point] + 1;
 			Queue.Enqueue(Point - 1);
 		}
-		if (x + 1 < Width && Distances[Point + 1] > Distances[Point] + 1) {
+		if (x + 1 < Width && Distances[Point + 1] > Distances[Point] + 1)
+		{
 			Distances[Point + 1] = Distances[Point] + 1;
 			Queue.Enqueue(Point + 1);
 		}
-		if (y > 0 && Distances[Point - Width] > Distances[Point]) {
+		if (y > 0 && Distances[Point - Width] > Distances[Point])
+		{
 			Distances[Point - Width] = Distances[Point] + 1;
 			Queue.Enqueue(Point - Width);
 		}
-		if (y + 1 < Height && Distances[Point + Width] > Distances[Point]) {
+		if (y + 1 < Height && Distances[Point + Width] > Distances[Point])
+		{
 			Distances[Point + Width] = Distances[Point] + 1;
 			Queue.Enqueue(Point + Width);
 		}

@@ -59,6 +59,11 @@ bool UCountriesManager::AreProvincesInSameCountry(const UProvince* ProvinceA, co
 	return ProvinceA && ProvinceB && ProvinceA->GetCountryTag() == ProvinceB->GetCountryTag();
 }
 
+UCountry* UCountriesManager::GetCountry(const FString& Tag)
+{
+	return CountryMap.Contains(Tag) ? CountryMap[Tag] : nullptr;
+}
+
 void UCountriesManager::InitCountries(UDataTable* CountryDescriptionDataTable)
 {
 	for (const auto& [Key, Value]: CountryDescriptionDataTable->GetRowMap())
