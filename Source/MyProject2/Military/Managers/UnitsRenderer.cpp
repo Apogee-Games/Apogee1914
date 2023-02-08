@@ -47,4 +47,5 @@ void UUnitsRenderer::SetUnitInformationWidgetClass(TSubclassOf<UUnitInformationL
 FVector3d UUnitsRenderer::GetWorldPositionFromMapPosition(const FVector2d& Position)
 {
 	return FVector3d(0, Position.X, 1 -  Position.Y) * 200;
+	// TODO: Extract all map <-> world position conversion to somewhere else
 }
