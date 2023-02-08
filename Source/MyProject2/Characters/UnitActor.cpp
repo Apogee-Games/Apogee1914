@@ -12,7 +12,7 @@ AUnitActor::AUnitActor()
 	Component->SetDrawSize(FVector2d(50, 50));
 }
 
-// TODO: Add path to unit static mesh, so that ot can be customisable for different nations
+// TODO: Think of way to customise UnitMesh depending on units 
 void AUnitActor::Init(const FVector3d& ObjectScale, const FVector3d& Position, UStaticMesh* UnitMesh,
                       TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass)
 {
