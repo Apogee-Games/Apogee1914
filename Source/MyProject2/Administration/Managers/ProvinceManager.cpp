@@ -11,6 +11,8 @@ void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 	UDataTable* TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
 
 	InitProvinces(ProvinceDescriptionDataTable, TerrainDescriptionDataTable);
+
+	ProvinceMap.GenerateValueArray(ProvincesArray);
 }
 
 UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
@@ -21,6 +23,11 @@ UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
 UProvince* UProvinceManager::GetProvince(const FString& ProvinceColorHex) const
 {
 	return ProvinceMap.Contains(ProvinceColorHex) ? ProvinceMap[ProvinceColorHex] : nullptr;
+}
+
+TArray<UProvince*> UProvinceManager::GetAllProvinces() const
+{
+	return ProvincesArray;
 }
 
 void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable)
