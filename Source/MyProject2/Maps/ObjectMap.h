@@ -9,10 +9,15 @@ class UObjectMap : public UWorldSubsystem
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
-	TMap<FColor, int> CalculateProvincesCenters() const;
+	FVector2d GetProvinceCenter(const FColor& Color);
+
+	void CalculateProvincesCenters();
+
 private:
 	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 
 	FVector2D SizeVector;
+
+	TMap<FColor, FVector2d> ProvinceCenters;
 };
