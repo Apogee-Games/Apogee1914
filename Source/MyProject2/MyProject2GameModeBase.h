@@ -8,6 +8,7 @@
 #include "Widgets/EventWidget.h"
 #include "Widgets/TimeController.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Widgets/UnitInformationListWidget.h"
 #include "MyProject2GameModeBase.generated.h"
 
 class UProvinceData;
@@ -25,6 +26,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UEventWidget> EventWidgetClass;
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass;
 	
 	AMyProject2GameModeBase();
 
