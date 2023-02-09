@@ -13,6 +13,8 @@ public:
 
 	void CalculateProvincesCenters();
 
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+
 private:
 	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;

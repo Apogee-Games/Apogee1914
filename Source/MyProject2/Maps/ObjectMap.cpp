@@ -30,6 +30,12 @@ void UObjectMap::CalculateProvincesCenters()
 	FTextureUtils::UnlockPixels(ProvincesMapTexture);
 }
 
+void UObjectMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	CalculateProvincesCenters();
+}
+
 void UObjectMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
@@ -39,6 +45,5 @@ void UObjectMap::Initialize(FSubsystemCollectionBase& Collection)
 
 FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)
 {
-	if (ProvinceCenters.IsEmpty()) CalculateProvincesCenters();
 	return ProvinceCenters[Color];
 }

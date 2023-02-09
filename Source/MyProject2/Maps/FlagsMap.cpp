@@ -109,3 +109,9 @@ void UFlagsMap::UpdateFlagsMapColors()
 
 	FlagsMapTexture->UpdateResource();
 }
+
+void UFlagsMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	UpdateFlagsMapColors();
+}

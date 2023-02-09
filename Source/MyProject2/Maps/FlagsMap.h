@@ -12,6 +12,8 @@ public:
 	
 	void UpdateFlagsMapColors();
 
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+
 private:
 	UPROPERTY()
 	UTexture2D* FlagsMapTexture;
