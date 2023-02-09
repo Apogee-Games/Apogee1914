@@ -1,5 +1,7 @@
 #include "UnitsRenderer.h"
 
+#include "UnitsFactory.h"
+#include "UnitsMover.h"
 #include "MyProject2/Widgets/UnitInformationListWidget.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Characters/UnitActor.h"
@@ -9,6 +11,9 @@
 void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GetWorld()->GetSubsystem<UUnitsMover>()->AddUnitMovementObserver(this);
 }
 
 void UUnitsRenderer::UnitIsMoved(UUnit* Unit, const FColor& From, const FColor& To)
