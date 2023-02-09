@@ -6,5 +6,5 @@ FGraph::FGraph(const TMap<FColor, TSet<FColor>>& AdjacencyList): AdjacencyList(A
 
 TArray<TPair<FColor, int>> FGraph::FindPath(FColor ProvinceFrom, FColor ProvinceTo)
 {
-	return {};
+	return {{ProvinceTo, 1}};
 }
