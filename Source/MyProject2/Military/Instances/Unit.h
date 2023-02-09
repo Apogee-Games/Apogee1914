@@ -2,8 +2,9 @@
 #pragma once
 #include "MyProject2/Administration/Instances/Country.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
-#include "MyProject2/Military/Managers/UnitsRenderer.h"
 #include "Unit.generated.h"
+
+class UUnitsRenderer;
 
 UCLASS()
 class UUnit : public UObject

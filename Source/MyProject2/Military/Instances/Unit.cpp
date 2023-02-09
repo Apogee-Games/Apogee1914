@@ -1,6 +1,7 @@
 #include "Unit.h"
 
 #include "MyProject2/Administration/Managers/CountriesManager.h"
+#include "MyProject2/Military/Managers/UnitsRenderer.h"
 
 void UUnit::Init(const FUnitDescription* UnitDescription, const FColor& ProvidedProvinceColor, FString ProvidedCountryOwnerTag,
                  UUnitsRenderer* ProvidedUnitsRenderer)
@@ -38,7 +39,6 @@ void UUnit::RemoveTransportedUnit(UUnit* Unit)
 
 void UUnit::Move(FColor NewProvinceColor)
 {
-	UnitsRenderer->UnitIsMoved(this, ProvinceColor, NewProvinceColor);
 	ProvinceColor = NewProvinceColor;
 }
 
