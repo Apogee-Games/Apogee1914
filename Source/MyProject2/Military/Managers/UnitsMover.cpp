@@ -1,5 +1,13 @@
 #include "UnitsMover.h"
 
+#include "MyProject2/InGameTime.h"
+
+void UUnitsMover::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, FTimespan(1, 0, 0));
+}
+
 FGraph* UUnitsMover::GetGraph() const
 {
 	return Graph;
@@ -23,7 +31,7 @@ int UUnitsMover::Estimate(UUnit* Unit, const FColor& Province)
 	return Unit->Estimate(Path);
 }
 
-void UUnitsMover::Tick()
+void UUnitsMover::DoUnitMovement()
 {
 	// TODO: Add logic for movement of Unit that is already being moved
 	// TODO: Add Tick to be triggered every day (or whatever smallest time unit we will have)

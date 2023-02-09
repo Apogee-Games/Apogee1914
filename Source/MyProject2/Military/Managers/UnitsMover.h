@@ -12,6 +12,7 @@ class UUnitsMover: public UWorldSubsystem, public IUnitMovementObservable
 	GENERATED_BODY()
 
 public:
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	FGraph* GetGraph() const;
 
@@ -21,7 +22,7 @@ public:
 
 	virtual int Estimate(UUnit* Unit, const FColor& Province);
 
-	virtual void Tick();
+	virtual void DoUnitMovement();
 	
 private:
 	FGraph* Graph = nullptr;
