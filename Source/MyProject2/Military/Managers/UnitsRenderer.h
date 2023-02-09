@@ -20,16 +20,12 @@ public:
 
 	virtual void UnitIsRemoved(UUnit* Unit) override;
 
-	void BeginPlay();
-	
-	void SetUnitInformationWidgetClass(TSubclassOf<UUnitInformationListWidget> NewUnitInformationListWidgetClass);
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 private:
 	UPROPERTY()
 	TMap<FColor, AUnitActor*> Actors;
 	
-	TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass;
-
 	UPROPERTY()
 	UStaticMesh* UnitMesh = FindObject<UStaticMesh>(nullptr, TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
 
