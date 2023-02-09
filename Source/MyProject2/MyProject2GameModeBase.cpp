@@ -20,6 +20,7 @@
 #include "Maps/OutlineMap.h"
 #include "Military/Instances/Unit.h"
 #include "Military/Managers/UnitsFactory.h"
+#include "Military/Managers/UnitsMover.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -52,6 +53,8 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 	}
 
 	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(*GameTime->GetTime());
+
+	GetWorld()->GetSubsystem<UUnitsMover>()->Tick();
 }
 
 void AMyProject2GameModeBase::BeginPlay()
@@ -70,10 +73,15 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
 	
-	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1, 0), "GER",Renderer);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1, 0), "GER",Renderer);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1, 0), "GER",Renderer)->Move(FColor(246, 39, 1, 0));
-	GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1, 0), "NET",Renderer)->Move(FColor(246, 39, 1, 0));
+	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1, 0), "GER",Renderer);
+	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1, 0), "GER",Renderer);
+	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1, 0), "GER",Renderer);
+	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1, 0), "NET",Renderer);
+
+	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
+
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3, FColor(246, 39, 1, 0));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4, FColor(246, 39, 1, 0));
 
 	// End of Test Logic
 
