@@ -2,7 +2,7 @@
 
 #include "Kismet/KismetStringLibrary.h"
 
-FDatePassedConditionChecker::FDatePassedConditionChecker(FInGameTime* GameTime): GameTime(GameTime)
+FDatePassedConditionChecker::FDatePassedConditionChecker(UInGameTime* GameTime): GameTime(GameTime)
 {
 }
 

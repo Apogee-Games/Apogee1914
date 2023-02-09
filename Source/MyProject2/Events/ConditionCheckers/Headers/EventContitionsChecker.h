@@ -10,6 +10,8 @@ class UEventConditionsChecker: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	
 	/**
 	 *	Method used to add event condition checker
 	 */
