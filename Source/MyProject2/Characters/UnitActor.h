@@ -1,10 +1,9 @@
 #pragma once
 #include "Components/WidgetComponent.h"
 #include "Engine/StaticMeshActor.h"
-#include "MyProject2/Widgets/UnitInformationListWidget.h"
 #include "UnitActor.generated.h"
 
-
+class UUnitInformationListWidget;
 class UUnit;
 
 UCLASS()

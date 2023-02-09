@@ -5,12 +5,12 @@ UUnit* UUnitsFactory::Create(FUnitDescription* Description, const FColor& Positi
 	// TODO: Add some logic for delay
 	UUnit* Unit = NewObject<UUnit>(GetWorld());
 	Unit->Init(Description, Position, CountryOwnerTag, Renderer);
-	GetWorld()->GetSubsystem<UUnitsRenderer>()->UnitIsCreated(Unit);
+	NotifyUnitCreation(Unit);
 	return Unit;
 }
 
 void UUnitsFactory::Remove(UUnit* Unit)
 {
-	GetWorld()->GetSubsystem<UUnitsRenderer>()->UnitIsRemoved(Unit);
+	NotifyUnitRemoval(Unit);
 	delete Unit;
 }

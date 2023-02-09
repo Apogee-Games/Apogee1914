@@ -2,6 +2,7 @@
 
 #include "Components/WidgetComponent.h"
 #include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Widgets/UnitInformationListWidget.h"
 
 AUnitActor::AUnitActor()
 {
