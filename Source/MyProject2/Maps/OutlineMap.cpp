@@ -56,6 +56,12 @@ void UOutlineMap::CreateOutline()
 	OutlinesMapTexture->UpdateResource();
 }
 
+void UOutlineMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	CreateOutline();
+}
+
 void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);

@@ -1,5 +1,13 @@
 #include "MyProject2/Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 
+#include "MyProject2/Events/OutcomeAppliers/Headers/StabilityOutcomeApplier.h"
+
+void UEventsOutcomesApplier::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetWorld()->GetGameState<AMyGameState>()));
+}
+
 void UEventsOutcomesApplier::RegisterOutcomeApplier(const FString& Name, FEventOutcomeApplier* OutcomeApplier)
 {
 	OutcomeAppliers.Add(Name, OutcomeApplier);

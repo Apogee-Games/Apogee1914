@@ -1,29 +1,13 @@
 #include "EventInstancesController.h"
 #include "OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 #include "ConditionCheckers/Headers/EventContitionsChecker.h"
+#include "MyProject2/InGameTime.h"
 #include "UObject/UObjectGlobals.h"
 #include "MyProject2/MyGameInstance.h"
+#include "MyProject2/MyGameState.h"
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 
-void UEventInstancesController::Tick(const FDateTime& CurrentInGameTime)
-{
-	if (LastDateEventWereChecked.GetTicks() == 0)
-	{
-		LastDateEventWereChecked = CurrentInGameTime;
-	}
-	
-	if (CurrentInGameTime - LastDateEventWereChecked >= MinDeltaBetweenEventChecks)
-	{
-		CheckEvents();
-		LastDateEventWereChecked = CurrentInGameTime;
-	}
-
-	for (const auto& Pair : WidgetsInstances)
-	{
-		Pair.Value->Tick();
-	}
-}
 
 void UEventInstancesController::CreateEvent(const FString& EventName, const FEventDescription* Event,
                                             const TMap<FString, bool>& ChoicesConditionsEvaluated,
@@ -127,6 +111,12 @@ void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)
 	}
 }
 
+void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	EventWidgetClass = GetWorld()->GetGameState<AMyGameState>()->EventWidgetClass;
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, FTimespan(1, 0 , 0, 0));
+}
 
 void UEventInstancesController::RegisterChoice(const FString& EventName, const FString& ChoiceName,
                                                const FString& CountryTag)
@@ -145,6 +135,14 @@ void UEventInstancesController::RegisterChoice(const FString& EventName, const F
 void UEventInstancesController::SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass)
 {
 	EventWidgetClass = NewEventWidgetClass;
+}
+
+void UEventInstancesController::Tick(float DeltaTime)
+{
+	for (const auto& Pair : WidgetsInstances)
+	{
+		Pair.Value->Tick();
+	}
 }
 
 void UEventInstancesController::CheckEvents()

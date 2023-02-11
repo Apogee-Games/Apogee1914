@@ -12,6 +12,8 @@ public:
 	
 	void UpdateCountriesMapColors() const;
 
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	
 private:
 	int CrossLineWidth = 10;
 	

@@ -51,6 +51,12 @@ void UCountriesMap::UpdateCountriesMapColors() const
 	delete Distances;
 }
 
+void UCountriesMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	UpdateCountriesMapColors();
+}
+
 TArray<int> UCountriesMap::FindProvincesBorders(const FColor* ProvincesColor, const int Width, const int Height,
                                                 UCountriesManager* CountriesManager) const
 {

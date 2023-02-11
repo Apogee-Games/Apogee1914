@@ -2,6 +2,7 @@
 
 #include "UnitsFactory.h"
 #include "UnitsMover.h"
+#include "MyProject2/MyProject2GameModeBase.h"
 #include "MyProject2/Widgets/UnitInformationListWidget.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Characters/UnitActor.h"
@@ -32,8 +33,10 @@ void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
 	Actors[Unit->GetPosition()]->RemoveUnit(Unit);
 }
 
-void UUnitsRenderer::BeginPlay()
+void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
 {
+	Super::OnWorldBeginPlay(InWorld);
+	const TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitInformationListWidgetClass;
 	for (const auto& Province: GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{
 		AUnitActor* Actor = GetWorld()->SpawnActor<AUnitActor>(AUnitActor::StaticClass());
@@ -42,11 +45,6 @@ void UUnitsRenderer::BeginPlay()
 		Actor->Init(ObjectScale, WorldPosition, UnitMesh, UnitInformationListWidgetClass);
 		Actors.Add(Province->GetId(), Actor);
 	}
-}
-
-void UUnitsRenderer::SetUnitInformationWidgetClass(TSubclassOf<UUnitInformationListWidget> NewUnitInformationListWidgetClass)
-{
-	UnitInformationListWidgetClass = NewUnitInformationListWidgetClass;
 }
 
 FVector3d UUnitsRenderer::GetWorldPositionFromMapPosition(const FVector2d& Position)
