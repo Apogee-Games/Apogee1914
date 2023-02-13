@@ -32,6 +32,8 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 
 void AMyProject2GameModeBase::BeginPlay()
 {
+	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
+	
 	// Beginning of Units Renderer/Factory Test Logic
 	
 	FUnitDescription* Description = new FUnitDescription();
@@ -40,15 +42,15 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
 	
-	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1, 0), "GER",Renderer);
-	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1, 0), "GER",Renderer);
-	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1, 0), "GER",Renderer);
-	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1, 0), "NET",Renderer);
+	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1), "GER",Renderer);
+	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1), "GER",Renderer);
+	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1), "GER",Renderer);
+	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1), "NET",Renderer);
 
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3, FColor(246, 39, 1, 0));
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4, FColor(246, 39, 1, 0));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3, FColor(246, 39, 1));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4, FColor(246, 39, 1));
 
 	// End of Test Logic
 
