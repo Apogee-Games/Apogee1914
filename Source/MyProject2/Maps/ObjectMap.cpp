@@ -24,7 +24,7 @@ void UObjectMap::CalculateProvincesCenters()
 	for (const auto& [ProvinceColor, Value] : Counts)
 	{
 		const FVector2d Center = Sums[ProvinceColor] / Counts[ProvinceColor] / SizeVector;
-		ProvinceCenters.Add(ProvinceColor.WithAlpha(0), Center);
+		ProvinceCenters.Add(ProvinceColor, Center);
 	}
 
 	FTextureUtils::UnlockPixels(ProvincesMapTexture);
