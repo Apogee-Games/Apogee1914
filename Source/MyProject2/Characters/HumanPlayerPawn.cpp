@@ -9,6 +9,7 @@
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Administration/Managers/StateManager.h"
 #include "MyProject2/Maps/SelectionMap.h"
+#include "MyProject2/Military/Managers/UnitsMover.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()
@@ -22,6 +23,28 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 void AHumanPlayerPawn::SetRuledCountryTag(const FString& NewRuledCountryTag)
 {
 	RuledCountryTag = NewRuledCountryTag;
+}
+
+void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
+{
+	if (!IsShiftPressed)
+	{
+		SelectedUnits.Empty();
+	}
+	for (const auto& Unit: Units)
+	{
+		SelectedUnits.Add(Unit);
+	}
+}
+
+void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
+{
+	if (!IsShiftPressed)
+	{
+		SelectedUnits.Empty();
+	}
+	SelectedUnits.Add(Unit);
+	// TODO: Add check for controlled country
 }
 
 void AHumanPlayerPawn::MoveUp(float Value)
@@ -59,6 +82,27 @@ void AHumanPlayerPawn::LeftClick()
 			ProvinceDataWidget->SetStateName(State->GetName());
 		}
 	}
+
+	SelectedUnits.Empty();
+}
+
+void AHumanPlayerPawn::RightClick()
+{
+	USelectionMap* SelectionMap = GetWorld()->GetSubsystem<USelectionMap>();
+
+	const FVector Point = GetNormalizedPositionOnPlane();
+
+	const FColor To = SelectionMap->GetProvinceColor(FVector2D(Point.Y, Point.Z));
+
+	for (const auto& Unit: SelectedUnits)
+	{
+		GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit, To);
+	}
+}
+
+void AHumanPlayerPawn::ShiftPressed()
+{
+	IsShiftPressed = true;
 }
 
 FVector AHumanPlayerPawn::GetNormalizedPositionOnPlane() const
@@ -110,6 +154,11 @@ void AHumanPlayerPawn::Tick(float DeltaTime)
 	Move(DeltaTime);
 }
 
+void AHumanPlayerPawn::ShiftReleased()
+{
+	IsShiftPressed = false;
+}
+
 void AHumanPlayerPawn::Move(float DeltaTime)
 {
 	if ((MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0)) ||
@@ -148,5 +197,8 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AHumanPlayerPawn::MoveUp);
 	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AHumanPlayerPawn::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Scroll"), this, &AHumanPlayerPawn::Scroll);
-	PlayerInputComponent->BindAction(TEXT("Click"), IE_Pressed, this, &AHumanPlayerPawn::LeftClick);
+	PlayerInputComponent->BindAction(TEXT("LeftClick"), IE_Pressed, this, &AHumanPlayerPawn::LeftClick);
+	PlayerInputComponent->BindAction(TEXT("RightClick"), IE_Pressed, this, &AHumanPlayerPawn::RightClick);
+	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Pressed, this, &AHumanPlayerPawn::ShiftPressed);
+	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Released, this, &AHumanPlayerPawn::ShiftReleased);
 }
