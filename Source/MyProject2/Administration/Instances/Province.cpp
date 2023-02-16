@@ -1,20 +1,22 @@
 ﻿#include "Province.h"
 
+#include "MyProject2/Administration/Managers/CountriesManager.h"
+
 UProvince::UProvince()
 {
 	Population = NewObject<UProvincePopulation>();
 }
 
-
-void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT,const UDataTable* FactoryDT)
+void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT)
 {
 	Id = ProvinceDescription->Color;
 	Name = ProvinceDescription->ProvinceName;
-	OwnerCountryTag = ProvinceDescription->CountryTag;
-	ControllerCountryTag = ProvinceDescription->CountryTag;
+	OwnerCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
+	ControllerCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
 	StateId = ProvinceDescription->StateId;
 	Resources = ProvinceDescription->Resources;
 	Population->Init(ProvinceDescription->Population);
+	
 	// Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
 	
 	// for(const auto& FactoryInstanceDescription : ProvinceDescription->Factories)
@@ -32,25 +34,25 @@ const FColor& UProvince::GetId() const
 	return Id;
 }
 
-const FString& UProvince::GetOwnerCountryTag() const
+UCountry* UProvince::GetOwnerCountry() const
 {
-	return OwnerCountryTag;
+	return OwnerCountry;
 }
 
-const FString& UProvince::GetControllerCountryTag() const
+UCountry* UProvince::GetControllerCountry() const
 {
-	return ControllerCountryTag;
+	return ControllerCountry;
 }
 
-void UProvince::TakeControl(const FString& CountryTag)
+void UProvince::TakeControl(UCountry* Country)
 {
-	ControllerCountryTag = CountryTag;
+	ControllerCountry = Country;
 }
 
-void UProvince::Conquer(const FString& CountryTag)
+void UProvince::Conquer(UCountry* Country)
 {
-	OwnerCountryTag = CountryTag;
-	ControllerCountryTag = CountryTag;
+	OwnerCountry = Country;
+	ControllerCountry = Country;
 }
 
 const FString& UProvince::GetStateId() const
