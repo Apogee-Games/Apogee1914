@@ -10,18 +10,9 @@ class UCountriesManager: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
-
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	const FColor* GetOwnerCountryColor(const FColor& ProvinceColor);
-	
-	const FColor* GetOwnerCountryColor(const UProvince* Province);
-
-	const FColor* GetControllerCountryColor(const FColor& ProvinceColor);
-	
-	const FColor* GetControllerCountryColor(const UProvince* Province);
-	
-	TArray<FString>* GetCountriesTagsList();
+	const TArray<FString>& GetCountriesTagsList();
 	
 	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
 
@@ -36,7 +27,6 @@ public:
 	bool AreProvincesControlledBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 
 	UCountry* GetCountry(const FString& Tag);
-	
 private:
 	UPROPERTY()
 	TMap<FString, UCountry*> CountryMap;
@@ -44,5 +34,4 @@ private:
 	TArray<FString> CountriesTagsList;
 
 	void InitCountries(UDataTable* CountryDescriptionDataTable);
-	
 };
