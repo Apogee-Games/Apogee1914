@@ -8,7 +8,7 @@
 #include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Administration/Managers/StateManager.h"
-#include "MyProject2/Maps/SelectionMap.h"
+#include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
 
 // Sets default values
@@ -63,11 +63,7 @@ void AHumanPlayerPawn::LeftClick()
 
 	const FVector Point = GetNormalizedPositionOnPlane();
 
-	const FColor Color = SelectionMap->GetProvinceColor(FVector2D(Point.Y, Point.Z));
-
-	SelectionMap->SelectProvince(Color);
-
-	UProvince* Province = GetWorld()->GetSubsystem<UProvinceManager>()->GetProvince(Color);
+	UProvince* Province = SelectionMap->SelectProvince(FVector2D(Point.Y, Point.Z));
 
 	if (Province)
 	{
@@ -88,11 +84,9 @@ void AHumanPlayerPawn::LeftClick()
 
 void AHumanPlayerPawn::RightClick()
 {
-	USelectionMap* SelectionMap = GetWorld()->GetSubsystem<USelectionMap>();
-
 	const FVector Point = GetNormalizedPositionOnPlane();
 
-	const FColor To = SelectionMap->GetProvinceColor(FVector2D(Point.Y, Point.Z));
+	const FColor To = GetWorld()->GetSubsystem<USelectionMap>()->GetProvinceColor(FVector2D(Point.Y, Point.Z));
 
 	for (const auto& Unit: SelectedUnits)
 	{
