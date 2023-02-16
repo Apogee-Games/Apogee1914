@@ -4,12 +4,13 @@
 #include "MyProject2GameModeBase.h"
 
 #include "MyGameInstance.h"
+#include "MyGameState.h"
+#include "Administration/Managers/CountriesManager.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
 #include "Events/EventInstancesController.h"
-#include "Maps/CountriesMap.h"
 #include "Military/Instances/Unit.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsMover.h"
@@ -107,7 +108,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
+	for (const auto& CountryTag : GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
