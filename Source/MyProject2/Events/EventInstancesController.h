@@ -57,5 +57,5 @@ private:
 
 	FString FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated) const;
 
-	TArray<FString>* GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
+	const TArray<FString>& GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
 };

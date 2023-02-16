@@ -150,9 +150,9 @@ void UEventInstancesController::CheckEvents()
 	UEventConditionsChecker* ConditionsChecker = GetWorld()->GetSubsystem<UEventConditionsChecker>();
 	for (const auto& Pair : Events)
 	{
-		TArray<FString>* CountriesTags = GetCountriesForWhichEventCanBeFired(Pair.Value);
+		const TArray<FString>& CountriesTags = GetCountriesForWhichEventCanBeFired(Pair.Value);
 
-		for (auto& CountryTag : *CountriesTags)
+		for (auto& CountryTag : CountriesTags)
 		{
 			if (!ConditionsChecker->CheckConditions(Pair.Value->Conditions, CountryTag)) continue;
 			// Skip current event because conditions are not meet 
@@ -171,9 +171,9 @@ void UEventInstancesController::CheckEvents()
 }
 
 
-TArray<FString>* UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
+const TArray<FString>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
 		       ? GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
-		       : &Event->CountriesConditions.CountriesTags;
+		       : Event->CountriesConditions.CountriesTags;
 }
