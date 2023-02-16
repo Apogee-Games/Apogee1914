@@ -20,7 +20,7 @@ public:
 
 	virtual void UnitIsRemoved(UUnit* Unit) override;
 
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void Init();
 	
 private:
 	UPROPERTY()
