@@ -11,13 +11,13 @@ public:
 
 	void Init(FCountryDescription* CountryDescription);
 
-	const FColor* GetColor();
+	const FColor& GetColor() const;
 
-	const FString& GetName();
+	const FString& GetName() const;
 
 	const FString& GetTag() const;
 
-	UTexture2D* GetFlag();
+	UTexture2D* GetFlag() const;
 	
 private:
 	FString Name;
