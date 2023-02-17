@@ -12,6 +12,12 @@ void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
 }
 
+void UCountriesMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UCountriesMap::UpdateAllCountriesMapColors);
+}
+
 void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const
 {
 	TArray<FRunnableThread*> Threads;
@@ -33,7 +39,7 @@ void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces
     CountriesMapTexture->UpdateResource();
 }
 
-void UCountriesMap::UpdateAllCountriesMapColors() const
+void UCountriesMap::UpdateAllCountriesMapColors()
 {
 	UpdateCountriesMapColors(GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
 }

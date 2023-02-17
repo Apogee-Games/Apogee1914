@@ -31,3 +31,9 @@ void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)
 	OutlinesMapTexture = FTextureUtils::LoadTexture("/Game/maps/outlines");
 	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
 }
+
+void UOutlineMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UOutlineMap::CreateOutline);
+}

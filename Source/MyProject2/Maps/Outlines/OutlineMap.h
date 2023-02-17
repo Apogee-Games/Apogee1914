@@ -8,6 +8,8 @@ class UOutlineMap: public UWorldSubsystem
 public:
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	void CreateOutline();
 

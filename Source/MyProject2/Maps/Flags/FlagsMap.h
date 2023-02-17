@@ -10,10 +10,12 @@ public:
 	GENERATED_BODY()
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	
-	void UpdateBoxes(const TArray<FProvincesBox>& Boxes);
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+
+	void UpdateAllBoxes();
+	
+	void UpdateBoxes(const TArray<FProvincesBox>& Boxes);
 
 private:
 	UPROPERTY()

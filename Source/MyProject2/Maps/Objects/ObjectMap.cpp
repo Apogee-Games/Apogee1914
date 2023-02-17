@@ -1,5 +1,6 @@
 #include "ObjectMap.h"
 
+#include "MyProject2/Maps/Outlines/OutlineMap.h"
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
@@ -31,4 +32,10 @@ void UObjectMap::CalculateProvinceCenter(const FColor& Color)
 FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)
 {
 	return ProvinceCenters[Color];
+}
+
+void UObjectMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UObjectMap::CalculateProvincesCenters);
 }

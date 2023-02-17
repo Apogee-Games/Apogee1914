@@ -3,11 +3,6 @@
 #include "DistanceCalculator.h"
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Administration/Managers/StateManager.h"
-#include "MyProject2/Maps/Countries/CountriesMap.h"
-#include "MyProject2/Maps/Flags/FlagsMap.h"
-#include "MyProject2/Maps/Objects/ObjectMap.h"
-#include "MyProject2/Maps/Outlines/OutlineMap.h"
-#include "MyProject2/Military/Managers/UnitsRenderer.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
 void UProvincesMap::Initialize(FSubsystemCollectionBase& Collection)
@@ -33,13 +28,9 @@ void UProvincesMap::OnWorldBeginPlay(UWorld& InWorld)
 	FindNeighbours();
 
 	CalculateBoxes();
-	
-	//TODO: May be add some kind of registration 
-	GetWorld()->GetSubsystem<UFlagsMap>()->UpdateBoxes(Boxes);
-	GetWorld()->GetSubsystem<UCountriesMap>()->UpdateAllCountriesMapColors();
-	GetWorld()->GetSubsystem<UOutlineMap>()->CreateOutline();
-	GetWorld()->GetSubsystem<UObjectMap>()->CalculateProvincesCenters();
-	GetWorld()->GetSubsystem<UUnitsRenderer>()->Init();
+
+	bIsFullyInitialized = true;
+	PerformOnFullInitializationActions();
 }
 
 FVector2d UProvincesMap::GetSizeVector() const
@@ -91,6 +82,11 @@ const int* UProvincesMap::GetStatesDistances() const
 const int* UProvincesMap::GetCountriesDistances() const
 {
 	return CountriesDistances;
+}
+
+const TArray<FProvincesBox>& UProvincesMap::GetBoxes() const
+{
+	return Boxes;
 }
 
 int UProvincesMap::GetStatesDistance(int Position) const

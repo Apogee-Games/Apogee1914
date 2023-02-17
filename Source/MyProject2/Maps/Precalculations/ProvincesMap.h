@@ -1,11 +1,12 @@
 #pragma once
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
+#include "MyProject2/Interfaces/FOnFullInitialization.h"
 #include "MyProject2/Maps/Flags/ProvincesBox.h"
 
 #include "ProvincesMap.generated.h"
 
 UCLASS()
-class UProvincesMap: public UWorldSubsystem
+class UProvincesMap: public UWorldSubsystem, public FOnFullInitialization
 {
 	GENERATED_BODY()
 public:
@@ -15,7 +16,7 @@ public:
 
 	FVector2d GetSizeVector() const;
 
-	//TODO: Think if it necessary to return it as refecence 
+	//TODO: Think if it necessary to return it as reference 
 	const FColor& GetColor(int32 Position) const;
 
 	const TArray<int32>& GetProvincePositions(const FColor& Color) const;
@@ -31,8 +32,11 @@ public:
 	const int* GetStatesDistances() const;
 
 	const int* GetCountriesDistances() const;
+
+	const TArray<FProvincesBox>& GetBoxes() const;
 	
 	virtual void Deinitialize() override;
+
 private:
 	UTexture2D* ProvincesMapTexture;
 	
@@ -55,7 +59,7 @@ private:
 	int32* StatesDistances;
 
 	int32* CountriesDistances;
-
+	
 	void CalculateMappers(UTexture2D* ProvinceMap);
 
 	void FindNeighbours();

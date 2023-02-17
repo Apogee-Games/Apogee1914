@@ -12,6 +12,11 @@ void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
 	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
 }
 
+void UFlagsMap::UpdateAllBoxes()
+{
+	UpdateBoxes(GetWorld()->GetSubsystem<UProvincesMap>()->GetBoxes());
+}
+
 FRunnableThread* UFlagsMap::UpdateBox(const FProvincesBox& Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector) const
 {
 	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
@@ -67,4 +72,5 @@ void UFlagsMap::UpdateBoxes(const TArray<FProvincesBox>& Boxes)
 void UFlagsMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UFlagsMap::UpdateAllBoxes);
 }

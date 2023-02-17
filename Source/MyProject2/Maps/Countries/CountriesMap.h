@@ -10,9 +10,11 @@ class UCountriesMap: public UWorldSubsystem
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+
 	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const;
 
-	void UpdateAllCountriesMapColors() const;
+	void UpdateAllCountriesMapColors();
 	
 private:
 	int CrossLineWidth = 10;
