@@ -3,17 +3,17 @@
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Military/Managers/UnitsRenderer.h"
 
-void UUnit::Init(const FUnitDescription* UnitDescription, const FColor& ProvidedProvinceColor, FString ProvidedCountryOwnerTag,
+void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, FString ProvidedCountryOwnerTag,
                  UUnitsRenderer* ProvidedUnitsRenderer)
 {
-	Init(UnitDescription, ProvidedProvinceColor, ProvidedCountryOwnerTag, ProvidedCountryOwnerTag, ProvidedUnitsRenderer);
+	Init(UnitDescription, ProvidedProvince, ProvidedCountryOwnerTag, ProvidedCountryOwnerTag, ProvidedUnitsRenderer);
 }
 
-void UUnit::Init(const FUnitDescription* UnitDescription, const FColor& ProvidedProvinceColor, FString ProvidedCountryOwnerTag,
+void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, FString ProvidedCountryOwnerTag,
              FString ProvidedCountryControllerTag, UUnitsRenderer* ProvidedUnitsRenderer)
 {
 	bCanTransportUnits = UnitDescription->CanTransport;
-	ProvinceColor = ProvidedProvinceColor;
+	Province = ProvidedProvince;
 	CanAccessProvinceTypes = UnitDescription->CanAccessProvincesTypes;
 	UnitsRenderer = ProvidedUnitsRenderer;
 	CountryOwner = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvidedCountryOwnerTag);
@@ -37,17 +37,17 @@ void UUnit::RemoveTransportedUnit(UUnit* Unit)
 	TransportedUnits.Remove(Unit);
 }
 
-void UUnit::Move(FColor NewProvinceColor)
+void UUnit::Move(UProvince* NewProvince)
 {
-	ProvinceColor = NewProvinceColor;
+	Province = NewProvince;
 }
 
-FColor UUnit::GetPosition() const
+UProvince* UUnit::GetPosition() const
 {
-	return ProvinceColor;
+	return Province;
 }
 
-int UUnit::Estimate(const TArray<TPair<FColor, int>>& Path)
+int UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
 {
 	//TODO: Add additional logic for better estimation
 	int Result = 0;

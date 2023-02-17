@@ -1,6 +1,7 @@
 
 #pragma once
 #include "MyProject2/Administration/Instances/Country.h"
+#include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
 #include "Unit.generated.h"
 
@@ -11,9 +12,9 @@ class UUnit : public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const FUnitDescription* UnitDescription, const FColor& ProvinceColor, FString CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* UnitDescription, UProvince* Province, FString CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
 
-	void Init(const FUnitDescription* UnitDescription, const FColor& ProvinceColor, FString CountryOwnerTag, FString CountryControllerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* UnitDescription, UProvince* Province, FString CountryOwnerTag, FString CountryControllerTag, UUnitsRenderer* UnitsRenderer);
 
 	bool CanTransportUnits() const;
 
@@ -21,11 +22,11 @@ public:
 
 	void RemoveTransportedUnit(UUnit* Unit);
 
-	void Move(FColor NewProvinceColor);
+	void Move(UProvince* Province);
 
-	FColor GetPosition() const;
+	UProvince* GetPosition() const;
 	
-	int Estimate(const TArray<TPair<FColor, int>>& Path);
+	int Estimate(const TArray<TPair<UProvince*, int>>& Path);
 
 	UCountry* GetCountryOwner() const;
 
@@ -40,7 +41,8 @@ private:
 	
 	TSet<UUnit*> TransportedUnits;
 
-	FColor ProvinceColor;
+	UPROPERTY()
+	UProvince* Province;
 
 	TArray<FString> CanAccessProvinceTypes;
 

@@ -16,7 +16,7 @@ public:
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
-	virtual void UnitIsMoved(UUnit* Unit, const FColor& From, const FColor& To) override;
+	virtual void UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To) override;
 
 	virtual void UnitIsCreated(UUnit* Unit) override;
 
@@ -26,7 +26,7 @@ public:
 	
 private:
 	UPROPERTY()
-	TMap<FColor, AUnitActor*> Actors;
+	TMap<UProvince*, AUnitActor*> Actors;
 	
 	UPROPERTY()
 	UStaticMesh* UnitMesh = FindObject<UStaticMesh>(nullptr, TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));

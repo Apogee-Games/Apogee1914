@@ -30,6 +30,15 @@ const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 	return ProvincesArray;
 }
 
+void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
+{
+	if (Province->GetCountryController() != Unit->GetCountryController())
+	{
+		Province->TakeControl(Unit->GetCountryController());
+	}
+	// TODO: Add notification
+}
+
 void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable)
 {
 	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {

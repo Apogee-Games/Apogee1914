@@ -6,6 +6,7 @@
 #include "MyGameInstance.h"
 #include "MyGameState.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "Administration/Managers/ProvinceManager.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
@@ -42,16 +43,18 @@ void AMyProject2GameModeBase::BeginPlay()
 	Description->CanAccessProvincesTypes.Add("Land");
 
 	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
+	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	
-	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1), "GER",Renderer);
-	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1), "GER",Renderer);
-	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1), "GER",Renderer);
-	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1), "NET",Renderer);
+	
+	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, ProvinceManager->GetProvince(FColor(202, 160, 1)), "GER",Renderer);
+	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(246, 39, 1)), "GER",Renderer);
+	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(239, 236, 1)), "GER",Renderer);
+	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(231, 116, 1)), "NET",Renderer);
 
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3, FColor(246, 39, 1));
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4, FColor(246, 39, 1));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3,  ProvinceManager->GetProvince(FColor(246, 39, 1)));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4,  ProvinceManager->GetProvince(FColor(246, 39, 1)));
 
 	// End of Test Logic
 

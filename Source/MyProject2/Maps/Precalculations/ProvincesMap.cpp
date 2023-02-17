@@ -166,8 +166,8 @@ void UProvincesMap::CalculateBoxes()
 	{
 		UProvince* Province = ProvinceManager->GetProvince(From);
 		if (!Province || ProvinceBox.Contains(Province)) continue;
-		FProvincesBox Box = FProvincesBox(this, Province->GetControllerCountry());
-		AddProvincesToBox(Box, Province, Province->GetControllerCountry(), ProvinceManager);
+		FProvincesBox Box = FProvincesBox(this, Province->GetCountryController());
+		AddProvincesToBox(Box, Province, Province->GetCountryController(), ProvinceManager);
 		Boxes.Add(Box);
 	}
 }
@@ -179,7 +179,7 @@ void UProvincesMap::AddProvincesToBox(FProvincesBox& Box, UProvince* FromProvinc
 	for (const auto& To: Neighbours[FromProvince->GetId()])
 	{
 		UProvince* ToProvince = ProvinceManager->GetProvince(To);
-		if (!ToProvince || ToProvince->GetControllerCountry() != Country || ProvinceBox.Contains(ToProvince)) continue;
+		if (!ToProvince || ToProvince->GetCountryController() != Country || ProvinceBox.Contains(ToProvince)) continue;
 		AddProvincesToBox(Box, ToProvince, Country, ProvinceManager);
 	}
 }

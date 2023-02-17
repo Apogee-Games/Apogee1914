@@ -24,7 +24,7 @@ void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
 	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UUnitsRenderer::Init);
 }
 
-void UUnitsRenderer::UnitIsMoved(UUnit* Unit, const FColor& From, const FColor& To)
+void UUnitsRenderer::UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To)
 {
 	Actors[From]->RemoveUnit(Unit);
 	Actors[To]->AddUnit(Unit);
@@ -49,7 +49,7 @@ void UUnitsRenderer::Init()
 		const FVector2d ImagePosition = GetWorld()->GetSubsystem<UObjectMap>()->GetProvinceCenter(Province->GetId());
 		const FVector3d WorldPosition = GetWorldPositionFromMapPosition(ImagePosition);
 		Actor->Init(ObjectScale, WorldPosition, UnitMesh, UnitInformationListWidgetClass);
-		Actors.Add(Province->GetId(), Actor);
+		Actors.Add(Province, Actor);
 	}
 }
 

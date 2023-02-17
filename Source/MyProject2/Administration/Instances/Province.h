@@ -6,6 +6,7 @@
 #include "MyProject2/Economics/ProvinceFactory.h"
 #include "Province.generated.h"
 
+class UUnit;
 UCLASS()
 class UProvince : public UObject 
 {
@@ -19,12 +20,12 @@ public:
 
 	UCountry* GetOwnerCountry() const;
 
-	UCountry* GetControllerCountry() const;
+	UCountry* GetCountryController() const;
 	
 	void TakeControl(UCountry* Country);
 
 	void Conquer(UCountry* Country);
-	
+
 	const FString& GetStateId() const;
 	
 	const FString& GetName();

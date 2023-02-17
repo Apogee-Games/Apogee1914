@@ -2,6 +2,7 @@
 #include "Engine/DataTable.h"
 #include "MyProject2/Administration/Descriptions/StateDescription.h"
 #include "MyProject2/Administration/Instances/Province.h"
+#include "MyProject2/Military/Instances/Unit.h"
 #include "ProvinceManager.generated.h"
 
 UCLASS()
@@ -17,6 +18,8 @@ public:
 	UProvince* GetProvince(const FString& ProvinceColorHex) const;
 
 	const TArray<UProvince*>& GetAllProvinces() const;
+
+	void UnitMovedIn(UProvince* Province, UUnit* Unit);
 
 private:
 	UPROPERTY()

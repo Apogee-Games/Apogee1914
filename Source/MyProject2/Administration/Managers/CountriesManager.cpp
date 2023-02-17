@@ -56,7 +56,7 @@ bool UCountriesManager::AreProvincesControlledBySameCountry(const FColor& Provin
 
 bool UCountriesManager::AreProvincesControlledBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const 
 {
-	return ProvinceA && ProvinceB && ProvinceA->GetControllerCountry() == ProvinceB->GetControllerCountry();
+	return ProvinceA && ProvinceB && ProvinceA->GetCountryController() == ProvinceB->GetCountryController();
 }
 
 UCountry* UCountriesManager::GetCountry(const FString& Tag)
