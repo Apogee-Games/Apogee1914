@@ -1,6 +1,8 @@
 #include "OutlineMap.h"
 
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
+#include "MyProject2/Maps/Precalculations/Distances/DistancesMap.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
 #define UpdateResource UpdateResource
@@ -8,6 +10,7 @@
 void UOutlineMap::CreateOutline()
 {
 	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
+	const UDistancesMap* DistancesMap = GetWorld()->GetSubsystem<UDistancesMap>();
 	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	
 	FColor* OutlineColors = FTextureUtils::GetPixels(OutlinesMapTexture, LOCK_READ_WRITE);
@@ -16,7 +19,7 @@ void UOutlineMap::CreateOutline()
 	{
 		for (const auto& Position: ProvincesMap->GetProvincePositions(Province->GetId()))
 		{
-			OutlineColors[Position] = (ProvincesMap->GetProvincesDistance(Position) ? OutlineColor : BackgroundColor);
+			OutlineColors[Position] = (DistancesMap->GetProvincesDistance(Position) ? OutlineColor : BackgroundColor);
 		}
 	}
 
@@ -35,5 +38,5 @@ void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)
 void UOutlineMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UOutlineMap::CreateOutline);
+	GetWorld()->GetSubsystem<UDistancesMap>()->RegisterOnFullInitializationAction(this, &UOutlineMap::CreateOutline);
 }
