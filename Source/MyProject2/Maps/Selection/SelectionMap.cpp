@@ -1,5 +1,6 @@
 #include "SelectionMap.h"
 
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
 #include "MyProject2/Utils/TextureUtils.h"
@@ -14,14 +15,20 @@ void USelectionMap::SelectProvince(const FColor& Color)
 
 	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
 
-	for (const auto& i: ProvincesMap->GetProvincePositions(Color))
+	if (ProvincesMap->HasProvincePosition(Color))
 	{
-		SelectionMapColors[i] = SelectedProvinceColor;
+		for (const auto& i: ProvincesMap->GetProvincePositions(Color))
+		{
+			SelectionMapColors[i] = SelectedProvinceColor;
+		}
 	}
 
-	for (const auto& i: ProvincesMap->GetProvincePositions(SelectedProvince))
+	if (ProvincesMap->HasProvincePosition(SelectedProvince))
 	{
-		SelectionMapColors[i] = NonSelectedProvinceColor;
+		for (const auto& i: ProvincesMap->GetProvincePositions(SelectedProvince))
+		{
+			SelectionMapColors[i] = NonSelectedProvinceColor;
+		}
 	}
 	
 	SelectedProvince = Color;
@@ -34,7 +41,10 @@ void USelectionMap::SelectProvince(const FColor& Color)
 UProvince* USelectionMap::SelectProvince(const FVector2d& Point)
 {
 	UProvince* Province = GetProvince(Point);
-	SelectProvince(Province->GetId());
+	if (Province)
+	{
+		SelectProvince(Province->GetId());
+	}
 	return Province;
 }
 
