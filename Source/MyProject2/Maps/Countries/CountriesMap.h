@@ -1,10 +1,12 @@
 #pragma once
 #include "MyProject2/MyGameState.h"
+#include "MyProject2/Administration/Interfaces/Observer/ProvinceControllingCountryObserver.h"
 #include "MyProject2/Administration/Managers/CountriesManager.h"
+#include "MyProject2/Maps/Interfaces/Observer/CountryDistancesObserver.h"
 #include "CountriesMap.generated.h"
 
 UCLASS()
-class UCountriesMap: public UWorldSubsystem
+class UCountriesMap: public UWorldSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
 {
 	GENERATED_BODY()
 public:
@@ -16,6 +18,9 @@ public:
 
 	void UpdateAllCountriesMapColors();
 	
+	virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
+	
+	virtual void CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces) override;
 private:
 	int CrossLineWidth = 10;
 	
