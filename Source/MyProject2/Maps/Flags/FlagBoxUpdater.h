@@ -1,15 +1,16 @@
 #pragma once
-#include "ProvincesBox.h"
+#include "MyProject2/Maps/Precalculations/ProvincesMap.h"
+#include "MyProject2/Maps/Precalculations/Boxes/ProvincesBox.h"
 
 class FFlagBoxUpdater: public FRunnable
 {
 public:
-	FFlagBoxUpdater(const FProvincesBox& Box, const UProvincesMap* ProvincesMap, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& FlagSizeVector);
+	FFlagBoxUpdater(FProvincesBox* Box, const UProvincesMap* ProvincesMap, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& FlagSizeVector);
 	
 	virtual uint32 Run() override;
 
 private:
-	const FProvincesBox& Box;
+	FProvincesBox* Box;
 
 	const UProvincesMap* ProvincesMap;
 
