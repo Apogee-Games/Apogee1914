@@ -6,7 +6,6 @@
 #include "MyProject2/Economics/ProvinceFactory.h"
 #include "Province.generated.h"
 
-class UUnit;
 UCLASS()
 class UProvince : public UObject 
 {
