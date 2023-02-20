@@ -4,12 +4,13 @@
 #include "MyProject2GameModeBase.h"
 
 #include "MyGameInstance.h"
+#include "MyGameState.h"
+#include "Administration/Managers/CountriesManager.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
 #include "Events/EventInstancesController.h"
-#include "Maps/CountriesMap.h"
 #include "Military/Instances/Unit.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsMover.h"
@@ -32,6 +33,8 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 
 void AMyProject2GameModeBase::BeginPlay()
 {
+	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
+	
 	// Beginning of Units Renderer/Factory Test Logic
 	
 	FUnitDescription* Description = new FUnitDescription();
@@ -40,15 +43,15 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
 	
-	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1, 0), "GER",Renderer);
-	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1, 0), "GER",Renderer);
-	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1, 0), "GER",Renderer);
-	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1, 0), "NET",Renderer);
+	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(202, 160, 1), "GER",Renderer);
+	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(246, 39, 1), "GER",Renderer);
+	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(239, 236, 1), "GER",Renderer);
+	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, FColor(231, 116, 1), "NET",Renderer);
 
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3, FColor(246, 39, 1, 0));
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4, FColor(246, 39, 1, 0));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3, FColor(246, 39, 1));
+	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4, FColor(246, 39, 1));
 
 	// End of Test Logic
 
@@ -105,7 +108,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
+	for (const auto& CountryTag : GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());

@@ -1,0 +1,7 @@
+[
+	{
+		"Name": "Unit1",
+		"CanTransport": true,
+		"CanAccessProvincesTypes": ["Land"]
+	}
+]

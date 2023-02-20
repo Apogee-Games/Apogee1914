@@ -18,7 +18,8 @@ void UUnitInformationListWidget::CheckWidgetsMapState(UUnit* Unit)
 	if (!Widgets.Contains(Unit->GetCountryController()))
 	{
 		UUnitInformationWidget* Widget = CreateWidget<UUnitInformationWidget>(GetWorld(), UnitInformationWidgetClass);
-		Widgets.Add(Unit->GetCountryController(),  Widget);
+		Widget->Init();
+		Widgets.Add(Unit->GetCountryController(), Widget);
 		UnitsGridPanel->AddChildToGrid(Widget, Widgets.Num());
 	} else if (Widgets[Unit->GetCountryController()]->IsEmpty())
 	{

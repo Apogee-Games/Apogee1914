@@ -178,5 +178,71 @@
 			"R": 10,
 			"A": 0
 		}
+	},
+	{
+		"Name": "PAR",
+		"CountryName": "Republic of Paraguay",
+		"Tag": "PAR",
+		"Color": {
+			"B": 10,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	},
+	{
+		"Name": "BOL",
+		"CountryName": "Plurinational State of Bolivia",
+		"Tag": "BOL",
+		"Color": {
+			"B": 100,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	}, 
+	{
+		"Name": "PER",
+		"CountryName": "Republic of Peru",
+		"Tag": "PER",
+		"Color": {
+			"B": 100,
+			"G": 100,
+			"R": 100,
+			"A": 0
+		}
+	},
+	{
+		"Name": "CHI",
+		"CountryName": "Republic of Chile",
+		"Tag": "CHI",
+		"Color": {
+			"B": 50,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	}, 
+	{
+		"Name": "URU",
+		"CountryName": "Oriental Republic of Uruguay",
+		"Tag": "URU",
+		"Color": {
+			"B": 100,
+			"G": 50,
+			"R": 100,
+			"A": 0
+		}
+	},
+	{
+		"Name": "ARG",
+		"CountryName": "Argentine Republic",
+		"Tag": "ARG",
+		"Color": {
+			"B": 10,
+			"G": 100,
+			"R": 100,
+			"A": 0
+		}
 	}
 ]

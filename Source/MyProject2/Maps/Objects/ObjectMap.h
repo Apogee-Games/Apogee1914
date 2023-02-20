@@ -7,19 +7,12 @@ class UObjectMap : public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
 	FVector2d GetProvinceCenter(const FColor& Color);
 
 	void CalculateProvincesCenters();
 
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
 private:
-	UPROPERTY()
-	UTexture2D* ProvincesMapTexture;
-
-	FVector2D SizeVector;
-
 	TMap<FColor, FVector2d> ProvinceCenters;
+
+	void CalculateProvinceCenter(const FColor& Color);
 };

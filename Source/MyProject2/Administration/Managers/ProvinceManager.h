@@ -16,7 +16,7 @@ public:
 	
 	UProvince* GetProvince(const FString& ProvinceColorHex) const;
 
-	TArray<UProvince*> GetAllProvinces() const;
+	const TArray<UProvince*>& GetAllProvinces() const;
 
 private:
 	UPROPERTY()

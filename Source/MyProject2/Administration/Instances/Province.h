@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Country.h"
 #include "ProvincePopulation.h"
 #include "MyProject2/Administration/Descriptions/ProvinceDescription.h"
 #include "MyProject2/Administration/Descriptions/TerrainDescription.h"
@@ -16,13 +17,13 @@ public:
 
 	const FColor& GetId() const;
 
-	const FString& GetOwnerCountryTag() const;
+	UCountry* GetOwnerCountry() const;
 
-	const FString& GetControllerCountryTag() const;
+	UCountry* GetControllerCountry() const;
+	
+	void TakeControl(UCountry* Country);
 
-	void TakeControl(const FString& CountryTag);
-
-	void Conquer(const FString& CountryTag);
+	void Conquer(UCountry* Country);
 	
 	const FString& GetStateId() const;
 	
@@ -40,9 +41,11 @@ private:
 
 	FString Name;
 
-	FString OwnerCountryTag;
+	UPROPERTY()
+	UCountry* OwnerCountry;
 
-	FString ControllerCountryTag;
+	UPROPERTY()
+	UCountry* ControllerCountry;
 
 	FString StateId;
 

@@ -6,7 +6,7 @@
 #include "MyProject2/Widgets/UnitInformationListWidget.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Characters/UnitActor.h"
-#include "MyProject2/Maps/ObjectMap.h"
+#include "MyProject2/Maps/Objects/ObjectMap.h"
 #include "MyProject2/Military/Instances/Unit.h"
 
 void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
@@ -33,9 +33,8 @@ void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
 	Actors[Unit->GetPosition()]->RemoveUnit(Unit);
 }
 
-void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
+void UUnitsRenderer::Init()
 {
-	Super::OnWorldBeginPlay(InWorld);
 	const TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitInformationListWidgetClass;
 	for (const auto& Province: GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{

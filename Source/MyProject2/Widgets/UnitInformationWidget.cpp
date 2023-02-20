@@ -1,5 +1,12 @@
 #include "UnitInformationWidget.h"
 
+#include "MyProject2/Characters/HumanPlayerPawn.h"
+
+void UUnitInformationWidget::Init()
+{
+	Button->OnClicked.AddDynamic(this, &UUnitInformationWidget::OnClicked);
+}
+
 void UUnitInformationWidget::AddUnit(UUnit* Unit)
 {
 	if (Units.IsEmpty())
@@ -19,6 +26,11 @@ void UUnitInformationWidget::RemoveUnit(UUnit* Unit)
 bool UUnitInformationWidget::IsEmpty() const
 {
 	return Units.IsEmpty();
+}
+
+void UUnitInformationWidget::OnClicked()
+{
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SelectUnits(Units);
 }
 
 void UUnitInformationWidget::UpdateCountText()

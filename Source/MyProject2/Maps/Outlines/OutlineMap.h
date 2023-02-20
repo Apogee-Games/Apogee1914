@@ -1,5 +1,4 @@
 #pragma once
-#include "MyProject2/MyGameState.h"
 #include "OutlineMap.generated.h"
 
 UCLASS()
@@ -12,15 +11,10 @@ public:
 	
 	void CreateOutline();
 
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
 private:
 	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
 	
-	UPROPERTY()
-	UTexture2D* ProvincesMapTexture;
-
 	FVector2D SizeVector;
 
 	FColor OutlineColor = FColor(0, 0, 0);

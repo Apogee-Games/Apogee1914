@@ -10,12 +10,12 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag);
 }
 
-const FColor* UCountry::GetColor()
+const FColor& UCountry::GetColor() const
 {
-	return &Color;
+	return Color;
 }
 
-const FString& UCountry::GetName()
+const FString& UCountry::GetName() const
 {
 	return Name;
 }
@@ -25,7 +25,7 @@ const FString& UCountry::GetTag() const
 	return Tag;
 }
 
-UTexture2D* UCountry::GetFlag()
+UTexture2D* UCountry::GetFlag() const
 {
 	return Flag;
 }
