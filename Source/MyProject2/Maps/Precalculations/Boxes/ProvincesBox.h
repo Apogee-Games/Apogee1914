@@ -2,12 +2,12 @@
 #include "MyProject2/Administration/Instances/Country.h"
 #include "MyProject2/Administration/Instances/Province.h"
 
-class UProvincesMap;
+class UBoxesMap;
 
 class FProvincesBox
 {
 public:
-	explicit FProvincesBox(UProvincesMap* ProvincesMap, UCountry* Country);
+	explicit FProvincesBox(UBoxesMap* BoxesMap, UCountry* Country);
 
 	void AddProvince(UProvince* Province);
 
@@ -20,11 +20,19 @@ public:
 	UCountry* GetCountry() const;
 
 	const TArray<UProvince*>& GetProvinces() const;
-	
+
+	bool operator==(const FProvincesBox& ProvincesBox) const;
+
+	bool operator>(const FProvincesBox& ProvincesBox) const;
+
+	bool operator<(const FProvincesBox& ProvincesBox) const;
+
+	~FProvincesBox();
+
 private:
 	FVector2d SizeVector;
 
-	const UProvincesMap* ProvincesMap;
+	const UBoxesMap* BoxesMap;
 	
 	UCountry* Country;
 
