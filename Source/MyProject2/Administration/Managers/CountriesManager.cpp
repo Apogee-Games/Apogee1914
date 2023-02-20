@@ -59,6 +59,26 @@ bool UCountriesManager::AreProvincesControlledBySameCountry(const UProvince* Pro
 	return ProvinceA && ProvinceB && ProvinceA->GetCountryController() == ProvinceB->GetCountryController();
 }
 
+bool UCountriesManager::AreProvincesOwnedByDifferentCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
+{
+	return !AreProvincesOwnedBySameCountry(ProvinceAColor, ProvinceBColor);
+}
+
+bool UCountriesManager::AreProvincesOwnedByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const
+{
+	return !AreProvincesOwnedBySameCountry(ProvinceA, ProvinceB);
+}
+
+bool UCountriesManager::AreProvincesControlledByDifferentCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
+{
+	return !AreProvincesControlledBySameCountry(ProvinceAColor, ProvinceBColor);
+}
+
+bool UCountriesManager::AreProvincesControlledByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const
+{
+	return !AreProvincesControlledBySameCountry(ProvinceA, ProvinceB);
+}
+
 UCountry* UCountriesManager::GetCountry(const FString& Tag)
 {
 	return CountryMap.Contains(Tag) ? CountryMap[Tag] : nullptr;
