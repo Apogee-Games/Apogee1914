@@ -1,10 +1,9 @@
 #pragma once
-#include "ProvincesBox.h"
-
+#include "MyProject2/Maps/Precalculations/Boxes/BoxesMap.h"
 #include "FlagsMap.generated.h"
 
 UCLASS()
-class UFlagsMap: public UWorldSubsystem
+class UFlagsMap: public UWorldSubsystem, public IBoxObserver
 {
 public:
 	GENERATED_BODY()
@@ -15,8 +14,9 @@ public:
 
 	void UpdateAllBoxes();
 	
-	void UpdateBoxes(const TArray<FProvincesBox>& Boxes);
+	void UpdateBoxes(const TArray<FProvincesBox*>& Boxes);
 
+	virtual void BoxWasUpdated(FProvincesBox* Box) override;
 private:
 	UPROPERTY()
 	UTexture2D* FlagsMapTexture;
@@ -27,7 +27,7 @@ private:
 
 	TMap<UCountry*, int> CountriesFlagColorsCount;
 	
-	FRunnableThread* UpdateBox(const FProvincesBox& Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector) const;
+	FRunnableThread* UpdateBox(FProvincesBox* Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector);
 
 	const FColor* GetCountryFlagColors(UCountry* Country);
 
