@@ -53,9 +53,6 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit3,  ProvinceManager->GetProvince(FColor(246, 39, 1)));
-	GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit4,  ProvinceManager->GetProvince(FColor(246, 39, 1)));
-
 	// End of Test Logic
 
 	Super::BeginPlay();
