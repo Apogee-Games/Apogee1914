@@ -10,8 +10,8 @@ public:
 	UGoodBalance();
 
 	int GetBalance() const;
-	int Supply(int);
-	int Demand(int);
+	int Supply(int SuppliedAmount);
+	int Demand(int DemandedAmount);
 
 	float GetPrice(int GoodAmount) const;
 	void Init(const FGoodDescription* GoodDescription);
