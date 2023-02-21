@@ -1,10 +1,12 @@
 #include "Graph.h"
 
-FGraph::FGraph(const TMap<FColor, TSet<FColor>>& AdjacencyList): AdjacencyList(AdjacencyList)
+#include "MyProject2/Administration/Instances/Province.h"
+
+FGraph::FGraph(const TMap<UProvince*, TSet<UProvince*>>& AdjacencyList): AdjacencyList(AdjacencyList)
 {
 }
 
-TArray<TPair<FColor, int>> FGraph::FindPath(FColor ProvinceFrom, FColor ProvinceTo)
+TArray<TPair<UProvince*, int>> FGraph::FindPath(UProvince* From, UProvince* To)
 {
-	return {{ProvinceTo, 1}};
+	return {{To, 1}};
 }

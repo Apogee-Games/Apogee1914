@@ -18,16 +18,16 @@ public:
 
 	void SetGraph(FGraph* NewGraph);
 
-	virtual void MoveUnit(UUnit* Unit, const FColor& Province);
+	virtual void MoveUnit(UUnit* Unit, UProvince* To);
 
-	virtual int Estimate(UUnit* Unit, const FColor& Province);
+	virtual int Estimate(UUnit* Unit, UProvince* To);
 
 	virtual void DoUnitMovement();
 	
 private:
 	FGraph* Graph = nullptr;
 
-	TMap<UUnit*, TArray<TPair<FColor, int>>> Paths;
+	TMap<UUnit*, TArray<TPair<UProvince*, int>>> Paths;
 
 	TMap<UUnit*, int> Positions;
 

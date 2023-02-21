@@ -3,6 +3,7 @@
 #include "CountryMapUpdater.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
+#include "MyProject2/Maps/Precalculations/Distances/DistancesMap.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
 void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
@@ -10,6 +11,13 @@ void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 	Super::Initialize(Collection);
 	CountriesMapTexture = FTextureUtils::LoadTexture("/Game/maps/country");
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
+}
+
+void UCountriesMap::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UDistancesMap>()->RegisterOnFullInitializationAction(this, &UCountriesMap::UpdateAllCountriesMapColors);
+	GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
 }
 
 void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const
@@ -33,16 +41,25 @@ void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces
     CountriesMapTexture->UpdateResource();
 }
 
-void UCountriesMap::UpdateAllCountriesMapColors() const
+void UCountriesMap::UpdateAllCountriesMapColors()
 {
 	UpdateCountriesMapColors(GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
 }
 
+void UCountriesMap::ProvinceHasNewControllingCountry(UProvince* Province)
+{
+	UpdateCountriesMapColors({Province});
+}
+
+void UCountriesMap::CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces)
+{
+	UpdateAllCountriesMapColors();
+}
+
 FRunnableThread* UCountriesMap::UpdateCountryColor(UProvince* Province, FColor* CountriesColor) const
 {
-	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
-	const TArray<int32>& PixelsToUpdate = ProvincesMap->GetProvincePositions(Province->GetId());
-	const int* Distances = ProvincesMap->GetCountriesDistances();
+	const TArray<int32>& PixelsToUpdate = GetWorld()->GetSubsystem<UProvincesMap>()->GetProvincePositions(Province->GetId());
+	const int* Distances = GetWorld()->GetSubsystem<UDistancesMap>()->GetCountriesDistances();
 	FCountryMapUpdater* Updater = new FCountryMapUpdater(CountriesColor, PixelsToUpdate, Province, Distances, SizeVector, CrossLineWidth);
 	return FRunnableThread::Create(Updater, *Province->GetName());	
 }

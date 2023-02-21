@@ -1,11 +1,12 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "MyProject2/Administration/Descriptions/StateDescription.h"
 #include "MyProject2/Administration/Instances/Province.h"
+#include "MyProject2/Administration/Interfaces/Observable/ProvinceControllingCountryObservable.h"
 #include "ProvinceManager.generated.h"
 
+class UUnit;
 UCLASS()
-class UProvinceManager : public UWorldSubsystem
+class UProvinceManager : public UWorldSubsystem, public IProvinceControllingCountryObservable
 {
 	GENERATED_BODY()
 	
@@ -17,6 +18,8 @@ public:
 	UProvince* GetProvince(const FString& ProvinceColorHex) const;
 
 	const TArray<UProvince*>& GetAllProvinces() const;
+
+	void UnitMovedIn(UProvince* Province, UUnit* Unit);
 
 private:
 	UPROPERTY()

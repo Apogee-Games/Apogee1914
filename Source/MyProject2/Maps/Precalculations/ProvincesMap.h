@@ -1,11 +1,12 @@
 #pragma once
-#include "MyProject2/Administration/Managers/ProvinceManager.h"
-#include "MyProject2/Maps/Flags/ProvincesBox.h"
+#include "MyProject2/Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
+#include "MyProject2/Administration/Managers/CountriesManager.h"
+#include "MyProject2/Interfaces/FOnFullInitialization.h"
 
 #include "ProvincesMap.generated.h"
 
 UCLASS()
-class UProvincesMap: public UWorldSubsystem
+class UProvincesMap: public UWorldSubsystem, public FOnFullInitialization, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
@@ -15,24 +16,21 @@ public:
 
 	FVector2d GetSizeVector() const;
 
-	//TODO: Think if it necessary to return it as refecence 
+	const FColor* GetColors() const;
+
+	const TMap<FColor, TSet<FColor>>& GetNeighbours() const;
+
+	//TODO: Think if it necessary to return it as reference 
 	const FColor& GetColor(int32 Position) const;
 
+	bool HasProvincePosition(const FColor& Color) const;
+	
 	const TArray<int32>& GetProvincePositions(const FColor& Color) const;
 
-	int GetProvincesDistance(int Position) const;
-
-	int GetStatesDistance(int Position) const;
-
-	int GetCountriesDistance(int Position) const;
-
-	const int* GetProvincesDistances() const;
-
-	const int* GetStatesDistances() const;
-
-	const int* GetCountriesDistances() const;
+	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
 	
 	virtual void Deinitialize() override;
+
 private:
 	UTexture2D* ProvincesMapTexture;
 	
@@ -42,33 +40,15 @@ private:
 
 	TMap<TPair<FColor, FColor>, TArray<int32>> Borders;
 
-	TArray<FProvincesBox> Boxes;
-
-	TMap<UProvince*, FProvincesBox> ProvinceBox;
-
 	FColor* PositionColor;
 	
 	FVector2d SizeVector;
 	
-	int32* ProvincesDistances;
-
-	int32* StatesDistances;
-
-	int32* CountriesDistances;
-
 	void CalculateMappers(UTexture2D* ProvinceMap);
 
 	void FindNeighbours();
-	
-	void CalculateBoxes();
 
-	void AddProvincesToBox(FProvincesBox& Box, UProvince* FromProvince, UCountry* Country, UProvinceManager* ProvinceManager);
-	
-	void CalculateDistances() const;
+	void CalculateBorders();
 
-	FRunnableThread* CalculateProvincesDistances() const;
-	
-	FRunnableThread* CalculateStatesDistances() const;
-
-	FRunnableThread* CalculateCountriesDistances() const;
+	void AddBorder(const FColor& A, const FColor& B, int i);
 };

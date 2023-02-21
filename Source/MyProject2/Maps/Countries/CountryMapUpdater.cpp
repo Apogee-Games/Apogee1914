@@ -28,6 +28,6 @@ uint32 FCountryMapUpdater::Run()
 const FColor& FCountryMapUpdater::GetColor(const FVector2D& Position) const
 {
 	return FMath::Abs<int>(Position.X - Position.Y) % (2 * CrossLineWidth) < CrossLineWidth
-		       ? Province->GetControllerCountry()->GetColor()
+		       ? Province->GetCountryController()->GetColor()
 		       : Province->GetOwnerCountry()->GetColor();
 }

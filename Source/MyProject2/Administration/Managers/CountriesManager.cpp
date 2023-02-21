@@ -56,7 +56,27 @@ bool UCountriesManager::AreProvincesControlledBySameCountry(const FColor& Provin
 
 bool UCountriesManager::AreProvincesControlledBySameCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const 
 {
-	return ProvinceA && ProvinceB && ProvinceA->GetControllerCountry() == ProvinceB->GetControllerCountry();
+	return ProvinceA && ProvinceB && ProvinceA->GetCountryController() == ProvinceB->GetCountryController();
+}
+
+bool UCountriesManager::AreProvincesOwnedByDifferentCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
+{
+	return !AreProvincesOwnedBySameCountry(ProvinceAColor, ProvinceBColor);
+}
+
+bool UCountriesManager::AreProvincesOwnedByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const
+{
+	return !AreProvincesOwnedBySameCountry(ProvinceA, ProvinceB);
+}
+
+bool UCountriesManager::AreProvincesControlledByDifferentCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
+{
+	return !AreProvincesControlledBySameCountry(ProvinceAColor, ProvinceBColor);
+}
+
+bool UCountriesManager::AreProvincesControlledByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const
+{
+	return !AreProvincesControlledBySameCountry(ProvinceA, ProvinceB);
 }
 
 UCountry* UCountriesManager::GetCountry(const FString& Tag)

@@ -7,6 +7,7 @@
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Characters/UnitActor.h"
 #include "MyProject2/Maps/Objects/ObjectMap.h"
+#include "MyProject2/Maps/Precalculations/ProvincesMap.h"
 #include "MyProject2/Military/Instances/Unit.h"
 
 void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
@@ -17,7 +18,13 @@ void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
 	GetWorld()->GetSubsystem<UUnitsMover>()->AddUnitMovementObserver(this);
 }
 
-void UUnitsRenderer::UnitIsMoved(UUnit* Unit, const FColor& From, const FColor& To)
+void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UUnitsRenderer::Init);
+}
+
+void UUnitsRenderer::UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To)
 {
 	Actors[From]->RemoveUnit(Unit);
 	Actors[To]->AddUnit(Unit);
@@ -42,7 +49,7 @@ void UUnitsRenderer::Init()
 		const FVector2d ImagePosition = GetWorld()->GetSubsystem<UObjectMap>()->GetProvinceCenter(Province->GetId());
 		const FVector3d WorldPosition = GetWorldPositionFromMapPosition(ImagePosition);
 		Actor->Init(ObjectScale, WorldPosition, UnitMesh, UnitInformationListWidgetClass);
-		Actors.Add(Province->GetId(), Actor);
+		Actors.Add(Province, Actor);
 	}
 }
 

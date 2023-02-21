@@ -9,6 +9,8 @@ class UObjectMap : public UWorldSubsystem
 public:
 	FVector2d GetProvinceCenter(const FColor& Color);
 
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+
 	void CalculateProvincesCenters();
 
 private:

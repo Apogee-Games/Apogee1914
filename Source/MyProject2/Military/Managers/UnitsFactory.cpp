@@ -1,10 +1,10 @@
 #include "UnitsFactory.h"
 
-UUnit* UUnitsFactory::Create(FUnitDescription* Description, const FColor& Position, const FString& CountryOwnerTag, UUnitsRenderer* Renderer)
+UUnit* UUnitsFactory::Create(FUnitDescription* Description, UProvince* Province, const FString& CountryOwnerTag, UUnitsRenderer* Renderer)
 {
 	// TODO: Add some logic for delay
 	UUnit* Unit = NewObject<UUnit>(GetWorld());
-	Unit->Init(Description, Position, CountryOwnerTag, Renderer);
+	Unit->Init(Description, Province, CountryOwnerTag, Renderer);
 	NotifyUnitCreation(Unit);
 	return Unit;
 }

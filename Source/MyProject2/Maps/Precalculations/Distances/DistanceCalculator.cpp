@@ -1,22 +1,22 @@
 #include "DistanceCalculator.h"
 
-FDistanceCalculator::FDistanceCalculator(int* Distances, const FVector2d SizeVector): Distances(Distances), SizeVector(SizeVector)
+FDistanceCalculator::FDistanceCalculator(int* Distances, const FVector2d& SizeVector, int Depth): IDistanceProcessor(Distances, SizeVector, Depth)
 {
 }
 
-void FDistanceCalculator::AddStartPoint(int Position)
+void FDistanceCalculator::AddStartPoint(int Point)
 {
-	Queue.Enqueue(Position);
-	Distances[Position] = 0;
+	IDistanceProcessor::AddStartPoint(Point);
+	Distances[Point] = 0;
 }
 
 uint32 FDistanceCalculator::Run()
 {
-	CalculateDistances(Queue, Distances, SizeVector);
+	CalculateDistances();
 	return 0;
 }
 
-void FDistanceCalculator::CalculateDistances(TQueue<int32>& Queue, int* Distances, const FVector2d SizeVector)
+void FDistanceCalculator::CalculateDistances()
 {
 	while (!Queue.IsEmpty())
 	{
@@ -24,6 +24,8 @@ void FDistanceCalculator::CalculateDistances(TQueue<int32>& Queue, int* Distance
 		
 		Queue.Dequeue(CurrentPosition);
 
+		if (Distances[CurrentPosition] >= Depth) continue;
+		
 		const int y = CurrentPosition / static_cast<int>(SizeVector.Y);
 		const int x = CurrentPosition % static_cast<int>(SizeVector.Y);
 		

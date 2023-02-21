@@ -1,6 +1,7 @@
 ﻿#include "Province.h"
 
 #include "MyProject2/Administration/Managers/CountriesManager.h"
+#include "MyProject2/Military/Instances/Unit.h"
 
 UProvince::UProvince()
 {
@@ -39,7 +40,7 @@ UCountry* UProvince::GetOwnerCountry() const
 	return OwnerCountry;
 }
 
-UCountry* UProvince::GetControllerCountry() const
+UCountry* UProvince::GetCountryController() const
 {
 	return ControllerCountry;
 }

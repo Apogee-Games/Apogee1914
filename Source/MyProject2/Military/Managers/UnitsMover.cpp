@@ -1,6 +1,7 @@
 #include "UnitsMover.h"
 
 #include "MyProject2/InGameTime.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 
 void UUnitsMover::OnWorldBeginPlay(UWorld& InWorld)
 {
@@ -18,16 +19,16 @@ void UUnitsMover::SetGraph(FGraph* NewGraph)
 	Graph = NewGraph;
 }
 
-void UUnitsMover::MoveUnit(UUnit* Unit, const FColor& Province)
+void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 {
-	TArray<TPair<FColor, int>> Path = Graph->FindPath(Unit->GetPosition(), Province);
+	TArray<TPair<UProvince*, int>> Path = Graph->FindPath(Unit->GetPosition(), To);
 	Paths.Add(Unit, Path);
 	Positions.Add(Unit, 0);
 }
 
-int UUnitsMover::Estimate(UUnit* Unit, const FColor& Province)
+int UUnitsMover::Estimate(UUnit* Unit, UProvince* To)
 {
-	const TArray<TPair<FColor, int>> Path = Graph->FindPath(Unit->GetPosition(), Province);
+	const TArray<TPair<UProvince*, int>> Path = Graph->FindPath(Unit->GetPosition(), To);
 	return Unit->Estimate(Path);
 }
 
@@ -43,6 +44,7 @@ void UUnitsMover::MoveUnit(UUnit* Unit, int Position)
 {
 	NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].Key);
 	Unit->Move(Paths[Unit][Position].Key);
+	GetWorld()->GetSubsystem<UProvinceManager>()->UnitMovedIn(Paths[Unit][Position].Key, Unit);
 	Positions[Unit]++;
 	if (Positions[Unit] >= Paths[Unit].Num()) UnitsArrived.Enqueue(Unit);
 }

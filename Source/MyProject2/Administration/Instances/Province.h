@@ -19,12 +19,12 @@ public:
 
 	UCountry* GetOwnerCountry() const;
 
-	UCountry* GetControllerCountry() const;
+	UCountry* GetCountryController() const;
 	
 	void TakeControl(UCountry* Country);
 
 	void Conquer(UCountry* Country);
-	
+
 	const FString& GetStateId() const;
 	
 	const FString& GetName();

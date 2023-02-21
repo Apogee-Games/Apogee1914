@@ -86,7 +86,7 @@ void AHumanPlayerPawn::RightClick()
 {
 	const FVector Point = GetNormalizedPositionOnPlane();
 
-	const FColor To = GetWorld()->GetSubsystem<USelectionMap>()->GetProvinceColor(FVector2D(Point.Y, Point.Z));
+	UProvince* To = GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(FVector2D(Point.Y, Point.Z));
 
 	for (const auto& Unit: SelectedUnits)
 	{

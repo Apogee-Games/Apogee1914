@@ -1,12 +1,14 @@
 #pragma once
 
+class UProvince;
+
 class FGraph
 {
 public:
-	explicit FGraph(const TMap<FColor, TSet<FColor>>& AdjacencyList);
+	explicit FGraph(const TMap<UProvince*, TSet<UProvince*>>& AdjacencyList);
 
-	TArray<TPair<FColor, int>> FindPath(FColor ProvinceFrom, FColor ProvinceTo);
+	TArray<TPair<UProvince*, int>> FindPath(UProvince* From, UProvince* To);
 
 private:
-	TMap<FColor, TSet<FColor>> AdjacencyList;
+	TMap<UProvince*, TSet<UProvince*>> AdjacencyList;
 };

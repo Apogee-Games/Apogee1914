@@ -4,7 +4,7 @@
 class IUnitMovementObservable
 {
 public:
-	void NotifyUnitMovement(UUnit* Unit, const FColor& From, const FColor& To);
+	void NotifyUnitMovement(UUnit* Unit, UProvince* From, UProvince* To);
 
 	bool AddUnitMovementObserver(IUnitMovementObserver* Observer);
 	
