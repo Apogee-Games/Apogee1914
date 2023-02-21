@@ -35,6 +35,8 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 void AMyProject2GameModeBase::BeginPlay()
 {
 	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
+
+	GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
 	
 	// Beginning of Units Renderer/Factory Test Logic
 	

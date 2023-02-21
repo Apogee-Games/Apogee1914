@@ -10,7 +10,7 @@ public:
 	/**
 	 * Method to apply outcome with provided outcome values
 	 */
-	virtual void Apply(TMap<FName, FString> Values) = 0;
+	virtual void Apply(const TMap<FName, FString>& Values) = 0;
 
 	virtual ~FEventOutcomeApplier() = default;
 };

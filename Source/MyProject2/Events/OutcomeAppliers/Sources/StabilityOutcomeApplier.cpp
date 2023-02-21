@@ -6,7 +6,7 @@ FStabilityOutcomeApplier::FStabilityOutcomeApplier(AMyGameState* GameState): Gam
 {
 }
 
-void FStabilityOutcomeApplier::Apply(TMap<FName, FString> Values)
+void FStabilityOutcomeApplier::Apply(const TMap<FName, FString>& Values)
 {
 	GameState->SetStability(GameState->GetStability() + UKismetStringLibrary::Conv_StringToInt(Values["Stability"]));
 }

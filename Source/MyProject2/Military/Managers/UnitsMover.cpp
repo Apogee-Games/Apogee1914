@@ -21,7 +21,7 @@ void UUnitsMover::SetGraph(FGraph* NewGraph)
 
 void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 {
-	TArray<TPair<UProvince*, int>> Path = Graph->FindPath(Unit->GetPosition(), To);
+	const TArray<TPair<UProvince*, int>> Path = Graph->FindPath(Unit->GetPosition(), To);
 	Paths.Add(Unit, Path);
 	Positions.Add(Unit, 0);
 }

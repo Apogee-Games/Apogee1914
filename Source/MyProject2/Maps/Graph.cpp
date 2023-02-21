@@ -6,7 +6,7 @@ FGraph::FGraph(const TMap<UProvince*, TSet<UProvince*>>& AdjacencyList): Adjacen
 {
 }
 
-TArray<TPair<UProvince*, int>> FGraph::FindPath(UProvince* From, UProvince* To)
+const TArray<TPair<UProvince*, int>> FGraph::FindPath(UProvince* From, UProvince* To)
 {
 	return {{To, 1}};
 }

@@ -4,7 +4,7 @@ FStabilityConditionChecker::FStabilityConditionChecker(AMyGameState* GameState):
 {
 }
 
-bool FStabilityConditionChecker::Check(TMap<FName, FString> Values)
+bool FStabilityConditionChecker::Check(const TMap<FName, FString>& Values)
 {
 	return FString::FromInt(GameState->GetStability()) == Values["Stability"];
 }

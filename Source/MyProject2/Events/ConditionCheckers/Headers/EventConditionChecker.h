@@ -10,7 +10,7 @@ public:
 	/**
 	 * Method used to check event condition with specific values
 	 */
-	virtual bool Check(TMap<FName, FString> Values) = 0;
+	virtual bool Check(const TMap<FName, FString>& Values) = 0;
 
 	virtual ~FEventConditionChecker() = default;
 };

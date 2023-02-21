@@ -33,7 +33,7 @@ public:
 
 	const FTerrainDescription* GetTerrain() const;
 
-	const TMap<FName, int> GetResources() const;
+	const TMap<FName, int>& GetResources() const;
 	
 private:
 	
