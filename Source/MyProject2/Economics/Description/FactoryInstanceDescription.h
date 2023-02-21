@@ -8,7 +8,6 @@ struct FFactoryInstanceDescription : public FTableRowBase
 	GENERATED_BODY()
 
 public:
-
 	UPROPERTY()
 	FString Type; // FactoryDescriptionId
 

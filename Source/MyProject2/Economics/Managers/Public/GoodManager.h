@@ -8,6 +8,7 @@ UCLASS()
 class UGoodManager : public UWorldSubsystem
 {
 	GENERATED_BODY()
+
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 

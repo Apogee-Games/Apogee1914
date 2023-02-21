@@ -9,8 +9,8 @@ UCLASS()
 class UCountry: public UObject
 {
 	GENERATED_BODY()
+	
 public:
-
 	void Init(FCountryDescription* CountryDescription);
 
 	const FColor& GetColor() const;
@@ -33,10 +33,13 @@ private:
 
 	UPROPERTY()
 	UMarket* Market;
+	
 	UPROPERTY()
 	UStrata* LowerStrata;
+	
 	UPROPERTY()
 	UStrata* MiddleStrata;
+	
 	UPROPERTY()
 	UStrata* UpperStrata;
 

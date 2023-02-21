@@ -12,8 +12,7 @@ public:
 	UStrata();
 
 	void Init();
-	
-	
+
 private:
 	UPROPERTY()
 	UMarket* StrataMarket;
