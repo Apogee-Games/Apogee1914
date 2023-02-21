@@ -20,7 +20,7 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 }
 
-void AHumanPlayerPawn::SetRuledCountryTag(const FString& NewRuledCountryTag)
+void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
 	RuledCountryTag = NewRuledCountryTag;
 }

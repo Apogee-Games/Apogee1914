@@ -8,12 +8,12 @@ void UEventsOutcomesApplier::OnWorldBeginPlay(UWorld& InWorld)
 	RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetWorld()->GetGameState<AMyGameState>()));
 }
 
-void UEventsOutcomesApplier::RegisterOutcomeApplier(const FString& Name, FEventOutcomeApplier* OutcomeApplier)
+void UEventsOutcomesApplier::RegisterOutcomeApplier(const FName& Name, FEventOutcomeApplier* OutcomeApplier)
 {
 	OutcomeAppliers.Add(Name, OutcomeApplier);
 }
 
-void UEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag)
+void UEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FName& CountryTag)
 {
 	for (auto& Outcome: Outcomes)
 	{
@@ -22,7 +22,7 @@ void UEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, cons
 
 		if (!Outcome.Values.Contains("Country"))
 		{
-			Outcome.Values.Add("Country", CountryTag);
+			Outcome.Values.Add("Country", CountryTag.ToString());
 			AddedCountry = true;
 		}
 

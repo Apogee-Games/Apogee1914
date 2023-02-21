@@ -11,5 +11,5 @@ struct FEventCountriesConditions : public FTableRowBase
 	bool ForAll;
 
 	UPROPERTY()
-	TArray<FString> CountriesTags;
+	TArray<FName> CountriesTags;
 };

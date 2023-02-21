@@ -8,8 +8,8 @@ struct  FEventCondition: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FString Name;
+	FName Name;
 	
 	UPROPERTY()
-	TMap<FString, FString> Values;
+	TMap<FName, FString> Values;
 };

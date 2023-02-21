@@ -11,13 +11,13 @@ struct FEventDescription: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FString ImagePath;
+	FName ImagePath;
 
 	UPROPERTY()
-	FString Title;
+	FText Title;
 
 	UPROPERTY()
-	FString Text;
+	FText Text;
 
 	UPROPERTY()
 	bool TriggerOnce;

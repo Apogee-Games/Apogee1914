@@ -17,7 +17,7 @@ public:
 	 *												 Day field - to represent desired day
 	 *												 Hour field - to represent desired hour
 	 */
-	virtual bool Check(TMap<FString, FString> Values) override;
+	virtual bool Check(TMap<FName, FString> Values) override;
 
 private:
 	UInGameTime* GameTime;

@@ -7,24 +7,19 @@ USTRUCT()
 struct FFactoryDescription : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY();
-public:
-	FFactoryDescription()
-	{
-		MaxLabours = 0;
-	};
 
 	// [Good ID:Amount]
 	UPROPERTY()
-	TMap<FString, int32> GoodConsumption{}; 
+	TMap<FName, int32> GoodConsumption{}; 
 
 	// [Resource ID:Amount]
 	UPROPERTY()
-	TMap<FString, int32> ResourceConsumption; // ToDo
+	TMap<FName, int32> ResourceConsumption; // ToDo
 
 	// [Good ID:Amount]
 	UPROPERTY()
-	TMap<FString, int32> GoodOutput;
+	TMap<FName, int32> GoodOutput;
 
 	UPROPERTY()
-	int32 MaxLabours{};
+	int32 MaxLabours = 0;
 };

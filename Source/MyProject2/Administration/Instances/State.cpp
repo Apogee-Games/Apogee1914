@@ -12,7 +12,7 @@ void UState::Init(FStateDescription* StateDescription, const UProvinceManager* P
 	}
 }
 
-const FString& UState::GetName() const
+const FName& UState::GetName() const
 {
 	return Name;
 }

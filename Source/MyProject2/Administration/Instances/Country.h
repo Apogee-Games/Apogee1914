@@ -13,16 +13,16 @@ public:
 
 	const FColor& GetColor() const;
 
-	const FString& GetName() const;
+	const FName& GetName() const;
 
-	const FString& GetTag() const;
+	const FName& GetTag() const;
 
 	UTexture2D* GetFlag() const;
 	
 private:
-	FString Name;
+	FName Name;
 
-	FString Tag;
+	FName Tag;
 
 	FColor Color;
 

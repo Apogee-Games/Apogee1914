@@ -6,7 +6,7 @@ FDatePassedConditionChecker::FDatePassedConditionChecker(UInGameTime* GameTime):
 {
 }
 
-bool FDatePassedConditionChecker::Check(TMap<FString, FString> Values)
+bool FDatePassedConditionChecker::Check(TMap<FName, FString> Values)
 {
 	const FDateTime ProvidedDate = FDateTime(UKismetStringLibrary::Conv_StringToInt(Values["Year"]),
 	                                         UKismetStringLibrary::Conv_StringToInt(Values["Month"]),

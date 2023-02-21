@@ -21,7 +21,7 @@ FRunnableThread* UFlagsMap::UpdateBox(FProvincesBox* Box, FColor* FlagsColors, c
 {
 	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
 	FRunnable* Runnable = new FFlagBoxUpdater(Box, ProvincesMap, FlagsColors, CountryFlagColor, CountryFlagColorSizeVector);
-	return FRunnableThread::Create(Runnable, *Box->GetCountry()->GetTag());
+	return FRunnableThread::Create(Runnable, *Box->GetCountry()->GetTag().ToString());
 }
 
 const FColor* UFlagsMap::GetCountryFlagColors(UCountry* Country)

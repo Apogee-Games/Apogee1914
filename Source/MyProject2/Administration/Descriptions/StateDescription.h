@@ -8,8 +8,8 @@ struct FStateDescription : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FString StateName;
+	FName StateName;
 
 	UPROPERTY()
-	TArray<FString> Provinces;
+	TArray<FName> Provinces;
 };

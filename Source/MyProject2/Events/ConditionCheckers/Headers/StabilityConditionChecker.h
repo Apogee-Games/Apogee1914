@@ -17,7 +17,7 @@ public:
 	/**
 	 * Method checks stability with provided values
 	 */
-	virtual bool Check(TMap<FString, FString> Values) override;
+	virtual bool Check(TMap<FName, FString> Values) override;
 
 	virtual ~FStabilityConditionChecker() override = default;
 private:

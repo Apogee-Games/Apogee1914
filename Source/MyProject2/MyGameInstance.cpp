@@ -3,12 +3,12 @@
 
 #include "MyGameInstance.h"
 
-FString UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
+FName UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
 {
 	return PlayersRuledCountries[PlayerId];
 }
 
-void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FString& CountryTag)
+void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FName& CountryTag)
 {
 	if (PlayersRuledCountries.Contains(PlayerId)) CountriesRuledByPlayers[PlayersRuledCountries[PlayerId]]--;
 	PlayersRuledCountries.Add(PlayerId, CountryTag);
@@ -18,7 +18,7 @@ void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FString& Count
 		                            : 1);
 }
 
-bool UMyGameInstance::IsCountryRuledByPlayer(const FString& CountryTag)
+bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
 {
 	return CountriesRuledByPlayers.Contains(CountryTag) && CountriesRuledByPlayers[CountryTag];
 }

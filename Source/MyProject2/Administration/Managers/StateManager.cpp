@@ -9,7 +9,7 @@ void UStateManager::Initialize(FSubsystemCollectionBase& Collection)
 	InitStates(StateDescriptionDataTable);
 }
 
-UState* UStateManager::GetState(const FString& StateId) const
+UState* UStateManager::GetState(const FName& StateId) const
 {
 	return StateMap.Contains(StateId) ? StateMap[StateId] : nullptr;
 }
@@ -48,6 +48,6 @@ void UStateManager::InitStates(UDataTable* StatesDescriptions)
 	{
 		UState* State = NewObject<UState>();
 		State->Init(reinterpret_cast<FStateDescription*>(Value), ProvinceManager);
-		StateMap.Add(Key.ToString(), State);
+		StateMap.Add(Key, State);
 	}
 }

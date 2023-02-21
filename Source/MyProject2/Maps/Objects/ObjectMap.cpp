@@ -1,6 +1,6 @@
 #include "ObjectMap.h"
 
-#include "MyProject2/Maps/Outlines/OutlineMap.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
 #include "MyProject2/Utils/TextureUtils.h"
 

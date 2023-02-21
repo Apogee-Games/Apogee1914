@@ -24,38 +24,38 @@ public:
 	/**
 	 * Creates and displays event widget with required data
 	 */
-	void CreateEvent(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
+	void CreateEvent(const FName& EventName, const FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 
 	/**
 	 *	Removes event widget 
 	 */
-	void DeleteEventWidget(const FString& EventName, const FString& CountryTag);
+	void DeleteEventWidget(const FName& EventName, const FName& CountryTag);
 
 	/**
 	 *	Method used to record selected choice for specific event
 	 */
-	void RegisterChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag);
+	void RegisterChoice(const FName& EventName, const FName& ChoiceName, const FName& CountryTag);
 
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
 	TSubclassOf<UEventWidget> EventWidgetClass;
 
-	TSet<TPair<FString, FString>> FiredEvents;
+	TSet<TPair<FName, FName>> FiredEvents;
 
-	TMap<FString, FEventDescription*> Events;
+	TMap<FName, FEventDescription*> Events;
 
-	TMap<FString, bool> ActiveEvents;
+	TMap<FName, bool> ActiveEvents;
 	
-	TMap<TPair<FString, FString>, UEventWidget*> WidgetsInstances;
+	TMap<TPair<FName, FName>, UEventWidget*> WidgetsInstances;
 
-	void CreateEventForAI(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
+	void CreateEventForAI(const FName& EventName, const FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 	
-	void CreateEventForPlayer(const FString& EventName, const FEventDescription* Event, const TMap<FString, bool>& ChoicesConditionsEvaluated, const FString& CountryTag);
+	void CreateEventForPlayer(const FName& EventName, const FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 
-	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated);
+	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 
-	FString FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated) const;
+	FName FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated) const;
 
-	const TArray<FString>& GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
+	const TArray<FName>& GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
 };

@@ -6,17 +6,12 @@ USTRUCT()
 struct FGoodDescription : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY();
-public:
-	FGoodDescription()
-	{
-		AveragePrice = 0;
-	};
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=GoodType)
-	FString GoodName;
+	FName GoodName;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=GoodType)
-	int32 AveragePrice;
+	int32 AveragePrice = 0;
 
 	
 };

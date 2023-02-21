@@ -100,7 +100,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 		const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
 
 		const UMyGameInstance* GameInstance = GetGameInstance<UMyGameInstance>();
-		const FString RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
+		const FName RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
 		
 		Pawn->SetRuledCountryTag(RuledCountryTag);
 	}

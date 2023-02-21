@@ -22,20 +22,20 @@ public:
 	/**
 	 * Method used to set choice text
 	 */
-	void SetChoiceText(const FString& Text) const;
+	void SetChoiceText(const FText& Text) const;
 
 	/**
 	 *	Method used to initialize widget
 	 *	Sets all necessary data to be able to report selected choice back to event manager
 	 */
-	void Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText);
+	void Init(const FName& NewEventName, const FName& NewChoiceName, const FName& NewCountryTag, const FText& NewChoiceText);
 	
 private:
-	FString EventName;
+	FName EventName;
 
-	FString ChoiceName;
+	FName ChoiceName;
 
-	FString CountryTag;
+	FName CountryTag;
 
 	UFUNCTION()
 	void OnChoiceButtonClick();

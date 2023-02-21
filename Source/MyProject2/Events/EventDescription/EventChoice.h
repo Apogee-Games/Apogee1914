@@ -10,10 +10,10 @@ struct FEventChoice: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FString Name;
+	FName Name;
 	
 	UPROPERTY()
-	FString Text;
+	FText Text;
 	
 	UPROPERTY()
 	float AIChance;

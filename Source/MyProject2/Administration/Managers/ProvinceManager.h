@@ -15,7 +15,7 @@ public:
 
 	UProvince* GetProvince(const FColor& ProvinceColor) const;
 	
-	UProvince* GetProvince(const FString& ProvinceColorHex) const;
+	UProvince* GetProvince(const FName& ProvinceColorHex) const;
 
 	const TArray<UProvince*>& GetAllProvinces() const;
 
@@ -23,7 +23,7 @@ public:
 
 private:
 	UPROPERTY()
-	TMap<FString, UProvince*> ProvinceMap;
+	TMap<FName, UProvince*> ProvinceMap;
 
 	UPROPERTY()
 	TArray<UProvince*> ProvincesArray;

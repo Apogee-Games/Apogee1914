@@ -3,28 +3,29 @@
 
 #include "ProvinceData.h"
 
-void UProvinceData::SetProvinceName(const FString& ProvinceName) const
+void UProvinceData::SetProvinceName(const FName& ProvinceName) const
 {
-	ProvinceNameTextBlock->SetText(FText::FromString(ProvinceName));
+	ProvinceNameTextBlock->SetText(FText::FromName(ProvinceName));
 }
 
+// TODO: Fix: why not overloading or just numbers :)
 void UProvinceData::SetPopulationNumber(const FString& PopulationNumber) const
 {
 	PopulationNumberTextBlock->SetText(FText::FromString(PopulationNumber));
 }
 
-void UProvinceData::SetStateName(const FString& StateName) const
+void UProvinceData::SetStateName(const FName& StateName) const
 {
-	StateNameTextBlock->SetText(FText::FromString(StateName));
+	StateNameTextBlock->SetText(FText::FromName(StateName));
 }
 
-void UProvinceData::SetResources(const TMap<FString, int>& Resources) const
+void UProvinceData::SetResources(const TMap<FName, int>& Resources) const
 {
 	FString Result = "";
 	
 	for (const auto& Resource: Resources)
 	{
-		Result += Resource.Key + ":" + FString::FromInt(Resource.Value) + "\n";
+		Result += Resource.Key.ToString() + ":" + FString::FromInt(Resource.Value) + "\n";
 	}
 	
 	ResourcesTextBlock->SetText(FText::FromString(Result));

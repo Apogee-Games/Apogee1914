@@ -25,21 +25,21 @@ public:
 
 	void Conquer(UCountry* Country);
 
-	const FString& GetStateId() const;
+	const FName& GetStateId() const;
 	
-	const FString& GetName();
+	const FName& GetName();
 
 	const UProvincePopulation* GetPopulation() const;
 
 	const FTerrainDescription* GetTerrain() const;
 
-	const TMap<FString, int> GetResources() const;
+	const TMap<FName, int> GetResources() const;
 	
 private:
 	
 	FColor Id;
 
-	FString Name;
+	FName Name;
 
 	UPROPERTY()
 	UCountry* OwnerCountry;
@@ -47,16 +47,14 @@ private:
 	UPROPERTY()
 	UCountry* ControllerCountry;
 
-	FString StateId;
-
-	TMap<FString, int32> UnitsRenderingPosition;
-
+	FName StateId;
+	
 	UPROPERTY()
 	UProvincePopulation* Population;
 	
 	FTerrainDescription* Terrain;
 	
-	TMap<FString, int> Resources;
+	TMap<FName, int> Resources;
 	
 	UPROPERTY() // To prevent from garbage collecting all the factories :)
 	TArray<UProvinceFactory*> Factories; 

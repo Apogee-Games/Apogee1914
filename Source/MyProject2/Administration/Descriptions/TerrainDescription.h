@@ -8,7 +8,7 @@ struct FTerrainDescription : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FString TerrainName;
+	FName TerrainName;
 	
 	UPROPERTY()
 	float MovementSpeed = 1;

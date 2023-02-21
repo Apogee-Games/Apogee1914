@@ -19,7 +19,8 @@ public:
 	 *	@brief Checks current data with provided values
 	 *	@param Values - provided values, should have Date field to represent desired date
 	 */
-	virtual bool Check(TMap<FString, FString> Values) override;
+	// TODO: Why not const references :)
+	virtual bool Check(TMap<FName, FString> Values) override;
 
 private:
 	UInGameTime* GameTime;

@@ -2,9 +2,9 @@
 
 #include "MyProject2/Events/EventInstancesController.h"
 
-void UEventChoiceButtonWidget::SetChoiceText(const FString& Text) const
+void UEventChoiceButtonWidget::SetChoiceText(const FText& Text) const
 {
-	ChoiceTextBlock->SetText(FText::FromString(Text));
+	ChoiceTextBlock->SetText(Text);
 }
 
 void UEventChoiceButtonWidget::OnChoiceButtonClick()
@@ -12,7 +12,7 @@ void UEventChoiceButtonWidget::OnChoiceButtonClick()
 	GetWorld()->GetSubsystem<UEventInstancesController>()->RegisterChoice(EventName, ChoiceName, CountryTag);
 }
 
-void UEventChoiceButtonWidget::Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText)
+void UEventChoiceButtonWidget::Init(const FName& NewEventName, const FName& NewChoiceName, const FName& NewCountryTag, const FText& NewChoiceText)
 {
 	EventName = NewEventName;
 	ChoiceName = NewChoiceName;

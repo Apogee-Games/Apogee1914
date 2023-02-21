@@ -56,12 +56,12 @@ void UProvince::Conquer(UCountry* Country)
 	ControllerCountry = Country;
 }
 
-const FString& UProvince::GetStateId() const
+const FName& UProvince::GetStateId() const
 {
 	return StateId;
 }
 
-const FString& UProvince::GetName()
+const FName& UProvince::GetName()
 {
 	return Name;
 }
@@ -77,7 +77,7 @@ const FTerrainDescription* UProvince::GetTerrain() const
 	return Terrain;
 }
 
-const TMap<FString, int> UProvince::GetResources() const
+const TMap<FName, int> UProvince::GetResources() const
 {
 	return Resources;
 }

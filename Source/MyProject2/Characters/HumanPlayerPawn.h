@@ -25,7 +25,7 @@ public:
 	AHumanPlayerPawn();
 
 	// Sets tag of country controlled by this Pawn
-	void SetRuledCountryTag(const FString& NewRuledCountryTag);
+	void SetRuledCountryTag(const FName& NewRuledCountryTag);
 
 	void SelectUnits(const TArray<UUnit*>& Units);
 
@@ -73,7 +73,7 @@ protected:
 private:
 	
 	/* Tag of country that current pawn controls */
-	FString RuledCountryTag;
+	FName RuledCountryTag;
 
 	bool IsShiftPressed = false;
 	

@@ -10,7 +10,7 @@ AAIPlayerPawn::AAIPlayerPawn()
 
 }
 
-void AAIPlayerPawn::SetRuledCountryTag(const FString& NewRuledCountryTag)
+void AAIPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
 	RuledCountryTag = NewRuledCountryTag;
 }
@@ -26,11 +26,6 @@ void AAIPlayerPawn::BeginPlay()
 void AAIPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	for (const auto& c: RuledCountryTag)
-	{
-		std::cout << static_cast<char>(c);
-	}
-	std::cout << std::endl;
 }
 
 // Called to bind functionality to input

@@ -12,12 +12,12 @@ void UEventConditionsChecker::OnWorldBeginPlay(UWorld& InWorld)
 	RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(InGameTime));
 }
 
-void UEventConditionsChecker::RegisterConditionChecker(const FString& Name, FEventConditionChecker* Checker)
+void UEventConditionsChecker::RegisterConditionChecker(const FName& Name, FEventConditionChecker* Checker)
 {
 	ConditionsCheckers.Add(Name, Checker);
 }
 
-bool UEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Conditions, const FString& CountryTag)
+bool UEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Conditions, const FName& CountryTag)
 {
 	for (auto& EventConditions : Conditions)
 	{
@@ -26,7 +26,7 @@ bool UEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Condition
 
 		if (!EventConditions.Values.Contains("Country"))
 		{
-			EventConditions.Values.Add("Country", CountryTag);
+			EventConditions.Values.Add("Country", CountryTag.ToString());
 			AddedCountry = true;
 		}
 

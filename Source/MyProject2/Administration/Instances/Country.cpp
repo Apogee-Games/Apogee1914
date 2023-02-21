@@ -7,7 +7,7 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 	Name = CountryDescription->CountryName;
 	Tag = CountryDescription->Tag;
 	Color = CountryDescription->Color;
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag);
+	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString());
 }
 
 const FColor& UCountry::GetColor() const
@@ -15,12 +15,12 @@ const FColor& UCountry::GetColor() const
 	return Color;
 }
 
-const FString& UCountry::GetName() const
+const FName& UCountry::GetName() const
 {
 	return Name;
 }
 
-const FString& UCountry::GetTag() const
+const FName& UCountry::GetTag() const
 {
 	return Tag;
 }

@@ -4,7 +4,7 @@ FExactDateConditionChecker::FExactDateConditionChecker(UInGameTime* GameTime): G
 {
 }
 
-bool FExactDateConditionChecker::Check(TMap<FString, FString> Values)
+bool FExactDateConditionChecker::Check(TMap<FName, FString> Values)
 {
 	return GameTime->GetTime()->ToString(TEXT("%Y-%m-%d %H")) == Values["Date"];
 }

@@ -9,7 +9,7 @@ struct FUnitDescription: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	TArray<FString> CanAccessProvincesTypes;
+	TArray<FName> CanAccessProvincesTypes;
 
 	UPROPERTY()
 	bool CanTransport;

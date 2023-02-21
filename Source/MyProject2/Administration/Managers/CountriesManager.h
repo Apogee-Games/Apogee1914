@@ -12,7 +12,7 @@ class UCountriesManager: public UWorldSubsystem
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	const TArray<FString>& GetCountriesTagsList();
+	const TArray<FName>& GetCountriesTagsList();
 	
 	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
 
@@ -34,12 +34,12 @@ public:
 
 	bool AreProvincesControlledByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 
-	UCountry* GetCountry(const FString& Tag);
+	UCountry* GetCountry(const FName& Tag);
 private:
 	UPROPERTY()
-	TMap<FString, UCountry*> CountryMap;
+	TMap<FName, UCountry*> CountryMap;
 	
-	TArray<FString> CountriesTagsList;
+	TArray<FName> CountriesTagsList;
 
 	void InitCountries(UDataTable* CountryDescriptionDataTable);
 };
