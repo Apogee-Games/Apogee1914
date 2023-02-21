@@ -39,3 +39,8 @@ int UGoodBalance::GetDemand() const
 {
 	return DemandAmount;
 }
+
+const FGoodDescription* UGoodBalance::GetGoodDescription() const
+{
+	return GoodDescription;
+}

@@ -11,8 +11,8 @@ void UStrataManager::Initialize(FSubsystemCollectionBase& Collection)
 	
 }
 
-FStrataDescription* UStrataManager::GetStrataDescription(const FString& Type) const
+FStrataDescription* UStrataManager::GetStrataDescription(const FName& Type) const
 {
-	return reinterpret_cast<FStrataDescription*>(StrataDescriptionDataTable->FindRowUnchecked(FName(Type)));
+	return reinterpret_cast<FStrataDescription*>(StrataDescriptionDataTable->FindRowUnchecked(Type));
 }
 

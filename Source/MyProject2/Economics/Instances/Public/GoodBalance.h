@@ -18,6 +18,8 @@ public:
 	int GetSupply() const;
 	int GetDemand() const;
 
+	const FGoodDescription* GetGoodDescription() const;
+
 	
 private:
 

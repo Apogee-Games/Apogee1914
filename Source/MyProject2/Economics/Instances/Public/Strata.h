@@ -11,7 +11,7 @@ class UStrata : public UObject
 public:
 	UStrata();
 
-	void Initialize();
+	void Init();
 	
 	
 private:
@@ -19,6 +19,6 @@ private:
 	UMarket* StrataMarket;
 
 	UPROPERTY()
-	FString Type; 
+	FName Type; 
 	
 };

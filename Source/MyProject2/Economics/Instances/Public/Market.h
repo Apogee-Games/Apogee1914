@@ -9,17 +9,20 @@ class UMarket : public UObject
 public:
 	UMarket();
 
-	int AddDemand(const FGoodDescription* GoodDescription, int Amount);
-	int AddSupply(const FGoodDescription* GoodDescription, int Amount);
+	int AddDemand(const FGoodDescription* GoodDescription, int AmountOfGood);
+	int AddSupply(const FGoodDescription* GoodDescription, int AmountOfGood);
 
-	TArray<TPair<FString, int>> GetMostDemanded();
+	TArray<TPair<FName, int>> GetSortedDemands();
 private:
+
+	UGoodBalance* GetBalanceInstanceOrElseInit(const FGoodDescription* GoodDescription);
+	void CheckBalanceInstance(const UGoodBalance* GoodBalance);
 
 	
 	UPROPERTY()
-	TMap<FString, UGoodBalance*> Balances;
+	TMap<FName, UGoodBalance*> Balances;
 
 	UPROPERTY()
-	TMap<FString, UGoodBalance*> Potential;
+	TMap<FName, UGoodBalance*> Potential;
 	
 };

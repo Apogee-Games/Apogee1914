@@ -4,7 +4,7 @@ UStrata::UStrata()
 {
 }
 
-void UStrata::Initialize()
+void UStrata::Init()
 {
 	StrataMarket = NewObject<UMarket>();
 }

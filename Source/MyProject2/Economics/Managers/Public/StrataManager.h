@@ -8,7 +8,7 @@ class UStrataManager : public UWorldSubsystem
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
-	FStrataDescription* GetStrataDescription(const FString& Type) const;
+	FStrataDescription* GetStrataDescription(const FName& Type) const;
 	
 private:
 	
