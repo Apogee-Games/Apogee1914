@@ -1,0 +1,17 @@
+[
+	{
+		"Name": "Wood",
+		"GoodName": "Wood",
+		"AveragePrice": 30
+	},
+	{
+		"Name": "Coal",
+		"GoodName": "Coal",
+		"AveragePrice": 50
+	},
+	{
+		"Name": "Iron",
+		"GoodName": "Iron",
+		"AveragePrice": 60
+	}
+]

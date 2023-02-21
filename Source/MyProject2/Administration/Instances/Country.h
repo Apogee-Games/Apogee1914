@@ -1,5 +1,7 @@
 #pragma once
 #include "MyProject2/Administration/Descriptions/CountryDescription.h"
+#include "MyProject2/Economics/Instances/Public/Market.h"
+#include "MyProject2/Economics/Instances/Public/Strata.h"
 
 #include "Country.generated.h"
 
@@ -28,4 +30,14 @@ private:
 
 	UPROPERTY()
 	UTexture2D* Flag = nullptr;
+
+	UPROPERTY()
+	UMarket* Market;
+	UPROPERTY()
+	UStrata* LowerStrata;
+	UPROPERTY()
+	UStrata* MiddleStrata;
+	UPROPERTY()
+	UStrata* UpperStrata;
+
 };
