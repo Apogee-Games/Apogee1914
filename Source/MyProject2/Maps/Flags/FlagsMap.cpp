@@ -17,7 +17,7 @@ void UFlagsMap::UpdateAllBoxes()
 	UpdateBoxes(GetWorld()->GetSubsystem<UBoxesMap>()->GetBoxes());
 }
 
-FRunnableThread* UFlagsMap::UpdateBox(FProvincesBox* Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector)
+FRunnableThread* UFlagsMap::UpdateBox(const TSharedPtr<FProvincesBox>& Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector)
 {
 	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
 	FRunnable* Runnable = new FFlagBoxUpdater(Box, ProvincesMap, FlagsColors, CountryFlagColor, CountryFlagColorSizeVector);
@@ -45,7 +45,7 @@ void UFlagsMap::UnlockAllCountriesFlagColors()
 	CountriesFlagColors.Empty();
 }
 
-void UFlagsMap::UpdateBoxes(const TArray<FProvincesBox*>& Boxes)
+void UFlagsMap::UpdateBoxes(const TArray<TSharedPtr<FProvincesBox>>& Boxes)
 {
 	TArray<FRunnableThread*> Threads;
 	
@@ -69,7 +69,7 @@ void UFlagsMap::UpdateBoxes(const TArray<FProvincesBox*>& Boxes)
 
 }
 
-void UFlagsMap::BoxWasUpdated(FProvincesBox* Box)
+void UFlagsMap::BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box)
 {
 	FColor* FlagsColors = FTextureUtils::GetPixels(FlagsMapTexture, LOCK_READ_WRITE);
 

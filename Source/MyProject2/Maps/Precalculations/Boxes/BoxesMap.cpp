@@ -25,7 +25,7 @@ void UBoxesMap::Init()
 }
 
 
-const TArray<FProvincesBox*>& UBoxesMap::GetBoxes() const
+const TArray<TSharedPtr<FProvincesBox>>& UBoxesMap::GetBoxes() const
 {
 	return Boxes;
 }
@@ -56,7 +56,6 @@ void UBoxesMap::RemoveProvinceFromBox(UProvince* Province)
 	if (ProvinceBox[Province]->GetProvinces().IsEmpty())
 	{
 		Boxes.Remove(ProvinceBox[Province]);
-		delete ProvinceBox[Province];
 	} else
 	{
 		NotifyBoxUpdate(ProvinceBox[Province]);
@@ -68,7 +67,7 @@ bool UBoxesMap::AddProvinceToNeighbourBoxes(UProvince* Province)
 	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	const TSet<FColor>& Neighbours = GetWorld()->GetSubsystem<UProvincesMap>()->GetNeighbours()[Province->GetId()];
 
-	TArray<FProvincesBox*> SameCountryBoxes;
+	TArray<TSharedPtr<FProvincesBox>> SameCountryBoxes;
 
 	for (const auto& NeighbourColor: Neighbours)
 	{
@@ -93,7 +92,7 @@ bool UBoxesMap::AddProvinceToNeighbourBoxes(UProvince* Province)
 	return false;
 }
 
-bool UBoxesMap::AddProvinceToBox(FProvincesBox* Box, UProvince* Province)
+bool UBoxesMap::AddProvinceToBox(TSharedPtr<FProvincesBox> Box, UProvince* Province)
 {
 	Box->AddProvince(Province);
 	ProvinceBox[Province] = Box;
@@ -101,9 +100,9 @@ bool UBoxesMap::AddProvinceToBox(FProvincesBox* Box, UProvince* Province)
 	return true;	
 }
 
-bool UBoxesMap::MergeBoxesAndAddProvince(TArray<FProvincesBox*>& SameCountryBoxes, UProvince* Province)
+bool UBoxesMap::MergeBoxesAndAddProvince(TArray<TSharedPtr<FProvincesBox>>& SameCountryBoxes, UProvince* Province)
 {
-	SameCountryBoxes.Sort();
+	SameCountryBoxes.Sort(FProvincesBox::CompareAscending);
 	const int BoxesNumber = SameCountryBoxes.Num();
 	for (int i = 0; i < BoxesNumber - 1; ++i)
 	{
@@ -112,7 +111,6 @@ bool UBoxesMap::MergeBoxesAndAddProvince(TArray<FProvincesBox*>& SameCountryBoxe
 			SameCountryBoxes[BoxesNumber - 1]->AddProvince(BoxProvince);
 			ProvinceBox[BoxProvince] = SameCountryBoxes[BoxesNumber - 1];
 		}
-		delete SameCountryBoxes[i];
 		Boxes.Remove(SameCountryBoxes[i]);
 	}
 	AddProvinceToBox(SameCountryBoxes[BoxesNumber - 1], Province);
@@ -122,7 +120,7 @@ bool UBoxesMap::MergeBoxesAndAddProvince(TArray<FProvincesBox*>& SameCountryBoxe
 
 void UBoxesMap::CreateNewBox(UProvince* Province)
 {
-	FProvincesBox* Box = new FProvincesBox(this, Province->GetCountryController());
+	TSharedPtr<FProvincesBox> Box = MakeShared<FProvincesBox>(this, Province->GetCountryController());
 	Box->AddProvince(Province);
 		
 	ProvinceBox[Province] = Box;
@@ -164,13 +162,13 @@ void UBoxesMap::CalculateBoxes()
 	{
 		UProvince* Province = ProvinceManager->GetProvince(From);
 		if (!Province || ProvinceBox.Contains(Province)) continue;
-		FProvincesBox* Box = new FProvincesBox(this, Province->GetCountryController());
+		TSharedPtr<FProvincesBox> Box = MakeShared<FProvincesBox>(this, Province->GetCountryController());
 		AddProvincesToBox(Box, Province, Province->GetCountryController(), ProvinceManager);
 		Boxes.Add(Box);
 	}
 }
 
-void UBoxesMap::AddProvincesToBox(FProvincesBox* Box, UProvince* FromProvince, UCountry* Country, UProvinceManager* ProvinceManager)
+void UBoxesMap::AddProvincesToBox(TSharedPtr<FProvincesBox> Box, UProvince* FromProvince, UCountry* Country, UProvinceManager* ProvinceManager)
 {
 	Box->AddProvince(FromProvince);
 	ProvinceBox.Add(FromProvince, Box);

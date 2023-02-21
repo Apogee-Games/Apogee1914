@@ -1,7 +1,7 @@
 #include "DistanceCleaner.h"
 
 
-FDistanceCleaner::FDistanceCleaner(int* Distances, const FVector2d& SizeVector, int Depth): IDistanceProcessor(Distances, SizeVector, Depth)
+FDistanceCleaner::FDistanceCleaner(TArray<int32>& Distances, const FVector2d& SizeVector, int Depth): IDistanceProcessor(Distances, SizeVector, Depth)
 {
 }
 

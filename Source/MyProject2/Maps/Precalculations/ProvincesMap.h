@@ -16,7 +16,7 @@ public:
 
 	FVector2d GetSizeVector() const;
 
-	const FColor* GetColors() const;
+	const TArray<FColor>& GetColors() const;
 
 	const TMap<FColor, TSet<FColor>>& GetNeighbours() const;
 
@@ -40,7 +40,7 @@ private:
 
 	TMap<TPair<FColor, FColor>, TArray<int32>> Borders;
 
-	FColor* PositionColor;
+	TArray<FColor> PositionColor;
 	
 	FVector2d SizeVector;
 	

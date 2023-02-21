@@ -3,7 +3,7 @@
 #include "MyProject2/Utils/TextureUtils.h"
 
 FCountryMapUpdater::FCountryMapUpdater(FColor* CountriesColors, const TArray<int32>& PixelsToUpdate,
-                                       const UProvince* Province, const int* Distances, const FVector2d& SizeVector,
+                                       const UProvince* Province, const TArray<int32>& Distances, const FVector2d& SizeVector,
                                        int CrossLineWidth)
 	: CountriesColors(CountriesColors), PixelsToUpdate(PixelsToUpdate), Province(Province), Distances(Distances),
 	  SizeVector(SizeVector), CrossLineWidth(CrossLineWidth)

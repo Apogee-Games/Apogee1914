@@ -3,7 +3,7 @@
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
 #include "MyProject2/Utils/TextureUtils.h"
 
-FFlagBoxUpdater::FFlagBoxUpdater(FProvincesBox* Box, const UProvincesMap* ProvincesMap, FColor* FlagsColors , const FColor* CountryFlagColor, const FVector2d& FlagSizeVector): Box(Box), ProvincesMap(ProvincesMap), FlagsColors(FlagsColors), CountryFlagColor(CountryFlagColor), FlagSizeVector(FlagSizeVector)
+FFlagBoxUpdater::FFlagBoxUpdater(const TSharedPtr<FProvincesBox>& Box, const UProvincesMap* ProvincesMap, FColor* FlagsColors , const FColor* CountryFlagColor, const FVector2d& FlagSizeVector): Box(Box), ProvincesMap(ProvincesMap), FlagsColors(FlagsColors), CountryFlagColor(CountryFlagColor), FlagSizeVector(FlagSizeVector)
 {
 	SizeVector = ProvincesMap->GetSizeVector();
 }

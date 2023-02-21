@@ -5,12 +5,12 @@
 class FFlagBoxUpdater: public FRunnable
 {
 public:
-	FFlagBoxUpdater(FProvincesBox* Box, const UProvincesMap* ProvincesMap, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& FlagSizeVector);
+	FFlagBoxUpdater(const TSharedPtr<FProvincesBox>& Box, const UProvincesMap* ProvincesMap, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& FlagSizeVector);
 	
 	virtual uint32 Run() override;
 
 private:
-	FProvincesBox* Box;
+	const TSharedPtr<FProvincesBox>& Box;
 
 	const UProvincesMap* ProvincesMap;
 

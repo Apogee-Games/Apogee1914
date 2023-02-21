@@ -4,7 +4,7 @@
 class FDistanceCleaner: public IDistanceProcessor
 {
 public:
-	FDistanceCleaner(int* Distances, const FVector2d& SizeVector, int Depth);
+	FDistanceCleaner(TArray<int32>& Distances, const FVector2d& SizeVector, int Depth);
 
 	virtual void AddStartPoint(int Point) override;
 	

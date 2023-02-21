@@ -15,14 +15,13 @@ void UProvincesMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 
-	PositionColor = new FColor[SizeVector.X * SizeVector.Y];
+	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
 	
 	CalculateMappers(ProvincesMapTexture);
 	
 	FindNeighbours();
 
 	CalculateBorders();
-
 
 	bIsFullyInitialized = true;
 	PerformOnFullInitializationActions();
@@ -36,7 +35,7 @@ FVector2d UProvincesMap::GetSizeVector() const
 	return SizeVector;
 }
 
-const FColor* UProvincesMap::GetColors() const
+const TArray<FColor>& UProvincesMap::GetColors() const
 {
 	return PositionColor;
 }
@@ -71,7 +70,6 @@ void UProvincesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 void UProvincesMap::Deinitialize()
 {
 	
-	delete[] PositionColor;
 	Super::Deinitialize();
 }
 
@@ -83,7 +81,7 @@ void UProvincesMap::CalculateMappers(UTexture2D* ProvinceMap)
 	
 	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
-		PositionColor[i] = FColor(Colors[i].R, Colors[i].G, Colors[i].B, Colors[i].A);
+		PositionColor[i] = FColor(Colors[i]);
 		
 		if (!ColorPosition.Contains(PositionColor[i])) {
 			ColorPosition.Add(PositionColor[i], TArray<int32>());
@@ -104,8 +102,8 @@ void UProvincesMap::FindNeighbours()
 	
 	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
-		const int y = i / static_cast<int>(SizeVector.Y);
-		const int x = i % static_cast<int>(SizeVector.Y);
+		const int y = i / static_cast<int>(SizeVector.X);
+		const int x = i % static_cast<int>(SizeVector.X);
 		
 		if (x > 0 && PositionColor[i] != PositionColor[i - 1])
 		{
@@ -134,8 +132,8 @@ void UProvincesMap::CalculateBorders()
 {
 	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
-		const int y = i / static_cast<int>(SizeVector.Y);
-		const int x = i % static_cast<int>(SizeVector.Y);
+		const int y = i / static_cast<int>(SizeVector.X);
+		const int x = i % static_cast<int>(SizeVector.X);
 		
 		if (x > 0 && PositionColor[i] != PositionColor[i - 1])
 		{

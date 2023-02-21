@@ -1,6 +1,6 @@
 #include "DistanceProcessor.h"
 
-IDistanceProcessor::IDistanceProcessor(int* Distances, const FVector2d& SizeVector, int Depth): Distances(Distances), SizeVector(SizeVector), Depth(Depth)
+IDistanceProcessor::IDistanceProcessor(TArray<int32>& Distances, const FVector2d& SizeVector, int Depth): Distances(Distances), SizeVector(SizeVector), Depth(Depth)
 {
 }
 

@@ -1,6 +1,6 @@
 #include "DistanceCalculator.h"
 
-FDistanceCalculator::FDistanceCalculator(int* Distances, const FVector2d& SizeVector, int Depth): IDistanceProcessor(Distances, SizeVector, Depth)
+FDistanceCalculator::FDistanceCalculator(TArray<int32>& Distances, const FVector2d& SizeVector, int Depth): IDistanceProcessor(Distances, SizeVector, Depth)
 {
 }
 
