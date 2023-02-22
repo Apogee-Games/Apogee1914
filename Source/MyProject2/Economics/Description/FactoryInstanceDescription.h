@@ -8,8 +8,8 @@ struct FFactoryInstanceDescription : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FName Type; // FactoryDescriptionId
+	FName Type; 
 
 	UPROPERTY()
-	int32 Labours; // Current amount of labours
+	int32 Labours;
 };

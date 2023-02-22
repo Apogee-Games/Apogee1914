@@ -12,6 +12,4 @@ struct FGoodDescription : public FTableRowBase
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=GoodType)
 	int32 AveragePrice = 0;
-
-	
 };
