@@ -15,7 +15,7 @@ AUnitActor::AUnitActor()
 
 // TODO: Think of way to customise UnitMesh depending on units 
 void AUnitActor::Init(const FVector3d& ObjectScale, const FVector3d& Position, UStaticMesh* UnitMesh,
-                      TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass)
+                      const TSubclassOf<UUnitInformationListWidget>& UnitInformationListWidgetClass)
 {
 	GetStaticMeshComponent()->SetStaticMesh(UnitMesh);
 	SetActorScale3D(ObjectScale);
@@ -36,9 +36,7 @@ void AUnitActor::AddUnit(UUnit* Unit)
 	Units.Add(Unit);
 
 	UpdateWidgetVisibility();
-
-	// TODO: Add Unit with lists logic (in widget)
-
+	
 	Widget->AddUnit(Unit);
 }
 
@@ -47,9 +45,7 @@ void AUnitActor::RemoveUnit(UUnit* Unit)
 	Units.Remove(Unit);
 
 	UpdateWidgetVisibility();
-
-	// TODO: Remove Unit with lists logic (in widget)
-
+	
 	Widget->RemoveUnit(Unit);
 }
 

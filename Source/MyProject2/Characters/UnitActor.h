@@ -13,7 +13,7 @@ class AUnitActor: public AStaticMeshActor
 public:
 	AUnitActor();
 	
-	void Init(const FVector3d& ObjectScale, const FVector3d& Position, UStaticMesh* UnitMesh, TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass);
+	void Init(const FVector3d& ObjectScale, const FVector3d& Position, UStaticMesh* UnitMesh, const TSubclassOf<UUnitInformationListWidget>& UnitInformationListWidgetClass);
 
 	void AddUnit(UUnit* Unit);
 

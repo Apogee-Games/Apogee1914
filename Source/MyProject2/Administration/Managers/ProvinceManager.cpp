@@ -37,7 +37,6 @@ void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
 		Province->TakeControl(Unit->GetCountryController());
 		NotifyProvinceNewControllingCountry(Province);
 	}
-	// TODO: Add notification
 }
 
 void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable)

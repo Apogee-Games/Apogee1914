@@ -12,10 +12,9 @@ class UUnit : public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const FUnitDescription* UnitDescription, UProvince* Province, FName CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* UnitDescription, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
 
-	//TODO: Const References ?
-	void Init(const FUnitDescription* UnitDescription, UProvince* Province, FName CountryOwnerTag, FName CountryControllerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* UnitDescription, UProvince* Province, const FName& CountryOwnerTag, const FName& CountryControllerTag, UUnitsRenderer* UnitsRenderer);
 
 	bool CanTransportUnits() const;
 

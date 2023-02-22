@@ -30,7 +30,9 @@ public:
 
 	void SetProvinceName(const FName& ProvinceName) const;
 
-	void SetPopulationNumber(const FString& PopulationNumber) const;
+	void SetPopulationNumber(int32 Population) const;
+	
+	void SetPopulationNumber(const FText& PopulationNumber) const;
 
 	void SetStateName(const FName& StateName) const;
 

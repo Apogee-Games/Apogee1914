@@ -20,7 +20,6 @@ public:
 
 	const TMap<FColor, TSet<FColor>>& GetNeighbours() const;
 
-	//TODO: Think if it necessary to return it as reference 
 	const FColor& GetColor(int32 Position) const;
 
 	bool HasProvincePosition(const FColor& Color) const;

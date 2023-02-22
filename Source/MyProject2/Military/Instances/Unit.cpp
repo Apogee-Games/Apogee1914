@@ -3,14 +3,14 @@
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Military/Managers/UnitsRenderer.h"
 
-void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, FName ProvidedCountryOwnerTag,
+void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, const FName& ProvidedCountryOwnerTag,
                  UUnitsRenderer* ProvidedUnitsRenderer)
 {
 	Init(UnitDescription, ProvidedProvince, ProvidedCountryOwnerTag, ProvidedCountryOwnerTag, ProvidedUnitsRenderer);
 }
 
-void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, FName ProvidedCountryOwnerTag,
-             FName ProvidedCountryControllerTag, UUnitsRenderer* ProvidedUnitsRenderer)
+void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, const FName& ProvidedCountryOwnerTag,
+             const FName& ProvidedCountryControllerTag, UUnitsRenderer* ProvidedUnitsRenderer)
 {
 	bCanTransportUnits = UnitDescription->CanTransport;
 	Province = ProvidedProvince;

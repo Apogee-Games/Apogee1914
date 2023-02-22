@@ -34,8 +34,6 @@ int UUnitsMover::Estimate(UUnit* Unit, UProvince* To)
 
 void UUnitsMover::DoUnitMovement()
 {
-	// TODO: Add logic for movement of Unit that is already being moved
-	// TODO: Add Tick to be triggered every day (or whatever smallest time unit we will have)
 	MoveUnits();
 	RemoveArrivedUnit();
 }
