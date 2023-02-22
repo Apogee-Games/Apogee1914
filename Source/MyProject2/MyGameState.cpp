@@ -13,7 +13,7 @@ int AMyGameState::GetStability() const
 	return Stability;
 }
 
-void AMyGameState::SetStability(int NewStability)
+void AMyGameState::SetStability(int32 NewStability)
 {
 	Stability = NewStability;
 }

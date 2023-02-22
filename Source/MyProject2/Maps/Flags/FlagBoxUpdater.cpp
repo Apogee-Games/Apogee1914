@@ -35,7 +35,7 @@ FColor FFlagBoxUpdater::GetFlagColor(const FVector2d& RelativePosition) const
 {
 	const FVector2d FlagPosition = RelativePosition * FlagSizeVector;
 
-	const int Position = FTextureUtils::GetPixelPosition(FlagPosition, FlagSizeVector);
+	const int32 Position = FTextureUtils::GetPixelPosition(FlagPosition, FlagSizeVector);
 
 	return CountryFlagColor[Position];
 }

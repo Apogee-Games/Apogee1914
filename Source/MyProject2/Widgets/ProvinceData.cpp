@@ -23,7 +23,7 @@ void UProvinceData::SetStateName(const FName& StateName) const
 	StateNameTextBlock->SetText(FText::FromName(StateName));
 }
 
-void UProvinceData::SetResources(const TMap<FName, int>& Resources) const
+void UProvinceData::SetResources(const TMap<FName, int32>& Resources) const
 {
 	FString Result = "";
 	

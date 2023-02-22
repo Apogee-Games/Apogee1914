@@ -11,5 +11,5 @@ struct FFactoryInstanceDescription : public FTableRowBase
 	FName Type; // FactoryDescriptionId
 
 	UPROPERTY()
-	int Labours; // Current amount of labours
+	int32 Labours; // Current amount of labours
 };

@@ -27,17 +27,17 @@ void UDistancesMap::Init()
 }
 
 
-int UDistancesMap::GetProvincesDistance(int Position) const
+int32 UDistancesMap::GetProvincesDistance(int32 Position) const
 {
 	return ProvincesDistances[Position];
 }
 
-int UDistancesMap::GetStatesDistance(int Position) const
+int32 UDistancesMap::GetStatesDistance(int32 Position) const
 {
 	return StatesDistances[Position];
 }
 
-int UDistancesMap::GetCountriesDistance(int Position) const
+int32 UDistancesMap::GetCountriesDistance(int32 Position) const
 {
 	return CountriesDistances[Position];
 }
@@ -109,33 +109,32 @@ FRunnableThread* UDistancesMap::GetDistanceCalculator(UObject* Object,
 	FDistanceCalculator* DistanceCalculator = new FDistanceCalculator(Distance, SizeVector, Depth);
 	const TArray<FColor>& Colors = GetWorld()->GetSubsystem<UProvincesMap>()->GetColors();
 
-	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
+	const int32 Width = static_cast<int32>(SizeVector.X);
+	const int32 Height = static_cast<int32>(SizeVector.Y);
+
+	for (int32 i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
 		Distance[i] = Depth;
 
-		const int y = i / static_cast<int>(SizeVector.X);
-		const int x = i % static_cast<int>(SizeVector.X);
+		const int32 y = i / Width;
+		const int32 x = i % Width;
 
-		if (x > 0 && Colors[i] != Colors[i - 1]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - 1])))
+		if (x > 0 && Colors[i] != Colors[i - 1] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - 1])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;
 		}
-		if (x + 1 < SizeVector.X && Colors[i] != Colors[i + 1]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + 1])))
+		if (x + 1 < Width && Colors[i] != Colors[i + 1] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + 1])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;
 		}
-		if (y > 0 && Colors[i] != Colors[i - static_cast<int>(SizeVector.X)]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - static_cast<int>(SizeVector.X)])))
+		if (y > 0 && Colors[i] != Colors[i - Width] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - Width])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;
 		}
-		if (y + 1 < SizeVector.Y && Colors[i] != Colors[i + static_cast<int>(SizeVector.X)]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + static_cast<int>(SizeVector.X)])))
+		if (y + 1 < Height && Colors[i] != Colors[i + Width] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + Width])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;

@@ -4,9 +4,9 @@
 class FDistanceCleaner: public IDistanceProcessor
 {
 public:
-	FDistanceCleaner(TArray<int32>& Distances, const FVector2d& SizeVector, int Depth);
+	FDistanceCleaner(TArray<int32>& Distances, const FVector2d& SizeVector, int32 Depth);
 
-	virtual void AddStartPoint(int Point) override;
+	virtual void AddStartPoint(int32 Point) override;
 	
 	void AddPossiblePoints(const TArray<int32>& Points);
 
@@ -16,5 +16,5 @@ private:
 	
 	void CleanUpDistances();
 
-	bool IsPossiblePoint(int Point);
+	bool IsPossiblePoint(int32 Point);
 };

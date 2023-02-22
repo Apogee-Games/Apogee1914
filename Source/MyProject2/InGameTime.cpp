@@ -33,12 +33,12 @@ void UInGameTime::Tick(float DeltaTime)
 	}
 }
 
-int UInGameTime::GetTimeSpeed() const
+int32 UInGameTime::GetTimeSpeed() const
 {
 	return TimeSpeed;
 }
 
-int UInGameTime::GetMaxTimeSpeed() const
+int32 UInGameTime::GetMaxTimeSpeed() const
 {
 	return MaxTimeSpeed;
 }

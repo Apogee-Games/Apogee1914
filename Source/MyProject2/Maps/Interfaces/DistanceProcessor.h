@@ -3,9 +3,9 @@
 class IDistanceProcessor: public FRunnable
 {
 public:
-	IDistanceProcessor(TArray<int32>& Distances, const FVector2d& SizeVector, int Depth);
+	IDistanceProcessor(TArray<int32>& Distances, const FVector2d& SizeVector, int32 Depth);
 
-	virtual void AddStartPoint(int Point);
+	virtual void AddStartPoint(int32 Point);
 
 protected:
 	TQueue<int32> Queue;
@@ -14,6 +14,6 @@ protected:
 
 	const FVector2d SizeVector;
 
-	int Depth;
+	int32 Depth;
 
 };

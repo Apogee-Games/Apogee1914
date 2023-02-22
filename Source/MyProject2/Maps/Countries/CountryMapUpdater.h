@@ -4,7 +4,7 @@
 class FCountryMapUpdater: public FRunnable
 {
 public:
-	FCountryMapUpdater(FColor* CountriesColors, const TArray<int32>& PixelsToUpdate, const UProvince* Province, const TArray<int32>& Distances, const FVector2d& SizeVector, int CrossLineWidth);
+	FCountryMapUpdater(FColor* CountriesColors, const TArray<int32>& PixelsToUpdate, const UProvince* Province, const TArray<int32>& Distances, const FVector2d& SizeVector, int32 CrossLineWidth);
 	
 	virtual uint32 Run() override;
 private:

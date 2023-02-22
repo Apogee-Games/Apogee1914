@@ -13,9 +13,9 @@ public:
 	
 	virtual void Tick(float DeltaTime);
 	
-	int GetTimeSpeed() const;
+	int32 GetTimeSpeed() const;
 
-	int GetMaxTimeSpeed() const;
+	int32 GetMaxTimeSpeed() const;
 
 	void SpeedUpTime();
 

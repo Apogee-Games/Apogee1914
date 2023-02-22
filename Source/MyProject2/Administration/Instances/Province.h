@@ -33,7 +33,7 @@ public:
 
 	const FTerrainDescription* GetTerrain() const;
 
-	const TMap<FName, int>& GetResources() const;
+	const TMap<FName, int32>& GetResources() const;
 	
 private:
 	
@@ -54,7 +54,7 @@ private:
 	
 	FTerrainDescription* Terrain;
 	
-	TMap<FName, int> Resources;
+	TMap<FName, int32> Resources;
 	
 	UPROPERTY() // To prevent from garbage collecting all the factories :)
 	TArray<UProvinceFactory*> Factories; 

@@ -103,8 +103,8 @@ bool UBoxesMap::AddProvinceToBox(TSharedPtr<FProvincesBox> Box, UProvince* Provi
 bool UBoxesMap::MergeBoxesAndAddProvince(TArray<TSharedPtr<FProvincesBox>>& SameCountryBoxes, UProvince* Province)
 {
 	SameCountryBoxes.Sort(FProvincesBox::CompareAscending);
-	const int BoxesNumber = SameCountryBoxes.Num();
-	for (int i = 0; i < BoxesNumber - 1; ++i)
+	const int32 BoxesNumber = SameCountryBoxes.Num();
+	for (int32 i = 0; i < BoxesNumber - 1; ++i)
 	{
 		for (const auto& BoxProvince: SameCountryBoxes[i]->GetProvinces())
 		{

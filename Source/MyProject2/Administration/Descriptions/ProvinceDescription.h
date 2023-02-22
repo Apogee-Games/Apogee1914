@@ -20,11 +20,11 @@ struct FProvinceDescription : public FTableRowBase
 	FName StateId;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int Population;
+	int32 Population;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FName TerrainName;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<FName, int> Resources;
+	TMap<FName, int32> Resources;
 };

@@ -22,7 +22,7 @@ public:
 	
 	virtual void CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces) override;
 private:
-	int CrossLineWidth = 10;
+	int32 CrossLineWidth = 10;
 	
 	UPROPERTY()	
 	UTexture2D* CountriesMapTexture;

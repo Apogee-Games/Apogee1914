@@ -20,20 +20,20 @@ public:
 
 	virtual void MoveUnit(UUnit* Unit, UProvince* To);
 
-	virtual int Estimate(UUnit* Unit, UProvince* To);
+	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 
 	virtual void DoUnitMovement();
 	
 private:
 	FGraph* Graph = nullptr;
 
-	TMap<UUnit*, TArray<TPair<UProvince*, int>>> Paths;
+	TMap<UUnit*, TArray<TPair<UProvince*, int32>>> Paths;
 
-	TMap<UUnit*, int> Positions;
+	TMap<UUnit*, int32> Positions;
 
 	TQueue<UUnit*> UnitsArrived;
 
-	void MoveUnit(UUnit* Unit, int Position);
+	void MoveUnit(UUnit* Unit, int32 Position);
 
 	void RemoveArrivedUnit();
 

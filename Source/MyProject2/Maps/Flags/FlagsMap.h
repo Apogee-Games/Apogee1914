@@ -25,7 +25,7 @@ private:
 
 	TMap<UCountry*, const FColor*> CountriesFlagColors;
 
-	TMap<UCountry*, int> CountriesFlagColorsCount;
+	TMap<UCountry*, int32> CountriesFlagColorsCount;
 	
 	FRunnableThread* UpdateBox(const TSharedPtr<FProvincesBox>& Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector);
 

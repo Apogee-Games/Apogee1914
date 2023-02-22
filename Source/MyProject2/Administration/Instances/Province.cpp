@@ -77,7 +77,7 @@ const FTerrainDescription* UProvince::GetTerrain() const
 	return Terrain;
 }
 
-const TMap<FName, int>& UProvince::GetResources() const
+const TMap<FName, int32>& UProvince::GetResources() const
 {
 	return Resources;
 }

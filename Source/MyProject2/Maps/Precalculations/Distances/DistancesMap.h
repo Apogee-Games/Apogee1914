@@ -13,11 +13,11 @@ public:
 
 	void Init();
 	
-	int GetProvincesDistance(int Position) const;
+	int32 GetProvincesDistance(int32 Position) const;
 
-	int GetStatesDistance(int Position) const;
+	int32 GetStatesDistance(int32 Position) const;
 
-	int GetCountriesDistance(int Position) const;
+	int32 GetCountriesDistance(int32 Position) const;
 
 	const TArray<int32>& GetProvincesDistances() const;
 

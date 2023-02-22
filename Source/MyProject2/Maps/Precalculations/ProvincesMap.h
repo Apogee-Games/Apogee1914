@@ -49,5 +49,5 @@ private:
 
 	void CalculateBorders();
 
-	void AddBorder(const FColor& A, const FColor& B, int i);
+	void AddBorder(const FColor& A, const FColor& B, int32 i);
 };
