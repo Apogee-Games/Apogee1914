@@ -3,7 +3,7 @@
 #include "ProvincePopulation.h"
 #include "MyProject2/Administration/Descriptions/ProvinceDescription.h"
 #include "MyProject2/Administration/Descriptions/TerrainDescription.h"
-#include "MyProject2/Economics/ProvinceFactory.h"
+#include "MyProject2/Economics/Instances/Public/Building.h"
 #include "Province.generated.h"
 
 UCLASS()
@@ -34,6 +34,12 @@ public:
 	const FTerrainDescription* GetTerrain() const;
 
 	const TMap<FName, int32>& GetResources() const;
+
+	void AddBuilding(UBuilding* Building);
+
+	void RemoveBuilding(UBuilding* Building);
+
+	const TArray<UBuilding*>& GetBuildings() const;
 	
 private:
 	
@@ -56,6 +62,7 @@ private:
 	
 	TMap<FName, int32> Resources;
 	
-	UPROPERTY() // To prevent from garbage collecting all the factories :)
-	TArray<UProvinceFactory*> Factories; 
+	UPROPERTY()
+	TArray<UBuilding*> Buildings;
+
 };

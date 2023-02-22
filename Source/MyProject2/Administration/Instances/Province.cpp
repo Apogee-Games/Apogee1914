@@ -82,4 +82,19 @@ const TMap<FName, int32>& UProvince::GetResources() const
 	return Resources;
 }
 
+void UProvince::AddBuilding(UBuilding* Building)
+{
+	Buildings.Add(Building);
+}
+
+void UProvince::RemoveBuilding(UBuilding* Building)
+{
+	Buildings.Remove(Building);
+}
+
+const TArray<UBuilding*>& UProvince::GetBuildings() const
+{
+	return Buildings;
+}
+
 
