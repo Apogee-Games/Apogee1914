@@ -19,6 +19,11 @@ int UStorage::Estimate(const FName& Good, const int32 Amount)
 	return FMath::Min(Goods[Good], Amount);
 }
 
+int UStorage::GetGoodAmount(const FName& Good) const
+{
+	return  !Goods.Contains(Good) ? 0 : Goods[Good]; 
+}
+
 int UStorage::Demand(const FName& Good, const int32 Amount)
 {
 	if (!Goods.Contains(Good))

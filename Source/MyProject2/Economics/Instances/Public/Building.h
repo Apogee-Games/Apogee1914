@@ -33,4 +33,10 @@ private:
 
 	UPROPERTY()
 	UStorage* Storage;
-}; 
+
+	int GetPossibleProductOutputCount() const;
+
+	void DemandGoods(int ProductCount);
+
+	void SupplyGoods(int ProductCount);
+};

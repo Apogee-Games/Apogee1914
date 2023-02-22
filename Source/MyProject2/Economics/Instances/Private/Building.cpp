@@ -3,11 +3,10 @@
 
 void UBuilding::Produce()
 {
-	if(BuildingDescription == nullptr) return;
-	for (const auto [Good, Amount] : BuildingDescription->GoodOutput)
-	{
-		Storage->Supply(Good, Amount);
-	}
+	// TODO: Temporary system, Think of better system that will count productivity and else
+	const int32 ProductCount = GetPossibleProductOutputCount();
+	DemandGoods(ProductCount);
+	SupplyGoods(ProductCount);
 }
 
 void UBuilding::Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage)
@@ -40,3 +39,31 @@ UProvince* UBuilding::GetProvince() const
 {
 	return Province;
 }
+
+int UBuilding::GetPossibleProductOutputCount() const
+{
+	int32 MinProductCount = INT32_MAX;
+	
+	for (const auto [Good, Amount] : BuildingDescription->GoodConsumption)
+	{
+		MinProductCount = FMath::Min(MinProductCount, Storage->GetGoodAmount(Good) / Amount);
+	}
+
+	return MinProductCount == INT32_MAX ? 1 : MinProductCount; 
+}
+
+void UBuilding::DemandGoods(int ProductCount)
+{
+	for (const auto [Good, Amount] : BuildingDescription->GoodConsumption)
+	{
+		Storage->Demand(Good, Amount * ProductCount);
+	}
+}
+
+void UBuilding::SupplyGoods(int ProductCount)
+{
+	for (const auto [Good, Amount] : BuildingDescription->GoodOutput)
+	{
+		Storage->Supply(Good, Amount * ProductCount);
+	}
+} 
