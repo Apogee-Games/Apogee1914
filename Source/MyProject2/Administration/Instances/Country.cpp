@@ -7,14 +7,12 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 	Name = CountryDescription->CountryName;
 	Tag = CountryDescription->Tag;
 	Color = CountryDescription->Color;
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag);
-	// Strata Initialization
-	LowerStrata = NewObject<UStrata>();
-	MiddleStrata = NewObject<UStrata>();
-	UpperStrata = NewObject<UStrata>();
-	// Market Initialization
-	Market = NewObject<UMarket>();
+
+	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString());
+
+	InitStrata();
 	
+	Market = NewObject<UMarket>();
 }
 
 const FColor& UCountry::GetColor() const
@@ -22,12 +20,12 @@ const FColor& UCountry::GetColor() const
 	return Color;
 }
 
-const FString& UCountry::GetName() const
+const FName& UCountry::GetName() const
 {
 	return Name;
 }
 
-const FString& UCountry::GetTag() const
+const FName& UCountry::GetTag() const
 {
 	return Tag;
 }
@@ -35,4 +33,11 @@ const FString& UCountry::GetTag() const
 UTexture2D* UCountry::GetFlag() const
 {
 	return Flag;
+}
+
+void UCountry::InitStrata()
+{
+	LowerStrata = NewObject<UStrata>();
+	MiddleStrata = NewObject<UStrata>();
+	UpperStrata = NewObject<UStrata>();
 }

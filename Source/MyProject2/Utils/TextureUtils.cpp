@@ -1,28 +1,28 @@
 #include "TextureUtils.h"
 
 
-int FTextureUtils::GetPixelPosition(const FVector2d& ImagePosition, const FVector2d& SizeVector)
+int32 FTextureUtils::GetPixelPosition(const FVector2d& ImagePosition, const FVector2d& SizeVector)
 {
-	return static_cast<int>(ImagePosition.X) + SizeVector.X * static_cast<int>(ImagePosition.Y);
+	return static_cast<int32>(ImagePosition.X) + SizeVector.X * static_cast<int32>(ImagePosition.Y);
 }
 
-FVector2d FTextureUtils::GetPositionVector(int Position, const FVector2d& SizeVector)
+FVector2d FTextureUtils::GetPositionVector(int32 Position, const FVector2d& SizeVector)
 {
-	return FVector2d(Position % static_cast<int>(SizeVector.X), Position / SizeVector.X);
+	return FVector2d(Position % static_cast<int32>(SizeVector.X), Position / SizeVector.X);
 }
 
-void FTextureUtils::UpdateColors(FColor* Colors, const FColor& Old, const FColor& New, const int& Size)
+void FTextureUtils::UpdateColors(FColor* Colors, const FColor& Old, const FColor& New, const int32& Size)
 {
-	for (int i = 0; i < Size; ++i)
+	for (int32 i = 0; i < Size; ++i)
 	{
 		if (Colors[i] == Old) Colors[i] = FColor(New);
 	}
 }
 
 void FTextureUtils::UpdateColors(const FColor* LookUpColors, const FColor& LookUpColor, FColor* EditableColors,
-							   const FColor& NewColor, const int& Size)
+							   const FColor& NewColor, const int32& Size)
 {
-	for (int i = 0; i < Size; ++i)
+	for (int32 i = 0; i < Size; ++i)
 	{
 		if (LookUpColors[i] == LookUpColor) EditableColors[i] = FColor(NewColor);
 	}

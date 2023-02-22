@@ -15,14 +15,13 @@ void UProvincesMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 
-	PositionColor = new FColor[SizeVector.X * SizeVector.Y];
+	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
 	
 	CalculateMappers(ProvincesMapTexture);
 	
 	FindNeighbours();
 
 	CalculateBorders();
-
 
 	bIsFullyInitialized = true;
 	PerformOnFullInitializationActions();
@@ -36,7 +35,7 @@ FVector2d UProvincesMap::GetSizeVector() const
 	return SizeVector;
 }
 
-const FColor* UProvincesMap::GetColors() const
+const TArray<FColor>& UProvincesMap::GetColors() const
 {
 	return PositionColor;
 }
@@ -71,7 +70,6 @@ void UProvincesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 void UProvincesMap::Deinitialize()
 {
 	
-	delete[] PositionColor;
 	Super::Deinitialize();
 }
 
@@ -81,9 +79,9 @@ void UProvincesMap::CalculateMappers(UTexture2D* ProvinceMap)
 
 	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	
-	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
+	for (int32 i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
-		PositionColor[i] = FColor(Colors[i].R, Colors[i].G, Colors[i].B, Colors[i].A);
+		PositionColor[i] = FColor(Colors[i]);
 		
 		if (!ColorPosition.Contains(PositionColor[i])) {
 			ColorPosition.Add(PositionColor[i], TArray<int32>());
@@ -101,11 +99,14 @@ void UProvincesMap::FindNeighbours()
 	{
 		Neighbours.Add(Color);	
 	}
+
+	int32 Width = static_cast<int>(SizeVector.X);
+	int32 Height = static_cast<int>(SizeVector.Y);
 	
-	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
+	for (int32 i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
-		const int y = i / static_cast<int>(SizeVector.Y);
-		const int x = i % static_cast<int>(SizeVector.Y);
+		const int32 y = i / Width;
+		const int32 x = i % Width;
 		
 		if (x > 0 && PositionColor[i] != PositionColor[i - 1])
 		{
@@ -117,46 +118,48 @@ void UProvincesMap::FindNeighbours()
 			Neighbours[PositionColor[i]].Add(PositionColor[i + 1]);
 			Neighbours[PositionColor[i + 1]].Add(PositionColor[i]);
 		}
-		if (y > 0 && PositionColor[i] != PositionColor[i - static_cast<int>(SizeVector.X)])
+		if (y > 0 && PositionColor[i] != PositionColor[i - Width])
 		{
-			Neighbours[PositionColor[i]].Add(PositionColor[i - static_cast<int>(SizeVector.X)]);
-			Neighbours[PositionColor[i - static_cast<int>(SizeVector.X)]].Add(PositionColor[i]);
+			Neighbours[PositionColor[i]].Add(PositionColor[i - Width]);
+			Neighbours[PositionColor[i - Width]].Add(PositionColor[i]);
 		}
-		if (y + 1 < SizeVector.Y && PositionColor[i] != PositionColor[i + static_cast<int>(SizeVector.X)])
+		if (y + 1 < Height && PositionColor[i] != PositionColor[i + Width])
 		{
-			Neighbours[PositionColor[i]].Add(PositionColor[i + static_cast<int>(SizeVector.X)]);
-			Neighbours[PositionColor[i + static_cast<int>(SizeVector.X)]].Add(PositionColor[i]);
+			Neighbours[PositionColor[i]].Add(PositionColor[i + Width]);
+			Neighbours[PositionColor[i + Width]].Add(PositionColor[i]);
 		}
 	}
 }
 
 void UProvincesMap::CalculateBorders()
 {
-	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
+	const int32 Width = static_cast<int32>(SizeVector.X);
+	const int32 Height = static_cast<int32>(SizeVector.Y);
+	for (int32 i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
-		const int y = i / static_cast<int>(SizeVector.Y);
-		const int x = i % static_cast<int>(SizeVector.Y);
+		const int32 y = i / Width;
+		const int32 x = i % Width;
 		
 		if (x > 0 && PositionColor[i] != PositionColor[i - 1])
 		{
 			AddBorder(PositionColor[i], PositionColor[i - 1], i);
 		}
-		if (x + 1 < SizeVector.X && PositionColor[i] != PositionColor[i + 1])
+		if (x + 1 < Width && PositionColor[i] != PositionColor[i + 1])
 		{
 			AddBorder(PositionColor[i], PositionColor[i + 1], i);
 		}
-		if (y > 0 && PositionColor[i] != PositionColor[i - static_cast<int>(SizeVector.X)])
+		if (y > 0 && PositionColor[i] != PositionColor[i - Width])
 		{
-			AddBorder(PositionColor[i], PositionColor[i - static_cast<int>(SizeVector.X)], i);
+			AddBorder(PositionColor[i], PositionColor[i - Width], i);
 		}
-		if (y + 1 < SizeVector.Y && PositionColor[i] != PositionColor[i + static_cast<int>(SizeVector.X)])
+		if (y + 1 < Height && PositionColor[i] != PositionColor[i + Width])
 		{
-			AddBorder(PositionColor[i], PositionColor[i + static_cast<int>(SizeVector.X)], i);
+			AddBorder(PositionColor[i], PositionColor[i + Width], i);
 		}
 	}
 }
 
-void UProvincesMap::AddBorder(const FColor& A, const FColor& B, int i)
+void UProvincesMap::AddBorder(const FColor& A, const FColor& B, int32 i)
 {
 	if (!Borders.Contains({A, B}))
 	{

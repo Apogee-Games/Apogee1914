@@ -8,14 +8,12 @@ class UProvincePopulation : public UObject
 public:
 	UProvincePopulation();
 
-	explicit UProvincePopulation(const int Population);
+	explicit UProvincePopulation(const int32 Population);
 
-	void Init(const int ArgPopulation);
+	void Init(const int32 ArgPopulation);
 	
-	int GetPopulation() const;
+	int32 GetPopulation() const;
 
 private:
-	UPROPERTY()
-	int Population;
-	
+	int32 Population;
 };

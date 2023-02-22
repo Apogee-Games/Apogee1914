@@ -15,7 +15,7 @@ public:
 
 	void Init();
 	
-	const TArray<FProvincesBox*>& GetBoxes() const;
+	const TArray<TSharedPtr<FProvincesBox>>& GetBoxes() const;
 
 	const FVector2d& GetLeftTopCorner(UProvince* Province) const;
 	
@@ -26,9 +26,9 @@ public:
 private:
 	FVector2d SizeVector;
 	
-	TArray<FProvincesBox*> Boxes;
+	TArray<TSharedPtr<FProvincesBox>> Boxes;
 
-	TMap<UProvince*, FProvincesBox*> ProvinceBox;
+	TMap<UProvince*, TSharedPtr<FProvincesBox>> ProvinceBox;
 
 	TMap<UProvince*, FVector2d> LeftTopCorners;
 	
@@ -38,11 +38,11 @@ private:
 	
 	void CalculateBoxes();
 
-	void AddProvincesToBox(FProvincesBox* Box, UProvince* FromProvince, UCountry* Country, UProvinceManager* ProvinceManager);
+	void AddProvincesToBox(TSharedPtr<FProvincesBox> Box, UProvince* FromProvince, UCountry* Country, UProvinceManager* ProvinceManager);
 
-	bool AddProvinceToBox(FProvincesBox* Box, UProvince* Province);
+	bool AddProvinceToBox(TSharedPtr<FProvincesBox> Box, UProvince* Province);
 
-	bool MergeBoxesAndAddProvince(TArray<FProvincesBox*>& SameCountryBoxes, UProvince* Province);
+	bool MergeBoxesAndAddProvince(TArray<TSharedPtr<FProvincesBox>>& SameCountryBoxes, UProvince* Province);
 	
 	void RemoveProvinceFromBox(UProvince* Province);
 	

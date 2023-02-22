@@ -1,6 +1,7 @@
 #pragma once
 #include "MyProject2/Administration/Instances/Country.h"
 #include "MyProject2/Administration/Instances/Province.h"
+#include "MyProject2/Maps/Precalculations/ProvincesMap.h"
 
 class UBoxesMap;
 
@@ -27,6 +28,11 @@ public:
 
 	bool operator<(const FProvincesBox& ProvincesBox) const;
 
+	static bool CompareAscending(const TSharedPtr<FProvincesBox>& A, const TSharedPtr<FProvincesBox>& B)
+	{
+		return A->GetProvinces().Num() < B->GetProvinces().Num();
+	}
+	
 	~FProvincesBox();
 
 private:

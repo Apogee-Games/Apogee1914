@@ -8,8 +8,8 @@ struct FResourceDescription: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FString ResourceName;
+	FName ResourceName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Description;
+	FText Description;
 };

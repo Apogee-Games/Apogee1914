@@ -16,7 +16,7 @@ public:
 	AAIPlayerPawn();
 	
 	// Sets tag of country controlled by this Pawn
-	void SetRuledCountryTag(const FString& NewRuledCountryTag);
+	void SetRuledCountryTag(const FName& NewRuledCountryTag);
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,6 +31,6 @@ public:
 	
 private:
 	/* Tag of country that current pawn controls */
-	FString RuledCountryTag;
+	FName RuledCountryTag;
 	
 };

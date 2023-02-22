@@ -1,6 +1,6 @@
 #include "BoxObservable.h"
 
-void IBoxObservable::NotifyBoxUpdate(FProvincesBox* Box)
+void IBoxObservable::NotifyBoxUpdate(TSharedPtr<FProvincesBox> Box)
 {
 	for (auto& Observer: Observers)
 	{

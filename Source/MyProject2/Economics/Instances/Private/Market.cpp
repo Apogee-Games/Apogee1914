@@ -5,11 +5,11 @@ UMarket::UMarket()
 {
 }
 
-int UMarket::AddDemand(const FGoodDescription* GoodDescription, const int AmountOfGood)
+int32 UMarket::AddDemand(const FGoodDescription* GoodDescription, const int32 AmountOfGood)
 {
 	UGoodBalance* GoodBalance = GetBalanceInstanceOrElseInit(GoodDescription);
 	// Add to demand
-	const int Demand = GoodBalance->Demand(AmountOfGood);
+	const int32 Demand = GoodBalance->Demand(AmountOfGood);
 	// Delete if not presented in Market (after change of demand)
 	CheckBalanceInstance(GoodBalance);
 	return Demand;
@@ -17,31 +17,31 @@ int UMarket::AddDemand(const FGoodDescription* GoodDescription, const int Amount
 }
 
 
-int UMarket::AddSupply(const FGoodDescription* GoodDescription, const int AmountOfGood)
+int32 UMarket::AddSupply(const FGoodDescription* GoodDescription, const int32 AmountOfGood)
 {
 	UGoodBalance* GoodBalance = GetBalanceInstanceOrElseInit(GoodDescription);
 	// Add to supply
-	const int Supply = GoodBalance->Supply(AmountOfGood);
+	const int32 Supply = GoodBalance->Supply(AmountOfGood);
 	// Delete if not presented at Market (after change of supply)
 	CheckBalanceInstance(GoodBalance);
 	return Supply;
 	
 }
 
-TArray<TPair<FName, int>> UMarket::GetSortedDemands()
+TArray<TPair<FName, int32>> UMarket::GetSortedDemands()
 {
-	TArray<TPair<FName, int>> SortedDemands;
+	TArray<TPair<FName, int32>> SortedDemands;
 
-	for(const auto &[Key,Value] : Balances)
+	for(const auto &[GoodName, GoodBalance] : Balances)
 	{
-		int Balance = Value->GetBalance();
+		const int32 Balance = GoodBalance->GetBalance();
 		if(Balance < 0)
 		{
-			SortedDemands.Add({Key, Balance});
+			SortedDemands.Add({GoodName, Balance});
 		}
 	}
 	SortedDemands.HeapSort(
-		[](const TPair<FName, int>& p1, const TPair<FName, int>& p2)
+		[](const TPair<FName, int32>& p1, const TPair<FName, int32>& p2)
 		{return p1 > p2;});
 	return SortedDemands;
 }
@@ -65,7 +65,6 @@ void UMarket::CheckBalanceInstance(const UGoodBalance* GoodBalance)
 {
 	const FName GoodName = GoodBalance->GetGoodDescription()->GoodName;
 	if(GoodBalance->GetDemand() == 0 && GoodBalance->GetSupply() == 0) Balances.Remove(GoodName);
-
 }
 
 

@@ -4,9 +4,9 @@
 class FDistanceCalculator: public IDistanceProcessor
 {
 public:
-	FDistanceCalculator(int* Distances, const FVector2d& SizeVector, int Depth);
+	FDistanceCalculator(TArray<int32>& Distances, const FVector2d& SizeVector, int32 Depth);
 
-	virtual void AddStartPoint(int Point) override;
+	virtual void AddStartPoint(int32 Point) override;
 	
 	virtual uint32 Run() override;
 

@@ -17,10 +17,10 @@ void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 
 UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
 {
-	return GetProvince(ProvinceColor.ToHex());
+	return GetProvince(*ProvinceColor.ToHex());
 }
 
-UProvince* UProvinceManager::GetProvince(const FString& ProvinceColorHex) const
+UProvince* UProvinceManager::GetProvince(const FName& ProvinceColorHex) const
 {
 	return ProvinceMap.Contains(ProvinceColorHex) ? ProvinceMap[ProvinceColorHex] : nullptr;
 }
@@ -37,7 +37,6 @@ void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
 		Province->TakeControl(Unit->GetCountryController());
 		NotifyProvinceNewControllingCountry(Province);
 	}
-	// TODO: Add notification
 }
 
 void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable)
@@ -47,6 +46,6 @@ void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, U
 		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
 		UProvince* Province = NewObject<UProvince>(GetWorld()); 
 		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr); 
-		ProvinceMap.Add(Key.ToString(), Province);
+		ProvinceMap.Add(Key, Province);
 	}
 }

@@ -16,11 +16,10 @@ public:
 
 	FVector2d GetSizeVector() const;
 
-	const FColor* GetColors() const;
+	const TArray<FColor>& GetColors() const;
 
 	const TMap<FColor, TSet<FColor>>& GetNeighbours() const;
 
-	//TODO: Think if it necessary to return it as reference 
 	const FColor& GetColor(int32 Position) const;
 
 	bool HasProvincePosition(const FColor& Color) const;
@@ -40,7 +39,7 @@ private:
 
 	TMap<TPair<FColor, FColor>, TArray<int32>> Borders;
 
-	FColor* PositionColor;
+	TArray<FColor> PositionColor;
 	
 	FVector2d SizeVector;
 	
@@ -50,5 +49,5 @@ private:
 
 	void CalculateBorders();
 
-	void AddBorder(const FColor& A, const FColor& B, int i);
+	void AddBorder(const FColor& A, const FColor& B, int32 i);
 };

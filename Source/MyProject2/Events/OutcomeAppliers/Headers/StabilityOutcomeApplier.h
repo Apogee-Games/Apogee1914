@@ -17,7 +17,7 @@ public:
 	/**
 	 * Method updates stability with provided values
 	 */
-	virtual void Apply(TMap<FString, FString> Values) override;
+	virtual void Apply(const TMap<FName, FString>& Values) override;
 	
 	virtual ~FStabilityOutcomeApplier() override = default;
 	

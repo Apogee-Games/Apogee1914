@@ -5,6 +5,7 @@ void FOnFullInitialization::RegisterOnFullInitializationAction(UObject* Object, 
 	if (bIsFullyInitialized)
 	{
 		(Object->*Function)();
+		return;
 	}
 	OnFullInitializationActions.Enqueue({Object, Function});
 }

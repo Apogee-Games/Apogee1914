@@ -3,28 +3,33 @@
 
 #include "ProvinceData.h"
 
-void UProvinceData::SetProvinceName(const FString& ProvinceName) const
+void UProvinceData::SetProvinceName(const FName& ProvinceName) const
 {
-	ProvinceNameTextBlock->SetText(FText::FromString(ProvinceName));
+	ProvinceNameTextBlock->SetText(FText::FromName(ProvinceName));
 }
 
-void UProvinceData::SetPopulationNumber(const FString& PopulationNumber) const
+void UProvinceData::SetPopulationNumber(int32 Population) const
 {
-	PopulationNumberTextBlock->SetText(FText::FromString(PopulationNumber));
+	SetPopulationNumber(FText::FromString(FString::FromInt(Population)));
 }
 
-void UProvinceData::SetStateName(const FString& StateName) const
+void UProvinceData::SetPopulationNumber(const FText& PopulationNumber) const
 {
-	StateNameTextBlock->SetText(FText::FromString(StateName));
+	PopulationNumberTextBlock->SetText(PopulationNumber);
 }
 
-void UProvinceData::SetResources(const TMap<FString, int>& Resources) const
+void UProvinceData::SetStateName(const FName& StateName) const
+{
+	StateNameTextBlock->SetText(FText::FromName(StateName));
+}
+
+void UProvinceData::SetResources(const TMap<FName, int32>& Resources) const
 {
 	FString Result = "";
 	
-	for (const auto& Resource: Resources)
+	for (const auto& [ResourceName, ResourceCount]: Resources)
 	{
-		Result += Resource.Key + ":" + FString::FromInt(Resource.Value) + "\n";
+		Result += ResourceName.ToString() + ":" + FString::FromInt(ResourceCount) + "\n";
 	}
 	
 	ResourcesTextBlock->SetText(FText::FromString(Result));

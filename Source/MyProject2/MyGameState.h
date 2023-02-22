@@ -44,7 +44,7 @@ public:
 
 	int GetStability() const;
 
-	void SetStability(int Stability);
+	void SetStability(int32 Stability);
 private:
-	int Stability = 0;
+	int32 Stability = 0;
 };

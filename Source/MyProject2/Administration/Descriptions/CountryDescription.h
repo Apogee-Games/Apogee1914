@@ -8,10 +8,10 @@ struct FCountryDescription: public FTableRowBase
 	GENERATED_BODY()	
 
 	UPROPERTY()
-	FString CountryName;
+	FName CountryName;
 	
 	UPROPERTY()
-	FString Tag;
+	FName Tag;
 
 	UPROPERTY()
 	FColor Color;

@@ -13,19 +13,17 @@ public:
 
 	void Init();
 	
-	int GetProvincesDistance(int Position) const;
+	int32 GetProvincesDistance(int32 Position) const;
 
-	int GetStatesDistance(int Position) const;
+	int32 GetStatesDistance(int32 Position) const;
 
-	int GetCountriesDistance(int Position) const;
+	int32 GetCountriesDistance(int32 Position) const;
 
-	const int* GetProvincesDistances() const;
+	const TArray<int32>& GetProvincesDistances() const;
 
-	const int* GetStatesDistances() const;
+	const TArray<int32>& GetStatesDistances() const;
 
-	const int* GetCountriesDistances() const;
-
-	virtual void Deinitialize() override;
+	const TArray<int32>& GetCountriesDistances() const;
 
 	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
 
@@ -34,25 +32,25 @@ private:
 	
 	FVector2d SizeVector;
 	
-	int32* ProvincesDistances = nullptr;
+	TArray<int32> ProvincesDistances;
 
-	int32* StatesDistances = nullptr;
+	TArray<int32> StatesDistances;
 
-	int32* CountriesDistances = nullptr;
+	TArray<int32> CountriesDistances;
 
-	void CalculateDistances() const;
+	void CalculateDistances();
 
-	FRunnableThread* CalculateProvincesDistances() const;
+	FRunnableThread* CalculateProvincesDistances();
 	
-	FRunnableThread* CalculateStatesDistances() const;
+	FRunnableThread* CalculateStatesDistances();
 
-	FRunnableThread* CalculateCountriesDistances() const;
+	FRunnableThread* CalculateCountriesDistances();
 
 	template<class T>
-	FRunnableThread* GetDistanceCalculator(T* Object, bool (T::*Func)(const FColor&, const FColor&) const, int* Distance, TCHAR* Name) const
+	FRunnableThread* GetDistanceCalculator(T* Object, bool (T::*Func)(const FColor&, const FColor&) const, TArray<int32>& Distance, TCHAR* Name)
 	{
 		return GetDistanceCalculator(static_cast<UObject*>(Object), static_cast<bool (UObject::*)(const FColor&, const FColor&) const>(Func), Distance, Name);
 	}
 
-	FRunnableThread* GetDistanceCalculator(UObject* Object, bool (UObject::*Func)(const FColor&, const FColor&) const, int* Distance, TCHAR* Name) const;
+	FRunnableThread* GetDistanceCalculator(UObject* Object, bool (UObject::*Func)(const FColor&, const FColor&) const, TArray<int32>& Distance, TCHAR* Name);
 };

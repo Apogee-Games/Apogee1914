@@ -13,12 +13,12 @@ public:
 
 	void Init(FStateDescription* StateDescription, const UProvinceManager* ProvinceManager);
 
-	const FString& GetName() const;
+	const FName& GetName() const;
 
 	TArray<UProvince*> GetProvinces() const;
 	
 private:
-	FString Name;
+	FName Name;
 
 	UPROPERTY()
 	TArray<UProvince*> Provinces;

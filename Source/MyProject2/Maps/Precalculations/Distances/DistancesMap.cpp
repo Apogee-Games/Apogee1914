@@ -16,9 +16,9 @@ void UDistancesMap::Init()
 {
 	SizeVector = GetWorld()->GetSubsystem<UProvincesMap>()->GetSizeVector();
 
-	ProvincesDistances = new int32[SizeVector.X * SizeVector.Y];
-	StatesDistances = new int32[SizeVector.X * SizeVector.Y];
-	CountriesDistances = new int32[SizeVector.X * SizeVector.Y];
+	ProvincesDistances.SetNum(SizeVector.X * SizeVector.Y);
+	StatesDistances.SetNum(SizeVector.X * SizeVector.Y);
+	CountriesDistances.SetNum(SizeVector.X * SizeVector.Y);
 
 	CalculateDistances();
 
@@ -27,42 +27,34 @@ void UDistancesMap::Init()
 }
 
 
-int UDistancesMap::GetProvincesDistance(int Position) const
+int32 UDistancesMap::GetProvincesDistance(int32 Position) const
 {
 	return ProvincesDistances[Position];
 }
 
-int UDistancesMap::GetStatesDistance(int Position) const
+int32 UDistancesMap::GetStatesDistance(int32 Position) const
 {
 	return StatesDistances[Position];
 }
 
-int UDistancesMap::GetCountriesDistance(int Position) const
+int32 UDistancesMap::GetCountriesDistance(int32 Position) const
 {
 	return CountriesDistances[Position];
 }
 
-const int* UDistancesMap::GetProvincesDistances() const
+const TArray<int32>& UDistancesMap::GetProvincesDistances() const
 {
 	return ProvincesDistances;
 }
 
-const int* UDistancesMap::GetStatesDistances() const
+const TArray<int32>& UDistancesMap::GetStatesDistances() const
 {
 	return StatesDistances;
 }
 
-const int* UDistancesMap::GetCountriesDistances() const
+const TArray<int32>& UDistancesMap::GetCountriesDistances() const
 {
 	return CountriesDistances;
-}
-
-void UDistancesMap::Deinitialize()
-{
-	delete[] ProvincesDistances;
-	delete[] StatesDistances;
-	delete[] CountriesDistances;
-	UWorldSubsystem::Deinitialize();
 }
 
 void UDistancesMap::ProvinceHasNewOwningCountry(UProvince* Province)
@@ -70,7 +62,7 @@ void UDistancesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 	CalculateCountriesDistances()->WaitForCompletion();
 }
 
-void UDistancesMap::CalculateDistances() const
+void UDistancesMap::CalculateDistances()
 {
 	TArray<FRunnableThread*> Threads;
 
@@ -86,7 +78,7 @@ void UDistancesMap::CalculateDistances() const
 	}
 }
 
-FRunnableThread* UDistancesMap::CalculateProvincesDistances() const
+FRunnableThread* UDistancesMap::CalculateProvincesDistances()
 {
 	return GetDistanceCalculator(nullptr,
 								 nullptr,
@@ -94,7 +86,7 @@ FRunnableThread* UDistancesMap::CalculateProvincesDistances() const
 								 TEXT("Province Distances Calculation"));
 }
 
-FRunnableThread* UDistancesMap::CalculateStatesDistances() const
+FRunnableThread* UDistancesMap::CalculateStatesDistances()
 {
 	return GetDistanceCalculator(GetWorld()->GetSubsystem<UStateManager>(),
 								 &UStateManager::AreProvincesNotInTheSameState,
@@ -102,7 +94,7 @@ FRunnableThread* UDistancesMap::CalculateStatesDistances() const
 								 TEXT("States Distances Calculation"));
 }
 
-FRunnableThread* UDistancesMap::CalculateCountriesDistances() const
+FRunnableThread* UDistancesMap::CalculateCountriesDistances() 
 {
 	return GetDistanceCalculator(GetWorld()->GetSubsystem<UCountriesManager>(),
 	                             &UCountriesManager::AreProvincesOwnedByDifferentCountry,
@@ -112,38 +104,37 @@ FRunnableThread* UDistancesMap::CalculateCountriesDistances() const
 
 FRunnableThread* UDistancesMap::GetDistanceCalculator(UObject* Object,
                                                       bool (UObject::*Func)(const FColor&, const FColor&) const,
-                                                      int* Distance, TCHAR* Name) const
+                                                      TArray<int32>& Distance, TCHAR* Name)
 {
 	FDistanceCalculator* DistanceCalculator = new FDistanceCalculator(Distance, SizeVector, Depth);
-	const FColor* Colors = GetWorld()->GetSubsystem<UProvincesMap>()->GetColors();
+	const TArray<FColor>& Colors = GetWorld()->GetSubsystem<UProvincesMap>()->GetColors();
 
-	for (int i = 0; i < SizeVector.X * SizeVector.Y; ++i)
+	const int32 Width = static_cast<int32>(SizeVector.X);
+	const int32 Height = static_cast<int32>(SizeVector.Y);
+
+	for (int32 i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{
 		Distance[i] = Depth;
 
-		const int y = i / static_cast<int>(SizeVector.Y);
-		const int x = i % static_cast<int>(SizeVector.Y);
+		const int32 y = i / Width;
+		const int32 x = i % Width;
 
-		if (x > 0 && Colors[i] != Colors[i - 1]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - 1])))
+		if (x > 0 && Colors[i] != Colors[i - 1] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - 1])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;
 		}
-		if (x + 1 < SizeVector.X && Colors[i] != Colors[i + 1]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + 1])))
+		if (x + 1 < Width && Colors[i] != Colors[i + 1] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + 1])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;
 		}
-		if (y > 0 && Colors[i] != Colors[i - static_cast<int>(SizeVector.X)]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - static_cast<int>(SizeVector.X)])))
+		if (y > 0 && Colors[i] != Colors[i - Width] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i - Width])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;
 		}
-		if (y + 1 < SizeVector.Y && Colors[i] != Colors[i + static_cast<int>(SizeVector.X)]
-			&& (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + static_cast<int>(SizeVector.X)])))
+		if (y + 1 < Height && Colors[i] != Colors[i + Width] && (!Object || !Func || (Object->*Func)(Colors[i], Colors[i + Width])))
 		{
 			DistanceCalculator->AddStartPoint(i);
 			continue;

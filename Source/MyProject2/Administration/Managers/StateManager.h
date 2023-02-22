@@ -12,7 +12,7 @@ public:
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	UState* GetState(const FString& StateId) const;
+	UState* GetState(const FName& StateId) const;
 	
 	bool AreProvincesInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 
@@ -24,7 +24,7 @@ public:
 
 private:
 	UPROPERTY()
-	TMap<FString, UState*> StateMap;
+	TMap<FName, UState*> StateMap;
 
 	void InitStates(UDataTable* StatesDescriptions);
 };

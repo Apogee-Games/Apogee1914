@@ -12,9 +12,9 @@ class UUnit : public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const FUnitDescription* UnitDescription, UProvince* Province, FString CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* UnitDescription, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
 
-	void Init(const FUnitDescription* UnitDescription, UProvince* Province, FString CountryOwnerTag, FString CountryControllerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* UnitDescription, UProvince* Province, const FName& CountryOwnerTag, const FName& CountryControllerTag, UUnitsRenderer* UnitsRenderer);
 
 	bool CanTransportUnits() const;
 
@@ -44,7 +44,7 @@ private:
 	UPROPERTY()
 	UProvince* Province;
 
-	TArray<FString> CanAccessProvinceTypes;
+	TArray<FName> CanAccessProvinceTypes;
 
 	UPROPERTY()
 	UUnitsRenderer* UnitsRenderer;

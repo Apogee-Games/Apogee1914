@@ -52,7 +52,7 @@ FColor USelectionMap::GetProvinceColor(const FVector2d& Point) const
 {
 	const FVector2d ImagePosition = Point * SizeVector;
 
-	const int Position = FTextureUtils::GetPixelPosition(ImagePosition, SizeVector);
+	const int32 Position = FTextureUtils::GetPixelPosition(ImagePosition, SizeVector);
 
 	return GetWorld()->GetSubsystem<UProvincesMap>()->GetColor(Position);
 }

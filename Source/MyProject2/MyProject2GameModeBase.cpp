@@ -35,6 +35,8 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 void AMyProject2GameModeBase::BeginPlay()
 {
 	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
+
+	//GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
 	
 	// Beginning of Units Renderer/Factory Test Logic
 	
@@ -58,8 +60,8 @@ void AMyProject2GameModeBase::BeginPlay()
 	Super::BeginPlay();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
-	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
-	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
+	const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
+	for (int32 PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
 	{
 		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(
 			GetWorld(), PlayerIndex));
@@ -90,8 +92,8 @@ void AMyProject2GameModeBase::InitializeRuledCountry() const
 
 void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 {
-	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
-	for (int PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
+	const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
+	for (int32 PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
 	{
 		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(
 			GetWorld(), PlayerIndex));
@@ -100,7 +102,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 		const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
 
 		const UMyGameInstance* GameInstance = GetGameInstance<UMyGameInstance>();
-		const FString RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
+		const FName RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
 		
 		Pawn->SetRuledCountryTag(RuledCountryTag);
 	}

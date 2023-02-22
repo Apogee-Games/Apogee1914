@@ -59,7 +59,7 @@ void UCountriesMap::CountryDistancesWereUpdated(const TArray<UProvince*>& Provin
 FRunnableThread* UCountriesMap::UpdateCountryColor(UProvince* Province, FColor* CountriesColor) const
 {
 	const TArray<int32>& PixelsToUpdate = GetWorld()->GetSubsystem<UProvincesMap>()->GetProvincePositions(Province->GetId());
-	const int* Distances = GetWorld()->GetSubsystem<UDistancesMap>()->GetCountriesDistances();
+	const TArray<int32>& Distances = GetWorld()->GetSubsystem<UDistancesMap>()->GetCountriesDistances();
 	FCountryMapUpdater* Updater = new FCountryMapUpdater(CountriesColor, PixelsToUpdate, Province, Distances, SizeVector, CrossLineWidth);
-	return FRunnableThread::Create(Updater, *Province->GetName());	
+	return FRunnableThread::Create(Updater, *Province->GetName().ToString());	
 }

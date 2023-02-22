@@ -47,23 +47,23 @@ public:
 	/*
 	 * Method used to set event title 
 	 */
-	void SetTitle(const FString& Title) const;
+	void SetTitle(const FText& Title) const;
 	
 	/*
 	 * Method used to set event image 
 	 */
-	void SetImage(const FString& ImagePath) const;
+	void SetImage(const FName& ImagePath) const;
 	
 	/*
 	 * Method used to set event text 
 	 */
-	void SetText(const FString& Text) const;
+	void SetText(const FText& Text) const;
 	
 	/*
 	 * Method used to add event choice
 	 * Updates background sizes, so that choices button won't be outside of the event them 
 	 */
-	void AddChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag, const FString& ChoiceText);
+	void AddChoice(const FName& EventName, const FName& ChoiceName, const FName& CountryTag, const FText& ChoiceText);
 
 	/**
 	 * Method used for tracking per frame actions, such as moving
@@ -78,7 +78,7 @@ public:
 	/**
 	 * Adds button action bindings and sets some event data
 	 */
-	void Init(const FString& Title, const FString& Text, const FString& ImagePath);
+	void Init(const FText& Title, const FText& Text, const FName& ImagePath);
 	
 private:
 	int CurrentChoice = 0;

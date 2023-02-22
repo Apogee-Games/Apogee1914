@@ -3,8 +3,8 @@
 #include "MyProject2/Utils/TextureUtils.h"
 
 FCountryMapUpdater::FCountryMapUpdater(FColor* CountriesColors, const TArray<int32>& PixelsToUpdate,
-                                       const UProvince* Province, const int* Distances, const FVector2d& SizeVector,
-                                       int CrossLineWidth)
+                                       const UProvince* Province, const TArray<int32>& Distances, const FVector2d& SizeVector,
+                                       int32 CrossLineWidth)
 	: CountriesColors(CountriesColors), PixelsToUpdate(PixelsToUpdate), Province(Province), Distances(Distances),
 	  SizeVector(SizeVector), CrossLineWidth(CrossLineWidth)
 {
@@ -12,7 +12,7 @@ FCountryMapUpdater::FCountryMapUpdater(FColor* CountriesColors, const TArray<int
 
 uint32 FCountryMapUpdater::Run()
 {
-	for (int i : PixelsToUpdate)
+	for (int32 i : PixelsToUpdate)
 	{
 		FVector2D Position = FTextureUtils::GetPositionVector(i, SizeVector);
 

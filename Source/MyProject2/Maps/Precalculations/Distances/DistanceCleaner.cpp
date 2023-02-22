@@ -1,11 +1,11 @@
 #include "DistanceCleaner.h"
 
 
-FDistanceCleaner::FDistanceCleaner(int* Distances, const FVector2d& SizeVector, int Depth): IDistanceProcessor(Distances, SizeVector, Depth)
+FDistanceCleaner::FDistanceCleaner(TArray<int32>& Distances, const FVector2d& SizeVector, int32 Depth): IDistanceProcessor(Distances, SizeVector, Depth)
 {
 }
 
-void FDistanceCleaner::AddStartPoint(int Point)
+void FDistanceCleaner::AddStartPoint(int32 Point)
 {
 	IDistanceProcessor::AddStartPoint(Point);
 	Distances[Point] = Depth;
@@ -25,6 +25,8 @@ uint32 FDistanceCleaner::Run()
 
 void FDistanceCleaner::CleanUpDistances()
 {
+	const int32 Width = static_cast<int32>(SizeVector.X);
+	const int32 Height = static_cast<int32>(SizeVector.Y);
 	while (!Queue.IsEmpty())
 	{
 		int32 CurrentPosition;
@@ -36,8 +38,8 @@ void FDistanceCleaner::CleanUpDistances()
 			continue;
 		}
 		
-		const int y = CurrentPosition / static_cast<int>(SizeVector.Y);
-		const int x = CurrentPosition % static_cast<int>(SizeVector.Y);
+		const int32 y = CurrentPosition / Width;
+		const int32 x = CurrentPosition % Width;
 		
 		if (x > 0 && CurrentPosition - 1 >= 0
 			&& Distances[CurrentPosition - 1] < Depth)
@@ -46,30 +48,27 @@ void FDistanceCleaner::CleanUpDistances()
 			Queue.Enqueue(CurrentPosition - 1);
 		}
 		
-		if (x + 1 < SizeVector.X && CurrentPosition + 1 < SizeVector.X * SizeVector.Y
-			&& Distances[CurrentPosition + 1] < Depth)
+		if (x + 1 < Width && Distances[CurrentPosition + 1] < Depth)
 		{
 			Distances[CurrentPosition + 1] = Depth;
 			Queue.Enqueue(CurrentPosition + 1);
 		}
 
-		if (y > 0 && CurrentPosition - static_cast<int>(SizeVector.X) >= 0
-			&& Distances[CurrentPosition - static_cast<int>(SizeVector.X)] < Depth)
+		if (y > 0 && Distances[CurrentPosition - Width] < Depth)
 		{
-			Distances[CurrentPosition - static_cast<int>(SizeVector.X)] = Depth;
-			Queue.Enqueue(CurrentPosition - static_cast<int>(SizeVector.X));
+			Distances[CurrentPosition - Width] = Depth;
+			Queue.Enqueue(CurrentPosition - Width);
 		}
 		
-		if (y + 1 < SizeVector.Y && CurrentPosition + static_cast<int>(SizeVector.X) < SizeVector.X * SizeVector.Y
-			&& Distances[CurrentPosition + static_cast<int>(SizeVector.X)] < Depth)
+		if (y + 1 < Height && Distances[CurrentPosition + Width] < Depth)
 		{
-			Distances[CurrentPosition + static_cast<int>(SizeVector.X)] = Depth;
-			Queue.Enqueue(CurrentPosition + static_cast<int>(SizeVector.X));
+			Distances[CurrentPosition + Width] = Depth;
+			Queue.Enqueue(CurrentPosition + Width);
 		}
 	}
 }
 
-bool FDistanceCleaner::IsPossiblePoint(int Point)
+bool FDistanceCleaner::IsPossiblePoint(int32 Point)
 {
 	for (const auto& Points: PossiblePoints)
 	{

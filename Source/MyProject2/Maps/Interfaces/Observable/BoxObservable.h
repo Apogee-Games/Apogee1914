@@ -4,7 +4,7 @@
 class IBoxObservable
 {
 public:
-	void NotifyBoxUpdate(FProvincesBox* Box);
+	void NotifyBoxUpdate(TSharedPtr<FProvincesBox> Box);
 	
 	bool AddBoxObserver(IBoxObserver* Observer);
 	

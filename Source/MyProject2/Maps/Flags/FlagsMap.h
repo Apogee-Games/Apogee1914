@@ -14,9 +14,9 @@ public:
 
 	void UpdateAllBoxes();
 	
-	void UpdateBoxes(const TArray<FProvincesBox*>& Boxes);
+	void UpdateBoxes(const TArray<TSharedPtr<FProvincesBox>>& Boxes);
 
-	virtual void BoxWasUpdated(FProvincesBox* Box) override;
+	virtual void BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box) override;
 private:
 	UPROPERTY()
 	UTexture2D* FlagsMapTexture;
@@ -25,9 +25,9 @@ private:
 
 	TMap<UCountry*, const FColor*> CountriesFlagColors;
 
-	TMap<UCountry*, int> CountriesFlagColorsCount;
+	TMap<UCountry*, int32> CountriesFlagColorsCount;
 	
-	FRunnableThread* UpdateBox(FProvincesBox* Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector);
+	FRunnableThread* UpdateBox(const TSharedPtr<FProvincesBox>& Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector);
 
 	const FColor* GetCountryFlagColors(UCountry* Country);
 

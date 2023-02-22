@@ -11,20 +11,20 @@ struct FProvinceDescription : public FTableRowBase
 	FColor Color;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString ProvinceName;
+	FName ProvinceName;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString CountryTag;
+	FName CountryTag;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString StateId;
+	FName StateId;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int Population;
+	int32 Population;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString TerrainName;
+	FName TerrainName;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<FString, int> Resources;
+	TMap<FName, int32> Resources;
 };

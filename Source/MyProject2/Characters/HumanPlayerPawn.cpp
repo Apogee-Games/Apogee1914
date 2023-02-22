@@ -20,7 +20,7 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 }
 
-void AHumanPlayerPawn::SetRuledCountryTag(const FString& NewRuledCountryTag)
+void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
 	RuledCountryTag = NewRuledCountryTag;
 }
@@ -68,7 +68,7 @@ void AHumanPlayerPawn::LeftClick()
 	if (Province)
 	{
 		ProvinceDataWidget->SetProvinceName(Province->GetName());
-		ProvinceDataWidget->SetPopulationNumber(FString::FromInt(Province->GetPopulation()->GetPopulation()));
+		ProvinceDataWidget->SetPopulationNumber(Province->GetPopulation()->GetPopulation());
 		ProvinceDataWidget->SetResources(Province->GetResources());
 
 		const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());

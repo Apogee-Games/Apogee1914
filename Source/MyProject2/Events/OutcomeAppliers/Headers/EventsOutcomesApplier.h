@@ -14,13 +14,13 @@ public:
 	/**
 	 * Method used to add choice outcome applier
 	 */
-	void RegisterOutcomeApplier(const FString& Name, FEventOutcomeApplier* OutcomeApplier);
+	void RegisterOutcomeApplier(const FName& Name, FEventOutcomeApplier* OutcomeApplier);
 
 	/**
 	 * Method used to apply event choice outcomes
 	 */
-	void ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FString& CountryTag);
+	void ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FName& CountryTag);
 
 private:
-	TMap<FString, FEventOutcomeApplier*> OutcomeAppliers;
+	TMap<FName, FEventOutcomeApplier*> OutcomeAppliers;
 };

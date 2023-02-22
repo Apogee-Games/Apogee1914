@@ -39,5 +39,5 @@ private:
 	void CreateAIPawns();
 	
 	UPROPERTY()
-	TMap<FString, AAIPlayerPawn*> AIPawns;
+	TMap<FName, AAIPlayerPawn*> AIPawns;
 };

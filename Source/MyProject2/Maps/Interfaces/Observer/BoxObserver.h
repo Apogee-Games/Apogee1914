@@ -5,5 +5,5 @@ class IBoxObserver
 {
 public:
 	virtual ~IBoxObserver() = default;
-	virtual void BoxWasUpdated(FProvincesBox* Box) = 0;
+	virtual void BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box) = 0;
 };

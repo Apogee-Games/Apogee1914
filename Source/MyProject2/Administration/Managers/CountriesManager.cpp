@@ -10,11 +10,11 @@ void UCountriesManager::Initialize(FSubsystemCollectionBase& Collection)
 	
 	for (const auto& Pair: CountryDescriptionDataTable->GetRowMap())
 	{
-		CountriesTagsList.Add(Pair.Key.ToString());
+		CountriesTagsList.Add(Pair.Key);
 	}
 }
 
-const TArray<FString>& UCountriesManager::GetCountriesTagsList()
+const TArray<FName>& UCountriesManager::GetCountriesTagsList()
 {
 	return CountriesTagsList;
 }
@@ -79,7 +79,7 @@ bool UCountriesManager::AreProvincesControlledByDifferentCountry(const UProvince
 	return !AreProvincesControlledBySameCountry(ProvinceA, ProvinceB);
 }
 
-UCountry* UCountriesManager::GetCountry(const FString& Tag)
+UCountry* UCountriesManager::GetCountry(const FName& Tag)
 {
 	return CountryMap.Contains(Tag) ? CountryMap[Tag] : nullptr;
 }
@@ -90,6 +90,6 @@ void UCountriesManager::InitCountries(UDataTable* CountryDescriptionDataTable)
 	{
 		UCountry* Country = NewObject<UCountry>(GetWorld());
 		Country->Init(reinterpret_cast<FCountryDescription*>(Value));
-		CountryMap.Add(Key.ToString(), Country);
+		CountryMap.Add(Key, Country);
 	}
 }

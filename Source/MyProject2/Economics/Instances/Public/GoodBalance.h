@@ -10,26 +10,26 @@ class UGoodBalance : public UObject
 public:
 	UGoodBalance();
 
-	int GetBalance() const;
+	int32 GetBalance() const;
 	
-	int Supply(int SuppliedAmount);
+	int32 Supply(int32 SuppliedAmount);
 	
-	int Demand(int DemandedAmount);
+	int32 Demand(int32 DemandedAmount);
 
-	float GetPrice(int GoodAmount) const;
+	float GetPrice(int32 GoodAmount) const;
 	
 	void Init(const FGoodDescription* GoodDescription);
 	
-	int GetSupply() const;
+	int32 GetSupply() const;
 	
-	int GetDemand() const;
+	int32 GetDemand() const;
 
 	const FGoodDescription* GetGoodDescription() const;
 	
 private:
-	int DemandAmount;
+	int32 DemandAmount;
 	
-	int SupplyAmount;
+	int32 SupplyAmount;
 
 	const FGoodDescription* GoodDescription;
 };

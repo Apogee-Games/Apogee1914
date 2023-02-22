@@ -28,11 +28,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* ResourcesTextBlock;
 
-	void SetProvinceName(const FString& ProvinceName) const;
+	void SetProvinceName(const FName& ProvinceName) const;
 
-	void SetPopulationNumber(const FString& PopulationNumber) const;
+	void SetPopulationNumber(int32 Population) const;
+	
+	void SetPopulationNumber(const FText& PopulationNumber) const;
 
-	void SetStateName(const FString& StateName) const;
+	void SetStateName(const FName& StateName) const;
 
-	void SetResources(const TMap<FString, int>& Resources) const;
+	void SetResources(const TMap<FName, int>& Resources) const;
 };

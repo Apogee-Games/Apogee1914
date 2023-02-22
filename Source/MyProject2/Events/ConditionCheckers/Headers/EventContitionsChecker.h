@@ -15,13 +15,13 @@ public:
 	/**
 	 *	Method used to add event condition checker
 	 */
-	void RegisterConditionChecker(const FString& Name, FEventConditionChecker* Checker);
+	void RegisterConditionChecker(const FName& Name, FEventConditionChecker* Checker);
 
 	/**
 	 * Method used to check event or choice conditions
 	 */
-	bool CheckConditions(TArray<FEventCondition>& Conditions, const FString& CountryTag);
+	bool CheckConditions(TArray<FEventCondition>& Conditions, const FName& CountryTag);
 
 private:
-	TMap<FString, FEventConditionChecker*> ConditionsCheckers;
+	TMap<FName, FEventConditionChecker*> ConditionsCheckers;
 };

@@ -10,24 +10,24 @@
 #include "MyProject2/Utils/TextureUtils.h"
 #include "EventChoiceButtonWidget.h"
 
-void UEventWidget::SetTitle(const FString& Title) const
+void UEventWidget::SetTitle(const FText& Title) const
 {
-	TitleTextBlock->SetText(FText::FromString(Title));
+	TitleTextBlock->SetText(Title);
 }
 
-void UEventWidget::SetImage(const FString& ImagePath) const
+void UEventWidget::SetImage(const FName& ImagePath) const
 {
-	UTexture2D* ImageTexture = FTextureUtils::LoadTexture(ImagePath);
+	UTexture2D* ImageTexture = FTextureUtils::LoadTexture(ImagePath.ToString());
 
 	Image->SetBrushResourceObject(ImageTexture);
 }
 
-void UEventWidget::SetText(const FString& Text) const
+void UEventWidget::SetText(const FText& Text) const
 {
-	TextTextBlock->SetText(FText::FromString(Text));
+	TextTextBlock->SetText(Text);
 }
 
-void UEventWidget::AddChoice(const FString& EventName, const FString& ChoiceName, const FString& CountryTag, const FString& ChoiceText)
+void UEventWidget::AddChoice(const FName& EventName, const FName& ChoiceName, const FName& CountryTag, const FText& ChoiceText)
 {
 	UEventChoiceButtonWidget* ChoiceButtonWidget = CreateWidget<UEventChoiceButtonWidget>(GetWorld(), ChoiceButtonWidgetClass);
 	ChoiceButtonWidget->Init(EventName, ChoiceName, CountryTag, ChoiceText);
@@ -63,7 +63,7 @@ void UEventWidget::Init()
 	ButtonForMoving->OnReleased.AddDynamic(this, &UEventWidget::UEventWidget::OnButtonForMovingRelease);
 }
 
-void UEventWidget::Init(const FString& Title, const FString& Text, const FString& ImagePath)
+void UEventWidget::Init(const FText& Title, const FText& Text, const FName& ImagePath)
 {
 	Init();
 	SetTitle(Title);
