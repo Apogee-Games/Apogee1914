@@ -8,7 +8,7 @@
 class FDatePassedConditionChecker : public FEventConditionChecker
 {
 public:
-	FDatePassedConditionChecker(FInGameTime* GameTime);
+	FDatePassedConditionChecker(UInGameTime* GameTime);
 
 	/**
 	 *	@brief Method that checks date condition
@@ -20,5 +20,5 @@ public:
 	virtual bool Check(TMap<FString, FString> Values) override;
 
 private:
-	FInGameTime* GameTime;
+	UInGameTime* GameTime;
 };

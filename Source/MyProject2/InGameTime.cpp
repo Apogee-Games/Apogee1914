@@ -1,58 +1,125 @@
 #include "InGameTime.h"
 
-FInGameTime::FInGameTime(FDateTime* CurrentTime, int MaxTimeSpeed, float SpeedMultiplier):
-	CurrentTime(CurrentTime), SpeedMultiplier(SpeedMultiplier), MaxTimeSpeed(MaxTimeSpeed)
+#include "MyGameState.h"
+
+void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 {
+	Super::OnWorldBeginPlay(InWorld);
+	AMyGameState* GameState = GetWorld()->GetGameState<AMyGameState>();
+	
+	CurrentTime = new FDateTime(GameState->StartTime); // TODO: Check is it still good idea to use DateTime
+	MaxTimeSpeed = GameState->MaxTimeSpeed;
+	SpeedMultiplier = GameState->SpeedMultiplier;
+	
+	TimeControllerWidget = CreateWidget<UTimeController>(GetWorld(), GameState->TimeControllerClass);
+	TimeControllerWidget->BeginPlay();
+	TimeControllerWidget->AddToViewport();
 }
 
-int FInGameTime::GetTimeSpeed() const
+void UInGameTime::Deinitialize()
+{
+	Super::Deinitialize();
+	if (TimeControllerWidget)
+	{
+		TimeControllerWidget->RemoveFromRoot();
+	}
+}
+
+void UInGameTime::Tick(float DeltaTime)
+{
+	//	UTickableWorldSubsystem::Tick(DeltaTime);
+	if (!IsGamePaused())
+	{
+		UpdateCurrentTime(DeltaTime * 1000);
+	}
+}
+
+int UInGameTime::GetTimeSpeed() const
 {
 	return TimeSpeed;
 }
 
-int FInGameTime::GetMaxTimeSpeed() const
+int UInGameTime::GetMaxTimeSpeed() const
 {
 	return MaxTimeSpeed;
 }
 
-void FInGameTime::UpdateCurrentTime(const float DeltaSeconds) const
+void UInGameTime::UpdateCurrentTime(const float DeltaSeconds)
 {
-	(*CurrentTime) += FTimespan(0, DeltaSeconds * TimeSpeed * SpeedMultiplier, 0);
+	UpdateCurrentTime(FTimespan(0, DeltaSeconds * TimeSpeed * SpeedMultiplier, 0));
 }
 
-FDateTime* FInGameTime::GetTime() const
+void UInGameTime::RegisterListener(UObject* Object, void (UObject::*Function)(), FTimespan Delta)
+{
+	Functions.Add(TotalObjectNumber, Function);
+	CurrentDeltas.Add(TotalObjectNumber, Delta);
+	Deltas.Add(TotalObjectNumber, Delta);
+	Objects.Add(TotalObjectNumber, Object);
+	++TotalObjectNumber;
+}
+
+void UInGameTime::UpdateCurrentTime(const FTimespan& DeltaTimeSpan)
+{
+	(*CurrentTime) += DeltaTimeSpan;
+	CheckDeltas(DeltaTimeSpan);
+	RefreshWidget();
+}
+
+void UInGameTime::CheckDeltas(const FTimespan& DeltaTimeSpan)
+{
+	for (auto& [Id, CurrentDelta] : CurrentDeltas)
+	{
+		CurrentDelta -= DeltaTimeSpan;
+		if (CurrentDelta.GetTicks() <= 0)
+		{
+			CurrentDelta = Deltas[Id];
+			(Objects[Id]->*Functions[Id])();
+		}
+	}
+}
+
+void UInGameTime::RefreshWidget()
+{
+	if (TimeControllerWidget)
+	{
+		const FString Time = GetTime()->ToString(TEXT("%Y-%m-%d %H"));
+		TimeControllerWidget->SetTime(Time);
+	}
+}
+
+FDateTime* UInGameTime::GetTime() const
 {
 	return CurrentTime;
 }
 
-void FInGameTime::SpeedUpTime()
+void UInGameTime::SpeedUpTime()
 {
 	if (TimeSpeed >= MaxTimeSpeed) return;
 	++TimeSpeed;
 }
 
-void FInGameTime::SlowDownTime()
+void UInGameTime::SlowDownTime()
 {
 	if (TimeSpeed <= 1) return;
 	--TimeSpeed;
 }
 
-bool FInGameTime::IsGamePaused() const
+bool UInGameTime::IsGamePaused() const
 {
 	return bIsGamePaused;
 }
 
-void FInGameTime::PauseGame()
+void UInGameTime::PauseGame()
 {
 	bIsGamePaused = true;
 }
 
-void FInGameTime::ResumeGame()
+void UInGameTime::ResumeGame()
 {
 	bIsGamePaused = false;
 }
 
-void FInGameTime::SwitchPauseFlag()
+void UInGameTime::SwitchPauseFlag()
 {
 	bIsGamePaused = !bIsGamePaused;
 }

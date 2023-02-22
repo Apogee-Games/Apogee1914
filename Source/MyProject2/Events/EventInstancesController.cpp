@@ -1,28 +1,13 @@
 #include "EventInstancesController.h"
 #include "OutcomeAppliers/Headers/EventsOutcomesApplier.h"
 #include "ConditionCheckers/Headers/EventContitionsChecker.h"
+#include "MyProject2/InGameTime.h"
 #include "UObject/UObjectGlobals.h"
 #include "MyProject2/MyGameInstance.h"
-#include "MyProject2/Managers/ProvinceManager.h"
+#include "MyProject2/MyGameState.h"
+#include "MyProject2/Administration/Managers/CountriesManager.h"
+#include "MyProject2/Administration/Managers/ProvinceManager.h"
 
-void UEventInstancesController::Tick(const FDateTime& CurrentInGameTime)
-{
-	if (LastDateEventWereChecked.GetTicks() == 0)
-	{
-		LastDateEventWereChecked = CurrentInGameTime;
-	}
-	
-	if (CurrentInGameTime - LastDateEventWereChecked >= MinDeltaBetweenEventChecks)
-	{
-		CheckEvents();
-		LastDateEventWereChecked = CurrentInGameTime;
-	}
-
-	for (const auto& Pair : WidgetsInstances)
-	{
-		Pair.Value->Tick();
-	}
-}
 
 void UEventInstancesController::CreateEvent(const FString& EventName, const FEventDescription* Event,
                                             const TMap<FString, bool>& ChoicesConditionsEvaluated,
@@ -30,7 +15,7 @@ void UEventInstancesController::CreateEvent(const FString& EventName, const FEve
 {
 	if (WidgetsInstances.Contains({EventName, CountryTag})) return; // Event is already created
 	if (Event->TriggerOnce && FiredEvents.Contains({EventName, CountryTag})) return;
-	if (static_cast<UMyGameInstance*>(GetGameInstance())->IsCountryRuledByPlayer(CountryTag))
+	if (static_cast<UMyGameInstance*>(GetWorld()->GetGameInstance())->IsCountryRuledByPlayer(CountryTag))
 		CreateEventForPlayer(EventName, Event, ChoicesConditionsEvaluated, CountryTag);
 	else CreateEventForAI(EventName, Event, ChoicesConditionsEvaluated, CountryTag);
 }
@@ -126,6 +111,12 @@ void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)
 	}
 }
 
+void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	EventWidgetClass = GetWorld()->GetGameState<AMyGameState>()->EventWidgetClass;
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, FTimespan(1, 0 , 0, 0));
+}
 
 void UEventInstancesController::RegisterChoice(const FString& EventName, const FString& ChoiceName,
                                                const FString& CountryTag)
@@ -137,7 +128,7 @@ void UEventInstancesController::RegisterChoice(const FString& EventName, const F
 	for (auto& Choice : Events[EventName]->Choices)
 	{
 		if (Choice.Name != ChoiceName) continue;
-		GetGameInstance()->GetSubsystem<UEventsOutcomesApplier>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
+		GetWorld()->GetSubsystem<UEventsOutcomesApplier>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
 	}
 }
 
@@ -146,14 +137,22 @@ void UEventInstancesController::SetEventWidgetClass(const TSubclassOf<UEventWidg
 	EventWidgetClass = NewEventWidgetClass;
 }
 
+void UEventInstancesController::Tick(float DeltaTime)
+{
+	for (const auto& Pair : WidgetsInstances)
+	{
+		Pair.Value->Tick();
+	}
+}
+
 void UEventInstancesController::CheckEvents()
 {
-	UEventConditionsChecker* ConditionsChecker = GetGameInstance()->GetSubsystem<UEventConditionsChecker>();
+	UEventConditionsChecker* ConditionsChecker = GetWorld()->GetSubsystem<UEventConditionsChecker>();
 	for (const auto& Pair : Events)
 	{
-		TArray<FString>* CountriesTags = GetCountriesForWhichEventCanBeFired(Pair.Value);
+		const TArray<FString>& CountriesTags = GetCountriesForWhichEventCanBeFired(Pair.Value);
 
-		for (auto& CountryTag : *CountriesTags)
+		for (auto& CountryTag : CountriesTags)
 		{
 			if (!ConditionsChecker->CheckConditions(Pair.Value->Conditions, CountryTag)) continue;
 			// Skip current event because conditions are not meet 
@@ -172,9 +171,9 @@ void UEventInstancesController::CheckEvents()
 }
 
 
-TArray<FString>* UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
+const TArray<FString>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
-		       ? GetGameInstance()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList()
-		       : &Event->CountriesConditions.CountriesTags;
+		       ? GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
+		       : Event->CountriesConditions.CountriesTags;
 }

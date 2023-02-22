@@ -9,7 +9,7 @@ void UEventChoiceButtonWidget::SetChoiceText(const FString& Text) const
 
 void UEventChoiceButtonWidget::OnChoiceButtonClick()
 {
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->RegisterChoice(EventName, ChoiceName, CountryTag);
+	GetWorld()->GetSubsystem<UEventInstancesController>()->RegisterChoice(EventName, ChoiceName, CountryTag);
 }
 
 void UEventChoiceButtonWidget::Init(const FString& NewEventName, const FString& NewChoiceName, const FString& NewCountryTag, const FString& NewChoiceText)

@@ -9,17 +9,16 @@
  * Class used to control all events instances
  */
 UCLASS()
-class UEventInstancesController: public UGameInstanceSubsystem
+class UEventInstancesController: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	
-	/**
-	 *	Method for all per frame updates such as events widgets moving 
-	 */
-	void Tick(const FDateTime& CurrentInGameTime);
 
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	
+	virtual void Tick(float DeltaTime);
+	
 	void CheckEvents();
 
 	/**
@@ -42,10 +41,6 @@ public:
 private:
 	TSubclassOf<UEventWidget> EventWidgetClass;
 
-	FDateTime LastDateEventWereChecked;
-
-	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
-	
 	TSet<TPair<FString, FString>> FiredEvents;
 
 	TMap<FString, FEventDescription*> Events;
@@ -62,5 +57,5 @@ private:
 
 	FString FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FString, bool>& ChoicesConditionsEvaluated) const;
 
-	TArray<FString>* GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
+	const TArray<FString>& GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
 };

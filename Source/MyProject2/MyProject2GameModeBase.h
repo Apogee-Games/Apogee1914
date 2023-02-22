@@ -8,6 +8,7 @@
 #include "Widgets/EventWidget.h"
 #include "Widgets/TimeController.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Widgets/UnitInformationListWidget.h"
 #include "MyProject2GameModeBase.generated.h"
 
 class UProvinceData;
@@ -19,13 +20,6 @@ class MYPROJECT2_API AMyProject2GameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 public:
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UTimeController> TimeControllerClass;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UEventWidget> EventWidgetClass;
-	
 	AMyProject2GameModeBase();
 
 	virtual void Tick(float DeltaSeconds) override;
@@ -34,12 +28,7 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
-	
 private:
-	void InitializeEventModules() const;
-
 	/* Initializes Ruled Country for all human players */
 	void InitializeRuledCountry() const;
 
@@ -49,14 +38,6 @@ private:
 	/* Creates AIPawns for all non user played countries */
 	void CreateAIPawns();
 	
-	UPROPERTY()
-	UDataTable* EventsDataTable;
-
-	UPROPERTY()
-	UTimeController* TimeControllerWidget;
-	
-	bool AreEventConditionCheckersInitialized = false;
-
 	UPROPERTY()
 	TMap<FString, AAIPlayerPawn*> AIPawns;
 };

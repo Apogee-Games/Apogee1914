@@ -4,16 +4,17 @@
 #include "MyProject2GameModeBase.h"
 
 #include "MyGameInstance.h"
-#include "Events/ConditionCheckers/Headers/ExactDateConditionChecker.h"
+#include "MyGameState.h"
+#include "Administration/Managers/CountriesManager.h"
+#include "Administration/Managers/ProvinceManager.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Characters/MyPlayerController.h"
-#include "Events/OutcomeAppliers/Headers/StabilityOutcomeApplier.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
 #include "Events/EventInstancesController.h"
-#include "Events/ConditionCheckers/Headers/DatePassedConditionChecker.h"
-#include "Events/ConditionCheckers/Headers/EventContitionsChecker.h"
-#include "Events/OutcomeAppliers/Headers/EventsOutcomesApplier.h"
+#include "Military/Instances/Unit.h"
+#include "Military/Managers/UnitsFactory.h"
+#include "Military/Managers/UnitsMover.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
 {
@@ -27,36 +28,34 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-
-	if (!AreEventConditionCheckersInitialized)
-	{
-		InitializeEventModules();
-		AreEventConditionCheckersInitialized = true;
-	}
-	
-	const FInGameTime* GameTime = static_cast<AMyGameState*>(GameState)->GetInGameTime();
-
-	if (!GameTime->IsGamePaused())
-	{
-		if (TimeControllerWidget)
-		{
-			const FString Time = GameTime->GetTime()->ToString(TEXT("%Y-%m-%d %H"));
-			TimeControllerWidget->SetTime(Time);
-		}
-	}
-
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->Tick(*GameTime->GetTime());
+	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
+	GetWorld()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
 }
 
 void AMyProject2GameModeBase::BeginPlay()
 {
-	Super::BeginPlay();
-
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->SetEventWidgetClass(EventWidgetClass);
+	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
 	
-	GetGameInstance()->GetSubsystem<UCountriesMap>()->UpdateCountriesMapColors();
+	// Beginning of Units Renderer/Factory Test Logic
+	
+	FUnitDescription* Description = new FUnitDescription();
+	Description->CanTransport = true;
+	Description->CanAccessProvincesTypes.Add("Land");
 
-	GetGameInstance()->GetSubsystem<UOutlineMap>()->CreateOutline();
+	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
+	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	
+	
+	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, ProvinceManager->GetProvince(FColor(202, 160, 1)), "GER",Renderer);
+	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(246, 39, 1)), "GER",Renderer);
+	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(239, 236, 1)), "GER",Renderer);
+	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(231, 116, 1)), "NET",Renderer);
+
+	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
+
+	// End of Test Logic
+
+	Super::BeginPlay();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	const int LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
@@ -76,35 +75,11 @@ void AMyProject2GameModeBase::BeginPlay()
 	InitializeRuledCountry();
 
 	//CreateAIPawns();
-	
-	if (TimeControllerClass)
-	{
-		TimeControllerWidget = CreateWidget<UTimeController>(GetWorld(), TimeControllerClass);
-		if (TimeControllerWidget)
-		{
-			TimeControllerWidget->BeginPlay();
-			TimeControllerWidget->AddToViewport();
-		}
-	}
-
 }
 
 void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-
-	if (TimeControllerWidget)
-	{
-		TimeControllerClass->RemoveFromRoot();
-	}
-	
 	Super::EndPlay(EndPlayReason);
-}
-
-void AMyProject2GameModeBase::InitializeEventModules() const
-{
-	GetGameInstance()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
-	GetGameInstance()->GetSubsystem<UEventConditionsChecker>()->RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(GetGameState<AMyGameState>()->GetInGameTime()));
-	GetGameInstance()->GetSubsystem<UEventsOutcomesApplier>()->RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetGameState<AMyGameState>()));
 }
 
 void AMyProject2GameModeBase::InitializeRuledCountry() const
@@ -133,7 +108,7 @@ void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
 
 void AMyProject2GameModeBase::CreateAIPawns()
 {
-	for (const auto& CountryTag : *GetGameInstance()->GetSubsystem<UProvinceManager>()->GetCountriesTagsList())
+	for (const auto& CountryTag : GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());

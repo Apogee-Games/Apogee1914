@@ -1,0 +1,248 @@
+[
+	{
+		"Name": "AHE",
+		"CountryName": "Austria-Hungary",
+		"Tag": "AHE",
+		"Color":
+		{
+			"B": 80,
+			"G": 80,
+			"R": 80,
+			"A": 0
+		}
+	},
+	{
+		"Name": "BEL",
+		"CountryName": "Kingdom of Belgium",
+		"Tag": "BEL",
+		"Color":
+		{
+			"B": 10,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	},
+	{
+		"Name": "NET",
+		"CountryName": "The Netherlands",
+		"Tag": "NET",
+		"Color":
+		{
+			"B": 50,
+			"G": 50,
+			"R": 100,
+			"A": 0
+		}
+	},
+	{
+		"Name": "LUX",
+		"CountryName": "Grand Duchy of Luxembourg",
+		"Tag": "LUX",
+		"Color":
+		{
+			"B": 0,
+			"G": 50,
+			"R": 0,
+			"A": 0
+		}
+	},
+	{
+		"Name": "FRA",
+		"CountryName": "France",
+		"Tag": "FRA",
+		"Color":
+		{
+			"B": 100,
+			"G": 0,
+			"R": 0,
+			"A": 0
+		}
+	},
+	{
+		"Name": "GER",
+		"CountryName": "The German Empire",
+		"Tag": "GER",
+		"Color":
+		{
+			"B": 50,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	},
+	{
+		"Name": "ITA",
+		"CountryName": "The Kingdom of Italy",
+		"Tag": "ITA",
+		"Color":
+		{
+			"B": 20,
+			"G": 80,
+			"R": 20,
+			"A": 0
+		}
+	},
+	{
+		"Name": "SWI",
+		"CountryName": "Switzerland",
+		"Tag": "SWI",
+		"Color":
+		{
+			"B": 20,
+			"G": 20,
+			"R": 80,
+			"A": 0
+		}
+	},
+	{
+		"Name": "GBR",
+		"CountryName": "The United Kingdom of Great Britain and Northern Ireland",
+		"Tag": "GBR",
+		"Color":
+		{
+			"B": 20,
+			"G": 20,
+			"R": 80,
+			"A": 0
+		}
+	},
+	{
+		"Name": "SPA",
+		"CountryName": "The Kingdom of Spain",
+		"Tag": "SPA",
+		"Color":
+		{
+			"B": 0,
+			"G": 100,
+			"R": 100,
+			"A": 0
+		}
+	},
+	{
+		"Name": "POR",
+		"CountryName": "Portuguese Republic",
+		"Tag": "POR",
+		"Color":
+		{
+			"B": 0,
+			"G": 40,
+			"R": 0,
+			"A": 0
+		}
+	},
+	{
+		"Name": "SWE",
+		"CountryName": "The Kingdom of Sweden",
+		"Tag": "SWE",
+		"Color":
+		{
+			"B": 50,
+			"G": 0,
+			"R": 0,
+			"A": 0
+		}
+	},
+	{
+		"Name": "NOR",
+		"CountryName": "The Kingdom of Norway",
+		"Tag": "NOR",
+		"Color":
+		{
+			"B": 30,
+			"G": 30,
+			"R": 30,
+			"A": 0
+		}
+	},
+	{
+		"Name": "BRA",
+		"CountryName": "Brazil",
+		"Tag": "BRA",
+		"Color":
+		{
+			"B": 0,
+			"G": 100,
+			"R": 0,
+			"A": 0
+		}
+	},
+	{
+		"Name": "USA",
+		"CountryName": "The United States of America",
+		"Tag": "USA",
+		"Color":
+		{
+			"B": 100,
+			"G": 10,
+			"R": 10,
+			"A": 0
+		}
+	},
+	{
+		"Name": "PAR",
+		"CountryName": "Republic of Paraguay",
+		"Tag": "PAR",
+		"Color": {
+			"B": 10,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	},
+	{
+		"Name": "BOL",
+		"CountryName": "Plurinational State of Bolivia",
+		"Tag": "BOL",
+		"Color": {
+			"B": 100,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	}, 
+	{
+		"Name": "PER",
+		"CountryName": "Republic of Peru",
+		"Tag": "PER",
+		"Color": {
+			"B": 100,
+			"G": 100,
+			"R": 100,
+			"A": 0
+		}
+	},
+	{
+		"Name": "CHI",
+		"CountryName": "Republic of Chile",
+		"Tag": "CHI",
+		"Color": {
+			"B": 50,
+			"G": 50,
+			"R": 50,
+			"A": 0
+		}
+	}, 
+	{
+		"Name": "URU",
+		"CountryName": "Oriental Republic of Uruguay",
+		"Tag": "URU",
+		"Color": {
+			"B": 100,
+			"G": 50,
+			"R": 100,
+			"A": 0
+		}
+	},
+	{
+		"Name": "ARG",
+		"CountryName": "Argentine Republic",
+		"Tag": "ARG",
+		"Color": {
+			"B": 10,
+			"G": 100,
+			"R": 100,
+			"A": 0
+		}
+	}
+]

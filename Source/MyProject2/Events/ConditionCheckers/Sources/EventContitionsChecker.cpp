@@ -1,5 +1,17 @@
 #include "MyProject2/Events/ConditionCheckers/Headers/EventContitionsChecker.h"
 
+#include "MyProject2/InGameTime.h"
+#include "MyProject2/Events/ConditionCheckers/Headers/DatePassedConditionChecker.h"
+#include "MyProject2/Events/ConditionCheckers/Headers/ExactDateConditionChecker.h"
+
+void UEventConditionsChecker::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	UInGameTime* InGameTime = GetWorld()->GetSubsystem<UInGameTime>();
+	RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(InGameTime));
+	RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(InGameTime));
+}
+
 void UEventConditionsChecker::RegisterConditionChecker(const FString& Name, FEventConditionChecker* Checker)
 {
 	ConditionsCheckers.Add(Name, Checker);

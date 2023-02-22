@@ -5,8 +5,9 @@
 #include "CoreMinimal.h"
 #include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
+#include "Widgets/EventWidget.h"
+#include "Widgets/UnitInformationListWidget.h"
 
-#include "Managers/ProvinceManager.h"
 #include "MyGameState.generated.h"
 
 /**
@@ -17,16 +18,19 @@ class MYPROJECT2_API AMyGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 public:
-	AMyGameState();
 
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UTimeController> TimeControllerClass;
 
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-	virtual void Tick(float DeltaSeconds) override;
-
-	FInGameTime* GetInGameTime() const;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UEventWidget> EventWidgetClass;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	FDateTime StartTime = FDateTime(1914, 1, 1);
 	
@@ -34,14 +38,13 @@ public:
 	int MaxTimeSpeed = 5;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
-	float SpeedMultiplier;
+	float SpeedMultiplier = 0.1;
+	
+	AMyGameState();
 
 	int GetStability() const;
 
 	void SetStability(int Stability);
-	
 private:
-	FInGameTime* GameTime;
-	
 	int Stability = 0;
 };

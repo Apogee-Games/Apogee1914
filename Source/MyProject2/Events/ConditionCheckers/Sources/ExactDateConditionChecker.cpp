@@ -1,6 +1,6 @@
 #include "MyProject2/Events/ConditionCheckers/Headers/ExactDateConditionChecker.h"
 
-FExactDateConditionChecker::FExactDateConditionChecker(FInGameTime* GameTime): GameTime(GameTime)
+FExactDateConditionChecker::FExactDateConditionChecker(UInGameTime* GameTime): GameTime(GameTime)
 {
 }
 

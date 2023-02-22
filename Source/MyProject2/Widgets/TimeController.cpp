@@ -16,20 +16,20 @@ void UTimeController::SetTime(const FString& Time)
 
 void UTimeController::SpeedUpButtonOnClick()
 {
-	FInGameTime* GameTime = Cast<AMyGameState>(GetWorld()->GetGameState())->GetInGameTime();
+	UInGameTime* GameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	GameTime->SpeedUpTime();
 	SpeedProgressBar->SetPercent(1.0 * GameTime->GetTimeSpeed() / GameTime->GetMaxTimeSpeed());
 }
 
 void UTimeController::SlowDownButtonOnClick()
 {
-	FInGameTime* GameTime = Cast<AMyGameState>(GetWorld()->GetGameState())->GetInGameTime();
+	UInGameTime* GameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	GameTime->SlowDownTime();
 	SpeedProgressBar->SetPercent(1.0 * GameTime->GetTimeSpeed() / GameTime->GetMaxTimeSpeed());
 }
 
 void UTimeController::PauseButtonOnClick()
 {
-	FInGameTime* GameTime = Cast<AMyGameState>(GetWorld()->GetGameState())->GetInGameTime();
+	UInGameTime* GameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	GameTime->SwitchPauseFlag();
 }

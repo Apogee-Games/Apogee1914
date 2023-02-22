@@ -13,7 +13,7 @@ public:
 	/**
 	 * Needs InGameTime to access current time
 	 */
-	explicit FExactDateConditionChecker(FInGameTime* GameTime);
+	explicit FExactDateConditionChecker(UInGameTime* GameTime);
 
 	/**
 	 *	@brief Checks current data with provided values
@@ -22,6 +22,6 @@ public:
 	virtual bool Check(TMap<FString, FString> Values) override;
 
 private:
-	FInGameTime* GameTime;
+	UInGameTime* GameTime;
 };
 

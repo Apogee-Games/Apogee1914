@@ -1,0 +1,14 @@
+[
+	{
+		"Name": "LOW",
+		"StrataName": "Low"
+	},
+	{
+		"Name": "MIDDLE",
+		"StrataName": "Middle"
+	},
+	{
+		"Name": "UPPER",
+		"StrataName": "Upper"
+	}
+]

@@ -6,6 +6,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
+#include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/ProvinceData.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -25,6 +26,10 @@ public:
 
 	// Sets tag of country controlled by this Pawn
 	void SetRuledCountryTag(const FString& NewRuledCountryTag);
+
+	void SelectUnits(const TArray<UUnit*>& Units);
+
+	void SelectUnit(UUnit* Unit);
 
 protected:
 	// Called when the game starts or when spawned
@@ -69,9 +74,13 @@ private:
 	
 	/* Tag of country that current pawn controls */
 	FString RuledCountryTag;
+
+	bool IsShiftPressed = false;
 	
 	UPROPERTY()
 	UProvinceData* ProvinceDataWidget;
+
+	TArray<UUnit*> SelectedUnits;
 
 	const FVector PlaneNormal = FVector(1, 0, 0);
 	const FVector PlaneBase = FVector(0, 0, 0);
@@ -90,6 +99,12 @@ private:
 
 	void LeftClick();
 
+	void RightClick();
+
+	void ShiftPressed();
+	
+	void ShiftReleased();
+
 	void Move(float DeltaTime);
 
 	void Scroll(float Value);
@@ -97,6 +112,4 @@ private:
 	bool IsInside(const FVector& Position) const;
 
 	FVector GetNormalizedPositionOnPlane() const;
-
-	AMyGameState* GetGameState() const;
 };

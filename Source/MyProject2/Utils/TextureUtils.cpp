@@ -30,8 +30,7 @@ void FTextureUtils::UpdateColors(const FColor* LookUpColors, const FColor& LookU
 
 UTexture2D* FTextureUtils::LoadTexture(const FString& Path)
 {
-	return Cast<UTexture2D>(StaticLoadObject(UTexture2D::StaticClass(), NULL, *Path));
-	//ConstructorHelpers::FObjectFinder<UTexture2D>(*Path).Object;
+	return LoadObject<UTexture2D>(nullptr, *Path);
 }
 
 FVector2d FTextureUtils::GetTextureSizeVector(const UTexture2D* Texture)
