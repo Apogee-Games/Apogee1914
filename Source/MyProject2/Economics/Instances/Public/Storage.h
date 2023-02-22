@@ -11,11 +11,11 @@ public:
 
 	void Supply(const FName& Good, const int32 Amount);
 
-	int Estimate(const FName& Good, const int32 Amount);
+	int32 Estimate(const FName& Good, const int32 Amount);
 
-	int GetGoodAmount(const FName& Good) const;
+	int32 GetGoodAmount(const FName& Good) const;
 	
-	int Demand(const FName& Good, const int32 Amount);
+	int32 Demand(const FName& Good, const int32 Amount);
 
 private:
 	TMap<FName, int32> Goods;

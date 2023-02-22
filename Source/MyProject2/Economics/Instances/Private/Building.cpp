@@ -40,7 +40,7 @@ UProvince* UBuilding::GetProvince() const
 	return Province;
 }
 
-int UBuilding::GetPossibleProductOutputCount() const
+int32 UBuilding::GetPossibleProductOutputCount() const
 {
 	int32 MinProductCount = INT32_MAX;
 	
@@ -52,7 +52,7 @@ int UBuilding::GetPossibleProductOutputCount() const
 	return MinProductCount == INT32_MAX ? 1 : MinProductCount; 
 }
 
-void UBuilding::DemandGoods(int ProductCount)
+void UBuilding::DemandGoods(int32 ProductCount)
 {
 	for (const auto [Good, Amount] : BuildingDescription->GoodConsumption)
 	{
@@ -60,7 +60,7 @@ void UBuilding::DemandGoods(int ProductCount)
 	}
 }
 
-void UBuilding::SupplyGoods(int ProductCount)
+void UBuilding::SupplyGoods(int32 ProductCount)
 {
 	for (const auto [Good, Amount] : BuildingDescription->GoodOutput)
 	{

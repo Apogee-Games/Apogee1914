@@ -10,7 +10,7 @@ void UStorage::Supply(const FName& Good, const int32 Amount)
 	Goods[Good] += Amount;
 }
 
-int UStorage::Estimate(const FName& Good, const int32 Amount)
+int32 UStorage::Estimate(const FName& Good, const int32 Amount)
 {
 	if (!Goods.Contains(Good))
 	{
@@ -19,18 +19,18 @@ int UStorage::Estimate(const FName& Good, const int32 Amount)
 	return FMath::Min(Goods[Good], Amount);
 }
 
-int UStorage::GetGoodAmount(const FName& Good) const
+int32 UStorage::GetGoodAmount(const FName& Good) const
 {
 	return  !Goods.Contains(Good) ? 0 : Goods[Good]; 
 }
 
-int UStorage::Demand(const FName& Good, const int32 Amount)
+int32 UStorage::Demand(const FName& Good, const int32 Amount)
 {
 	if (!Goods.Contains(Good))
 	{
 		Goods.Add(Good, 0);
 	}
-	const int CanProvide = FMath::Min(Goods[Good], Amount);
+	const int32 CanProvide = FMath::Min(Goods[Good], Amount);
 	Goods[Good] -= CanProvide;
 	return CanProvide;
 }
