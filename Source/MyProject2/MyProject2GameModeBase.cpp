@@ -31,7 +31,6 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
 	GetWorld()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
-	GetWorld()->GetSubsystem<UBuildingManager>()->Produce();
 }
 
 void AMyProject2GameModeBase::BeginPlay()

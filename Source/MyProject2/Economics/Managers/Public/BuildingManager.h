@@ -8,6 +8,8 @@ class UBuildingManager: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	UBuilding* BuildBuilding(const FBuildingDescription* Description, UProvince* Province, UStorage* Storage);
 

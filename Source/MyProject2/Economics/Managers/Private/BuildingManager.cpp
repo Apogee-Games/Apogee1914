@@ -1,7 +1,15 @@
 
 
 #include "MyProject2/Economics/Managers/Public/BuildingManager.h"
+
+#include "MyProject2/InGameTime.h"
 #include "MyProject2/Administration/Instances/Province.h"
+
+void UBuildingManager::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Produce, FTimespan(1, 0, 0, 0));
+}
 
 UBuilding* UBuildingManager::BuildBuilding(const FBuildingDescription* Description, UProvince* Province, UStorage* Storage)
 {
