@@ -15,8 +15,7 @@ class MYPROJECT2_API UMyGameInstance : public UGameInstance
 	GENERATED_BODY()
 
 public:
-	//TODO: Reference ?
-	FName GetRuledCountry(int32 PlayerId) const;
+	const FName& GetRuledCountry(int32 PlayerId) const;
 
 	void SetRuledCountry(int32 PlayerId, const FName& CountryTag);
 

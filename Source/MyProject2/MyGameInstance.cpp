@@ -3,7 +3,7 @@
 
 #include "MyGameInstance.h"
 
-FName UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
+const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
 {
 	return PlayersRuledCountries[PlayerId];
 }
