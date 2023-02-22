@@ -1,5 +1,6 @@
 #pragma once
 #include "MyProject2/Economics/Instances/Public/Building.h"
+#include "MyProject2/Economics/Instances/Public/Storage.h"
 #include "BuildingManager.generated.h"
 
 UCLASS()
@@ -8,7 +9,7 @@ class UBuildingManager: public UWorldSubsystem
 	GENERATED_BODY()
 public:
 	
-	UBuilding* BuildBuilding(FBuildingDescription* Description, UProvince* Province);
+	UBuilding* BuildBuilding(const FBuildingDescription* Description, UProvince* Province, UStorage* Storage);
 
 	void Produce();
 

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Storage.h"
 #include "MyProject2/Economics/Description/BuildingDescription.h"
 #include "MyProject2/Economics/Description/BuildingInstanceDescription.h"
 #include "Building.generated.h"
@@ -12,9 +13,9 @@ class UBuilding : public UObject
 public:
 	void Produce();
 
-	void Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince);
+	void Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage);
 	
-	void Init(const FBuildingInstanceDescription* BuildingInstanceDescription, const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince);
+	void Init(const FBuildingInstanceDescription* BuildingInstanceDescription, const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage);
 		
 	const FBuildingDescription* GetBuildingDescription() const;
 
@@ -29,4 +30,7 @@ private:
 
 	UPROPERTY()
 	UProvince* Province;
+
+	UPROPERTY()
+	UStorage* Storage;
 }; 
