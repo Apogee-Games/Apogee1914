@@ -11,6 +11,7 @@
 #include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Economics/Managers/Public/BuildingManager.h"
 #include "Events/EventInstancesController.h"
 #include "Military/Instances/Unit.h"
 #include "Military/Managers/UnitsFactory.h"
@@ -30,6 +31,7 @@ void AMyProject2GameModeBase::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
 	GetWorld()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
+	GetWorld()->GetSubsystem<UBuildingManager>()->Produce();
 }
 
 void AMyProject2GameModeBase::BeginPlay()
@@ -40,20 +42,39 @@ void AMyProject2GameModeBase::BeginPlay()
 	
 	// Beginning of Units Renderer/Factory Test Logic
 	
-	FUnitDescription* Description = new FUnitDescription();
-	Description->CanTransport = true;
-	Description->CanAccessProvincesTypes.Add("Land");
+	FUnitDescription* UnitDescription = new FUnitDescription();
+	UnitDescription->CanTransport = true;
+	UnitDescription->CanAccessProvincesTypes.Add("Land");
 
 	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
+	
 	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 	
-	
-	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description, ProvinceManager->GetProvince(FColor(202, 160, 1)), "GER",Renderer);
-	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(246, 39, 1)), "GER",Renderer);
-	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(239, 236, 1)), "GER",Renderer);
-	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(Description,  ProvinceManager->GetProvince(FColor(231, 116, 1)), "NET",Renderer);
+	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription, ProvinceManager->GetProvince(FColor(202, 160, 1)), "GER",Renderer);
+	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription,  ProvinceManager->GetProvince(FColor(246, 39, 1)), "GER",Renderer);
+	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription,  ProvinceManager->GetProvince(FColor(239, 236, 1)), "GER",Renderer);
+	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription,  ProvinceManager->GetProvince(FColor(231, 116, 1)), "NET",Renderer);
 
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
+	
+	// End of Test Logic
+
+	// Beginning of Building Manager Test
+
+	FBuildingDescription* BuildingDescription = new FBuildingDescription;
+
+	BuildingDescription->GoodOutput = {{"Coal", 10}, {"Iron", 20}};
+	
+	BuildingDescription->MaxLabours = 10;
+
+	UProvince* Province = ProvinceManager->GetProvince(FColor(202, 160, 1));
+	
+	GetWorld()->GetSubsystem<UBuildingManager>()->BuildBuilding(BuildingDescription, Province, Province->GetCountryController()->GetStorage());
+
+	UBuilding* Building = GetWorld()->GetSubsystem<UBuildingManager>()->BuildBuilding(BuildingDescription, Province, Province->GetCountryController()->GetStorage());
+	GetWorld()->GetSubsystem<UBuildingManager>()->DestroyBuilding(Building);
+
+	GetWorld()->GetSubsystem<UBuildingManager>()->Produce();
 
 	// End of Test Logic
 
