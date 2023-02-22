@@ -11,7 +11,8 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString());
 
 	InitStrata();
-	
+
+	Storage = NewObject<UStorage>();
 	Market = NewObject<UMarket>();
 }
 
@@ -33,6 +34,11 @@ const FName& UCountry::GetTag() const
 UTexture2D* UCountry::GetFlag() const
 {
 	return Flag;
+}
+
+UStorage* UCountry::GetStorage() const
+{
+	return Storage;
 }
 
 void UCountry::InitStrata()
