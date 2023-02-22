@@ -1,12 +1,12 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "FactoryInstanceDescription.generated.h"
+#include "BuildingInstanceDescription.generated.h"
 
 USTRUCT()
-struct FFactoryInstanceDescription : public FTableRowBase
+struct FBuildingInstanceDescription : public FTableRowBase
 {
 	GENERATED_BODY()
-
+	
 	UPROPERTY()
 	FName Type; 
 

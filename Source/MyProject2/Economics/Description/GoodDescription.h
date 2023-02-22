@@ -5,7 +5,7 @@
 USTRUCT()
 struct FGoodDescription : public FTableRowBase
 {
-	GENERATED_USTRUCT_BODY();
+	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=GoodType)
 	FName GoodName;

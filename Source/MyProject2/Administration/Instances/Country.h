@@ -20,6 +20,8 @@ public:
 	const FName& GetTag() const;
 
 	UTexture2D* GetFlag() const;
+
+	UStorage* GetStorage() const;
 	
 private:
 	FName Name;
@@ -42,6 +44,9 @@ private:
 	
 	UPROPERTY()
 	UStrata* UpperStrata;
+
+	UPROPERTY()
+	UStorage* Storage;
 
 	void InitStrata();
 

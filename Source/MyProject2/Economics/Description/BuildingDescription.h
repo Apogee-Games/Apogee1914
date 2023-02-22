@@ -1,18 +1,18 @@
 ﻿#pragma once
 #include "Containers/Map.h"
 #include "Engine/DataTable.h"
-#include "FactoryDescription.generated.h"
+#include "BuildingDescription.generated.h"
 
 USTRUCT()
-struct FFactoryDescription : public FTableRowBase
+struct FBuildingDescription : public FTableRowBase
 {
-	GENERATED_USTRUCT_BODY();
+	GENERATED_BODY()
 
 	UPROPERTY()
 	TMap<FName, int32> GoodConsumption; 
 
 	UPROPERTY()
-	TMap<FName, int32> ResourceConsumption; // ToDo
+	TMap<FName, int32> ResourceConsumption;
 
 	UPROPERTY()
 	TMap<FName, int32> GoodOutput;
