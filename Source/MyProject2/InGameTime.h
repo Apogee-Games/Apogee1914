@@ -29,7 +29,7 @@ public:
 
 	void SwitchPauseFlag();
 
-	FDateTime* GetTime() const;
+	const FDateTime& GetTime() const;
 
 	void UpdateCurrentTime(const float DeltaSeconds);
 
@@ -42,19 +42,19 @@ private:
 
 	TMap<int32, void(UObject::*)()> Functions;
 
-	TMap<int32, FTimespan> CurrentDeltas;
+	TMap<int32, int64> CurrentDeltas;
 
-	TMap<int32, FTimespan> Deltas;
+	TMap<int32, int64> Deltas;
 	
-	FDateTime* CurrentTime;
+	FDateTime CurrentTime;
+	
+	float_t SpeedMultiplier;
 
-	float SpeedMultiplier;
-
-	int MaxTimeSpeed;
+	int32 MaxTimeSpeed;
 	
 	bool bIsGamePaused = true;
 
-	int TimeSpeed = 1;
+	int32 TimeSpeed = 1;
 	
 	int32 TotalObjectNumber = 1;
 
@@ -66,7 +66,6 @@ private:
 	void CheckDeltas(const FTimespan& DeltaTimeSpan);
 
 	void RefreshWidget();
-
 };
 
 template <class T>

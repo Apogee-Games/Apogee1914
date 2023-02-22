@@ -12,5 +12,5 @@ bool FDatePassedConditionChecker::Check(const TMap<FName, FString>& Values)
 	                                         UKismetStringLibrary::Conv_StringToInt(Values["Month"]),
 	                                         UKismetStringLibrary::Conv_StringToInt(Values["Day"]),
 	                                         UKismetStringLibrary::Conv_StringToInt(Values["Hour"]));
-	return ProvidedDate > *GameTime->GetTime();
+	return ProvidedDate > GameTime->GetTime();
 }

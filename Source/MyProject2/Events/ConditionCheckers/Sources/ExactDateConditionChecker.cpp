@@ -6,5 +6,5 @@ FExactDateConditionChecker::FExactDateConditionChecker(UInGameTime* GameTime): G
 
 bool FExactDateConditionChecker::Check(const TMap<FName, FString>& Values)
 {
-	return GameTime->GetTime()->ToString(TEXT("%Y-%m-%d %H")) == Values["Date"];
+	return GameTime->GetTime().ToString(TEXT("%Y-%m-%d %H")) == Values["Date"];
 }

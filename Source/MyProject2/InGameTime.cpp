@@ -7,7 +7,7 @@ void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 	Super::OnWorldBeginPlay(InWorld);
 	AMyGameState* GameState = GetWorld()->GetGameState<AMyGameState>();
 	
-	CurrentTime = new FDateTime(GameState->StartTime); // TODO: Check is it still good idea to use DateTime
+	CurrentTime = GameState->StartTime; 
 	MaxTimeSpeed = GameState->MaxTimeSpeed;
 	SpeedMultiplier = GameState->SpeedMultiplier;
 	
@@ -27,7 +27,6 @@ void UInGameTime::Deinitialize()
 
 void UInGameTime::Tick(float DeltaTime)
 {
-	//	UTickableWorldSubsystem::Tick(DeltaTime);
 	if (!IsGamePaused())
 	{
 		UpdateCurrentTime(DeltaTime * 1000);
@@ -52,15 +51,15 @@ void UInGameTime::UpdateCurrentTime(const float DeltaSeconds)
 void UInGameTime::RegisterListener(UObject* Object, void (UObject::*Function)(), FTimespan Delta)
 {
 	Functions.Add(TotalObjectNumber, Function);
-	CurrentDeltas.Add(TotalObjectNumber, Delta);
-	Deltas.Add(TotalObjectNumber, Delta);
+	CurrentDeltas.Add(TotalObjectNumber, Delta.GetTicks());
+	Deltas.Add(TotalObjectNumber, Delta.GetTicks());
 	Objects.Add(TotalObjectNumber, Object);
 	++TotalObjectNumber;
 }
 
 void UInGameTime::UpdateCurrentTime(const FTimespan& DeltaTimeSpan)
 {
-	(*CurrentTime) += DeltaTimeSpan;
+	CurrentTime += DeltaTimeSpan;
 	CheckDeltas(DeltaTimeSpan);
 	RefreshWidget();
 }
@@ -69,8 +68,8 @@ void UInGameTime::CheckDeltas(const FTimespan& DeltaTimeSpan)
 {
 	for (auto& [Id, CurrentDelta] : CurrentDeltas)
 	{
-		CurrentDelta -= DeltaTimeSpan;
-		if (CurrentDelta.GetTicks() <= 0)
+		CurrentDelta -= DeltaTimeSpan.GetTicks();
+		if (CurrentDelta <= 0)
 		{
 			CurrentDelta = Deltas[Id];
 			(Objects[Id]->*Functions[Id])();
@@ -82,12 +81,12 @@ void UInGameTime::RefreshWidget()
 {
 	if (TimeControllerWidget)
 	{
-		const FString Time = GetTime()->ToString(TEXT("%Y-%m-%d %H"));
+		const FString Time = CurrentTime.ToString(TEXT("%Y-%m-%d %H"));
 		TimeControllerWidget->SetTime(Time);
 	}
 }
 
-FDateTime* UInGameTime::GetTime() const
+const FDateTime& UInGameTime::GetTime() const
 {
 	return CurrentTime;
 }
