@@ -25,6 +25,8 @@ public:
 	// Sets default values for this pawn's properties
 	AHumanPlayerPawn();
 
+	void SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState);
+	
 	// Sets tag of country controlled by this Pawn
 	void SetRuledCountryTag(const FName& NewRuledCountryTag);
 
@@ -33,6 +35,8 @@ public:
 	void SelectUnit(UUnit* Unit);
 
 	void ClearSelectedUnits();
+
+	const TArray<UUnit*>& GetSelectedUnits() const;
 
 	UProvinceDataWidget* GetProvinceDataWidget() const;
 

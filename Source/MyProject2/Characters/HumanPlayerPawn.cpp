@@ -4,10 +4,10 @@
 #include "HumanPlayerPawn.h"
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
-#include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
+#include "StateMashine/MilitaryControlPawnState.h"
 #include "StateMashine/NoActionPawnState.h"
 
 // Sets default values
@@ -21,6 +21,11 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	PawnState = FNoActionPawnState::GetInstance();
 }
 
+void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
+{
+	PawnState = ProvidedPawnState;
+}
+
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
 	RuledCountryTag = NewRuledCountryTag;
@@ -28,6 +33,7 @@ void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 
 void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 {
+	PawnState = FMilitaryControlPawnState::GetInstance();
 	if (!IsShiftPressed)
 	{
 		SelectedUnits.Empty();
@@ -40,6 +46,7 @@ void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 
 void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 {
+	PawnState = FMilitaryControlPawnState::GetInstance();
 	if (!IsShiftPressed)
 	{
 		SelectedUnits.Empty();
@@ -51,6 +58,11 @@ void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 void AHumanPlayerPawn::ClearSelectedUnits()
 {
 	SelectedUnits.Empty();
+}
+
+const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
+{
+	return SelectedUnits;
 }
 
 UProvinceDataWidget* AHumanPlayerPawn::GetProvinceDataWidget() const
@@ -70,21 +82,12 @@ void AHumanPlayerPawn::MoveRight(float Value)
 
 void AHumanPlayerPawn::LeftClick()
 {
-	PawnState->LeftClick(this);
+	PawnState = PawnState->LeftClick(this);
 }
 
 void AHumanPlayerPawn::RightClick()
 {
-	PawnState->RightClick(this);
-
-	/*const FVector Point = GetNormalizedPositionOnPlane();
-
-	UProvince* To = GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(FVector2D(Point.Y, Point.Z));
-
-	for (const auto& Unit: SelectedUnits)
-	{
-		GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit, To);
-	}*/
+	PawnState = PawnState->RightClick(this);
 }
 
 void AHumanPlayerPawn::ShiftPressed()
