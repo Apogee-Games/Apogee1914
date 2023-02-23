@@ -40,6 +40,12 @@ public:
 
 	UProvinceDataWidget* GetProvinceDataWidget() const;
 
+	void SelectUnitDescription(const FUnitDescription* UnitDescription);
+
+	const FUnitDescription* GetSelectedUnitDescription() const;
+
+	const FName& GetRuledCountryTag() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -91,8 +97,11 @@ private:
 	UPROPERTY()
 	UProvinceDataWidget* ProvinceDataWidget;
 
+	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
 
+	const FUnitDescription* SelectedUnitDescription;
+	
 	FVector MovementDirection = FVector(0, 0, 0);
 
 	FRotator RotationDirection = FRotator(0, 0, 0);

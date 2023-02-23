@@ -9,6 +9,7 @@
 #include "MyProject2/Military/Managers/UnitsMover.h"
 #include "StateMachine/MilitaryControlPawnState.h"
 #include "StateMachine/NoActionPawnState.h"
+#include "StateMachine/UnitCreationPawnState.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()
@@ -68,6 +69,22 @@ const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
 UProvinceDataWidget* AHumanPlayerPawn::GetProvinceDataWidget() const
 {
 	return ProvinceDataWidget;
+}
+
+void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescription)
+{
+	PawnState = FUnitCreationPawnState::GetInstance();
+	SelectedUnitDescription = UnitDescription;
+}
+
+const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
+{
+	return SelectedUnitDescription;
+}
+
+const FName& AHumanPlayerPawn::GetRuledCountryTag() const
+{
+	return RuledCountryTag;
 }
 
 void AHumanPlayerPawn::MoveUp(float Value)
