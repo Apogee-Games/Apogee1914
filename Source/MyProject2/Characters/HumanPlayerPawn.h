@@ -84,6 +84,9 @@ public:
 
 private:
 
+	UPROPERTY()
+	TArray<UUserWidget*> Widgets;
+	
 	TSharedPtr<FPawnState> PawnState;
 	
 	/* Tag of country that current pawn controls */
@@ -117,6 +120,10 @@ private:
 	void ShiftPressed();
 	
 	void ShiftReleased();
+
+	void SetUnitCreationState();
+
+	void UpdateWidgetsVisibility();
 
 	void Move(float DeltaTime);
 

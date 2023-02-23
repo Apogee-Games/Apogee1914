@@ -19,12 +19,13 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
-	PawnState = FNoActionPawnState::GetInstance();
+	SetPawnState(FNoActionPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 {
 	PawnState = ProvidedPawnState;
+	UpdateWidgetsVisibility();
 }
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
@@ -34,7 +35,8 @@ void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 
 void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 {
-	PawnState = FMilitaryControlPawnState::GetInstance();
+	SetPawnState(FMilitaryControlPawnState::GetInstance());
+	
 	if (!IsShiftPressed)
 	{
 		SelectedUnits.Empty();
@@ -47,7 +49,8 @@ void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 
 void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 {
-	PawnState = FMilitaryControlPawnState::GetInstance();
+	SetPawnState(FMilitaryControlPawnState::GetInstance());
+
 	if (!IsShiftPressed)
 	{
 		SelectedUnits.Empty();
@@ -73,7 +76,7 @@ UProvinceDataWidget* AHumanPlayerPawn::GetProvinceDataWidget() const
 
 void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescription)
 {
-	PawnState = FUnitCreationPawnState::GetInstance();
+	SetPawnState(FUnitCreationPawnState::GetInstance());
 	SelectedUnitDescription = UnitDescription;
 }
 
@@ -99,12 +102,12 @@ void AHumanPlayerPawn::MoveRight(float Value)
 
 void AHumanPlayerPawn::LeftClick()
 {
-	PawnState = PawnState->LeftClick(this);
+	SetPawnState(PawnState->LeftClick(this));
 }
 
 void AHumanPlayerPawn::RightClick()
 {
-	PawnState = PawnState->RightClick(this);
+	SetPawnState(PawnState->RightClick(this));
 }
 
 void AHumanPlayerPawn::ShiftPressed()
@@ -149,6 +152,35 @@ void AHumanPlayerPawn::ShiftReleased()
 	IsShiftPressed = false;
 }
 
+void AHumanPlayerPawn::SetUnitCreationState()
+{
+	if (PawnState == FUnitCreationPawnState::GetInstance())
+	{
+		 SetPawnState(FNoActionPawnState::GetInstance());
+	} else {
+		SetPawnState(FUnitCreationPawnState::GetInstance());
+	}
+}
+
+void AHumanPlayerPawn::UpdateWidgetsVisibility()
+{
+	for (const auto& Widget: Widgets)
+	{
+		if (PawnState->MustWidgetBeVisible(Widget))
+		{
+			Widget->AddToPlayerScreen();
+			continue;
+		}
+		
+		if (PawnState->CanWidgetBeVisible(Widget))
+		{
+			continue;
+		}
+		
+		Widget->RemoveFromViewport();
+	}
+}
+
 void AHumanPlayerPawn::Move(float DeltaTime)
 {
 	if ((MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0)) ||
@@ -189,7 +221,7 @@ void AHumanPlayerPawn::InitProvinceDataWidget()
 		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(PlayerController, ProvinceDataWidgetClass);
 		if (ProvinceDataWidget)
 		{
-			ProvinceDataWidget->AddToPlayerScreen();
+			Widgets.Add(ProvinceDataWidget);
 		}
 	}
 }
@@ -212,8 +244,7 @@ void AHumanPlayerPawn::InitUnitTypesListWidget()
 			{
 				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
 			}
-			
-			UnitTypesListWidget->AddToPlayerScreen();
+			Widgets.Add(UnitTypesListWidget);
 		}
 	}
 }
@@ -230,4 +261,5 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("RightClick"), IE_Pressed, this, &AHumanPlayerPawn::RightClick);
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Pressed, this, &AHumanPlayerPawn::ShiftPressed);
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Released, this, &AHumanPlayerPawn::ShiftReleased);
+	PlayerInputComponent->BindAction(TEXT("UKey"), IE_Pressed, this, &AHumanPlayerPawn::SetUnitCreationState);
 }
