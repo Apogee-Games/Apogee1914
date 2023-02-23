@@ -7,8 +7,8 @@
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
-#include "StateMashine/MilitaryControlPawnState.h"
-#include "StateMashine/NoActionPawnState.h"
+#include "StateMachine/MilitaryControlPawnState.h"
+#include "StateMachine/NoActionPawnState.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()

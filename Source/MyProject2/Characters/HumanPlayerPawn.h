@@ -8,7 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
-#include "StateMashine/PawnState.h"
+#include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 
 UCLASS()
