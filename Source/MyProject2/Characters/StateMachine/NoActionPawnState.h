@@ -11,8 +11,6 @@ public:
 	
 	virtual TSharedPtr<FPawnState> RightClick(AHumanPlayerPawn* Pawn) override;
 	
-	virtual ~FNoActionPawnState() override;
-
 private:
 	FNoActionPawnState();
 	

@@ -1,4 +1,5 @@
 #include "NoActionPawnState.h"
+#include "MyProject2/Characters/HumanPlayerPawn.h"
 
 #include "MyProject2/Administration/Instances/State.h"
 #include "MyProject2/Administration/Managers/StateManager.h"
@@ -46,10 +47,6 @@ TSharedPtr<FPawnState> FNoActionPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 TSharedPtr<FPawnState> FNoActionPawnState::RightClick(AHumanPlayerPawn* Pawn)
 {
 	return Instance;
-}
-
-FNoActionPawnState::~FNoActionPawnState()
-{
 }
 
 FNoActionPawnState::FNoActionPawnState()
