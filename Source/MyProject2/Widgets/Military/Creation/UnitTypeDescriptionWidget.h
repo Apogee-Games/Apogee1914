@@ -16,7 +16,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
 	UButton* Button;
 	
-	void Init(const FUnitDescription* UnitDescription);
+	void Init(const FUnitDescription* ProvidedUnitDescription);
 	
-	void SetUnitName(const FName& UnitName);
+private:
+	const FUnitDescription* UnitDescription;
+
+	void SetUnitName(const FName& UnitName) const;
+	
+	UFUNCTION()
+	void OnButtonClick();
 };
