@@ -41,35 +41,12 @@ void AMyProject2GameModeBase::BeginPlay()
 	
 	// Beginning of Units Renderer/Factory Test Logic
 	
-	FUnitDescription* UnitDescription = new FUnitDescription();
-	UnitDescription->CanTransport = true;
-	UnitDescription->UnitName = "Unit2";
-	UnitDescription->CanAccessProvincesTypes.Add("Land");
-
-	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
-	
-	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-	
-	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription, ProvinceManager->GetProvince(FColor(202, 160, 1)), "GER",Renderer);
-	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription,  ProvinceManager->GetProvince(FColor(246, 39, 1)), "GER",Renderer);
-	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription,  ProvinceManager->GetProvince(FColor(239, 236, 1)), "GER",Renderer);
-	UUnit* Unit4 = GetWorld()->GetSubsystem<UUnitsFactory>()->Create(UnitDescription,  ProvinceManager->GetProvince(FColor(231, 116, 1)), "NET",Renderer);
-
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 	
 	// End of Test Logic
-
-	UnitTypesListWidget = CreateWidget<UUnitTypesListWidget>(GetWorld(), GetGameState<AMyGameState>()->UnitTypesListWidgetClass);
-
-	if (UnitTypesListWidget)
-	{
-		UnitTypesListWidget->AddToPlayerScreen();
-		UnitTypesListWidget->AddUnitType(UnitDescription);
-		UnitTypesListWidget->AddUnitType(UnitDescription);
-		UnitTypesListWidget->AddUnitType(UnitDescription);
-	}
 	
 	// Beginning of Building Manager Test
+	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
 
 	FBuildingDescription* BuildingDescription = new FBuildingDescription;
 
@@ -113,11 +90,6 @@ void AMyProject2GameModeBase::BeginPlay()
 void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
-	if (UnitTypesListWidget)
-	{
-		UnitTypesListWidget->RemoveFromRoot();
-		UnitTypesListWidget->RemoveFromViewport();
-	}
 }
 
 void AMyProject2GameModeBase::InitializeRuledCountry() const

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
+#include "Widgets/Administration/ProvinceDataWidget.h"
 #include "Widgets/Events/EventWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Units/UnitInformationListWidget.h"
@@ -20,6 +21,9 @@ class MYPROJECT2_API AMyGameState : public AGameStateBase
 	GENERATED_BODY()
 public:
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UUnitTypesListWidget> UnitTypesListWidgetClass;
 	

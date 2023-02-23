@@ -117,15 +117,8 @@ void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (IsLocallyControlled() && ProvinceDataWidgetClass)
-	{
-		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(PlayerController, ProvinceDataWidgetClass);
-		if (ProvinceDataWidget)
-		{
-			ProvinceDataWidget->AddToPlayerScreen();
-		}
-	}
+	InitProvinceDataWidget();
+	InitUnitTypesListWidget();
 }
 
 void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -133,6 +126,11 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	if (ProvinceDataWidget)
 	{
 		ProvinceDataWidget->RemoveFromParent();
+	}
+
+	if (UnitTypesListWidget)
+	{
+		UnitTypesListWidget->RemoveFromParent();
 	}
 
 	Super::EndPlay(EndPlayReason);
@@ -179,6 +177,45 @@ bool AHumanPlayerPawn::IsInside(const FVector& Position) const
 	return Position.X >= MinXPosition && Position.X <= MaxXPosition &&
 		Position.Y >= MinYPosition && Position.Y <= MaxYPosition &&
 		Position.Z >= MinZPosition && Position.Z <= MaxZPosition;
+}
+
+void AHumanPlayerPawn::InitProvinceDataWidget()
+{
+	const TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass = GetWorld()->GetGameState<AMyGameState>()->ProvinceDataWidgetClass;
+	
+	if (IsLocallyControlled() && ProvinceDataWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(PlayerController, ProvinceDataWidgetClass);
+		if (ProvinceDataWidget)
+		{
+			ProvinceDataWidget->AddToPlayerScreen();
+		}
+	}
+}
+
+void AHumanPlayerPawn::InitUnitTypesListWidget()
+{
+	const TSubclassOf<UUnitTypesListWidget> UnitTypesListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitTypesListWidgetClass;
+	
+	if (IsLocallyControlled() && UnitTypesListWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		
+		UnitTypesListWidget = CreateWidget<UUnitTypesListWidget>(PlayerController, UnitTypesListWidgetClass);
+		
+		if (UnitTypesListWidget)
+		{
+			UDataTable* DataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/units_description"));
+
+			for (const auto& [UnitName, UnitDescription]: DataTable->GetRowMap())
+			{
+				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
+			}
+			
+			UnitTypesListWidget->AddToPlayerScreen();
+		}
+	}
 }
 
 // Called to bind functionality to input

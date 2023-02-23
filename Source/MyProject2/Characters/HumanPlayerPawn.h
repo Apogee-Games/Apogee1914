@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
+#include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -46,7 +47,6 @@ public:
 
 	const FName& GetRuledCountryTag() const;
 
-protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -82,9 +82,6 @@ protected:
 	UPROPERTY(EditAnywhere)
 	double MaxZPosition = 120;
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
-
 private:
 
 	TSharedPtr<FPawnState> PawnState;
@@ -96,6 +93,9 @@ private:
 	
 	UPROPERTY()
 	UProvinceDataWidget* ProvinceDataWidget;
+
+	UPROPERTY()
+	UUnitTypesListWidget* UnitTypesListWidget;
 
 	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
@@ -123,4 +123,8 @@ private:
 	void Scroll(float Value);
 
 	bool IsInside(const FVector& Position) const;
+
+	void InitProvinceDataWidget();
+
+	void InitUnitTypesListWidget();
 };

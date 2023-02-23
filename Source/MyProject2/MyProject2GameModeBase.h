@@ -37,8 +37,5 @@ private:
 	void CreateAIPawns();
 
 	UPROPERTY()
-	UUnitTypesListWidget* UnitTypesListWidget;
-	
-	UPROPERTY()
 	TMap<FName, AAIPlayerPawn*> AIPawns;
 };
