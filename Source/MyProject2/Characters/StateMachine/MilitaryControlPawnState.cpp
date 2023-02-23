@@ -37,6 +37,16 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(AHumanPlayerPawn* P
 	return Instance;
 }
 
+bool FMilitaryControlPawnState::MustWidgetBeVisible(UUserWidget* Widget)
+{
+	return false;
+}
+
+bool FMilitaryControlPawnState::CanWidgetBeVisible(UUserWidget* Widget)
+{
+	return false;
+}
+
 FMilitaryControlPawnState::FMilitaryControlPawnState()
 {
 }

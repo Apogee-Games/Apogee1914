@@ -36,6 +36,16 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::RightClick(AHumanPlayerPawn* Pawn
 	return FNoActionPawnState::GetInstance()->RightClick(Pawn);	
 }
 
+bool FUnitCreationPawnState::MustWidgetBeVisible(UUserWidget* Widget)
+{
+	return dynamic_cast<UUnitTypesListWidget*>(Widget) != nullptr;
+}
+
+bool FUnitCreationPawnState::CanWidgetBeVisible(UUserWidget* Widget)
+{
+	return MustWidgetBeVisible(Widget);
+}
+
 FUnitCreationPawnState::FUnitCreationPawnState()
 {
 }

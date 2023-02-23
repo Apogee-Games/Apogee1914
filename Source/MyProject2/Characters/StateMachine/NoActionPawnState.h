@@ -10,7 +10,10 @@ public:
 	virtual TSharedPtr<FPawnState> LeftClick(AHumanPlayerPawn* Pawn) override;
 	
 	virtual TSharedPtr<FPawnState> RightClick(AHumanPlayerPawn* Pawn) override;
+
+	virtual bool MustWidgetBeVisible(UUserWidget* Widget) override;
 	
+	virtual bool CanWidgetBeVisible(UUserWidget* Widget) override;
 private:
 	FNoActionPawnState();
 	

@@ -49,6 +49,16 @@ TSharedPtr<FPawnState> FNoActionPawnState::RightClick(AHumanPlayerPawn* Pawn)
 	return Instance;
 }
 
+bool FNoActionPawnState::MustWidgetBeVisible(UUserWidget* Widget)
+{
+	return dynamic_cast<UProvinceDataWidget*>(Widget) != nullptr;
+}
+
+bool FNoActionPawnState::CanWidgetBeVisible(UUserWidget* Widget)
+{
+	return MustWidgetBeVisible(Widget);
+}
+
 FNoActionPawnState::FNoActionPawnState()
 {
 }
