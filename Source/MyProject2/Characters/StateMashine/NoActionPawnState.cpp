@@ -5,7 +5,7 @@
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Utils/LocationUtils.h"
 
-TSharedPtr<FNoActionPawnState> FNoActionPawnState::GetInstance()
+TSharedPtr<FPawnState> FNoActionPawnState::GetInstance()
 {
 	if (!Instance)
 	{

@@ -5,7 +5,7 @@ class FNoActionPawnState: public FPawnState
 {
 public:
 
-	static TSharedPtr<FNoActionPawnState> GetInstance();
+	static TSharedPtr<FPawnState> GetInstance();
 	
 	virtual TSharedPtr<FPawnState> LeftClick(AHumanPlayerPawn* Pawn) override;
 	
