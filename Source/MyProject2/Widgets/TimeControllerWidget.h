@@ -3,10 +3,10 @@
 #include "Components/Button.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
-#include "TimeController.generated.h"
+#include "TimeControllerWidget.generated.h"
 
 UCLASS()
-class MYPROJECT2_API UTimeController : public UUserWidget
+class MYPROJECT2_API UTimeControllerWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:

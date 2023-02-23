@@ -1,34 +1,34 @@
-#include "TimeController.h"
+#include "TimeControllerWidget.h"
 
 #include "MyProject2/MyGameState.h"
 
-void UTimeController::BeginPlay()
+void UTimeControllerWidget::BeginPlay()
 {
-	SpeedUpButton->OnClicked.AddDynamic(this, &UTimeController::SpeedUpButtonOnClick);
-	SlowDownButton->OnClicked.AddDynamic(this, &UTimeController::SlowDownButtonOnClick);
-	PauseButton->OnClicked.AddDynamic(this, &UTimeController::PauseButtonOnClick);
+	SpeedUpButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::SpeedUpButtonOnClick);
+	SlowDownButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::SlowDownButtonOnClick);
+	PauseButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::PauseButtonOnClick);
 }
 
-void UTimeController::SetTime(const FString& Time)
+void UTimeControllerWidget::SetTime(const FString& Time)
 {
 	TimeTextBlock->SetText(FText::FromString(Time));
 }
 
-void UTimeController::SpeedUpButtonOnClick()
+void UTimeControllerWidget::SpeedUpButtonOnClick()
 {
 	UInGameTime* GameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	GameTime->SpeedUpTime();
 	SpeedProgressBar->SetPercent(1.0 * GameTime->GetTimeSpeed() / GameTime->GetMaxTimeSpeed());
 }
 
-void UTimeController::SlowDownButtonOnClick()
+void UTimeControllerWidget::SlowDownButtonOnClick()
 {
 	UInGameTime* GameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	GameTime->SlowDownTime();
 	SpeedProgressBar->SetPercent(1.0 * GameTime->GetTimeSpeed() / GameTime->GetMaxTimeSpeed());
 }
 
-void UTimeController::PauseButtonOnClick()
+void UTimeControllerWidget::PauseButtonOnClick()
 {
 	UInGameTime* GameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	GameTime->SwitchPauseFlag();

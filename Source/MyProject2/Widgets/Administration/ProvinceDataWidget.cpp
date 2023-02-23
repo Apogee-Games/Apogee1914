@@ -1,29 +1,29 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ProvinceData.h"
+#include "ProvinceDataWidget.h"
 
-void UProvinceData::SetProvinceName(const FName& ProvinceName) const
+void UProvinceDataWidget::SetProvinceName(const FName& ProvinceName) const
 {
 	ProvinceNameTextBlock->SetText(FText::FromName(ProvinceName));
 }
 
-void UProvinceData::SetPopulationNumber(int32 Population) const
+void UProvinceDataWidget::SetPopulationNumber(int32 Population) const
 {
 	SetPopulationNumber(FText::FromString(FString::FromInt(Population)));
 }
 
-void UProvinceData::SetPopulationNumber(const FText& PopulationNumber) const
+void UProvinceDataWidget::SetPopulationNumber(const FText& PopulationNumber) const
 {
 	PopulationNumberTextBlock->SetText(PopulationNumber);
 }
 
-void UProvinceData::SetStateName(const FName& StateName) const
+void UProvinceDataWidget::SetStateName(const FName& StateName) const
 {
 	StateNameTextBlock->SetText(FText::FromName(StateName));
 }
 
-void UProvinceData::SetResources(const TMap<FName, int32>& Resources) const
+void UProvinceDataWidget::SetResources(const TMap<FName, int32>& Resources) const
 {
 	FString Result = "";
 	
