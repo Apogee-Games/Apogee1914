@@ -3,15 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/DataTable.h"
 #include "GameFramework/GameModeBase.h"
-#include "Widgets/EventWidget.h"
-#include "Widgets/TimeController.h"
+#include "Widgets/TimeControllerWidget.h"
 #include "Characters/AIPlayerPawn.h"
-#include "Widgets/UnitInformationListWidget.h"
 #include "MyProject2GameModeBase.generated.h"
 
-class UProvinceData;
+class UProvinceDataWidget;
 /**
  * 
  */

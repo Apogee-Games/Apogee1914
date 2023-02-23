@@ -121,7 +121,7 @@ void AHumanPlayerPawn::BeginPlay()
 	if (IsLocallyControlled() && ProvinceDataWidgetClass)
 	{
 		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		ProvinceDataWidget = CreateWidget<UProvinceData>(PlayerController, ProvinceDataWidgetClass);
+		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(PlayerController, ProvinceDataWidgetClass);
 		if (ProvinceDataWidget)
 		{
 			ProvinceDataWidget->AddToPlayerScreen();

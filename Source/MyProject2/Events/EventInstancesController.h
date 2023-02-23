@@ -2,7 +2,7 @@
 #include "EditorSubsystem.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "EventDescription/EventDescription.h"
-#include "MyProject2/Widgets/EventWidget.h"
+#include "MyProject2/Widgets/Events/EventWidget.h"
 #include "EventInstancesController.generated.h"
 
 /**

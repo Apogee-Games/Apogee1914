@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
-#include "Widgets/EventWidget.h"
-#include "Widgets/UnitInformationListWidget.h"
+#include "Widgets/Events/EventWidget.h"
+#include "Widgets/Military/Units/UnitInformationListWidget.h"
 
 #include "MyGameState.generated.h"
 
@@ -20,7 +20,7 @@ class MYPROJECT2_API AMyGameState : public AGameStateBase
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UTimeController> TimeControllerClass;
+	TSubclassOf<UTimeControllerWidget> TimeControllerClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UEventWidget> EventWidgetClass;

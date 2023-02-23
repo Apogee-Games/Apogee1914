@@ -7,7 +7,7 @@
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
-#include "MyProject2/Widgets/ProvinceData.h"
+#include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
 #include "HumanPlayerPawn.generated.h"
 
 UCLASS()
@@ -68,7 +68,7 @@ protected:
 	double MaxZPosition = 120;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UProvinceData> ProvinceDataWidgetClass;
+	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
 
 private:
 	
@@ -78,7 +78,7 @@ private:
 	bool IsShiftPressed = false;
 	
 	UPROPERTY()
-	UProvinceData* ProvinceDataWidget;
+	UProvinceDataWidget* ProvinceDataWidget;
 
 	TArray<UUnit*> SelectedUnits;
 

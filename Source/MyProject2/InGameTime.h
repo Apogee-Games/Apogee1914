@@ -1,5 +1,5 @@
 #pragma once
-#include "Widgets/TimeController.h"
+#include "Widgets/TimeControllerWidget.h"
 #include "InGameTime.generated.h"
 
 UCLASS()
@@ -59,7 +59,7 @@ private:
 	int32 TotalObjectNumber = 1;
 
 	UPROPERTY()
-	UTimeController* TimeControllerWidget;
+	UTimeControllerWidget* TimeControllerWidget;
 
 	void UpdateCurrentTime(const FTimespan& DeltaTimeSpan);
 
