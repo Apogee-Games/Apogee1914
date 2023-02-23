@@ -1,7 +1,20 @@
 [
 	{
 		"Name": "Unit1",
+		"UnitName": "Unit1",
 		"CanTransport": true,
+		"CanAccessProvincesTypes": ["Land"]
+	},
+	{
+		"Name": "Unit2",
+		"UnitName": "Unit2",
+		"CanTransport": false,
+		"CanAccessProvincesTypes": ["Land"]
+	},
+	{
+		"Name": "Unit3",
+		"UnitName": "Unit3",
+		"CanTransport": false,
 		"CanAccessProvincesTypes": ["Land"]
 	}
 ]
