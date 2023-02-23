@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
+#include "StateMashine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 
 UCLASS()
@@ -30,6 +31,10 @@ public:
 	void SelectUnits(const TArray<UUnit*>& Units);
 
 	void SelectUnit(UUnit* Unit);
+
+	void ClearSelectedUnits();
+
+	UProvinceDataWidget* GetProvinceDataWidget() const;
 
 protected:
 	// Called when the game starts or when spawned
@@ -71,6 +76,8 @@ protected:
 	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
 
 private:
+
+	TSharedPtr<FPawnState> PawnState;
 	
 	/* Tag of country that current pawn controls */
 	FName RuledCountryTag;
@@ -82,16 +89,9 @@ private:
 
 	TArray<UUnit*> SelectedUnits;
 
-	const FVector PlaneNormal = FVector(1, 0, 0);
-	const FVector PlaneBase = FVector(0, 0, 0);
-
-	const UE::Math::TPlane<double> Plane = UE::Math::TPlane(PlaneBase, PlaneNormal);
-
 	FVector MovementDirection = FVector(0, 0, 0);
 
 	FRotator RotationDirection = FRotator(0, 0, 0);
-
-	double PlaneSize = 200;
 
 	void MoveUp(float Value);
 
@@ -110,6 +110,4 @@ private:
 	void Scroll(float Value);
 
 	bool IsInside(const FVector& Position) const;
-
-	FVector GetNormalizedPositionOnPlane() const;
 };
