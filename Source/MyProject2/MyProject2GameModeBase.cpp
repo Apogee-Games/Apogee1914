@@ -43,6 +43,7 @@ void AMyProject2GameModeBase::BeginPlay()
 	
 	FUnitDescription* UnitDescription = new FUnitDescription();
 	UnitDescription->CanTransport = true;
+	UnitDescription->UnitName = "Unit2";
 	UnitDescription->CanAccessProvincesTypes.Add("Land");
 
 	UUnitsRenderer* Renderer = GetWorld()->GetSubsystem<UUnitsRenderer>();
@@ -58,6 +59,16 @@ void AMyProject2GameModeBase::BeginPlay()
 	
 	// End of Test Logic
 
+	UnitTypesListWidget = CreateWidget<UUnitTypesListWidget>(GetWorld(), GetGameState<AMyGameState>()->UnitTypesListWidgetClass);
+
+	if (UnitTypesListWidget)
+	{
+		UnitTypesListWidget->AddToPlayerScreen();
+		UnitTypesListWidget->AddUnitType(UnitDescription);
+		UnitTypesListWidget->AddUnitType(UnitDescription);
+		UnitTypesListWidget->AddUnitType(UnitDescription);
+	}
+	
 	// Beginning of Building Manager Test
 
 	FBuildingDescription* BuildingDescription = new FBuildingDescription;
@@ -102,6 +113,11 @@ void AMyProject2GameModeBase::BeginPlay()
 void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+	if (UnitTypesListWidget)
+	{
+		UnitTypesListWidget->RemoveFromRoot();
+		UnitTypesListWidget->RemoveFromViewport();
+	}
 }
 
 void AMyProject2GameModeBase::InitializeRuledCountry() const

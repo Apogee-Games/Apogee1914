@@ -9,6 +9,9 @@ struct FUnitDescription: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
+	FName UnitName;
+	
+	UPROPERTY()
 	TArray<FName> CanAccessProvincesTypes;
 
 	UPROPERTY()

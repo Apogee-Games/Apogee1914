@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "Widgets/TimeControllerWidget.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "MyProject2GameModeBase.generated.h"
 
 class UProvinceDataWidget;
@@ -34,6 +35,9 @@ private:
 
 	/* Creates AIPawns for all non user played countries */
 	void CreateAIPawns();
+
+	UPROPERTY()
+	UUnitTypesListWidget* UnitTypesListWidget;
 	
 	UPROPERTY()
 	TMap<FName, AAIPlayerPawn*> AIPawns;
