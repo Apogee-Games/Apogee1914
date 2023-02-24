@@ -12,7 +12,7 @@ class UStrata : public UObject
 public:
 	UStrata();
 
-	void Init();
+	void Init(const FName& ProvidedType);
 
 	UStorage* GetStorage() const;
 
