@@ -10,7 +10,7 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 
 	for (auto& [CountryTag, Country]: GetWorld()->GetSubsystem<UCountriesManager>()->GetCountryMap())
 	{
-		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>();
+		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(GetWorld());
 		Supplier->Init(Country->GetStorage());
 		CountrySupplier.Add(Country, Supplier);
 	}
