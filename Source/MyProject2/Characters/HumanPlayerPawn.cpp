@@ -4,6 +4,7 @@
 #include "HumanPlayerPawn.h"
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
+#include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
@@ -122,6 +123,7 @@ void AHumanPlayerPawn::BeginPlay()
 
 	InitProvinceDataWidget();
 	InitUnitTypesListWidget();
+	InitStorageGoodsListWidget();
 }
 
 void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -134,6 +136,11 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	if (UnitTypesListWidget)
 	{
 		UnitTypesListWidget->RemoveFromParent();
+	}
+
+	if (StorageGoodsListWidget)
+	{
+		StorageGoodsListWidget->RemoveFromParent();
 	}
 
 	Super::EndPlay(EndPlayReason);
@@ -245,6 +252,30 @@ void AHumanPlayerPawn::InitUnitTypesListWidget()
 				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
 			}
 			Widgets.Add(UnitTypesListWidget);
+		}
+	}
+}
+
+void AHumanPlayerPawn::InitStorageGoodsListWidget()
+{
+	const TSubclassOf<UStorageGoodsListWidget> StorageGoodsListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->StorageGoodsListWidgetClass;
+	
+	if (IsLocallyControlled() && StorageGoodsListWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(PlayerController, StorageGoodsListWidgetClass);
+		if (StorageGoodsListWidget)
+		{
+			const UCountry* Country = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
+
+			for (const auto& Storage: Country->GetStorages())
+			{
+				Storage->AddStorageObserver(StorageGoodsListWidget);
+			}
+
+			StorageGoodsListWidget->AddToPlayerScreen();
+			
+			Widgets.Add(StorageGoodsListWidget);
 		}
 	}
 }

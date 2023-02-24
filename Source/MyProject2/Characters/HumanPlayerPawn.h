@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
+#include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
@@ -101,6 +102,9 @@ private:
 	UUnitTypesListWidget* UnitTypesListWidget;
 
 	UPROPERTY()
+	UStorageGoodsListWidget* StorageGoodsListWidget;
+
+	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
@@ -134,4 +138,6 @@ private:
 	void InitProvinceDataWidget();
 
 	void InitUnitTypesListWidget();
+
+	void InitStorageGoodsListWidget();
 };
