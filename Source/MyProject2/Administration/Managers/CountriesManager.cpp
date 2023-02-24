@@ -84,6 +84,11 @@ UCountry* UCountriesManager::GetCountry(const FName& Tag)
 	return CountryMap.Contains(Tag) ? CountryMap[Tag] : nullptr;
 }
 
+const TMap<FName, UCountry*> UCountriesManager::GetCountryMap() const
+{
+	return CountryMap;
+}
+
 void UCountriesManager::InitCountries(UDataTable* CountryDescriptionDataTable)
 {
 	for (const auto& [Key, Value]: CountryDescriptionDataTable->GetRowMap())

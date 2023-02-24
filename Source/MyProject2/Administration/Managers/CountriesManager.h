@@ -35,6 +35,9 @@ public:
 	bool AreProvincesControlledByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 
 	UCountry* GetCountry(const FName& Tag);
+
+	const TMap<FName, UCountry*> GetCountryMap() const;
+	
 private:
 	UPROPERTY()
 	TMap<FName, UCountry*> CountryMap;
