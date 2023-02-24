@@ -16,5 +16,11 @@ struct FUnitDescription: public FTableRowBase
 
 	UPROPERTY()
 	bool CanTransport;
+
+	UPROPERTY()
+	TMap<FName, int> EquipmentRequirements;
+
+	UPROPERTY()
+	int ManpowerRequirements;
 	
 };
