@@ -80,8 +80,18 @@ const TMap<FName, int32>& UUnit::GetEquipmentNeeds() const
 	return EquipmentNeeds;
 }
 
+int32 UUnit::GetUnitTypeEquipmentRequirement(const FName& GoodName) const
+{
+	return UnitDescription->EquipmentRequirements[GoodName];
+}
+
 void UUnit::SupplyEquipment(const FName& GoodName, int32 Amount)
 {
 	EquipmentNeeds[GoodName] -= Amount;
+}
+
+const FName& UUnit::GetUnitName() const
+{
+	return UnitDescription->UnitName;
 }
 

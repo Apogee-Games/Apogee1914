@@ -34,7 +34,11 @@ public:
 
 	const TMap<FName, int32>& GetEquipmentNeeds() const;
 
+	int32 GetUnitTypeEquipmentRequirement(const FName& GoodName) const;
+
 	void SupplyEquipment(const FName& GoodName, int32 Amount);
+
+	const FName& GetUnitName() const;
 	
 	// bool CanAccessProvince(UProvince* Province);
 
