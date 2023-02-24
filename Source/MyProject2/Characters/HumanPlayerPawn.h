@@ -88,7 +88,7 @@ private:
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
 	
-	TSharedPtr<FPawnState> PawnState;
+	TSharedPtr<FPawnState> PawnState = nullptr;
 	
 	/* Tag of country that current pawn controls */
 	FName RuledCountryTag;

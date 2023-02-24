@@ -21,7 +21,6 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
-	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
@@ -126,6 +125,8 @@ void AHumanPlayerPawn::BeginPlay()
 	InitProvinceDataWidget();
 	InitUnitTypesListWidget();
 	InitStorageGoodsListWidget();
+
+	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -286,8 +287,6 @@ void AHumanPlayerPawn::InitStorageGoodsListWidget()
 				Storage->AddStorageObserver(StorageGoodsListWidget);
 			}
 
-			StorageGoodsListWidget->AddToPlayerScreen();
-			
 			Widgets.Add(StorageGoodsListWidget);
 		}
 	}

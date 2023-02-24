@@ -56,7 +56,7 @@ bool FMapBrowsingPawnState::MustWidgetBeVisible(UUserWidget* Widget)
 
 bool FMapBrowsingPawnState::CanWidgetBeVisible(UUserWidget* Widget)
 {
-	return MustWidgetBeVisible(Widget);
+	return false;
 }
 
 FMapBrowsingPawnState::FMapBrowsingPawnState()
