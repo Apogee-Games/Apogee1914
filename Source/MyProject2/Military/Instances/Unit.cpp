@@ -3,26 +3,33 @@
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Military/Managers/UnitsRenderer.h"
 
-void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, const FName& ProvidedCountryOwnerTag,
+void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, const FName& ProvidedCountryOwnerTag,
                  UUnitsRenderer* ProvidedUnitsRenderer)
 {
-	Init(UnitDescription, ProvidedProvince, ProvidedCountryOwnerTag, ProvidedCountryOwnerTag, ProvidedUnitsRenderer);
+	Init(ProvidedUnitDescription, ProvidedProvince, ProvidedCountryOwnerTag, ProvidedCountryOwnerTag, ProvidedUnitsRenderer);
 }
 
-void UUnit::Init(const FUnitDescription* UnitDescription, UProvince* ProvidedProvince, const FName& ProvidedCountryOwnerTag,
+void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, const FName& ProvidedCountryOwnerTag,
              const FName& ProvidedCountryControllerTag, UUnitsRenderer* ProvidedUnitsRenderer)
 {
-	bCanTransportUnits = UnitDescription->CanTransport;
+	UnitDescription = ProvidedUnitDescription;
+
 	Province = ProvidedProvince;
-	CanAccessProvinceTypes = UnitDescription->CanAccessProvincesTypes;
+
 	UnitsRenderer = ProvidedUnitsRenderer;
+
 	CountryOwner = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvidedCountryOwnerTag);
 	CountryController = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvidedCountryControllerTag);
+
+	for (auto& [GoodName, GoodCount]: UnitDescription->EquipmentRequirements)
+	{
+		EquipmentNeeds.Add(GoodName, GoodCount);
+	}
 }
 
 bool UUnit::CanTransportUnits() const
 {
-	return bCanTransportUnits;
+	return UnitDescription->CanTransport;
 }
 
 void UUnit::AddTransportedUnit(UUnit* Unit)
@@ -47,10 +54,10 @@ UProvince* UUnit::GetPosition() const
 	return Province;
 }
 
-int UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
+int32 UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
 {
 	//TODO: Add additional logic for better estimation
-	int Result = 0;
+	int32 Result = 0;
 	for (const auto& Pair : Path)
 	{
 		Result += Pair.Value;
@@ -66,5 +73,15 @@ UCountry* UUnit::GetCountryOwner() const
 UCountry* UUnit::GetCountryController() const
 {
 	return CountryController;
+}
+
+const TMap<FName, int32>& UUnit::GetEquipmentNeeds() const
+{
+	return EquipmentNeeds;
+}
+
+void UUnit::SupplyEquipment(const FName& GoodName, int32 Amount)
+{
+	EquipmentNeeds[GoodName] -= Amount;
 }
 
