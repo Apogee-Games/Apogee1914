@@ -22,6 +22,8 @@ public:
 	UTexture2D* GetFlag() const;
 
 	UStorage* GetStorage() const;
+
+	TArray<UStorage*> GetStorages() const;
 	
 private:
 	FName Name;

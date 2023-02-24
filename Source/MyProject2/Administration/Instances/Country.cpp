@@ -41,9 +41,18 @@ UStorage* UCountry::GetStorage() const
 	return Storage;
 }
 
+TArray<UStorage*> UCountry::GetStorages() const
+{
+	return {Storage, LowerStrata->GetStorage(), MiddleStrata->GetStorage(), UpperStrata->GetStorage()};
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>();
+	LowerStrata->Init("LOW");
 	MiddleStrata = NewObject<UStrata>();
+	MiddleStrata->Init("MIDDLE");
 	UpperStrata = NewObject<UStrata>();
+	UpperStrata->Init("UPPER");
+	// TODO: Add proper initialization 
 }
