@@ -4,7 +4,7 @@
 #include "MyProject2/Military/Interfaces/Observers/UnitCreationObserver.h"
 #include "MyProject2/Military/Interfaces/Observers/UnitMovementObserver.h"
 #include "MyProject2/Military/Interfaces/Observers/UnitRemovalObserver.h"
-#include "MyProject2/Widgets/UnitInformationListWidget.h"
+#include "MyProject2/Widgets/Military/Units/UnitInformationListWidget.h"
 #include "UnitsRenderer.generated.h"
 
 UCLASS()

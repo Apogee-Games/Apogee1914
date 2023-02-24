@@ -5,28 +5,24 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
-#include "ProvinceData.generated.h"
+#include "ProvinceDataWidget.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class MYPROJECT2_API UProvinceData : public UUserWidget
+class MYPROJECT2_API UProvinceDataWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* ProvinceNameTextBlock;
+	UTextBlock* ProvinceNameTextBlock;
 	
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* PopulationNumberTextBlock;
+	UTextBlock* PopulationNumberTextBlock;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* StateNameTextBlock;
+	UTextBlock* StateNameTextBlock;
 	
-
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* ResourcesTextBlock;
+	UTextBlock* ResourcesTextBlock;
 
 	void SetProvinceName(const FName& ProvinceName) const;
 

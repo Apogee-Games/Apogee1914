@@ -11,7 +11,7 @@ void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 	MaxTimeSpeed = GameState->MaxTimeSpeed;
 	SpeedMultiplier = GameState->SpeedMultiplier;
 	
-	TimeControllerWidget = CreateWidget<UTimeController>(GetWorld(), GameState->TimeControllerClass);
+	TimeControllerWidget = CreateWidget<UTimeControllerWidget>(GetWorld(), GameState->TimeControllerClass);
 	TimeControllerWidget->BeginPlay();
 	TimeControllerWidget->AddToViewport();
 }

@@ -4,12 +4,11 @@
 #include "HumanPlayerPawn.h"
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
-#include "MyProject2/MousePosition.h"
-#include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
-#include "MyProject2/Administration/Managers/StateManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
+#include "StateMachine/MilitaryControlPawnState.h"
+#include "StateMachine/NoActionPawnState.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()
@@ -18,6 +17,13 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+
+	PawnState = FNoActionPawnState::GetInstance();
+}
+
+void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
+{
+	PawnState = ProvidedPawnState;
 }
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
@@ -27,6 +33,7 @@ void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 
 void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 {
+	PawnState = FMilitaryControlPawnState::GetInstance();
 	if (!IsShiftPressed)
 	{
 		SelectedUnits.Empty();
@@ -39,12 +46,28 @@ void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 
 void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 {
+	PawnState = FMilitaryControlPawnState::GetInstance();
 	if (!IsShiftPressed)
 	{
 		SelectedUnits.Empty();
 	}
 	SelectedUnits.Add(Unit);
 	// TODO: Add check for controlled country
+}
+
+void AHumanPlayerPawn::ClearSelectedUnits()
+{
+	SelectedUnits.Empty();
+}
+
+const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
+{
+	return SelectedUnits;
+}
+
+UProvinceDataWidget* AHumanPlayerPawn::GetProvinceDataWidget() const
+{
+	return ProvinceDataWidget;
 }
 
 void AHumanPlayerPawn::MoveUp(float Value)
@@ -59,58 +82,17 @@ void AHumanPlayerPawn::MoveRight(float Value)
 
 void AHumanPlayerPawn::LeftClick()
 {
-	USelectionMap* SelectionMap = GetWorld()->GetSubsystem<USelectionMap>();
-
-	const FVector Point = GetNormalizedPositionOnPlane();
-
-	UProvince* Province = SelectionMap->SelectProvince(FVector2D(Point.Y, Point.Z));
-
-	if (Province)
-	{
-		ProvinceDataWidget->SetProvinceName(Province->GetName());
-		ProvinceDataWidget->SetPopulationNumber(Province->GetPopulation()->GetPopulation());
-		ProvinceDataWidget->SetResources(Province->GetResources());
-
-		const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
-
-		if (State)
-		{
-			ProvinceDataWidget->SetStateName(State->GetName());
-		}
-	}
-
-	SelectedUnits.Empty();
+	PawnState = PawnState->LeftClick(this);
 }
 
 void AHumanPlayerPawn::RightClick()
 {
-	const FVector Point = GetNormalizedPositionOnPlane();
-
-	UProvince* To = GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(FVector2D(Point.Y, Point.Z));
-
-	for (const auto& Unit: SelectedUnits)
-	{
-		GetWorld()->GetSubsystem<UUnitsMover>()->MoveUnit(Unit, To);
-	}
+	PawnState = PawnState->RightClick(this);
 }
 
 void AHumanPlayerPawn::ShiftPressed()
 {
 	IsShiftPressed = true;
-}
-
-FVector AHumanPlayerPawn::GetNormalizedPositionOnPlane() const
-{
-	const FMousePosition MousePosition(GetWorld()->GetFirstPlayerController());
-	FVector Point = FMath::RayPlaneIntersection(MousePosition.GetMouseLocation(),
-	                                            MousePosition.GetMouseDirection(),
-	                                            Plane);
-
-	Point /= PlaneSize;
-
-	Point.Z = 1 - Point.Z;
-
-	return Point;
 }
 
 // Called when the game starts or when spawned
@@ -121,7 +103,7 @@ void AHumanPlayerPawn::BeginPlay()
 	if (IsLocallyControlled() && ProvinceDataWidgetClass)
 	{
 		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		ProvinceDataWidget = CreateWidget<UProvinceData>(PlayerController, ProvinceDataWidgetClass);
+		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(PlayerController, ProvinceDataWidgetClass);
 		if (ProvinceDataWidget)
 		{
 			ProvinceDataWidget->AddToPlayerScreen();
@@ -138,7 +120,6 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 	Super::EndPlay(EndPlayReason);
 }
-
 
 // Called every frame
 void AHumanPlayerPawn::Tick(float DeltaTime)
