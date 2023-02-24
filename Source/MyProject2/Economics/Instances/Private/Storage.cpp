@@ -1,6 +1,16 @@
 
 #include "MyProject2/Economics/Instances/Public/Storage.h"
 
+void UStorage::Init(const EStorageType& ProvidedType)
+{
+	Type = ProvidedType;
+}
+
+void UStorage::Init(const FName& StrataType)
+{
+	Type = StrataTypeToStorageType[StrataType];
+}
+
 void UStorage::Supply(const FName& Good, const int32 Amount)
 {
 	if (!Goods.Contains(Good))

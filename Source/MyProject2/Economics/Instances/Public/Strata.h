@@ -26,6 +26,5 @@ private:
 	UMarket* StrataMarket;
 
 	UPROPERTY()
-	FName Type; 
-	
+	FName Type;
 };

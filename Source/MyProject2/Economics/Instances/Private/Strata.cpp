@@ -8,6 +8,7 @@ void UStrata::Init()
 {
 	StrataMarket = NewObject<UMarket>();
 	Storage = NewObject<UStorage>();
+	Storage->Init(Type);
 }
 
 UStorage* UStrata::GetStorage() const
