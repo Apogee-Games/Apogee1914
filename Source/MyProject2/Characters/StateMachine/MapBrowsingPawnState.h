@@ -1,7 +1,7 @@
 #pragma once
 #include "PawnState.h"
 
-class FNoActionPawnState: public FPawnState
+class FMapBrowsingPawnState: public FPawnState
 {
 public:
 
@@ -15,7 +15,7 @@ public:
 	
 	virtual bool CanWidgetBeVisible(UUserWidget* Widget) override;
 private:
-	FNoActionPawnState();
+	FMapBrowsingPawnState();
 	
-	inline static TSharedPtr<FNoActionPawnState> Instance;
+	inline static TSharedPtr<FMapBrowsingPawnState> Instance;
 };

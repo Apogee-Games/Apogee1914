@@ -1,4 +1,4 @@
-#include "NoActionPawnState.h"
+#include "MapBrowsingPawnState.h"
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 
 #include "MyProject2/Administration/Instances/State.h"
@@ -6,16 +6,16 @@
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Utils/LocationUtils.h"
 
-TSharedPtr<FPawnState> FNoActionPawnState::GetInstance()
+TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 {
 	if (!Instance)
 	{
-		Instance = TSharedPtr<FNoActionPawnState>(new FNoActionPawnState);
+		Instance = TSharedPtr<FMapBrowsingPawnState>(new FMapBrowsingPawnState);
 	}
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FNoActionPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
 
@@ -44,21 +44,21 @@ TSharedPtr<FPawnState> FNoActionPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FNoActionPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMapBrowsingPawnState::RightClick(AHumanPlayerPawn* Pawn)
 {
 	return Instance;
 }
 
-bool FNoActionPawnState::MustWidgetBeVisible(UUserWidget* Widget)
+bool FMapBrowsingPawnState::MustWidgetBeVisible(UUserWidget* Widget)
 {
 	return dynamic_cast<UProvinceDataWidget*>(Widget) != nullptr;
 }
 
-bool FNoActionPawnState::CanWidgetBeVisible(UUserWidget* Widget)
+bool FMapBrowsingPawnState::CanWidgetBeVisible(UUserWidget* Widget)
 {
 	return MustWidgetBeVisible(Widget);
 }
 
-FNoActionPawnState::FNoActionPawnState()
+FMapBrowsingPawnState::FMapBrowsingPawnState()
 {
 }

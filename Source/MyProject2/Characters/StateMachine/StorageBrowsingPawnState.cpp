@@ -1,6 +1,6 @@
 #include "StorageBrowsingPawnState.h"
 
-#include "NoActionPawnState.h"
+#include "MapBrowsingPawnState.h"
 #include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
 
 
@@ -16,12 +16,12 @@ TSharedPtr<FPawnState> FStorageBrowsingPawnState::GetInstance()
 
 TSharedPtr<FPawnState> FStorageBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
-	return FNoActionPawnState::GetInstance()->LeftClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->LeftClick(Pawn);
 }
 
 TSharedPtr<FPawnState> FStorageBrowsingPawnState::RightClick(AHumanPlayerPawn* Pawn)
 {
-	return FNoActionPawnState::GetInstance()->RightClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);
 }
 
 bool FStorageBrowsingPawnState::MustWidgetBeVisible(UUserWidget* Widget)

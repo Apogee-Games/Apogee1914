@@ -1,6 +1,6 @@
 #include "MilitaryControlPawnState.h"
 
-#include "NoActionPawnState.h"
+#include "MapBrowsingPawnState.h"
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
@@ -18,7 +18,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::GetInstance()
 TSharedPtr<FPawnState> FMilitaryControlPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
 	Pawn->ClearSelectedUnits();
-	return FNoActionPawnState::GetInstance()->LeftClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->LeftClick(Pawn);
 }
 
 TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(AHumanPlayerPawn* Pawn)

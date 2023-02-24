@@ -9,7 +9,7 @@
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
 #include "StateMachine/MilitaryControlPawnState.h"
-#include "StateMachine/NoActionPawnState.h"
+#include "StateMachine/MapBrowsingPawnState.h"
 #include "StateMachine/StorageBrowsingPawnState.h"
 #include "StateMachine/UnitCreationPawnState.h"
 
@@ -21,7 +21,7 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
-	SetPawnState(FNoActionPawnState::GetInstance());
+	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
@@ -165,7 +165,7 @@ void AHumanPlayerPawn::SetUnitCreationState()
 {
 	if (PawnState == FUnitCreationPawnState::GetInstance())
 	{
-		 SetPawnState(FNoActionPawnState::GetInstance());
+		 SetPawnState(FMapBrowsingPawnState::GetInstance());
 	} else {
 		SetPawnState(FUnitCreationPawnState::GetInstance());
 	}
@@ -175,7 +175,7 @@ void AHumanPlayerPawn::SetStorageBrowsingState()
 {
 	if (PawnState == FStorageBrowsingPawnState::GetInstance())
 	{
-		SetPawnState(FNoActionPawnState::GetInstance());
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
 	} else {
 		SetPawnState(FStorageBrowsingPawnState::GetInstance());
 	}
