@@ -3,18 +3,33 @@
 		"Name": "Unit1",
 		"UnitName": "Unit1",
 		"CanTransport": true,
-		"CanAccessProvincesTypes": ["Land"]
+		"CanAccessProvincesTypes": ["Land"],
+		"EquipmentRequirements": {
+			"Iron": 50,
+			"Coal": 50
+		},
+		"ManpowerRequirements": 500
 	},
 	{
 		"Name": "Unit2",
 		"UnitName": "Unit2",
 		"CanTransport": false,
-		"CanAccessProvincesTypes": ["Land"]
+		"CanAccessProvincesTypes": ["Land"],
+		"EquipmentRequirements": {
+			"Iron": 100,
+			"Coal": 100
+		},
+		"ManpowerRequirements": 1000
 	},
 	{
 		"Name": "Unit3",
 		"UnitName": "Unit3",
 		"CanTransport": false,
-		"CanAccessProvincesTypes": ["Land"]
+		"CanAccessProvincesTypes": ["Land"],
+		"EquipmentRequirements": {
+			"Iron": 200,
+			"Coal": 200
+		},
+		"ManpowerRequirements": 2000
 	}
 ]
