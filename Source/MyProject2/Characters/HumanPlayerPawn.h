@@ -127,6 +127,8 @@ private:
 
 	void SetUnitCreationState();
 
+	void SetStorageBrowsingState();
+
 	void UpdateWidgetsVisibility();
 
 	void Move(float DeltaTime);

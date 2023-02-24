@@ -10,6 +10,7 @@
 #include "MyProject2/Military/Managers/UnitsMover.h"
 #include "StateMachine/MilitaryControlPawnState.h"
 #include "StateMachine/NoActionPawnState.h"
+#include "StateMachine/StorageBrowsingPawnState.h"
 #include "StateMachine/UnitCreationPawnState.h"
 
 // Sets default values
@@ -25,6 +26,7 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 {
+	if (PawnState == ProvidedPawnState) return;
 	PawnState = ProvidedPawnState;
 	UpdateWidgetsVisibility();
 }
@@ -169,6 +171,17 @@ void AHumanPlayerPawn::SetUnitCreationState()
 	}
 }
 
+void AHumanPlayerPawn::SetStorageBrowsingState()
+{
+	if (PawnState == FStorageBrowsingPawnState::GetInstance())
+	{
+		SetPawnState(FNoActionPawnState::GetInstance());
+	} else {
+		SetPawnState(FStorageBrowsingPawnState::GetInstance());
+	}
+}
+
+
 void AHumanPlayerPawn::UpdateWidgetsVisibility()
 {
 	for (const auto& Widget: Widgets)
@@ -293,4 +306,5 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Pressed, this, &AHumanPlayerPawn::ShiftPressed);
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Released, this, &AHumanPlayerPawn::ShiftReleased);
 	PlayerInputComponent->BindAction(TEXT("UKey"), IE_Pressed, this, &AHumanPlayerPawn::SetUnitCreationState);
+	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
 }
