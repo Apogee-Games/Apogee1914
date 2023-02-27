@@ -12,7 +12,9 @@ class UUnitsFactory : public UWorldSubsystem, public IUnitCreationObservable, pu
 {
 	GENERATED_BODY()
 public:
-	virtual UUnit* Create(FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* Renderer);
+	virtual UUnit* Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
+	
+	virtual UUnit* Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* Renderer);
 
 	virtual void Remove(UUnit* Unit);
 

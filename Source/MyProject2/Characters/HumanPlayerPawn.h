@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
+#include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -40,7 +41,12 @@ public:
 
 	UProvinceDataWidget* GetProvinceDataWidget() const;
 
-protected:
+	void SelectUnitDescription(const FUnitDescription* UnitDescription);
+
+	const FUnitDescription* GetSelectedUnitDescription() const;
+
+	const FName& GetRuledCountryTag() const;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -76,11 +82,11 @@ protected:
 	UPROPERTY(EditAnywhere)
 	double MaxZPosition = 120;
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
-
 private:
 
+	UPROPERTY()
+	TArray<UUserWidget*> Widgets;
+	
 	TSharedPtr<FPawnState> PawnState;
 	
 	/* Tag of country that current pawn controls */
@@ -91,8 +97,14 @@ private:
 	UPROPERTY()
 	UProvinceDataWidget* ProvinceDataWidget;
 
+	UPROPERTY()
+	UUnitTypesListWidget* UnitTypesListWidget;
+
+	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
 
+	const FUnitDescription* SelectedUnitDescription;
+	
 	FVector MovementDirection = FVector(0, 0, 0);
 
 	FRotator RotationDirection = FRotator(0, 0, 0);
@@ -109,9 +121,17 @@ private:
 	
 	void ShiftReleased();
 
+	void SetUnitCreationState();
+
+	void UpdateWidgetsVisibility();
+
 	void Move(float DeltaTime);
 
 	void Scroll(float Value);
 
 	bool IsInside(const FVector& Position) const;
+
+	void InitProvinceDataWidget();
+
+	void InitUnitTypesListWidget();
 };

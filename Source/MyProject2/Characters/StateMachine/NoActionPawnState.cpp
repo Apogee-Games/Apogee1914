@@ -1,4 +1,5 @@
 #include "NoActionPawnState.h"
+#include "MyProject2/Characters/HumanPlayerPawn.h"
 
 #include "MyProject2/Administration/Instances/State.h"
 #include "MyProject2/Administration/Managers/StateManager.h"
@@ -48,8 +49,14 @@ TSharedPtr<FPawnState> FNoActionPawnState::RightClick(AHumanPlayerPawn* Pawn)
 	return Instance;
 }
 
-FNoActionPawnState::~FNoActionPawnState()
+bool FNoActionPawnState::MustWidgetBeVisible(UUserWidget* Widget)
 {
+	return dynamic_cast<UProvinceDataWidget*>(Widget) != nullptr;
+}
+
+bool FNoActionPawnState::CanWidgetBeVisible(UUserWidget* Widget)
+{
+	return MustWidgetBeVisible(Widget);
 }
 
 FNoActionPawnState::FNoActionPawnState()
