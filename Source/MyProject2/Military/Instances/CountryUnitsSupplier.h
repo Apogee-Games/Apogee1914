@@ -2,21 +2,23 @@
 #include "Unit.h"
 #include "MyProject2/Economics/Instances/Public/Storage.h"
 
-#include "CountryUnitsSupplier.generated.h"
+class UUnitsSupplyController;
 
-UCLASS()
-class UCountryUnitsSupplier: public UObject
+class FCountryUnitsSupplier
 {
-	GENERATED_BODY()	
 public:
 
-	void Init(UStorage* ProvidedStorage);
+	FCountryUnitsSupplier(UUnitsSupplyController* Parent, UStorage* Storage);
 
 	void Supply();
 
 	void AddUnit(UUnit* Unit);
 	
 private:
+
+	UPROPERTY();
+	UUnitsSupplyController* Parent;
+
 	UPROPERTY()
 	UStorage* Storage;
 

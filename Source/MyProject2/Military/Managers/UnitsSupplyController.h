@@ -5,6 +5,7 @@
 
 #include "UnitsSupplyController.generated.h"
 
+
 UCLASS()
 class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserver, public IUnitSupplyObservable
 {
@@ -17,6 +18,5 @@ public:
 	void Supply();
 
 private:
-	UPROPERTY()
-	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;
+	TMap<UCountry*, FCountryUnitsSupplier> CountrySupplier;
 };

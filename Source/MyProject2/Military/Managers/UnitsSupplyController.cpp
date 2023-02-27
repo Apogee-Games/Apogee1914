@@ -4,14 +4,15 @@
 #include "MyProject2/InGameTime.h"
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 
+
+
 void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 
 	for (auto& [CountryTag, Country]: GetWorld()->GetSubsystem<UCountriesManager>()->GetCountryMap())
 	{
-		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(GetWorld());
-		Supplier->Init(Country->GetStorage());
+		FCountryUnitsSupplier Supplier = FCountryUnitsSupplier(this, Country->GetStorage());
 		CountrySupplier.Add(Country, Supplier);
 	}
 
@@ -21,13 +22,13 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 
 void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)
 {
-	CountrySupplier[Unit->GetCountryController()]->AddUnit(Unit);
+	CountrySupplier[Unit->GetCountryController()].AddUnit(Unit);
 }
 
 void UUnitsSupplyController::Supply()
 {
 	for (auto& [Country, Supplier]: CountrySupplier)
 	{
-		Supplier->Supply();
+		Supplier.Supply();
 	}
 }

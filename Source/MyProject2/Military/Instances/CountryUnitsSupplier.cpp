@@ -2,12 +2,12 @@
 
 #include "MyProject2/Military/Managers/UnitsSupplyController.h"
 
-void UCountryUnitsSupplier::Init(UStorage* ProvidedStorage)
+FCountryUnitsSupplier::FCountryUnitsSupplier(UUnitsSupplyController* Parent, UStorage* Storage): Parent(Parent), Storage(Storage)
 {
-	Storage = ProvidedStorage;
+
 }
 
-void UCountryUnitsSupplier::Supply()
+void FCountryUnitsSupplier::Supply()
 {
 	for (const auto& Unit: Units)
 	{
@@ -15,12 +15,12 @@ void UCountryUnitsSupplier::Supply()
 	}
 }
 
-void UCountryUnitsSupplier::AddUnit(UUnit* Unit)
+void FCountryUnitsSupplier::AddUnit(UUnit* Unit)
 {
 	Units.Add(Unit);
 }
 
-void UCountryUnitsSupplier::Supply(UUnit* Unit)
+void FCountryUnitsSupplier::Supply(UUnit* Unit)
 {
 	// TODO: Add manpower supply
 	// TODO: Add system to tune this by a player
@@ -37,6 +37,6 @@ void UCountryUnitsSupplier::Supply(UUnit* Unit)
 
 	if (IsUnitUpdated)
 	{
-		GetWorld()->GetSubsystem<UUnitsSupplyController>()->NotifyUnitSupply(Unit);
+		Parent->NotifyUnitSupply(Unit);
 	}
 }
