@@ -4,11 +4,13 @@
 #include "HumanPlayerPawn.h"
 #include "EngineUtils.h"
 #include "MyPlayerController.h"
+#include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
 #include "StateMachine/MilitaryControlPawnState.h"
-#include "StateMachine/NoActionPawnState.h"
+#include "StateMachine/MapBrowsingPawnState.h"
+#include "StateMachine/StorageBrowsingPawnState.h"
 #include "StateMachine/UnitCreationPawnState.h"
 
 // Sets default values
@@ -19,11 +21,11 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
-	SetPawnState(FNoActionPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 {
+	if (PawnState == ProvidedPawnState) return;
 	PawnState = ProvidedPawnState;
 	UpdateWidgetsVisibility();
 }
@@ -122,6 +124,9 @@ void AHumanPlayerPawn::BeginPlay()
 
 	InitProvinceDataWidget();
 	InitUnitTypesListWidget();
+	InitStorageGoodsListWidget();
+
+	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -134,6 +139,11 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	if (UnitTypesListWidget)
 	{
 		UnitTypesListWidget->RemoveFromParent();
+	}
+
+	if (StorageGoodsListWidget)
+	{
+		StorageGoodsListWidget->RemoveFromParent();
 	}
 
 	Super::EndPlay(EndPlayReason);
@@ -156,11 +166,22 @@ void AHumanPlayerPawn::SetUnitCreationState()
 {
 	if (PawnState == FUnitCreationPawnState::GetInstance())
 	{
-		 SetPawnState(FNoActionPawnState::GetInstance());
+		 SetPawnState(FMapBrowsingPawnState::GetInstance());
 	} else {
 		SetPawnState(FUnitCreationPawnState::GetInstance());
 	}
 }
+
+void AHumanPlayerPawn::SetStorageBrowsingState()
+{
+	if (PawnState == FStorageBrowsingPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	} else {
+		SetPawnState(FStorageBrowsingPawnState::GetInstance());
+	}
+}
+
 
 void AHumanPlayerPawn::UpdateWidgetsVisibility()
 {
@@ -249,6 +270,28 @@ void AHumanPlayerPawn::InitUnitTypesListWidget()
 	}
 }
 
+void AHumanPlayerPawn::InitStorageGoodsListWidget()
+{
+	const TSubclassOf<UStorageGoodsListWidget> StorageGoodsListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->StorageGoodsListWidgetClass;
+	
+	if (IsLocallyControlled() && StorageGoodsListWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(PlayerController, StorageGoodsListWidgetClass);
+		if (StorageGoodsListWidget)
+		{
+			const UCountry* Country = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
+
+			for (const auto& Storage: Country->GetStorages())
+			{
+				Storage->AddStorageObserver(StorageGoodsListWidget);
+			}
+
+			Widgets.Add(StorageGoodsListWidget);
+		}
+	}
+}
+
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -262,4 +305,5 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Pressed, this, &AHumanPlayerPawn::ShiftPressed);
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Released, this, &AHumanPlayerPawn::ShiftReleased);
 	PlayerInputComponent->BindAction(TEXT("UKey"), IE_Pressed, this, &AHumanPlayerPawn::SetUnitCreationState);
+	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
 }

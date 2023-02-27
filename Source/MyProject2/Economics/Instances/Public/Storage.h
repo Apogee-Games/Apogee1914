@@ -1,13 +1,27 @@
 #pragma once
-#include "MyProject2/Economics/Description/GoodDescription.h"
+#include "MyProject2/Economics/Interfaces/Observables/StorageObservable.h"
 
 #include "Storage.generated.h"
 
+UENUM()
+enum class EStorageType: uint8
+{
+	Country,
+	LowerStrata,
+	MiddleStrata,
+	UpperStrata
+};
+
+
 UCLASS()
-class UStorage: public UObject
+class UStorage: public UObject, public IStorageObservable
 {
 	GENERATED_BODY()
 public:
+
+	void Init(EStorageType ProvidedType);
+	
+	void Init(const FName& StrataType);
 
 	void Supply(const FName& Good, const int32 Amount);
 
@@ -19,4 +33,12 @@ public:
 
 private:
 	TMap<FName, int32> Goods;
+
+	EStorageType Type = EStorageType::Country;
+	
+	inline static TMap<FName, EStorageType> StrataTypeToStorageType = {
+		{"LOW", EStorageType::LowerStrata},
+		{"MIDDLE", EStorageType::MiddleStrata},
+		{"UPPER", EStorageType::UpperStrata}
+	};
 };

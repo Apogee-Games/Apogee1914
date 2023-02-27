@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
+#include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
@@ -87,7 +88,7 @@ private:
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
 	
-	TSharedPtr<FPawnState> PawnState;
+	TSharedPtr<FPawnState> PawnState = nullptr;
 	
 	/* Tag of country that current pawn controls */
 	FName RuledCountryTag;
@@ -99,6 +100,9 @@ private:
 
 	UPROPERTY()
 	UUnitTypesListWidget* UnitTypesListWidget;
+
+	UPROPERTY()
+	UStorageGoodsListWidget* StorageGoodsListWidget;
 
 	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
@@ -123,6 +127,8 @@ private:
 
 	void SetUnitCreationState();
 
+	void SetStorageBrowsingState();
+
 	void UpdateWidgetsVisibility();
 
 	void Move(float DeltaTime);
@@ -134,4 +140,6 @@ private:
 	void InitProvinceDataWidget();
 
 	void InitUnitTypesListWidget();
+
+	void InitStorageGoodsListWidget();
 };

@@ -1,6 +1,6 @@
 #include "UnitCreationPawnState.h"
 
-#include "NoActionPawnState.h"
+#include "MapBrowsingPawnState.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 #include "MyProject2/Military/Managers/UnitsFactory.h"
@@ -33,7 +33,7 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 TSharedPtr<FPawnState> FUnitCreationPawnState::RightClick(AHumanPlayerPawn* Pawn)
 {
-	return FNoActionPawnState::GetInstance()->RightClick(Pawn);	
+	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);	
 }
 
 bool FUnitCreationPawnState::MustWidgetBeVisible(UUserWidget* Widget)
