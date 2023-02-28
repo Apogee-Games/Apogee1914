@@ -1,9 +1,9 @@
 #pragma once
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 
 class IUnitCreationObserver
 {
 public:
 	virtual ~IUnitCreationObserver() = default;
-	virtual void UnitIsCreated(UUnit* Unit) = 0;
+	virtual void UnitIsCreated(FUnit* Unit) = 0;
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 
 #include "UnitSupplyWidget.generated.h"
 
@@ -17,7 +17,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* UnitNeedsTextBlock;
 	
-	void Init(UUnit* Unit);
+	void Init(FUnit* Unit);
 	
-	void UnitWasSupplied(UUnit* Unit);
+	void UnitWasSupplied(FUnit* Unit);
 };

@@ -3,7 +3,7 @@
 #include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "UnitInformationWidget.generated.h"
 
 UCLASS()
@@ -22,15 +22,14 @@ public:
 
 	void Init();
 	
-	void AddUnit(UUnit* Unit);
+	void AddUnit(FUnit* Unit);
 
-	void RemoveUnit(UUnit* Unit);
+	void RemoveUnit(FUnit* Unit);
 
 	bool IsEmpty() const;
 	
 private:
-	UPROPERTY()
-	TArray<UUnit*> Units;
+	TArray<FUnit*> Units;
 
 	UFUNCTION()
 	void OnClicked();

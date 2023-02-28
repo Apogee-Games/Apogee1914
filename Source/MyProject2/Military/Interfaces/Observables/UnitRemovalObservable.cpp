@@ -1,6 +1,6 @@
 #include "UnitRemovalObservable.h"
 
-void IUnitRemovalObservable::NotifyUnitRemoval(UUnit* Unit)
+void IUnitRemovalObservable::NotifyUnitRemoval(FUnit* Unit)
 {
 	for (auto& Observer: Observers)
 	{

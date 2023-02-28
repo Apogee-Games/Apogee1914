@@ -4,7 +4,7 @@
 class IUnitCreationObservable
 {
 public:
-	void NotifyUnitCreation(UUnit* Unit);
+	void NotifyUnitCreation(FUnit* Unit);
 	
 	bool AddUnitCreationObserver(IUnitCreationObserver* Observer);
 	

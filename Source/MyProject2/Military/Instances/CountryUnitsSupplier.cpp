@@ -15,12 +15,12 @@ void FCountryUnitsSupplier::Supply()
 	}
 }
 
-void FCountryUnitsSupplier::AddUnit(UUnit* Unit)
+void FCountryUnitsSupplier::AddUnit(FUnit* Unit)
 {
 	Units.Add(Unit);
 }
 
-void FCountryUnitsSupplier::Supply(UUnit* Unit)
+void FCountryUnitsSupplier::Supply(FUnit* Unit)
 {
 	// TODO: Add manpower supply
 	// TODO: Add system to tune this by a player

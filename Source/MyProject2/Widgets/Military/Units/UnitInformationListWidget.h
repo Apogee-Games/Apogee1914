@@ -4,7 +4,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/GridPanel.h"
 #include "Components/Image.h"
-#include "MyProject2/Military/Instances/Unit.h"
 #include "UnitInformationListWidget.generated.h"
 
 
@@ -19,13 +18,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UUnitInformationWidget> UnitInformationWidgetClass;
 	
-	void AddUnit(UUnit* Unit);
+	void AddUnit(FUnit* Unit);
 
-	void RemoveUnit(UUnit* Unit);
+	void RemoveUnit(FUnit* Unit);
 	
 private:
 	UPROPERTY()
 	TMap<UCountry*, UUnitInformationWidget*> Widgets;
 
-	void CheckWidgetsMapState(UUnit* Unit);
+	void CheckWidgetsMapState(FUnit* Unit);
 };

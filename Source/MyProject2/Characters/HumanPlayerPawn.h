@@ -6,7 +6,6 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
-#include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
 #include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
@@ -33,13 +32,13 @@ public:
 	// Sets tag of country controlled by this Pawn
 	void SetRuledCountryTag(const FName& NewRuledCountryTag);
 
-	void SelectUnits(const TArray<UUnit*>& Units);
+	void SelectUnits(const TArray<FUnit*>& Units);
 
-	void SelectUnit(UUnit* Unit);
+	void SelectUnit(FUnit* Unit);
 
 	void ClearSelectedUnits();
 
-	const TArray<UUnit*>& GetSelectedUnits() const;
+	const TArray<FUnit*>& GetSelectedUnits() const;
 
 	UProvinceDataWidget* GetProvinceDataWidget() const;
 
@@ -108,8 +107,7 @@ private:
 	UPROPERTY()
 	UUnitsSupplyListWidget* UnitsSupplyListWidget;
 
-	UPROPERTY()
-	TArray<UUnit*> SelectedUnits;
+	TArray<FUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
 	

@@ -1,6 +1,6 @@
 #pragma once
 #include "MyProject2/Maps/Graph.h"
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitMovementObservable.h"
 
 #include "UnitsMover.generated.h"
@@ -18,22 +18,22 @@ public:
 
 	void SetGraph(FGraph* NewGraph);
 
-	virtual void MoveUnit(UUnit* Unit, UProvince* To);
+	virtual void MoveUnit(FUnit* Unit, UProvince* To);
 
-	virtual int32 Estimate(UUnit* Unit, UProvince* To);
+	virtual int32 Estimate(FUnit* Unit, UProvince* To);
 
 	virtual void DoUnitMovement();
 	
 private:
 	FGraph* Graph = nullptr;
 
-	TMap<UUnit*, TArray<TPair<UProvince*, int32>>> Paths;
+	TMap<FUnit*, TArray<TPair<UProvince*, int32>>> Paths;
 
-	TMap<UUnit*, int32> Positions;
+	TMap<FUnit*, int32> Positions;
 
-	TQueue<UUnit*> UnitsArrived;
+	TQueue<FUnit*> UnitsArrived;
 
-	void MoveUnit(UUnit* Unit, int32 Position);
+	void MoveUnit(FUnit* Unit, int32 Position);
 
 	void RemoveArrivedUnit();
 

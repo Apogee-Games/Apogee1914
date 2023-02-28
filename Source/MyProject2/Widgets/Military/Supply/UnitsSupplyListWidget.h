@@ -2,6 +2,7 @@
 #include "UnitSupplyWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/GridPanel.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "MyProject2/Military/Interfaces/Observers/UnitCreationObserver.h"
 #include "MyProject2/Military/Interfaces/Observers/UnitSupplyObserver.h"
 
@@ -21,13 +22,12 @@ public:
 
 	void Init();
 	
-	virtual void UnitIsCreated(UUnit* Unit) override;
+	virtual void UnitIsCreated(FUnit* Unit) override;
 	
-	virtual void UnitIsSupplied(UUnit* Unit) override;
+	virtual void UnitIsSupplied(FUnit* Unit) override;
 
 private:
-	UPROPERTY()
-	TMap<UUnit*, UUnitSupplyWidget*> Widgets;
+	TMap<FUnit*, UUnitSupplyWidget*> Widgets;
 
 	int Count = 0;
 };

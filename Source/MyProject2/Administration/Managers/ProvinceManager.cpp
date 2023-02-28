@@ -1,6 +1,7 @@
 ﻿#include "ProvinceManager.h"
 
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
+
 
 void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -30,7 +31,7 @@ const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 	return ProvincesArray;
 }
 
-void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
+void UProvinceManager::UnitMovedIn(UProvince* Province, FUnit* Unit)
 {
 	if (Province->GetCountryController() != Unit->GetCountryController())
 	{

@@ -9,7 +9,7 @@ void UUnitsSupplyListWidget::Init()
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
 }
 
-void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
+void UUnitsSupplyListWidget::UnitIsCreated(FUnit* Unit)
 {
 	UUnitSupplyWidget* Widget = CreateWidget<UUnitSupplyWidget>(GetWorld(), UnitSupplyWidgetClass);
 	Widget->Init(Unit);
@@ -18,7 +18,7 @@ void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
 	Count++;
 }
 
-void UUnitsSupplyListWidget::UnitIsSupplied(UUnit* Unit)
+void UUnitsSupplyListWidget::UnitIsSupplied(FUnit* Unit)
 {
 	Widgets[Unit]->UnitWasSupplied(Unit);
 }

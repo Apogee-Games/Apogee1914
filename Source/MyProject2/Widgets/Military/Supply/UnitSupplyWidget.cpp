@@ -1,12 +1,12 @@
 #include "UnitSupplyWidget.h"
 
-void UUnitSupplyWidget::Init(UUnit* Unit)
+void UUnitSupplyWidget::Init(FUnit* Unit)
 {
 	UnitNameTextBlock->SetText(FText::FromName(Unit->GetUnitName()));
 	UnitWasSupplied(Unit);
 }
 
-void UUnitSupplyWidget::UnitWasSupplied(UUnit* Unit)
+void UUnitSupplyWidget::UnitWasSupplied(FUnit* Unit)
 {
 	FString Result = "";
 	for (const auto& [GoodName, GoodCount]: Unit->GetEquipmentNeeds())

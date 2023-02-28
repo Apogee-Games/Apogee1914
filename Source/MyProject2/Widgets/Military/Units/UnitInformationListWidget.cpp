@@ -1,19 +1,19 @@
 #include "UnitInformationListWidget.h"
 #include "UnitInformationWidget.h"
 
-void UUnitInformationListWidget::AddUnit(UUnit* Unit)
+void UUnitInformationListWidget::AddUnit(FUnit* Unit)
 {
 	CheckWidgetsMapState(Unit);
 	Widgets[Unit->GetCountryController()]->AddUnit(Unit);
 }
 
-void UUnitInformationListWidget::RemoveUnit(UUnit* Unit)
+void UUnitInformationListWidget::RemoveUnit(FUnit* Unit)
 {
 	Widgets[Unit->GetCountryController()]->RemoveUnit(Unit);
 	CheckWidgetsMapState(Unit);
 }
 
-void UUnitInformationListWidget::CheckWidgetsMapState(UUnit* Unit)
+void UUnitInformationListWidget::CheckWidgetsMapState(FUnit* Unit)
 {
 	if (!Widgets.Contains(Unit->GetCountryController()))
 	{

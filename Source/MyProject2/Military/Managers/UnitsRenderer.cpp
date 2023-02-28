@@ -8,7 +8,7 @@
 #include "MyProject2/Characters/UnitActor.h"
 #include "MyProject2/Maps/Objects/ObjectMap.h"
 #include "MyProject2/Maps/Precalculations/ProvincesMap.h"
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 
 void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -24,18 +24,18 @@ void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
 	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UUnitsRenderer::Init);
 }
 
-void UUnitsRenderer::UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To)
+void UUnitsRenderer::UnitIsMoved(FUnit* Unit, UProvince* From, UProvince* To)
 {
 	Actors[From]->RemoveUnit(Unit);
 	Actors[To]->AddUnit(Unit);
 }
 
-void UUnitsRenderer::UnitIsCreated(UUnit* Unit)
+void UUnitsRenderer::UnitIsCreated(FUnit* Unit)
 {
 	Actors[Unit->GetPosition()]->AddUnit(Unit);
 }
 
-void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
+void UUnitsRenderer::UnitIsRemoved(FUnit* Unit)
 {
 	Actors[Unit->GetPosition()]->RemoveUnit(Unit);
 }

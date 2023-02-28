@@ -13,8 +13,6 @@
 #include "Characters/AIPlayerPawn.h"
 #include "Economics/Managers/Public/BuildingManager.h"
 #include "Events/EventInstancesController.h"
-#include "Military/Instances/Unit.h"
-#include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsMover.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()

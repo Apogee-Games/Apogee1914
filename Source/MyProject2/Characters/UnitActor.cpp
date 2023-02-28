@@ -1,7 +1,7 @@
 #include "UnitActor.h"
 
 #include "Components/WidgetComponent.h"
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "MyProject2/Widgets/Military/Units/UnitInformationListWidget.h"
 
 AUnitActor::AUnitActor()
@@ -31,7 +31,7 @@ void AUnitActor::Init(const FVector3d& ObjectScale, const FVector3d& Position, U
 	Widget->SetVisibility(ESlateVisibility::Hidden);
 }
 
-void AUnitActor::AddUnit(UUnit* Unit)
+void AUnitActor::AddUnit(FUnit* Unit)
 {
 	Units.Add(Unit);
 
@@ -40,7 +40,7 @@ void AUnitActor::AddUnit(UUnit* Unit)
 	Widget->AddUnit(Unit);
 }
 
-void AUnitActor::RemoveUnit(UUnit* Unit)
+void AUnitActor::RemoveUnit(FUnit* Unit)
 {
 	Units.Remove(Unit);
 

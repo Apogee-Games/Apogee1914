@@ -1,6 +1,6 @@
 #include "UnitMovementObservable.h"
 
-void IUnitMovementObservable::NotifyUnitMovement(UUnit* Unit, UProvince* From, UProvince* To)
+void IUnitMovementObservable::NotifyUnitMovement(FUnit* Unit, UProvince* From, UProvince* To)
 {
 	for (auto& Observer: Observers)
 	{
