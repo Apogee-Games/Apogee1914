@@ -9,6 +9,7 @@
 #include "Widgets/Economics/StorageGoodsListWidget.h"
 #include "Widgets/Events/EventWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
+#include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
 #include "Widgets/Military/Units/UnitInformationListWidget.h"
 
@@ -22,6 +23,10 @@ class MYPROJECT2_API AMyGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 public:
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUnitInstancesListDescriptionWidget> UnitInstancesListDescriptionWidgetClass;
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass;
 
