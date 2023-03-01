@@ -1,8 +1,12 @@
 #include "MapBrowsingPawnState.h"
+
+#include "MyProject2/MyProject2GameModeBase.h"
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 
 #include "MyProject2/Administration/Instances/State.h"
 #include "MyProject2/Administration/Managers/StateManager.h"
+#include "MyProject2/Characters/HumanPlayerHUD.h"
+#include "MyProject2/Characters/MyPlayerController.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Utils/LocationUtils.h"
 
@@ -25,7 +29,9 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 	if (Province)
 	{
-		const UProvinceDataWidget* ProvinceDataWidget = Pawn->GetProvinceDataWidget();
+
+		const AHumanPlayerHUD* HUD = Pawn->GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
+		const UProvinceDataWidget* ProvinceDataWidget = HUD->GetProvinceDataWidget();
 		
 		ProvinceDataWidget->SetProvinceName(Province->GetName());
 		ProvinceDataWidget->SetPopulationNumber(Province->GetPopulation()->GetPopulation());

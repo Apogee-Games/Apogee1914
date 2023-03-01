@@ -3,9 +3,8 @@
 
 #include "HumanPlayerPawn.h"
 #include "EngineUtils.h"
+#include "HumanPlayerHUD.h"
 #include "MyPlayerController.h"
-#include "MyProject2/Administration/Managers/CountriesManager.h"
-#include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
 #include "MyProject2/Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
@@ -22,14 +21,13 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 {
 	if (PawnState == ProvidedPawnState) return;
 	PawnState = ProvidedPawnState;
-	UpdateWidgetsVisibility();
+	GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>()->UpdateWidgetsVisibility();
 }
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
@@ -49,7 +47,7 @@ void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 	{
 		SelectedUnits.Add(Unit);
 	}
-	UnitInstancesListDescriptionWidget->SetSelectedUnits(SelectedUnits);
+	SelectedUnitsWereUpdated();
 }
 
 void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
@@ -61,14 +59,14 @@ void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 		SelectedUnits.Empty();
 	}
 	SelectedUnits.Add(Unit);
-	UnitInstancesListDescriptionWidget->SetSelectedUnits(SelectedUnits);
+	SelectedUnitsWereUpdated();
 	// TODO: Add check for controlled country
 }
 
 void AHumanPlayerPawn::ClearSelectedUnits()
 {
 	SelectedUnits.Empty();
-	UnitInstancesListDescriptionWidget->SetSelectedUnits(SelectedUnits);
+	SelectedUnitsWereUpdated();
 }
 
 const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
@@ -76,9 +74,9 @@ const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
 	return SelectedUnits;
 }
 
-UProvinceDataWidget* AHumanPlayerPawn::GetProvinceDataWidget() const
+TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
 {
-	return ProvinceDataWidget;
+	return PawnState;
 }
 
 void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescription)
@@ -127,41 +125,12 @@ void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	InitProvinceDataWidget();
-	InitUnitTypesListWidget();
-	InitStorageGoodsListWidget();
-	InitUnitsSupplyListWidget();
-	InitUnitInstancesListDescriptionWidget();
 	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
 void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	if (ProvinceDataWidget)
-	{
-		ProvinceDataWidget->RemoveFromParent();
-	}
-
-	if (UnitTypesListWidget)
-	{
-		UnitTypesListWidget->RemoveFromParent();
-	}
-
-	if (StorageGoodsListWidget)
-	{
-		StorageGoodsListWidget->RemoveFromParent();
-	}
-
-	if (UnitsSupplyListWidget)
-	{
-		UnitsSupplyListWidget->RemoveFromParent();
-	}
-
-	if (UnitInstancesListDescriptionWidget)
-	{
-		UnitInstancesListDescriptionWidget->RemoveFromParent();
-	}
 	Super::EndPlay(EndPlayReason);
 }
 
@@ -209,25 +178,6 @@ void AHumanPlayerPawn::SetSupplyBrowsingState()
 }
 
 
-void AHumanPlayerPawn::UpdateWidgetsVisibility()
-{
-	for (const auto& Widget: Widgets)
-	{
-		if (PawnState->MustWidgetBeVisible(Widget))
-		{
-			Widget->AddToPlayerScreen();
-			continue;
-		}
-		
-		if (PawnState->CanWidgetBeVisible(Widget))
-		{
-			continue;
-		}
-		
-		Widget->RemoveFromViewport();
-	}
-}
-
 void AHumanPlayerPawn::Move(float DeltaTime)
 {
 	if ((MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0)) ||
@@ -258,97 +208,14 @@ bool AHumanPlayerPawn::IsInside(const FVector& Position) const
 		Position.Z >= MinZPosition && Position.Z <= MaxZPosition;
 }
 
-void AHumanPlayerPawn::InitProvinceDataWidget()
+void AHumanPlayerPawn::SelectedUnitsWereUpdated() const
 {
-	const TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass = GetWorld()->GetGameState<AMyGameState>()->ProvinceDataWidgetClass;
+	AHumanPlayerHUD* HUD = GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
+	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnits);
+	// TODO: Think if it worth to add logic for separation adding units to selection or making new selection :) 
 	
-	if (IsLocallyControlled() && ProvinceDataWidgetClass)
-	{
-		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(PlayerController, ProvinceDataWidgetClass);
-		if (ProvinceDataWidget)
-		{
-			Widgets.Add(ProvinceDataWidget);
-		}
-	}
 }
 
-void AHumanPlayerPawn::InitUnitTypesListWidget()
-{
-	const TSubclassOf<UUnitTypesListWidget> UnitTypesListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitTypesListWidgetClass;
-	
-	if (IsLocallyControlled() && UnitTypesListWidgetClass)
-	{
-		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		
-		UnitTypesListWidget = CreateWidget<UUnitTypesListWidget>(PlayerController, UnitTypesListWidgetClass);
-		
-		if (UnitTypesListWidget)
-		{
-			UDataTable* DataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/units_description"));
-
-			for (const auto& [UnitName, UnitDescription]: DataTable->GetRowMap())
-			{
-				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
-			}
-			Widgets.Add(UnitTypesListWidget);
-		}
-	}
-}
-
-void AHumanPlayerPawn::InitStorageGoodsListWidget()
-{
-	const TSubclassOf<UStorageGoodsListWidget> StorageGoodsListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->StorageGoodsListWidgetClass;
-	
-	if (IsLocallyControlled() && StorageGoodsListWidgetClass)
-	{
-		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(PlayerController, StorageGoodsListWidgetClass);
-		if (StorageGoodsListWidget)
-		{
-			const UCountry* Country = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
-
-			for (const auto& Storage: Country->GetStorages())
-			{
-				Storage->AddStorageObserver(StorageGoodsListWidget);
-			}
-
-			Widgets.Add(StorageGoodsListWidget);
-		}
-	}
-}
-
-void AHumanPlayerPawn::InitUnitsSupplyListWidget()
-{
-	const TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitsSupplyListWidgetClass;
-	
-	if (IsLocallyControlled() && UnitsSupplyListWidgetClass)
-	{
-		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		UnitsSupplyListWidget = CreateWidget<UUnitsSupplyListWidget>(PlayerController, UnitsSupplyListWidgetClass);
-		if (UnitsSupplyListWidget)
-		{
-			UnitsSupplyListWidget->Init();
-			Widgets.Add(UnitsSupplyListWidget);
-		}
-	}
-}
-
-void AHumanPlayerPawn::InitUnitInstancesListDescriptionWidget()
-{
-	const TSubclassOf<UUnitInstancesListDescriptionWidget> UnitInstancesListDescriptionWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitInstancesListDescriptionWidgetClass;
-	
-	if (IsLocallyControlled() && UnitInstancesListDescriptionWidgetClass)
-	{
-		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
-		UnitInstancesListDescriptionWidget = CreateWidget<UUnitInstancesListDescriptionWidget>(PlayerController, UnitInstancesListDescriptionWidgetClass);
-		if (UnitInstancesListDescriptionWidget)
-		{
-			Widgets.Add(UnitInstancesListDescriptionWidget);
-		}
-	}
-}
-	
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

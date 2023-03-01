@@ -11,6 +11,7 @@
 #include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Characters/HumanPlayerHUD.h"
 #include "Economics/Managers/Public/BuildingManager.h"
 #include "Events/EventInstancesController.h"
 #include "Military/Managers/UnitsMover.h"
@@ -22,6 +23,7 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 	DefaultPawnClass = AHumanPlayerPawn::StaticClass();
 	PlayerControllerClass = AMyPlayerController::StaticClass();
 	GameStateClass = AMyGameState::StaticClass();
+	HUDClass = AHumanPlayerHUD::StaticClass();
 }
 
 void AMyProject2GameModeBase::Tick(float DeltaSeconds)

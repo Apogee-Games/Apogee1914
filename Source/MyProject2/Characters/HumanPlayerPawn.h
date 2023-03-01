@@ -41,7 +41,7 @@ public:
 
 	const TArray<UUnit*>& GetSelectedUnits() const;
 
-	UProvinceDataWidget* GetProvinceDataWidget() const;
+	TSharedPtr<FPawnState> GetPawnState() const;
 
 	void SelectUnitDescription(const FUnitDescription* UnitDescription);
 
@@ -85,10 +85,6 @@ public:
 	double MaxZPosition = 120;
 
 private:
-
-	UPROPERTY()
-	TArray<UUserWidget*> Widgets;
-	
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
 	/* Tag of country that current pawn controls */
@@ -96,21 +92,6 @@ private:
 
 	bool IsShiftPressed = false;
 	
-	UPROPERTY()
-	UProvinceDataWidget* ProvinceDataWidget;
-
-	UPROPERTY()
-	UUnitTypesListWidget* UnitTypesListWidget;
-
-	UPROPERTY()
-	UStorageGoodsListWidget* StorageGoodsListWidget;
-
-	UPROPERTY()
-	UUnitsSupplyListWidget* UnitsSupplyListWidget;
-
-	UPROPERTY()
-	UUnitInstancesListDescriptionWidget* UnitInstancesListDescriptionWidget; 
-
 	TArray<UUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
@@ -136,22 +117,12 @@ private:
 	void SetStorageBrowsingState();
 
 	void SetSupplyBrowsingState();
-
-	void UpdateWidgetsVisibility();
-
+	
 	void Move(float DeltaTime);
 
 	void Scroll(float Value);
 
 	bool IsInside(const FVector& Position) const;
 
-	void InitProvinceDataWidget();
-
-	void InitUnitTypesListWidget();
-
-	void InitStorageGoodsListWidget();
-
-	void InitUnitsSupplyListWidget();
-
-	void InitUnitInstancesListDescriptionWidget();
+	void SelectedUnitsWereUpdated() const;
 };
