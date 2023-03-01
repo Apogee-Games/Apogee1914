@@ -22,14 +22,14 @@ public:
 
 	void Init();
 	
-	void AddUnit(FUnit* Unit);
+	void AddUnit(UUnit* Unit);
 
-	void RemoveUnit(FUnit* Unit);
+	void RemoveUnit(UUnit* Unit);
 
 	bool IsEmpty() const;
 	
 private:
-	TArray<FUnit*> Units;
+	TArray<UUnit*> Units;
 
 	UFUNCTION()
 	void OnClicked();

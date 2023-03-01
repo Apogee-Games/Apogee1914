@@ -5,5 +5,5 @@ class IUnitSupplyObserver
 {
 public:
 	virtual ~IUnitSupplyObserver() = default;
-	virtual void UnitIsSupplied(FUnit* Unit) = 0;
+	virtual void UnitIsSupplied(UUnit* Unit) = 0;
 };

@@ -17,11 +17,11 @@ public:
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
-	virtual void UnitIsMoved(FUnit* Unit, UProvince* From, UProvince* To) override;
+	virtual void UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To) override;
 
-	virtual void UnitIsCreated(FUnit* Unit) override;
+	virtual void UnitIsCreated(UUnit* Unit) override;
 
-	virtual void UnitIsRemoved(FUnit* Unit) override;
+	virtual void UnitIsRemoved(UUnit* Unit) override;
 
 	void Init();
 	

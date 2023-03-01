@@ -5,5 +5,5 @@ class IUnitCreationObserver
 {
 public:
 	virtual ~IUnitCreationObserver() = default;
-	virtual void UnitIsCreated(FUnit* Unit) = 0;
+	virtual void UnitIsCreated(UUnit* Unit) = 0;
 };

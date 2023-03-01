@@ -7,7 +7,7 @@ void UUnitInformationWidget::Init()
 	Button->OnClicked.AddDynamic(this, &UUnitInformationWidget::OnClicked);
 }
 
-void UUnitInformationWidget::AddUnit(FUnit* Unit)
+void UUnitInformationWidget::AddUnit(UUnit* Unit)
 {
 	if (Units.IsEmpty())
 	{
@@ -17,7 +17,7 @@ void UUnitInformationWidget::AddUnit(FUnit* Unit)
 	UpdateCountText();
 }
 
-void UUnitInformationWidget::RemoveUnit(FUnit* Unit)
+void UUnitInformationWidget::RemoveUnit(UUnit* Unit)
 {
 	Units.Remove(Unit);
 	UpdateCountText();

@@ -22,12 +22,12 @@ public:
 
 	void Init();
 	
-	virtual void UnitIsCreated(FUnit* Unit) override;
+	virtual void UnitIsCreated(UUnit* Unit) override;
 	
-	virtual void UnitIsSupplied(FUnit* Unit) override;
+	virtual void UnitIsSupplied(UUnit* Unit) override;
 
 private:
-	TMap<FUnit*, UUnitSupplyWidget*> Widgets;
+	TMap<UUnit*, UUnitSupplyWidget*> Widgets;
 
 	int Count = 0;
 };

@@ -13,7 +13,7 @@ class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserv
 public:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
-	virtual void UnitIsCreated(FUnit* Unit) override;
+	virtual void UnitIsCreated(UUnit* Unit) override;
 
 	void Supply();
 

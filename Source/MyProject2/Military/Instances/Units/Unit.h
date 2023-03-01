@@ -3,6 +3,7 @@
 #include "MyProject2/Administration/Instances/Country.h"
 #include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
+#include "Unit.generated.h"
 
 enum class EMilitaryBranch
 {
@@ -11,12 +12,14 @@ enum class EMilitaryBranch
 	AirForce
 };
 
-class FUnit
+UCLASS()
+class UUnit: public UObject
 {
+	GENERATED_BODY()
 public:
-	FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner);
+	virtual void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner);
 	
-	FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController);
+	virtual void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner, UCountry* ProvidedCountryController);
 
 	bool CanTransportUnits() const;
 
@@ -40,17 +43,15 @@ public:
 
 	const FName& GetUnitName() const;
 
-	virtual EMilitaryBranch GetMilitaryBranch() const = 0;
+	virtual EMilitaryBranch GetMilitaryBranch() const;
 
-	virtual ~FUnit() = default;
-	
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);
 
-	// void AddTransportedUnit(FUnit* Unit);
+	// void AddTransportedUnit(UUnit* Unit);
 
-	// void RemoveTransportedUnit(FUnit* Unit);
+	// void RemoveTransportedUnit(UUnit* Unit);
 
 	
 private:
@@ -60,11 +61,14 @@ private:
 	//TSet<UUnit*> TransportedUnits; // TODO: May be extract it to another interface
 
 	TMap<FName, int32> EquipmentNeeds;
-	
+
+	UPROPERTY()
 	UProvince* Province;
 
+	UPROPERTY()
 	UCountry* CountryOwner;
 
+	UPROPERTY()
 	UCountry* CountryController;
 };
 

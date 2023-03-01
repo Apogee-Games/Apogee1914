@@ -20,7 +20,7 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, FTimespan(1, 0, 0, 0));
 }
 
-void UUnitsSupplyController::UnitIsCreated(FUnit* Unit)
+void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)
 {
 	CountrySupplier[Unit->GetCountryController()].AddUnit(Unit);
 }

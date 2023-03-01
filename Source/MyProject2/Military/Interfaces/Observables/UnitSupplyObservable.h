@@ -4,7 +4,7 @@
 class IUnitSupplyObservable
 {
 public:
-	void NotifyUnitSupply(FUnit* Unit);
+	void NotifyUnitSupply(UUnit* Unit);
 
 	bool AddUnitSupplyObserver(IUnitSupplyObserver* Observer);
 	

@@ -2,12 +2,8 @@
 
 #include "MyProject2/Military/Instances/Units/Unit.h"
 
-class FSquadron: public FUnit
+class USquadron: public UUnit
 {
 public:
-	FSquadron(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner);
-
-	FSquadron(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController);
-
 	virtual EMilitaryBranch GetMilitaryBranch() const override;
 };

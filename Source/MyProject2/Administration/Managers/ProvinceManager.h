@@ -4,7 +4,7 @@
 #include "MyProject2/Administration/Interfaces/Observable/ProvinceControllingCountryObservable.h"
 #include "ProvinceManager.generated.h"
 
-class FUnit;
+class UUnit;
 
 UCLASS()
 class UProvinceManager : public UWorldSubsystem, public IProvinceControllingCountryObservable
@@ -20,7 +20,7 @@ public:
 
 	const TArray<UProvince*>& GetAllProvinces() const;
 
-	void UnitMovedIn(UProvince* Province, FUnit* Unit);
+	void UnitMovedIn(UProvince* Province, UUnit* Unit);
 
 private:
 	UPROPERTY()

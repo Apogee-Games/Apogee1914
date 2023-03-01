@@ -24,18 +24,18 @@ void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
 	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UUnitsRenderer::Init);
 }
 
-void UUnitsRenderer::UnitIsMoved(FUnit* Unit, UProvince* From, UProvince* To)
+void UUnitsRenderer::UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To)
 {
 	Actors[From]->RemoveUnit(Unit);
 	Actors[To]->AddUnit(Unit);
 }
 
-void UUnitsRenderer::UnitIsCreated(FUnit* Unit)
+void UUnitsRenderer::UnitIsCreated(UUnit* Unit)
 {
 	Actors[Unit->GetPosition()]->AddUnit(Unit);
 }
 
-void UUnitsRenderer::UnitIsRemoved(FUnit* Unit)
+void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
 {
 	Actors[Unit->GetPosition()]->RemoveUnit(Unit);
 }

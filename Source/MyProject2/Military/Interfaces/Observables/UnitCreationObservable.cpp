@@ -1,6 +1,6 @@
 #include "UnitCreationObservable.h"
 
-void IUnitCreationObservable::NotifyUnitCreation(FUnit* Unit)
+void IUnitCreationObservable::NotifyUnitCreation(UUnit* Unit)
 {
 	for (auto& Observer: Observers)
 	{

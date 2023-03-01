@@ -4,7 +4,7 @@
 #include "UnitActor.generated.h"
 
 class UUnitInformationListWidget;
-class FUnit;
+class UUnit;
 
 UCLASS()
 class AUnitActor: public AStaticMeshActor
@@ -15,12 +15,12 @@ public:
 	
 	void Init(const FVector3d& ObjectScale, const FVector3d& Position, UStaticMesh* UnitMesh, const TSubclassOf<UUnitInformationListWidget>& UnitInformationListWidgetClass);
 
-	void AddUnit(FUnit* Unit);
+	void AddUnit(UUnit* Unit);
 
-	void RemoveUnit(FUnit* Unit);
+	void RemoveUnit(UUnit* Unit);
 
 private:
-	TArray<FUnit*> Units;
+	TArray<UUnit*> Units;
 	
 	UPROPERTY()
 	UWidgetComponent* Component;

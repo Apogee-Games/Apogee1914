@@ -31,7 +31,7 @@ const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 	return ProvincesArray;
 }
 
-void UProvinceManager::UnitMovedIn(UProvince* Province, FUnit* Unit)
+void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
 {
 	if (Province->GetCountryController() != Unit->GetCountryController())
 	{

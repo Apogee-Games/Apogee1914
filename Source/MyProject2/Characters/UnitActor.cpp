@@ -31,7 +31,7 @@ void AUnitActor::Init(const FVector3d& ObjectScale, const FVector3d& Position, U
 	Widget->SetVisibility(ESlateVisibility::Hidden);
 }
 
-void AUnitActor::AddUnit(FUnit* Unit)
+void AUnitActor::AddUnit(UUnit* Unit)
 {
 	Units.Add(Unit);
 
@@ -40,7 +40,7 @@ void AUnitActor::AddUnit(FUnit* Unit)
 	Widget->AddUnit(Unit);
 }
 
-void AUnitActor::RemoveUnit(FUnit* Unit)
+void AUnitActor::RemoveUnit(UUnit* Unit)
 {
 	Units.Remove(Unit);
 

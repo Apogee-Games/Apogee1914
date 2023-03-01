@@ -18,13 +18,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UUnitInformationWidget> UnitInformationWidgetClass;
 	
-	void AddUnit(FUnit* Unit);
+	void AddUnit(UUnit* Unit);
 
-	void RemoveUnit(FUnit* Unit);
+	void RemoveUnit(UUnit* Unit);
 	
 private:
 	UPROPERTY()
 	TMap<UCountry*, UUnitInformationWidget*> Widgets;
 
-	void CheckWidgetsMapState(FUnit* Unit);
+	void CheckWidgetsMapState(UUnit* Unit);
 };

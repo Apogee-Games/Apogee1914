@@ -19,14 +19,14 @@ void UUnitsMover::SetGraph(FGraph* NewGraph)
 	Graph = NewGraph;
 }
 
-void UUnitsMover::MoveUnit(FUnit* Unit, UProvince* To)
+void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 {
 	const TArray<TPair<UProvince*, int32>> Path = Graph->FindPath(Unit->GetPosition(), To);
 	Paths.Add(Unit, Path);
 	Positions.Add(Unit, 0);
 }
 
-int32 UUnitsMover::Estimate(FUnit* Unit, UProvince* To)
+int32 UUnitsMover::Estimate(UUnit* Unit, UProvince* To)
 {
 	const TArray<TPair<UProvince*, int32>> Path = Graph->FindPath(Unit->GetPosition(), To);
 	return Unit->Estimate(Path);
@@ -38,7 +38,7 @@ void UUnitsMover::DoUnitMovement()
 	RemoveArrivedUnit();
 }
 
-void UUnitsMover::MoveUnit(FUnit* Unit, int32 Position)
+void UUnitsMover::MoveUnit(UUnit* Unit, int32 Position)
 {
 	NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].Key);
 	Unit->Move(Paths[Unit][Position].Key);
@@ -51,7 +51,7 @@ void UUnitsMover::RemoveArrivedUnit()
 {
 	while (!UnitsArrived.IsEmpty())
 	{
-		FUnit* Unit;
+		UUnit* Unit;
 		UnitsArrived.Dequeue(Unit);
 		Paths.Remove(Unit);
 		Positions.Remove(Unit);

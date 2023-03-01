@@ -17,7 +17,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* UnitNeedsTextBlock;
 	
-	void Init(FUnit* Unit);
+	void Init(UUnit* Unit);
 	
-	void UnitWasSupplied(FUnit* Unit);
+	void UnitWasSupplied(UUnit* Unit);
 };

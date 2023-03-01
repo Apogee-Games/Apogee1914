@@ -2,13 +2,9 @@
 
 #include "MyProject2/Military/Instances/Units/Unit.h"
 
-class FDivision: public FUnit
+class UDivision: public UUnit
 {
 public:
-	FDivision(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner);
-
-	FDivision(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController);
-
 	virtual EMilitaryBranch GetMilitaryBranch() const override;
 
 	// TODO: Add CanAccessProvince implementation here :)

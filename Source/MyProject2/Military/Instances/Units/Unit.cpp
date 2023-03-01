@@ -2,51 +2,52 @@
 
 #include "MyProject2/Administration/Managers/CountriesManager.h"
 
-FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner): UnitDescription(UnitDescription), Province(Province), CountryOwner(CountryOwner), CountryController(CountryOwner)
+void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner)
 {
-	for (auto& [GoodName, GoodCount]: UnitDescription->EquipmentRequirements)
+	Init(ProvidedUnitDescription, ProvidedProvince, ProvidedCountryOwner, ProvidedCountryOwner);
+}
+
+void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner, UCountry* ProvidedCountryController)
+{
+	UnitDescription = ProvidedUnitDescription;
+	Province = ProvidedProvince;
+	CountryOwner = ProvidedCountryOwner;
+	CountryController = ProvidedCountryController;
+	for (auto& [GoodName, GoodCount]: ProvidedUnitDescription->EquipmentRequirements)
 	{
 		EquipmentNeeds.Add(GoodName, GoodCount);
 	}
 }
 
-FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController): UnitDescription(UnitDescription), Province(Province), CountryOwner(CountryOwner), CountryController(CountryController)
-{
-	for (auto& [GoodName, GoodCount]: UnitDescription->EquipmentRequirements)
-	{
-		EquipmentNeeds.Add(GoodName, GoodCount);
-	}
-}
-
-bool FUnit::CanTransportUnits() const
+bool UUnit::CanTransportUnits() const
 {
 	return UnitDescription->CanTransport;
 }
 
 /*
-void FUnit::AddTransportedUnit(FUnit* Unit)
+void UUnit::AddTransportedUnit(UUnit* Unit)
 {
 	if (!CanTransportUnits()) return;
 	TransportedUnits.Add(Unit);
 }
 
-void FUnit::RemoveTransportedUnit(FUnit* Unit)
+void UUnit::RemoveTransportedUnit(UUnit* Unit)
 {
 	if (!CanTransportUnits()) return;
 	TransportedUnits.Remove(Unit);
 }*/
 
-void FUnit::Move(UProvince* NewProvince)
+void UUnit::Move(UProvince* NewProvince)
 {
 	Province = NewProvince;
 }
 
-UProvince* FUnit::GetPosition() const
+UProvince* UUnit::GetPosition() const
 {
 	return Province;
 }
 
-int32 FUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
+int32 UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
 {
 	//TODO: Add additional logic for better estimation
 	int32 Result = 0;
@@ -57,33 +58,38 @@ int32 FUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
 	return Result;
 }
 
-UCountry* FUnit::GetCountryOwner() const
+UCountry* UUnit::GetCountryOwner() const
 {
 	return CountryOwner;
 }
 
-UCountry* FUnit::GetCountryController() const
+UCountry* UUnit::GetCountryController() const
 {
 	return CountryController;
 }
 
-const TMap<FName, int32>& FUnit::GetEquipmentNeeds() const
+const TMap<FName, int32>& UUnit::GetEquipmentNeeds() const
 {
 	return EquipmentNeeds;
 }
 
-int32 FUnit::GetUnitTypeEquipmentRequirement(const FName& GoodName) const
+int32 UUnit::GetUnitTypeEquipmentRequirement(const FName& GoodName) const
 {
 	return UnitDescription->EquipmentRequirements[GoodName];
 }
 
-void FUnit::SupplyEquipment(const FName& GoodName, int32 Amount)
+void UUnit::SupplyEquipment(const FName& GoodName, int32 Amount)
 {
 	EquipmentNeeds[GoodName] -= Amount;
 }
 
-const FName& FUnit::GetUnitName() const
+const FName& UUnit::GetUnitName() const
 {
 	return UnitDescription->UnitName;
+}
+
+EMilitaryBranch UUnit::GetMilitaryBranch() const
+{
+	return EMilitaryBranch::Army;
 }
 

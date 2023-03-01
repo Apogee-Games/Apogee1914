@@ -4,7 +4,7 @@
 class IUnitRemovalObservable
 {
 public:
-	void NotifyUnitRemoval(FUnit* Unit);
+	void NotifyUnitRemoval(UUnit* Unit);
 
 	bool AddUnitRemovalObserver(IUnitRemovalObserver* Observer);
 	

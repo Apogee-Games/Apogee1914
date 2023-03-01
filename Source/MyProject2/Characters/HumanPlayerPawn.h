@@ -32,13 +32,13 @@ public:
 	// Sets tag of country controlled by this Pawn
 	void SetRuledCountryTag(const FName& NewRuledCountryTag);
 
-	void SelectUnits(const TArray<FUnit*>& Units);
+	void SelectUnits(const TArray<UUnit*>& Units);
 
-	void SelectUnit(FUnit* Unit);
+	void SelectUnit(UUnit* Unit);
 
 	void ClearSelectedUnits();
 
-	const TArray<FUnit*>& GetSelectedUnits() const;
+	const TArray<UUnit*>& GetSelectedUnits() const;
 
 	UProvinceDataWidget* GetProvinceDataWidget() const;
 
@@ -107,7 +107,7 @@ private:
 	UPROPERTY()
 	UUnitsSupplyListWidget* UnitsSupplyListWidget;
 
-	TArray<FUnit*> SelectedUnits;
+	TArray<UUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
 	

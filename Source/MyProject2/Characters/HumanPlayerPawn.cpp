@@ -36,7 +36,7 @@ void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 	RuledCountryTag = NewRuledCountryTag;
 }
 
-void AHumanPlayerPawn::SelectUnits(const TArray<FUnit*>& Units)
+void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 {
 	SetPawnState(FMilitaryControlPawnState::GetInstance());
 	
@@ -50,7 +50,7 @@ void AHumanPlayerPawn::SelectUnits(const TArray<FUnit*>& Units)
 	}
 }
 
-void AHumanPlayerPawn::SelectUnit(FUnit* Unit)
+void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 {
 	SetPawnState(FMilitaryControlPawnState::GetInstance());
 
@@ -67,7 +67,7 @@ void AHumanPlayerPawn::ClearSelectedUnits()
 	SelectedUnits.Empty();
 }
 
-const TArray<FUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
+const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
 {
 	return SelectedUnits;
 }

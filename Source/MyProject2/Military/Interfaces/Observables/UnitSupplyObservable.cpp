@@ -1,6 +1,6 @@
 #include "UnitSupplyObservable.h"
 
-void IUnitSupplyObservable::NotifyUnitSupply(FUnit* Unit)
+void IUnitSupplyObservable::NotifyUnitSupply(UUnit* Unit)
 {
 	for (auto& Observer: Observers)
 	{

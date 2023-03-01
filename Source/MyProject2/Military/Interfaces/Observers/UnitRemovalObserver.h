@@ -5,5 +5,5 @@ class IUnitRemovalObserver
 {
 public:
 	virtual ~IUnitRemovalObserver() = default;
-	virtual void UnitIsRemoved(FUnit* Unit) = 0;
+	virtual void UnitIsRemoved(UUnit* Unit) = 0;
 };

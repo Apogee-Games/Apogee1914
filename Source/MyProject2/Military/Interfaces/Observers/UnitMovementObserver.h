@@ -5,5 +5,5 @@ class IUnitMovementObserver
 {
 public:
 	virtual ~IUnitMovementObserver() = default;
-	virtual void UnitIsMoved(FUnit* Unit, UProvince* From, UProvince* To) = 0;
+	virtual void UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To) = 0;
 };

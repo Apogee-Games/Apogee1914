@@ -13,7 +13,7 @@ public:
 
 	void Supply();
 
-	void AddUnit(FUnit* Unit);
+	void AddUnit(UUnit* Unit);
 	
 private:
 
@@ -23,7 +23,7 @@ private:
 	UPROPERTY()
 	UStorage* Storage;
 
-	TArray<FUnit*> Units;
+	TArray<UUnit*> Units;
 
-	void Supply(FUnit* Unit);
+	void Supply(UUnit* Unit);
 };
