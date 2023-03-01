@@ -1,8 +1,9 @@
 #include "UnitsFactory.h"
 
 #include "MyProject2/Administration/Managers/CountriesManager.h"
-#include "MyProject2/Military/Instances/Units/Division.h"
-#include "MyProject2/Military/Instances/Units/Flight.h"
+#include "MyProject2/Military/Instances/Units/BranchUnits/Division.h"
+#include "MyProject2/Military/Instances/Units/BranchUnits/Flight.h"
+#include "MyProject2/Military/Instances/Units/BranchUnits/Squadron.h"
 
 FUnit* UUnitsFactory::Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
 {
