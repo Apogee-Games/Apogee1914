@@ -1,7 +1,6 @@
 #pragma once
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
 #include "UnitsRenderer.h"
-#include "MyProject2/Military/Instances/Units/Squadron.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitCreationObservable.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitRemovalObservable.h"
 #include "UnitsFactory.generated.h"
