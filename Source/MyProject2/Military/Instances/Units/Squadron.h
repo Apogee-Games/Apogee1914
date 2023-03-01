@@ -4,9 +4,9 @@
 class FSquadron: public FUnit
 {
 public:
-	FSquadron(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UUnitsRenderer* UnitsRenderer);
+	FSquadron(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner);
 
-	FSquadron(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController, UUnitsRenderer* UnitsRenderer);
+	FSquadron(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController);
 
 	virtual EMilitaryBranch GetMilitaryBranch() const override;
 };

@@ -1,9 +1,8 @@
 #include "Unit.h"
 
 #include "MyProject2/Administration/Managers/CountriesManager.h"
-#include "MyProject2/Military/Managers/UnitsRenderer.h"
 
-FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UUnitsRenderer* UnitsRenderer): UnitDescription(UnitDescription), Province(Province), UnitsRenderer(UnitsRenderer), CountryOwner(CountryOwner), CountryController(CountryOwner)
+FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner): UnitDescription(UnitDescription), Province(Province), CountryOwner(CountryOwner), CountryController(CountryOwner)
 {
 	for (auto& [GoodName, GoodCount]: UnitDescription->EquipmentRequirements)
 	{
@@ -11,7 +10,7 @@ FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCoun
 	}
 }
 
-FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController, UUnitsRenderer* UnitsRenderer): UnitDescription(UnitDescription), Province(Province), UnitsRenderer(UnitsRenderer), CountryOwner(CountryOwner), CountryController(CountryController)
+FUnit::FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController): UnitDescription(UnitDescription), Province(Province), CountryOwner(CountryOwner), CountryController(CountryController)
 {
 	for (auto& [GoodName, GoodCount]: UnitDescription->EquipmentRequirements)
 	{

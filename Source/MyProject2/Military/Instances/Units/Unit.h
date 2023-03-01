@@ -16,9 +16,9 @@ enum class EMilitaryBranch
 class FUnit
 {
 public:
-	FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UUnitsRenderer* UnitsRenderer);
+	FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner);
 	
-	FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController, UUnitsRenderer* UnitsRenderer);
+	FUnit(const FUnitDescription* UnitDescription, UProvince* Province, UCountry* CountryOwner, UCountry* CountryController);
 
 	bool CanTransportUnits() const;
 
@@ -50,7 +50,6 @@ public:
 
 	// FString GetProvinceAccessType(UProvince* Province);
 
-	
 	// void AddTransportedUnit(FUnit* Unit);
 
 	// void RemoveTransportedUnit(FUnit* Unit);
@@ -65,8 +64,6 @@ private:
 	TMap<FName, int32> EquipmentNeeds;
 	
 	UProvince* Province;
-
-	UUnitsRenderer* UnitsRenderer; // TODO: remove it from here and add as unit movement observer
 
 	UCountry* CountryOwner;
 
