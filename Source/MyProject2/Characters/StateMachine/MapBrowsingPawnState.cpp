@@ -27,23 +27,11 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 	UProvince* Province = SelectionMap->SelectProvince(FVector2D(Point.Y, Point.Z));
 
-	if (Province)
-	{
+	AHumanPlayerHUD* HUD = Pawn->GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
 
-		const AHumanPlayerHUD* HUD = Pawn->GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
-		const UProvinceDataWidget* ProvinceDataWidget = HUD->GetProvinceDataWidget();
-		
-		ProvinceDataWidget->SetProvinceName(Province->GetName());
-		ProvinceDataWidget->SetPopulationNumber(Province->GetPopulation()->GetPopulation());
-		ProvinceDataWidget->SetResources(Province->GetResources());
+	UProvinceDataWidget* ProvinceDataWidget = HUD->GetProvinceDataWidget();
 
-		const UState* State = Pawn->GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
-
-		if (State)
-		{
-			ProvinceDataWidget->SetStateName(State->GetName());
-		}
-	}
+	ProvinceDataWidget->SetNewProvince(Province);
 
 	Pawn->ClearSelectedUnits();
 	

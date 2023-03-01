@@ -3,6 +3,24 @@
 
 #include "ProvinceDataWidget.h"
 
+#include "MyProject2/Administration/Instances/State.h"
+#include "MyProject2/Administration/Managers/StateManager.h"
+
+void UProvinceDataWidget::SetNewProvince(UProvince* Province)
+{
+	if(!Province) return;
+	
+	SetProvinceName(Province->GetName());
+	SetPopulationNumber(Province->GetPopulation()->GetPopulation());
+	SetResources(Province->GetResources());
+
+	const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
+
+	if (!State) return;
+
+	SetStateName(State->GetName());
+}
+
 void UProvinceDataWidget::SetProvinceName(const FName& ProvinceName) const
 {
 	ProvinceNameTextBlock->SetText(FText::FromName(ProvinceName));
