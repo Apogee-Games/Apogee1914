@@ -12,8 +12,8 @@ struct FUnitDescription: public FTableRowBase
 	FName UnitName;
 	
 	UPROPERTY()
-	TArray<FName> CanAccessProvincesTypes;
-
+	FName MilitaryBranch;
+	
 	UPROPERTY()
 	bool CanTransport;
 

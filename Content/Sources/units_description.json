@@ -3,7 +3,7 @@
 		"Name": "Unit1",
 		"UnitName": "Unit1",
 		"CanTransport": true,
-		"CanAccessProvincesTypes": ["Land"],
+		"MilitaryBranch": "Army",
 		"EquipmentRequirements": {
 			"Iron": 50,
 			"Coal": 50
@@ -14,7 +14,7 @@
 		"Name": "Unit2",
 		"UnitName": "Unit2",
 		"CanTransport": false,
-		"CanAccessProvincesTypes": ["Land"],
+		"MilitaryBranch": "Army",
 		"EquipmentRequirements": {
 			"Iron": 100,
 			"Coal": 100
@@ -25,7 +25,7 @@
 		"Name": "Unit3",
 		"UnitName": "Unit3",
 		"CanTransport": false,
-		"CanAccessProvincesTypes": ["Land"],
+		"MilitaryBranch": "Army",
 		"EquipmentRequirements": {
 			"Iron": 200,
 			"Coal": 200
