@@ -4,8 +4,6 @@
 #include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
 
-class UUnitsRenderer;
-
 enum class EMilitaryBranch
 {
 	Army,
