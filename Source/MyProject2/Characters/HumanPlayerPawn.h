@@ -9,6 +9,7 @@
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
 #include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
+#include "MyProject2/Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "MyProject2/Widgets/Military/Supply/UnitsSupplyListWidget.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
@@ -107,6 +108,9 @@ private:
 	UPROPERTY()
 	UUnitsSupplyListWidget* UnitsSupplyListWidget;
 
+	UPROPERTY()
+	UUnitInstancesListDescriptionWidget* UnitInstancesListDescriptionWidget; 
+
 	TArray<UUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
@@ -148,4 +152,6 @@ private:
 	void InitStorageGoodsListWidget();
 
 	void InitUnitsSupplyListWidget();
+
+	void InitUnitInstancesListDescriptionWidget();
 };

@@ -8,6 +8,7 @@
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
+#include "MyProject2/Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "StateMachine/MilitaryControlPawnState.h"
 #include "StateMachine/MapBrowsingPawnState.h"
 #include "StateMachine/StorageBrowsingPawnState.h"
@@ -48,6 +49,7 @@ void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
 	{
 		SelectedUnits.Add(Unit);
 	}
+	UnitInstancesListDescriptionWidget->SetSelectedUnits(SelectedUnits);
 }
 
 void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
@@ -59,12 +61,14 @@ void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
 		SelectedUnits.Empty();
 	}
 	SelectedUnits.Add(Unit);
+	UnitInstancesListDescriptionWidget->SetSelectedUnits(SelectedUnits);
 	// TODO: Add check for controlled country
 }
 
 void AHumanPlayerPawn::ClearSelectedUnits()
 {
 	SelectedUnits.Empty();
+	UnitInstancesListDescriptionWidget->SetSelectedUnits(SelectedUnits);
 }
 
 const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
@@ -127,7 +131,8 @@ void AHumanPlayerPawn::BeginPlay()
 	InitUnitTypesListWidget();
 	InitStorageGoodsListWidget();
 	InitUnitsSupplyListWidget();
-
+	InitUnitInstancesListDescriptionWidget();
+	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
@@ -148,6 +153,15 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		StorageGoodsListWidget->RemoveFromParent();
 	}
 
+	if (UnitsSupplyListWidget)
+	{
+		UnitsSupplyListWidget->RemoveFromParent();
+	}
+
+	if (UnitInstancesListDescriptionWidget)
+	{
+		UnitInstancesListDescriptionWidget->RemoveFromParent();
+	}
 	Super::EndPlay(EndPlayReason);
 }
 
@@ -320,6 +334,21 @@ void AHumanPlayerPawn::InitUnitsSupplyListWidget()
 	}
 }
 
+void AHumanPlayerPawn::InitUnitInstancesListDescriptionWidget()
+{
+	const TSubclassOf<UUnitInstancesListDescriptionWidget> UnitInstancesListDescriptionWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitInstancesListDescriptionWidgetClass;
+	
+	if (IsLocallyControlled() && UnitInstancesListDescriptionWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		UnitInstancesListDescriptionWidget = CreateWidget<UUnitInstancesListDescriptionWidget>(PlayerController, UnitInstancesListDescriptionWidgetClass);
+		if (UnitInstancesListDescriptionWidget)
+		{
+			Widgets.Add(UnitInstancesListDescriptionWidget);
+		}
+	}
+}
+	
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
