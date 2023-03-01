@@ -1,6 +1,7 @@
 #pragma once
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
 #include "UnitsRenderer.h"
+#include "MyProject2/Military/Instances/Units/Squadron.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitCreationObservable.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitRemovalObservable.h"
 #include "UnitsFactory.generated.h"
@@ -17,6 +18,8 @@ public:
 	virtual void Remove(FUnit* Unit);
 
 private:
-	TArray<IUnitRemovalObserver> RemovalObservers;
+	FUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag) const;
 };
+
+
 // TODO: Add remove logic in destructor 
