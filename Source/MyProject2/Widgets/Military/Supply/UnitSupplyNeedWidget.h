@@ -2,10 +2,10 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "MyProject2/Military/Instances/GoodNeedCarrier.h"
-#include "UnitSupplyNeed.generated.h"
+#include "UnitSupplyNeedWidget.generated.h"
 
 UCLASS()
-class UUnitSupplyNeed: public UUserWidget
+class UUnitSupplyNeedWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:

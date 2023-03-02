@@ -1,11 +1,11 @@
-#include "UnitSupplyNeed.h"
+#include "UnitSupplyNeedWidget.h"
 
-void UUnitSupplyNeed::SetCarrier(UObject* ProvidedCarrier)
+void UUnitSupplyNeedWidget::SetCarrier(UObject* ProvidedCarrier)
 {
 	Carrier = Cast<UGoodNeedCarrier>(ProvidedCarrier);
 }
 
-void UUnitSupplyNeed::RefreshData()
+void UUnitSupplyNeedWidget::RefreshData()
 {
 	GoodNameTextBlock->SetText(FText::FromName(Carrier->GetGoodName()));
 	GoodSupplyTextBlock->SetText(FText::FromString(FString::FromInt(Carrier->GetGoodSupply())));

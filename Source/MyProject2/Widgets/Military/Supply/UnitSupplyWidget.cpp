@@ -8,11 +8,11 @@ void UUnitSupplyWidget::SetUnit(UObject* ProvidedUnit)
 	Unit = Cast<UUnit>(ProvidedUnit);
 	for (const auto& [GoodName, Amount]: Unit->GetSupplyNeeds()->GetRequirements())
 	{
-		if (AddGoodNeeds.Contains(GoodName)) continue;
+		if (AddedGoodNeeds.Contains(GoodName)) continue;
 		UGoodNeedCarrier* Carrier = NewObject<UGoodNeedCarrier>();
 		Carrier->Init(Unit->GetSupplyNeeds(), GoodName);
 		SuppliesListView->AddItem(Carrier);
-		AddGoodNeeds.Add(GoodName);
+		AddedGoodNeeds.Add(GoodName);
 	}
 }
 
