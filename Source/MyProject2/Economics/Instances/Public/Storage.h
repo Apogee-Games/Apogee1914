@@ -1,4 +1,5 @@
 #pragma once
+#include "Good.h"
 #include "MyProject2/Economics/Interfaces/Observables/StorageObservable.h"
 
 #include "Storage.generated.h"
@@ -23,16 +24,18 @@ public:
 	
 	void Init(const FName& StrataType);
 
-	void Supply(const FName& Good, const int32 Amount);
+	void Supply(const FName& GoodName, const int32 Amount);
 
-	int32 Estimate(const FName& Good, const int32 Amount);
+	int32 Estimate(const FName& GoodName, const int32 Amount);
 
-	int32 GetGoodAmount(const FName& Good) const;
+	int32 GetGoodAmount(const FName& GoodName) const;
 	
-	int32 Demand(const FName& Good, const int32 Amount);
+	int32 Demand(const FName& GoodName, const int32 Amount);
+
+	EStorageType GetType() const;
 
 private:
-	TMap<FName, int32> Goods;
+	TMap<FName, UGood*> Goods;
 
 	EStorageType Type = EStorageType::Country;
 	

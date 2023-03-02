@@ -1,10 +1,12 @@
 #include "StorageObservable.h"
 
-void IStorageObservable::NotifyGoodUpdate(EStorageType StorageType, const FName& GoodName, int NewAmount)
+#include "MyProject2/Economics/Instances/Public/Good.h"
+
+void IStorageObservable::NotifyGoodUpdate(EStorageType StorageType, UGood* Good)
 {
 	for (auto& Observer: Observers)
 	{
-		Observer->GoodIsUpdated(StorageType, GoodName, NewAmount);
+		Observer->GoodIsUpdated(StorageType, Good);
 	}
 }
 
