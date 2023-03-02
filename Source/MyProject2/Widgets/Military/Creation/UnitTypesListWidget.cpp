@@ -1,11 +1,11 @@
 #include "UnitTypesListWidget.h"
 
 #include "Components/Button.h"
+#include "MyProject2/Military/Instances/UnitDescriptionCarrier.h"
 
-void UUnitTypesListWidget::AddUnitType(const FUnitDescription* UnitDescription)
+void UUnitTypesListWidget::AddUnitType(FUnitDescription* UnitDescription)
 {
-	UUnitTypeDescriptionWidget* UnitTypeDescriptionWidget = CreateWidget<UUnitTypeDescriptionWidget>(GetWorld(), UnitDescriptionWidgetClass);
-	UnitTypeDescriptionWidget->Init(UnitDescription);
-	ListGridPanel->AddChildToGrid(UnitTypeDescriptionWidget, Count);
-	++Count;
+	UUnitDescriptionCarrier* UnitDescriptionCarrier = NewObject<UUnitDescriptionCarrier>();
+	UnitDescriptionCarrier->Init(UnitDescription);
+	UnitDescriptionListView->AddItem(UnitDescriptionCarrier);
 }

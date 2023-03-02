@@ -1,17 +1,33 @@
 #include "UnitTypeDescriptionWidget.h"
 
 #include "MyProject2/Characters/HumanPlayerPawn.h"
+#include "MyProject2/Military/Instances/GoodRequirementCarrier.h"
+#include "MyProject2/Military/Instances/UnitDescriptionCarrier.h"
 
-void UUnitTypeDescriptionWidget::Init(const FUnitDescription* ProvidedUnitDescription)
+
+void UUnitTypeDescriptionWidget::NativeConstruct()
 {
-	UnitDescription = ProvidedUnitDescription;
-	SetUnitName(ProvidedUnitDescription->UnitName);
+	Super::NativeConstruct();
 	Button->OnClicked.AddDynamic(this, &UUnitTypeDescriptionWidget::OnButtonClick);
 }
 
-void UUnitTypeDescriptionWidget::SetUnitName(const FName& UnitName) const
+void UUnitTypeDescriptionWidget::SetUnitDescription(UObject* ProvidedUnitDescription)
 {
-	UnitNameTextBlock->SetText(FText::FromName(UnitName));
+	UnitDescription = Cast<UUnitDescriptionCarrier>(ProvidedUnitDescription)->GetUnitDescription();
+	for (const auto& [GoodName, GoodRequirement]: UnitDescription->EquipmentRequirements)
+	{
+		if (AddedGoodRequirement.Contains(GoodName)) continue;
+		UGoodRequirementCarrier* Carrier = NewObject<UGoodRequirementCarrier>();
+		Carrier->Init(UnitDescription, GoodName);
+		EquipmentRequirementsListView->AddItem(Carrier);
+	}
+}
+
+void UUnitTypeDescriptionWidget::RefreshData()
+{
+	UnitNameTextBlock->SetText(FText::FromName(UnitDescription->UnitName));
+	MilitaryBranchTextBlock->SetText(FText::FromName(UnitDescription->MilitaryBranch));
+	ManpowerRequirementsTextBlock->SetText(FText::FromString(FString::FromInt(UnitDescription->ManpowerRequirements)));
 }
 
 void UUnitTypeDescriptionWidget::OnButtonClick()
