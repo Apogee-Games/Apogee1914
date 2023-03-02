@@ -6,11 +6,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
-#include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
-#include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
-#include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
-#include "MyProject2/Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
-#include "MyProject2/Widgets/Military/Supply/UnitsSupplyListWidget.h"
+#include "MyProject2/Military/Descriptions/UnitDescription.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 

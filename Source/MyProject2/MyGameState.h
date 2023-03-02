@@ -6,7 +6,7 @@
 #include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
 #include "Widgets/Administration/ProvinceDataWidget.h"
-#include "Widgets/Economics/StorageGoodsListWidget.h"
+#include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Events/EventWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
