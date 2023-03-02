@@ -1,5 +1,6 @@
 #pragma once
 #include "Blueprint/UserWidget.h"
+#include "Components/ListView.h"
 #include "Components/TextBlock.h"
 #include "MyProject2/Military/Instances/Units/Unit.h"
 
@@ -10,14 +11,20 @@ class UUnitSupplyWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
-
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* UnitNameTextBlock;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UTextBlock* UnitNeedsTextBlock;
+	UListView* SuppliesListView;
 	
-	void Init(UUnit* Unit);
+	UFUNCTION(BlueprintCallable)
+	void SetUnit(UObject* ProvidedUnit);
 	
-	void UnitWasSupplied(UUnit* Unit);
+	UFUNCTION(BlueprintCallable)
+	void RefreshData();
+private:
+	UPROPERTY()
+	UUnit* Unit;
+
+	TSet<FName> AddGoodNeeds;
 };
