@@ -6,5 +6,5 @@ class IStorageObserver
 {
 public:
 	virtual ~IStorageObserver() = default;
-	virtual void GoodIsUpdated(EStorageType StorageType, UGood* Good) = 0;
+	virtual void GoodIsUpdated(EStorageType StorageType, UStoredGood* Good) = 0;
 };

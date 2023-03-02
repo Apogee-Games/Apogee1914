@@ -1,5 +1,5 @@
 #pragma once
-#include "Good.h"
+#include "StoredGood.h"
 #include "MyProject2/Economics/Interfaces/Observables/StorageObservable.h"
 
 #include "Storage.generated.h"
@@ -19,7 +19,6 @@ class UStorage: public UObject, public IStorageObservable
 {
 	GENERATED_BODY()
 public:
-
 	void Init(EStorageType ProvidedType);
 	
 	void Init(const FName& StrataType);
@@ -33,9 +32,8 @@ public:
 	int32 Demand(const FName& GoodName, const int32 Amount);
 
 	EStorageType GetType() const;
-
 private:
-	TMap<FName, UGood*> Goods;
+	TMap<FName, UStoredGood*> Goods;
 
 	EStorageType Type = EStorageType::Country;
 

@@ -1,8 +1,8 @@
 #include "UnitTypeDescriptionWidget.h"
 
 #include "MyProject2/Characters/HumanPlayerPawn.h"
-#include "MyProject2/Military/Instances/GoodRequirementCarrier.h"
-#include "MyProject2/Military/Instances/UnitDescriptionCarrier.h"
+#include "MyProject2/Widgets/Military/Carriers/GoodRequirementCarrier.h"
+#include "MyProject2/Widgets/Military/Carriers/UnitDescriptionCarrier.h"
 
 
 void UUnitTypeDescriptionWidget::NativeConstruct()

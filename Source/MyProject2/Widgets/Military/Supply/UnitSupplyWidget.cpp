@@ -1,6 +1,6 @@
 #include "UnitSupplyWidget.h"
 
-#include "MyProject2/Military/Instances/GoodNeedCarrier.h"
+#include "MyProject2/Widgets/Military/Carriers/GoodNeedCarrier.h"
 
 
 void UUnitSupplyWidget::SetUnit(UObject* ProvidedUnit)

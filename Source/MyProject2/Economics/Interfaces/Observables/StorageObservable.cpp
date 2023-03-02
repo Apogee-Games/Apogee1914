@@ -1,8 +1,8 @@
 #include "StorageObservable.h"
 
-#include "MyProject2/Economics/Instances/Public/Good.h"
+#include "MyProject2/Economics/Instances/Public/StoredGood.h"
 
-void IStorageObservable::NotifyGoodUpdate(EStorageType StorageType, UGood* Good)
+void IStorageObservable::NotifyGoodUpdate(EStorageType StorageType, UStoredGood* Good)
 {
 	for (auto& Observer: Observers)
 	{

@@ -1,7 +1,6 @@
 #include "UnitTypesListWidget.h"
 
-#include "Components/Button.h"
-#include "MyProject2/Military/Instances/UnitDescriptionCarrier.h"
+#include "MyProject2/Widgets/Military/Carriers/UnitDescriptionCarrier.h"
 
 void UUnitTypesListWidget::AddUnitType(FUnitDescription* UnitDescription)
 {

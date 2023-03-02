@@ -1,7 +1,7 @@
 #pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
-#include "MyProject2/Military/Instances/GoodRequirementCarrier.h"
+#include "MyProject2/Widgets/Military/Carriers/GoodRequirementCarrier.h"
 #include "UnitTypeEquipmentRequirementWidget.generated.h"
 
 UCLASS()

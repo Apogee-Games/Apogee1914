@@ -17,7 +17,7 @@ void UStorageGoodWidget::NativeConstruct()
 
 void UStorageGoodWidget::SetGood(UObject* ProvidedGood)
 {
-	Good = Cast<UGood>(ProvidedGood);
+	Good = Cast<UStoredGood>(ProvidedGood);
 }
 
 void UStorageGoodWidget::RefreshData()

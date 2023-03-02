@@ -15,7 +15,6 @@ public:
 	int32 GetGoodRequirements() const;
 
 	const FName& GetGoodName() const;
-	
 private:
 	UPROPERTY()
 	UUnitSupplyNeeds* UnitSupplyNeeds;

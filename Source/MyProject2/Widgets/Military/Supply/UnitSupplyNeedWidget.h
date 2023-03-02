@@ -1,7 +1,7 @@
 #pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
-#include "MyProject2/Military/Instances/GoodNeedCarrier.h"
+#include "MyProject2/Widgets/Military/Carriers/GoodNeedCarrier.h"
 #include "UnitSupplyNeedWidget.generated.h"
 
 UCLASS()
@@ -26,5 +26,4 @@ public:
 private:
 	UPROPERTY()
 	UGoodNeedCarrier* Carrier;
-	
 };

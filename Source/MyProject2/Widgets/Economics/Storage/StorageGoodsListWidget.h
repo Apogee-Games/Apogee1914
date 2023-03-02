@@ -12,5 +12,5 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* GoodsListView;
 
-	virtual void GoodIsUpdated(EStorageType StorageType, UGood* Good) override;
+	virtual void GoodIsUpdated(EStorageType StorageType, UStoredGood* Good) override;
 };

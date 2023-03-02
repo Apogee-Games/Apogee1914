@@ -36,6 +36,6 @@ private:
 	UPROPERTY()
 	TMap<EStorageType, UTextBlock*> TypeTextBlockMapping;
 
-	UGood* Good;
+	UStoredGood* Good;
 };
 

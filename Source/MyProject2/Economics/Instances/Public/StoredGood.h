@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Good.generated.h"
+#include "StoredGood.generated.h"
 
 class UStorage;
 UCLASS()
-class UGood: public UObject
+class UStoredGood: public UObject
 {
 	GENERATED_BODY()
 public:
-
 	void Init(FName ProvidedGoodName, int32 ProvidedAmount, UStorage* ProvidedStorage);
 
 	void Supply(int32 SuppliedAmount);
