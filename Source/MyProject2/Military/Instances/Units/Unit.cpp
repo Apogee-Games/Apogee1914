@@ -13,10 +13,8 @@ void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* Pro
 	Province = ProvidedProvince;
 	CountryOwner = ProvidedCountryOwner;
 	CountryController = ProvidedCountryController;
-	for (auto& [GoodName, GoodCount]: ProvidedUnitDescription->EquipmentRequirements)
-	{
-		EquipmentNeeds.Add(GoodName, GoodCount);
-	}
+	SupplyNeeds = NewObject<UUnitSupplyNeeds>();
+	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
 }
 
 bool UUnit::CanTransportUnits() const
@@ -68,20 +66,16 @@ UCountry* UUnit::GetCountryController() const
 	return CountryController;
 }
 
-const TMap<FName, int32>& UUnit::GetEquipmentNeeds() const
-{
-	return EquipmentNeeds;
-}
-
 int32 UUnit::GetUnitTypeEquipmentRequirement(const FName& GoodName) const
 {
 	return UnitDescription->EquipmentRequirements[GoodName];
 }
 
-void UUnit::SupplyEquipment(const FName& GoodName, int32 Amount)
+UUnitSupplyNeeds* UUnit::GetSupplyNeeds() const
 {
-	EquipmentNeeds[GoodName] -= Amount;
+	return SupplyNeeds;
 }
+
 
 const FName& UUnit::GetUnitName() const
 {

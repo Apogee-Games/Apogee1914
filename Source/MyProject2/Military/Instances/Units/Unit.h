@@ -3,6 +3,7 @@
 #include "MyProject2/Administration/Instances/Country.h"
 #include "MyProject2/Administration/Instances/Province.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
+#include "MyProject2/Military/Instances/UnitSupplyNeeds.h"
 #include "Unit.generated.h"
 
 enum class EMilitaryBranch
@@ -35,11 +36,9 @@ public:
 
 	UCountry* GetCountryController() const;
 
-	const TMap<FName, int32>& GetEquipmentNeeds() const;
-
 	int32 GetUnitTypeEquipmentRequirement(const FName& GoodName) const;
 
-	void SupplyEquipment(const FName& GoodName, int32 Amount);
+	UUnitSupplyNeeds* GetSupplyNeeds() const;
 
 	const FName& GetUnitName() const;
 
@@ -52,7 +51,6 @@ public:
 	// void AddTransportedUnit(UUnit* Unit);
 
 	// void RemoveTransportedUnit(UUnit* Unit);
-
 	
 private:
 	
@@ -60,8 +58,9 @@ private:
 
 	//TSet<UUnit*> TransportedUnits; // TODO: May be extract it to another interface
 
-	TMap<FName, int32> EquipmentNeeds;
-
+	UPROPERTY()
+	UUnitSupplyNeeds* SupplyNeeds;
+	
 	UPROPERTY()
 	UProvince* Province;
 
