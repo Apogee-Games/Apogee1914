@@ -13,22 +13,14 @@ void UStorage::Init(const FName& StrataType)
 
 void UStorage::Supply(const FName& GoodName, const int32 Amount)
 {
-	if (!Goods.Contains(GoodName))
-	{
-		UGood* Good = NewObject<UGood>();
-		Good->Init(GoodName, 0, this);
-		Goods.Add(GoodName, Good);
-	}
+	AddGoodIfNotPresent(GoodName);
 	Goods[GoodName]->Supply(Amount);
 	NotifyGoodUpdate(Type, Goods[GoodName]);
 }
 
 int32 UStorage::Estimate(const FName& GoodName, const int32 Amount)
 {
-	if (!Goods.Contains(GoodName))
-	{
-		Goods.Add(GoodName, 0);
-	}
+	AddGoodIfNotPresent(GoodName);
 	return FMath::Min(Goods[GoodName]->GetAmount(), Amount);
 }
 
@@ -39,11 +31,7 @@ int32 UStorage::GetGoodAmount(const FName& GoodName) const
 
 int32 UStorage::Demand(const FName& GoodName, const int32 Amount)
 {
-	if (!Goods.Contains(GoodName))
-	{
-		Goods.Add(GoodName, 0);
-	}
-
+	AddGoodIfNotPresent(GoodName);
 	const int32 CanProvide = Goods[GoodName]->Demand(Amount);
 	NotifyGoodUpdate(Type, Goods[GoodName]);
 	return CanProvide;
@@ -52,4 +40,14 @@ int32 UStorage::Demand(const FName& GoodName, const int32 Amount)
 EStorageType UStorage::GetType() const
 {
 	return Type;
+}
+
+void UStorage::AddGoodIfNotPresent(const FName& GoodName)
+{
+	if (!Goods.Contains(GoodName))
+	{
+		UGood* Good = NewObject<UGood>();
+		Good->Init(GoodName, 0, this);
+		Goods.Add(GoodName, Good);
+	}
 }

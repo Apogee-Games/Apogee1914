@@ -38,6 +38,8 @@ private:
 	TMap<FName, UGood*> Goods;
 
 	EStorageType Type = EStorageType::Country;
+
+	void AddGoodIfNotPresent(const FName& GoodName);
 	
 	inline static TMap<FName, EStorageType> StrataTypeToStorageType = {
 		{"LOW", EStorageType::LowerStrata},
