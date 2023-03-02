@@ -9,9 +9,7 @@ UCLASS()
 class MYPROJECT2_API UStorageGoodWidget: public UUserWidget
 {
 	GENERATED_BODY()
-
 public:
-
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* GoodNameTextBlock;
 
@@ -27,12 +25,17 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* UpperStrataStorageCountTextBlock;
 
-	void Init(const FName& GoodName);
+	virtual void NativeConstruct() override;
 
-	void GoodIsUpdated(EStorageType StorageType, int NewAmount);
-
+	UFUNCTION(BlueprintCallable)
+	void SetGood(UObject* ProvidedGood);
+	
+	UFUNCTION(BlueprintCallable)
+	void RefreshData();
 private:
 	UPROPERTY()
 	TMap<EStorageType, UTextBlock*> TypeTextBlockMapping;
+
+	UGood* Good;
 };
 

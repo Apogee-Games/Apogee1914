@@ -1,9 +1,9 @@
 #include "StorageGoodWidget.h"
 
-void UStorageGoodWidget::Init(const FName& GoodName)
-{
-	GoodNameTextBlock->SetText(FText::FromName(GoodName));
 
+void UStorageGoodWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
 	TypeTextBlockMapping.Add(EStorageType::Country, CountryStorageCountTextBlock);
 	TypeTextBlockMapping.Add(EStorageType::LowerStrata, LowerStrataStorageCountTextBlock);
 	TypeTextBlockMapping.Add(EStorageType::MiddleStrata, MiddleStrataStorageCountTextBlock);
@@ -15,7 +15,13 @@ void UStorageGoodWidget::Init(const FName& GoodName)
 	}
 }
 
-void UStorageGoodWidget::GoodIsUpdated(EStorageType StorageType, int NewAmount)
+void UStorageGoodWidget::SetGood(UObject* ProvidedGood)
 {
-	TypeTextBlockMapping[StorageType]->SetText(FText::FromString(FString::FromInt(NewAmount)));
+	Good = Cast<UGood>(ProvidedGood);
+}
+
+void UStorageGoodWidget::RefreshData()
+{
+	GoodNameTextBlock->SetText(FText::FromName(Good->GetGoodName()));
+	TypeTextBlockMapping[Good->GetStorage()->GetType()]->SetText(FText::FromString(FString::FromInt(Good->GetAmount())));
 }
