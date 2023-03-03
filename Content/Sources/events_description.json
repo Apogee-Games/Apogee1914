@@ -29,5 +29,64 @@
 				"Conditions": []
 			}
 		]
+	},
+	{
+		"Name": "welcome1",
+		"ImagePath": "/Game/Images/welcome",
+		"Title": "Welcome in the game",
+		"Text": "Welcome in the game",
+		"TriggerOnce": true,
+		"CountriesConditions": {
+			"ForAll": true,
+			"CountriesTags": []
+		},
+		"Conditions": [
+			{
+				"Name": "DatePassed",
+				"Values": {
+					"Year": 1914,
+					"Month": 1,
+					"Day": 3,
+					"Hour": 1
+				}
+			}
+		],
+		"Choices": [
+			{
+				"Name": "Play5",
+				"Text": "Play",
+				"AIChance": 1,
+				"OutComes": [],
+				"Conditions": []
+			},
+			{
+				"Name": "Play4",
+				"Text": "Play",
+				"AIChance": 1,
+				"OutComes": [],
+				"Conditions": []
+			},
+			{
+				"Name": "Play3",
+				"Text": "Play",
+				"AIChance": 1,
+				"OutComes": [],
+				"Conditions": []
+			},
+			{
+				"Name": "Play2",
+				"Text": "Play",
+				"AIChance": 1,
+				"OutComes": [],
+				"Conditions": []
+			},
+			{
+				"Name": "Play1",
+				"Text": "Play",
+				"AIChance": 1,
+				"OutComes": [],
+				"Conditions": []
+			}
+		]
 	}
 ]
