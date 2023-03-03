@@ -33,6 +33,7 @@ public:
 
 	EStorageType GetType() const;
 private:
+	UPROPERTY()
 	TMap<FName, UStoredGood*> Goods;
 
 	EStorageType Type = EStorageType::Country;
