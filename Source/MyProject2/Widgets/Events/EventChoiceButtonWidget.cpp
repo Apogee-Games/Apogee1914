@@ -2,22 +2,24 @@
 
 #include "MyProject2/Events/EventInstancesController.h"
 
-void UEventChoiceButtonWidget::SetChoiceText(const FText& Text) const
+void UEventChoiceButtonWidget::NativeConstruct()
 {
-	ChoiceTextBlock->SetText(Text);
+	Super::NativeConstruct();
+	ChoiceButton->OnClicked.AddDynamic(this, &UEventChoiceButtonWidget::OnChoiceButtonClick);
+}
+
+void UEventChoiceButtonWidget::SetCarrier(UObject* ProvidedCarrier)
+{
+	Carrier = Cast<UEventChoiceCarrier>(ProvidedCarrier);
+}
+
+void UEventChoiceButtonWidget::RefreshData()
+{
+	ChoiceTextBlock->SetText(Carrier->GetChoiceText());
+	ChoiceButton->SetIsEnabled(Carrier->IsChoiceActive());
 }
 
 void UEventChoiceButtonWidget::OnChoiceButtonClick()
 {
-	GetWorld()->GetSubsystem<UEventInstancesController>()->RegisterChoice(EventName, ChoiceName, CountryTag);
-}
-
-void UEventChoiceButtonWidget::Init(const FName& NewEventName, const FName& NewChoiceName, const FName& NewCountryTag, const FText& NewChoiceText)
-{
-	EventName = NewEventName;
-	ChoiceName = NewChoiceName;
-	CountryTag = NewCountryTag;
-	SetChoiceText(NewChoiceText);
-	
-	ChoiceButton->OnClicked.AddDynamic(this, &UEventChoiceButtonWidget::OnChoiceButtonClick);
+	GetWorld()->GetSubsystem<UEventInstancesController>()->RegisterChoice(Carrier->GetEventDescription(), Carrier->GetChoiceName(), Carrier->GetCountryTag());
 }

@@ -1,7 +1,6 @@
 #include "EventWidget.h"
 
 #include "Blueprint/WidgetLayoutLibrary.h"
-#include "Blueprint/WidgetTree.h"
 #include "Components/Button.h"
 #include "Components/CanvasPanelSlot.h"
 #include "Components/Image.h"
@@ -9,33 +8,29 @@
 #include "Engine/Canvas.h"
 #include "MyProject2/Utils/TextureUtils.h"
 #include "EventChoiceButtonWidget.h"
+#include "EventChoiceCarrier.h"
 
-void UEventWidget::SetTitle(const FText& Title) const
+void UEventWidget::NativeConstruct()
 {
-	TitleTextBlock->SetText(Title);
+	Super::NativeConstruct();
+	ButtonForMoving->OnPressed.AddDynamic(this, &UEventWidget::OnButtonForMovingPress);
+	ButtonForMoving->OnReleased.AddDynamic(this, &UEventWidget::UEventWidget::OnButtonForMovingRelease);
 }
 
-void UEventWidget::SetImage(const FName& ImagePath) const
+void UEventWidget::Init(FEventDescription* EventDescription, const FName& CountryTag, const TMap<FName, bool>& ChoicesConditionsEvaluated)
 {
-	UTexture2D* ImageTexture = FTextureUtils::LoadTexture(ImagePath.ToString());
+	TitleTextBlock->SetText(EventDescription->Title);
+	TextTextBlock->SetText(EventDescription->Text);
 
+	UTexture2D* ImageTexture = FTextureUtils::LoadTexture(EventDescription->ImagePath.ToString());
 	Image->SetBrushResourceObject(ImageTexture);
-}
 
-void UEventWidget::SetText(const FText& Text) const
-{
-	TextTextBlock->SetText(Text);
-}
-
-void UEventWidget::AddChoice(const FName& EventName, const FName& ChoiceName, const FName& CountryTag, const FText& ChoiceText)
-{
-	UEventChoiceButtonWidget* ChoiceButtonWidget = CreateWidget<UEventChoiceButtonWidget>(GetWorld(), ChoiceButtonWidgetClass);
-	ChoiceButtonWidget->Init(EventName, ChoiceName, CountryTag, ChoiceText);
-	
-	ChoicesGridPanel->AddChildToGrid(ChoiceButtonWidget, CurrentChoice, 0);
-	CurrentChoice++;
-
-	UpdateSizes(ChoiceButtonWidget);
+	for (const auto& Choice: EventDescription->Choices)
+	{
+		UEventChoiceCarrier* Carrier = NewObject<UEventChoiceCarrier>();
+		Carrier->Init(Choice, CountryTag, EventDescription, ChoicesConditionsEvaluated);
+		ChoicesListView->AddItem(Carrier);
+	}
 }
 
 void UEventWidget::Tick()
@@ -46,7 +41,7 @@ void UEventWidget::Tick()
 
 		if (CurrentMousePosition != NewCurrentMousePosition)
 		{
-			UCanvasPanelSlot* WidgetCanvasSlot = Cast<UCanvasPanelSlot>(WidgetCanvas->Slot);
+			UCanvasPanelSlot* WidgetCanvasSlot = Cast<UCanvasPanelSlot>(WidgetCanvasPanel->Slot);
 
 			const FVector2d NewWidgetPosition = WidgetCanvasSlot->GetPosition() + NewCurrentMousePosition - CurrentMousePosition;
 
@@ -55,20 +50,6 @@ void UEventWidget::Tick()
 			CurrentMousePosition = NewCurrentMousePosition;
 		}
 	}
-}
-
-void UEventWidget::Init()
-{
-	ButtonForMoving->OnPressed.AddDynamic(this, &UEventWidget::OnButtonForMovingPress);
-	ButtonForMoving->OnReleased.AddDynamic(this, &UEventWidget::UEventWidget::OnButtonForMovingRelease);
-}
-
-void UEventWidget::Init(const FText& Title, const FText& Text, const FName& ImagePath)
-{
-	Init();
-	SetTitle(Title);
-	SetText(Text);
-	SetImage(ImagePath);
 }
 
 void UEventWidget::OnButtonForMovingPress()
@@ -80,15 +61,4 @@ void UEventWidget::OnButtonForMovingPress()
 void UEventWidget::OnButtonForMovingRelease()
 {
 	IsWidgetBeingMoved = false;
-}
-
-void UEventWidget::UpdateSizes(const UEventChoiceButtonWidget* NewChoiceButton) const
-{
-	const FVector2d Margin = FVector2d(0, Cast<UCanvasPanelSlot>(NewChoiceButton->ChoiceButton->Slot)->GetPosition().Y);
-	const FVector2d ButtonSize = FVector2d(0, Cast<UCanvasPanelSlot>(NewChoiceButton->ChoiceButton->Slot)->GetSize().Y);
-	const FVector2d NewSize = Cast<UCanvasPanelSlot>(WidgetCanvas->Slot)->GetSize() + ButtonSize + Margin;
-	
-	Cast<UCanvasPanelSlot>(BackgroundImage->Slot)->SetSize(NewSize);
-	Cast<UCanvasPanelSlot>(ButtonForMoving->Slot)->SetSize(NewSize);
-	Cast<UCanvasPanelSlot>(WidgetCanvas->Slot)->SetSize(NewSize);
 }

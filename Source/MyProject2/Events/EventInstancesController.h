@@ -27,35 +27,26 @@ public:
 	
 	void CheckEvents();
 
-	/**
-	 * Creates and displays event widget with required data
-	 */
-	void CreateEvent(const FName& EventName, const FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEvent(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 
-	/**
-	 *	Removes event widget 
-	 */
-	void DeleteEventWidget(const FName& EventName, const FName& CountryTag);
+	void DeleteEventWidget(FEventDescription* Event, const FName& CountryTag);
 
-	/**
-	 *	Method used to record selected choice for specific event
-	 */
-	void RegisterChoice(const FName& EventName, const FName& ChoiceName, const FName& CountryTag);
+	void RegisterChoice(FEventDescription* Event, const FName& ChoiceName, const FName& CountryTag);
 
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
-	TSet<TPair<FName, FName>> FiredEvents;
+	TSet<TPair<FEventDescription*, FName>> FiredEvents;
 
-	TMap<FName, FEventDescription*> Events;
+	TArray<FEventDescription*> Events;
 
-	TMap<FName, bool> ActiveEvents;
+	TMap<FEventDescription*, bool> ActiveEvents;
 	
-	TMap<TPair<FName, FName>, UEventWidget*> WidgetsInstances;
+	TMap<TPair<FEventDescription*, FName>, UEventWidget*> WidgetsInstances;
 
-	void CreateEventForAI(const FName& EventName, const FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForAI(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 	
-	void CreateEventForPlayer(const FName& EventName, const FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForPlayer(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 
 	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 
