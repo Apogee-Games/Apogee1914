@@ -16,5 +16,5 @@ public:
 private:
 	const FUnitDescription* UnitDescription;
 	
-	FName GoodName;
+	const FName* GoodName;
 };

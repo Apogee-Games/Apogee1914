@@ -4,20 +4,20 @@
 void UGoodNeedCarrier::Init(UUnitSupplyNeeds* ProvidedUnitSupplyNeed, const FName& ProvidedGoodName)
 {
 	UnitSupplyNeeds = ProvidedUnitSupplyNeed;
-	GoodName = ProvidedGoodName;
+	GoodName = &ProvidedGoodName;
 }
 
 int32 UGoodNeedCarrier::GetGoodSupply() const
 {
-	return UnitSupplyNeeds->GetGoodSupply(GoodName);
+	return UnitSupplyNeeds->GetGoodSupply(*GoodName);
 }
 
 int32 UGoodNeedCarrier::GetGoodRequirements() const
 {
-	return UnitSupplyNeeds->GetGoodRequirements(GoodName);
+	return UnitSupplyNeeds->GetGoodRequirements(*GoodName);
 }
 
 const FName& UGoodNeedCarrier::GetGoodName() const
 {
-	return GoodName;
+	return *GoodName;
 }

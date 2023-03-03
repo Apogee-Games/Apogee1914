@@ -19,5 +19,5 @@ private:
 	UPROPERTY()
 	UUnitSupplyNeeds* UnitSupplyNeeds;
 
-	FName GoodName;
+	const FName* GoodName;
 };
