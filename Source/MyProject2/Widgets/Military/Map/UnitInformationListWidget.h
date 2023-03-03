@@ -4,6 +4,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/GridPanel.h"
 #include "Components/Image.h"
+#include "Components/ListView.h"
 #include "UnitInformationListWidget.generated.h"
 
 
@@ -13,18 +14,14 @@ class MYPROJECT2_API UUnitInformationListWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UGridPanel* UnitsGridPanel;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UUnitInformationWidget> UnitInformationWidgetClass;
+	UListView* UnitsListView;
 	
 	void AddUnit(UUnit* Unit);
 
 	void RemoveUnit(UUnit* Unit);
-	
 private:
 	UPROPERTY()
-	TMap<UCountry*, UUnitInformationWidget*> Widgets;
+	TMap<UCountry*, UUnitsListCarrier*> Widgets;
 
 	void CheckWidgetsMapState(UUnit* Unit);
 };

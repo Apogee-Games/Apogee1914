@@ -4,6 +4,7 @@
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "MyProject2/Military/Instances/Units/Unit.h"
+#include "MyProject2/Widgets/Military/Carriers/UnitsListCarrier.h"
 #include "UnitInformationWidget.generated.h"
 
 UCLASS()
@@ -20,19 +21,17 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* Button;
 
-	void Init();
-	
-	void AddUnit(UUnit* Unit);
+	virtual void NativeConstruct() override;
 
-	void RemoveUnit(UUnit* Unit);
+	UFUNCTION(BlueprintCallable)
+	void SetCarrier(UObject* ProvidedCarrier);	
 
-	bool IsEmpty() const;
-	
+	UFUNCTION(BlueprintCallable)
+	void RefreshData();
 private:
-	TArray<UUnit*> Units;
-
+	UPROPERTY()
+	UUnitsListCarrier* Carrier;
+	
 	UFUNCTION()
 	void OnClicked();
-	
-	void UpdateCountText();
 };

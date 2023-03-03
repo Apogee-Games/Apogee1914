@@ -15,15 +15,15 @@ void UUnitInformationListWidget::RemoveUnit(UUnit* Unit)
 
 void UUnitInformationListWidget::CheckWidgetsMapState(UUnit* Unit)
 {
-	if (!Widgets.Contains(Unit->GetCountryController()))
+	UCountry* Country = Unit->GetCountryController();
+	if (!Widgets.Contains(Country))
 	{
-		UUnitInformationWidget* Widget = CreateWidget<UUnitInformationWidget>(GetWorld(), UnitInformationWidgetClass);
-		Widget->Init();
-		Widgets.Add(Unit->GetCountryController(), Widget);
-		UnitsGridPanel->AddChildToGrid(Widget, Widgets.Num());
-	} else if (Widgets[Unit->GetCountryController()]->IsEmpty())
+		UUnitsListCarrier* UnitsListCarrier = NewObject<UUnitsListCarrier>();
+		UnitsListView->AddItem(UnitsListCarrier);
+		Widgets.Add(Country, UnitsListCarrier);
+	} else if (Widgets[Country]->IsEmpty())
 	{
-		UnitsGridPanel->RemoveChild(Widgets[Unit->GetCountryController()]);
-		Widgets.Remove(Unit->GetCountryController());
+		UnitsListView->RemoveItem(Widgets[Country]);
+		Widgets.Remove(Country);
 	}
 }

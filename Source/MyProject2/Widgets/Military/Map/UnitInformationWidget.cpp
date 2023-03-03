@@ -1,39 +1,28 @@
 #include "UnitInformationWidget.h"
 
 #include "MyProject2/Characters/HumanPlayerPawn.h"
-
-void UUnitInformationWidget::Init()
+void UUnitInformationWidget::NativeConstruct()
 {
+	Super::NativeConstruct();
 	Button->OnClicked.AddDynamic(this, &UUnitInformationWidget::OnClicked);
 }
 
-void UUnitInformationWidget::AddUnit(UUnit* Unit)
+void UUnitInformationWidget::SetCarrier(UObject* ProvidedCarrier)
 {
-	if (Units.IsEmpty())
+	Carrier = Cast<UUnitsListCarrier>(ProvidedCarrier);
+}
+
+void UUnitInformationWidget::RefreshData()
+{
+	if (const UUnit* Unit = Carrier->GetFirst())
 	{
+		CountTextBlock->SetText(FText::FromString(FString::FromInt(Carrier->Num())));
 		FlagImage->SetBrushResourceObject(Unit->GetCountryController()->GetFlag());
 	}
-	Units.Add(Unit);
-	UpdateCountText();
-}
-
-void UUnitInformationWidget::RemoveUnit(UUnit* Unit)
-{
-	Units.Remove(Unit);
-	UpdateCountText();
-}
-
-bool UUnitInformationWidget::IsEmpty() const
-{
-	return Units.IsEmpty();
 }
 
 void UUnitInformationWidget::OnClicked()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SelectUnits(Units);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SelectUnits(Carrier->GetUnits());
 }
 
-void UUnitInformationWidget::UpdateCountText()
-{
-	CountTextBlock->SetText(FText::FromString(FString::FromInt(Units.Num())));
-}
