@@ -9,9 +9,9 @@
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Events/EventWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
+#include "Widgets/Military/Map/UnitInformationListWidget.h"
 #include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
-#include "Widgets/Military/Units/UnitInformationListWidget.h"
 
 #include "MyGameState.generated.h"
 
@@ -47,6 +47,8 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass;
+
+	// TODO: Move widget classes to HUD :)
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);

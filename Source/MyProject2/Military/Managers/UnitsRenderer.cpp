@@ -3,7 +3,6 @@
 #include "UnitsFactory.h"
 #include "UnitsMover.h"
 #include "MyProject2/MyProject2GameModeBase.h"
-#include "MyProject2/Widgets/Military/Units/UnitInformationListWidget.h"
 #include "MyProject2/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Characters/UnitActor.h"
 #include "MyProject2/Maps/Objects/ObjectMap.h"
