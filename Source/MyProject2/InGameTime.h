@@ -2,11 +2,20 @@
 #include "Widgets/TimeControllerWidget.h"
 #include "InGameTime.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UInGameTime: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	FDateTime StartTime = FDateTime(1914, 1, 1);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	int32 MaxTimeSpeed = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	float SpeedMultiplier = 0.1;
+	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	virtual void Tick(float DeltaTime);
@@ -18,7 +27,6 @@ public:
 	void SpeedUpTime();
 
 	void SlowDownTime();
-	// TODO: May be add some logic to pass new percentage to widget instead of widget calculating if itself
 
 	bool IsGamePaused() const;
 
@@ -46,10 +54,6 @@ private:
 	TMap<int32, int64> Deltas;
 	
 	FDateTime CurrentTime;
-	
-	float_t SpeedMultiplier;
-
-	int32 MaxTimeSpeed;
 	
 	bool bIsGamePaused = true;
 

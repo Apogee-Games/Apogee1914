@@ -8,11 +8,17 @@
 /**
  * Class used to control all events instances
  */
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UEventInstancesController: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UEventWidget> EventWidgetClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
@@ -39,8 +45,6 @@ public:
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
-	TSubclassOf<UEventWidget> EventWidgetClass;
-
 	TSet<TPair<FName, FName>> FiredEvents;
 
 	TMap<FName, FEventDescription*> Events;

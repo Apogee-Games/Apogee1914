@@ -3,6 +3,7 @@
 
 #include "MyProject2GameModeBase.h"
 
+#include "InGameTime.h"
 #include "MyGameInstance.h"
 #include "MyGameState.h"
 #include "Administration/Managers/CountriesManager.h"

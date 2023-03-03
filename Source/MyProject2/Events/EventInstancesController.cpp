@@ -114,8 +114,7 @@ void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)
 void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	EventWidgetClass = GetWorld()->GetGameState<AMyGameState>()->EventWidgetClass;
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, FTimespan(1, 0 , 0, 0));
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
 }
 
 void UEventInstancesController::RegisterChoice(const FName& EventName, const FName& ChoiceName,

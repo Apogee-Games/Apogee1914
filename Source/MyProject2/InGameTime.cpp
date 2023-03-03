@@ -6,12 +6,7 @@
 void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	AMyGameState* GameState = GetWorld()->GetGameState<AMyGameState>();
-	
-	CurrentTime = GameState->StartTime; 
-	MaxTimeSpeed = GameState->MaxTimeSpeed;
-	SpeedMultiplier = GameState->SpeedMultiplier;
-	
+	CurrentTime = StartTime;
 	RefreshWidgetDate();
 	RefreshWidgetSpeed();
 }

@@ -41,13 +41,12 @@ void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
 
 void UUnitsRenderer::Init()
 {
-	const TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitInformationListWidgetClass;
 	for (const auto& Province: GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{
-		AUnitActor* Actor = GetWorld()->SpawnActor<AUnitActor>(AUnitActor::StaticClass());
+		AUnitActor* Actor = GetWorld()->SpawnActor<AUnitActor>(UnitActorClass);
 		const FVector2d ImagePosition = GetWorld()->GetSubsystem<UObjectMap>()->GetProvinceCenter(Province->GetId());
 		const FVector3d WorldPosition = GetWorldPositionFromMapPosition(ImagePosition);
-		Actor->Init(ObjectScale, WorldPosition, UnitMesh, UnitInformationListWidgetClass);
+		Actor->Init(WorldPosition);
 		Actors.Add(Province, Actor);
 	}
 }
