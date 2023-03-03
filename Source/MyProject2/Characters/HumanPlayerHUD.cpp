@@ -40,8 +40,12 @@ UUnitInstancesListDescriptionWidget* AHumanPlayerHUD::GetUnitInstancesListDescri
 	return UnitInstancesListDescriptionWidget;
 }
 
-UTimeControllerWidget* AHumanPlayerHUD::GetTimeControllerWidget() const
+UTimeControllerWidget* AHumanPlayerHUD::GetTimeControllerWidget()
 {
+	if (!TimeControllerWidget)
+	{
+		InitTimeControllerWidget();
+	}
 	return TimeControllerWidget;
 }
 
@@ -74,7 +78,9 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	{
 		Widget->RemoveFromParent();
 	}
-	TimeControllerWidget->RemoveFromRoot();
+	if (TimeControllerWidget) {
+		TimeControllerWidget->RemoveFromRoot();
+	}
 }
 
 void AHumanPlayerHUD::InitProvinceDataWidget()
@@ -157,7 +163,7 @@ void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
 
 void AHumanPlayerHUD::InitTimeControllerWidget()
 {
-	if (TimeControllerClass)
+	if (!TimeControllerWidget && TimeControllerClass)
 	{
 		TimeControllerWidget = CreateWidget<UTimeControllerWidget>(GetOwningPlayerController(), TimeControllerClass);
 		if (TimeControllerWidget)

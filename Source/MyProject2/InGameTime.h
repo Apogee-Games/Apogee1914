@@ -61,7 +61,9 @@ private:
 
 	void CheckDeltas(const FTimespan& DeltaTimeSpan);
 
-	void RefreshWidget();
+	void RefreshWidgetDate();
+
+	void RefreshWidgetSpeed();
 };
 
 template <class T>

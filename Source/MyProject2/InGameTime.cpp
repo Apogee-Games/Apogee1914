@@ -11,6 +11,9 @@ void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 	CurrentTime = GameState->StartTime; 
 	MaxTimeSpeed = GameState->MaxTimeSpeed;
 	SpeedMultiplier = GameState->SpeedMultiplier;
+	
+	RefreshWidgetDate();
+	RefreshWidgetSpeed();
 }
 
 void UInGameTime::Tick(float DeltaTime)
@@ -49,7 +52,7 @@ void UInGameTime::UpdateCurrentTime(const FTimespan& DeltaTimeSpan)
 {
 	CurrentTime += DeltaTimeSpan;
 	CheckDeltas(DeltaTimeSpan);
-	RefreshWidget();
+	RefreshWidgetDate();
 }
 
 void UInGameTime::CheckDeltas(const FTimespan& DeltaTimeSpan)
@@ -65,13 +68,23 @@ void UInGameTime::CheckDeltas(const FTimespan& DeltaTimeSpan)
 	}
 }
 
-void UInGameTime::RefreshWidget()
+void UInGameTime::RefreshWidgetDate()
 {
 	// TODO: Add logic for multiplayer
 	UTimeControllerWidget* TimeControllerWidget = GetWorld()->GetFirstPlayerController()->GetHUD<AHumanPlayerHUD>()->GetTimeControllerWidget();
 	if (TimeControllerWidget)
 	{
 		TimeControllerWidget->SetTime(CurrentTime.ToString(TEXT("%Y-%m-%d %H")));
+	}
+}
+
+void UInGameTime::RefreshWidgetSpeed()
+{
+	// TODO: Add logic for multiplayer
+	UTimeControllerWidget* TimeControllerWidget = GetWorld()->GetFirstPlayerController()->GetHUD<AHumanPlayerHUD>()->GetTimeControllerWidget();
+	if (TimeControllerWidget)
+	{
+		TimeControllerWidget->SetSpeedPercentage(1.0 * TimeSpeed / MaxTimeSpeed);
 	}
 }
 
@@ -84,12 +97,14 @@ void UInGameTime::SpeedUpTime()
 {
 	if (TimeSpeed >= MaxTimeSpeed) return;
 	++TimeSpeed;
+	RefreshWidgetSpeed();
 }
 
 void UInGameTime::SlowDownTime()
 {
 	if (TimeSpeed <= 1) return;
 	--TimeSpeed;
+	RefreshWidgetSpeed();
 }
 
 bool UInGameTime::IsGamePaused() const

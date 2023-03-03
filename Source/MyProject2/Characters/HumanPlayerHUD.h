@@ -43,7 +43,7 @@ public:
 
 	UUnitInstancesListDescriptionWidget* GetUnitInstancesListDescriptionWidget() const;
 
-	UTimeControllerWidget* GetTimeControllerWidget() const;
+	UTimeControllerWidget* GetTimeControllerWidget();
 	
 	void UpdateWidgetsVisibility();
 	

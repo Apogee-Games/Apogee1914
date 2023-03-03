@@ -28,6 +28,8 @@ public:
 	virtual void NativeConstruct() override;
 	
 	void SetTime(const FString& Time);
+
+	void SetSpeedPercentage(float NewSpeedPercentage);
 private:
 	UFUNCTION()
 	void SpeedUpButtonOnClick();

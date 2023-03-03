@@ -79,7 +79,7 @@ public:
 	 * Adds button action bindings and sets some event data
 	 */
 	void Init(const FText& Title, const FText& Text, const FName& ImagePath);
-	
+	// TODO: Refactor :)
 private:
 	int CurrentChoice = 0;
 	
