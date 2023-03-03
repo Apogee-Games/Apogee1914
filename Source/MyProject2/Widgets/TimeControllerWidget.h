@@ -10,7 +10,6 @@ class MYPROJECT2_API UTimeControllerWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
-
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* SpeedUpButton;
 	
@@ -25,11 +24,10 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UProgressBar* SpeedProgressBar;
-	
-	virtual void BeginPlay();
 
-	void SetTime(const FString& Time);
+	virtual void NativeConstruct() override;
 	
+	void SetTime(const FString& Time);
 private:
 	UFUNCTION()
 	void SpeedUpButtonOnClick();

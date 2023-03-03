@@ -1,12 +1,16 @@
 #include "TimeControllerWidget.h"
 
+#include "MyProject2/InGameTime.h"
 #include "MyProject2/MyGameState.h"
 
-void UTimeControllerWidget::BeginPlay()
+void UTimeControllerWidget::NativeConstruct()
 {
+	Super::NativeConstruct();
 	SpeedUpButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::SpeedUpButtonOnClick);
 	SlowDownButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::SlowDownButtonOnClick);
 	PauseButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::PauseButtonOnClick);
+
+	// TODO: Add fix time logic :)
 }
 
 void UTimeControllerWidget::SetTime(const FString& Time)

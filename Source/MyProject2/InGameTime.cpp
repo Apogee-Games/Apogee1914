@@ -1,6 +1,7 @@
 #include "InGameTime.h"
 
 #include "MyGameState.h"
+#include "Characters/HumanPlayerHUD.h"
 
 void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 {
@@ -10,19 +11,6 @@ void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 	CurrentTime = GameState->StartTime; 
 	MaxTimeSpeed = GameState->MaxTimeSpeed;
 	SpeedMultiplier = GameState->SpeedMultiplier;
-	
-	TimeControllerWidget = CreateWidget<UTimeControllerWidget>(GetWorld(), GameState->TimeControllerClass);
-	TimeControllerWidget->BeginPlay();
-	TimeControllerWidget->AddToViewport();
-}
-
-void UInGameTime::Deinitialize()
-{
-	Super::Deinitialize();
-	if (TimeControllerWidget)
-	{
-		TimeControllerWidget->RemoveFromRoot();
-	}
 }
 
 void UInGameTime::Tick(float DeltaTime)
@@ -79,10 +67,11 @@ void UInGameTime::CheckDeltas(const FTimespan& DeltaTimeSpan)
 
 void UInGameTime::RefreshWidget()
 {
+	// TODO: Add logic for multiplayer
+	UTimeControllerWidget* TimeControllerWidget = GetWorld()->GetFirstPlayerController()->GetHUD<AHumanPlayerHUD>()->GetTimeControllerWidget();
 	if (TimeControllerWidget)
 	{
-		const FString Time = CurrentTime.ToString(TEXT("%Y-%m-%d %H"));
-		TimeControllerWidget->SetTime(Time);
+		TimeControllerWidget->SetTime(CurrentTime.ToString(TEXT("%Y-%m-%d %H")));
 	}
 }
 

@@ -3,15 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "InGameTime.h"
 #include "GameFramework/GameStateBase.h"
-#include "Widgets/Administration/ProvinceDataWidget.h"
-#include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Events/EventWidget.h"
-#include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Map/UnitInformationListWidget.h"
-#include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
-#include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
 
 #include "MyGameState.generated.h"
 
@@ -23,42 +17,26 @@ class MYPROJECT2_API AMyGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 public:
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UUnitInstancesListDescriptionWidget> UnitInstancesListDescriptionWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStorageGoodsListWidget> StorageGoodsListWidgetClass;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UUnitTypesListWidget> UnitTypesListWidgetClass;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UTimeControllerWidget> TimeControllerClass;
-
+	// TODO: Move widget classes to HUD :)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UEventWidget> EventWidgetClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UUnitInformationListWidget> UnitInformationListWidgetClass;
 
-	// TODO: Move widget classes to HUD :)
-	
+	// TODO: Extract to respective class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
 
+	// TODO: Extract to respective class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	FDateTime StartTime = FDateTime(1914, 1, 1);
-	
+
+	// TODO: Extract to respective class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	int MaxTimeSpeed = 5;
 
+	// TODO: Extract to respective class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	float SpeedMultiplier = 0.1;
 	

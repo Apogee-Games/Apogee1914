@@ -9,8 +9,6 @@ class UInGameTime: public UWorldSubsystem
 public:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
-	virtual void Deinitialize() override;
-	
 	virtual void Tick(float DeltaTime);
 	
 	int32 GetTimeSpeed() const;
@@ -20,6 +18,7 @@ public:
 	void SpeedUpTime();
 
 	void SlowDownTime();
+	// TODO: May be add some logic to pass new percentage to widget instead of widget calculating if itself
 
 	bool IsGamePaused() const;
 
@@ -57,10 +56,7 @@ private:
 	int32 TimeSpeed = 1;
 	
 	int32 TotalObjectNumber = 1;
-
-	UPROPERTY()
-	UTimeControllerWidget* TimeControllerWidget;
-
+	
 	void UpdateCurrentTime(const FTimespan& DeltaTimeSpan);
 
 	void CheckDeltas(const FTimespan& DeltaTimeSpan);

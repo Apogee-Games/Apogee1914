@@ -12,6 +12,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitStorageGoodsListWidget();
 	InitUnitsSupplyListWidget();
 	InitUnitInstancesListDescriptionWidget();
+	InitTimeControllerWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -37,6 +38,11 @@ UUnitsSupplyListWidget* AHumanPlayerHUD::GetUnitsSupplyListWidget() const
 UUnitInstancesListDescriptionWidget* AHumanPlayerHUD::GetUnitInstancesListDescriptionWidget() const
 {
 	return UnitInstancesListDescriptionWidget;
+}
+
+UTimeControllerWidget* AHumanPlayerHUD::GetTimeControllerWidget() const
+{
+	return TimeControllerWidget;
 }
 
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
@@ -68,12 +74,11 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	{
 		Widget->RemoveFromParent();
 	}
+	TimeControllerWidget->RemoveFromRoot();
 }
 
 void AHumanPlayerHUD::InitProvinceDataWidget()
 {
-	const auto ProvinceDataWidgetClass = GetWorld()->GetGameState<AMyGameState>()->ProvinceDataWidgetClass;
-
 	if (ProvinceDataWidgetClass)
 	{
 		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(GetOwningPlayerController(), ProvinceDataWidgetClass);
@@ -87,8 +92,6 @@ void AHumanPlayerHUD::InitProvinceDataWidget()
 
 void AHumanPlayerHUD::InitUnitTypesListWidget()
 {
-	const auto UnitTypesListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitTypesListWidgetClass;
-	
 	if (UnitTypesListWidgetClass)
 	{
 		UnitTypesListWidget = CreateWidget<UUnitTypesListWidget>(GetOwningPlayerController(), UnitTypesListWidgetClass);
@@ -108,8 +111,6 @@ void AHumanPlayerHUD::InitUnitTypesListWidget()
 
 void AHumanPlayerHUD::InitStorageGoodsListWidget()
 {
-	const auto StorageGoodsListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->StorageGoodsListWidgetClass;
-	
 	if (StorageGoodsListWidgetClass)
 	{
 		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(GetOwningPlayerController(), StorageGoodsListWidgetClass);
@@ -130,8 +131,6 @@ void AHumanPlayerHUD::InitStorageGoodsListWidget()
 
 void AHumanPlayerHUD::InitUnitsSupplyListWidget()
 {
-	const TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitsSupplyListWidgetClass;
-	
 	if (UnitsSupplyListWidgetClass)
 	{
 		UnitsSupplyListWidget = CreateWidget<UUnitsSupplyListWidget>(GetOwningPlayerController(), UnitsSupplyListWidgetClass);
@@ -146,14 +145,24 @@ void AHumanPlayerHUD::InitUnitsSupplyListWidget()
 
 void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
 {
-	const auto UnitInstancesListDescriptionWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitInstancesListDescriptionWidgetClass;
-	
 	if (UnitInstancesListDescriptionWidgetClass)
 	{
 		UnitInstancesListDescriptionWidget = CreateWidget<UUnitInstancesListDescriptionWidget>(GetOwningPlayerController(), UnitInstancesListDescriptionWidgetClass);
 		if (UnitInstancesListDescriptionWidget)
 		{
 			Widgets.Add(UnitInstancesListDescriptionWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitTimeControllerWidget()
+{
+	if (TimeControllerClass)
+	{
+		TimeControllerWidget = CreateWidget<UTimeControllerWidget>(GetOwningPlayerController(), TimeControllerClass);
+		if (TimeControllerWidget)
+		{
+			TimeControllerWidget->AddToPlayerScreen();
 		}
 	}
 }

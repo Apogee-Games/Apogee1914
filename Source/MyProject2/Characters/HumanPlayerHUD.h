@@ -1,5 +1,6 @@
 #pragma once
 #include "GameFramework/HUD.h"
+#include "MyProject2/Widgets/TimeControllerWidget.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
 #include "MyProject2/Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
@@ -12,6 +13,24 @@ class AHumanPlayerHUD: public AHUD
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUnitInstancesListDescriptionWidget> UnitInstancesListDescriptionWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UStorageGoodsListWidget> StorageGoodsListWidgetClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UProvinceDataWidget> ProvinceDataWidgetClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUnitTypesListWidget> UnitTypesListWidgetClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UTimeControllerWidget> TimeControllerClass;
+	
 	virtual void BeginPlay() override;
 	
 	UProvinceDataWidget* GetProvinceDataWidget() const;
@@ -23,6 +42,8 @@ public:
 	UUnitsSupplyListWidget* GetUnitsSupplyListWidget() const;
 
 	UUnitInstancesListDescriptionWidget* GetUnitInstancesListDescriptionWidget() const;
+
+	UTimeControllerWidget* GetTimeControllerWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -42,6 +63,9 @@ private:
 
 	UPROPERTY()
 	UUnitInstancesListDescriptionWidget* UnitInstancesListDescriptionWidget; 
+
+	UPROPERTY()
+	UTimeControllerWidget* TimeControllerWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -55,4 +79,6 @@ private:
 	void InitUnitsSupplyListWidget();
 
 	void InitUnitInstancesListDescriptionWidget();
+
+	void InitTimeControllerWidget();
 };
