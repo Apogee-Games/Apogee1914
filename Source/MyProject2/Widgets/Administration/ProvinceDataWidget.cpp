@@ -8,47 +8,71 @@
 
 void UProvinceDataWidget::SetNewProvince(UProvince* Province)
 {
-	if(!Province) return;
-	
-	SetProvinceName(Province->GetName());
+	if (!Province) return;
+
+	ProvinceNameTextBlock->SetText(FText::FromName(Province->GetName()));
+
 	SetPopulationNumber(Province->GetPopulation()->GetPopulation());
-	SetResources(Province->GetResources());
 
-	const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
+	SetResources(Province);
 
-	if (!State) return;
+	SetBuildings(Province);
 
-	SetStateName(State->GetName());
-}
+	SetState(Province);
 
-void UProvinceDataWidget::SetProvinceName(const FName& ProvinceName) const
-{
-	ProvinceNameTextBlock->SetText(FText::FromName(ProvinceName));
+	SetCountries(Province);
 }
 
 void UProvinceDataWidget::SetPopulationNumber(int32 Population) const
 {
-	SetPopulationNumber(FText::FromString(FString::FromInt(Population)));
+	PopulationNumberTextBlock->SetText(FText::FromString(FString::FromInt(Population)));
 }
 
-void UProvinceDataWidget::SetPopulationNumber(const FText& PopulationNumber) const
+void UProvinceDataWidget::SetResources(UProvince* Province) const
 {
-	PopulationNumberTextBlock->SetText(PopulationNumber);
-}
-
-void UProvinceDataWidget::SetStateName(const FName& StateName) const
-{
-	StateNameTextBlock->SetText(FText::FromName(StateName));
-}
-
-void UProvinceDataWidget::SetResources(const TMap<FName, int32>& Resources) const
-{
-	FString Result = "";
-	
-	for (const auto& [ResourceName, ResourceCount]: Resources)
+	ResourcesListView->ClearListItems();
+	for (const auto& [ResourceName, Resource] : Province->GetResources()->GetMap())
 	{
-		Result += ResourceName.ToString() + ":" + FString::FromInt(ResourceCount) + "\n";
+		ResourcesListView->AddItem(Resource);
 	}
-	
-	ResourcesTextBlock->SetText(FText::FromString(Result));
 }
+
+void UProvinceDataWidget::SetBuildings(UProvince* Province) const
+{
+	BuildingsListView->ClearListItems();
+	for (const auto& Building : Province->GetBuildings())
+	{
+		BuildingsListView->AddItem(Building);
+	}
+}
+
+void UProvinceDataWidget::SetState(UProvince* Province) const
+{
+	const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
+
+	if (State)
+	{
+		StateNameTextBlock->SetText(FText::FromName(State->GetName()));
+	}
+	else
+	{
+		StateNameTextBlock->SetText(FText::FromName(TEXT("None")));
+	}
+}
+
+void UProvinceDataWidget::SetCountries(UProvince* Province) const
+{
+	CountryOwnerNameTextBlock->SetText(FText::FromName(Province->GetOwnerCountry()->GetName()));
+	CountryOwnerFlagImage->SetBrushResourceObject(Province->GetOwnerCountry()->GetFlag());
+
+	if (Province->GetOwnerCountry() == Province->GetCountryController())
+	{
+		ControllerCanvasPanel->SetVisibility(ESlateVisibility::Collapsed);
+	} else
+	{
+		ControllerCanvasPanel->SetVisibility(ESlateVisibility::Visible);
+		CountryControllerNameTextBlock->SetText(FText::FromName(Province->GetCountryController()->GetName()));
+		CountryControllerFlagImage->SetBrushResourceObject(Province->GetCountryController()->GetFlag());
+	}
+}
+

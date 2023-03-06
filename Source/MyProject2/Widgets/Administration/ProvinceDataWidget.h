@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/CanvasPanel.h"
+#include "Components/Image.h"
+#include "Components/ListView.h"
 #include "Components/TextBlock.h"
 #include "MyProject2/Administration/Instances/Province.h"
 #include "ProvinceDataWidget.generated.h"
@@ -21,19 +24,40 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UTextBlock* StateNameTextBlock;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UListView* ResourcesListView;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UListView* BuildingsListView;
+
 	
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	UTextBlock* ResourcesTextBlock;
+	UTextBlock* CountryOwnerNameTextBlock;
 
-	void SetNewProvince(UProvince* Province);
-private:
-	void SetProvinceName(const FName& ProvinceName) const;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* CountryOwnerFlagImage;
 
-	void SetPopulationNumber(int32 Population) const;
 	
-	void SetPopulationNumber(const FText& PopulationNumber) const;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UCanvasPanel* ControllerCanvasPanel;
+	
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* CountryControllerNameTextBlock;
 
-	void SetStateName(const FName& StateName) const;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* CountryControllerFlagImage;
+	
+	void SetNewProvince(UProvince* Province);
+	
+private:
+	void SetPopulationNumber(int32 Population) const;
 
-	void SetResources(const TMap<FName, int>& Resources) const;
+	void SetResources(UProvince* Province) const;
+
+	void SetBuildings(UProvince* Province) const;
+
+	void SetState(UProvince* Province) const;
+
+	void SetCountries(UProvince* Province) const;
 };
