@@ -21,7 +21,11 @@ public:
 
 	int32 GetLabours() const;
 
+	int32 GetMaxLabours() const;
+
 	UProvince* GetProvince() const;
+	
+	const FName& GetBuildingName() const;
 
 private:
 	const FBuildingDescription* BuildingDescription;

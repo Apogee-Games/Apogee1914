@@ -35,9 +35,19 @@ int32 UBuilding::GetLabours() const
 	return Labours;
 }
 
+int32 UBuilding::GetMaxLabours() const
+{
+	return BuildingDescription->MaxLabours;
+}
+
 UProvince* UBuilding::GetProvince() const
 {
 	return Province;
+}
+
+const FName& UBuilding::GetBuildingName() const
+{
+	return BuildingDescription->BuildingName;
 }
 
 int32 UBuilding::GetPossibleProductOutputCount() const
