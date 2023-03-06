@@ -9,6 +9,9 @@ struct FBuildingDescription : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY()
+	FName BuildingName;
+	
+	UPROPERTY()
 	TMap<FName, int32> GoodConsumption; 
 
 	UPROPERTY()
