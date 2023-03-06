@@ -29,5 +29,5 @@ private:
 	UPROPERTY()
 	TArray<UProvince*> ProvincesArray;
 
-	void InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable);
+	void InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable, UDataTable* ResourcesDescriptionDataTable);
 };

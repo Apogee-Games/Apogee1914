@@ -10,8 +10,10 @@ void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 	UDataTable* ProvinceDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/provinces_description"));
 
 	UDataTable* TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
+	
+	UDataTable* ResourcesDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/resources_description"));
 
-	InitProvinces(ProvinceDescriptionDataTable, TerrainDescriptionDataTable);
+	InitProvinces(ProvinceDescriptionDataTable, TerrainDescriptionDataTable, ResourcesDescriptionDataTable);
 
 	ProvinceMap.GenerateValueArray(ProvincesArray);
 }
@@ -40,13 +42,13 @@ void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
 	}
 }
 
-void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable)
+void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable, UDataTable* ResourcesDescriptionDataTable)
 {
 	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
 		if(Value == nullptr) continue;
 		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
 		UProvince* Province = NewObject<UProvince>(GetWorld()); 
-		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr); 
+		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
 		ProvinceMap.Add(Key, Province);
 	}
 }
