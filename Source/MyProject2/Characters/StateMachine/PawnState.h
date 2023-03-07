@@ -5,6 +5,8 @@ class AHumanPlayerPawn;
 class FPawnState
 {
 public:
+	// TODO: use c++ singleton implementation
+	
 	virtual ~FPawnState() = default;
 	
 	virtual TSharedPtr<FPawnState> LeftClick(AHumanPlayerPawn* Pawn) = 0;
