@@ -2,6 +2,7 @@
 #include "GameFramework/HUD.h"
 #include "MyProject2/Widgets/TimeControllerWidget.h"
 #include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
+#include "MyProject2/Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "MyProject2/Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "MyProject2/Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
@@ -27,6 +28,9 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUnitTypesListWidget> UnitTypesListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UBuildingsTypesListWidget> BuildingsTypesListWidgetClass; 
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UTimeControllerWidget> TimeControllerClass;
@@ -44,6 +48,8 @@ public:
 	UUnitInstancesListDescriptionWidget* GetUnitInstancesListDescriptionWidget() const;
 
 	UTimeControllerWidget* GetTimeControllerWidget();
+
+	UBuildingsTypesListWidget* GetBuildingsTypesListWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -54,7 +60,10 @@ private:
 
 	UPROPERTY()
 	UUnitTypesListWidget* UnitTypesListWidget;
-
+	
+	UPROPERTY()
+	UBuildingsTypesListWidget* BuildingsTypesListWidget;
+	
 	UPROPERTY()
 	UStorageGoodsListWidget* StorageGoodsListWidget;
 
@@ -80,5 +89,7 @@ private:
 
 	void InitUnitInstancesListDescriptionWidget();
 
+	void InitBuildingsTypesListWidget();
+	
 	void InitTimeControllerWidget();
 };

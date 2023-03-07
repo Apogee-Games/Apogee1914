@@ -9,6 +9,7 @@ void AHumanPlayerHUD::BeginPlay()
 	Super::BeginPlay();
 	InitProvinceDataWidget();
 	InitUnitTypesListWidget();
+	InitBuildingsTypesListWidget();
 	InitStorageGoodsListWidget();
 	InitUnitsSupplyListWidget();
 	InitUnitInstancesListDescriptionWidget();
@@ -47,6 +48,11 @@ UTimeControllerWidget* AHumanPlayerHUD::GetTimeControllerWidget()
 		InitTimeControllerWidget();
 	}
 	return TimeControllerWidget;
+}
+
+UBuildingsTypesListWidget* AHumanPlayerHUD::GetBuildingsTypesListWidget() const
+{
+	return BuildingsTypesListWidget;
 }
 
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
@@ -159,6 +165,26 @@ void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
 			Widgets.Add(UnitInstancesListDescriptionWidget);
 		}
 	}
+}
+
+void AHumanPlayerHUD::InitBuildingsTypesListWidget()
+{
+	if (BuildingsTypesListWidgetClass)
+	{
+		BuildingsTypesListWidget = CreateWidget<UBuildingsTypesListWidget>(GetOwningPlayerController(), BuildingsTypesListWidgetClass);
+		
+		if (BuildingsTypesListWidget)
+		{
+			UDataTable* DataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/buildings_description"));
+
+			for (const auto& [BuildingName, BuildingDescription]: DataTable->GetRowMap())
+			{
+				BuildingsTypesListWidget->AddBuildingType(reinterpret_cast<FBuildingDescription*>(BuildingDescription));
+			}
+			Widgets.Add(BuildingsTypesListWidget);
+		}
+	}
+	
 }
 
 void AHumanPlayerHUD::InitTimeControllerWidget()
