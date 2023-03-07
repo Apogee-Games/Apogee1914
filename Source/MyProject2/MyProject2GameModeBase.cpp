@@ -40,32 +40,8 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	//GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
 	
-	// Beginning of Units Renderer/Factory Test Logic
-	
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 	
-	// End of Test Logic
-	
-	// Beginning of Building Manager Test
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-
-	FBuildingDescription* BuildingDescription = new FBuildingDescription;
-
-	BuildingDescription->GoodOutput = {{"Coal", 10}, {"Iron", 20}};
-	
-	BuildingDescription->MaxLabours = 10;
-
-	UProvince* Province = ProvinceManager->GetProvince(FColor(202, 160, 1));
-	
-	GetWorld()->GetSubsystem<UBuildingManager>()->BuildBuilding(BuildingDescription, Province, Province->GetCountryController()->GetStorage());
-
-	UBuilding* Building = GetWorld()->GetSubsystem<UBuildingManager>()->BuildBuilding(BuildingDescription, Province, Province->GetCountryController()->GetStorage());
-	GetWorld()->GetSubsystem<UBuildingManager>()->DestroyBuilding(Building);
-
-	GetWorld()->GetSubsystem<UBuildingManager>()->Produce();
-
-	// End of Test Logic
-
 	Super::BeginPlay();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
