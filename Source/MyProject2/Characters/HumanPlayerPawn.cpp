@@ -5,9 +5,11 @@
 #include "EngineUtils.h"
 #include "HumanPlayerHUD.h"
 #include "MyPlayerController.h"
+#include "MyProject2/Administration/Managers/CountriesManager.h"
 #include "MyProject2/Maps/Selection/SelectionMap.h"
 #include "MyProject2/Military/Managers/UnitsMover.h"
 #include "MyProject2/Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
+#include "StateMachine/BuildingCreationPawnState.h"
 #include "StateMachine/MilitaryControlPawnState.h"
 #include "StateMachine/MapBrowsingPawnState.h"
 #include "StateMachine/StorageBrowsingPawnState.h"
@@ -32,7 +34,7 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
-	RuledCountryTag = NewRuledCountryTag;
+	RuledCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
 }
 
 void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
@@ -81,8 +83,12 @@ TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
 
 void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescription)
 {
-	SetPawnState(FUnitCreationPawnState::GetInstance());
 	SelectedUnitDescription = UnitDescription;
+}
+
+void AHumanPlayerPawn::SelectBuildingDescription(const FBuildingDescription* BuildingDescription)
+{
+	SelectedBuildingDescription = BuildingDescription;
 }
 
 const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
@@ -90,9 +96,19 @@ const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
 	return SelectedUnitDescription;
 }
 
+const FBuildingDescription* AHumanPlayerPawn::GetSelectedBuildingDescription() const
+{
+	return SelectedBuildingDescription;
+}
+
 const FName& AHumanPlayerPawn::GetRuledCountryTag() const
 {
-	return RuledCountryTag;
+	return RuledCountry->GetTag();
+}
+
+UCountry* AHumanPlayerPawn::GetRuledCountry() const
+{
+	return RuledCountry;
 }
 
 void AHumanPlayerPawn::MoveUp(float Value)
@@ -177,6 +193,16 @@ void AHumanPlayerPawn::SetSupplyBrowsingState()
 	}
 }
 
+void AHumanPlayerPawn::SetBuildingCreationState()
+{
+	if (PawnState == FBuildingCreationPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	} else {
+		SetPawnState(FBuildingCreationPawnState::GetInstance());
+	}
+}
+
 
 void AHumanPlayerPawn::Move(float DeltaTime)
 {
@@ -231,4 +257,6 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("UKey"), IE_Pressed, this, &AHumanPlayerPawn::SetUnitCreationState);
 	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SetSupplyBrowsingState);
+	PlayerInputComponent->BindAction(TEXT("BKey"), IE_Pressed, this, &AHumanPlayerPawn::SetBuildingCreationState);
+
 }

@@ -42,9 +42,15 @@ public:
 
 	void SelectUnitDescription(const FUnitDescription* UnitDescription);
 
+	void SelectBuildingDescription(const FBuildingDescription* BuildingDescription);
+
 	const FUnitDescription* GetSelectedUnitDescription() const;
 
+	const FBuildingDescription* GetSelectedBuildingDescription() const;
+
 	const FName& GetRuledCountryTag() const;
+
+	UCountry* GetRuledCountry() const;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -84,14 +90,17 @@ public:
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
-	/* Tag of country that current pawn controls */
-	FName RuledCountryTag;
+	UPROPERTY()
+	UCountry* RuledCountry;
 
 	bool IsShiftPressed = false;
-	
+
+	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
+	
+	const FBuildingDescription* SelectedBuildingDescription;
 	
 	FVector MovementDirection = FVector(0, 0, 0);
 
@@ -114,6 +123,8 @@ private:
 	void SetStorageBrowsingState();
 
 	void SetSupplyBrowsingState();
+
+	void SetBuildingCreationState();
 	
 	void Move(float DeltaTime);
 
