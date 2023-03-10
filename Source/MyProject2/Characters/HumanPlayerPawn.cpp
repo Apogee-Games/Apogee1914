@@ -11,6 +11,7 @@
 #include "StateMachine/MilitaryControlPawnState.h"
 #include "StateMachine/MapBrowsingPawnState.h"
 #include "StateMachine/StorageBrowsingPawnState.h"
+#include "StateMachine/SupplyBrowsingPawnState.h"
 #include "StateMachine/UnitCreationPawnState.h"
 
 // Sets default values
@@ -125,6 +126,7 @@ void AHumanPlayerPawn::BeginPlay()
 	InitProvinceDataWidget();
 	InitUnitTypesListWidget();
 	InitStorageGoodsListWidget();
+	InitUnitsSupplyListWidget();
 
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
@@ -179,6 +181,16 @@ void AHumanPlayerPawn::SetStorageBrowsingState()
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
 	} else {
 		SetPawnState(FStorageBrowsingPawnState::GetInstance());
+	}
+}
+
+void AHumanPlayerPawn::SetSupplyBrowsingState()
+{
+	if (PawnState == FSupplyBrowsingPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	} else {
+		SetPawnState(FSupplyBrowsingPawnState::GetInstance());
 	}
 }
 
@@ -292,6 +304,22 @@ void AHumanPlayerPawn::InitStorageGoodsListWidget()
 	}
 }
 
+void AHumanPlayerPawn::InitUnitsSupplyListWidget()
+{
+	const TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass = GetWorld()->GetGameState<AMyGameState>()->UnitsSupplyListWidgetClass;
+	
+	if (IsLocallyControlled() && UnitsSupplyListWidgetClass)
+	{
+		AMyPlayerController* PlayerController = GetController<AMyPlayerController>();
+		UnitsSupplyListWidget = CreateWidget<UUnitsSupplyListWidget>(PlayerController, UnitsSupplyListWidgetClass);
+		if (UnitsSupplyListWidget)
+		{
+			UnitsSupplyListWidget->Init();
+			Widgets.Add(UnitsSupplyListWidget);
+		}
+	}
+}
+
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -306,4 +334,5 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Released, this, &AHumanPlayerPawn::ShiftReleased);
 	PlayerInputComponent->BindAction(TEXT("UKey"), IE_Pressed, this, &AHumanPlayerPawn::SetUnitCreationState);
 	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
+	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SetSupplyBrowsingState);
 }

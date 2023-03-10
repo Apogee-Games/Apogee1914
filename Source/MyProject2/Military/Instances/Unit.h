@@ -12,9 +12,9 @@ class UUnit : public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const FUnitDescription* UnitDescription, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* UnitsRenderer);
 
-	void Init(const FUnitDescription* UnitDescription, UProvince* Province, const FName& CountryOwnerTag, const FName& CountryControllerTag, UUnitsRenderer* UnitsRenderer);
+	void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* Province, const FName& CountryOwnerTag, const FName& CountryControllerTag, UUnitsRenderer* UnitsRenderer);
 
 	bool CanTransportUnits() const;
 
@@ -26,25 +26,34 @@ public:
 
 	UProvince* GetPosition() const;
 	
-	int Estimate(const TArray<TPair<UProvince*, int>>& Path);
+	int32 Estimate(const TArray<TPair<UProvince*, int32>>& Path);
 
 	UCountry* GetCountryOwner() const;
 
 	UCountry* GetCountryController() const;
+
+	const TMap<FName, int32>& GetEquipmentNeeds() const;
+
+	int32 GetUnitTypeEquipmentRequirement(const FName& GoodName) const;
+
+	void SupplyEquipment(const FName& GoodName, int32 Amount);
+
+	const FName& GetUnitName() const;
 	
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);
 	
 private:
-	bool bCanTransportUnits;
 	
-	TSet<UUnit*> TransportedUnits;
+	const FUnitDescription* UnitDescription;
 
+	TSet<UUnit*> TransportedUnits; // TODO: May be extract it to another interface
+
+	TMap<FName, int32> EquipmentNeeds;
+	
 	UPROPERTY()
 	UProvince* Province;
-
-	TArray<FName> CanAccessProvinceTypes;
 
 	UPROPERTY()
 	UUnitsRenderer* UnitsRenderer;
