@@ -1,5 +1,4 @@
 #pragma once
-#include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Military/Interfaces/Observers/UnitSupplyObserver.h"
 
 class IUnitSupplyObservable

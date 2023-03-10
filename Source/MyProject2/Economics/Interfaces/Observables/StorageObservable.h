@@ -1,4 +1,5 @@
 #pragma once
+#include "MyProject2/Economics/Instances/Public/StoredGood.h"
 #include "MyProject2/Economics/Interfaces/Observers/StorageObserver.h"
 
 enum class EStorageType : uint8;
@@ -6,7 +7,7 @@ enum class EStorageType : uint8;
 class IStorageObservable
 {
 public:
-	void NotifyGoodUpdate(EStorageType StorageType, const FName& GoodName, int NewAmount);
+	void NotifyGoodUpdate(EStorageType StorageType, UStoredGood* Good);
 	
 	bool AddStorageObserver(IStorageObserver* Observer);
 	

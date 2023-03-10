@@ -1,6 +1,7 @@
 #pragma once
-#include "Unit.h"
+
 #include "MyProject2/Economics/Instances/Public/Storage.h"
+#include "Units/Unit.h"
 
 class UUnitsSupplyController;
 
@@ -22,7 +23,6 @@ private:
 	UPROPERTY()
 	UStorage* Storage;
 
-	UPROPERTY()
 	TArray<UUnit*> Units;
 
 	void Supply(UUnit* Unit);

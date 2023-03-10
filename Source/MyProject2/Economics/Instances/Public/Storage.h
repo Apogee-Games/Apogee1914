@@ -1,4 +1,5 @@
 #pragma once
+#include "StoredGood.h"
 #include "MyProject2/Economics/Interfaces/Observables/StorageObservable.h"
 
 #include "Storage.generated.h"
@@ -18,23 +19,26 @@ class UStorage: public UObject, public IStorageObservable
 {
 	GENERATED_BODY()
 public:
-
 	void Init(EStorageType ProvidedType);
 	
 	void Init(const FName& StrataType);
 
-	void Supply(const FName& Good, const int32 Amount);
+	void Supply(const FName& GoodName, const int32 Amount);
 
-	int32 Estimate(const FName& Good, const int32 Amount);
+	int32 Estimate(const FName& GoodName, const int32 Amount);
 
-	int32 GetGoodAmount(const FName& Good) const;
+	int32 GetGoodAmount(const FName& GoodName) const;
 	
-	int32 Demand(const FName& Good, const int32 Amount);
+	int32 Demand(const FName& GoodName, const int32 Amount);
 
+	EStorageType GetType() const;
 private:
-	TMap<FName, int32> Goods;
+	UPROPERTY()
+	TMap<FName, UStoredGood*> Goods;
 
 	EStorageType Type = EStorageType::Country;
+
+	void AddGoodIfNotPresent(const FName& GoodName);
 	
 	inline static TMap<FName, EStorageType> StrataTypeToStorageType = {
 		{"LOW", EStorageType::LowerStrata},

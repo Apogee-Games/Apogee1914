@@ -1,7 +1,7 @@
 #include "SupplyBrowsingPawnState.h"
 
 #include "MapBrowsingPawnState.h"
-#include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
+#include "MyProject2/Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "MyProject2/Widgets/Military/Supply/UnitsSupplyListWidget.h"
 
 

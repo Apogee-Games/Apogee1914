@@ -3,6 +3,7 @@
 
 #include "MyProject2GameModeBase.h"
 
+#include "InGameTime.h"
 #include "MyGameInstance.h"
 #include "MyGameState.h"
 #include "Administration/Managers/CountriesManager.h"
@@ -11,10 +12,9 @@
 #include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Characters/HumanPlayerHUD.h"
 #include "Economics/Managers/Public/BuildingManager.h"
 #include "Events/EventInstancesController.h"
-#include "Military/Instances/Unit.h"
-#include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsMover.h"
 
 AMyProject2GameModeBase::AMyProject2GameModeBase()
@@ -24,6 +24,7 @@ AMyProject2GameModeBase::AMyProject2GameModeBase()
 	DefaultPawnClass = AHumanPlayerPawn::StaticClass();
 	PlayerControllerClass = AMyPlayerController::StaticClass();
 	GameStateClass = AMyGameState::StaticClass();
+	HUDClass = AHumanPlayerHUD::StaticClass();
 }
 
 void AMyProject2GameModeBase::Tick(float DeltaSeconds)
@@ -39,32 +40,8 @@ void AMyProject2GameModeBase::BeginPlay()
 
 	//GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
 	
-	// Beginning of Units Renderer/Factory Test Logic
-	
 	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 	
-	// End of Test Logic
-	
-	// Beginning of Building Manager Test
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-
-	FBuildingDescription* BuildingDescription = new FBuildingDescription;
-
-	BuildingDescription->GoodOutput = {{"Coal", 10}, {"Iron", 20}};
-	
-	BuildingDescription->MaxLabours = 10;
-
-	UProvince* Province = ProvinceManager->GetProvince(FColor(202, 160, 1));
-	
-	GetWorld()->GetSubsystem<UBuildingManager>()->BuildBuilding(BuildingDescription, Province, Province->GetCountryController()->GetStorage());
-
-	UBuilding* Building = GetWorld()->GetSubsystem<UBuildingManager>()->BuildBuilding(BuildingDescription, Province, Province->GetCountryController()->GetStorage());
-	GetWorld()->GetSubsystem<UBuildingManager>()->DestroyBuilding(Building);
-
-	GetWorld()->GetSubsystem<UBuildingManager>()->Produce();
-
-	// End of Test Logic
-
 	Super::BeginPlay();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added

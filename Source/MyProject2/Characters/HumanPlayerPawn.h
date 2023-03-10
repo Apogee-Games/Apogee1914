@@ -6,11 +6,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
-#include "MyProject2/Military/Instances/Unit.h"
-#include "MyProject2/Widgets/Administration/ProvinceDataWidget.h"
-#include "MyProject2/Widgets/Economics/StorageGoodsListWidget.h"
-#include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
-#include "MyProject2/Widgets/Military/Supply/UnitsSupplyListWidget.h"
+#include "MyProject2/Military/Descriptions/UnitDescription.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -41,13 +38,19 @@ public:
 
 	const TArray<UUnit*>& GetSelectedUnits() const;
 
-	UProvinceDataWidget* GetProvinceDataWidget() const;
+	TSharedPtr<FPawnState> GetPawnState() const;
 
 	void SelectUnitDescription(const FUnitDescription* UnitDescription);
 
+	void SelectBuildingDescription(const FBuildingDescription* BuildingDescription);
+
 	const FUnitDescription* GetSelectedUnitDescription() const;
 
+	const FBuildingDescription* GetSelectedBuildingDescription() const;
+
 	const FName& GetRuledCountryTag() const;
+
+	UCountry* GetRuledCountry() const;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -85,33 +88,19 @@ public:
 	double MaxZPosition = 120;
 
 private:
-
-	UPROPERTY()
-	TArray<UUserWidget*> Widgets;
-	
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
-	/* Tag of country that current pawn controls */
-	FName RuledCountryTag;
+	UPROPERTY()
+	UCountry* RuledCountry;
 
 	bool IsShiftPressed = false;
-	
-	UPROPERTY()
-	UProvinceDataWidget* ProvinceDataWidget;
-
-	UPROPERTY()
-	UUnitTypesListWidget* UnitTypesListWidget;
-
-	UPROPERTY()
-	UStorageGoodsListWidget* StorageGoodsListWidget;
-
-	UPROPERTY()
-	UUnitsSupplyListWidget* UnitsSupplyListWidget;
 
 	UPROPERTY()
 	TArray<UUnit*> SelectedUnits;
 
 	const FUnitDescription* SelectedUnitDescription;
+	
+	const FBuildingDescription* SelectedBuildingDescription;
 	
 	FVector MovementDirection = FVector(0, 0, 0);
 
@@ -135,19 +124,13 @@ private:
 
 	void SetSupplyBrowsingState();
 
-	void UpdateWidgetsVisibility();
-
+	void SetBuildingCreationState();
+	
 	void Move(float DeltaTime);
 
 	void Scroll(float Value);
 
 	bool IsInside(const FVector& Position) const;
 
-	void InitProvinceDataWidget();
-
-	void InitUnitTypesListWidget();
-
-	void InitStorageGoodsListWidget();
-
-	void InitUnitsSupplyListWidget();
+	void SelectedUnitsWereUpdated() const;
 };

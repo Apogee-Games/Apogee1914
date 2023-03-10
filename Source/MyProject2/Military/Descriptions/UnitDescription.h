@@ -12,15 +12,15 @@ struct FUnitDescription: public FTableRowBase
 	FName UnitName;
 	
 	UPROPERTY()
-	TArray<FName> CanAccessProvincesTypes;
-
+	FName MilitaryBranch;
+	
 	UPROPERTY()
 	bool CanTransport;
 
 	UPROPERTY()
-	TMap<FName, int> EquipmentRequirements;
+	TMap<FName, int32> EquipmentRequirements;
 
 	UPROPERTY()
-	int ManpowerRequirements;
+	int32 ManpowerRequirements;
 	
 };

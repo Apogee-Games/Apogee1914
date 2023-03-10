@@ -1,7 +1,6 @@
 #pragma once
-#include "UnitTypeDescriptionWidget.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/GridPanel.h"
+#include "Components/ListView.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
 #include "UnitTypesListWidget.generated.h"
 
@@ -10,15 +9,8 @@ class MYPROJECT2_API UUnitTypesListWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
-
 	UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
-	UGridPanel* ListGridPanel;
+	UListView* UnitDescriptionListView;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UUnitTypeDescriptionWidget> UnitDescriptionWidgetClass;
-
-	void AddUnitType(const FUnitDescription* UnitDescription);
-
-private:
-	int Count = 0;
+	void AddUnitType(FUnitDescription* UnitDescription);
 };

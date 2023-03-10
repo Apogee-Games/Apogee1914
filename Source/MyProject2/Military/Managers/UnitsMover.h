@@ -1,6 +1,6 @@
 #pragma once
 #include "MyProject2/Maps/Graph.h"
-#include "MyProject2/Military/Instances/Unit.h"
+#include "MyProject2/Military/Instances/Units/Unit.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitMovementObservable.h"
 
 #include "UnitsMover.generated.h"

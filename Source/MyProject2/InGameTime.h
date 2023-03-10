@@ -2,14 +2,21 @@
 #include "Widgets/TimeControllerWidget.h"
 #include "InGameTime.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UInGameTime: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	FDateTime StartTime = FDateTime(1914, 1, 1);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	int32 MaxTimeSpeed = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	float SpeedMultiplier = 0.1;
 	
-	virtual void Deinitialize() override;
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	virtual void Tick(float DeltaTime);
 	
@@ -48,24 +55,19 @@ private:
 	
 	FDateTime CurrentTime;
 	
-	float_t SpeedMultiplier;
-
-	int32 MaxTimeSpeed;
-	
 	bool bIsGamePaused = true;
 
 	int32 TimeSpeed = 1;
 	
 	int32 TotalObjectNumber = 1;
-
-	UPROPERTY()
-	UTimeControllerWidget* TimeControllerWidget;
-
+	
 	void UpdateCurrentTime(const FTimespan& DeltaTimeSpan);
 
 	void CheckDeltas(const FTimespan& DeltaTimeSpan);
 
-	void RefreshWidget();
+	void RefreshWidgetDate();
+
+	void RefreshWidgetSpeed();
 };
 
 template <class T>

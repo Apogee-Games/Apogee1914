@@ -3,29 +3,37 @@
 #include "Engine/StaticMeshActor.h"
 #include "UnitActor.generated.h"
 
-class UUnitInformationListWidget;
 class UUnit;
 
 UCLASS()
-class AUnitActor: public AStaticMeshActor
+class AUnitActor: public AActor
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UWidgetComponent* WidgetComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* StaticMeshComponent;
+	
 	AUnitActor();
 	
-	void Init(const FVector3d& ObjectScale, const FVector3d& Position, UStaticMesh* UnitMesh, const TSubclassOf<UUnitInformationListWidget>& UnitInformationListWidgetClass);
+	void Init(const FVector3d& Position);
 
 	void AddUnit(UUnit* Unit);
 
 	void RemoveUnit(UUnit* Unit);
-
 private:
 	TArray<UUnit*> Units;
 	
-	UPROPERTY()
-	UWidgetComponent* Component;
-
-	UUnitInformationListWidget* Widget;
+	template <class T>
+	T* GetWidget() const;
 
 	void UpdateWidgetVisibility() const;
 };
+
+template <class T>
+T* AUnitActor::GetWidget() const
+{
+	return Cast<T>(WidgetComponent->GetWidget());
+}

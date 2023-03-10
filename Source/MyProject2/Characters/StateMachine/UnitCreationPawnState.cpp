@@ -5,6 +5,7 @@
 #include "MyProject2/Characters/HumanPlayerPawn.h"
 #include "MyProject2/Military/Managers/UnitsFactory.h"
 #include "MyProject2/Utils/LocationUtils.h"
+#include "MyProject2/Widgets/Military/Creation/UnitTypesListWidget.h"
 
 
 TSharedPtr<FPawnState> FUnitCreationPawnState::GetInstance()
@@ -18,6 +19,8 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::GetInstance()
 
 TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
+	if (!Pawn->GetSelectedUnitDescription()) return Instance;
+	
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
 
 	const FVector Point = FLocationUtils::GetNormalizedPositionOnPlane(Pawn);

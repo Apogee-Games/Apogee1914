@@ -1,18 +1,22 @@
 #include "UnitSupplyWidget.h"
 
-void UUnitSupplyWidget::Init(UUnit* Unit)
+#include "MyProject2/Widgets/Military/Carriers/GoodNeedCarrier.h"
+
+
+void UUnitSupplyWidget::SetUnit(UObject* ProvidedUnit)
 {
-	UnitNameTextBlock->SetText(FText::FromName(Unit->GetUnitName()));
-	UnitWasSupplied(Unit);
+	Unit = Cast<UUnit>(ProvidedUnit);
+	for (const auto& [GoodName, Amount]: Unit->GetSupplyNeeds()->GetRequirements())
+	{
+		if (AddedGoodNeeds.Contains(GoodName)) continue;
+		UGoodNeedCarrier* Carrier = NewObject<UGoodNeedCarrier>();
+		Carrier->Init(Unit->GetSupplyNeeds(), GoodName);
+		SuppliesListView->AddItem(Carrier);
+		AddedGoodNeeds.Add(GoodName);
+	}
 }
 
-void UUnitSupplyWidget::UnitWasSupplied(UUnit* Unit)
+void UUnitSupplyWidget::RefreshData()
 {
-	FString Result = "";
-	for (const auto& [GoodName, GoodCount]: Unit->GetEquipmentNeeds())
-	{
-		const int MaxGoodCount = Unit->GetUnitTypeEquipmentRequirement(GoodName);
-		Result += GoodName.ToString() + ": " + FString::FromInt(MaxGoodCount - GoodCount) + "/" + FString::FromInt(MaxGoodCount);
-	}
-	UnitNeedsTextBlock->SetText(FText::FromString(Result));
+	UnitNameTextBlock->SetText(FText::FromName(Unit->GetUnitName()));
 }

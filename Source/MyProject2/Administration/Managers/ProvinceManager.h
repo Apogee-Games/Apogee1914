@@ -5,6 +5,7 @@
 #include "ProvinceManager.generated.h"
 
 class UUnit;
+
 UCLASS()
 class UProvinceManager : public UWorldSubsystem, public IProvinceControllingCountryObservable
 {
@@ -28,5 +29,5 @@ private:
 	UPROPERTY()
 	TArray<UProvince*> ProvincesArray;
 
-	void InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable);
+	void InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable, UDataTable* ResourcesDescriptionDataTable);
 };

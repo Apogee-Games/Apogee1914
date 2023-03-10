@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Country.h"
 #include "ProvincePopulation.h"
+#include "ProvinceResources.h"
 #include "MyProject2/Administration/Descriptions/ProvinceDescription.h"
 #include "MyProject2/Administration/Descriptions/TerrainDescription.h"
 #include "MyProject2/Economics/Instances/Public/Building.h"
@@ -13,7 +14,7 @@ class UProvince : public UObject
 public:
 	UProvince();
 
-	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT);
+	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const UDataTable* ResourcesDescriptions);
 
 	const FColor& GetId() const;
 
@@ -33,13 +34,15 @@ public:
 
 	const FTerrainDescription* GetTerrain() const;
 
-	const TMap<FName, int32>& GetResources() const;
+	UProvinceResources* GetResources() const;
 
 	void AddBuilding(UBuilding* Building);
 
 	void RemoveBuilding(UBuilding* Building);
 
 	const TArray<UBuilding*>& GetBuildings() const;
+
+	//TODO: Tie resource logic to building logic
 	
 private:
 	
@@ -59,10 +62,10 @@ private:
 	UProvincePopulation* Population;
 	
 	FTerrainDescription* Terrain;
-	
-	TMap<FName, int32> Resources;
+
+	UPROPERTY()
+	UProvinceResources* Resources;
 	
 	UPROPERTY()
 	TArray<UBuilding*> Buildings;
-
 };

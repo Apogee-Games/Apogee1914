@@ -1,21 +1,27 @@
 ﻿#include "Province.h"
 
+#include "ProvinceResource.h"
 #include "MyProject2/Administration/Managers/CountriesManager.h"
-#include "MyProject2/Military/Instances/Unit.h"
 
 UProvince::UProvince()
 {
 	Population = NewObject<UProvincePopulation>();
 }
 
-void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT)
+void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const UDataTable* ResourcesDescriptions)
 {
 	Id = ProvinceDescription->Color;
 	Name = ProvinceDescription->ProvinceName;
 	OwnerCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
 	ControllerCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
 	StateId = ProvinceDescription->StateId;
-	Resources = ProvinceDescription->Resources;
+	
+	Resources = NewObject<UProvinceResources>();
+	for (const auto& [ResourceName, ResourceAmount]: ProvinceDescription->Resources)
+	{
+		Resources->AddResource(ResourcesDescriptions->FindRowUnchecked(ResourceName), ResourceAmount);
+	}
+
 	Population->Init(ProvinceDescription->Population);
 	
 	// Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
@@ -77,7 +83,7 @@ const FTerrainDescription* UProvince::GetTerrain() const
 	return Terrain;
 }
 
-const TMap<FName, int32>& UProvince::GetResources() const
+UProvinceResources* UProvince::GetResources() const
 {
 	return Resources;
 }

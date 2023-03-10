@@ -27,12 +27,12 @@ void FCountryUnitsSupplier::Supply(UUnit* Unit)
 
 	bool IsUnitUpdated = false;
 	
-	for (const auto& [GoodName, GoodCount]: Unit->GetEquipmentNeeds())
+	for (const auto& [GoodName, GoodCount]: Unit->GetSupplyNeeds()->GetNeeds())
 	{
 		if (GoodCount == 0) continue;
 		const int GoodProvided = Storage->Demand(GoodName, GoodCount);
 		IsUnitUpdated |= (GoodProvided != 0);
-		Unit->SupplyEquipment(GoodName, GoodProvided);
+		Unit->GetSupplyNeeds()->SupplyEquipment(GoodName, GoodProvided);
 	}
 
 	if (IsUnitUpdated)

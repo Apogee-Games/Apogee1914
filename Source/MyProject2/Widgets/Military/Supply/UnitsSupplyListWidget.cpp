@@ -5,20 +5,11 @@
 
 void UUnitsSupplyListWidget::Init()
 {
-	GetWorld()->GetSubsystem<UUnitsSupplyController>()->AddUnitSupplyObserver(this);
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
 }
 
 void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
 {
-	UUnitSupplyWidget* Widget = CreateWidget<UUnitSupplyWidget>(GetWorld(), UnitSupplyWidgetClass);
-	Widget->Init(Unit);
-	Widgets.Add(Unit, Widget);
-	ListGridPanel->AddChildToGrid(Widget, Count);
-	Count++;
+	UnitsListView->AddItem(Unit);
 }
-
-void UUnitsSupplyListWidget::UnitIsSupplied(UUnit* Unit)
-{
-	Widgets[Unit]->UnitWasSupplied(Unit);
-}
+// TODO: Add OnUnitRemove :)

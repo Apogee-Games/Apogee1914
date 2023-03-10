@@ -1,5 +1,4 @@
 #pragma once
-#include "MyProject2/Military/Instances/Unit.h"
 #include "MyProject2/Military/Descriptions/UnitDescription.h"
 #include "UnitsRenderer.h"
 #include "MyProject2/Military/Interfaces/Observables/UnitCreationObservable.h"
@@ -12,12 +11,14 @@ class UUnitsFactory : public UWorldSubsystem, public IUnitCreationObservable, pu
 {
 	GENERATED_BODY()
 public:
+	
 	virtual UUnit* Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
 	
-	virtual UUnit* Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag, UUnitsRenderer* Renderer);
-
 	virtual void Remove(UUnit* Unit);
 
 private:
-	TArray<IUnitRemovalObserver> RemovalObservers;
+	UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag) const;
 };
+
+
+// TODO: Add remove logic in destructor 
