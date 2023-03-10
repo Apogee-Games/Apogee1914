@@ -1,24 +1,21 @@
 #pragma once
+
+class UUnit;
+
 #include "Military/Descriptions/UnitDescription.h"
-#include "UnitsRenderer.h"
 #include "Military/Interfaces/Observables/UnitCreationObservable.h"
 #include "Military/Interfaces/Observables/UnitRemovalObservable.h"
+#include "Military/Interfaces/Observables/UnitsCollectionCreationObservable.h"
 #include "UnitsFactory.generated.h"
 
-
 UCLASS()
-class UUnitsFactory : public UWorldSubsystem, public IUnitCreationObservable, public IUnitRemovalObservable
+class UUnitsFactory : public UWorldSubsystem, public IUnitsCreationObservable, public IUnitRemovalObservable, public IUnitsCollectionCreationObservable
 {
 	GENERATED_BODY()
 public:
-	
-	virtual UUnit* Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
+	virtual UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
 	
 	virtual void Remove(UUnit* Unit);
-
-private:
-	UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag) const;
 };
-
 
 // TODO: Add remove logic in destructor 
