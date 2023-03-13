@@ -4,7 +4,6 @@
 #include "Characters/HumanPlayerPawn.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Military/Managers/UnitsMover.h"
-#include "Utils/LocationUtils.h"
 #include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 
 TSharedPtr<FPawnState> FMilitaryControlPawnState::GetInstance()
@@ -24,9 +23,9 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::LeftClick(AHumanPlayerPawn* Pa
 
 TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(AHumanPlayerPawn* Pawn)
 {
-	const FVector Point = FLocationUtils::GetNormalizedPositionOnPlane(Pawn);
+	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 
-	UProvince* To = Pawn->GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(FVector2D(Point.Y, Point.Z));
+	UProvince* To = Pawn->GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(Point);
 
 	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
 	

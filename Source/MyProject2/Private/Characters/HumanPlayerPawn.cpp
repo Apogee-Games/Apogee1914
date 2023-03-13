@@ -6,12 +6,10 @@
 #include "Characters/HumanPlayerHUD.h"
 #include "Characters/MyPlayerController.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "Characters/Components/PlaneMapActor.h"
 #include "Characters/Components/UnitsSelectionComponent.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Military/Managers/UnitsMover.h"
-#include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
-#include "Characters/StateMachine/MilitaryControlPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
@@ -24,9 +22,12 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	
+
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(RootComponent);
+
+	CameraComponent->SetWorldLocation(GetActorLocation());
+	CameraComponent->SetWorldRotation(GetActorRotation());
 
 	UnitSelectionComponent = CreateDefaultSubobject<UUnitsSelectionComponent>(TEXT("Units selection"));
 	UnitSelectionComponent->SetupAttachment(RootComponent);
@@ -43,7 +44,6 @@ void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
 	RuledCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
 }
-
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
 {
@@ -110,6 +110,7 @@ void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
+	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));
 	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
@@ -141,8 +142,10 @@ void AHumanPlayerPawn::SetUnitCreationState()
 {
 	if (PawnState == FUnitCreationPawnState::GetInstance())
 	{
-		 SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	}
+	else
+	{
 		SetPawnState(FUnitCreationPawnState::GetInstance());
 	}
 }
@@ -152,7 +155,9 @@ void AHumanPlayerPawn::SetStorageBrowsingState()
 	if (PawnState == FStorageBrowsingPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+	}
+	else
+	{
 		SetPawnState(FStorageBrowsingPawnState::GetInstance());
 	}
 }
@@ -162,7 +167,9 @@ void AHumanPlayerPawn::SetSupplyBrowsingState()
 	if (PawnState == FSupplyBrowsingPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+	}
+	else
+	{
 		SetPawnState(FSupplyBrowsingPawnState::GetInstance());
 	}
 }
@@ -172,11 +179,12 @@ void AHumanPlayerPawn::SetBuildingCreationState()
 	if (PawnState == FBuildingCreationPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+	}
+	else
+	{
 		SetPawnState(FBuildingCreationPawnState::GetInstance());
 	}
 }
-
 
 void AHumanPlayerPawn::Move(float DeltaTime)
 {
@@ -184,28 +192,18 @@ void AHumanPlayerPawn::Move(float DeltaTime)
 		SpeedVector == FVector(0, 0, 0))
 		return;
 
-	const FVector MovementVector = MovementDirection * DeltaTime * SpeedVector;
 
-	const FVector NewPosition = GetActorLocation() + MovementVector;
+	FVector Position = MapActor->GetNewPosition(CameraComponent->GetComponentLocation(), MovementDirection, DeltaTime * SpeedVector.Length());
+	FQuat Rotation = MapActor->GetNewRotation(CameraComponent->GetComponentLocation(), Position);
 
-	if (IsInside(NewPosition))
-	{
-		SetActorLocation(NewPosition);
-		CameraComponent->AddRelativeRotation(FQuat(RotationDirection * RotationSpeed));
-	}
+	CameraComponent->SetWorldLocation(Position);
+	CameraComponent->AddWorldRotation(Rotation);
 }
 
 void AHumanPlayerPawn::Scroll(float Value)
 {
 	MovementDirection.X = FMath::Clamp(Value, -1, 1);
 	RotationDirection.Pitch = FMath::Clamp(Value, -1, 1);
-}
-
-bool AHumanPlayerPawn::IsInside(const FVector& Position) const
-{
-	return Position.X >= MinXPosition && Position.X <= MaxXPosition &&
-		Position.Y >= MinYPosition && Position.Y <= MaxYPosition &&
-		Position.Z >= MinZPosition && Position.Z <= MaxZPosition;
 }
 
 // Called to bind functionality to input
@@ -224,5 +222,4 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SetSupplyBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("BKey"), IE_Pressed, this, &AHumanPlayerPawn::SetBuildingCreationState);
-
 }

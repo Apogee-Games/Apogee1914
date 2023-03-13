@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/MapActor.h"
 #include "Components/UnitsSelectionComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
@@ -17,11 +18,17 @@ class MYPROJECT2_API AHumanPlayerPawn : public APawn
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	UCameraComponent* CameraComponent;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	UUnitsSelectionComponent* UnitSelectionComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AMapActor> MapActorClass;
+	
+	UPROPERTY()
+	AMapActor* MapActor;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -60,31 +67,6 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	FVector SpeedVector;
-
-	UPROPERTY(EditAnywhere)
-	float RotationSpeed;
-
-	UPROPERTY(EditAnywhere)
-	FRotator PlaneRotator = FRotator(90, 0, 90);
-
-	UPROPERTY(EditAnywhere)
-	double MinXPosition = 0;
-
-	UPROPERTY(EditAnywhere)
-	double MaxXPosition = 200;
-
-	UPROPERTY(EditAnywhere)
-	double MinYPosition = 0;
-
-	UPROPERTY(EditAnywhere)
-	double MaxYPosition = 120;
-
-	UPROPERTY(EditAnywhere)
-	double MinZPosition = 0;
-
-	UPROPERTY(EditAnywhere)
-	double MaxZPosition = 120;
-
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
@@ -124,7 +106,4 @@ private:
 	void Move(float DeltaTime);
 
 	void Scroll(float Value);
-
-	bool IsInside(const FVector& Position) const;
-
 };
