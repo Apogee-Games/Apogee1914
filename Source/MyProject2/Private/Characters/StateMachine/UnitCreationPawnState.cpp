@@ -29,7 +29,7 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 	UUnitsFactory* UnitsFactory = Pawn->GetWorld()->GetSubsystem<UUnitsFactory>();
 
-	UnitsFactory->Create(Pawn->GetSelectedUnitDescription(), Province, Pawn->GetRuledCountryTag());
+	UnitsFactory->CreateUnit(Pawn->GetSelectedUnitDescription(), Province, Pawn->GetRuledCountryTag());
 
 	return Instance;
 }
