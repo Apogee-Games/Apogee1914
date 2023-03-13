@@ -2,15 +2,6 @@
 #include "Military/Managers/UnitsFactory.h"
 
 #include "Administration/Managers/CountriesManager.h"
-#include "Military/Instances/Units/BranchUnits/Division.h"
-#include "Military/Instances/Units/BranchUnits/Flight.h"
-#include "Military/Instances/Units/BranchUnits/Squadron.h"
-
-inline TMap<FName, TSubclassOf<UUnit>> MilitaryBranchUnitsTypes = {
-	{"Army", UDivision::StaticClass()},
-	{"Navy", USquadron::StaticClass()},
-	{"AirForce", UFlight::StaticClass()}
-};
 
 UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
 {
@@ -22,6 +13,22 @@ UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince*
 	Unit->Init(Description, Province, CountryOwner);
 	NotifyUnitCreation(Unit);
 	return Unit;
+}
+
+UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBranch)
+{
+	UUnitsCollection* UnitCollection = NewObject<UUnitsCollection>();
+	UnitCollection->Init(MilitaryBranch);
+	NotifyUnitsCollectionCreation(UnitCollection);
+	return UnitCollection;
+}
+
+UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch)
+{
+	UUnitsCollectionGroup* UnitCollectionGroup = NewObject<UUnitsCollectionGroup>();
+	UnitCollectionGroup->Init(MilitaryBranch);
+	NotifyUnitsCollectionGroupCreation(UnitCollectionGroup);
+	return UnitCollectionGroup;
 }
 
 void UUnitsFactory::Remove(UUnit* Unit)

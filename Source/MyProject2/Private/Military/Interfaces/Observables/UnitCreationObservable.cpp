@@ -1,7 +1,7 @@
 
 #include "Military/Interfaces/Observables/UnitCreationObservable.h"
 
-void IUnitCreationObservable::NotifyUnitCreation(UUnit* Unit)
+void IUnitsCreationObservable::NotifyUnitCreation(UUnit* Unit)
 {
 	for (auto& Observer: Observers)
 	{
@@ -9,14 +9,14 @@ void IUnitCreationObservable::NotifyUnitCreation(UUnit* Unit)
 	}
 }
 
-bool IUnitCreationObservable::AddUnitCreationObserver(IUnitCreationObserver* Observer)
+bool IUnitsCreationObservable::AddUnitCreationObserver(IUnitCreationObserver* Observer)
 {
 	if (Observers.Contains(Observer)) return false;
 	Observers.Add(Observer);
 	return true;
 }
 
-bool IUnitCreationObservable::RemoveUnitCreationObserver(IUnitCreationObserver* Observer)
+bool IUnitsCreationObservable::RemoveUnitCreationObserver(IUnitCreationObserver* Observer)
 {
 	if (!Observers.Contains(Observer)) return false;
 	Observers.Remove(Observer);
