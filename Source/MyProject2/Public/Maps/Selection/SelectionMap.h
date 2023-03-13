@@ -15,7 +15,7 @@ public:
 	UProvince* GetProvince(const FVector2d& Point) const;
 	
 	FColor GetProvinceColor(const FVector2d& Point) const;
-
+	//TODO: Make selection map and other maps abstract blueprintable and set textures using blueprint
 private:
 	UPROPERTY()
 	UTexture2D* SelectionMapTexture;
