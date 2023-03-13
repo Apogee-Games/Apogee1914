@@ -4,7 +4,6 @@
 #include "Characters/HumanPlayerPawn.h"
 
 #include "Administration/Instances/State.h"
-#include "Administration/Managers/StateManager.h"
 #include "Characters/HumanPlayerHUD.h"
 #include "Characters/MyPlayerController.h"
 #include "Maps/Selection/SelectionMap.h"
@@ -33,7 +32,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 	ProvinceDataWidget->SetNewProvince(Province);
 
-	Pawn->ClearSelectedUnits();
+	Pawn->UnitSelectionComponent->ClearSelectedUnits();
 	
 	return Instance;
 }

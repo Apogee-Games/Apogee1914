@@ -6,6 +6,7 @@
 #include "Characters/HumanPlayerHUD.h"
 #include "Characters/MyPlayerController.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "Characters/Components/UnitsSelectionComponent.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Military/Managers/UnitsMover.h"
 #include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
@@ -22,7 +23,13 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	CameraComponent->SetupAttachment(RootComponent);
+
+	UnitSelectionComponent = CreateDefaultSubobject<UUnitsSelectionComponent>(TEXT("Units selection"));
+	UnitSelectionComponent->SetupAttachment(RootComponent);
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
@@ -37,44 +44,6 @@ void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 	RuledCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
 }
 
-void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
-{
-	SetPawnState(FMilitaryControlPawnState::GetInstance());
-	
-	if (!IsShiftPressed)
-	{
-		SelectedUnits.Empty();
-	}
-	for (const auto& Unit: Units)
-	{
-		SelectedUnits.Add(Unit);
-	}
-	SelectedUnitsWereUpdated();
-}
-
-void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
-{
-	SetPawnState(FMilitaryControlPawnState::GetInstance());
-
-	if (!IsShiftPressed)
-	{
-		SelectedUnits.Empty();
-	}
-	SelectedUnits.Add(Unit);
-	SelectedUnitsWereUpdated();
-	// TODO: Add check for controlled country
-}
-
-void AHumanPlayerPawn::ClearSelectedUnits()
-{
-	SelectedUnits.Empty();
-	SelectedUnitsWereUpdated();
-}
-
-const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
-{
-	return SelectedUnits;
-}
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
 {
@@ -133,7 +102,7 @@ void AHumanPlayerPawn::RightClick()
 
 void AHumanPlayerPawn::ShiftPressed()
 {
-	IsShiftPressed = true;
+	bIsShiftPressed = true;
 }
 
 // Called when the game starts or when spawned
@@ -150,6 +119,11 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
+bool AHumanPlayerPawn::IsShiftPressed() const
+{
+	return bIsShiftPressed;
+}
+
 // Called every frame
 void AHumanPlayerPawn::Tick(float DeltaTime)
 {
@@ -160,7 +134,7 @@ void AHumanPlayerPawn::Tick(float DeltaTime)
 
 void AHumanPlayerPawn::ShiftReleased()
 {
-	IsShiftPressed = false;
+	bIsShiftPressed = false;
 }
 
 void AHumanPlayerPawn::SetUnitCreationState()
@@ -217,7 +191,7 @@ void AHumanPlayerPawn::Move(float DeltaTime)
 	if (IsInside(NewPosition))
 	{
 		SetActorLocation(NewPosition);
-		Camera->AddRelativeRotation(FQuat(RotationDirection * RotationSpeed));
+		CameraComponent->AddRelativeRotation(FQuat(RotationDirection * RotationSpeed));
 	}
 }
 
@@ -232,14 +206,6 @@ bool AHumanPlayerPawn::IsInside(const FVector& Position) const
 	return Position.X >= MinXPosition && Position.X <= MaxXPosition &&
 		Position.Y >= MinYPosition && Position.Y <= MaxYPosition &&
 		Position.Z >= MinZPosition && Position.Z <= MaxZPosition;
-}
-
-void AHumanPlayerPawn::SelectedUnitsWereUpdated() const
-{
-	AHumanPlayerHUD* HUD = GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
-	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnits);
-	// TODO: Think if it worth to add logic for separation adding units to selection or making new selection :) 
-	
 }
 
 // Called to bind functionality to input

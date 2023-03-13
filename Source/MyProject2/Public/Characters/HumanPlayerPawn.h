@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/UnitsSelectionComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
 #include "Military/Descriptions/UnitDescription.h"
@@ -16,6 +17,12 @@ class MYPROJECT2_API AHumanPlayerPawn : public APawn
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY()
+	UCameraComponent* CameraComponent;
+
+	UPROPERTY()
+	UUnitsSelectionComponent* UnitSelectionComponent;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -29,14 +36,6 @@ public:
 	
 	// Sets tag of country controlled by this Pawn
 	void SetRuledCountryTag(const FName& NewRuledCountryTag);
-
-	void SelectUnits(const TArray<UUnit*>& Units);
-
-	void SelectUnit(UUnit* Unit);
-
-	void ClearSelectedUnits();
-
-	const TArray<UUnit*>& GetSelectedUnits() const;
 
 	TSharedPtr<FPawnState> GetPawnState() const;
 
@@ -57,9 +56,8 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-	UPROPERTY()
-	UCameraComponent* Camera;
-
+	bool IsShiftPressed() const;
+	
 	UPROPERTY(EditAnywhere)
 	FVector SpeedVector;
 
@@ -93,10 +91,7 @@ private:
 	UPROPERTY()
 	UCountry* RuledCountry;
 
-	bool IsShiftPressed = false;
-
-	UPROPERTY()
-	TArray<UUnit*> SelectedUnits;
+	bool bIsShiftPressed = false;
 
 	const FUnitDescription* SelectedUnitDescription;
 	
@@ -132,5 +127,4 @@ private:
 
 	bool IsInside(const FVector& Position) const;
 
-	void SelectedUnitsWereUpdated() const;
 };

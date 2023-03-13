@@ -18,7 +18,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::GetInstance()
 
 TSharedPtr<FPawnState> FMilitaryControlPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
-	Pawn->ClearSelectedUnits();
+	Pawn->UnitSelectionComponent->ClearSelectedUnits();
 	return FMapBrowsingPawnState::GetInstance()->LeftClick(Pawn);
 }
 
@@ -30,7 +30,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(AHumanPlayerPawn* P
 
 	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
 	
-	for (const auto& Unit: Pawn->GetSelectedUnits())
+	for (const auto& Unit: Pawn->UnitSelectionComponent->GetSelectedUnits())
 	{
 		UnitsMover->MoveUnit(Unit, To);
 	}

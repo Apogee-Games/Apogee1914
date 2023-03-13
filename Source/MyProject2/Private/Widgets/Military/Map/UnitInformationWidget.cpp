@@ -24,6 +24,6 @@ void UUnitInformationWidget::RefreshData()
 
 void UUnitInformationWidget::OnClicked()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SelectUnits(Carrier->GetUnits());
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->SelectUnits(Carrier->GetUnits());
 }
 
