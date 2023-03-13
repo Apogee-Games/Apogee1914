@@ -1,7 +1,7 @@
 #pragma once
 #include "Military/Interfaces/Observers/UnitCreationObserver.h"
 
-class IUnitCreationObservable
+class IUnitsCreationObservable
 {
 public:
 	void NotifyUnitCreation(UUnit* Unit);

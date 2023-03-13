@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/MapActor.h"
+#include "Components/UnitsSelectionComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
 #include "Military/Descriptions/UnitDescription.h"
@@ -16,6 +18,18 @@ class MYPROJECT2_API AHumanPlayerPawn : public APawn
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditDefaultsOnly)
+	UCameraComponent* CameraComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+	UUnitsSelectionComponent* UnitSelectionComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AMapActor> MapActorClass;
+	
+	UPROPERTY()
+	AMapActor* MapActor;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -29,14 +43,6 @@ public:
 	
 	// Sets tag of country controlled by this Pawn
 	void SetRuledCountryTag(const FName& NewRuledCountryTag);
-
-	void SelectUnits(const TArray<UUnit*>& Units);
-
-	void SelectUnit(UUnit* Unit);
-
-	void ClearSelectedUnits();
-
-	const TArray<UUnit*>& GetSelectedUnits() const;
 
 	TSharedPtr<FPawnState> GetPawnState() const;
 
@@ -57,46 +63,17 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-	UPROPERTY()
-	UCameraComponent* Camera;
-
+	bool IsShiftPressed() const;
+	
 	UPROPERTY(EditAnywhere)
 	FVector SpeedVector;
-
-	UPROPERTY(EditAnywhere)
-	float RotationSpeed;
-
-	UPROPERTY(EditAnywhere)
-	FRotator PlaneRotator = FRotator(90, 0, 90);
-
-	UPROPERTY(EditAnywhere)
-	double MinXPosition = 0;
-
-	UPROPERTY(EditAnywhere)
-	double MaxXPosition = 200;
-
-	UPROPERTY(EditAnywhere)
-	double MinYPosition = 0;
-
-	UPROPERTY(EditAnywhere)
-	double MaxYPosition = 120;
-
-	UPROPERTY(EditAnywhere)
-	double MinZPosition = 0;
-
-	UPROPERTY(EditAnywhere)
-	double MaxZPosition = 120;
-
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
 	UPROPERTY()
 	UCountry* RuledCountry;
 
-	bool IsShiftPressed = false;
-
-	UPROPERTY()
-	TArray<UUnit*> SelectedUnits;
+	bool bIsShiftPressed = false;
 
 	const FUnitDescription* SelectedUnitDescription;
 	
@@ -129,8 +106,4 @@ private:
 	void Move(float DeltaTime);
 
 	void Scroll(float Value);
-
-	bool IsInside(const FVector& Position) const;
-
-	void SelectedUnitsWereUpdated() const;
 };

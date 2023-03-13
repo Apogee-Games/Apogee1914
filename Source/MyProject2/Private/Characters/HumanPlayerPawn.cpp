@@ -6,11 +6,10 @@
 #include "Characters/HumanPlayerHUD.h"
 #include "Characters/MyPlayerController.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "Characters/Components/PlaneMapActor.h"
+#include "Characters/Components/UnitsSelectionComponent.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Military/Managers/UnitsMover.h"
-#include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
-#include "Characters/StateMachine/MilitaryControlPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
@@ -22,7 +21,16 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	CameraComponent->SetupAttachment(RootComponent);
+
+	CameraComponent->SetWorldLocation(GetActorLocation());
+	CameraComponent->SetWorldRotation(GetActorRotation());
+
+	UnitSelectionComponent = CreateDefaultSubobject<UUnitsSelectionComponent>(TEXT("Units selection"));
+	UnitSelectionComponent->SetupAttachment(RootComponent);
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
@@ -35,45 +43,6 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
 	RuledCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
-}
-
-void AHumanPlayerPawn::SelectUnits(const TArray<UUnit*>& Units)
-{
-	SetPawnState(FMilitaryControlPawnState::GetInstance());
-	
-	if (!IsShiftPressed)
-	{
-		SelectedUnits.Empty();
-	}
-	for (const auto& Unit: Units)
-	{
-		SelectedUnits.Add(Unit);
-	}
-	SelectedUnitsWereUpdated();
-}
-
-void AHumanPlayerPawn::SelectUnit(UUnit* Unit)
-{
-	SetPawnState(FMilitaryControlPawnState::GetInstance());
-
-	if (!IsShiftPressed)
-	{
-		SelectedUnits.Empty();
-	}
-	SelectedUnits.Add(Unit);
-	SelectedUnitsWereUpdated();
-	// TODO: Add check for controlled country
-}
-
-void AHumanPlayerPawn::ClearSelectedUnits()
-{
-	SelectedUnits.Empty();
-	SelectedUnitsWereUpdated();
-}
-
-const TArray<UUnit*>& AHumanPlayerPawn::GetSelectedUnits() const
-{
-	return SelectedUnits;
 }
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
@@ -133,7 +102,7 @@ void AHumanPlayerPawn::RightClick()
 
 void AHumanPlayerPawn::ShiftPressed()
 {
-	IsShiftPressed = true;
+	bIsShiftPressed = true;
 }
 
 // Called when the game starts or when spawned
@@ -141,6 +110,7 @@ void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
+	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));
 	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
@@ -148,6 +118,11 @@ void AHumanPlayerPawn::BeginPlay()
 void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+}
+
+bool AHumanPlayerPawn::IsShiftPressed() const
+{
+	return bIsShiftPressed;
 }
 
 // Called every frame
@@ -160,15 +135,17 @@ void AHumanPlayerPawn::Tick(float DeltaTime)
 
 void AHumanPlayerPawn::ShiftReleased()
 {
-	IsShiftPressed = false;
+	bIsShiftPressed = false;
 }
 
 void AHumanPlayerPawn::SetUnitCreationState()
 {
 	if (PawnState == FUnitCreationPawnState::GetInstance())
 	{
-		 SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	}
+	else
+	{
 		SetPawnState(FUnitCreationPawnState::GetInstance());
 	}
 }
@@ -178,7 +155,9 @@ void AHumanPlayerPawn::SetStorageBrowsingState()
 	if (PawnState == FStorageBrowsingPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+	}
+	else
+	{
 		SetPawnState(FStorageBrowsingPawnState::GetInstance());
 	}
 }
@@ -188,7 +167,9 @@ void AHumanPlayerPawn::SetSupplyBrowsingState()
 	if (PawnState == FSupplyBrowsingPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+	}
+	else
+	{
 		SetPawnState(FSupplyBrowsingPawnState::GetInstance());
 	}
 }
@@ -198,11 +179,12 @@ void AHumanPlayerPawn::SetBuildingCreationState()
 	if (PawnState == FBuildingCreationPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
-	} else {
+	}
+	else
+	{
 		SetPawnState(FBuildingCreationPawnState::GetInstance());
 	}
 }
-
 
 void AHumanPlayerPawn::Move(float DeltaTime)
 {
@@ -210,36 +192,18 @@ void AHumanPlayerPawn::Move(float DeltaTime)
 		SpeedVector == FVector(0, 0, 0))
 		return;
 
-	const FVector MovementVector = MovementDirection * DeltaTime * SpeedVector;
 
-	const FVector NewPosition = GetActorLocation() + MovementVector;
+	FVector Position = MapActor->GetNewPosition(CameraComponent->GetComponentLocation(), MovementDirection, DeltaTime * SpeedVector.Length());
+	FQuat Rotation = MapActor->GetNewRotation(CameraComponent->GetComponentLocation(), Position);
 
-	if (IsInside(NewPosition))
-	{
-		SetActorLocation(NewPosition);
-		Camera->AddRelativeRotation(FQuat(RotationDirection * RotationSpeed));
-	}
+	CameraComponent->SetWorldLocation(Position);
+	CameraComponent->AddWorldRotation(Rotation);
 }
 
 void AHumanPlayerPawn::Scroll(float Value)
 {
 	MovementDirection.X = FMath::Clamp(Value, -1, 1);
 	RotationDirection.Pitch = FMath::Clamp(Value, -1, 1);
-}
-
-bool AHumanPlayerPawn::IsInside(const FVector& Position) const
-{
-	return Position.X >= MinXPosition && Position.X <= MaxXPosition &&
-		Position.Y >= MinYPosition && Position.Y <= MaxYPosition &&
-		Position.Z >= MinZPosition && Position.Z <= MaxZPosition;
-}
-
-void AHumanPlayerPawn::SelectedUnitsWereUpdated() const
-{
-	AHumanPlayerHUD* HUD = GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
-	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnits);
-	// TODO: Think if it worth to add logic for separation adding units to selection or making new selection :) 
-	
 }
 
 // Called to bind functionality to input
@@ -258,5 +222,4 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SetSupplyBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("BKey"), IE_Pressed, this, &AHumanPlayerPawn::SetBuildingCreationState);
-
 }

@@ -4,7 +4,6 @@
 #include "Maps/Selection/SelectionMap.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Military/Managers/UnitsFactory.h"
-#include "Utils/LocationUtils.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 
 
@@ -23,13 +22,11 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 	
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
 
-	const FVector Point = FLocationUtils::GetNormalizedPositionOnPlane(Pawn);
-
-	UProvince* Province = SelectionMap->SelectProvince(FVector2D(Point.Y, Point.Z));
+	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	UUnitsFactory* UnitsFactory = Pawn->GetWorld()->GetSubsystem<UUnitsFactory>();
 
-	UnitsFactory->Create(Pawn->GetSelectedUnitDescription(), Province, Pawn->GetRuledCountryTag());
+	UnitsFactory->CreateUnit(Pawn->GetSelectedUnitDescription(), Province, Pawn->GetRuledCountryTag());
 
 	return Instance;
 }

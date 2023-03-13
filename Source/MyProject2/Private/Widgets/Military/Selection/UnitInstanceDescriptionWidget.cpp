@@ -27,5 +27,5 @@ void UUnitInstanceDescriptionWidget::RefreshData()
 
 void UUnitInstanceDescriptionWidget::OnClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SelectUnit(Unit);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->SelectUnit(Unit);
 }

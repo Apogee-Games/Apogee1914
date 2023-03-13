@@ -4,6 +4,7 @@
 #include "Widgets/Administration/ProvinceDataWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
+#include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
@@ -34,6 +35,9 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UTimeControllerWidget> TimeControllerClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUnitsCollectionsWidget> UnitsCollectionsWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -50,6 +54,8 @@ public:
 	UTimeControllerWidget* GetTimeControllerWidget();
 
 	UBuildingsTypesListWidget* GetBuildingsTypesListWidget() const;
+	
+	UUnitsCollectionsWidget* GetUnitsCollectionsWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -75,6 +81,9 @@ private:
 
 	UPROPERTY()
 	UTimeControllerWidget* TimeControllerWidget;
+
+	UPROPERTY()
+	UUnitsCollectionsWidget* UnitsCollectionsWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -92,4 +101,6 @@ private:
 	void InitBuildingsTypesListWidget();
 	
 	void InitTimeControllerWidget();
+
+	void InitUnitsCollectionsWidget();
 };

@@ -4,7 +4,6 @@
 #include "Characters/HumanPlayerPawn.h"
 #include "Economics/Managers/BuildingManager.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Utils/LocationUtils.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 
 TSharedPtr<FPawnState> FBuildingCreationPawnState::GetInstance()
@@ -22,9 +21,7 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(AHumanPlayerPawn* P
 	
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
 
-	const FVector Point = FLocationUtils::GetNormalizedPositionOnPlane(Pawn);
-
-	UProvince* Province = SelectionMap->SelectProvince(FVector2D(Point.Y, Point.Z));
+	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	UBuildingManager* BuildingManager = Pawn->GetWorld()->GetSubsystem<UBuildingManager>();
 

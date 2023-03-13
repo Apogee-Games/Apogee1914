@@ -1,5 +1,4 @@
 #pragma once
-#include "Military/Instances/Units/Unit.h"
 #include "Engine/StaticMeshActor.h"
 #include "Characters/UnitActor.h"
 #include "Military/Interfaces/Observers/UnitCreationObserver.h"

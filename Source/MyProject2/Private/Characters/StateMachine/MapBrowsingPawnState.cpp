@@ -1,14 +1,10 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 
-#include "MyProject2GameModeBase.h"
 #include "Characters/HumanPlayerPawn.h"
-
 #include "Administration/Instances/State.h"
-#include "Administration/Managers/StateManager.h"
 #include "Characters/HumanPlayerHUD.h"
 #include "Characters/MyPlayerController.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Utils/LocationUtils.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 {
@@ -23,9 +19,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
 
-	const FVector Point = FLocationUtils::GetNormalizedPositionOnPlane(Pawn);
-
-	UProvince* Province = SelectionMap->SelectProvince(FVector2D(Point.Y, Point.Z));
+	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	AHumanPlayerHUD* HUD = Pawn->GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
 
@@ -33,7 +27,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 	ProvinceDataWidget->SetNewProvince(Province);
 
-	Pawn->ClearSelectedUnits();
+	Pawn->UnitSelectionComponent->ClearSelectedUnits();
 	
 	return Instance;
 }

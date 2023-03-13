@@ -6,11 +6,18 @@
 #include "Military/Instances/UnitSupplyNeeds.h"
 #include "Unit.generated.h"
 
+UENUM()
 enum class EMilitaryBranch
 {
-	Army,
-	Navy,
-	AirForce
+	Army = 0,
+	Navy = 1,
+	AirForce = 2
+};
+
+inline FName MilitaryBranchNames[3] = {
+	"Army",
+	"Navy",
+	"AirForce"
 };
 
 UCLASS()

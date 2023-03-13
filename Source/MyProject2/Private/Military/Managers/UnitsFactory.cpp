@@ -2,37 +2,33 @@
 #include "Military/Managers/UnitsFactory.h"
 
 #include "Administration/Managers/CountriesManager.h"
-#include "Military/Instances/Units/BranchUnits/Division.h"
-#include "Military/Instances/Units/BranchUnits/Flight.h"
-#include "Military/Instances/Units/BranchUnits/Squadron.h"
 
-UUnit* UUnitsFactory::Create(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
+UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
 {
-	UUnit* Unit = CreateUnit(Description, Province, CountryOwnerTag);
 	// TODO: Add some logic for delay
+	//TODO: Error checks ?
+
+	UUnit* Unit = NewObject<UUnit>(GetWorld(), MilitaryBranchUnitsTypes[Description->MilitaryBranch]);
+	UCountry* CountryOwner = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(CountryOwnerTag);
+	Unit->Init(Description, Province, CountryOwner);
 	NotifyUnitCreation(Unit);
 	return Unit;
 }
 
-UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag) const
+UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBranch)
 {
-	UUnit* Unit = nullptr; // TODO: Check reflection C++ or C# to use here
-	UCountry* CountryOwner = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(CountryOwnerTag);
-	if (Description->MilitaryBranch == "Army")
-	{
-		Unit = NewObject<UDivision>();
-	} else if (Description->MilitaryBranch == "Navy")
-	{
-		Unit = NewObject<USquadron>();
-	} else if (Description->MilitaryBranch == "AirForce")
-	{
-		Unit = NewObject<UFlight>();
-	}
-	if (Unit)
-	{
-		Unit->Init(Description, Province, CountryOwner);
-	}
-	return Unit;
+	UUnitsCollection* UnitCollection = NewObject<UUnitsCollection>();
+	UnitCollection->Init(MilitaryBranch);
+	NotifyUnitsCollectionCreation(UnitCollection);
+	return UnitCollection;
+}
+
+UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch)
+{
+	UUnitsCollectionGroup* UnitCollectionGroup = NewObject<UUnitsCollectionGroup>();
+	UnitCollectionGroup->Init(MilitaryBranch);
+	NotifyUnitsCollectionGroupCreation(UnitCollectionGroup);
+	return UnitCollectionGroup;
 }
 
 void UUnitsFactory::Remove(UUnit* Unit)
