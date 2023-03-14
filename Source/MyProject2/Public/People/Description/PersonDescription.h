@@ -12,9 +12,12 @@ struct FPersonDescription: public FTableRowBase
 	
 	UPROPERTY()
 	FName PersonName;
+
+	UPROPERTY()
+	FName CountryTag;
 	
 	UPROPERTY()
-	int32 Age;
+	FDateTime Age;
 
 	UPROPERTY()
 	TMap<FName, FName> Skills;

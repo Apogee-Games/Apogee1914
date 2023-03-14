@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "People/Description/PersonDescription.h"
+#include "People/Instances/Person.h"
 
 #include "PeopleManager.generated.h"
 
@@ -10,7 +10,10 @@ class UPeopleManager: public UWorldSubsystem
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
-	const TArray<FPersonDescription*>& GetPeopleByProfession(const FName& Profession);
+	const TArray<UPerson*>& GetPeopleByProfession(const FName& Profession, const FName& CountryTag);
 private:
-	TMap<FName, TArray<FPersonDescription*>> ProfessionPeople;
+	UPROPERTY()
+	TArray<UPerson*> People;
+	
+	TMap<FName, TMap<FName, TArray<UPerson*>>> CountryProfessionPeople;
 };
