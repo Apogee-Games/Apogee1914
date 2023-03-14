@@ -1,0 +1,12 @@
+[
+	{
+		"Name": "Heinz_Gurderian",
+		"PersonName": "Heinz Gurderian",
+		"Age": 40,
+		"Skills": {
+			"Combat": 10
+		}, 
+		"Professions": ["Comander"],
+		"ImagePath": "/Game/Images/People/HGuderian"
+	}
+]
