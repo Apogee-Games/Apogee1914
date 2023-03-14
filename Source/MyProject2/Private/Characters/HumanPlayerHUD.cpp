@@ -3,6 +3,7 @@
 #include "Characters/HumanPlayerPawn.h"
 #include "MyGameState.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "People/Managers/PeopleManager.h"
 
 void AHumanPlayerHUD::BeginPlay()
 {
@@ -15,6 +16,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitUnitInstancesListDescriptionWidget();
 	InitTimeControllerWidget();
 	InitUnitsCollectionsWidget();
+	InitCommanderListWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -214,6 +216,26 @@ void AHumanPlayerHUD::InitUnitsCollectionsWidget()
 	if (UnitsCollectionsWidgetClass)
 	{
 		UnitsCollectionsWidget = CreateWidget<UUnitsCollectionsWidget>(GetOwningPlayerController(), UnitsCollectionsWidgetClass);
-		UnitsCollectionsWidget->AddToPlayerScreen();
+		if (UnitsCollectionsWidget) {
+			UnitsCollectionsWidget->AddToPlayerScreen();
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitCommanderListWidget()
+{
+	if (CommanderListWidgetClass)
+	{
+		CommanderListWidget = CreateWidget<UCommanderListWidget>(GetOwningPlayerController(), CommanderListWidgetClass);
+		if (CommanderListWidget)
+		{
+			FName CountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
+			const TArray<UPerson*> People = GetWorld()->GetSubsystem<UPeopleManager>()->GetPeopleByProfession(TEXT("Commander"), CountryTag);
+			for (const auto& Person: People)
+			{
+				CommanderListWidget->AddCommander(Person);		
+			}
+			Widgets.Add(CommanderListWidget);
+		}	
 	}
 }

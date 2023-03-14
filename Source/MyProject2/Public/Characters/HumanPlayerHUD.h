@@ -5,6 +5,7 @@
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
+#include "Widgets/Military/Commanders/CommanderListWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
@@ -38,6 +39,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUnitsCollectionsWidget> UnitsCollectionsWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCommanderListWidget> CommanderListWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -56,6 +60,8 @@ public:
 	UBuildingsTypesListWidget* GetBuildingsTypesListWidget() const;
 	
 	UUnitsCollectionsWidget* GetUnitsCollectionsWidget() const;
+
+	UCommanderListWidget* GetCommanderListWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -84,6 +90,9 @@ private:
 
 	UPROPERTY()
 	UUnitsCollectionsWidget* UnitsCollectionsWidget;
+
+	UPROPERTY()
+	UCommanderListWidget* CommanderListWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -103,4 +112,6 @@ private:
 	void InitTimeControllerWidget();
 
 	void InitUnitsCollectionsWidget();
+
+	void InitCommanderListWidget();
 };
