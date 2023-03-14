@@ -1,9 +1,9 @@
 #pragma once
 #include "Engine/DataTable.h"
-#include "EventOutcome.generated.h"
+#include "Outcome.generated.h"
 
 USTRUCT()
-struct FEventOutcome : public FTableRowBase
+struct FOutcome : public FTableRowBase
 {
 	GENERATED_BODY()
 	

@@ -1,10 +1,10 @@
-#include "Events/ConditionCheckers/EventContitionsChecker.h"
-
 #include "InGameTime.h"
-#include "Events/ConditionCheckers/DatePassedConditionChecker.h"
-#include "Events/ConditionCheckers/ExactDateConditionChecker.h"
+#include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
+#include "Actions/ConditionCheckers/DatePassedConditionChecker.h"
+#include "Actions/ConditionCheckers/ExactDateConditionChecker.h"
+#include "Actions/Description/Condition.h"
 
-void UEventConditionsChecker::OnWorldBeginPlay(UWorld& InWorld)
+void UConditionsCheckingSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 	UInGameTime* InGameTime = GetWorld()->GetSubsystem<UInGameTime>();
@@ -12,12 +12,12 @@ void UEventConditionsChecker::OnWorldBeginPlay(UWorld& InWorld)
 	RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(InGameTime));
 }
 
-void UEventConditionsChecker::RegisterConditionChecker(const FName& Name, FEventConditionChecker* Checker)
+void UConditionsCheckingSubsystem::RegisterConditionChecker(const FName& Name, FConditionChecker* Checker)
 {
 	ConditionsCheckers.Add(Name, Checker);
 }
 
-bool UEventConditionsChecker::CheckConditions(TArray<FEventCondition>& Conditions, const FName& CountryTag)
+bool UConditionsCheckingSubsystem::CheckConditions(TArray<FCondition>& Conditions, const FName& CountryTag)
 {
 	for (auto& EventConditions : Conditions)
 	{

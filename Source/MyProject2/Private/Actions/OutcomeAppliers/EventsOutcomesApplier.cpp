@@ -1,19 +1,19 @@
-#include "Events/OutcomeAppliers/EventsOutcomesApplier.h"
 
-#include "Events/OutcomeAppliers/StabilityOutcomeApplier.h"
+#include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
+#include "Actions/OutcomeAppliers/StabilityOutcomeApplier.h"
 
-void UEventsOutcomesApplier::OnWorldBeginPlay(UWorld& InWorld)
+void UOutcomesApplierSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 	RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetWorld()->GetGameState<AMyGameState>()));
 }
 
-void UEventsOutcomesApplier::RegisterOutcomeApplier(const FName& Name, FEventOutcomeApplier* OutcomeApplier)
+void UOutcomesApplierSubsystem::RegisterOutcomeApplier(const FName& Name, FOutcomeApplier* OutcomeApplier)
 {
 	OutcomeAppliers.Add(Name, OutcomeApplier);
 }
 
-void UEventsOutcomesApplier::ApplyOutcomes(TArray<FEventOutcome>& Outcomes, const FName& CountryTag)
+void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const FName& CountryTag)
 {
 	for (auto& Outcome: Outcomes)
 	{

@@ -1,12 +1,12 @@
 #pragma once
-#include "EventOutcomeApplier.h"
+#include "OutcomeApplier.h"
 #include "MyGameState.h"
 
 /**
  * Class used for testing
  * Updates stability
  */
-class FStabilityOutcomeApplier: public FEventOutcomeApplier
+class FStabilityOutcomeApplier: public FOutcomeApplier
 {
 public:
 	/**

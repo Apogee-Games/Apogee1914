@@ -1,11 +1,11 @@
 #pragma once
-#include "EventConditionChecker.h"
+#include "ConditionChecker.h"
 #include "InGameTime.h"
 
 /**
  * @brief Event condition checker that checks if provided date have pass relatively to in game time 
  */
-class FDatePassedConditionChecker : public FEventConditionChecker
+class FDatePassedConditionChecker : public FConditionChecker
 {
 public:
 	FDatePassedConditionChecker(UInGameTime* GameTime);

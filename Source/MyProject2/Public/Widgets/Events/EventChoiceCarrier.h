@@ -1,5 +1,5 @@
 #pragma once
-#include "Events/EventDescription/EventDescription.h"
+#include "Events/Description/EventDescription.h"
 
 #include "EventChoiceCarrier.generated.h"
 

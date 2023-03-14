@@ -4,7 +4,7 @@
  *	Base class for event condition checkers
  *	Task of such classes is to check specific event condition such as exact date, province owned etc 
  */
-class FEventConditionChecker
+class FConditionChecker
 {
 public:
 	/**
@@ -12,5 +12,5 @@ public:
 	 */
 	virtual bool Check(const TMap<FName, FString>& Values) = 0;
 
-	virtual ~FEventConditionChecker() = default;
+	virtual ~FConditionChecker() = default;
 };

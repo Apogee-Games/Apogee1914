@@ -1,4 +1,5 @@
-#include "Events/OutcomeAppliers/StabilityOutcomeApplier.h"
+
+#include "Actions/OutcomeAppliers/StabilityOutcomeApplier.h"
 
 #include "Kismet/KismetStringLibrary.h"
 

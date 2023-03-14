@@ -1,12 +1,12 @@
 #pragma once
-#include "EventConditionChecker.h"
+#include "ConditionChecker.h"
 #include "MyGameState.h"
 
 /**
  * Class used for testing
  * Checks stability
  */
-class FStabilityConditionChecker : public FEventConditionChecker
+class FStabilityConditionChecker : public FConditionChecker
 {
 public:
 	/**
