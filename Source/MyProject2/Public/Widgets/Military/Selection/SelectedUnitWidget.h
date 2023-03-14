@@ -5,10 +5,10 @@
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "Military/Instances/Units/Unit.h"
-#include "UnitInstanceDescriptionWidget.generated.h"
+#include "SelectedUnitWidget.generated.h"
 
 UCLASS()
-class UUnitInstanceDescriptionWidget: public UUserWidget
+class USelectedUnitWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
@@ -32,6 +32,7 @@ public:
 	void RefreshData();
 
 private:
+	UPROPERTY()
 	UUnit* Unit;
 
 	UFUNCTION()
