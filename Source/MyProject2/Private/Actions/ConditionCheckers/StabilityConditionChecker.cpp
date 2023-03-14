@@ -1,4 +1,4 @@
-#include "Events/ConditionCheckers/StabilityConditionChecker.h"
+#include "Actions/ConditionCheckers/StabilityConditionChecker.h"
 
 FStabilityConditionChecker::FStabilityConditionChecker(AMyGameState* GameState): GameState(GameState)
 {

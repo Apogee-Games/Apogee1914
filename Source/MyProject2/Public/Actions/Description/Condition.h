@@ -1,9 +1,9 @@
 #pragma once
 #include "Engine/DataTable.h"
-#include "EventCondition.generated.h"
+#include "Condition.generated.h"
 
 USTRUCT()
-struct  FEventCondition: public FTableRowBase
+struct  FCondition: public FTableRowBase
 {
 	GENERATED_BODY()
 

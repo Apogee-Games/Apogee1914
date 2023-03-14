@@ -4,7 +4,7 @@
  *	Base class for event outcome appliers
  *	Task of such classes is to apply specific event outcome such as add stability, annex province etc 
  */
-class FEventOutcomeApplier
+class FOutcomeApplier
 {
 public:
 	/**
@@ -12,5 +12,5 @@ public:
 	 */
 	virtual void Apply(const TMap<FName, FString>& Values) = 0;
 
-	virtual ~FEventOutcomeApplier() = default;
+	virtual ~FOutcomeApplier() = default;
 };

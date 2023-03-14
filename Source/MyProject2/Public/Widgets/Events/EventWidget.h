@@ -5,7 +5,7 @@
 #include "Components/CanvasPanel.h"
 #include "Components/Button.h"
 #include "Components/ListView.h"
-#include "Events/EventDescription/EventDescription.h"
+#include "Events/Description/EventDescription.h"
 #include "EventWidget.generated.h"
 
 class UEventChoiceButtonWidget;

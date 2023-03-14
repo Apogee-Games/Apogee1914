@@ -1,5 +1,5 @@
 #pragma once
-#include "EventConditionChecker.h"
+#include "ConditionChecker.h"
 #include "InGameTime.h"
 
 /**
@@ -7,7 +7,7 @@
  * Unreliable condition because there is no guarantee that events will be checked at exact date.
  * So it is better to DatePassed
  */
-class FExactDateConditionChecker: public FEventConditionChecker
+class FExactDateConditionChecker: public FConditionChecker
 {
 public:
 	/**

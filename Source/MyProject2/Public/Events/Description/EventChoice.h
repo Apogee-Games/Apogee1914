@@ -1,6 +1,6 @@
 #pragma once
-#include "EventCondition.h"
-#include "EventOutcome.h"
+#include "Actions/Description/Condition.h"
+#include "Actions/Description/Outcome.h"
 #include "Engine/DataTable.h"
 #include "EventChoice.generated.h"
 
@@ -19,8 +19,8 @@ struct FEventChoice: public FTableRowBase
 	float AIChance;
 
 	UPROPERTY()
-	TArray<FEventOutcome> Outcomes;
+	TArray<FOutcome> Outcomes;
 
 	UPROPERTY()
-	TArray<FEventCondition> Conditions;
+	TArray<FCondition> Conditions;
 };

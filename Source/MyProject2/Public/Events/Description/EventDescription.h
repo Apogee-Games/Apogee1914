@@ -1,7 +1,7 @@
 #pragma once
 #include "EventChoice.h"
-#include "EventCondition.h"
 #include "EventCountriesConditions.h"
+#include "Actions/Description/Condition.h"
 #include "Engine/DataTable.h"
 #include "EventDescription.generated.h"
 
@@ -26,7 +26,7 @@ struct FEventDescription: public FTableRowBase
 	FEventCountriesConditions CountriesConditions;
 
 	UPROPERTY()
-	TArray<FEventCondition> Conditions;
+	TArray<FCondition> Conditions;
 
 	UPROPERTY()
 	TArray<FEventChoice> Choices;

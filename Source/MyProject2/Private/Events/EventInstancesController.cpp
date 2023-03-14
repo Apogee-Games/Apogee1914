@@ -1,10 +1,10 @@
 #include "Events/EventInstancesController.h"
-#include "Events/OutcomeAppliers/EventsOutcomesApplier.h"
-#include "Events/ConditionCheckers/EventContitionsChecker.h"
 #include "InGameTime.h"
 #include "UObject/UObjectGlobals.h"
 #include "MyGameInstance.h"
 #include "MyGameState.h"
+#include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
+#include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
 #include "Administration/Managers/CountriesManager.h"
 
 void UEventInstancesController::CreateEvent(FEventDescription* Event,
@@ -122,7 +122,7 @@ void UEventInstancesController::RegisterChoice(FEventDescription* Event, const F
 	for (auto& Choice : Event->Choices)
 	{
 		if (Choice.Name != ChoiceName) continue;
-		GetWorld()->GetSubsystem<UEventsOutcomesApplier>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
+		GetWorld()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
 	}
 }
 
@@ -141,7 +141,7 @@ void UEventInstancesController::Tick(float DeltaTime)
 
 void UEventInstancesController::CheckEvents()
 {
-	UEventConditionsChecker* ConditionsChecker = GetWorld()->GetSubsystem<UEventConditionsChecker>();
+	UConditionsCheckingSubsystem* ConditionsChecker = GetWorld()->GetSubsystem<UConditionsCheckingSubsystem>();
 	for (const auto& Event : Events)
 	{
 		const TArray<FName>& CountriesTags = GetCountriesForWhichEventCanBeFired(Event);
