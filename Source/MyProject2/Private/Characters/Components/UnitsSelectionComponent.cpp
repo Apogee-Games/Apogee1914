@@ -4,6 +4,8 @@
 #include "Characters/StateMachine/MilitaryControlPawnState.h"
 #include "Characters/HumanPlayerPawn.h"
 
+// TODO: add logic to use military branches during selection
+
 void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup)
 {
 	UpdatePawnState();
@@ -87,7 +89,8 @@ void UUnitsSelectionComponent::SelectedUnitsWereUpdated() const
 	APlayerController* PlayerController = GetOwner<AHumanPlayerPawn>()->GetController<APlayerController>();
 	AHumanPlayerHUD* HUD = PlayerController->GetHUD<AHumanPlayerHUD>();
 	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnits);
-	// TODO: Set other selections :) 
+	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnitsCollections);
+	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnitsCollectionGroups);
 	// TODO: Think if it worth to add logic for separation adding units to selection or making new selection :) 
 }
 

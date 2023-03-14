@@ -37,7 +37,7 @@ UUnitsSupplyListWidget* AHumanPlayerHUD::GetUnitsSupplyListWidget() const
 	return UnitsSupplyListWidget;
 }
 
-UUnitInstancesListDescriptionWidget* AHumanPlayerHUD::GetUnitInstancesListDescriptionWidget() const
+USelectedUnitsListWidget* AHumanPlayerHUD::GetUnitInstancesListDescriptionWidget() const
 {
 	return UnitInstancesListDescriptionWidget;
 }
@@ -169,7 +169,7 @@ void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
 {
 	if (UnitInstancesListDescriptionWidgetClass)
 	{
-		UnitInstancesListDescriptionWidget = CreateWidget<UUnitInstancesListDescriptionWidget>(GetOwningPlayerController(), UnitInstancesListDescriptionWidgetClass);
+		UnitInstancesListDescriptionWidget = CreateWidget<USelectedUnitsListWidget>(GetOwningPlayerController(), UnitInstancesListDescriptionWidgetClass);
 		if (UnitInstancesListDescriptionWidget)
 		{
 			Widgets.Add(UnitInstancesListDescriptionWidget);
