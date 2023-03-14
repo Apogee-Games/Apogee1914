@@ -12,11 +12,13 @@ public:
 	
 	virtual bool Remove(UUnitsCollection* Collection) override;
 
-	virtual const TArray<UUnitsCollection*>& GetAll() const override;
+	virtual const TSet<UUnitsCollection*>& GetAll() const override;
 
 	virtual int32 GetSize() const override;
 
+	virtual bool Contains(UUnitsCollection* Item) override;
+
 private:
 	UPROPERTY()
-	TArray<UUnitsCollection*> Collections;
+	TSet<UUnitsCollection*> Collections;
 };

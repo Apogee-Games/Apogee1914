@@ -13,5 +13,5 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* UnitsListView;
 
-	void SetSelectedUnits(const TArray<UUnit*>& Units) const;
+	void SetSelectedUnits(const TSet<UUnit*>& Units) const;
 };

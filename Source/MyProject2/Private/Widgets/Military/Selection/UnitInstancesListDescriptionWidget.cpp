@@ -2,7 +2,7 @@
 
 #include "Military/Instances/Units/Unit.h"
 
-void UUnitInstancesListDescriptionWidget::SetSelectedUnits(const TArray<UUnit*>& Units) const
+void UUnitInstancesListDescriptionWidget::SetSelectedUnits(const TSet<UUnit*>& Units) const
 {
 	UnitsListView->ClearListItems();
 	for (const auto& Unit: Units)

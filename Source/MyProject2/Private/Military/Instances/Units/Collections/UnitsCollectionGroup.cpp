@@ -13,7 +13,7 @@ bool UUnitsCollectionGroup::Remove(UUnitsCollection* Collection)
 	return Collections.Remove(Collection) != 0;
 }
 
-const TArray<UUnitsCollection*>& UUnitsCollectionGroup::GetAll() const
+const TSet<UUnitsCollection*>& UUnitsCollectionGroup::GetAll() const
 {
 	return Collections;
 }
@@ -21,4 +21,9 @@ const TArray<UUnitsCollection*>& UUnitsCollectionGroup::GetAll() const
 int32 UUnitsCollectionGroup::GetSize() const
 {
 	return Collections.Num();
+}
+
+bool UUnitsCollectionGroup::Contains(UUnitsCollection* Item)
+{
+	return Collections.Contains(Item);
 }

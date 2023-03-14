@@ -11,9 +11,11 @@ public:
 
 	virtual bool Remove(T Item) = 0;
 
-	virtual const TArray<T>& GetAll() const = 0;
+	virtual const TSet<T>& GetAll() const = 0;
 
 	virtual int32 GetSize() const = 0;
+
+	virtual bool Contains(T Item) = 0;
 
 	EMilitaryBranch GetMilitaryBranch() const;
 	
