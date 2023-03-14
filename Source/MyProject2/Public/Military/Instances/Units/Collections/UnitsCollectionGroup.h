@@ -1,10 +1,11 @@
 #pragma once
 #include "UnitsCollection.h"
 #include "Military/Instances/Units/Collection.h"
+#include "Military/Interfaces/Commandable.h"
 #include "UnitsCollectionGroup.generated.h"
 
 UCLASS()
-class UUnitsCollectionGroup: public UObject, public TFCollection<UUnitsCollection*>
+class UUnitsCollectionGroup: public UObject, public TFCollection<UUnitsCollection*>, public ICommandable
 {
 	GENERATED_BODY()
 public:
