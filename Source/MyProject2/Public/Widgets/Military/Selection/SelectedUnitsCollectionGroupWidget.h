@@ -1,24 +1,24 @@
-#pragma once
+﻿#pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/ListView.h"
 #include "Components/TextBlock.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
-#include "UnitCollectionGroupWidget.generated.h"
+#include "SelectedUnitsCollectionGroupWidget.generated.h"
 
 UCLASS()
-class UUnitCollectionGroupWidget: public UUserWidget
+class USelectedUnitsCollectionGroupWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UListView* UnitsCollectionListView;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* MilitaryBranchTextBlock;
-
+	
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UTextBlock* CollectionGroupSizeTextBlock;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UListView* UnitsCollectionsListView;
+	UTextBlock* UnitsCollectionNumberTextBlock;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* Button;
@@ -26,13 +26,14 @@ public:
 	virtual void NativeConstruct() override;
 	
 	UFUNCTION(BlueprintCallable)
-	void SetUnitsCollectionGroup(UObject* ProvidedUnitsCollectionGroup);
+	void SetSelectedUnits(UObject* UnitsCollectionGroup);
 
 	UFUNCTION(BlueprintCallable)
 	void RefreshData();
+
 private:
 	UPROPERTY()
-	UUnitsCollectionGroup* UnitsCollectionGroup; 
+	UUnitsCollectionGroup* UnitsCollectionGroup;
 
 	UFUNCTION()
 	void OnButtonClick();

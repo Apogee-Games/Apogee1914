@@ -14,7 +14,7 @@ bool UUnitsCollection::Remove(UUnit* Unit)
 	return Units.Remove(Unit) != 0;
 }
 
-const TArray<UUnit*>& UUnitsCollection::GetAll() const
+const TSet<UUnit*>& UUnitsCollection::GetAll() const
 {
 	return Units;
 }
@@ -22,4 +22,9 @@ const TArray<UUnit*>& UUnitsCollection::GetAll() const
 int32 UUnitsCollection::GetSize() const
 {
 	return Units.Num();
+}
+
+bool UUnitsCollection::Contains(UUnit* Unit)
+{
+	return Units.Contains(Unit);
 }

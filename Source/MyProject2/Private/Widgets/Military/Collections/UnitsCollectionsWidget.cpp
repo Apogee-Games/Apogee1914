@@ -1,5 +1,6 @@
 #include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 
+#include "Administration/Managers/ProvinceManager.h"
 #include "Military/Managers/UnitsFactory.h"
 
 void UUnitsCollectionsWidget::NativeConstruct()
@@ -8,11 +9,6 @@ void UUnitsCollectionsWidget::NativeConstruct()
 
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionCreationObserver(this);
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupCreationObserver(this);
-
-	GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollection(EMilitaryBranch::Army);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollection(EMilitaryBranch::Army);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollection(EMilitaryBranch::Navy);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollectionGroup(EMilitaryBranch::Navy);
 }
 
 void UUnitsCollectionsWidget::UnitsCollectionIsCreated(UUnitsCollection* UnitsCollection)

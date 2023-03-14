@@ -24,4 +24,5 @@ public:
 private:
 	UPROPERTY()
 	TMap<EMilitaryBranch, UUnitsCollectionGroup*> DefaultCollectionGroups; // To contain collections that are not in collection group
+	// TODO: Should we add just another widget for non units collection group collections
 };
