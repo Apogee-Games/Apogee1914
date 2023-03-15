@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "FractionDescription.h"
 #include "Engine/DataTable.h"
 #include "CountryDescription.generated.h"
 
@@ -8,11 +9,11 @@ struct FCountryDescription: public FTableRowBase
 	GENERATED_BODY()	
 
 	UPROPERTY()
-	FName CountryName;
-	
-	UPROPERTY()
 	FName Tag;
 
 	UPROPERTY()
-	FColor Color;
+	FName RulingFractionTag;
+	
+	UPROPERTY()
+	TArray<FFractionDescription> Fractions;
 };
