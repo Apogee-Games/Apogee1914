@@ -26,8 +26,14 @@ public:
 	UDataTable* GoodDescriptionDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* StrataDescriptionDataTable;
-
+	UDataTable* StrataDescriptionDataTable;	
+	
+	UPROPERTY(EditDefaultsOnly)
+	UDataTable* UnitsDescriptionDataTable;
+	
+	UPROPERTY(EditDefaultsOnly)
+	UDataTable* BuildingsDescriptionDataTable;
+	
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* EventsDataTable;
 

@@ -12,13 +12,6 @@ bool UFlagsMap::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
-	FlagsMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->FlagsMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
-}
-
 void UFlagsMap::UpdateAllBoxes()
 {
 	UpdateBoxes(GetWorld()->GetSubsystem<UBoxesMap>()->GetBoxes());
@@ -95,4 +88,6 @@ void UFlagsMap::OnWorldBeginPlay(UWorld& InWorld)
 	Super::OnWorldBeginPlay(InWorld);
 	GetWorld()->GetSubsystem<UBoxesMap>()->RegisterOnFullInitializationAction(this, &UFlagsMap::UpdateAllBoxes);
 	GetWorld()->GetSubsystem<UBoxesMap>()->AddBoxObserver(this);
+	FlagsMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->FlagsMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
 }

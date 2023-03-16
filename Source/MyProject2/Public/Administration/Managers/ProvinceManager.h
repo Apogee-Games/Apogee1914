@@ -6,7 +6,7 @@
 
 class UUnit;
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UProvinceManager : public UWorldSubsystem, public IProvinceControllingCountryObservable
 {
 	GENERATED_BODY()

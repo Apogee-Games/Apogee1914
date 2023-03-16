@@ -13,7 +13,7 @@ bool UUnitsMover::ShouldCreateSubsystem(UObject* Outer) const
 void UUnitsMover::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, FTimespan(1, 0, 0));
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
 }
 
 FGraph* UUnitsMover::GetGraph() const

@@ -12,16 +12,12 @@ bool UProvincesMap::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UProvincesMap::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
-	ProvincesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->ProvincesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
 void UProvincesMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
+	
+	ProvincesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->ProvincesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 
 	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
 	
@@ -73,12 +69,6 @@ void UProvincesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 	// TODO: DO staff :)
 	/*UpdateCountriesDistances(Province);
 	NotifyCountryDistancesUpdateForProvince(Province);*/
-}
-
-void UProvincesMap::Deinitialize()
-{
-	
-	Super::Deinitialize();
 }
 
 void UProvincesMap::CalculateMappers(UTexture2D* ProvinceMap)

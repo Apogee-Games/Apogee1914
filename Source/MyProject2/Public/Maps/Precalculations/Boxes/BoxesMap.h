@@ -6,7 +6,7 @@
 
 #include "BoxesMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UBoxesMap: public UWorldSubsystem, public FOnFullInitialization, public IProvinceControllingCountryObserver, public IBoxObservable
 {
 	GENERATED_BODY()

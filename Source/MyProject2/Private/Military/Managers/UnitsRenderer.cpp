@@ -14,17 +14,12 @@ bool UUnitsRenderer::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
-	GetWorld()->GetSubsystem<UUnitsMover>()->AddUnitMovementObserver(this);
-}
-
 void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GetWorld()->GetSubsystem<UUnitsMover>()->AddUnitMovementObserver(this);
 	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UUnitsRenderer::Init);
 }
 

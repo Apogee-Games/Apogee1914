@@ -5,7 +5,7 @@
 
 #include "CountriesManager.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UCountriesManager: public UWorldSubsystem
 {
 	GENERATED_BODY()
@@ -39,7 +39,6 @@ public:
 	UCountry* GetCountry(const FName& Tag);
 
 	const TMap<FName, UCountry*> GetCountryMap() const;
-	
 private:
 	UPROPERTY()
 	TMap<FName, UCountry*> CountryMap;

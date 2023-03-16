@@ -100,23 +100,16 @@ bool UEventInstancesController::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)
+void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
 {
-	Super::Initialize(Collection);
-
+	Super::OnWorldBeginPlay(InWorld);
 	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
 
 	for (const auto Pair : EventsDataTable->GetRowMap())
 	{
 		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
 	}
-}
-
-void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents,
-	                                                          MinDeltaBetweenEventChecks);
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
 }
 
 void UEventInstancesController::RegisterChoice(FEventDescription* Event, const FName& ChoiceName,

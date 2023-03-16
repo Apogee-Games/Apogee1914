@@ -4,14 +4,12 @@
 
 #include "ProvincesMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UProvincesMap: public UWorldSubsystem, public FOnFullInitialization, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-	
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
@@ -28,10 +26,8 @@ public:
 	const TArray<int32>& GetProvincePositions(const FColor& Color) const;
 
 	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
-	
-	virtual void Deinitialize() override;
-
 private:
+	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 	
 	TMap<FColor, TArray<int32>> ColorPosition;

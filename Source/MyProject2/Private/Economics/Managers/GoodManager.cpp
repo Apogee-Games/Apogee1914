@@ -8,10 +8,9 @@ bool UGoodManager::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UGoodManager::Initialize(FSubsystemCollectionBase& Collection)
+void UGoodManager::OnWorldBeginPlay(UWorld& InWorld)
 {
-	Super::Initialize(Collection);
-
+	Super::OnWorldBeginPlay(InWorld);
 	GoodDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->GoodDescriptionDataTable;
 }
 

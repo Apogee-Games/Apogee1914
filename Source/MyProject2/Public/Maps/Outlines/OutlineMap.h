@@ -1,26 +1,25 @@
 #pragma once
 #include "OutlineMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UOutlineMap: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	void CreateOutline();
 
+	UPROPERTY(EditDefaultsOnly)
+	FColor OutlineColor = FColor(0, 0, 0);
+	
+	UPROPERTY(EditDefaultsOnly)
+	FColor BackgroundColor = FColor(255, 255, 255);
 private:
 	UPROPERTY()
 	UTexture2D* OutlinesMapTexture;
 	
 	FVector2D SizeVector;
-
-	FColor OutlineColor = FColor(0, 0, 0);
-	
-	FColor BackgroundColor = FColor(255, 255, 255);
 };

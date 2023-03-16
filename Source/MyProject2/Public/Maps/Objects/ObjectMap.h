@@ -1,7 +1,7 @@
 #pragma once
 #include "ObjectMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UObjectMap : public UWorldSubsystem
 {
 	GENERATED_BODY()
@@ -13,7 +13,6 @@ public:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	void CalculateProvincesCenters();
-
 private:
 	TMap<FColor, FVector2d> ProvinceCenters;
 

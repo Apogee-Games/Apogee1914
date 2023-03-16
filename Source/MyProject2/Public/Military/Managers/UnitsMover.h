@@ -4,7 +4,7 @@
 #include "Military/Interfaces/Observables/UnitMovementObservable.h"
 #include "UnitsMover.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UUnitsMover: public UWorldSubsystem, public IUnitMovementObservable
 {
 	GENERATED_BODY()
@@ -22,6 +22,9 @@ public:
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 
 	virtual void DoUnitMovement();
+
+	UPROPERTY(EditDefaultsOnly)
+	FTimespan UnitMoveTimeDelta = FTimespan(1, 0, 0);
 	
 private:
 	FGraph* Graph = nullptr;

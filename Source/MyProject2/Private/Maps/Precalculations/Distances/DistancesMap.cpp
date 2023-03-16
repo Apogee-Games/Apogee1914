@@ -15,7 +15,6 @@ bool UDistancesMap::ShouldCreateSubsystem(UObject* Outer) const
 void UDistancesMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	UWorldSubsystem::OnWorldBeginPlay(InWorld);
-
 	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UDistancesMap::Init);
 	//TODO: GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceOwningCountryObserver(this);
 }

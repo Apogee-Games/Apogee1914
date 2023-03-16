@@ -2,15 +2,13 @@
 #include "Maps/Precalculations/Boxes/BoxesMap.h"
 #include "FlagsMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UFlagsMap: public UWorldSubsystem, public IBoxObserver
 {
 	GENERATED_BODY()
 public:
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	void UpdateAllBoxes();

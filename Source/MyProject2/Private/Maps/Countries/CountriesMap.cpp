@@ -14,16 +14,11 @@ bool UCountriesMap::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
-	CountriesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->CountriesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
-}
-
 void UCountriesMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
+	CountriesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->CountriesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
 	GetWorld()->GetSubsystem<UDistancesMap>()->RegisterOnFullInitializationAction(this, &UCountriesMap::UpdateAllCountriesMapColors);
 	GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
 }

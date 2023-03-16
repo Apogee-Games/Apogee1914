@@ -4,15 +4,13 @@
 #include "Maps/Interfaces/Observer/CountryDistancesObserver.h"
 #include "CountriesMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UCountriesMap: public UWorldSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
 {
 	GENERATED_BODY()
 public:
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const;
@@ -22,9 +20,10 @@ public:
 	virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
 	
 	virtual void CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces) override;
-private:
+
+	UPROPERTY(EditDefaultsOnly)
 	int32 CrossLineWidth = 10;
-	
+private:
 	UPROPERTY()	
 	UTexture2D* CountriesMapTexture;
 

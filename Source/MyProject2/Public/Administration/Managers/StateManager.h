@@ -3,7 +3,7 @@
 
 #include "StateManager.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UStateManager: public UWorldSubsystem
 {
 	GENERATED_BODY()
@@ -21,7 +21,6 @@ public:
 	bool AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 	
 	bool AreProvincesNotInTheSameState(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
-
 private:
 	UPROPERTY()
 	TMap<FName, UState*> StateMap;

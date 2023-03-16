@@ -3,7 +3,8 @@
 #include "Interfaces/FOnFullInitialization.h"
 #include "Maps/Interfaces/Observable/CountryDistancesObservable.h"
 #include "DistancesMap.generated.h"
-UCLASS()
+
+UCLASS(Abstract, Blueprintable)
 class UDistancesMap: public UWorldSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
 {
 	GENERATED_BODY()
@@ -28,9 +29,9 @@ public:
 
 	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
 
-private:
+	UPROPERTY(EditDefaultsOnly)
 	int32 Depth = 15;
-	
+private:
 	FVector2d SizeVector;
 	
 	TArray<int32> ProvincesDistances;

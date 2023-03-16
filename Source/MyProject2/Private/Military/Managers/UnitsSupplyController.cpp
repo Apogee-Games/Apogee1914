@@ -23,7 +23,7 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 	}
 
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, FTimespan(1, 0, 0, 0));
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, SupplyTimeDelta);
 }
 
 void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)

@@ -9,10 +9,10 @@ bool UStrataManager::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UStrataManager::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
 
+void UStrataManager::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
 	StrataDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->StrataDescriptionDataTable;
 }
 

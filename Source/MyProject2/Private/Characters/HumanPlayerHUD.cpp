@@ -1,5 +1,6 @@
 #include "Characters/HumanPlayerHUD.h"
 
+#include "MyGameInstance.h"
 #include "Characters/HumanPlayerPawn.h"
 #include "Administration/Managers/CountriesManager.h"
 
@@ -110,7 +111,6 @@ void AHumanPlayerHUD::InitProvinceDataWidget()
 	}
 }
 
-
 void AHumanPlayerHUD::InitUnitTypesListWidget()
 {
 	if (UnitTypesListWidgetClass)
@@ -119,12 +119,13 @@ void AHumanPlayerHUD::InitUnitTypesListWidget()
 		
 		if (UnitTypesListWidget)
 		{
-			UDataTable* DataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/units_description"));
+			UDataTable* UnitsDescriptionDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->UnitsDescriptionDataTable;
 
-			for (const auto& [UnitName, UnitDescription]: DataTable->GetRowMap())
+			for (const auto& [UnitName, UnitDescription]: UnitsDescriptionDataTable->GetRowMap())
 			{
 				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
 			}
+			
 			Widgets.Add(UnitTypesListWidget);
 		}
 	}
@@ -184,9 +185,10 @@ void AHumanPlayerHUD::InitBuildingsTypesListWidget()
 		
 		if (BuildingsTypesListWidget)
 		{
-			UDataTable* DataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/buildings_description"));
 
-			for (const auto& [BuildingName, BuildingDescription]: DataTable->GetRowMap())
+			UDataTable* BuildingsDescriptionDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptionDataTable;
+
+			for (const auto& [BuildingName, BuildingDescription]: BuildingsDescriptionDataTable->GetRowMap())
 			{
 				BuildingsTypesListWidget->AddBuildingType(reinterpret_cast<FBuildingDescription*>(BuildingDescription));
 			}

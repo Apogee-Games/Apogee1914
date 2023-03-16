@@ -36,15 +36,10 @@ bool UOutlineMap::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
-	OutlinesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->OutlinesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
-}
-
 void UOutlineMap::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 	GetWorld()->GetSubsystem<UDistancesMap>()->RegisterOnFullInitializationAction(this, &UOutlineMap::CreateOutline);
+	OutlinesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->OutlinesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
 }

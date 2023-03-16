@@ -63,9 +63,9 @@ bool USelectionMap::ShouldCreateSubsystem(UObject* Outer) const
 	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
-void USelectionMap::Initialize(FSubsystemCollectionBase& Collection)
+void USelectionMap::OnWorldBeginPlay(UWorld& InWorld)
 {
-	Super::Initialize(Collection);
+	Super::OnWorldBeginPlay(InWorld);
 	SelectionMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->SelectionMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(SelectionMapTexture);
 }
