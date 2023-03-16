@@ -1,0 +1,443 @@
+[
+	{
+		"Name": "Bohemia",
+		"StateName": "Bohemia",
+		"Provinces": [
+			"FF6402FF", "B4C802FF", "F75402FF", "F7BE02FF", "F73902FF"
+		]
+	},
+	{
+		"Name": "Moravia",
+		"StateName": "Moravia",
+		"Provinces": [
+			"E3EA02FF", "F6A402FF", "47EA02FF"
+		]
+	},
+	{
+		"Name": "Aquitaine",
+		"StateName": "Aquitaine",
+		"Provinces": [
+			"8F8C00FF", "DC5500FF", "4BD600FF", "7F5500FF", "E77800FF"
+		]
+	},
+	{
+		"Name": "Midi-Pyrénées",
+		"StateName": "Midi-Pyrénées",
+		"Provinces": [
+			"9CC000FF", "F29600FF", "FBA300FF", "FBE500FF", "F2D900FF", "70E500FF", "E6BF00FF", "4CCC00FF"
+		]
+	},
+	{	 
+		"Name": "Languedoc-Roussillon",
+		"StateName": "Languedoc-Roussillon",
+		"Provinces": [
+			"9C0000FF", "DFBF00FF", "82BF00FF", "F26900FF", "EDE500FF"
+		]
+	},
+	{
+		"Name": "Provence-Alpes-Côte-dAzur",
+		"StateName": "Provence-Alpes-Côte d'Azur",
+		"Provinces": [
+			"6BEA00FF", "C16600FF", "5E5F00FF", "E89200FF", "C1D700FF", "C15F00FF"
+		]
+	},
+	{
+		"Name": "Rhône-Alpes",
+		"StateName": "Rhône-Alpes",
+		"Provinces": [
+			"E6EF00FF", "6DC300FF", "E8C300FF", "54EB00FF", "E69C00FF", "E61700FF", "E68400FF", "E65100FF"
+		]
+	},
+	{
+		"Name": "Auvergne",
+		"StateName": "Auvergne",
+		"Provinces": [
+			"398100FF", "474B00FF", "74A300FF", "DBDC00FF"
+		]
+	}, 
+	{
+		"Name": "Limousin",
+		"StateName": "Limousin",
+		"Provinces": [
+			"DB4B00FF", "39DD00FF", "BEBA00FF"
+		]
+	},
+	{
+		"Name": "Poitou-Charentes",
+		"StateName": "Poitou-Charentes",
+		"Provinces": [
+			"D63900FF", "D6DD00FF", "E6C800FF", "5ACF00FF"
+		]
+	},
+	{
+		"Name": "Centre-Val-de-Loire",
+		"StateName": "Centre-Val de Loire",
+		"Provinces": [
+			"E41C00FF", "E92500FF", "825700FF", "E38100FF", "468100FF", "E48100FF"
+		]
+	}, 
+	{
+		"Name": "Burgundy",
+		"StateName": "Burgundy",
+		"Provinces": [
+			"995200FF", "827C00FF", "99EC00FF", "E4E800FF"
+		]
+	}, 
+	{
+		"Name": "Champagne-Ardenne",
+		"StateName": "Champagne-Ardenne", 
+		"Provinces": [
+			"E79B00FF", "E44300FF", "813700FF", "E4DD00FF"
+		]
+	}, 
+	{
+		"Name": "Picardy",
+		"StateName": "Picardy",
+		"Provinces": [
+			"59F400FF", "B2AB00FF", "EBA900FF"
+		]
+	},
+	{
+		"Name": "Normandy",
+		"StateName": "Normandy",
+		"Provinces": [
+			"D8F400FF", "5FF400FF", "E95100FF", "E9B400FF", "9CCD00FF"
+		]
+	},
+	{
+		"Name": "Nord-Pas-de-Calais",
+		"StateName": "Nord-Pas-de-Calais",
+		"Provinces": [
+			"619B00FF", "EB5000FF"
+		]
+	}, 
+	{
+		"Name": "Île-de-France",
+		"StateName": "Île-de-France",
+		"Provinces": [
+			"F2F700FF", "F23700FF"
+		]
+	}, 
+	{
+		"Name": "Pays-de-la-Loire",
+		"StateName": "Pays de la Loire",
+		"Provinces": [
+			"E6BD00FF", "E5DC00FF", "6D6300FF", "E56300FF", "E66100FF"
+		]
+	}, 
+	{
+		"Name": "Brittany",
+		"StateName": "Brittany",
+		"Provinces": [
+			"BCCD00FF", "23CD00FF", "6DBD00FF", "E52B00FF"
+		]
+	},
+	{
+		"Name": "Franche-Comté",
+		"StateName": "Franche-Comté",
+		"Provinces": [
+			"4EDC00FF", "E17C00FF", "99DC00FF"
+		]
+	},
+	{
+		"Name": "Flanders",
+		"StateName": "Flanders",
+		"Provinces": [
+			"B66201FF", "879901FF", "ACC501FF", "6BDB01FF", "DDDB01FF"
+		]
+	},
+	{
+		"Name": "Wallonia",
+		"StateName": "Wallonia",
+		"Provinces": [
+			"FA0B01FF", "FA8701FF", "5C8701FF", "7BD401FF", "FA3801FF"
+		]
+	},
+	{
+		"Name": "North-Netherlands",
+		"StateName": "North Netherlands",
+		"Provinces": [
+			"DAC401FF", "39C401FF", "F17E01FF"
+		]
+	},
+	{
+		"Name": "East-Netherlands",
+		"StateName": "East Netherlands",
+		"Provinces": [
+			"97E201FF", "F39001FF", "F33401FF"
+		]
+	}, 
+	{
+		"Name": "West-Netherlands",
+		"StateName": "West Netherlands",
+		"Provinces": [
+			"C73801FF", "7EC601FF", "C7EB01FF", "E77401FF"
+		]
+	},
+	{
+		"Name": "South-Netherlands",
+		"StateName": "South Netherlands",
+		"Provinces": [
+			"E7DE01FF", "D73401FF"
+		]
+	},
+	{
+		"Name": "Lothringen",
+		"StateName": "Lothringen",
+		"Provinces": [
+			"3AE400FF", "E48A00FF", "668A00FF", "F55A01FF", "F51B01FF", "F5E701FF"
+		]
+	}, 
+	{
+		"Name": "Bayern",
+		"StateName": "Bayern",
+		"Provinces": [
+			"B86201FF", "85C901FF", "38EE01FF", "DCEE01FF", "B82901FF", "40EE01FF", "B34101FF"
+		]
+	},
+	{
+		"Name": "Württemberg",
+		"StateName": "Württemberg",
+		"Provinces": [
+			"F2E201FF", "F25001FF", "57F801FF", "E9F801FF"
+		]
+	}, 
+	{
+		"Name": "Baden",
+		"StateName": "Baden",
+		"Provinces": [
+			"FE3801FF", "C39201FF", "9E9201FF", "3EF801FF"
+		]
+	}, 
+	{
+		"Name": "Rhine-Province",
+		"StateName": "Rhine Province",
+		"Provinces": [
+			"C4AB01FF", "6EE901FF", "E6E901FF", "E77001FF", "487A01FF", "6D4A01FF"
+		]
+	},
+	{
+		"Name": "Hesse-Nassau",
+		"StateName": "Hesse-Nassau",
+		"Provinces": [
+			"D98001FF", "528001FF", "E5E801FF"
+		]
+	}, 
+	{
+		"Name": "Westphalia",
+		"StateName": "Westphalia",
+		"Provinces": [
+			"F41A01FF", "F47A01FF", "909701FF"
+		]
+	}, 
+	{
+		"Name": "Hanover",
+		"StateName": "Hanover",
+		"Provinces": [
+			"8AEF01FF", "C69701FF", "4A6401FF", "C66401FF", "1CCF01FF", "F12901FF", "78B701FF"
+		]
+	},
+	{
+		"Name": "Sachsen-Anhalt",
+		"StateName": "Sachsen-Anhalt",
+		"Provinces": [
+			"DFB701FF", "884A01FF", "E47F01FF", "9EBC01FF", "E35B01FF", "74A201FF", "E13501FF", "838501FF"
+		]
+	},
+	{
+		"Name": "Sachsen",
+		"StateName": "Sachsen",
+		"Provinces": [
+			"D7C301FF", "D78501FF", "D74101FF", "71E401FF"
+		]
+	},
+	{
+		"Name": "Silesia",
+		"StateName": "Silesia",
+		"Provinces": [
+			"F6F701FF", "74F701FF", "EA3C01FF"
+		]
+	},
+	{
+		"Name": "Brandenburg",
+		"StateName": "Brandenburg",
+		"Provinces": [
+			"CAA001FF", "F62701FF"
+		]
+	},
+	{
+		"Name": "Posen",
+		"StateName": "Posen",
+		"Provinces": [
+			"9E7A01FF", "C5D101FF"
+		]
+	},
+	{
+		"Name": "East-Prussia",
+		"StateName": "East Prussia",
+		"Provinces": [
+			"7AF801FF", "D7B401FF"
+		]
+	},
+	{
+		"Name": "West-Prussia",
+		"StateName": "West Prussia",
+		"Provinces": [
+			"E85A01FF", "575A01FF"
+		]
+	},
+	{
+		"Name": "Pomerania",
+		"StateName": "Pomerania",
+		"Provinces": [
+			"4FEC01FF", "EFEC01FF", "4EA001FF"
+		]
+	},
+	{
+		"Name": "Mecklenburg",
+		"StateName": "Mecklenburg",
+		"Provinces": [
+			"FE3001FF", "48FF01FF"
+		]
+	},
+	{
+		"Name": "Catalonia",
+		"StateName": "Catalonia",
+		"Provinces": [
+			"C75903FF", "71DD03FF", "C71C03FF", "6A8D03FF"
+		]
+	},
+	{
+		"Name": "Aragon",
+		"StateName": "Aragon",
+		"Provinces": [
+			"C4D003FF", "A96103FF", "55D003FF"
+		]
+	},
+	{
+		"Name": "Valencia",
+		"StateName": "Valencia",
+		"Provinces": [
+			"F4D403FF", "A9DB03FF", "A91903FF"
+		]
+	},
+	{
+		"Name": "Murcia",
+		"StateName": "Murcia",
+		"Provinces": [
+			"B71903FF"
+		]
+	},
+	{
+		"Name": "Castilla–La-Mancha",
+		"StateName": "Castilla–La Mancha",
+		"Provinces": [
+			"1F7C03FF", "EBE003FF", "361903FF", "E56403FF", "F51B03FF"
+		]
+	},
+	{
+		"Name": "Madrid",
+		"StateName": "Madrid",
+		"Provinces": [
+			"395D03FF"
+		]
+	},
+	{
+		"Name": "Andalusia",
+		"StateName": "Andalusia",
+		"Provinces": [
+			"5DB603FF", "D0E903FF", "215903FF", "BB8B03FF", "BA5208FF", "F42C03FF", "D05D03FF", "E11103FF"
+		]
+	},
+	{
+		"Name": "Extremadura",
+		"StateName": "Extremadura",
+		"Provinces": [
+			"566203FF", "31B603FF"
+		]
+	},
+	{
+		"Name": "Castile-and-León",
+		"StateName": "Castile and León",
+		"Provinces": [
+			"4CCF03FF", "28E303FF", "46DE03FF", "E7B703FF", "BDCF03FF", "DAD403FF", "B41603FF", "D90603FF", "AA3E03FF"
+		]
+	},
+	{
+		"Name": "Navarre",
+		"StateName": "Navarre",
+		"Provinces": [
+			"6E5703FF"
+		]
+	},
+	{
+		"Name": "La-Rioja",
+		"StateName": "La Rioja",
+		"Provinces": [
+			"B45003FF"
+		]
+	},
+	{
+		"Name": "Basque",
+		"StateName": "Basque",
+		"Provinces": [
+			"CB1003FF", "77A103FF", "CB5703FF"
+		]
+	},
+	{
+		"Name": "Cantabria",
+		"StateName": "Cantabria",
+		"Provinces": [
+			"A81603FF"
+		]
+	},
+	{
+		"Name": "Asturias",
+		"StateName": "Asturias",
+		"Provinces": [
+			"795603FF"
+		]
+	},
+	{
+		"Name": "Galicia",
+		"StateName": "Galicia",
+		"Provinces": [
+			"54E303FF", "E35603FF", "AAAF03FF", "AA1A03FF"
+		]
+	},
+	{
+		"Name": "Balearic-Islands",
+		"StateName": "Balearic-Islands",
+		"Provinces": [
+			"0EAC03FF"
+		]
+	},
+	{
+		"Name": "North-Portugal",
+		"StateName": "North Portugal",
+		"Provinces": [
+			"6D2303FF", "29AC03FF", "F8CA03FF", "5E4803FF", "F82C03FF"
+		]	
+	},
+	{
+		"Name": "Beiras",
+		"StateName": "Beiras",
+		"Provinces": [
+			"D2AC03FF", "DA2303FF", "D6E303FF", "56D703FF", "AD1703FF"
+		]	
+	},
+	{
+		"Name": "Tejo-Valley",
+		"StateName": "Tejo Valley",
+		"Provinces": [
+			"E14403FF", "5EBE03FF", "D1CE03FF", "0F5103FF"
+		]	
+	},
+	{
+		"Name": "Alentejo",
+		"StateName": "Alentejo",
+		"Provinces": [
+			"5EAC03FF", "D1AC03FF", "861603FF", "866903FF"
+		]	
+	}
+]
