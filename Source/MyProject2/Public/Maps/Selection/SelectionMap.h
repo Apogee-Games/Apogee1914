@@ -7,6 +7,8 @@ class USelectionMap : public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	UProvince* SelectProvince(const FVector2d& Point);

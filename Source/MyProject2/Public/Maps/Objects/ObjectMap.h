@@ -6,6 +6,8 @@ class UObjectMap : public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	FVector2d GetProvinceCenter(const FColor& Color);
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;

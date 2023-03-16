@@ -1,6 +1,12 @@
 #include "InGameTime.h"
 
 #include "Characters/HumanPlayerHUD.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UInGameTime::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
 {

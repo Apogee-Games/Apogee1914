@@ -1,9 +1,15 @@
 
 #include "Maps/Flags/FlagsMap.h"
 
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Flags/FlagBoxUpdater.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
+
+bool UFlagsMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
 {

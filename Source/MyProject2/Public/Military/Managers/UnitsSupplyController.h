@@ -10,6 +10,8 @@ class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserv
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	virtual void UnitIsCreated(UUnit* Unit) override;

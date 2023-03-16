@@ -8,6 +8,7 @@ class UBuildingManager: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	

@@ -3,6 +3,12 @@
 
 #include "InGameTime.h"
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UUnitsMover::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UUnitsMover::OnWorldBeginPlay(UWorld& InWorld)
 {

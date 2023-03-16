@@ -3,7 +3,13 @@
 
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/StateManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Utils/TextureUtils.h"
+
+bool UProvincesMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UProvincesMap::Initialize(FSubsystemCollectionBase& Collection)
 {

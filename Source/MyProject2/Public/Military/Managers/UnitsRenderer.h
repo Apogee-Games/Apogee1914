@@ -13,6 +13,8 @@ class UUnitsRenderer : public UWorldSubsystem, public IUnitCreationObserver, pub
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AUnitActor> UnitActorClass;
+
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 

@@ -1,9 +1,16 @@
 
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 
+#include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/StateManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Maps/Precalculations/Distances/DistanceCalculator.h"
+
+bool UDistancesMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UDistancesMap::OnWorldBeginPlay(UWorld& InWorld)
 {

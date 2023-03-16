@@ -4,6 +4,12 @@
 
 #include "InGameTime.h"
 #include "Administration/Instances/Province.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UBuildingManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UBuildingManager::OnWorldBeginPlay(UWorld& InWorld)
 {

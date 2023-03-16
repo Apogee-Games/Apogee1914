@@ -2,7 +2,13 @@
 #include "Administration/Managers/CountriesManager.h"
 
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
+
+bool UCountriesManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UCountriesManager::Initialize(FSubsystemCollectionBase& Collection)
 {

@@ -2,6 +2,7 @@
 #include "Maps/Objects/ObjectMap.h"
 
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
@@ -28,6 +29,11 @@ void UObjectMap::CalculateProvinceCenter(const FColor& Color)
 	}
 
 	ProvinceCenters[Color] = ProvinceCenters[Color] / Positions.Num() / SizeVector;
+}
+
+bool UObjectMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
 FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)

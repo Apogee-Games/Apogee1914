@@ -2,11 +2,17 @@
 
 #include "Administration/Managers/ProvinceManager.h"
 #include "Characters/UnitActor.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Objects/ObjectMap.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsMover.h"
+
+bool UUnitsRenderer::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UUnitsRenderer::Initialize(FSubsystemCollectionBase& Collection)
 {

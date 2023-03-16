@@ -2,6 +2,7 @@
 #include "Maps/Outlines/OutlineMap.h"
 
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 #include "Utils/TextureUtils.h"
@@ -27,6 +28,11 @@ void UOutlineMap::CreateOutline()
 	FTextureUtils::UnlockPixels(OutlinesMapTexture);
 
 	OutlinesMapTexture->UpdateResource();
+}
+
+bool UOutlineMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
 void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)

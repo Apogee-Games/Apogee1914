@@ -1,6 +1,13 @@
 
 #include "Administration/Managers/StateManager.h"
 
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+
+bool UStateManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UStateManager::Initialize(FSubsystemCollectionBase& Collection)
 {

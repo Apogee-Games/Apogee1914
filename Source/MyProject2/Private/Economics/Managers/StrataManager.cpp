@@ -1,6 +1,12 @@
 ﻿#include "Economics/Managers//StrataManager.h"
 
 #include "Engine/DataTable.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UStrataManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UStrataManager::Initialize(FSubsystemCollectionBase& Collection)
 {

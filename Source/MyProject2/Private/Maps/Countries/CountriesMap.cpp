@@ -2,10 +2,16 @@
 #include "Maps/Countries/CountriesMap.h"
 
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Countries/CountryMapUpdater.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 #include "Utils/TextureUtils.h"
+
+bool UCountriesMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 {

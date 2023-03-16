@@ -15,6 +15,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	float SpeedMultiplier = 0.1;
+
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	

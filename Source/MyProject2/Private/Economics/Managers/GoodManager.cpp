@@ -1,5 +1,12 @@
 ﻿#include "Economics/Managers/GoodManager.h"
 
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UGoodManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
+
 void UGoodManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);

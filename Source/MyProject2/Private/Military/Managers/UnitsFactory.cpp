@@ -2,6 +2,12 @@
 #include "Military/Managers/UnitsFactory.h"
 
 #include "Administration/Managers/CountriesManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UUnitsFactory::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
 {

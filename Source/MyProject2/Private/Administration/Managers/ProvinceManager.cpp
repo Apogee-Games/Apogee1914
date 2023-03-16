@@ -1,8 +1,14 @@
 ﻿
 #include "Administration/Managers/ProvinceManager.h"
 
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Military/Instances/Units/Unit.h"
 
+
+bool UProvinceManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {

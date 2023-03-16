@@ -5,6 +5,7 @@
 #include "UObject/UObjectGlobals.h"
 #include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
 void UEventInstancesController::CreateEvent(FEventDescription* Event,
                                             const TMap<FName, bool>& ChoicesConditionsEvaluated,
@@ -92,6 +93,11 @@ FName UEventInstancesController::FindAISelectedChoice(const TArray<FEventChoice>
 	}
 
 	return SelectedChoice;
+}
+
+bool UEventInstancesController::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
 void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)

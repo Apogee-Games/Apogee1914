@@ -8,7 +8,8 @@ class UDistancesMap: public UWorldSubsystem, public ICountryDistancesObservable,
 {
 	GENERATED_BODY()
 public:
-
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	void Init();

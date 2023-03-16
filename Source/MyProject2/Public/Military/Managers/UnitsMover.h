@@ -8,8 +8,9 @@ UCLASS()
 class UUnitsMover: public UWorldSubsystem, public IUnitMovementObservable
 {
 	GENERATED_BODY()
-
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	FGraph* GetGraph() const;

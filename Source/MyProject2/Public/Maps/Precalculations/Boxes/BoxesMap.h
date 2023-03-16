@@ -11,6 +11,8 @@ class UBoxesMap: public UWorldSubsystem, public FOnFullInitialization, public IP
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 
 	void Init();

@@ -3,6 +3,7 @@
 #include "Maps/Selection/SelectionMap.h"
 
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
@@ -54,6 +55,11 @@ FColor USelectionMap::GetProvinceColor(const FVector2d& Point) const
 	const int32 Position = FTextureUtils::GetPixelPosition(ImagePosition, SizeVector);
 
 	return GetWorld()->GetSubsystem<UProvincesMap>()->GetColor(Position);
+}
+
+bool USelectionMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
 void USelectionMap::Initialize(FSubsystemCollectionBase& Collection)

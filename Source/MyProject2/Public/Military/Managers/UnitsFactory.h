@@ -19,6 +19,8 @@ class UUnitsFactory : public UWorldSubsystem, public IUnitsCreationObservable, p
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
 
 	virtual UUnitsCollection* CreateUnitCollection(EMilitaryBranch MilitaryBranch);

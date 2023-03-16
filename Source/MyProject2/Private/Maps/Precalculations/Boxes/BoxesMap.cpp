@@ -1,9 +1,15 @@
 
 #include "Maps/Precalculations/Boxes/BoxesMap.h"
 
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
+
+bool UBoxesMap::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UBoxesMap::OnWorldBeginPlay(UWorld& InWorld)
 {

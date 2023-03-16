@@ -10,8 +10,9 @@ UCLASS()
 class UProvinceManager : public UWorldSubsystem, public IProvinceControllingCountryObservable
 {
 	GENERATED_BODY()
-	
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	UProvince* GetProvince(const FColor& ProvinceColor) const;
