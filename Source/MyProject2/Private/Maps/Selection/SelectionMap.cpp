@@ -2,6 +2,7 @@
 #define UpdateResource UpdateResource
 #include "Maps/Selection/SelectionMap.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
@@ -65,7 +66,7 @@ bool USelectionMap::ShouldCreateSubsystem(UObject* Outer) const
 void USelectionMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	SelectionMapTexture = FTextureUtils::LoadTexture("/Game/maps/province");
+	SelectionMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->SelectionMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(SelectionMapTexture);
 }
 

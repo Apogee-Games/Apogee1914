@@ -1,6 +1,7 @@
 
 #include "Administration/Managers/CountriesManager.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
@@ -13,10 +14,9 @@ bool UCountriesManager::ShouldCreateSubsystem(UObject* Outer) const
 void UCountriesManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	UDataTable* CountryDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/countries_description"));
-	InitCountries(CountryDescriptionDataTable);
-	
-	for (const auto& Pair: CountryDescriptionDataTable->GetRowMap())
+	const UScenario* Scenario = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario;
+	InitCountries(Scenario->CountryDescriptionDataTable);
+	for (const auto& Pair: Scenario->CountryDescriptionDataTable->GetRowMap())
 	{
 		CountriesTagsList.Add(Pair.Key);
 	}

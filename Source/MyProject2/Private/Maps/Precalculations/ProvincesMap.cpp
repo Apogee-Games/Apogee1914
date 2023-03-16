@@ -1,6 +1,7 @@
 
 #include "Maps/Precalculations/ProvincesMap.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/StateManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
@@ -14,7 +15,7 @@ bool UProvincesMap::ShouldCreateSubsystem(UObject* Outer) const
 void UProvincesMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
+	ProvincesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->ProvincesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 }
 

@@ -1,6 +1,8 @@
 
 #include "Administration/Managers/StateManager.h"
 
+#include "MyGameInstance.h"
+#include "Scenario.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
 
@@ -12,7 +14,7 @@ bool UStateManager::ShouldCreateSubsystem(UObject* Outer) const
 void UStateManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	UDataTable* StateDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/states_description"));
+	UDataTable* StateDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->StateDescriptionDataTable; 
 	InitStates(StateDescriptionDataTable);
 }
 

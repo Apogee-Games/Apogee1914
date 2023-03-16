@@ -1,6 +1,7 @@
 
 #include "Maps/Outlines/OutlineMap.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
@@ -38,7 +39,7 @@ bool UOutlineMap::ShouldCreateSubsystem(UObject* Outer) const
 void UOutlineMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	OutlinesMapTexture = FTextureUtils::LoadTexture("/Game/maps/outlines");
+	OutlinesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->OutlinesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
 }
 

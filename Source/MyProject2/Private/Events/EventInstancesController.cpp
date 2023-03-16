@@ -104,7 +104,7 @@ void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	UDataTable* EventsDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/events_description"));
+	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
 
 	for (const auto Pair : EventsDataTable->GetRowMap())
 	{

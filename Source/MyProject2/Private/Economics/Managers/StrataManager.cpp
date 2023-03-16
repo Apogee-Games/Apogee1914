@@ -1,5 +1,6 @@
 ﻿#include "Economics/Managers//StrataManager.h"
 
+#include "MyGameInstance.h"
 #include "Engine/DataTable.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
@@ -12,9 +13,7 @@ void UStrataManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	StrataDescriptionDataTable
-			= LoadObject<UDataTable>(nullptr,TEXT("/Game/Sources/strata_description"));
-	
+	StrataDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->StrataDescriptionDataTable;
 }
 
 FStrataDescription* UStrataManager::GetStrataDescription(const FName& Type) const

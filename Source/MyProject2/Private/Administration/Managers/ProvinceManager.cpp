@@ -1,8 +1,8 @@
 ﻿
 #include "Administration/Managers/ProvinceManager.h"
 
+#include "MyGameInstance.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
-#include "Military/Instances/Units/Unit.h"
 
 
 bool UProvinceManager::ShouldCreateSubsystem(UObject* Outer) const
@@ -13,12 +13,14 @@ bool UProvinceManager::ShouldCreateSubsystem(UObject* Outer) const
 void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	
-	UDataTable* ProvinceDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/provinces_description"));
 
-	UDataTable* TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
+	const UScenario* Scenario = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario;
 	
-	UDataTable* ResourcesDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/resources_description"));
+	UDataTable* ProvinceDescriptionDataTable = Scenario->ProvinceDescriptionDataTable;
+
+	UDataTable* TerrainDescriptionDataTable = Scenario->TerrainDescriptionDataTable;
+	
+	UDataTable* ResourcesDescriptionDataTable = Scenario->ResourcesDescriptionDataTable;
 
 	InitProvinces(ProvinceDescriptionDataTable, TerrainDescriptionDataTable, ResourcesDescriptionDataTable);
 

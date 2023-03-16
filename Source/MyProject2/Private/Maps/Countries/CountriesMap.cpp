@@ -1,6 +1,7 @@
 
 #include "Maps/Countries/CountriesMap.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Countries/CountryMapUpdater.h"
@@ -16,7 +17,7 @@ bool UCountriesMap::ShouldCreateSubsystem(UObject* Outer) const
 void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	CountriesMapTexture = FTextureUtils::LoadTexture("/Game/maps/country");
+	CountriesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->CountriesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
 }
 

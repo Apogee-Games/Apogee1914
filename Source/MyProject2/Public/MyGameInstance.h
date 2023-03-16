@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "InGameTime.h"
+#include "Scenario.h"
 #include "Engine/GameInstance.h"
 #include "Events/EventInstancesController.h"
 #include "Military/Managers/UnitsRenderer.h"
@@ -24,6 +25,9 @@ public:
 
 	bool IsCountryRuledByPlayer(const FName& CountryTag);
 
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UScenario*> Scenarios;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;
 
@@ -32,6 +36,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly);
 	TSubclassOf<UEventInstancesController> EventInstancesControllerClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UScenario* ActiveScenario;
 private:
 	TMap<int32, FName> PlayersRuledCountries;
 

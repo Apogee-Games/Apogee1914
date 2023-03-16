@@ -1,6 +1,7 @@
 
 #include "Maps/Flags/FlagsMap.h"
 
+#include "MyGameInstance.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Flags/FlagBoxUpdater.h"
 #include "Maps/Precalculations/ProvincesMap.h"
@@ -14,7 +15,7 @@ bool UFlagsMap::ShouldCreateSubsystem(UObject* Outer) const
 void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	FlagsMapTexture = FTextureUtils::LoadTexture("/Game/maps/flags");
+	FlagsMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->FlagsMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
 }
 
