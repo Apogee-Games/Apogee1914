@@ -1,46 +1,40 @@
-#pragma once
+﻿#pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
-#include "Military/Instances/Units/Collections/UnitsCollection.h"
-#include "UnitCollectionWidget.generated.h"
+#include "People/Instances/Person.h"
+#include "CommanderWidget.generated.h"
 
 UCLASS()
-class UUnitCollectionWidget: public UUserWidget
+class UCommanderWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UTextBlock* CollectionSizeTextBlock;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* Button;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* CommanderButton;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UTextBlock* CommanderNameTextBlock;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UImage* CommanderImage;
-	
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UTextBlock* AgeTextBlock;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UTextBlock* NameTextBlock;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* Button; 
+
 	virtual void NativeConstruct() override;
 	
 	UFUNCTION(BlueprintCallable)
-	void SetUnitCollection(UObject* ProvidedUnitsCollection);
+	void SetCommander(UObject* ProvidedCommander);
 
 	UFUNCTION(BlueprintCallable)
 	void RefreshData();
 
 private:
 	UPROPERTY()
-	UUnitsCollection* UnitsCollection;
+	UPerson* Commander;
 
 	UFUNCTION()
 	void OnButtonClick();
-
-	UFUNCTION()
-	void OnCommanderButtonClick();
 };

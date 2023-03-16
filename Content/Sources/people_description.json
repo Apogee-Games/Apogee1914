@@ -1,0 +1,24 @@
+[
+	{
+		"Name": "Heinz_Gurderian",
+		"PersonName": "Heinz Gurderian",
+		"CountryTag": "GER",
+		"Age": 40,
+		"Skills": {
+			"Combat": 10
+		}, 
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/HGuderian"
+	},
+	{
+		"Name": "Erich_Ludendorff",
+		"PersonName": "Erich Ludendorff",
+		"CountryTag": "GER",
+		"Age": 55,
+		"Skills": {
+			"Combat": 10
+		}, 
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/ELudendorff"
+	}
+]
