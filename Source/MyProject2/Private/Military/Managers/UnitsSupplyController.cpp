@@ -11,7 +11,8 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 
 	for (auto& [CountryTag, Country]: GetWorld()->GetSubsystem<UCountriesManager>()->GetCountryMap())
 	{
-		FCountryUnitsSupplier Supplier = FCountryUnitsSupplier(this, Country->GetStorage());
+		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(this);
+		Supplier->Init(Country->GetStorage());
 		CountrySupplier.Add(Country, Supplier);
 	}
 
@@ -21,13 +22,13 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 
 void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)
 {
-	CountrySupplier[Unit->GetCountryController()].AddUnit(Unit);
+	CountrySupplier[Unit->GetCountryController()]->AddUnit(Unit);
 }
 
 void UUnitsSupplyController::Supply()
 {
 	for (auto& [Country, Supplier]: CountrySupplier)
 	{
-		Supplier.Supply();
+		Supplier->Supply();
 	}
 }

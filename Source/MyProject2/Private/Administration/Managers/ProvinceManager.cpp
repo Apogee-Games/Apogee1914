@@ -34,21 +34,12 @@ const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 	return ProvincesArray;
 }
 
-void UProvinceManager::UnitMovedIn(UProvince* Province, UUnit* Unit)
-{
-	if (Province->GetCountryController() != Unit->GetCountryController())
-	{
-		Province->TakeControl(Unit->GetCountryController());
-		NotifyProvinceNewControllingCountry(Province);
-	}
-}
-
 void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable, UDataTable* ResourcesDescriptionDataTable)
 {
 	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
 		if(Value == nullptr) continue;
 		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
-		UProvince* Province = NewObject<UProvince>(GetWorld()); 
+		UProvince* Province = NewObject<UProvince>(this); 
 		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
 		ProvinceMap.Add(Key, Province);
 	}

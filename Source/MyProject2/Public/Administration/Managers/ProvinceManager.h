@@ -19,9 +19,6 @@ public:
 	UProvince* GetProvince(const FName& ProvinceColorHex) const;
 
 	const TArray<UProvince*>& GetAllProvinces() const;
-
-	void UnitMovedIn(UProvince* Province, UUnit* Unit);
-
 private:
 	UPROPERTY()
 	TMap<FName, UProvince*> ProvinceMap;

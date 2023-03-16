@@ -43,7 +43,6 @@ void UUnitsMover::MoveUnit(UUnit* Unit, int32 Position)
 {
 	NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].Key);
 	Unit->Move(Paths[Unit][Position].Key);
-	GetWorld()->GetSubsystem<UProvinceManager>()->UnitMovedIn(Paths[Unit][Position].Key, Unit);
 	Positions[Unit]++;
 	if (Positions[Unit] >= Paths[Unit].Num()) UnitsArrived.Enqueue(Unit);
 }

@@ -38,6 +38,10 @@ void UUnit::RemoveTransportedUnit(UUnit* Unit)
 void UUnit::Move(UProvince* NewProvince)
 {
 	Province = NewProvince;
+	if (Province->GetCountryController() != CountryController)
+	{
+		Province->TakeControl(CountryController);
+	}
 }
 
 UProvince* UUnit::GetPosition() const

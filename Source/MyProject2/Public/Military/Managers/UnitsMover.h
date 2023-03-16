@@ -2,9 +2,7 @@
 #include "Maps/Graph.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Military/Interfaces/Observables/UnitMovementObservable.h"
-
 #include "UnitsMover.generated.h"
-
 
 UCLASS()
 class UUnitsMover: public UWorldSubsystem, public IUnitMovementObservable
@@ -29,6 +27,7 @@ private:
 
 	TMap<UUnit*, TArray<TPair<UProvince*, int32>>> Paths;
 
+	UPROPERTY()
 	TMap<UUnit*, int32> Positions;
 
 	TQueue<UUnit*> UnitsArrived;
