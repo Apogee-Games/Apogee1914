@@ -19,9 +19,11 @@ public:
 
 	const FName& GetTag() const;
 
-	UTexture2D* GetFlag() const;
+	UTexture2D* GetFlag();
 
 	UStorage* GetStorage() const;
+
+	void SetRulingFraction(const FName& ProvidedRulingFractionTag);
 
 	TArray<UStorage*> GetStorages() const;
 	
@@ -32,6 +34,11 @@ private:
 
 	FColor Color;
 
+	FName RulingFractionTag;
+
+	UPROPERTY()
+	TMap<FName, FFractionDescription> Fractions;
+	
 	UPROPERTY()
 	UTexture2D* Flag = nullptr;
 
@@ -52,4 +59,5 @@ private:
 
 	void InitStrata();
 
+	void LoadFlag();
 };
