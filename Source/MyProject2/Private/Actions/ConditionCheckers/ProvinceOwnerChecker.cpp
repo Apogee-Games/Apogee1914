@@ -1,7 +1,7 @@
 ﻿
 #include "Actions/ConditionCheckers/ProvinceOwnerChecker.h"
 
-FProvinceOwnerConditionChecker::FProvinceOwnerConditionChecker(UCountriesManager* CountriesManager, UProvinceManager* ProvinceManager):CountriesManager(CountriesManager),ProvinceManager(ProvinceManager)
+FProvinceOwnerConditionChecker::FProvinceOwnerConditionChecker(UProvinceManager* ProvinceManager):ProvinceManager(ProvinceManager)
 {
 
 }

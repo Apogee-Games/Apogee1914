@@ -5,14 +5,13 @@
 #include "MyProject2/Public/Administration/Managers/ProvinceManager.h"
 
 
-class FProvinceOwnerConditionChecker: public FConditionChecker
+
+class FProvinceControllerConditionChecker: public FConditionChecker
 {
 public:
-	FProvinceOwnerConditionChecker(UProvinceManager* ProvinceManager);
-
-
+	FProvinceControllerConditionChecker(UProvinceManager* ProvinceManager);
+	
 	virtual bool Check(const TMap<FName, FString>& Values) override;
-
 private:
-	UProvinceManager* ProvinceManager;
+	UProvinceManager* ProvinceManager;	
 };

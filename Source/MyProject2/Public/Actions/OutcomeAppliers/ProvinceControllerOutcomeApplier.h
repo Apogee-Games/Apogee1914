@@ -3,16 +3,16 @@
 #include "MyGameState.h"
 #include "MyProject2/Public/Administration/Managers/ProvinceManager.h"
 #include "MyProject2/Public/Administration/Managers/CountriesManager.h"
-class FProvinceOccupierOutcomeApplier: FOutcomeApplier
+class FProvinceControllerOutcomeApplier: FOutcomeApplier
 {
 public:
 
-	FProvinceOccupierOutcomeApplier(UCountriesManager* CountriesManager,UProvinceManager* ProvinceManager);
+	FProvinceControllerOutcomeApplier(UCountriesManager* CountriesManager,UProvinceManager* ProvinceManager);
 	
 	virtual void Apply(const TMap<FName, FString>& Values) override;
 	
-	virtual ~FProvinceOccupierOutcomeApplier() override = default;
-	
+	virtual ~FProvinceControllerOutcomeApplier() override = default;
+
 private:
 	UCountriesManager* CountriesManager;
 	UProvinceManager* ProvinceManager;
