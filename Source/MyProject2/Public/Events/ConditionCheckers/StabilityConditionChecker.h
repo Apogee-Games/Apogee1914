@@ -1,6 +1,6 @@
 #pragma once
 #include "EventConditionChecker.h"
-#include "MyGameState.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
 /**
  * Class used for testing
@@ -12,7 +12,7 @@ public:
 	/**
 	 * Conditions checker needs GameState to access stability field
 	 */
-	explicit FStabilityConditionChecker(AMyGameState* GameState);
+	explicit FStabilityConditionChecker(AGameLevelGameState* GameState);
 
 	/**
 	 * Method checks stability with provided values
@@ -21,5 +21,5 @@ public:
 
 	virtual ~FStabilityConditionChecker() override = default;
 private:
-	AMyGameState* GameState;
+	AGameLevelGameState* GameState;
 };

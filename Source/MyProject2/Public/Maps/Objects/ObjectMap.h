@@ -1,5 +1,4 @@
 #pragma once
-#include "MyGameState.h"
 #include "ObjectMap.generated.h"
 
 UCLASS()

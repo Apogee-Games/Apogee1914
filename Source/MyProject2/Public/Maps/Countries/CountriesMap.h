@@ -1,5 +1,4 @@
 #pragma once
-#include "MyGameState.h"
 #include "Administration/Interfaces/Observer/ProvinceControllingCountryObserver.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Maps/Interfaces/Observer/CountryDistancesObserver.h"

@@ -1,39 +1,36 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 
-#include "MyProject2GameModeBase.h"
+#include "LevelsOverides/Game/GameLevelGameMode.h"
 
 #include "InGameTime.h"
 #include "MyGameInstance.h"
-#include "MyGameState.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Characters/HumanPlayerPawn.h"
-#include "Characters/MyPlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
 #include "Characters/HumanPlayerHUD.h"
-#include "Economics/Managers/BuildingManager.h"
 #include "Events/EventInstancesController.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Military/Managers/UnitsMover.h"
 
-AMyProject2GameModeBase::AMyProject2GameModeBase()
+AGameLevelGameMode::AGameLevelGameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	
 	DefaultPawnClass = AHumanPlayerPawn::StaticClass();
-	PlayerControllerClass = AMyPlayerController::StaticClass();
-	GameStateClass = AMyGameState::StaticClass();
+	GameStateClass = AGameLevelGameState::StaticClass();
 	HUDClass = AHumanPlayerHUD::StaticClass();
 }
 
-void AMyProject2GameModeBase::Tick(float DeltaSeconds)
+void AGameLevelGameMode::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
 	GetWorld()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
 }
 
-void AMyProject2GameModeBase::BeginPlay()
+void AGameLevelGameMode::BeginPlay()
 {
 	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
 
@@ -44,11 +41,10 @@ void AMyProject2GameModeBase::BeginPlay()
 	Super::BeginPlay();
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
-	const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
+	/*const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
 	for (int32 PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
 	{
-		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(
-			GetWorld(), PlayerIndex));
+		const APlayerController* Controller = static_cast<APlayerController*>(UGameplayStatics::GetPlayerController(GetWorld(), PlayerIndex));
 
 		const AHumanPlayerPawn* Pawn = Controller->GetPawn<AHumanPlayerPawn>();
 		const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
@@ -56,43 +52,35 @@ void AMyProject2GameModeBase::BeginPlay()
 		UMyGameInstance* GameInstance = GetGameInstance<UMyGameInstance>();
 
 		GameInstance->SetRuledCountry(PlayerId, "GER");
-	}
+	}*/
 	
-	InitializeRuledCountry();
-
 	//CreateAIPawns();
 }
 
-void AMyProject2GameModeBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
+void AGameLevelGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 }
 
-void AMyProject2GameModeBase::InitializeRuledCountry() const
+void AGameLevelGameMode::PostLogin(APlayerController* NewPlayer)
 {
-	InitializeRuledCountryForLocalPlayers();
-	// TODO:: Add Ruled Country initialization for net Players
-}
+	Super::PostLogin(NewPlayer);
 
-void AMyProject2GameModeBase::InitializeRuledCountryForLocalPlayers() const
-{
-	const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
-	for (int32 PlayerIndex = 0; PlayerIndex < LocalPlayerControllersNumber; ++PlayerIndex)
-	{
-		const AMyPlayerController* Controller = static_cast<AMyPlayerController*>(UGameplayStatics::GetPlayerController(
-			GetWorld(), PlayerIndex));
+	FInputModeGameAndUI InputModeGameAndUI;
+	InputModeGameAndUI.SetHideCursorDuringCapture(false);
+	NewPlayer->SetInputMode(InputModeGameAndUI);
+	NewPlayer->SetShowMouseCursor(true);
 
-		AHumanPlayerPawn* Pawn = Controller->GetPawn<AHumanPlayerPawn>();
-		const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
+	AHumanPlayerPawn* Pawn = NewPlayer->GetPawn<AHumanPlayerPawn>();
+	const int32 PlayerId = Pawn->GetPlayerState()->GetPlayerId();
 
-		const UMyGameInstance* GameInstance = GetGameInstance<UMyGameInstance>();
-		const FName RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
+	UMyGameInstance* GameInstance = GetGameInstance<UMyGameInstance>();
+	const FName RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
 		
-		Pawn->SetRuledCountryTag(RuledCountryTag);
-	}
+	Pawn->SetRuledCountryTag(RuledCountryTag);
 }
 
-void AMyProject2GameModeBase::CreateAIPawns()
+void AGameLevelGameMode::CreateAIPawns()
 {
 	for (const auto& CountryTag : GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
 	{

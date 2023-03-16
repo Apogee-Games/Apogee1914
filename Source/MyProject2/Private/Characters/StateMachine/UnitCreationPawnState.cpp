@@ -27,6 +27,7 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 	UUnitsFactory* UnitsFactory = Pawn->GetWorld()->GetSubsystem<UUnitsFactory>();
 
 	UnitsFactory->CreateUnit(Pawn->GetSelectedUnitDescription(), Province, Pawn->GetRuledCountryTag());
+	// TODO: Add method overload to be able to pass country not just its tag
 
 	return Instance;
 }

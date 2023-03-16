@@ -6,32 +6,28 @@
 #include "GameFramework/GameModeBase.h"
 #include "Characters/AIPlayerPawn.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
-#include "MyProject2GameModeBase.generated.h"
+#include "GameLevelGameMode.generated.h"
 
 class UProvinceDataWidget;
 /**
  * 
  */
 UCLASS()
-class MYPROJECT2_API AMyProject2GameModeBase : public AGameModeBase
+class MYPROJECT2_API AGameLevelGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 public:
-	AMyProject2GameModeBase();
+	AGameLevelGameMode();
 
 	virtual void Tick(float DeltaSeconds) override;
 	
 	virtual void BeginPlay() override;
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	virtual void PostLogin(APlayerController* NewPlayer) override;
 	
 private:
-	/* Initializes Ruled Country for all human players */
-	void InitializeRuledCountry() const;
-
-	/* Initializes Ruled Country for all local human players */
-	void InitializeRuledCountryForLocalPlayers() const;
-
 	/* Creates AIPawns for all non user played countries */
 	void CreateAIPawns();
 

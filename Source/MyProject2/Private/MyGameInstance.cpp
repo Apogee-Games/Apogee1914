@@ -3,8 +3,9 @@
 
 #include "MyGameInstance.h"
 
-const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
+const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) 
 {
+	PlayersRuledCountries.Add(PlayerId, FName(TEXT("GER")));
 	return PlayersRuledCountries[PlayerId];
 }
 

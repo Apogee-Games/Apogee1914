@@ -1,6 +1,6 @@
 #include "Events/ConditionCheckers/StabilityConditionChecker.h"
 
-FStabilityConditionChecker::FStabilityConditionChecker(AMyGameState* GameState): GameState(GameState)
+FStabilityConditionChecker::FStabilityConditionChecker(AGameLevelGameState* GameState): GameState(GameState)
 {
 }
 

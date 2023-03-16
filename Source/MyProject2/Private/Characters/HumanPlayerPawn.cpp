@@ -4,11 +4,9 @@
 #include "Characters/HumanPlayerPawn.h"
 #include "EngineUtils.h"
 #include "Characters/HumanPlayerHUD.h"
-#include "Characters/MyPlayerController.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Characters/Components/PlaneMapActor.h"
 #include "Characters/Components/UnitsSelectionComponent.h"
-#include "Maps/Selection/SelectionMap.h"
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
@@ -37,7 +35,7 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 {
 	if (PawnState == ProvidedPawnState) return;
 	PawnState = ProvidedPawnState;
-	GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>()->UpdateWidgetsVisibility();
+	GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>()->UpdateWidgetsVisibility();
 }
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)

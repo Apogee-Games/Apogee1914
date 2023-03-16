@@ -1,6 +1,5 @@
 #include "Military/Managers/UnitsRenderer.h"
 
-#include "MyProject2GameModeBase.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "Characters/UnitActor.h"
 #include "Maps/Objects/ObjectMap.h"

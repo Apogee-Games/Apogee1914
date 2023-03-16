@@ -5,7 +5,7 @@
 void UEventsOutcomesApplier::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetWorld()->GetGameState<AMyGameState>()));
+	RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetWorld()->GetGameState<AGameLevelGameState>()));
 }
 
 void UEventsOutcomesApplier::RegisterOutcomeApplier(const FName& Name, FEventOutcomeApplier* OutcomeApplier)

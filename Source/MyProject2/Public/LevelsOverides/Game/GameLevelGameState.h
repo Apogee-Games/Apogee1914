@@ -6,17 +6,17 @@
 #include "GameFramework/GameStateBase.h"
 #include "Widgets/Military/Map/UnitInformationListWidget.h"
 
-#include "MyGameState.generated.h"
+#include "GameLevelGameState.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class MYPROJECT2_API AMyGameState : public AGameStateBase
+class MYPROJECT2_API AGameLevelGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 public:
-	AMyGameState();
+	AGameLevelGameState();
 
 	int GetStability() const;
 

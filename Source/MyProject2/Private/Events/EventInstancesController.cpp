@@ -4,7 +4,6 @@
 #include "InGameTime.h"
 #include "UObject/UObjectGlobals.h"
 #include "MyGameInstance.h"
-#include "MyGameState.h"
 #include "Administration/Managers/CountriesManager.h"
 
 void UEventInstancesController::CreateEvent(FEventDescription* Event,

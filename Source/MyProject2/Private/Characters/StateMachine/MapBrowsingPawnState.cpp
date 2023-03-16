@@ -3,7 +3,6 @@
 #include "Characters/HumanPlayerPawn.h"
 #include "Administration/Instances/State.h"
 #include "Characters/HumanPlayerHUD.h"
-#include "Characters/MyPlayerController.h"
 #include "Maps/Selection/SelectionMap.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
@@ -21,7 +20,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
-	AHumanPlayerHUD* HUD = Pawn->GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
+	AHumanPlayerHUD* HUD = Pawn->GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>();
 
 	UProvinceDataWidget* ProvinceDataWidget = HUD->GetProvinceDataWidget();
 
