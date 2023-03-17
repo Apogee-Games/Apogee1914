@@ -10,11 +10,17 @@
 
 #define UpdateResource UpdateResource
 
+void UOutlineMap::SetScenario(UScenario* Scenario)
+{
+	OutlinesMapTexture = Scenario->OutlinesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
+}
+
 void UOutlineMap::CreateOutline()
 {
-	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
-	const UDistancesMap* DistancesMap = GetWorld()->GetSubsystem<UDistancesMap>();
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
+	const UDistancesMap* DistancesMap = GetGameInstance()->GetSubsystem<UDistancesMap>();
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
 	
 	FColor* OutlineColors = FTextureUtils::GetPixels(OutlinesMapTexture, LOCK_READ_WRITE);
 
@@ -29,17 +35,4 @@ void UOutlineMap::CreateOutline()
 	FTextureUtils::UnlockPixels(OutlinesMapTexture);
 
 	OutlinesMapTexture->UpdateResource();
-}
-
-bool UOutlineMap::ShouldCreateSubsystem(UObject* Outer) const
-{
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UOutlineMap::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UDistancesMap>()->RegisterOnFullInitializationAction(this, &UOutlineMap::CreateOutline);
-	OutlinesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->OutlinesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
 }

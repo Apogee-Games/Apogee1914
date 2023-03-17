@@ -1,14 +1,13 @@
 #pragma once
+#include "Scenario.h"
 #include "OutlineMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UOutlineMap: public UWorldSubsystem
+class UOutlineMap: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	void CreateOutline();
 

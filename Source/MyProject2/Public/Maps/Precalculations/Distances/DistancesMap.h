@@ -1,18 +1,20 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
 #include "Interfaces/FOnFullInitialization.h"
 #include "Maps/Interfaces/Observable/CountryDistancesObservable.h"
 #include "DistancesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UDistancesMap: public UWorldSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
+class UDistancesMap: public UGameInstanceSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
+	void SetScenario(UScenario* Scenario);
+	
 	void Init();
 	
 	int32 GetProvincesDistance(int32 Position) const;

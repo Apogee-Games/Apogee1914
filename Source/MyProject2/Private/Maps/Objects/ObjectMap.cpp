@@ -6,19 +6,11 @@
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
-void UObjectMap::CalculateProvincesCenters()
-{
-	for (const auto& Province : GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
-	{
-		CalculateProvinceCenter(Province->GetId());
-	}
-}
-
 void UObjectMap::CalculateProvinceCenter(const FColor& Color)
 {
 	ProvinceCenters.Add(Color, {0, 0});
 	
-	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
+	const UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
 	
 	const TArray<int32>& Positions = ProvincesMap->GetProvincePositions(Color);
 	const FVector2d SizeVector = ProvincesMap->GetSizeVector();
@@ -31,18 +23,15 @@ void UObjectMap::CalculateProvinceCenter(const FColor& Color)
 	ProvinceCenters[Color] = ProvinceCenters[Color] / Positions.Num() / SizeVector;
 }
 
-bool UObjectMap::ShouldCreateSubsystem(UObject* Outer) const
+void UObjectMap::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+	for (const auto& Province : GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
+	{
+		CalculateProvinceCenter(Province->GetId());
+	}
 }
 
 FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)
 {
 	return ProvinceCenters[Color];
-}
-
-void UObjectMap::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UObjectMap::CalculateProvincesCenters);
 }

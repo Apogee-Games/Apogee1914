@@ -9,18 +9,18 @@
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 #include "Utils/TextureUtils.h"
 
-bool UCountriesMap::ShouldCreateSubsystem(UObject* Outer) const
+void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+	Super::Initialize(Collection);
+	Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())->ProvinceManagerClass);
+	GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
 }
 
-void UCountriesMap::OnWorldBeginPlay(UWorld& InWorld)
+void UCountriesMap::SetScenario(UScenario* Scenario)
 {
-	Super::OnWorldBeginPlay(InWorld);
-	CountriesMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->CountriesMapTexture;
+	CountriesMapTexture = Scenario->CountriesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
-	GetWorld()->GetSubsystem<UDistancesMap>()->RegisterOnFullInitializationAction(this, &UCountriesMap::UpdateAllCountriesMapColors);
-	GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
+	UpdateCountriesMapColors(GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
 }
 
 void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const
@@ -46,7 +46,6 @@ void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces
 
 void UCountriesMap::UpdateAllCountriesMapColors()
 {
-	UpdateCountriesMapColors(GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
 }
 
 void UCountriesMap::ProvinceHasNewControllingCountry(UProvince* Province)
@@ -56,13 +55,13 @@ void UCountriesMap::ProvinceHasNewControllingCountry(UProvince* Province)
 
 void UCountriesMap::CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces)
 {
-	UpdateAllCountriesMapColors();
+	UpdateAllCountriesMapColors(); // TODO: Is this correct? :)
 }
 
 FRunnableThread* UCountriesMap::UpdateCountryColor(UProvince* Province, FColor* CountriesColor) const
 {
-	const TArray<int32>& PixelsToUpdate = GetWorld()->GetSubsystem<UProvincesMap>()->GetProvincePositions(Province->GetId());
-	const TArray<int32>& Distances = GetWorld()->GetSubsystem<UDistancesMap>()->GetCountriesDistances();
+	const TArray<int32>& PixelsToUpdate = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetProvincePositions(Province->GetId());
+	const TArray<int32>& Distances = GetGameInstance()->GetSubsystem<UDistancesMap>()->GetCountriesDistances();
 	FCountryMapUpdater* Updater = new FCountryMapUpdater(CountriesColor, PixelsToUpdate, Province, Distances, SizeVector, CrossLineWidth);
 	return FRunnableThread::Create(Updater, *Province->GetName().ToString());	
 }

@@ -1,36 +1,27 @@
 
 #include "Maps/Precalculations/Boxes/BoxesMap.h"
 
+#include "MyGameInstance.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
 
-bool UBoxesMap::ShouldCreateSubsystem(UObject* Outer) const
+void UBoxesMap::Initialize(FSubsystemCollectionBase& Collection)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+	Super::Initialize(Collection);
+	Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())->ProvinceManagerClass);
+	GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
 }
 
-void UBoxesMap::OnWorldBeginPlay(UWorld& InWorld)
+void UBoxesMap::SetScenario(UScenario* Scenario)
 {
-	Super::OnWorldBeginPlay(InWorld);
-
-	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UBoxesMap::Init);
-	GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
-}
-
-void UBoxesMap::Init()
-{
-	SizeVector = GetWorld()->GetSubsystem<UProvincesMap>()->GetSizeVector();
+	SizeVector = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetSizeVector();
 
 	CalculateProvinceCorners();
 	
 	CalculateBoxes();
-
-	bIsFullyInitialized = true;
-	PerformOnFullInitializationActions();
 }
-
 
 const TArray<TSharedPtr<FProvincesBox>>& UBoxesMap::GetBoxes() const
 {
@@ -71,8 +62,8 @@ void UBoxesMap::RemoveProvinceFromBox(UProvince* Province)
 
 bool UBoxesMap::AddProvinceToNeighbourBoxes(UProvince* Province)
 {
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-	const TSet<FColor>& Neighbours = GetWorld()->GetSubsystem<UProvincesMap>()->GetNeighbours()[Province->GetId()];
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	const TSet<FColor>& Neighbours = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbours()[Province->GetId()];
 
 	TArray<TSharedPtr<FProvincesBox>> SameCountryBoxes;
 
@@ -139,8 +130,8 @@ void UBoxesMap::CreateNewBox(UProvince* Province)
 
 void UBoxesMap::CalculateProvinceCorners()
 {
-	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
-	for (const auto& Province: GetWorld()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
+	const UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
+	for (const auto& Province: GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{
 		
 		FVector2d LeftTopCorner = FVector2d(INT_MAX, INT_MAX);
@@ -163,8 +154,8 @@ void UBoxesMap::CalculateProvinceCorners()
 
 void UBoxesMap::CalculateBoxes()
 {
-	UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-	const TMap<FColor, TSet<FColor>>& Neighbours = GetWorld()->GetSubsystem<UProvincesMap>()->GetNeighbours();
+	UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	const TMap<FColor, TSet<FColor>>& Neighbours = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbours();
 	for (const auto& [From, Tos]: Neighbours)
 	{
 		UProvince* Province = ProvinceManager->GetProvince(From);
@@ -179,7 +170,7 @@ void UBoxesMap::AddProvincesToBox(TSharedPtr<FProvincesBox> Box, UProvince* From
 {
 	Box->AddProvince(FromProvince);
 	ProvinceBox.Add(FromProvince, Box);
-	for (const auto& To: GetWorld()->GetSubsystem<UProvincesMap>()->GetNeighbours()[FromProvince->GetId()])
+	for (const auto& To: GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbours()[FromProvince->GetId()])
 	{
 		UProvince* ToProvince = ProvinceManager->GetProvince(To);
 		if (!ToProvince || ToProvince->GetCountryController() != Country || ProvinceBox.Contains(ToProvince)) continue;

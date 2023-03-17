@@ -1,15 +1,14 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Instances/Province.h"
 #include "SelectionMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class USelectionMap : public UWorldSubsystem
+class USelectionMap : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	UProvince* SelectProvince(const FVector2d& Point);
 	
@@ -22,7 +21,6 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	FColor NonSelectedProvinceColor = FColor(0, 0, 0);
-	
 private:
 	UPROPERTY()
 	UTexture2D* SelectionMapTexture;

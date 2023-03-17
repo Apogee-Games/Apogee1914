@@ -1,18 +1,17 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
 #include "Interfaces/FOnFullInitialization.h"
 
 #include "ProvincesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UProvincesMap: public UWorldSubsystem, public FOnFullInitialization, public IProvinceOwningCountryObserver
+class UProvincesMap: public UGameInstanceSubsystem, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	void SetScenario(UScenario* Scenario);
 	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
 	FVector2d GetSizeVector() const;
 
 	const TArray<FColor>& GetColors() const;

@@ -14,7 +14,7 @@ void USelectionMap::SelectProvince(const FColor& Color)
 
 	FColor* SelectionMapColors = FTextureUtils::GetPixels(SelectionMapTexture, LOCK_READ_WRITE);
 
-	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
+	const UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
 
 	if (ProvincesMap->HasProvincePosition(Color))
 	{
@@ -39,6 +39,12 @@ void USelectionMap::SelectProvince(const FColor& Color)
 	SelectionMapTexture->UpdateResource();
 }
 
+void USelectionMap::SetScenario(UScenario* Scenario)
+{
+	SelectionMapTexture = Scenario->SelectionMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(SelectionMapTexture);
+}
+
 UProvince* USelectionMap::SelectProvince(const FVector2d& Point)
 {
 	UProvince* Province = GetProvince(Point);
@@ -55,23 +61,11 @@ FColor USelectionMap::GetProvinceColor(const FVector2d& Point) const
 
 	const int32 Position = FTextureUtils::GetPixelPosition(ImagePosition, SizeVector);
 
-	return GetWorld()->GetSubsystem<UProvincesMap>()->GetColor(Position);
-}
-
-bool USelectionMap::ShouldCreateSubsystem(UObject* Outer) const
-{
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void USelectionMap::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	SelectionMapTexture = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->SelectionMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(SelectionMapTexture);
+	return GetGameInstance()->GetSubsystem<UProvincesMap>()->GetColor(Position);
 }
 
 UProvince* USelectionMap::GetProvince(const FVector2d& Point) const
 {
 	const FColor Color = GetProvinceColor(Point);
-	return GetWorld()->GetSubsystem<UProvinceManager>()->GetProvince(Color);
+	return GetGameInstance()->GetSubsystem<UProvinceManager>()->GetProvince(Color);
 }

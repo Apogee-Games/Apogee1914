@@ -1,18 +1,15 @@
 #pragma once
+#include "Scenario.h"
 #include "ObjectMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UObjectMap : public UWorldSubsystem
+class UObjectMap : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	void SetScenario(UScenario* Scenario);
 	
 	FVector2d GetProvinceCenter(const FColor& Color);
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
-	void CalculateProvincesCenters();
 private:
 	TMap<FColor, FVector2d> ProvinceCenters;
 

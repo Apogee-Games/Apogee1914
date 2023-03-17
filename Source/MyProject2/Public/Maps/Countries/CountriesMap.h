@@ -5,14 +5,14 @@
 #include "CountriesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UCountriesMap: public UWorldSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
+class UCountriesMap: public UGameInstanceSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
+	void SetScenario(UScenario* Scenario);
+	
 	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const;
 
 	void UpdateAllCountriesMapColors();
