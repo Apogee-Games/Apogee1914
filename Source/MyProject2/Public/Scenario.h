@@ -8,6 +8,9 @@ class UScenario: public UPrimaryDataAsset
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditDefaultsOnly)
+	FName ScenarioName;
+	
+	UPROPERTY(EditDefaultsOnly)
 	UDataTable* CountryDescriptionDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
