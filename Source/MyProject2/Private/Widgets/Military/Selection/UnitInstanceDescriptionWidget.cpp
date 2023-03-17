@@ -2,7 +2,7 @@
 #include "Widgets/Military/Selection/UnitInstanceDescriptionWidget.h"
 
 #include "InGameTime.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Military/Instances/Units/Unit.h"
 
 

@@ -1,7 +1,7 @@
 
 #include "Widgets/Economics/Buildings/Creation/BuildingTypeDescriptionWidget.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Widgets/Economics/Buildings/Carriers/BuildingDescriptionCarrier.h"
 #include "Widgets/Economics/Buildings/Carriers/GoodConsumptionCarrier.h"
 #include "Widgets/Economics/Buildings/Carriers/GoodProductionCarrier.h"
