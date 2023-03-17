@@ -2,6 +2,7 @@
 #include "Camera/CameraComponent.h"
 #include "Characters/Components/MapActor.h"
 #include "Characters/Components/PlayerMovementComponent.h"
+#include "Characters/StateMachine/PawnState.h"
 #include "Widgets/CountrySelection/ScenarioSelectionWidget.h"
 
 #include "CountrySelectionPawn.generated.h"
@@ -11,12 +12,6 @@ class ACountrySelectionPawn: public APawn
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	TSubclassOf<UScenarioSelectionWidget> CountrySelectionWidgetClass;
-
-	UPROPERTY()
-	UScenarioSelectionWidget* CountrySelectionWidget;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AMapActor> MapActorClass;
 	
@@ -36,6 +31,16 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-	
+
+	void SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState);
+
+	TSharedPtr<FPawnState> GetPawnState() const;
+
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+private:
+	TSharedPtr<FPawnState> PawnState = nullptr;
+
+	void LeftClick();
+
+	void RightClick();
 };

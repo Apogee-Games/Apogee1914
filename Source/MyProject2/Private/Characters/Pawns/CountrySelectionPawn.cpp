@@ -1,6 +1,7 @@
 ﻿#include "Characters/Pawns/CountrySelectionPawn.h"
 
 #include "MyGameInstance.h"
+#include "Characters/StateMachine/CountrySelectionPawnState.h"
 
 ACountrySelectionPawn::ACountrySelectionPawn()
 {
@@ -16,18 +17,11 @@ void ACountrySelectionPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));;
+	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));
+
+	SetPawnState(FCountrySelectionPawnState::GetInstance());
 
 	MovementComponent->Init(MapActor);
-	
-	if (CountrySelectionWidgetClass)
-	{
-		CountrySelectionWidget = CreateWidget<UScenarioSelectionWidget>(GetController<APlayerController>(), CountrySelectionWidgetClass);
-		if (CountrySelectionWidget)
-		{
-			CountrySelectionWidget->AddToPlayerScreen();
-		}
-	}
 }
 
 void ACountrySelectionPawn::Tick(float DeltaSeconds)
@@ -42,13 +36,31 @@ void ACountrySelectionPawn::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	PlayerInputComponent->BindAxis(TEXT("Forward"), MovementComponent, &UPlayerMovementComponent::MoveUp);
 	PlayerInputComponent->BindAxis(TEXT("Right"), MovementComponent, &UPlayerMovementComponent::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Scroll"), MovementComponent, &UPlayerMovementComponent::Scroll);
+	PlayerInputComponent->BindAction(TEXT("LeftClick"), IE_Pressed, this, &ACountrySelectionPawn::LeftClick);
+	PlayerInputComponent->BindAction(TEXT("RightClick"), IE_Pressed, this, &ACountrySelectionPawn::RightClick);
+}
+
+void ACountrySelectionPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
+{
+	PawnState = ProvidedPawnState;
+}
+
+TSharedPtr<FPawnState> ACountrySelectionPawn::GetPawnState() const
+{
+	return PawnState;
 }
 
 void ACountrySelectionPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	if (CountrySelectionWidget)
-	{
-		CountrySelectionWidget->RemoveFromParent();
-	}
 	Super::EndPlay(EndPlayReason);
+}
+
+void ACountrySelectionPawn::LeftClick()
+{
+	SetPawnState(PawnState->LeftClick(this));
+}
+
+void ACountrySelectionPawn::RightClick()
+{
+	SetPawnState(PawnState->RightClick(this));
 }
