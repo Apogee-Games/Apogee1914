@@ -1,7 +1,7 @@
-#include "Characters/HumanPlayerHUD.h"
+#include "Characters/HUDs/HumanPlayerHUD.h"
 
 #include "MyGameInstance.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Administration/Managers/CountriesManager.h"
 
 void AHumanPlayerHUD::BeginPlay()
