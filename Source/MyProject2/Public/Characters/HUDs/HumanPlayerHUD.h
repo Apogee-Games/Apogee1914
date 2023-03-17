@@ -5,8 +5,9 @@
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
+#include "Widgets/Military/Commanders/CommanderListWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
-#include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
+#include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
 #include "HumanPlayerHUD.generated.h"
 
@@ -16,7 +17,7 @@ class AHumanPlayerHUD: public AHUD
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UUnitInstancesListDescriptionWidget> UnitInstancesListDescriptionWidgetClass;
+	TSubclassOf<USelectedUnitsListWidget> UnitInstancesListDescriptionWidgetClass;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUnitsSupplyListWidget> UnitsSupplyListWidgetClass;
@@ -38,6 +39,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUnitsCollectionsWidget> UnitsCollectionsWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCommanderListWidget> CommanderListWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -49,13 +53,15 @@ public:
 
 	UUnitsSupplyListWidget* GetUnitsSupplyListWidget() const;
 
-	UUnitInstancesListDescriptionWidget* GetUnitInstancesListDescriptionWidget() const;
+	USelectedUnitsListWidget* GetUnitInstancesListDescriptionWidget() const;
 
 	UTimeControllerWidget* GetTimeControllerWidget();
 
 	UBuildingsTypesListWidget* GetBuildingsTypesListWidget() const;
 	
 	UUnitsCollectionsWidget* GetUnitsCollectionsWidget() const;
+
+	UCommanderListWidget* GetCommanderListWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -77,13 +83,16 @@ private:
 	UUnitsSupplyListWidget* UnitsSupplyListWidget;
 
 	UPROPERTY()
-	UUnitInstancesListDescriptionWidget* UnitInstancesListDescriptionWidget; 
+	USelectedUnitsListWidget* UnitInstancesListDescriptionWidget; 
 
 	UPROPERTY()
 	UTimeControllerWidget* TimeControllerWidget;
 
 	UPROPERTY()
 	UUnitsCollectionsWidget* UnitsCollectionsWidget;
+
+	UPROPERTY()
+	UCommanderListWidget* CommanderListWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -103,4 +112,6 @@ private:
 	void InitTimeControllerWidget();
 
 	void InitUnitsCollectionsWidget();
+
+	void InitCommanderListWidget();
 };

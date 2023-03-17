@@ -33,6 +33,30 @@ void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 	Positions.Add(Unit, 0);
 }
 
+void UUnitsMover::MoveUnits(const TSet<UUnit*>& Units, UProvince* To)
+{
+	for (const auto& Unit: Units)
+	{
+		MoveUnit(Unit, To);
+	}
+}
+
+void UUnitsMover::MoveUnits(const TSet<UUnitsCollection*> UnitsCollections, UProvince* To)
+{
+	for (const auto& UnitsCollection: UnitsCollections)
+	{
+		MoveUnits(UnitsCollection->GetAll(), To);
+	}
+}
+
+void UUnitsMover::MoveUnits(const TSet<UUnitsCollectionGroup*> UnitsCollectionGroups, UProvince* To)
+{
+	for (const auto& UnitsCollectionsGroup: UnitsCollectionGroups)
+	{
+		MoveUnits(UnitsCollectionsGroup->GetAll(), To);
+	}
+}
+
 int32 UUnitsMover::Estimate(UUnit* Unit, UProvince* To)
 {
 	const TArray<TPair<UProvince*, int32>> Path = Graph->FindPath(Unit->GetPosition(), To);

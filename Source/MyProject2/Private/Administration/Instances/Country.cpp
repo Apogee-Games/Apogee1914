@@ -4,11 +4,15 @@
 
 void UCountry::Init(FCountryDescription* CountryDescription)
 {
-	Name = CountryDescription->CountryName;
+	for (const auto FractionDescription: CountryDescription->Fractions)
+	{
+		Fractions.Add(FractionDescription.FractionTag, FractionDescription);
+	}
+	
 	Tag = CountryDescription->Tag;
-	Color = CountryDescription->Color;
-
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString());
+	RulingFractionTag = CountryDescription->RulingFractionTag;
+	
+	LoadFlag();
 
 	InitStrata();
 
@@ -18,12 +22,12 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 
 const FColor& UCountry::GetColor() const
 {
-	return Color;
+	return Fractions[RulingFractionTag].CountryColor;
 }
 
 const FName& UCountry::GetName() const
 {
-	return Name;
+	return Fractions[RulingFractionTag].CountryName;
 }
 
 const FName& UCountry::GetTag() const
@@ -31,14 +35,21 @@ const FName& UCountry::GetTag() const
 	return Tag;
 }
 
-UTexture2D* UCountry::GetFlag() const
+UTexture2D* UCountry::GetFlag()
 {
+	if (!Flag) LoadFlag();
 	return Flag;
 }
 
 UStorage* UCountry::GetStorage() const
 {
 	return Storage;
+}
+
+void UCountry::SetRulingFraction(const FName& ProvidedRulingFractionTag)
+{
+	RulingFractionTag = ProvidedRulingFractionTag;
+	LoadFlag();
 }
 
 TArray<UStorage*> UCountry::GetStorages() const
@@ -55,4 +66,9 @@ void UCountry::InitStrata()
 	UpperStrata = NewObject<UStrata>();
 	UpperStrata->Init("UPPER");
 	// TODO: Add proper initialization 
+}
+
+void UCountry::LoadFlag() 
+{
+	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + RulingFractionTag.ToString());
 }

@@ -54,6 +54,10 @@ public:
 
 	void SelectBuildingDescription(const FBuildingDescription* BuildingDescription);
 
+	void SetCommandable(ICommandable* Commandable);
+
+	ICommandable* GetSelectedCommandable() const;
+		
 	const FUnitDescription* GetSelectedUnitDescription() const;
 
 	const FBuildingDescription* GetSelectedBuildingDescription() const;
@@ -79,6 +83,8 @@ private:
 	const FUnitDescription* SelectedUnitDescription;
 	
 	const FBuildingDescription* SelectedBuildingDescription;
+
+	ICommandable* SelectedCommandable;
 	
 	void LeftClick();
 

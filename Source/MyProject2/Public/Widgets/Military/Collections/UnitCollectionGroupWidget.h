@@ -1,5 +1,7 @@
 #pragma once
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
+#include "Components/Image.h"
 #include "Components/ListView.h"
 #include "Components/TextBlock.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
@@ -19,6 +21,20 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* UnitsCollectionsListView;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* Button;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* CommanderButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UImage* CommanderImage;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UTextBlock* CommanderNameTextBlock;
+	
+	virtual void NativeConstruct() override;
+	
 	UFUNCTION(BlueprintCallable)
 	void SetUnitsCollectionGroup(UObject* ProvidedUnitsCollectionGroup);
 
@@ -27,4 +43,10 @@ public:
 private:
 	UPROPERTY()
 	UUnitsCollectionGroup* UnitsCollectionGroup; 
+
+	UFUNCTION()
+	void OnButtonClick();
+
+	UFUNCTION()
+	void OnCommanderButtonClick();
 };

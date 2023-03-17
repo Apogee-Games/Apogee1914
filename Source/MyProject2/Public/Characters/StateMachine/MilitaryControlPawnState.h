@@ -1,5 +1,10 @@
 #pragma once
 #include "PawnState.h"
+#include "Military/Instances/Units/Collections/UnitsCollection.h"
+
+class UProvince;
+class UUnitsMover;
+class UUnit;
 
 class FMilitaryControlPawnState: public FPawnState
 {

@@ -1,6 +1,8 @@
 #pragma once
 #include "Maps/Graph.h"
 #include "Military/Instances/Units/Unit.h"
+#include "Military/Instances/Units/Collections/UnitsCollection.h"
+#include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
 #include "Military/Interfaces/Observables/UnitMovementObservable.h"
 #include "UnitsMover.generated.h"
 
@@ -19,6 +21,12 @@ public:
 
 	virtual void MoveUnit(UUnit* Unit, UProvince* To);
 
+	virtual void MoveUnits(const TSet<UUnit*>& Units, UProvince* To);
+
+	virtual void MoveUnits(const TSet<UUnitsCollection*> UnitsCollections, UProvince* To);
+
+	virtual void MoveUnits(const TSet<UUnitsCollectionGroup*> UnitsCollectionGroups, UProvince* To);
+	
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 
 	virtual void DoUnitMovement();

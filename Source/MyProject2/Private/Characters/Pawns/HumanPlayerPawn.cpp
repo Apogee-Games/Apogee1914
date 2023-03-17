@@ -57,6 +57,16 @@ void AHumanPlayerPawn::SelectBuildingDescription(const FBuildingDescription* Bui
 	SelectedBuildingDescription = BuildingDescription;
 }
 
+void AHumanPlayerPawn::SetCommandable(ICommandable* Commandable)
+{
+	SelectedCommandable = Commandable;
+}
+
+ICommandable* AHumanPlayerPawn::GetSelectedCommandable() const
+{
+	return SelectedCommandable;
+}
+
 const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
 {
 	return SelectedUnitDescription;

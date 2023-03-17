@@ -1,10 +1,11 @@
 #pragma once
 #include "UnitsCollection.h"
 #include "Military/Instances/Units/Collection.h"
+#include "Military/Interfaces/Commandable.h"
 #include "UnitsCollectionGroup.generated.h"
 
 UCLASS()
-class UUnitsCollectionGroup: public UObject, public TFCollection<UUnitsCollection*>
+class UUnitsCollectionGroup: public UObject, public TFCollection<UUnitsCollection*>, public ICommandable
 {
 	GENERATED_BODY()
 public:
@@ -12,11 +13,13 @@ public:
 	
 	virtual bool Remove(UUnitsCollection* Collection) override;
 
-	virtual const TArray<UUnitsCollection*>& GetAll() const override;
+	virtual const TSet<UUnitsCollection*>& GetAll() const override;
 
 	virtual int32 GetSize() const override;
 
+	virtual bool Contains(UUnitsCollection* Item) override;
+
 private:
 	UPROPERTY()
-	TArray<UUnitsCollection*> Collections;
+	TSet<UUnitsCollection*> Collections;
 };

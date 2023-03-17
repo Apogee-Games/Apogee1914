@@ -4,7 +4,7 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Military/Managers/UnitsMover.h"
-#include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"
+#include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
 
 TSharedPtr<FPawnState> FMilitaryControlPawnState::GetInstance()
 {
@@ -30,18 +30,28 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn
 	UProvince* To = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>()->GetProvince(Point);
 
 	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
+
+	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetSelectedUnits(), To);
+	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetSelectedUnitsCollections(), To);
+	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetSelectedUnitsCollectionGroups(), To);
 	
-	for (const auto& Unit: Pawn->UnitSelectionComponent->GetSelectedUnits())
+	for (const auto& UnitsCollectionGroup: Pawn->UnitSelectionComponent->GetSelectedUnitsCollectionGroups())
 	{
-		UnitsMover->MoveUnit(Unit, To);
+		for (const auto& UnitsCollection: UnitsCollectionGroup->GetAll())
+		{
+			for (const auto& Unit: UnitsCollection->GetAll())
+			{
+				UnitsMover->MoveUnit(Unit, To);
+			}
+		}
 	}
-	
+
 	return Instance;
 }
 
 bool FMilitaryControlPawnState::MustWidgetBeVisible(UUserWidget* Widget)
 {
-	return dynamic_cast<UUnitInstancesListDescriptionWidget*>(Widget) != nullptr;
+	return dynamic_cast<USelectedUnitsListWidget*>(Widget) != nullptr;
 }
 
 bool FMilitaryControlPawnState::CanWidgetBeVisible(UUserWidget* Widget)

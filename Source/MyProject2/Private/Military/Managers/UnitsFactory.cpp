@@ -1,6 +1,5 @@
 
 #include "Military/Managers/UnitsFactory.h"
-
 #include "Administration/Managers/CountriesManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
@@ -37,8 +36,20 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch 
 	return UnitCollectionGroup;
 }
 
-void UUnitsFactory::Remove(UUnit* Unit)
+void UUnitsFactory::RemoveUnit(UUnit* Unit)
 {
 	NotifyUnitRemoval(Unit);
 	delete Unit;
-} 
+}
+
+void UUnitsFactory::RemoveUnitCollection(UUnitsCollection* UnitsCollection)
+{
+	NotifyUnitsCollectionRemoval(UnitsCollection);
+	delete UnitsCollection;
+}
+
+void UUnitsFactory::RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup)
+{
+	NotifyUnitsCollectionGroupRemoval(UnitsCollectionGroup);
+	delete UnitsCollectionGroup;
+}
