@@ -1,7 +1,7 @@
 #include "Characters/StateMachine/MilitaryControlPawnState.h"
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Military/Managers/UnitsMover.h"
 #include "Widgets/Military/Selection/UnitInstancesListDescriptionWidget.h"

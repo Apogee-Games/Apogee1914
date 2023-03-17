@@ -1,8 +1,8 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Administration/Instances/State.h"
-#include "Characters/HumanPlayerHUD.h"
+#include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Maps/Selection/SelectionMap.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()

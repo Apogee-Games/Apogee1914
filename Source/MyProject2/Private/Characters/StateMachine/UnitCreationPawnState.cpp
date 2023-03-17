@@ -2,10 +2,9 @@
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
-
 
 TSharedPtr<FPawnState> FUnitCreationPawnState::GetInstance()
 {

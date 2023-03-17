@@ -1,7 +1,7 @@
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Economics/Managers/BuildingManager.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
