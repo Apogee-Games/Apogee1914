@@ -1,16 +1,15 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Instances/State.h"
 
 #include "StateManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UStateManager: public UWorldSubsystem
+class UStateManager: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-	
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	void SetScenario(UScenario* Scenario);
 	
 	UState* GetState(const FName& StateId) const;
 	
@@ -24,6 +23,4 @@ public:
 private:
 	UPROPERTY()
 	TMap<FName, UState*> StateMap;
-
-	void InitStates(UDataTable* StatesDescriptions);
 };
