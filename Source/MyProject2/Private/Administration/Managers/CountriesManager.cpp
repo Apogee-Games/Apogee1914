@@ -10,8 +10,7 @@ void UCountriesManager::SetScenario(UScenario* Scenario)
 	for (const auto& [Key, Value]: Scenario->CountryDescriptionDataTable->GetRowMap())
 	{
 		UCountry* Country = NewObject<UCountry>(this);
-		Country->Init(reinterpret_cast<FCountryDescription*>(Value));
-		Country->AddToRoot(); // TODO: Add removal of countries
+		Country->Init(reinterpret_cast<FCountryDescription*>(Value)); // TODO: Add removal of countries
 		CountryMap.Add(Key, Country);
 	}
 

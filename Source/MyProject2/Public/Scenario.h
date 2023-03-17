@@ -41,6 +41,9 @@ public:
 	UDataTable* EventsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
+	UDataTable* PeoplesDescriptions;
+
+	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
 
 	UPROPERTY(EditDefaultsOnly)

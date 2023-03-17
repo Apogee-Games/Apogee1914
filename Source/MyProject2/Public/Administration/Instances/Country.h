@@ -2,6 +2,7 @@
 #include "Administration/Descriptions/CountryDescription.h"
 #include "Economics/Instances/Market.h"
 #include "Economics/Instances/Strata.h"
+#include "People/Instances/Person.h"
 
 #include "Country.generated.h"
 
@@ -25,8 +26,9 @@ public:
 
 	void SetRulingFraction(const FName& ProvidedRulingFractionTag);
 
+	UPerson* GetRuler() const;
+
 	TArray<UStorage*> GetStorages() const;
-	
 private:
 	FName Name;
 
@@ -56,6 +58,9 @@ private:
 
 	UPROPERTY()
 	UStorage* Storage;
+
+	UPROPERTY()
+	UPerson* Ruler;
 
 	void InitStrata();
 

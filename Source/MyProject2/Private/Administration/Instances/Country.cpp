@@ -1,5 +1,6 @@
 #include "Administration/Instances/Country.h"
 
+#include "People/Managers/PeopleManager.h"
 #include "Utils/TextureUtils.h"
 
 void UCountry::Init(FCountryDescription* CountryDescription)
@@ -10,10 +11,9 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 	}
 	
 	Tag = CountryDescription->Tag;
-	RulingFractionTag = CountryDescription->RulingFractionTag;
 	
-	LoadFlag();
-
+	SetRulingFraction(CountryDescription->RulingFractionTag);
+	
 	InitStrata();
 
 	Storage = NewObject<UStorage>();
@@ -49,8 +49,16 @@ UStorage* UCountry::GetStorage() const
 void UCountry::SetRulingFraction(const FName& ProvidedRulingFractionTag)
 {
 	RulingFractionTag = ProvidedRulingFractionTag;
+	UPeopleManager* PeopleManager = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>();
+	Ruler = PeopleManager->GetPerson(Fractions[RulingFractionTag].RulerId);
 	LoadFlag();
 }
+
+UPerson* UCountry::GetRuler() const
+{
+	return Ruler;
+}
+
 
 TArray<UStorage*> UCountry::GetStorages() const
 {

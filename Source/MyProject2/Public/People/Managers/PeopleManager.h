@@ -1,19 +1,22 @@
 ﻿#pragma once
+#include "Scenario.h"
 #include "People/Instances/Person.h"
 
 #include "PeopleManager.generated.h"
 
 UCLASS()
-class UPeopleManager: public UWorldSubsystem
+class UPeopleManager: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	void SetScenario(UScenario* Scenario);
 
+	UPerson* GetPerson(const FName& PersonId) const;
+	
 	const TArray<UPerson*>& GetPeopleByProfession(const FName& Profession, const FName& CountryTag);
 private:
 	UPROPERTY()
-	TArray<UPerson*> People;
+	TMap<FName, UPerson*> People;
 	
 	TMap<FName, TMap<FName, TArray<UPerson*>>> CountryProfessionPeople;
 };

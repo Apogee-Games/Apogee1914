@@ -63,6 +63,11 @@ UUnitsCollectionsWidget* AHumanPlayerHUD::GetUnitsCollectionsWidget() const
 	return UnitsCollectionsWidget;
 }
 
+UCommanderListWidget* AHumanPlayerHUD::GetCommanderListWidget() const
+{
+	return CommanderListWidget;
+}
+
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
 {
 	const TSharedPtr<FPawnState> PawnState = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetPawnState();
@@ -231,7 +236,7 @@ void AHumanPlayerHUD::InitCommanderListWidget()
 		if (CommanderListWidget)
 		{
 			FName CountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
-			const TArray<UPerson*> People = GetWorld()->GetSubsystem<UPeopleManager>()->GetPeopleByProfession(TEXT("Commander"), CountryTag);
+			const TArray<UPerson*> People = GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPeopleByProfession(TEXT("Commander"), CountryTag);
 			for (const auto& Person: People)
 			{
 				CommanderListWidget->AddCommander(Person);		

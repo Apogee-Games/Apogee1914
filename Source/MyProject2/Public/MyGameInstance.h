@@ -55,6 +55,8 @@ private:
 	TMap<int32, FName> PlayersRuledCountries;
 
 	TMap<FName, int32> CountriesRuledByPlayers;
+
+	void InitializeManagers();
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;

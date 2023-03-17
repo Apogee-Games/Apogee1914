@@ -3,12 +3,18 @@
 
 #include "InGameTime.h"
 
-void UPerson::Init(const FPersonDescription* Description)
+void UPerson::Init(const FName& ProvidedId, const FPersonDescription* Description)
 {
+	Id = ProvidedId;
 	DateOfBirth = Description->Age;
 	PersonName = Description->PersonName;
 	Professions = Description->Professions;
 	Image = LoadObject<UTexture2D>(nullptr, *Description->ImagePath.ToString());
+}
+
+const FName& UPerson::GetId() const
+{
+	return Id;
 }
 
 int32 UPerson::GetAge() const

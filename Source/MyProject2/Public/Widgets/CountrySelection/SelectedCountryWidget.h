@@ -19,5 +19,11 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* RulingFractionNameTextBlock;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UImage* RulerImage;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UTextBlock* RulerNameTextBlock;
+
 	void SetCountry(UCountry* Country);
 };
