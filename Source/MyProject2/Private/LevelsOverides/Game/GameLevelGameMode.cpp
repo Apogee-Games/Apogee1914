@@ -71,13 +71,9 @@ void AGameLevelGameMode::PostLogin(APlayerController* NewPlayer)
 	NewPlayer->SetInputMode(InputModeGameAndUI);
 	NewPlayer->SetShowMouseCursor(true);
 
-	AHumanPlayerPawn* Pawn = NewPlayer->GetPawn<AHumanPlayerPawn>();
-	const int32 PlayerId = GetTypeHash(NewPlayer->GetPlayerState<APlayerState>()->GetUniqueId());
-
-	UMyGameInstance* GameInstance = GetGameInstance<UMyGameInstance>();
-	const FName RuledCountryTag = GameInstance->GetRuledCountry(PlayerId);
+	const FName RuledCountryTag = GetGameInstance<UMyGameInstance>()->GetRuledCountry(NewPlayer);
 		
-	Pawn->SetRuledCountryTag(RuledCountryTag);
+	NewPlayer->GetPawn<AHumanPlayerPawn>()->SetRuledCountryTag(RuledCountryTag);
 }
 
 void AGameLevelGameMode::CreateAIPawns()
