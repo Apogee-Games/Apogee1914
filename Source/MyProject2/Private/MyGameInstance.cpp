@@ -3,6 +3,8 @@
 
 #include "MyGameInstance.h"
 
+#include "GameFramework/PlayerState.h"
+
 void UMyGameInstance::OnStart()
 {
 	Super::OnStart();
@@ -19,6 +21,7 @@ void UMyGameInstance::OnStart()
 	GetSubsystem<UFlagsMap>()->SetScenario(ActiveScenario);
 	GetSubsystem<UCountriesMap>()->SetScenario(ActiveScenario);
 	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
+	
 }
 
 void UMyGameInstance::SetScenario(UScenario* Scenario)
@@ -40,9 +43,21 @@ void UMyGameInstance::SetScenario(UScenario* Scenario)
 	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
 }
 
+const FName& UMyGameInstance::GetRuledCountry(APlayerController* PlayerController)
+{
+	int32 PlayerId = GetTypeHash(PlayerController->GetPlayerState<APlayerState>()->GetUniqueId());
+	return GetRuledCountry(PlayerId);
+}
+
 const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) 
 {
 	return PlayersRuledCountries[PlayerId];
+}
+
+void UMyGameInstance::SetRuledCountry(APlayerController* PlayerController, UCountry* Country)
+{
+	int32 PlayerId = GetTypeHash(PlayerController->GetPlayerState<APlayerState>()->GetUniqueId());
+	SetRuledCountry(PlayerId, Country->GetTag());
 }
 
 void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FName& CountryTag)

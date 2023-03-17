@@ -35,9 +35,13 @@ public:
 	virtual void OnStart() override;
 
 	void SetScenario(UScenario* Scenario);
+
+	const FName& GetRuledCountry(APlayerController* PlayerController);
 	
 	const FName& GetRuledCountry(int32 PlayerId);
 
+	void SetRuledCountry(APlayerController* PlayerController, UCountry* Country);
+	
 	void SetRuledCountry(int32 PlayerId, const FName& CountryTag);
 
 	bool IsCountryRuledByPlayer(const FName& CountryTag);
