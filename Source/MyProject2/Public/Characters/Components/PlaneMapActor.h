@@ -18,8 +18,6 @@ public:
 	
 	double PlaneSize = 200;
 
-	APlaneMapActor();
-	
 	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght) override;
 	
 	virtual FVector2d GetMapPosition(FVector3d WorldPosition) override;
