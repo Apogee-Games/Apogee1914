@@ -20,5 +20,23 @@
 		}, 
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/ELudendorff"
+	}, 
+	{
+		"Name": "HWilhelmII",
+		"PersonName": "Wilhelm II Hohenzollern",
+		"CountryTag": "GER",
+		"Age": 55,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/HWilhelmII"
+	}, 
+	{
+		"Name": "RPoincaré",
+		"PersonName": "Raymond Poincaré",
+		"CountryTag": "FRA",
+		"Age": 54,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/RPoincaré"
 	}
 ]

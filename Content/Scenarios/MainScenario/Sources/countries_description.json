@@ -83,6 +83,7 @@
 				"FractionTag": "DEM",
 				"FractionName": "Democrats",
 				"CountryName": "French Republic",
+				"RulerId": "RPoincaré",
 				"CountryColor":
 				{
 					"B": 100,
@@ -102,6 +103,7 @@
 				"FractionTag": "MON",
 				"FractionName": "Monarchists",
 				"CountryName": "German Empire",
+				"RulerId": "HWilhelmII",
 				"CountryColor":
 				{
 					"B": 50,
