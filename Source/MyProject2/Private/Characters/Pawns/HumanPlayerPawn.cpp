@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "EngineUtils.h"
-#include "Characters/HumanPlayerHUD.h"
+#include "Characters/HUDs//HumanPlayerHUD.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Characters/Components/PlaneMapActor.h"
 #include "Characters/Components/UnitsSelectionComponent.h"
@@ -24,11 +24,10 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(RootComponent);
 
-	CameraComponent->SetWorldLocation(GetActorLocation());
-	CameraComponent->SetWorldRotation(GetActorRotation());
-
 	UnitSelectionComponent = CreateDefaultSubobject<UUnitsSelectionComponent>(TEXT("Units selection"));
 	UnitSelectionComponent->SetupAttachment(RootComponent);
+
+	MovementComponent = CreateDefaultSubobject<UPlayerMovementComponent>(TEXT("Movement component"));
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
@@ -40,7 +39,7 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
-	RuledCountry = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
+	RuledCountry = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
 }
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
@@ -78,16 +77,6 @@ UCountry* AHumanPlayerPawn::GetRuledCountry() const
 	return RuledCountry;
 }
 
-void AHumanPlayerPawn::MoveUp(float Value)
-{
-	MovementDirection.Y = FMath::Clamp(Value, -1.f, 1.f);
-}
-
-void AHumanPlayerPawn::MoveRight(float Value)
-{
-	MovementDirection.Z = FMath::Clamp(Value, -1.f, 1.f);
-}
-
 void AHumanPlayerPawn::LeftClick()
 {
 	SetPawnState(PawnState->LeftClick(this));
@@ -110,6 +99,8 @@ void AHumanPlayerPawn::BeginPlay()
 
 	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));
 	
+	MovementComponent->Init(MapActor);
+	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
 
@@ -128,7 +119,7 @@ void AHumanPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Move(DeltaTime);
+	MovementComponent->Move(DeltaTime);
 }
 
 void AHumanPlayerPawn::ShiftReleased()
@@ -184,34 +175,14 @@ void AHumanPlayerPawn::SetBuildingCreationState()
 	}
 }
 
-void AHumanPlayerPawn::Move(float DeltaTime)
-{
-	if ((MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0)) ||
-		SpeedVector == FVector(0, 0, 0))
-		return;
-
-
-	FVector Position = MapActor->GetNewPosition(CameraComponent->GetComponentLocation(), MovementDirection, DeltaTime * SpeedVector.Length());
-	FQuat Rotation = MapActor->GetNewRotation(CameraComponent->GetComponentLocation(), Position);
-
-	CameraComponent->SetWorldLocation(Position);
-	CameraComponent->AddWorldRotation(Rotation);
-}
-
-void AHumanPlayerPawn::Scroll(float Value)
-{
-	MovementDirection.X = FMath::Clamp(Value, -1, 1);
-	RotationDirection.Pitch = FMath::Clamp(Value, -1, 1);
-}
-
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AHumanPlayerPawn::MoveUp);
-	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AHumanPlayerPawn::MoveRight);
-	PlayerInputComponent->BindAxis(TEXT("Scroll"), this, &AHumanPlayerPawn::Scroll);
+	PlayerInputComponent->BindAxis(TEXT("Forward"), MovementComponent, &UPlayerMovementComponent::MoveUp);
+	PlayerInputComponent->BindAxis(TEXT("Right"), MovementComponent, &UPlayerMovementComponent::MoveRight);
+	PlayerInputComponent->BindAxis(TEXT("Scroll"), MovementComponent, &UPlayerMovementComponent::Scroll);
 	PlayerInputComponent->BindAction(TEXT("LeftClick"), IE_Pressed, this, &AHumanPlayerPawn::LeftClick);
 	PlayerInputComponent->BindAction(TEXT("RightClick"), IE_Pressed, this, &AHumanPlayerPawn::RightClick);
 	PlayerInputComponent->BindAction(TEXT("Shift"), IE_Pressed, this, &AHumanPlayerPawn::ShiftPressed);

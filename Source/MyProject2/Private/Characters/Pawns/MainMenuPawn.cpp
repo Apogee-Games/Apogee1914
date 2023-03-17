@@ -1,4 +1,4 @@
-﻿#include "Characters/MainMenuPawn.h"
+﻿#include "Characters/Pawns/MainMenuPawn.h"
 
 void AMainMenuPawn::BeginPlay()
 {

@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
-#include "Components/MapActor.h"
-#include "Components/UnitsSelectionComponent.h"
+#include "Characters/Components/MapActor.h"
+#include "Characters/Components/PlayerMovementComponent.h"
+#include "Characters/Components/UnitsSelectionComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/Units/Unit.h"
-#include "StateMachine/PawnState.h"
+#include "Characters/StateMachine/PawnState.h"
 #include "HumanPlayerPawn.generated.h"
 
 UCLASS()
@@ -23,13 +24,16 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UUnitsSelectionComponent* UnitSelectionComponent;
-
+	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AMapActor> MapActorClass;
 	
 	UPROPERTY()
 	AMapActor* MapActor;
 
+	UPROPERTY()
+	UPlayerMovementComponent* MovementComponent;
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -64,9 +68,6 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	bool IsShiftPressed() const;
-	
-	UPROPERTY(EditAnywhere)
-	FVector SpeedVector;
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
@@ -79,14 +80,6 @@ private:
 	
 	const FBuildingDescription* SelectedBuildingDescription;
 	
-	FVector MovementDirection = FVector(0, 0, 0);
-
-	FRotator RotationDirection = FRotator(0, 0, 0);
-
-	void MoveUp(float Value);
-
-	void MoveRight(float Value);
-
 	void LeftClick();
 
 	void RightClick();
@@ -102,8 +95,4 @@ private:
 	void SetSupplyBrowsingState();
 
 	void SetBuildingCreationState();
-	
-	void Move(float DeltaTime);
-
-	void Scroll(float Value);
 };
