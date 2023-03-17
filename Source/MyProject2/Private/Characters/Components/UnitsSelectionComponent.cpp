@@ -1,8 +1,7 @@
 #include "Characters/Components/UnitsSelectionComponent.h"
-
-#include "Characters/HumanPlayerHUD.h"
+#include "Characters/HUDs/HumanPlayerHUD.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/MilitaryControlPawnState.h"
-#include "Characters/HumanPlayerPawn.h"
 
 void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units)
 {

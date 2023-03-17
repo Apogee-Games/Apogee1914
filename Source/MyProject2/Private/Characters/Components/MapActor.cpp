@@ -2,7 +2,7 @@
 
 #include "Characters/Components/MapActor.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 AMapActor::AMapActor()
