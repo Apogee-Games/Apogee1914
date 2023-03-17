@@ -1,6 +1,6 @@
 ﻿#include "LevelsOverides/CountrySelection/CountrySelectionLevelGameMode.h"
 
-#include "Characters/CountrySelectionPawn.h"
+#include "Characters/Pawns/CountrySelectionPawn.h"
 
 ACountrySelectionLevelGameMode::ACountrySelectionLevelGameMode()
 {

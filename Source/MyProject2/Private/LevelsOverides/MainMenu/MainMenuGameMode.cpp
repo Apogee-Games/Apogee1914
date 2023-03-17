@@ -1,6 +1,6 @@
 ﻿#include "LevelsOverides/MainMenu/MainMenuGameMode.h"
 
-#include "Characters/MainMenuPawn.h"
+#include "Characters/Pawns/MainMenuPawn.h"
 
 AMainMenuGameMode::AMainMenuGameMode()
 {
