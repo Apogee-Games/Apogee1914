@@ -139,7 +139,7 @@ void AHumanPlayerHUD::InitStorageGoodsListWidget()
 		if (StorageGoodsListWidget)
 		{
 			const FName RuledCountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
-			const UCountry* Country = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
+			const UCountry* Country = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
 
 			for (const auto& Storage: Country->GetStorages())
 			{

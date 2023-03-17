@@ -15,7 +15,7 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 
-	for (auto& [CountryTag, Country]: GetWorld()->GetSubsystem<UCountriesManager>()->GetCountryMap())
+	for (auto& [CountryTag, Country]: GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountryMap())
 	{
 		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(this);
 		Supplier->Init(Country->GetStorage());

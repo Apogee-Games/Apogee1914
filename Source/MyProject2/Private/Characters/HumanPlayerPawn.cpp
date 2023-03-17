@@ -40,7 +40,7 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 
 void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
-	RuledCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
+	RuledCountry = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
 }
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const

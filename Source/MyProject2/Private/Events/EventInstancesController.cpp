@@ -164,6 +164,6 @@ void UEventInstancesController::CheckEvents()
 const TArray<FName>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
-		       ? GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
+		       ? GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
 		       : Event->CountriesConditions.CountriesTags;
 }

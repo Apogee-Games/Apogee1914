@@ -20,7 +20,7 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
 	if (!Pawn->GetSelectedUnitDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 

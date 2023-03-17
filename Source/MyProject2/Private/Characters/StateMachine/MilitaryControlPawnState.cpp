@@ -25,7 +25,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(AHumanPlayerPawn* P
 {
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 
-	UProvince* To = Pawn->GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(Point);
+	UProvince* To = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>()->GetProvince(Point);
 
 	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
 	

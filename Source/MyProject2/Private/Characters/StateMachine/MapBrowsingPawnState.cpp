@@ -16,7 +16,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 {
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 

@@ -82,7 +82,7 @@ void AGameLevelGameMode::PostLogin(APlayerController* NewPlayer)
 
 void AGameLevelGameMode::CreateAIPawns()
 {
-	for (const auto& CountryTag : GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
+	for (const auto& CountryTag : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());

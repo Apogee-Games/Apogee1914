@@ -48,7 +48,7 @@ void UProvinceDataWidget::SetBuildings(UProvince* Province) const
 
 void UProvinceDataWidget::SetState(UProvince* Province) const
 {
-	const UState* State = GetWorld()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
+	const UState* State = GetWorld()->GetGameInstance()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
 
 	if (State)
 	{

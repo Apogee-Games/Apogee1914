@@ -19,7 +19,7 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(AHumanPlayerPawn* P
 {
 	if (!Pawn->GetSelectedBuildingDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
