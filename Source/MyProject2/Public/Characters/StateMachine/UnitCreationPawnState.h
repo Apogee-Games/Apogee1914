@@ -6,9 +6,9 @@ class FUnitCreationPawnState: public FPawnState
 public:
 	static TSharedPtr<FPawnState> GetInstance();
 
-	virtual TSharedPtr<FPawnState> LeftClick(AHumanPlayerPawn* Pawn) override;
+	virtual TSharedPtr<FPawnState> LeftClick(APawn* ProvidedPawn) override;
 	
-	virtual TSharedPtr<FPawnState> RightClick(AHumanPlayerPawn* Pawn) override;
+	virtual TSharedPtr<FPawnState> RightClick(APawn* ProvidedPawn) override;
 
 	virtual bool MustWidgetBeVisible(UUserWidget* Widget) override;
 

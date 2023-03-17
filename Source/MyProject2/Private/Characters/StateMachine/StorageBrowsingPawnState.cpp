@@ -14,14 +14,14 @@ TSharedPtr<FPawnState> FStorageBrowsingPawnState::GetInstance()
 }
 
 
-TSharedPtr<FPawnState> FStorageBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FStorageBrowsingPawnState::LeftClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->LeftClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->LeftClick(ProvidedPawn);
 }
 
-TSharedPtr<FPawnState> FStorageBrowsingPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FStorageBrowsingPawnState::RightClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);
 }
 
 bool FStorageBrowsingPawnState::MustWidgetBeVisible(UUserWidget* Widget)

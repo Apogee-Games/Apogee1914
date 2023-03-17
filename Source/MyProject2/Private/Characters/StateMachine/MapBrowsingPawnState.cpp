@@ -14,8 +14,10 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(APawn* ProvidedPawn)
 {
+	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+	
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
@@ -31,7 +33,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FMapBrowsingPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMapBrowsingPawnState::RightClick(APawn* ProvidedPawn)
 {
 	return Instance;
 }

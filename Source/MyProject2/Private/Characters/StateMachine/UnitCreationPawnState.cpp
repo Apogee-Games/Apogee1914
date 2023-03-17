@@ -15,8 +15,10 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(APawn* ProvidedPawn)
 {
+	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+	
 	if (!Pawn->GetSelectedUnitDescription()) return Instance;
 	
 	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
@@ -31,9 +33,9 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FUnitCreationPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FUnitCreationPawnState::RightClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);	
+	return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);	
 }
 
 bool FUnitCreationPawnState::MustWidgetBeVisible(UUserWidget* Widget)
