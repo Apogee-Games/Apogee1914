@@ -6,11 +6,24 @@
 void UMyGameInstance::OnStart()
 {
 	Super::OnStart();
-	SetScenario(ActiveScenario);
+
+	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UProvincesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UDistancesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UBoxesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UOutlineMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UObjectMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UFlagsMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UCountriesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
 }
 
 void UMyGameInstance::SetScenario(UScenario* Scenario)
 {
+	if (ActiveScenario == Scenario) return;
 	ActiveScenario = Scenario;
 	
 	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
