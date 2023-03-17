@@ -20,7 +20,7 @@ public:
 
 	virtual FQuat GetNewRotation(FVector3d Position, FVector3d NewPosition);
 	
-	virtual FVector2d GetMapPosition(AHumanPlayerPawn* Pawn);
+	virtual FVector2d GetMapPosition(APawn* Pawn);
 	
 	virtual FVector2d GetMapPosition(FVector3d WorldPosition);
 

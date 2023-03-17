@@ -26,7 +26,7 @@ FQuat AMapActor::GetNewRotation(FVector3d Position, FVector3d NewPosition)
 	return FQuat(0, 0, 0, 0);
 }
 
-FVector2d AMapActor::GetMapPosition(AHumanPlayerPawn* Pawn)
+FVector2d AMapActor::GetMapPosition(APawn* Pawn)
 {
 	FVector Location, Direction;
 	Pawn->GetController<APlayerController>()->DeprojectMousePositionToWorld(Location, Direction);
