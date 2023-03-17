@@ -89,11 +89,13 @@ UCountry* AHumanPlayerPawn::GetRuledCountry() const
 
 void AHumanPlayerPawn::LeftClick()
 {
+	if (IsPaused) return;
 	SetPawnState(PawnState->LeftClick(this));
 }
 
 void AHumanPlayerPawn::RightClick()
 {
+	if (IsPaused) return;
 	SetPawnState(PawnState->RightClick(this));
 }
 
@@ -124,11 +126,35 @@ bool AHumanPlayerPawn::IsShiftPressed() const
 	return bIsShiftPressed;
 }
 
+void AHumanPlayerPawn::Pause()
+{
+	IsPaused = true;
+	GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetMenuWidget()->AddToPlayerScreen(1000);
+}
+
+void AHumanPlayerPawn::UnPause()
+{
+	IsPaused = false;
+	GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetMenuWidget()->RemoveFromViewport();
+}
+
+void AHumanPlayerPawn::SwitchPause()
+{
+	//TODO: Add logic to stop time if in single player mode :)
+	if (IsPaused) 
+	{
+		UnPause();
+	} else
+	{
+		Pause();
+	}
+}
+
 // Called every frame
 void AHumanPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (IsPaused) return;
 	MovementComponent->Move(DeltaTime);
 }
 
@@ -139,6 +165,7 @@ void AHumanPlayerPawn::ShiftReleased()
 
 void AHumanPlayerPawn::SetUnitCreationState()
 {
+	if (IsPaused) return;
 	if (PawnState == FUnitCreationPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
@@ -151,6 +178,7 @@ void AHumanPlayerPawn::SetUnitCreationState()
 
 void AHumanPlayerPawn::SetStorageBrowsingState()
 {
+	if (IsPaused) return;
 	if (PawnState == FStorageBrowsingPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
@@ -163,6 +191,7 @@ void AHumanPlayerPawn::SetStorageBrowsingState()
 
 void AHumanPlayerPawn::SetSupplyBrowsingState()
 {
+	if (IsPaused) return;
 	if (PawnState == FSupplyBrowsingPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
@@ -175,6 +204,7 @@ void AHumanPlayerPawn::SetSupplyBrowsingState()
 
 void AHumanPlayerPawn::SetBuildingCreationState()
 {
+	if (IsPaused) return;
 	if (PawnState == FBuildingCreationPawnState::GetInstance())
 	{
 		SetPawnState(FMapBrowsingPawnState::GetInstance());
@@ -184,6 +214,7 @@ void AHumanPlayerPawn::SetBuildingCreationState()
 		SetPawnState(FBuildingCreationPawnState::GetInstance());
 	}
 }
+
 
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -201,4 +232,5 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("SKey"), IE_Pressed, this, &AHumanPlayerPawn::SetStorageBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SetSupplyBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("BKey"), IE_Pressed, this, &AHumanPlayerPawn::SetBuildingCreationState);
+	PlayerInputComponent->BindAction(TEXT("Menu"), IE_Pressed, this, &AHumanPlayerPawn::SwitchPause);
 }

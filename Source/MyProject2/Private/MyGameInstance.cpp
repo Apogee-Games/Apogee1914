@@ -9,15 +9,13 @@
 void UMyGameInstance::OnStart()
 {
 	Super::OnStart();
-	
-	InitializeManagers();
 }
 
 void UMyGameInstance::SetScenario(UScenario* Scenario)
 {
 	if (ActiveScenario == Scenario) return;
 	ActiveScenario = Scenario;
-	InitializeManagers();
+	InitializeActiveScenario();
 }
 
 const FName& UMyGameInstance::GetRuledCountry(APlayerController* PlayerController)
@@ -52,7 +50,7 @@ bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
 	return CountriesRuledByPlayers.Contains(CountryTag) && CountriesRuledByPlayers[CountryTag];
 }
 
-void UMyGameInstance::InitializeManagers()
+void UMyGameInstance::InitializeActiveScenario()
 {
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 

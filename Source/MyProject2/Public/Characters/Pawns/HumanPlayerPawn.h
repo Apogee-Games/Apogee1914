@@ -72,8 +72,15 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	bool IsShiftPressed() const;
+
+	void Pause();
+
+	void UnPause();
+	
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
+	
+	bool IsPaused = false;
 	
 	UPROPERTY()
 	UCountry* RuledCountry;
@@ -101,4 +108,6 @@ private:
 	void SetSupplyBrowsingState();
 
 	void SetBuildingCreationState();
+
+	void SwitchPause();
 };

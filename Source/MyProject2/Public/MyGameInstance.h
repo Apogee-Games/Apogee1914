@@ -36,6 +36,8 @@ public:
 
 	void SetScenario(UScenario* Scenario);
 
+	void InitializeActiveScenario();
+
 	const FName& GetRuledCountry(APlayerController* PlayerController);
 	
 	const FName& GetRuledCountry(int32 PlayerId);
@@ -55,8 +57,6 @@ private:
 	TMap<int32, FName> PlayersRuledCountries;
 
 	TMap<FName, int32> CountriesRuledByPlayers;
-
-	void InitializeManagers();
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;

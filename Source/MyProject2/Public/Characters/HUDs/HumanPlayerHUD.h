@@ -4,6 +4,7 @@
 #include "Widgets/Administration/ProvinceDataWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
+#include "Widgets/Menu/MenuWidget.h"
 #include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 #include "Widgets/Military/Commanders/CommanderListWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
@@ -42,6 +43,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCommanderListWidget> CommanderListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMenuWidget> MenuWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -62,6 +66,8 @@ public:
 	UUnitsCollectionsWidget* GetUnitsCollectionsWidget() const;
 
 	UCommanderListWidget* GetCommanderListWidget() const;
+
+	UMenuWidget* GetMenuWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -93,6 +99,9 @@ private:
 
 	UPROPERTY()
 	UCommanderListWidget* CommanderListWidget;
+
+	UPROPERTY()
+	UMenuWidget* MenuWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -114,4 +123,6 @@ private:
 	void InitUnitsCollectionsWidget();
 
 	void InitCommanderListWidget();
+
+	void InitMenuWidget();
 };
