@@ -25,6 +25,8 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(APawn* ProvidedPawn
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
+	if (Pawn->GetRuledCountry() != Province->GetOwnerCountry()) return Instance;
+
 	UBuildingManager* BuildingManager = Pawn->GetWorld()->GetSubsystem<UBuildingManager>();
 
 	BuildingManager->BuildBuilding(Pawn->GetSelectedBuildingDescription(), Province, Pawn->GetRuledCountry()->GetStorage());
