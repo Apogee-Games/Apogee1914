@@ -1,21 +1,25 @@
 ﻿
 #include "Administration/Managers/ProvinceManager.h"
 
-#include "Military/Instances/Units/Unit.h"
+#include "MyGameInstance.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
-
-void UProvinceManager::Initialize(FSubsystemCollectionBase& Collection)
+void UProvinceManager::SetScenario(UScenario* Scenario)
 {
-	Super::Initialize(Collection);
+	UDataTable* ProvinceDescriptionDataTable = Scenario->ProvinceDescriptionDataTable;
+
+	UDataTable* TerrainDescriptionDataTable = Scenario->TerrainDescriptionDataTable;
 	
-	UDataTable* ProvinceDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/provinces_description"));
+	UDataTable* ResourcesDescriptionDataTable = Scenario->ResourcesDescriptionDataTable;
 
-	UDataTable* TerrainDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/terrain_description"));
+	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
+		if(Value == nullptr) continue;
+		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
+		UProvince* Province = NewObject<UProvince>(this); 
+		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
+		ProvinceMap.Add(Key, Province);
+	}
 	
-	UDataTable* ResourcesDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/resources_description"));
-
-	InitProvinces(ProvinceDescriptionDataTable, TerrainDescriptionDataTable, ResourcesDescriptionDataTable);
-
 	ProvinceMap.GenerateValueArray(ProvincesArray);
 }
 
@@ -32,15 +36,4 @@ UProvince* UProvinceManager::GetProvince(const FName& ProvinceColorHex) const
 const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 {
 	return ProvincesArray;
-}
-
-void UProvinceManager::InitProvinces(UDataTable* ProvinceDescriptionDataTable, UDataTable* TerrainDescriptionDataTable, UDataTable* ResourcesDescriptionDataTable)
-{
-	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
-		if(Value == nullptr) continue;
-		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
-		UProvince* Province = NewObject<UProvince>(this); 
-		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
-		ProvinceMap.Add(Key, Province);
-	}
 }

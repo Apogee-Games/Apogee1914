@@ -2,10 +2,9 @@
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
-
 
 TSharedPtr<FPawnState> FUnitCreationPawnState::GetInstance()
 {
@@ -16,24 +15,27 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(APawn* ProvidedPawn)
 {
+	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+	
 	if (!Pawn->GetSelectedUnitDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	UUnitsFactory* UnitsFactory = Pawn->GetWorld()->GetSubsystem<UUnitsFactory>();
 
 	UnitsFactory->CreateUnit(Pawn->GetSelectedUnitDescription(), Province, Pawn->GetRuledCountryTag());
+	// TODO: Add method overload to be able to pass country not just its tag
 
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FUnitCreationPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FUnitCreationPawnState::RightClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);	
+	return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);	
 }
 
 bool FUnitCreationPawnState::MustWidgetBeVisible(UUserWidget* Widget)

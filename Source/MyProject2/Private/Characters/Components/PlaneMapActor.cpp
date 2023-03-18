@@ -1,11 +1,6 @@
 
 #include "Characters/Components/PlaneMapActor.h"
 
-APlaneMapActor::APlaneMapActor()
-{
-	SetActorScale3D(FVector(2, 2, 2));
-}
-
 FVector3d APlaneMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght)
 {
 	Direction.Normalize();

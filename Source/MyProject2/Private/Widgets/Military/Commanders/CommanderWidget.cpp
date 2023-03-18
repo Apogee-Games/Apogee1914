@@ -1,7 +1,7 @@
 ﻿
 #include "Widgets/Military/Commanders/CommanderWidget.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Military/Managers/CommandersManager.h"
 

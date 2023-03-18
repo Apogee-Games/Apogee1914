@@ -9,9 +9,9 @@ public:
 	
 	virtual ~FPawnState() = default;
 	
-	virtual TSharedPtr<FPawnState> LeftClick(AHumanPlayerPawn* Pawn) = 0;
+	virtual TSharedPtr<FPawnState> LeftClick(APawn* ProvidedPawn) = 0;
 
-	virtual TSharedPtr<FPawnState> RightClick(AHumanPlayerPawn* Pawn) = 0;
+	virtual TSharedPtr<FPawnState> RightClick(APawn* ProvidedPawn) = 0;
 
 	virtual bool MustWidgetBeVisible(UUserWidget* Widget) = 0;
 

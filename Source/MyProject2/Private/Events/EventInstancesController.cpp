@@ -1,11 +1,10 @@
 #include "Events/EventInstancesController.h"
-#include "InGameTime.h"
-#include "UObject/UObjectGlobals.h"
+
 #include "MyGameInstance.h"
-#include "MyGameState.h"
 #include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
 #include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
 void UEventInstancesController::CreateEvent(FEventDescription* Event,
                                             const TMap<FName, bool>& ChoicesConditionsEvaluated,
@@ -95,23 +94,21 @@ FName UEventInstancesController::FindAISelectedChoice(const TArray<FEventChoice>
 	return SelectedChoice;
 }
 
-void UEventInstancesController::Initialize(FSubsystemCollectionBase& Collection)
+bool UEventInstancesController::ShouldCreateSubsystem(UObject* Outer) const
 {
-	Super::Initialize(Collection);
-
-	UDataTable* EventsDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/events_description"));
-
-	for (const auto Pair : EventsDataTable->GetRowMap())
-	{
-		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
-	}
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
 }
 
 void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents,
-	                                                          MinDeltaBetweenEventChecks);
+	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
+
+	for (const auto Pair : EventsDataTable->GetRowMap())
+	{
+		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
+	}
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
 }
 
 void UEventInstancesController::RegisterChoice(FEventDescription* Event, const FName& ChoiceName,
@@ -166,6 +163,6 @@ void UEventInstancesController::CheckEvents()
 const TArray<FName>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
-		       ? GetWorld()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
+		       ? GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
 		       : Event->CountriesConditions.CountriesTags;
 }

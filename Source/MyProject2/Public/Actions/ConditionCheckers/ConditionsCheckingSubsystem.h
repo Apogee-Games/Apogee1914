@@ -2,6 +2,7 @@
 #include "ConditionChecker.h"
 #include "Actions/Description/Condition.h"
 #include "ConditionsCheckingSubsystem.generated.h"
+
 /**
  * Class manages separate conditions checkers and allows to check event and choice conditions
  */

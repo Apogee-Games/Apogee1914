@@ -20,7 +20,6 @@ public:
 	 * Method used to apply event choice outcomes
 	 */
 	void ApplyOutcomes(TArray<FOutcome>& Outcomes, const FName& CountryTag);
-
 private:
 	TMap<FName, FOutcomeApplier*> OutcomeAppliers;
 };

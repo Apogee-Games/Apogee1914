@@ -1,7 +1,7 @@
 
 #include "Widgets/Military/Creation/UnitTypeDescriptionWidget.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Widgets/Military/Carriers/GoodRequirementCarrier.h"
 #include "Widgets/Military/Carriers/UnitDescriptionCarrier.h"
 

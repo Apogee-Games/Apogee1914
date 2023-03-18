@@ -1,9 +1,8 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Administration/Instances/State.h"
-#include "Characters/HumanPlayerHUD.h"
-#include "Characters/MyPlayerController.h"
+#include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Maps/Selection/SelectionMap.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
@@ -15,13 +14,15 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(APawn* ProvidedPawn)
 {
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
+	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+	
+	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
-	AHumanPlayerHUD* HUD = Pawn->GetController<AMyPlayerController>()->GetHUD<AHumanPlayerHUD>();
+	AHumanPlayerHUD* HUD = Pawn->GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>();
 
 	UProvinceDataWidget* ProvinceDataWidget = HUD->GetProvinceDataWidget();
 
@@ -32,7 +33,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(AHumanPlayerPawn* Pawn)
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FMapBrowsingPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMapBrowsingPawnState::RightClick(APawn* ProvidedPawn)
 {
 	return Instance;
 }

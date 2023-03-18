@@ -5,16 +5,21 @@
 #include "UnitsSupplyController.generated.h"
 
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserver, public IUnitSupplyObservable
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	virtual void UnitIsCreated(UUnit* Unit) override;
 
 	void Supply();
+
+	UPROPERTY(EditDefaultsOnly)
+	FTimespan SupplyTimeDelta = FTimespan(1, 0, 0, 0);
 private:
 	UPROPERTY()
 	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;

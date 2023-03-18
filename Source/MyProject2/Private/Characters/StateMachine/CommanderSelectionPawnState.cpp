@@ -12,14 +12,14 @@ TSharedPtr<FPawnState> FCommanderSelectionPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FCommanderSelectionPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FCommanderSelectionPawnState::LeftClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->LeftClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->LeftClick(ProvidedPawn);
 }
 
-TSharedPtr<FPawnState> FCommanderSelectionPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FCommanderSelectionPawnState::RightClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);
 }
 
 bool FCommanderSelectionPawnState::MustWidgetBeVisible(UUserWidget* Widget)

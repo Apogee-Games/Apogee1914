@@ -1,12 +1,21 @@
 
 #include "Administration/Managers/StateManager.h"
 
+#include "MyGameInstance.h"
+#include "Scenario.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
-void UStateManager::Initialize(FSubsystemCollectionBase& Collection)
+
+void UStateManager::SetScenario(UScenario* Scenario)
 {
-	Super::Initialize(Collection);
-	UDataTable* StateDescriptionDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/states_description"));
-	InitStates(StateDescriptionDataTable);
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+
+	for (const auto& [Key, Value]: Scenario->StateDescriptionDataTable->GetRowMap())
+	{
+		UState* State = NewObject<UState>(this);
+		State->Init(reinterpret_cast<FStateDescription*>(Value), ProvinceManager);
+		StateMap.Add(Key, State);
+	}
 }
 
 UState* UStateManager::GetState(const FName& StateId) const
@@ -16,7 +25,7 @@ UState* UStateManager::GetState(const FName& StateId) const
 
 bool UStateManager::AreProvincesInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
 {
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
 	const UProvince* ProvinceA = ProvinceManager->GetProvince(ProvinceAColor);
 	const UProvince* ProvinceB = ProvinceManager->GetProvince(ProvinceBColor);
 	return AreProvincesInTheSameState(ProvinceA, ProvinceB);
@@ -29,7 +38,7 @@ bool UStateManager::AreProvincesInTheSameState(const UProvince* ProvinceA, const
 
 bool UStateManager::AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
 {
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
 	const UProvince* ProvinceA = ProvinceManager->GetProvince(ProvinceAColor);
 	const UProvince* ProvinceB = ProvinceManager->GetProvince(ProvinceBColor);
 	return AreProvincesNotInTheSameState(ProvinceA, ProvinceB);
@@ -38,16 +47,4 @@ bool UStateManager::AreProvincesNotInTheSameState(const FColor& ProvinceAColor, 
 bool UStateManager::AreProvincesNotInTheSameState(const UProvince* ProvinceA, const UProvince* ProvinceB) const
 {
 	return ProvinceA && ProvinceB && ProvinceA->GetStateId() != ProvinceB->GetStateId();
-}
-
-void UStateManager::InitStates(UDataTable* StatesDescriptions)
-{
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
-
-	for (const auto& [Key, Value]: StatesDescriptions->GetRowMap())
-	{
-		UState* State = NewObject<UState>();
-		State->Init(reinterpret_cast<FStateDescription*>(Value), ProvinceManager);
-		StateMap.Add(Key, State);
-	}
 }

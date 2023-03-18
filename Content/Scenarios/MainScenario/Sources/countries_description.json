@@ -1,0 +1,440 @@
+[
+	{
+		"Name": "AHE",
+		"Tag": "AHE",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "Austro-Hungarian Empire",
+				"CountryColor": {
+					"B": 80,
+					"G": 80,
+					"R": 80,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "BEL",
+		"Tag": "BEL",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "Kingdom of Belgium",
+				"CountryColor":
+				{
+					"B": 10,
+					"G": 50,
+					"R": 50,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "NET",
+		"Tag": "NET",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "The Kingdom of the Netherlands",
+				"CountryColor":
+				{
+					"B": 50,
+					"G": 50,
+					"R": 100,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "LUX",
+		"Tag": "LUX",
+		"RulingFractionTag": "MON",
+		"Fractions": [ 
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "The Grand Duchy of Luxembourg",
+				"CountryColor":
+				{
+					"B": 0,
+					"G": 50,
+					"R": 0,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "FRA",
+		"Tag": "FRA",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+				{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "French Republic",
+				"RulerId": "RPoincaré",
+				"CountryColor":
+				{
+					"B": 100,
+					"G": 0,
+					"R": 0,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "GER",
+		"Tag": "GER",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "German Empire",
+				"RulerId": "HWilhelmII",
+				"CountryColor":
+				{
+					"B": 50,
+					"G": 50,
+					"R": 50,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "ITA",
+		"Tag": "ITA",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "Kingdom of Italy",
+				"CountryColor":
+				{
+					"B": 20,
+					"G": 80,
+					"R": 20,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "SWI",
+		"Tag": "SWI",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Swiss Confederation",
+				"CountryColor":
+				{
+					"B": 20,
+					"G": 20,
+					"R": 80,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "GBR",
+		"Tag": "GBR",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "The United Kingdom of Great Britain and Ireland",
+				"CountryColor":
+				{
+					"B": 20,
+					"G": 80,
+					"R": 80,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "SPA",
+		"Tag": "SPA",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "The Kingdom of Spain",
+				"CountryColor":
+				{
+					"B": 0,
+					"G": 100,
+					"R": 100,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "POR",
+		"Tag": "POR",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Portuguese Republic",
+				"CountryColor":
+				{
+					"B": 0,
+					"G": 40,
+					"R": 0,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "SWE",
+		"Tag": "SWE",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "The Kingdom of Sweden",
+				"CountryColor":
+				{
+					"B": 50,
+					"G": 0,
+					"R": 0,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "NOR",
+		"Tag": "NOR",
+		"RulingFractionTag": "MON",
+		"Fractions": [
+			{
+				"FractionTag": "MON",
+				"FractionName": "Monarchists",
+				"CountryName": "The Kingdom of Norway",
+				"CountryColor":
+				{
+					"B": 30,
+					"G": 30,
+					"R": 30,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "BRA",
+		"Tag": "BRA",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "The United States of Brazil",
+				"CountryColor":
+				{
+					"B": 0,
+					"G": 100,
+					"R": 0,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "USA",
+		"Tag": "USA",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "The United States of America",
+				"CountryColor":
+				{
+					"B": 100,
+					"G": 10,
+					"R": 10,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "PAR",
+		"Tag": "PAR",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Republic of Paraguay",
+				"CountryColor":
+				{
+					"B": 10,
+					"G": 50,
+					"R": 50,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "BOL",
+		"Tag": "BOL",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Plurinational State of Bolivia",
+				"CountryColor":
+				{
+					"B": 100,
+					"G": 50,
+					"R": 50,
+					"A": 0
+				}
+			}
+		]
+	}, 
+	{
+		"Name": "PER",
+		"Tag": "PER",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Republic of Peru",
+				"CountryColor":
+				{
+					"B": 100,
+					"G": 100,
+					"R": 100,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "CHI",
+		"Tag": "CHI",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Republic of Chile",
+				"CountryColor":
+				{
+					"B": 50,
+					"G": 50,
+					"R": 50,
+					"A": 0
+				}
+			}
+		]
+	}, 
+	{
+		"Name": "URU",
+		"Tag": "URU",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Oriental Republic of Uruguay",
+				"CountryColor":
+				{
+					"B": 100,
+					"G": 50,
+					"R": 100,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "ARG",
+		"Tag": "ARG",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Argentine Republic",
+				"CountryColor":
+				{
+					"B": 10,
+					"G": 100,
+					"R": 100,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "CAN",
+		"Tag": "CAN",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Canada",
+				"CountryColor":
+				{
+					"B": 133, 
+					"G": 21,
+					"R": 199,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "MEX",
+		"Tag": "MEX",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "The United Mexican States",
+				"CountryColor":
+				{
+					"B": 20,
+					"G": 100,
+					"R": 20,
+					"A": 0
+				}
+			}
+		]
+	}
+]

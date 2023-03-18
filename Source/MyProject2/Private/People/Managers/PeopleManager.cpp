@@ -1,21 +1,17 @@
 ﻿#include "People/Managers/PeopleManager.h"
 
-void UPeopleManager::Initialize(FSubsystemCollectionBase& Collection)
+void UPeopleManager::SetScenario(UScenario* Scenario)
 {
-	Super::Initialize(Collection);
+	UDataTable* PeoplesDescriptions = Scenario->PeoplesDescriptions;
 	
-	UDataTable* PeoplesDescriptions = LoadObject<UDataTable>(nullptr, TEXT("/Game/Sources/people_desctiption"));
-	
-	if(!PeoplesDescriptions) return;
-	
-	for (const auto & [Name, Description]: PeoplesDescriptions->GetRowMap())
+	for (const auto & [Id, Description]: PeoplesDescriptions->GetRowMap())
 	{
 		FPersonDescription* CastedDescription = reinterpret_cast<FPersonDescription*>(Description);
 
-		UPerson* Person = NewObject<UPerson>(GetWorld());
-		Person->Init(CastedDescription);
+		UPerson* Person = NewObject<UPerson>(this);
+		Person->Init(Id, CastedDescription);
 		
-		People.Add(Person);
+		People.Add(Person->GetId(), Person);
 
 		if (!CountryProfessionPeople.Contains(CastedDescription->CountryTag))
 		{
@@ -33,7 +29,22 @@ void UPeopleManager::Initialize(FSubsystemCollectionBase& Collection)
 	}
 }
 
+UPerson* UPeopleManager::GetPerson(const FName& PersonId) const
+{
+	return People.Contains(PersonId) ? People[PersonId] : nullptr;
+}
+
 const TArray<UPerson*>& UPeopleManager::GetPeopleByProfession(const FName& Profession, const FName& CountryTag)
 {
-	return CountryProfessionPeople[CountryTag][Profession];
+	if (!CountryProfessionPeople.Contains(CountryTag))
+	{
+		CountryProfessionPeople.Add(CountryTag, {
+			{CountryTag, {}}
+		});
+	}
+	if (!CountryProfessionPeople[CountryTag].Contains(Profession))
+	{
+		CountryProfessionPeople[CountryTag].Add(Profession, {});
+	}
+ 	return CountryProfessionPeople[CountryTag][Profession];
 }

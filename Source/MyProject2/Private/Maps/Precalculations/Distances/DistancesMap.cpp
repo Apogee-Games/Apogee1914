@@ -1,21 +1,22 @@
 
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 
+#include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/StateManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Maps/Precalculations/Distances/DistanceCalculator.h"
 
-void UDistancesMap::OnWorldBeginPlay(UWorld& InWorld)
-{
-	UWorldSubsystem::OnWorldBeginPlay(InWorld);
 
-	GetWorld()->GetSubsystem<UProvincesMap>()->RegisterOnFullInitializationAction(this, &UDistancesMap::Init);
-	//TODO: GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceOwningCountryObserver(this);
+void UDistancesMap::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	//TODO: GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceOwningCountryObserver(this);
 }
 
-void UDistancesMap::Init()
+void UDistancesMap::SetScenario(UScenario* Scenario)
 {
-	SizeVector = GetWorld()->GetSubsystem<UProvincesMap>()->GetSizeVector();
+	SizeVector = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetSizeVector();
 
 	ProvincesDistances.SetNum(SizeVector.X * SizeVector.Y);
 	StatesDistances.SetNum(SizeVector.X * SizeVector.Y);
@@ -26,7 +27,6 @@ void UDistancesMap::Init()
 	bIsFullyInitialized = true;
 	PerformOnFullInitializationActions();
 }
-
 
 int32 UDistancesMap::GetProvincesDistance(int32 Position) const
 {
@@ -89,7 +89,7 @@ FRunnableThread* UDistancesMap::CalculateProvincesDistances()
 
 FRunnableThread* UDistancesMap::CalculateStatesDistances()
 {
-	return GetDistanceCalculator(GetWorld()->GetSubsystem<UStateManager>(),
+	return GetDistanceCalculator(GetGameInstance()->GetSubsystem<UStateManager>(),
 								 &UStateManager::AreProvincesNotInTheSameState,
 								 StatesDistances,
 								 TEXT("States Distances Calculation"));
@@ -97,7 +97,7 @@ FRunnableThread* UDistancesMap::CalculateStatesDistances()
 
 FRunnableThread* UDistancesMap::CalculateCountriesDistances() 
 {
-	return GetDistanceCalculator(GetWorld()->GetSubsystem<UCountriesManager>(),
+	return GetDistanceCalculator(GetGameInstance()->GetSubsystem<UCountriesManager>(),
 	                             &UCountriesManager::AreProvincesOwnedByDifferentCountry,
 	                             CountriesDistances,
 	                             TEXT("Countries Distances Calculation"));
@@ -108,7 +108,7 @@ FRunnableThread* UDistancesMap::GetDistanceCalculator(UObject* Object,
                                                       TArray<int32>& Distance, TCHAR* Name)
 {
 	FDistanceCalculator* DistanceCalculator = new FDistanceCalculator(Distance, SizeVector, Depth);
-	const TArray<FColor>& Colors = GetWorld()->GetSubsystem<UProvincesMap>()->GetColors();
+	const TArray<FColor>& Colors = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetColors();
 
 	const int32 Width = static_cast<int32>(SizeVector.X);
 	const int32 Height = static_cast<int32>(SizeVector.Y);
@@ -194,7 +194,7 @@ void UProvincesMap::NotifyCountryDistancesUpdateForProvince(UProvince* Province)
 
 	Provinces.Add(Province);
 
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
 	
 	for (const auto& NeighbourColor: Neighbours[Province->GetId()]) {
 		Provinces.Add(ProvinceManager->GetProvince(NeighbourColor));

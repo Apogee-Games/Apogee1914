@@ -1,6 +1,6 @@
 #include "Widgets/Military/Collections/UnitCollectionWidget.h"
 
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/CommanderSelectionPawnState.h"
 
 void UUnitCollectionWidget::NativeConstruct()

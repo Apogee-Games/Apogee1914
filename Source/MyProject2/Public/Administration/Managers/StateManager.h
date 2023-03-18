@@ -1,16 +1,15 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Instances/State.h"
 
 #include "StateManager.generated.h"
 
-UCLASS()
-class UStateManager: public UWorldSubsystem
+UCLASS(Abstract, Blueprintable)
+class UStateManager: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
-	
 public:
-
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	void SetScenario(UScenario* Scenario);
 	
 	UState* GetState(const FName& StateId) const;
 	
@@ -21,10 +20,7 @@ public:
 	bool AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 	
 	bool AreProvincesNotInTheSameState(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
-
 private:
 	UPROPERTY()
 	TMap<FName, UState*> StateMap;
-
-	void InitStates(UDataTable* StatesDescriptions);
 };

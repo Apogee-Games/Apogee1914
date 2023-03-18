@@ -1,14 +1,19 @@
 ﻿#include "Economics/Managers//StrataManager.h"
 
+#include "MyGameInstance.h"
 #include "Engine/DataTable.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
-void UStrataManager::Initialize(FSubsystemCollectionBase& Collection)
+bool UStrataManager::ShouldCreateSubsystem(UObject* Outer) const
 {
-	Super::Initialize(Collection);
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
-	StrataDescriptionDataTable
-			= LoadObject<UDataTable>(nullptr,TEXT("/Game/Sources/strata_description"));
-	
+
+void UStrataManager::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	StrataDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->StrataDescriptionDataTable;
 }
 
 FStrataDescription* UStrataManager::GetStrataDescription(const FName& Type) const

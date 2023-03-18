@@ -1,16 +1,20 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
 #include "Interfaces/FOnFullInitialization.h"
 #include "Maps/Interfaces/Observable/CountryDistancesObservable.h"
 #include "DistancesMap.generated.h"
-UCLASS()
-class UDistancesMap: public UWorldSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
+
+UCLASS(Abstract, Blueprintable)
+class UDistancesMap: public UGameInstanceSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
 {
 	GENERATED_BODY()
 public:
+	
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
+	void SetScenario(UScenario* Scenario);
+	
 	void Init();
 	
 	int32 GetProvincesDistance(int32 Position) const;
@@ -27,9 +31,9 @@ public:
 
 	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
 
-private:
+	UPROPERTY(EditDefaultsOnly)
 	int32 Depth = 15;
-	
+private:
 	FVector2d SizeVector;
 	
 	TArray<int32> ProvincesDistances;

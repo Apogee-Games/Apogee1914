@@ -3,7 +3,7 @@
 
 #include "Kismet/KismetStringLibrary.h"
 
-FStabilityOutcomeApplier::FStabilityOutcomeApplier(AMyGameState* GameState): GameState(GameState)
+FStabilityOutcomeApplier::FStabilityOutcomeApplier(AGameLevelGameState* GameState): GameState(GameState)
 {
 }
 

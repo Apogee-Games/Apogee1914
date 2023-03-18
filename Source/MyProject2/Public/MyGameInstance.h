@@ -4,9 +4,24 @@
 
 #include "CoreMinimal.h"
 #include "InGameTime.h"
+#include "Scenario.h"
+#include "Administration/Managers/StateManager.h"
+#include "Economics/Managers/BuildingManager.h"
+#include "Economics/Managers/GoodManager.h"
+#include "Economics/Managers/StrataManager.h"
 #include "Engine/GameInstance.h"
 #include "Events/EventInstancesController.h"
+#include "Maps/Countries/CountriesMap.h"
+#include "Maps/Flags/FlagsMap.h"
+#include "Maps/Objects/ObjectMap.h"
+#include "Maps/Outlines/OutlineMap.h"
+#include "Maps/Precalculations/ProvincesMap.h"
+#include "Maps/Precalculations/Boxes/BoxesMap.h"
+#include "Maps/Precalculations/Distances/DistancesMap.h"
+#include "Maps/Selection/SelectionMap.h"
+#include "Military/Managers/UnitsMover.h"
 #include "Military/Managers/UnitsRenderer.h"
+#include "Military/Managers/UnitsSupplyController.h"
 #include "MyGameInstance.generated.h"
 
 /**
@@ -16,14 +31,33 @@ UCLASS()
 class MYPROJECT2_API UMyGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-
 public:
-	const FName& GetRuledCountry(int32 PlayerId) const;
+	virtual void OnStart() override;
 
+	void SetScenario(UScenario* Scenario);
+
+	const FName& GetRuledCountry(APlayerController* PlayerController);
+	
+	const FName& GetRuledCountry(int32 PlayerId);
+
+	void SetRuledCountry(APlayerController* PlayerController, UCountry* Country);
+	
 	void SetRuledCountry(int32 PlayerId, const FName& CountryTag);
 
 	bool IsCountryRuledByPlayer(const FName& CountryTag);
 
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UScenario*> Scenarios;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UScenario* ActiveScenario;
+private:
+	TMap<int32, FName> PlayersRuledCountries;
+
+	TMap<FName, int32> CountriesRuledByPlayers;
+
+	void InitializeManagers();
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;
 
@@ -32,8 +66,52 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly);
 	TSubclassOf<UEventInstancesController> EventInstancesControllerClass;
-private:
-	TMap<int32, FName> PlayersRuledCountries;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UCountriesManager> CountriesManagerClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UProvinceManager> ProvinceManagerClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UStateManager> StateManagerClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UBuildingManager> BuildingManagerClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UGoodManager> GoodManagerClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UStrataManager> StrataManagerClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UCountriesMap> CountriesMapClass;
 
-	TMap<FName, int32> CountriesRuledByPlayers;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UFlagsMap> FlagsMapClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UObjectMap> ObjectMapClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UOutlineMap> OutlineMapClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UBoxesMap> BoxesMapClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UDistancesMap> DistancesMapClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UProvincesMap> ProvincesMapClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<USelectionMap> SelectionMapClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUnitsMover> UnitsMoverClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUnitsSupplyController> UnitsSupplyControllerClass;
 };

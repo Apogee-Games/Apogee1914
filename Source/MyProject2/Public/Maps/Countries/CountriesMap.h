@@ -1,19 +1,18 @@
 #pragma once
-#include "MyGameState.h"
 #include "Administration/Interfaces/Observer/ProvinceControllingCountryObserver.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Maps/Interfaces/Observer/CountryDistancesObserver.h"
 #include "CountriesMap.generated.h"
 
-UCLASS()
-class UCountriesMap: public UWorldSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
+UCLASS(Abstract, Blueprintable)
+class UCountriesMap: public UGameInstanceSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
 {
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
+	
+	void SetScenario(UScenario* Scenario);
+	
 	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const;
 
 	void UpdateAllCountriesMapColors();
@@ -21,9 +20,10 @@ public:
 	virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
 	
 	virtual void CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces) override;
-private:
+
+	UPROPERTY(EditDefaultsOnly)
 	int32 CrossLineWidth = 10;
-	
+private:
 	UPROPERTY()	
 	UTexture2D* CountriesMapTexture;
 

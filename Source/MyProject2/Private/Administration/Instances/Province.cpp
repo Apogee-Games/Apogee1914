@@ -13,8 +13,8 @@ void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable
 {
 	Id = ProvinceDescription->Color;
 	Name = ProvinceDescription->ProvinceName;
-	OwnerCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
-	ControllerCountry = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
+	OwnerCountry = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
+	ControllerCountry = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
 	StateId = ProvinceDescription->StateId;
 	
 	Resources = NewObject<UProvinceResources>();

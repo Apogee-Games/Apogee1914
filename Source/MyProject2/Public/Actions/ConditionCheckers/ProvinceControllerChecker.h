@@ -1,10 +1,6 @@
-﻿
-#pragma once
+﻿#pragma once
 #include "ConditionChecker.h"
-#include "MyGameState.h"
 #include "MyProject2/Public/Administration/Managers/ProvinceManager.h"
-
-
 
 class FProvinceControllerConditionChecker: public FConditionChecker
 {

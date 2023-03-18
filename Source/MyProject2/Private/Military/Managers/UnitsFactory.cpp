@@ -1,6 +1,12 @@
 
 #include "Military/Managers/UnitsFactory.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
+
+bool UUnitsFactory::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
 {
@@ -8,7 +14,7 @@ UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince*
 	//TODO: Error checks ?
 
 	UUnit* Unit = NewObject<UUnit>(GetWorld(), MilitaryBranchUnitsTypes[Description->MilitaryBranch]);
-	UCountry* CountryOwner = GetWorld()->GetSubsystem<UCountriesManager>()->GetCountry(CountryOwnerTag);
+	UCountry* CountryOwner = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(CountryOwnerTag);
 	Unit->Init(Description, Province, CountryOwner);
 	NotifyUnitCreation(Unit);
 	return Unit;

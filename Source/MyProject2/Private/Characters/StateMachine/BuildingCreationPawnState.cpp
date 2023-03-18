@@ -1,7 +1,7 @@
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Economics/Managers/BuildingManager.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
@@ -15,11 +15,13 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(APawn* ProvidedPawn)
 {
+	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+	
 	if (!Pawn->GetSelectedBuildingDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
@@ -30,9 +32,9 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(AHumanPlayerPawn* P
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FBuildingCreationPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FBuildingCreationPawnState::RightClick(APawn* ProvidedPawn)
 {
-	return FMapBrowsingPawnState::GetInstance()->RightClick(Pawn);
+	return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);
 }
 
 bool FBuildingCreationPawnState::MustWidgetBeVisible(UUserWidget* Widget)

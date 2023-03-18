@@ -18,4 +18,7 @@ struct FFractionDescription: public FTableRowBase
 
 	UPROPERTY()
 	FColor CountryColor;
+
+	UPROPERTY()
+	FName RulerId;
 };

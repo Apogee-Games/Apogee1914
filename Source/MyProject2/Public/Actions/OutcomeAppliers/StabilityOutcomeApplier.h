@@ -1,6 +1,6 @@
 #pragma once
 #include "OutcomeApplier.h"
-#include "MyGameState.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
 /**
  * Class used for testing
@@ -12,7 +12,7 @@ public:
 	/**
 	 * Outcome applier needs GameState to access stability field
 	 */
-	explicit FStabilityOutcomeApplier(AMyGameState* GameState);
+	explicit FStabilityOutcomeApplier(AGameLevelGameState* GameState);
 
 	/**
 	 * Method updates stability with provided values
@@ -20,7 +20,6 @@ public:
 	virtual void Apply(const TMap<FName, FString>& Values) override;
 	
 	virtual ~FStabilityOutcomeApplier() override = default;
-	
 private:
-	AMyGameState* GameState;
+	AGameLevelGameState* GameState;
 };

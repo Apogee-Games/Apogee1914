@@ -1,17 +1,20 @@
 ﻿#include "Economics/Managers/GoodManager.h"
 
-void UGoodManager::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
+#include "MyGameInstance.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 
-	GoodDescriptionDataTable
-			= LoadObject<UDataTable>(nullptr,TEXT("/Game/Sources/goods_description"));
-	
+bool UGoodManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
+
+void UGoodManager::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
+	GoodDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->GoodDescriptionDataTable;
 }
 
 FGoodDescription* UGoodManager::GetGoodDescription(const FString& GoodName) const
 {
-	return reinterpret_cast<FGoodDescription*>(
-		GoodDescriptionDataTable->FindRowUnchecked(FName(GoodName))
-		);
+	return reinterpret_cast<FGoodDescription*>(GoodDescriptionDataTable->FindRowUnchecked(FName(GoodName)));
 }

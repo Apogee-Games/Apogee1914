@@ -1,6 +1,8 @@
 
 #include "Maps/Flags/FlagsMap.h"
 
+#include "MyGameInstance.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Maps/Flags/FlagBoxUpdater.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
@@ -8,18 +10,24 @@
 void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	FlagsMapTexture = FTextureUtils::LoadTexture("/Game/maps/flags");
+	Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())->BoxesMapClass);
+	GetGameInstance()->GetSubsystem<UBoxesMap>()->AddBoxObserver(this);
+}
+
+void UFlagsMap::SetScenario(UScenario* Scenario)
+{
+	FlagsMapTexture = Scenario->FlagsMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
 }
 
 void UFlagsMap::UpdateAllBoxes()
 {
-	UpdateBoxes(GetWorld()->GetSubsystem<UBoxesMap>()->GetBoxes());
+	UpdateBoxes(GetGameInstance()->GetSubsystem<UBoxesMap>()->GetBoxes());
 }
 
 FRunnableThread* UFlagsMap::UpdateBox(const TSharedPtr<FProvincesBox>& Box, FColor* FlagsColors, const FColor* CountryFlagColor, const FVector2d& CountryFlagColorSizeVector)
 {
-	const UProvincesMap* ProvincesMap = GetWorld()->GetSubsystem<UProvincesMap>();
+	const UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
 	FRunnable* Runnable = new FFlagBoxUpdater(Box, ProvincesMap, FlagsColors, CountryFlagColor, CountryFlagColorSizeVector);
 	return FRunnableThread::Create(Runnable, *Box->GetCountry()->GetTag().ToString());
 }
@@ -81,11 +89,4 @@ void UFlagsMap::BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box)
 	UnlockAllCountriesFlagColors();
 	FTextureUtils::UnlockPixels(FlagsMapTexture);
 	FlagsMapTexture->UpdateResource();
-}
-
-void UFlagsMap::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UBoxesMap>()->RegisterOnFullInitializationAction(this, &UFlagsMap::UpdateAllBoxes);
-	GetWorld()->GetSubsystem<UBoxesMap>()->AddBoxObserver(this);
 }

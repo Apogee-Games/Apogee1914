@@ -1,16 +1,16 @@
 #pragma once
-#include "Engine/DataTable.h"
+#include "Scenario.h"
 #include "Administration/Instances/Country.h"
 #include "Administration/Instances/Province.h"
 
 #include "CountriesManager.generated.h"
 
-UCLASS()
-class UCountriesManager: public UWorldSubsystem
+UCLASS(Abstract, Blueprintable)
+class UCountriesManager: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	void SetScenario(UScenario* Scenario);
 	
 	const TArray<FName>& GetCountriesTagsList();
 	
@@ -36,13 +36,10 @@ public:
 
 	UCountry* GetCountry(const FName& Tag);
 
-	const TMap<FName, UCountry*> GetCountryMap() const;
-	
+	const TMap<FName, UCountry*>& GetCountryMap() const;
 private:
 	UPROPERTY()
 	TMap<FName, UCountry*> CountryMap;
 	
 	TArray<FName> CountriesTagsList;
-
-	void InitCountries(UDataTable* CountryDescriptionDataTable);
 };

@@ -1,7 +1,7 @@
 #include "Characters/StateMachine/MilitaryControlPawnState.h"
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Maps/Selection/SelectionMap.h"
 #include "Military/Managers/UnitsMover.h"
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
@@ -15,17 +15,19 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::GetInstance()
 	return Instance;
 }
 
-TSharedPtr<FPawnState> FMilitaryControlPawnState::LeftClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMilitaryControlPawnState::LeftClick(APawn* ProvidedPawn)
 {
-	Pawn->UnitSelectionComponent->ClearSelectedUnits();
-	return FMapBrowsingPawnState::GetInstance()->LeftClick(Pawn);
+	Cast<AHumanPlayerPawn>(ProvidedPawn)->UnitSelectionComponent->ClearSelectedUnits();
+	return FMapBrowsingPawnState::GetInstance()->LeftClick(ProvidedPawn);
 }
 
-TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(AHumanPlayerPawn* Pawn)
+TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn)
 {
+	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+	
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 
-	UProvince* To = Pawn->GetWorld()->GetSubsystem<USelectionMap>()->GetProvince(Point);
+	UProvince* To = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>()->GetProvince(Point);
 
 	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
 

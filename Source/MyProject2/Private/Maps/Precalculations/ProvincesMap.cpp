@@ -1,20 +1,16 @@
 
 #include "Maps/Precalculations/ProvincesMap.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/StateManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Utils/TextureUtils.h"
 
-void UProvincesMap::Initialize(FSubsystemCollectionBase& Collection)
+void UProvincesMap::SetScenario(UScenario* Scenario)
 {
-	Super::Initialize(Collection);
-	ProvincesMapTexture = FTextureUtils::LoadTexture("/Game/maps/provinces");
+	ProvincesMapTexture = Scenario->ProvincesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-}
-
-void UProvincesMap::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
 
 	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
 	
@@ -23,11 +19,8 @@ void UProvincesMap::OnWorldBeginPlay(UWorld& InWorld)
 	FindNeighbours();
 
 	CalculateBorders();
-
-	bIsFullyInitialized = true;
-	PerformOnFullInitializationActions();
-
-	//GetWorld()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
+	
+	//GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
 	// TODO: think of order (meaning new controller -> update distances or new owner update distances)
 }
 
@@ -68,17 +61,11 @@ void UProvincesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 	NotifyCountryDistancesUpdateForProvince(Province);*/
 }
 
-void UProvincesMap::Deinitialize()
-{
-	
-	Super::Deinitialize();
-}
-
 void UProvincesMap::CalculateMappers(UTexture2D* ProvinceMap)
 {
 	const FColor* Colors = FTextureUtils::GetPixels(ProvinceMap, LOCK_READ_WRITE);
 
-	const UProvinceManager* ProvinceManager = GetWorld()->GetSubsystem<UProvinceManager>();
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
 	
 	for (int32 i = 0; i < SizeVector.X * SizeVector.Y; ++i)
 	{

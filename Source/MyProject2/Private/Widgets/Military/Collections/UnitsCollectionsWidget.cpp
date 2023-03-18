@@ -13,7 +13,7 @@ void UUnitsCollectionsWidget::NativeConstruct()
 	FUnitDescription UnitDescription = FUnitDescription();
 	UnitDescription.UnitName = TEXT("Test:)");
 	UnitDescription.MilitaryBranch = TEXT("Army");
-	UProvince* Province = GetWorld()->GetSubsystem<UProvinceManager>()->GetProvince(TEXT("CAA001FF"));
+	UProvince* Province = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetProvince(TEXT("CAA001FF"));
 	UUnit* Unit1 = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnit(&UnitDescription, Province, Province->GetOwnerCountry()->GetTag());
 	UUnit* Unit2 = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnit(&UnitDescription, Province, Province->GetOwnerCountry()->GetTag());
 	UUnit* Unit3 = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnit(&UnitDescription, Province, Province->GetOwnerCountry()->GetTag());

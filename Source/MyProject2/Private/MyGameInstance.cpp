@@ -3,9 +3,38 @@
 
 #include "MyGameInstance.h"
 
-const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) const
+#include "GameFramework/PlayerState.h"
+#include "People/Managers/PeopleManager.h"
+
+void UMyGameInstance::OnStart()
+{
+	Super::OnStart();
+	
+	InitializeManagers();
+}
+
+void UMyGameInstance::SetScenario(UScenario* Scenario)
+{
+	if (ActiveScenario == Scenario) return;
+	ActiveScenario = Scenario;
+	InitializeManagers();
+}
+
+const FName& UMyGameInstance::GetRuledCountry(APlayerController* PlayerController)
+{
+	int32 PlayerId = GetTypeHash(PlayerController->GetPlayerState<APlayerState>()->GetUniqueId());
+	return GetRuledCountry(PlayerId);
+}
+
+const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) 
 {
 	return PlayersRuledCountries[PlayerId];
+}
+
+void UMyGameInstance::SetRuledCountry(APlayerController* PlayerController, UCountry* Country)
+{
+	int32 PlayerId = GetTypeHash(PlayerController->GetPlayerState<APlayerState>()->GetUniqueId());
+	SetRuledCountry(PlayerId, Country->GetTag());
 }
 
 void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FName& CountryTag)
@@ -21,4 +50,22 @@ void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FName& Country
 bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
 {
 	return CountriesRuledByPlayers.Contains(CountryTag) && CountriesRuledByPlayers[CountryTag];
+}
+
+void UMyGameInstance::InitializeManagers()
+{
+	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UProvincesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UDistancesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UBoxesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UOutlineMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UObjectMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UFlagsMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UCountriesMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
 }

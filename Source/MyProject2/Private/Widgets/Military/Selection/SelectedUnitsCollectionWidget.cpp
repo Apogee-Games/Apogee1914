@@ -1,7 +1,6 @@
 ﻿
 #include "Widgets/Military/Selection/SelectedUnitsCollectionWidget.h"
-
-#include "Characters/HumanPlayerPawn.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 
 void USelectedUnitsCollectionWidget::NativeConstruct()
 {

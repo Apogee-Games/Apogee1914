@@ -2,14 +2,20 @@
 
 #include "InGameTime.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Military/Managers/UnitsFactory.h"
 
+
+bool UUnitsSupplyController::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 
-	for (auto& [CountryTag, Country]: GetWorld()->GetSubsystem<UCountriesManager>()->GetCountryMap())
+	for (auto& [CountryTag, Country]: GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountryMap())
 	{
 		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(this);
 		Supplier->Init(Country->GetStorage());
@@ -17,7 +23,7 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 	}
 
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, FTimespan(1, 0, 0, 0));
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, SupplyTimeDelta);
 }
 
 void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)

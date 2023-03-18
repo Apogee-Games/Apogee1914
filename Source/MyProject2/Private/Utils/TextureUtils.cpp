@@ -35,9 +35,8 @@ UTexture2D* FTextureUtils::LoadTexture(const FString& Path)
 
 FVector2d FTextureUtils::GetTextureSizeVector(const UTexture2D* Texture)
 {
-	return FVector2d(Texture->GetSizeX(), Texture->GetSizeY());
+	return FVector2d(Texture->GetImportedSize().X, Texture->GetImportedSize().Y);
 }
-
 
 FColor* FTextureUtils::GetPixels(UTexture2D* Texture, uint32 LockFlags)
 {

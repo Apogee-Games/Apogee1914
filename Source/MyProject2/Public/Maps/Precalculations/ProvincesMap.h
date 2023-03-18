@@ -1,19 +1,17 @@
 #pragma once
+#include "Scenario.h"
 #include "Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
-#include "Administration/Managers/CountriesManager.h"
 #include "Interfaces/FOnFullInitialization.h"
 
 #include "ProvincesMap.generated.h"
 
-UCLASS()
-class UProvincesMap: public UWorldSubsystem, public FOnFullInitialization, public IProvinceOwningCountryObserver
+UCLASS(Abstract, Blueprintable)
+class UProvincesMap: public UGameInstanceSubsystem, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
-	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	void SetScenario(UScenario* Scenario);
 	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
-
 	FVector2d GetSizeVector() const;
 
 	const TArray<FColor>& GetColors() const;
@@ -27,10 +25,8 @@ public:
 	const TArray<int32>& GetProvincePositions(const FColor& Color) const;
 
 	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
-	
-	virtual void Deinitialize() override;
-
 private:
+	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
 	
 	TMap<FColor, TArray<int32>> ColorPosition;
