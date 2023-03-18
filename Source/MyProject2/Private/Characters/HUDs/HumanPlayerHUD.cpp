@@ -18,6 +18,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitUnitsCollectionsWidget();
 	InitCommanderListWidget();
 	InitMenuWidget();
+	InitTopPanelWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -74,6 +75,11 @@ UMenuWidget* AHumanPlayerHUD::GetMenuWidget() const
 	return MenuWidget;
 }
 
+UTopPanelWidget* AHumanPlayerHUD::GetTopPanelWidget() const
+{
+	return TopPanelWidget;
+}
+
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
 {
 	const TSharedPtr<FPawnState> PawnState = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetPawnState();
@@ -114,6 +120,10 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	if (MenuWidget)
 	{
 		MenuWidget->RemoveFromParent();
+	}
+	if (TopPanelWidget)
+	{
+		TopPanelWidget->RemoveFromParent();
 	}
 }
 
@@ -262,5 +272,17 @@ void AHumanPlayerHUD::InitMenuWidget()
 	if (MenuWidgetClass)
 	{
 		MenuWidget = CreateWidget<UMenuWidget>(GetOwningPlayerController(), MenuWidgetClass);
+	}
+}
+
+void AHumanPlayerHUD::InitTopPanelWidget()
+{
+	if (TopPanelWidgetClass)
+	{
+		TopPanelWidget = CreateWidget<UTopPanelWidget>(GetOwningPlayerController(), TopPanelWidgetClass);
+		if (TopPanelWidget)
+		{
+			TopPanelWidget->AddToPlayerScreen();
+		}
 	}
 }

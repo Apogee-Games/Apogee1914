@@ -76,7 +76,14 @@ public:
 	void Pause();
 
 	void UnPause();
-	
+
+	void SwitchUnitCreationState();
+
+	void SwitchStorageBrowsingState();
+
+	void SwitchSupplyBrowsingState();
+
+	void SwitchBuildingCreationState();
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
@@ -100,14 +107,6 @@ private:
 	void ShiftPressed();
 	
 	void ShiftReleased();
-
-	void SetUnitCreationState();
-
-	void SetStorageBrowsingState();
-
-	void SetSupplyBrowsingState();
-
-	void SetBuildingCreationState();
 
 	void SwitchPause();
 };

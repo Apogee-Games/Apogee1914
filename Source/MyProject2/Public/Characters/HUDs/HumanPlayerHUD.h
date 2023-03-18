@@ -1,6 +1,7 @@
 #pragma once
 #include "GameFramework/HUD.h"
 #include "Widgets/TimeControllerWidget.h"
+#include "Widgets/TopPanelWidget.h"
 #include "Widgets/Administration/ProvinceDataWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
@@ -46,6 +47,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UMenuWidget> MenuWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UTopPanelWidget> TopPanelWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -68,6 +72,8 @@ public:
 	UCommanderListWidget* GetCommanderListWidget() const;
 
 	UMenuWidget* GetMenuWidget() const;
+
+	UTopPanelWidget* GetTopPanelWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -102,6 +108,9 @@ private:
 
 	UPROPERTY()
 	UMenuWidget* MenuWidget;
+
+	UPROPERTY()
+	UTopPanelWidget* TopPanelWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -125,4 +134,6 @@ private:
 	void InitCommanderListWidget();
 
 	void InitMenuWidget();
+
+	void InitTopPanelWidget();
 };
