@@ -2,6 +2,7 @@
 #include "Administration/Instances/Province.h"
 
 #include "Administration/Managers/CountriesManager.h"
+#include "Administration/Managers/ProvinceManager.h"
 
 UProvince::UProvince()
 {
@@ -54,12 +55,14 @@ UCountry* UProvince::GetCountryController() const
 void UProvince::TakeControl(UCountry* Country)
 {
 	ControllerCountry = Country;
+	Cast<UProvinceManager>(GetOuter())->NotifyProvinceNewControllingCountry(this);
 }
 
 void UProvince::Conquer(UCountry* Country)
 {
 	OwnerCountry = Country;
 	ControllerCountry = Country;
+	//Cast<UProvinceManager>(GetOuter())->NotifyProvinceNewOwningCountry(this);
 }
 
 const FName& UProvince::GetStateId() const

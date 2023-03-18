@@ -4,9 +4,7 @@
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
 #include "Military/Interfaces/Observables/UnitMovementObservable.h"
-
 #include "UnitsMover.generated.h"
-
 
 UCLASS()
 class UUnitsMover: public UWorldSubsystem, public IUnitMovementObservable
@@ -37,6 +35,7 @@ private:
 
 	TMap<UUnit*, TArray<TPair<UProvince*, int32>>> Paths;
 
+	UPROPERTY()
 	TMap<UUnit*, int32> Positions;
 
 	TQueue<UUnit*> UnitsArrived;

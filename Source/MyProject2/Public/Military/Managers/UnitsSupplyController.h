@@ -2,7 +2,6 @@
 #include "Military/Instances/CountryUnitsSupplier.h"
 #include "Military/Interfaces/Observables/UnitSupplyObservable.h"
 #include "Military/Interfaces/Observers/UnitCreationObserver.h"
-
 #include "UnitsSupplyController.generated.h"
 
 
@@ -16,7 +15,7 @@ public:
 	virtual void UnitIsCreated(UUnit* Unit) override;
 
 	void Supply();
-
 private:
-	TMap<UCountry*, FCountryUnitsSupplier> CountrySupplier;
+	UPROPERTY()
+	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;
 };
