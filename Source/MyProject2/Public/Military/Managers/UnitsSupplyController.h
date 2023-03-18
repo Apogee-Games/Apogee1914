@@ -20,7 +20,6 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	FTimespan SupplyTimeDelta = FTimespan(1, 0, 0, 0);
-	
 private:
 	UPROPERTY()
 	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;
