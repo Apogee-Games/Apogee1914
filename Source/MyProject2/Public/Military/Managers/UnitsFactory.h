@@ -23,26 +23,26 @@ class UUnitsFactory : public UWorldSubsystem, public IUnitsCreationObservable, p
 	GENERATED_BODY()
 public:
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+
+	UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province);
 	
-	virtual UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
+	UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
 
-	virtual UUnitsCollection* CreateUnitCollection(EMilitaryBranch MilitaryBranch);
+	UUnitsCollection* CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner);
 
-	virtual UUnitsCollectionGroup* CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch);
+	UUnitsCollectionGroup* CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner);
 	
-	virtual void RemoveUnit(UUnit* Unit);
+	void RemoveUnit(UUnit* Unit);
 
-	virtual void RemoveUnitCollection(UUnitsCollection* UnitsCollection);
+	void RemoveUnitCollection(UUnitsCollection* UnitsCollection);
 
-	virtual void RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup);
+	void RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup);
 private:
-	
 	inline static TMap<FName, TSubclassOf<UUnit>> MilitaryBranchUnitsTypes = {
 		{"Army", UDivision::StaticClass()},
 		{"Navy", USquadron::StaticClass()},
 		{"AirForce", UFlight::StaticClass()}
 	};
-
 };
 
 // TODO: Add remove logic in destructor 

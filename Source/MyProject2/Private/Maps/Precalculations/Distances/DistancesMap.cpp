@@ -23,9 +23,6 @@ void UDistancesMap::SetScenario(UScenario* Scenario)
 	CountriesDistances.SetNum(SizeVector.X * SizeVector.Y);
 
 	CalculateDistances();
-
-	bIsFullyInitialized = true;
-	PerformOnFullInitializationActions();
 }
 
 int32 UDistancesMap::GetProvincesDistance(int32 Position) const

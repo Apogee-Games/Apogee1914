@@ -10,12 +10,11 @@ void UBuilding::Produce()
 	SupplyGoods(ProductCount);
 }
 
-void UBuilding::Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage)
+void UBuilding::Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince)
 {
 	BuildingDescription = ProvidedBuildingDescription;	
 	Labours = 0;
 	Province = ProvidedProvince;
-	Storage = ProvidedStorage;
 }
 
 void UBuilding::Init(const FBuildingInstanceDescription* BuildingInstanceDescription, const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage)
@@ -23,7 +22,6 @@ void UBuilding::Init(const FBuildingInstanceDescription* BuildingInstanceDescrip
 	BuildingDescription = ProvidedBuildingDescription;	
 	Labours = BuildingInstanceDescription->Labours;
 	Province = ProvidedProvince;
-	Storage = ProvidedStorage;
 }
 
 const FBuildingDescription* UBuilding::GetBuildingDescription() const
@@ -57,7 +55,7 @@ int32 UBuilding::GetPossibleProductOutputCount() const
 	
 	for (const auto [Good, Amount] : BuildingDescription->GoodConsumption)
 	{
-		MinProductCount = FMath::Min(MinProductCount, Storage->GetGoodAmount(Good) / Amount);
+		MinProductCount = FMath::Min(MinProductCount, GetStorage()->GetGoodAmount(Good) / Amount);
 	}
 
 	return MinProductCount == INT32_MAX ? 1 : MinProductCount; 
@@ -67,7 +65,7 @@ void UBuilding::DemandGoods(int32 ProductCount)
 {
 	for (const auto [Good, Amount] : BuildingDescription->GoodConsumption)
 	{
-		Storage->Demand(Good, Amount * ProductCount);
+		GetStorage()->Demand(Good, Amount * ProductCount);
 	}
 }
 
@@ -75,6 +73,11 @@ void UBuilding::SupplyGoods(int32 ProductCount)
 {
 	for (const auto [Good, Amount] : BuildingDescription->GoodOutput)
 	{
-		Storage->Supply(Good, Amount * ProductCount);
+		GetStorage()->Supply(Good, Amount * ProductCount);
 	}
+}
+
+inline UStorage* UBuilding::GetStorage() const
+{
+	return CountryController ? CountryController->GetStorage() : StrataController->GetStorage();
 } 

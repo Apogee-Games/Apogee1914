@@ -29,7 +29,7 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(APawn* ProvidedPawn
 
 	UBuildingManager* BuildingManager = Pawn->GetWorld()->GetSubsystem<UBuildingManager>();
 
-	BuildingManager->BuildBuilding(Pawn->GetSelectedBuildingDescription(), Province, Pawn->GetRuledCountry()->GetStorage());
+	BuildingManager->BuildBuilding(Pawn->GetSelectedBuildingDescription(), Province);
 
 	return Instance;
 }

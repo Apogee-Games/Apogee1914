@@ -2,18 +2,19 @@
 #include "Storage.h"
 #include "Economics/Description/BuildingDescription.h"
 #include "Economics/Description/BuildingInstanceDescription.h"
+#include "Interfaces/Ownable.h"
 #include "Building.generated.h"
 
 class UProvince;
 
 UCLASS()
-class UBuilding : public UObject
+class UBuilding : public UObject, public IOwnable
 {
 	GENERATED_BODY()
 public:
 	void Produce();
 
-	void Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage);
+	void Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince);
 	
 	void Init(const FBuildingInstanceDescription* BuildingInstanceDescription, const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage);
 		
@@ -26,7 +27,6 @@ public:
 	UProvince* GetProvince() const;
 	
 	const FName& GetBuildingName() const;
-
 private:
 	const FBuildingDescription* BuildingDescription;
 
@@ -35,12 +35,11 @@ private:
 	UPROPERTY()
 	UProvince* Province;
 
-	UPROPERTY()
-	UStorage* Storage;
-
 	int32 GetPossibleProductOutputCount() const;
 
 	void DemandGoods(int32 ProductCount);
 
 	void SupplyGoods(int32 ProductCount);
+
+	UStorage* GetStorage() const;
 };

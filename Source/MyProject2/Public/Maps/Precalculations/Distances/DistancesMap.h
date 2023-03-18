@@ -6,7 +6,7 @@
 #include "DistancesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UDistancesMap: public UGameInstanceSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
+class UDistancesMap: public UGameInstanceSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
