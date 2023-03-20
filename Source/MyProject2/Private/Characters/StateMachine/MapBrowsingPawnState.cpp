@@ -3,6 +3,7 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Administration/Instances/State.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
+#include "Characters/StateMachine/CountryDiplomacyPawnState.h"
 #include "Maps/Selection/SelectionMap.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
@@ -35,7 +36,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(APawn* ProvidedPawn)
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::RightClick(APawn* ProvidedPawn)
 {
-	return Instance;
+	return FCountryDiplomacyPawnState::GetInstance()->RightClick(ProvidedPawn);
 }
 
 bool FMapBrowsingPawnState::MustWidgetBeVisible(UUserWidget* Widget)
