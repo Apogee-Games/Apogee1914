@@ -25,6 +25,8 @@ public:
 	virtual void UnitIsRemoved(UUnit* Unit) override;
 
 	void Init();
+
+	virtual void Deinitialize() override;
 	
 private:
 	UPROPERTY()

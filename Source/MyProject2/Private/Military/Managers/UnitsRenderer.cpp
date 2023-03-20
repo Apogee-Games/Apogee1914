@@ -48,6 +48,14 @@ void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
 	Actors[Unit->GetPosition()]->RemoveUnit(Unit);
 }
 
+void UUnitsRenderer::Deinitialize()
+{
+	Super::Deinitialize();
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
+	GetWorld()->GetSubsystem<UUnitsMover>()->RemoveUnitMovementObserver(this);
+}
+
 FVector3d UUnitsRenderer::GetWorldPositionFromMapPosition(const FVector2d& Position)
 {
 	return FVector3d(0, Position.X, 1 -  Position.Y) * 200;

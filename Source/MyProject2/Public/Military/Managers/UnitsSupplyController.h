@@ -10,6 +10,9 @@ class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserv
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditDefaultsOnly)
+	FTimespan SupplyTimeDelta = FTimespan(1, 0, 0, 0);
+
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
@@ -17,9 +20,8 @@ public:
 	virtual void UnitIsCreated(UUnit* Unit) override;
 
 	void Supply();
-
-	UPROPERTY(EditDefaultsOnly)
-	FTimespan SupplyTimeDelta = FTimespan(1, 0, 0, 0);
+	
+	virtual void Deinitialize() override;
 	
 private:
 	UPROPERTY()
