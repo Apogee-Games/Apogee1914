@@ -2,9 +2,9 @@
 
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
-void UMenuWidget::NativeConstruct()
+
+void UMenuWidget::Init()
 {
-	Super::NativeConstruct();
 	ResumeButton->OnClicked.AddDynamic(this, &UMenuWidget::OnResumeButtonClick);
 	MainMenuButton->OnClicked.AddDynamic(this, &UMenuWidget::OnMainMenuButtonClick);
 	ExitGameButton->OnClicked.AddDynamic(this, &UMenuWidget::OnExitGameButtonClick);

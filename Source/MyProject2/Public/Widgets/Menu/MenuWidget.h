@@ -23,7 +23,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* ExitGameButton;
 
-	virtual void NativeConstruct() override;
+	void Init();
 private:
 	UFUNCTION()
 	void OnResumeButtonClick();

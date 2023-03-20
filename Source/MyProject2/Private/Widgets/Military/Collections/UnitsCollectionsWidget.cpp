@@ -28,3 +28,10 @@ void UUnitsCollectionsWidget::UnitsCollectionGroupIsCreated(UUnitsCollectionGrou
 	CollectionsGroupsListView->AddItem(UnitsCollectionGroup); 
 }
 
+void UUnitsCollectionsWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionCreationObserver(this);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupCreationObserver(this);
+}
+
