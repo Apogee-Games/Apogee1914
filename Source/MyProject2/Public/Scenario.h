@@ -57,4 +57,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* CountriesMapTexture;
+
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* CountryRelationMapTexture;
 };
