@@ -21,4 +21,8 @@ private:
 	UTexture2D* OutlinesMapTexture;
 	
 	FVector2D SizeVector;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

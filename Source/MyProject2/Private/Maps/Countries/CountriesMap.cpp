@@ -18,9 +18,8 @@ void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 
 void UCountriesMap::SetScenario(UScenario* Scenario)
 {
-	CountriesMapTexture = Scenario->CountriesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
-	UpdateCountriesMapColors(GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
+	Clear();
+	Init(Scenario);
 }
 
 void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const
@@ -64,4 +63,16 @@ FRunnableThread* UCountriesMap::UpdateCountryColor(UProvince* Province, FColor* 
 	const TArray<int32>& Distances = GetGameInstance()->GetSubsystem<UDistancesMap>()->GetCountriesDistances();
 	FCountryMapUpdater* Updater = new FCountryMapUpdater(CountriesColor, PixelsToUpdate, Province, Distances, SizeVector, CrossLineWidth);
 	return FRunnableThread::Create(Updater, *Province->GetName().ToString());	
+}
+
+void UCountriesMap::Clear()
+{
+	CountriesMapTexture = nullptr;
+}
+
+void UCountriesMap::Init(UScenario* Scenario)
+{
+	CountriesMapTexture = Scenario->CountriesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
+	UpdateCountriesMapColors(GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
 }

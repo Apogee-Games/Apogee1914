@@ -39,10 +39,21 @@ void USelectionMap::SelectProvince(const FColor& Color)
 	SelectionMapTexture->UpdateResource();
 }
 
-void USelectionMap::SetScenario(UScenario* Scenario)
+void USelectionMap::Clear()
+{
+	SelectionMapTexture = nullptr;
+}
+
+void USelectionMap::Init(UScenario* Scenario)
 {
 	SelectionMapTexture = Scenario->SelectionMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(SelectionMapTexture);
+}
+
+void USelectionMap::SetScenario(UScenario* Scenario)
+{
+	Clear();
+	Init(Scenario);
 }
 
 UProvince* USelectionMap::SelectProvince(const FVector2d& Point)

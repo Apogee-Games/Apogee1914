@@ -12,8 +12,8 @@
 
 void UOutlineMap::SetScenario(UScenario* Scenario)
 {
-	OutlinesMapTexture = Scenario->OutlinesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
+	Clear();
+	Init(Scenario);
 }
 
 void UOutlineMap::CreateOutline()
@@ -35,4 +35,15 @@ void UOutlineMap::CreateOutline()
 	FTextureUtils::UnlockPixels(OutlinesMapTexture);
 
 	OutlinesMapTexture->UpdateResource();
+}
+
+void UOutlineMap::Clear()
+{
+	OutlinesMapTexture = nullptr;
+}
+
+void UOutlineMap::Init(UScenario* Scenario)
+{
+	OutlinesMapTexture = Scenario->OutlinesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
 }

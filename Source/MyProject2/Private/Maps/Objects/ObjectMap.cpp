@@ -23,12 +23,23 @@ void UObjectMap::CalculateProvinceCenter(const FColor& Color)
 	ProvinceCenters[Color] = ProvinceCenters[Color] / Positions.Num() / SizeVector;
 }
 
-void UObjectMap::SetScenario(UScenario* Scenario)
+void UObjectMap::Clear()
+{
+	ProvinceCenters.Empty();
+}
+
+void UObjectMap::Init(UScenario* Scenario)
 {
 	for (const auto& Province : GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{
 		CalculateProvinceCenter(Province->GetId());
 	}
+}
+
+void UObjectMap::SetScenario(UScenario* Scenario)
+{
+	Clear();
+	Init(Scenario);
 }
 
 FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)

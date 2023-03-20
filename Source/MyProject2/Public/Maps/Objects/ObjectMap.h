@@ -14,4 +14,8 @@ private:
 	TMap<FColor, FVector2d> ProvinceCenters;
 
 	void CalculateProvinceCenter(const FColor& Color);
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

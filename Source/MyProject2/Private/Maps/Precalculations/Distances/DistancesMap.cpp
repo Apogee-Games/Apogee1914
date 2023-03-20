@@ -16,13 +16,8 @@ void UDistancesMap::Initialize(FSubsystemCollectionBase& Collection)
 
 void UDistancesMap::SetScenario(UScenario* Scenario)
 {
-	SizeVector = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetSizeVector();
-
-	ProvincesDistances.SetNum(SizeVector.X * SizeVector.Y);
-	StatesDistances.SetNum(SizeVector.X * SizeVector.Y);
-	CountriesDistances.SetNum(SizeVector.X * SizeVector.Y);
-
-	CalculateDistances();
+	Clear();
+	Init(Scenario);
 }
 
 int32 UDistancesMap::GetProvincesDistance(int32 Position) const
@@ -142,67 +137,20 @@ FRunnableThread* UDistancesMap::GetDistanceCalculator(UObject* Object,
 	return FRunnableThread::Create(DistanceCalculator, Name);
 }
 
-/*
+void UDistancesMap::Init(UScenario* Scenario)
+{
+	SizeVector = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetSizeVector();
 
-FRunnableThread* UProvincesMap::CleanUpCountryDistances(UProvince* Province)
-{
-FDistanceCleaner* DistanceCleaner = new FDistanceCleaner(CountriesDistances, SizeVector, Depth);
-const UCountriesManager* CountriesManager = GetWorld()->GetSubsystem<UCountriesManager>();
+	ProvincesDistances.SetNum(SizeVector.X * SizeVector.Y);
+	StatesDistances.SetNum(SizeVector.X * SizeVector.Y);
+	CountriesDistances.SetNum(SizeVector.X * SizeVector.Y);
 
-DistanceCleaner->AddPossiblePoints(ColorPosition[Province->GetId()]);
-for (const auto& NeighbourColor: Neighbours[Province->GetId()])
-{
-if (CountriesManager->AreProvincesControlledBySameCountry(NeighbourColor, Province->GetId()))
-{
-DistanceCleaner->AddPossiblePoints(ColorPosition[NeighbourColor]);
-}
-		
-for (const int& i: Borders[{Province->GetId(), NeighbourColor}])
-{
-DistanceCleaner->AddStartPoint(i);
-}
+	CalculateDistances();
 }
 
-return FRunnableThread::Create(DistanceCleaner, TEXT("Distances Cleaning"));
-}
-
-FRunnableThread* UProvincesMap::RecalculateCountryDistances(UProvince* Province)
+void UDistancesMap::Clear()
 {
-FDistanceCalculator* DistanceCalculator = new FDistanceCalculator(CountriesDistances, SizeVector, Depth);
-const UCountriesManager* CountriesManager = GetWorld()->GetSubsystem<UCountriesManager>();
-
-for (const auto& NeighbourColor: Neighbours[Province->GetId()])
-{
-if (!CountriesManager->AreProvincesControlledBySameCountry(NeighbourColor, Province->GetId()))
-{
-for (const int& i: Borders[{Province->GetId(), NeighbourColor}])
-{
-DistanceCalculator->AddStartPoint(i);
+	ProvincesDistances.Empty();
+	StatesDistances.Empty();
+	CountriesDistances.Empty();
 }
-}
-}
-    
-return FRunnableThread::Create(DistanceCalculator, TEXT("Distances Update"));
-}
-
-void UProvincesMap::NotifyCountryDistancesUpdateForProvince(UProvince* Province)
-{
-	TArray<UProvince*> Provinces;
-
-	Provinces.Add(Province);
-
-	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
-	
-	for (const auto& NeighbourColor: Neighbours[Province->GetId()]) {
-		Provinces.Add(ProvinceManager->GetProvince(NeighbourColor));
-	}
-	
-	NotifyCountryDistancesUpdate(Provinces);
-}
-
-void UProvincesMap::UpdateCountriesDistances(UProvince* Province)
-{
-	CalculateCountriesDistances()->WaitForCompletion();
-}
-
-*/

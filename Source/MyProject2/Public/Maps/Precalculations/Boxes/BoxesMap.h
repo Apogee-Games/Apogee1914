@@ -48,5 +48,8 @@ private:
 	bool AddProvinceToNeighbourBoxes(UProvince* Province);
 
 	void CreateNewBox(UProvince* Province);
-};
 
+	void Clear();
+
+	void Init(UScenario* Scenario);
+};

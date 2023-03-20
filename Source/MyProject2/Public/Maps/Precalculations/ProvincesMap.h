@@ -46,4 +46,8 @@ private:
 	void CalculateBorders();
 
 	void AddBorder(const FColor& A, const FColor& B, int32 i);
+
+	void Clear();
+	
+	void Init(UScenario* Scenario);
 };

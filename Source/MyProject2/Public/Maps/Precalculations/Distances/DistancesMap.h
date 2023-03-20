@@ -57,4 +57,8 @@ private:
 	}
 
 	FRunnableThread* GetDistanceCalculator(UObject* Object, bool (UObject::*Func)(const FColor&, const FColor&) const, TArray<int32>& Distance, TCHAR* Name);
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };
