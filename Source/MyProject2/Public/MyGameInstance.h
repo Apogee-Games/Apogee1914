@@ -6,6 +6,8 @@
 #include "InGameTime.h"
 #include "Scenario.h"
 #include "Administration/Managers/StateManager.h"
+#include "Characters/HUDs/HumanPlayerHUD.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Economics/Managers/BuildingManager.h"
 #include "Economics/Managers/GoodManager.h"
 #include "Economics/Managers/StrataManager.h"
@@ -22,6 +24,7 @@
 #include "Military/Managers/UnitsMover.h"
 #include "Military/Managers/UnitsRenderer.h"
 #include "Military/Managers/UnitsSupplyController.h"
+#include "Particles/ParticleSystem.h"
 #include "MyGameInstance.generated.h"
 
 /**

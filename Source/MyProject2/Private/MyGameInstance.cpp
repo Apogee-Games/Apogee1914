@@ -3,7 +3,9 @@
 
 #include "MyGameInstance.h"
 
+#include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
+#include "Maps/Diplomacy/CountryRelationMap.h"
 #include "People/Managers/PeopleManager.h"
 
 void UMyGameInstance::OnStart()
@@ -55,6 +57,9 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<URelationshipsManager>()->SetScenario(ActiveScenario);
+
 	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);
 
@@ -66,4 +71,6 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UFlagsMap>()->SetScenario(ActiveScenario);
 	GetSubsystem<UCountriesMap>()->SetScenario(ActiveScenario);
 	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UCountryRelationMap>()->SetScenario(ActiveScenario);
 }
