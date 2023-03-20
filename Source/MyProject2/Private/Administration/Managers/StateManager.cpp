@@ -8,14 +8,8 @@
 
 void UStateManager::SetScenario(UScenario* Scenario)
 {
-	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
-
-	for (const auto& [Key, Value]: Scenario->StateDescriptionDataTable->GetRowMap())
-	{
-		UState* State = NewObject<UState>(this);
-		State->Init(reinterpret_cast<FStateDescription*>(Value), ProvinceManager);
-		StateMap.Add(Key, State);
-	}
+	Clear();
+	Init(Scenario);
 }
 
 UState* UStateManager::GetState(const FName& StateId) const
@@ -47,4 +41,25 @@ bool UStateManager::AreProvincesNotInTheSameState(const FColor& ProvinceAColor, 
 bool UStateManager::AreProvincesNotInTheSameState(const UProvince* ProvinceA, const UProvince* ProvinceB) const
 {
 	return ProvinceA && ProvinceB && ProvinceA->GetStateId() != ProvinceB->GetStateId();
+}
+
+void UStateManager::Clear()
+{
+	for (const auto& [Name, State]: StateMap)
+	{
+		State->MarkAsGarbage();
+	}
+	StateMap.Empty();
+}
+
+void UStateManager::Init(UScenario* Scenario)
+{
+	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+
+	for (const auto& [Key, Value]: Scenario->StateDescriptionDataTable->GetRowMap())
+	{
+		UState* State = NewObject<UState>(this);
+		State->Init(reinterpret_cast<FStateDescription*>(Value), ProvinceManager);
+		StateMap.Add(Key, State);
+	}
 }

@@ -24,4 +24,8 @@ private:
 
 	UPROPERTY()
 	TArray<UProvince*> ProvincesArray;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };
