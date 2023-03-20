@@ -3,6 +3,9 @@
 #include "Widgets/TimeControllerWidget.h"
 #include "Widgets/TopPanelWidget.h"
 #include "Widgets/Administration/ProvinceDataWidget.h"
+#include "Widgets/Diplomacy/CountryDiplomacyWidget.h"
+#include "Widgets/Diplomacy/Wars/Description/WarDescriptionWidget.h"
+#include "Widgets/Diplomacy/Wars/List//WarsListWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Menu/MenuWidget.h"
@@ -50,6 +53,15 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UTopPanelWidget> TopPanelWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCountryDiplomacyWidget> CountryDiplomacyWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UWarsListWidget> WarsListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UWarDescriptionWidget> WarDescriptionWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -74,6 +86,12 @@ public:
 	UMenuWidget* GetMenuWidget() const;
 
 	UTopPanelWidget* GetTopPanelWidget() const;
+
+	UCountryDiplomacyWidget* GetCountryDiplomacyWidget() const;
+
+	UWarsListWidget* GetWarsListWidget() const;
+	
+	UWarDescriptionWidget* GetWarDescriptionWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -111,6 +129,15 @@ private:
 
 	UPROPERTY()
 	UTopPanelWidget* TopPanelWidget;
+
+	UPROPERTY()
+	UCountryDiplomacyWidget* CountryDiplomacyWidget;
+
+	UPROPERTY()
+	UWarsListWidget* WarsListWidget;
+
+	UPROPERTY()
+	UWarDescriptionWidget* WarDescriptionWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -136,4 +163,10 @@ private:
 	void InitMenuWidget();
 
 	void InitTopPanelWidget();
+
+	void InitCountryDiplomacyWidget();
+
+	void InitWarsListWidget();
+
+	void InitWarDescriptionWidget();
 };
