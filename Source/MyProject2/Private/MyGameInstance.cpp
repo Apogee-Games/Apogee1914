@@ -73,4 +73,6 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UCountryRelationMap>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
 }

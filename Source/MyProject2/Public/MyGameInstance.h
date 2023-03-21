@@ -13,6 +13,7 @@
 #include "Economics/Managers/StrataManager.h"
 #include "Engine/GameInstance.h"
 #include "Events/EventInstancesController.h"
+#include "Maps/MapsSwitcher.h"
 #include "Maps/Countries/CountriesMap.h"
 #include "Maps/Flags/FlagsMap.h"
 #include "Maps/Objects/ObjectMap.h"
@@ -111,6 +112,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<USelectionMap> SelectionMapClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UMapsSwitcher> MapsSwitcherClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UUnitsMover> UnitsMoverClass;
