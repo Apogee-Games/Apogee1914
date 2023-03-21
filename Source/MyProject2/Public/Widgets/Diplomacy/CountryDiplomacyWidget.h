@@ -33,6 +33,12 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* CreateAllianceButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* AskToJoinTheirWarButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* AskThemToJoinWarButton;
 	
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* NonAggressionPactCountriesListView;
@@ -78,4 +84,10 @@ private:
 
 	UFUNCTION()
 	void OnCreateAllianceButtonClick();
+
+	UFUNCTION()
+	void OnAskToJoinTheirWarButtonClick();
+
+	UFUNCTION()
+	void OnAskThemToJoinWarButtonClick();
 };

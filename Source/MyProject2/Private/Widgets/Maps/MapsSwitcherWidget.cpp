@@ -8,6 +8,7 @@ void UMapsSwitcherWidget::NativeConstruct()
 	FlagsMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnFlagsMapButtonClick);
 	CountriesMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnCountriesMapButtonClick);
 	RelationsMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnRelationsMapButtonClick);
+	AlliancesMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnAlliancesMapButton);
 	SelectionMapCheckBox->OnCheckStateChanged.AddDynamic(this, &UMapsSwitcherWidget::OnSelectionMapCheckBoxCheck);
 	ProvinceOutlineMapCheckBox->OnCheckStateChanged.AddDynamic(this, &UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck);
 }
@@ -25,6 +26,11 @@ void UMapsSwitcherWidget::OnCountriesMapButtonClick()
 void UMapsSwitcherWidget::OnRelationsMapButtonClick()
 {
 	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SelectRelationMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
+}
+
+void UMapsSwitcherWidget::OnAlliancesMapButton()
+{
+	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SetAllianceMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
 }
 
 void UMapsSwitcherWidget::OnSelectionMapCheckBoxCheck(bool Value)

@@ -3,6 +3,8 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/AllianceCreationPawnState.h"
+#include "Characters/StateMachine/JoinOurWarPawnState.h"
+#include "Characters/StateMachine/JoinTheirWarPawnState.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 
 void UCountryDiplomacyWidget::Init()
@@ -17,7 +19,9 @@ void UCountryDiplomacyWidget::Init()
 	CreateDefencivePactButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateDefencivePactButtonClick);
 	CreateAllianceWithAnotherCountryButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateAllianceWithAnotherButtonClick);
 	CreateAllianceButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateAllianceButtonClick);
-
+	AskThemToJoinWarButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnAskThemToJoinWarButtonClick);
+	AskToJoinTheirWarButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnAskToJoinTheirWarButtonClick);
+	
 	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 }
 
@@ -37,6 +41,17 @@ void UCountryDiplomacyWidget::RefreshData()
 		DeclareWarButton->SetIsEnabled(RelationshipsManager->CanDeclareWar(OwnerCountry, Country));
 		CreateDefencivePactButton->SetIsEnabled(RelationshipsManager->CanCreateDefencivePact(OwnerCountry, Country));
 		CreateAllianceWithAnotherCountryButton->SetIsEnabled(RelationshipsManager->CanCreateAlliance(OwnerCountry, Country));
+
+		if (RelationshipsManager->CanCountryJoinWar(Country, OwnerCountry))
+		{
+			AskThemToJoinWarButton->SetIsEnabled(RelationshipsManager->IsTherePossibleWarToJoin(Country, OwnerCountry));
+			AskToJoinTheirWarButton->SetIsEnabled(RelationshipsManager->IsTherePossibleWarToJoin(OwnerCountry, Country));
+		} else
+		{
+			AskThemToJoinWarButton->SetIsEnabled(false);
+			AskToJoinTheirWarButton->SetIsEnabled(false);
+		}
+		
 		WidgetSwitcher->SetActiveWidgetIndex(0);
 	} else
 	{
@@ -82,4 +97,16 @@ void UCountryDiplomacyWidget::OnCreateAllianceWithAnotherButtonClick()
 void UCountryDiplomacyWidget::OnCreateAllianceButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FAllianceCreationPawnState::GetInstance());
+}
+
+void UCountryDiplomacyWidget::OnAskToJoinTheirWarButtonClick()
+{
+	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetTheirWarsListWidget()->SetCountry(Country);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FJoinTheirWarPawnState::GetInstance());
+}
+
+void UCountryDiplomacyWidget::OnAskThemToJoinWarButtonClick()
+{
+	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetOurWarsListWidget()->SetCountry(Country);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FJoinOurWarPawnState::GetInstance());
 }
