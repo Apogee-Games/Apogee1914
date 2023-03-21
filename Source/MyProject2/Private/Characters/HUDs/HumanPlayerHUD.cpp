@@ -23,6 +23,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitWarsListWidget();
 	InitWarDescriptionWidget();
 	InitMapsSwitcher();
+	InitAllianceCreationWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -97,6 +98,11 @@ UWarsListWidget* AHumanPlayerHUD::GetWarsListWidget() const
 UWarDescriptionWidget* AHumanPlayerHUD::GetWarDescriptionWidget() const
 {
 	return WarDescriptionWidget;
+}
+
+UAllianceCreationWidget* AHumanPlayerHUD::GetAllianceCreationWidget() const
+{
+	return AllianceCreationWidget;
 }
 
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
@@ -363,6 +369,18 @@ void AHumanPlayerHUD::InitMapsSwitcher()
 		if (MapsSwitcherWidget)
 		{
 			MapsSwitcherWidget->AddToPlayerScreen();
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitAllianceCreationWidget()
+{
+	if (AllianceCreationWidgetClass)
+	{
+		AllianceCreationWidget = CreateWidget<UAllianceCreationWidget>(GetOwningPlayerController(), AllianceCreationWidgetClass);
+		if (AllianceCreationWidget)
+		{
+			Widgets.Add(AllianceCreationWidget);
 		}
 	}
 }

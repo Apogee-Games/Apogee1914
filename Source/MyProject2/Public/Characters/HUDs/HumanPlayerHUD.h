@@ -15,6 +15,7 @@
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
+#include "Widgets/Diplomacy/Alliance/Creation/AllianceCreationWidget.h"
 #include "HumanPlayerHUD.generated.h"
 
 UCLASS()
@@ -66,6 +67,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UMapsSwitcherWidget> MapsSwitcherWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAllianceCreationWidget> AllianceCreationWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -96,6 +100,8 @@ public:
 	UWarsListWidget* GetWarsListWidget() const;
 	
 	UWarDescriptionWidget* GetWarDescriptionWidget() const;
+
+	UAllianceCreationWidget* GetAllianceCreationWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -145,6 +151,9 @@ private:
 
 	UPROPERTY()
 	UMapsSwitcherWidget* MapsSwitcherWidget;
+
+	UPROPERTY()
+	UAllianceCreationWidget* AllianceCreationWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -178,4 +187,6 @@ private:
 	void InitWarDescriptionWidget();
 
 	void InitMapsSwitcher();
+
+	void InitAllianceCreationWidget();
 };
