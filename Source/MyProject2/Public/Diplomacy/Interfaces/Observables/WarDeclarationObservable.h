@@ -10,8 +10,6 @@ public:
 	bool AddWarDeclarationObserver(IWarDeclarationObserver* Observer);
 	
 	bool RemoveWarDeclarationObserver(IWarDeclarationObserver* Observer);
-
-	void ClearObservers();
 private:
 	TArray<IWarDeclarationObserver*> Observers;
 };
