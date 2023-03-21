@@ -1,6 +1,8 @@
 ﻿#include "Widgets/Diplomacy/CountryDiplomacyWidget.h"
 
+#include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Characters/StateMachine/AllianceCreationPawnState.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 
 void UCountryDiplomacyWidget::Init()
@@ -12,7 +14,9 @@ void UCountryDiplomacyWidget::Init()
 	
 	CreateNonAggressionPactButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateNonAggressionPactButtonClick);
 	DeclareWarButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnDeclareWarButtonClick);
-	CreateDefencivePactButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateDefencivePactButton);
+	CreateDefencivePactButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateDefencivePactButtonClick);
+	CreateAllianceWithAnotherCountryButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateAllianceWithAnotherButtonClick);
+	CreateAllianceButton->OnClicked.AddDynamic(this, &UCountryDiplomacyWidget::OnCreateAllianceButtonClick);
 
 	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 }
@@ -32,7 +36,7 @@ void UCountryDiplomacyWidget::RefreshData()
 		CreateNonAggressionPactButton->SetIsEnabled(RelationshipsManager->CanCreateNonAggressionPact(OwnerCountry, Country));
 		DeclareWarButton->SetIsEnabled(RelationshipsManager->CanDeclareWar(OwnerCountry, Country));
 		CreateDefencivePactButton->SetIsEnabled(RelationshipsManager->CanCreateDefencivePact(OwnerCountry, Country));
-		CreateAllianceButton->SetIsEnabled(RelationshipsManager->CanCreateAlliance(OwnerCountry, Country));
+		CreateAllianceWithAnotherCountryButton->SetIsEnabled(RelationshipsManager->CanCreateAlliance(OwnerCountry, Country));
 		WidgetSwitcher->SetActiveWidgetIndex(0);
 	} else
 	{
@@ -64,7 +68,18 @@ void UCountryDiplomacyWidget::OnDeclareWarButtonClick()
 	GetGameInstance()->GetSubsystem<URelationshipsManager>()->DeclareWar(OwnerCountry, Country);
 }
 
-void UCountryDiplomacyWidget::OnCreateDefencivePactButton()
+void UCountryDiplomacyWidget::OnCreateDefencivePactButtonClick()
 {
 	GetGameInstance()->GetSubsystem<URelationshipsManager>()->CreateDefencivePact(OwnerCountry, Country);
+}
+
+void UCountryDiplomacyWidget::OnCreateAllianceWithAnotherButtonClick()
+{
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FAllianceCreationPawnState::GetInstance());
+	GetOwningPlayer<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetAllianceCreationWidget()->AddToBeInvitedCountry(Country);
+}
+
+void UCountryDiplomacyWidget::OnCreateAllianceButtonClick()
+{
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FAllianceCreationPawnState::GetInstance());
 }

@@ -29,8 +29,11 @@ public:
 	UButton* CreateDefencivePactButton;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* CreateAllianceButton;
+	UButton* CreateAllianceWithAnotherCountryButton;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* CreateAllianceButton;
+	
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* NonAggressionPactCountriesListView;
 
@@ -68,5 +71,11 @@ private:
 	void OnDeclareWarButtonClick();
 
 	UFUNCTION()
-	void OnCreateDefencivePactButton();
+	void OnCreateDefencivePactButtonClick();
+
+	UFUNCTION()
+	void OnCreateAllianceWithAnotherButtonClick();
+
+	UFUNCTION()
+	void OnCreateAllianceButtonClick();
 };
