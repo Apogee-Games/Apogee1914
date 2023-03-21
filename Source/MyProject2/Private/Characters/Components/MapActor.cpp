@@ -16,6 +16,16 @@ AMapActor::AMapActor()
 	MapsStaticMeshComponent->SetupAttachment(RootComponent);
 }
 
+void AMapActor::BeginPlay()
+{
+	Super::BeginPlay();
+	TerrainMapMaterialInstanceDynamic = UMaterialInstanceDynamic::Create(TerrainMapMaterialInterface, this);
+	TerrainStaticMeshComponent->SetMaterial(0, TerrainMapMaterialInstanceDynamic);
+
+	MapsMaterialInstanceDynamic = UMaterialInstanceDynamic::Create(MapsMaterialInterface, this);
+	MapsStaticMeshComponent->SetMaterial(0, MapsMaterialInstanceDynamic);
+}
+
 FVector3d AMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght)
 {
 	return FVector3d(0, 0, 0);
