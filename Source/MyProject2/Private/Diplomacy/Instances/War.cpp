@@ -8,7 +8,7 @@ void UWar::Init(UCountry* ProvidedAttackerLeader, UCountry* ProvidedDefenderLead
 	AttackerLeader = ProvidedAttackerLeader;
 	DefenderLeader = ProvidedDefenderLeader;
 
-	Cast<URelationshipsManager>(GetOuter())->SetWarRelation(AttackerLeader, DefenderLeader);
+	Cast<URelationshipsManager>(GetOuter())->SetRelation(AttackerLeader, DefenderLeader, War);
 	
 	Attackers.Add(ProvidedAttackerLeader);
 	Defenders.Add(DefenderLeader);
@@ -22,7 +22,7 @@ void UWar::AddAttacker(UCountry* Country)
 
 	for (const auto& Defender: Defenders)
 	{
-		RelationshipsManager->SetWarRelation(Country, Defender);
+		RelationshipsManager->SetRelation(Country, Defender, War);
 	}
 }
 
@@ -34,7 +34,7 @@ void UWar::AddDefender(UCountry* Country)
 
 	for (const auto& Attacker: Attackers)
 	{
-		RelationshipsManager->SetWarRelation(Attacker, Country);
+		RelationshipsManager->SetRelation(Attacker, Country, War);
 	}
 }
 
@@ -61,4 +61,15 @@ const TArray<UCountry*>& UWar::GetDefenders() const
 bool UWar::CountryParticipates(UCountry* Country) const
 {
 	return Attackers.Contains(Country) || Defenders.Contains(Country);
+}
+
+void UWar::AddCountryOnSide(UCountry* Country, UCountry* OnSideOfCountry)
+{
+	if (Attackers.Contains(OnSideOfCountry))
+	{
+		AddAttacker(Country);
+	} else
+	{
+		AddDefender(Country);
+	}
 }

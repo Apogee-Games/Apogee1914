@@ -22,6 +22,8 @@ public:
 	const TArray<UCountry*>& GetDefenders() const;
 
 	bool CountryParticipates(UCountry* Country) const;
+
+	void AddCountryOnSide(UCountry* Country, UCountry* OnSideOfCountry);
 private:
 	UPROPERTY()
 	UCountry* AttackerLeader;
