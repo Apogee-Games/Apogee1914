@@ -8,6 +8,7 @@
 #include "Widgets/Diplomacy/Wars/List//WarsListWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
+#include "Widgets/Maps/MapsSwitcherWidget.h"
 #include "Widgets/Menu/MenuWidget.h"
 #include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 #include "Widgets/Military/Commanders/CommanderListWidget.h"
@@ -62,6 +63,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UWarDescriptionWidget> WarDescriptionWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMapsSwitcherWidget> MapsSwitcherWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -138,6 +142,9 @@ private:
 
 	UPROPERTY()
 	UWarDescriptionWidget* WarDescriptionWidget;
+
+	UPROPERTY()
+	UMapsSwitcherWidget* MapsSwitcherWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -169,4 +176,6 @@ private:
 	void InitWarsListWidget();
 
 	void InitWarDescriptionWidget();
+
+	void InitMapsSwitcher();
 };

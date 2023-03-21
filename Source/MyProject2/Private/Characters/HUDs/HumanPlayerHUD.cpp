@@ -22,6 +22,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitCountryDiplomacyWidget();
 	InitWarsListWidget();
 	InitWarDescriptionWidget();
+	InitMapsSwitcher();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -146,6 +147,10 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	if (WarsListWidget)
 	{
 		WarsListWidget->RemoveFromParent();
+	}
+	if (MapsSwitcherWidget)
+	{
+		MapsSwitcherWidget->RemoveFromParent();
 	}
 }
 
@@ -346,6 +351,18 @@ void AHumanPlayerHUD::InitWarDescriptionWidget()
 		if (WarDescriptionWidget)
 		{
 			Widgets.Add(WarDescriptionWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitMapsSwitcher()
+{
+	if (MapsSwitcherWidgetClass)
+	{
+		MapsSwitcherWidget = CreateWidget<UMapsSwitcherWidget>(GetOwningPlayerController(), MapsSwitcherWidgetClass);
+		if (MapsSwitcherWidget)
+		{
+			MapsSwitcherWidget->AddToPlayerScreen();
 		}
 	}
 }
