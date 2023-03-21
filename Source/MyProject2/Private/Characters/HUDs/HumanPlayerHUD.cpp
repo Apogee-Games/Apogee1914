@@ -24,6 +24,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitWarDescriptionWidget();
 	InitMapsSwitcher();
 	InitAllianceCreationWidget();
+	InitWarsLists();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -103,6 +104,16 @@ UWarDescriptionWidget* AHumanPlayerHUD::GetWarDescriptionWidget() const
 UAllianceCreationWidget* AHumanPlayerHUD::GetAllianceCreationWidget() const
 {
 	return AllianceCreationWidget;
+}
+
+UOurWarsListWidget* AHumanPlayerHUD::GetOurWarsListWidget() const
+{
+	return OurWarsListWidget;
+}
+
+UTheirWarsListWidget* AHumanPlayerHUD::GetTheirWarsListWidget() const
+{
+	return TheirWarsListWidget;
 }
 
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
@@ -381,6 +392,26 @@ void AHumanPlayerHUD::InitAllianceCreationWidget()
 		if (AllianceCreationWidget)
 		{
 			Widgets.Add(AllianceCreationWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitWarsLists()
+{
+	if (OurWarsListWidgetClass)
+	{
+		OurWarsListWidget = CreateWidget<UOurWarsListWidget>(GetOwningPlayerController(), OurWarsListWidgetClass);
+		if (OurWarsListWidget)
+		{
+			Widgets.Add(OurWarsListWidget);
+		}
+	}
+	if (TheirWarsListWidgetClass)
+	{
+		TheirWarsListWidget = CreateWidget<UTheirWarsListWidget>(GetOwningPlayerController(), TheirWarsListWidgetClass);
+		if (TheirWarsListWidget)
+		{
+			Widgets.Add(TheirWarsListWidget);
 		}
 	}
 }
