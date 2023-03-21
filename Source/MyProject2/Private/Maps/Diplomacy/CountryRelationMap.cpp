@@ -1,11 +1,18 @@
-﻿
-#include "Maps/Diplomacy/CountryRelationMap.h"
-
+﻿#include "Maps/Diplomacy/CountryRelationMap.h"
+#include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
+
+void UCountryRelationMap::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())->RelationshipsManagerClass);
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->AddWarDeclarationObserver(this);
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->AddAllianceCreationObserver(this);
+}
 
 void UCountryRelationMap::SetScenario(UScenario* Scenario)
 {
@@ -41,6 +48,16 @@ void UCountryRelationMap::UpdateMap()
 	CountryRelationMap->UpdateResource();
 }
 
+void UCountryRelationMap::WarWasDeclared(UWar* War)
+{
+	UpdateMap();
+}
+
+void UCountryRelationMap::AllianceWasCreated(UAlliance* Alliance)
+{
+	UpdateMap();
+}
+
 void UCountryRelationMap::Clear()
 {
 	CountryRelationMap = nullptr;
@@ -50,5 +67,4 @@ void UCountryRelationMap::Init(UScenario* Scenario)
 {
 	CountryRelationMap = Scenario->CountryRelationMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountryRelationMap);
-	UpdateMap();
 }

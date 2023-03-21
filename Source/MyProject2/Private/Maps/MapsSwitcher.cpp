@@ -5,6 +5,12 @@ void UMapsSwitcher::SetScenario(UScenario* ProvidedScenario)
 	Scenario = ProvidedScenario;
 }
 
+void UMapsSwitcher::SetAllianceMap(AHumanPlayerPawn* Pawn)
+{
+	UMaterialInstanceDynamic* MapsMaterial = Pawn->MapActor->MapsMaterialInstanceDynamic;
+	MapsMaterial->SetTextureParameterValue(TEXT("Front"), Scenario->AlliancesMapTexture);
+}
+
 void UMapsSwitcher::SelectFlagsMap(AHumanPlayerPawn* Pawn)
 {
 	UMaterialInstanceDynamic* MapsMaterial = Pawn->MapActor->MapsMaterialInstanceDynamic;
