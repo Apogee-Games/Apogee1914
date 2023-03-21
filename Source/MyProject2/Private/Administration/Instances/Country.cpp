@@ -65,6 +65,16 @@ TArray<UStorage*> UCountry::GetStorages() const
 	return {Storage, LowerStrata->GetStorage(), MiddleStrata->GetStorage(), UpperStrata->GetStorage()};
 }
 
+void UCountry::SetAlliance(UAlliance* ProvidedAlliance)
+{
+	Alliance = ProvidedAlliance;
+}
+
+UAlliance* UCountry::GetAlliance() const
+{
+	return Alliance;
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>();

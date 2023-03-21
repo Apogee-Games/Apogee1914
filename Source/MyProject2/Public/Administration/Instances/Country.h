@@ -6,11 +6,11 @@
 
 #include "Country.generated.h"
 
+class UAlliance;
 UCLASS()
 class UCountry: public UObject
 {
 	GENERATED_BODY()
-	
 public:
 	void Init(FCountryDescription* CountryDescription);
 
@@ -29,6 +29,10 @@ public:
 	UPerson* GetRuler() const;
 
 	TArray<UStorage*> GetStorages() const;
+
+	void SetAlliance(UAlliance* ProvidedAlliance);
+
+	UAlliance* GetAlliance() const;
 private:
 	FName Name;
 
@@ -62,6 +66,9 @@ private:
 	UPROPERTY()
 	UPerson* Ruler;
 
+	UPROPERTY()
+	UAlliance* Alliance;
+	
 	void InitStrata();
 
 	void LoadFlag();
