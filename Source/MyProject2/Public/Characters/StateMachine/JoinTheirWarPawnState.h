@@ -1,7 +1,7 @@
-#pragma once
-#include "PawnState.h"
+﻿#pragma once
+#include "Characters/StateMachine/PawnState.h"
 
-class FMapBrowsingPawnState: public FPawnState
+class FJoinTheirWarPawnState: public FPawnState
 {
 public:
 	static TSharedPtr<FPawnState> GetInstance();
@@ -14,7 +14,7 @@ public:
 	
 	virtual bool CanWidgetBeVisible(UUserWidget* Widget) override;
 private:
-	FMapBrowsingPawnState();
+	FJoinTheirWarPawnState();
 	
-	inline static TSharedPtr<FMapBrowsingPawnState> Instance;
+	inline static TSharedPtr<FJoinTheirWarPawnState> Instance;
 };
