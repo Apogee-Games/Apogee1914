@@ -20,6 +20,9 @@ public:
 	UButton* RelationsMapButton;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* AlliancesMapButton;
+	
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UCheckBox* SelectionMapCheckBox;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
@@ -36,6 +39,9 @@ private:
 
 	UFUNCTION()
 	void OnRelationsMapButtonClick();
+
+	UFUNCTION()
+	void OnAlliancesMapButton();
 
 	UFUNCTION()
 	void OnSelectionMapCheckBoxCheck(bool Value);

@@ -17,6 +17,8 @@ public:
 	
 	void SetScenario(UScenario* ProvidedScenario);
 
+	void SetAllianceMap(AHumanPlayerPawn* Pawn);
+	
 	void SelectFlagsMap(AHumanPlayerPawn* Pawn);
 
 	void SelectCountriesMap(AHumanPlayerPawn* Pawn);
