@@ -46,4 +46,5 @@ void UOutlineMap::Init(UScenario* Scenario)
 {
 	OutlinesMapTexture = Scenario->OutlinesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(OutlinesMapTexture);
+	CreateOutline();
 }
