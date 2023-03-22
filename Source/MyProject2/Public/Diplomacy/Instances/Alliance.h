@@ -17,6 +17,8 @@ public:
 	const FText& GetName() const;
 
 	FColor GetColor() const;
+
+	bool IsCountryMember(UCountry* Country) const;
 private:
 	FText AllianceName;
 

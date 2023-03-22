@@ -44,3 +44,8 @@ FColor UAlliance::GetColor() const
 {
 	return AllianceLeader->GetColor();
 }
+
+bool UAlliance::IsCountryMember(UCountry* Country) const
+{
+	return Members.Contains(Country);
+}
