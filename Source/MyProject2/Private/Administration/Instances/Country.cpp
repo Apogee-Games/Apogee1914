@@ -75,6 +75,11 @@ UAlliance* UCountry::GetAlliance() const
 	return Alliance;
 }
 
+bool UCountry::IsInAlliance() const
+{
+	return Alliance != nullptr;
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>();

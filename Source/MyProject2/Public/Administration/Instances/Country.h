@@ -33,6 +33,8 @@ public:
 	void SetAlliance(UAlliance* ProvidedAlliance);
 
 	UAlliance* GetAlliance() const;
+
+	bool IsInAlliance() const;
 private:
 	FName Name;
 
