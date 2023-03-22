@@ -1,5 +1,4 @@
-﻿
-#include "Widgets/Diplomacy/CountryFlagWidget.h"
+﻿#include "Widgets/Diplomacy/Menu/CountryFlagWidget.h"
 
 void UCountryFlagWidget::SetCountry(UObject* ProvidedCountry)
 {
