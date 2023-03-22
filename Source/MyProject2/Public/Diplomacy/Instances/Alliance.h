@@ -1,13 +1,15 @@
 ﻿#pragma once
-#include "Administration/Instances/Country.h"
-
 #include "Alliance.generated.h"
+
+class UCountry;
 
 UCLASS()
 class UAlliance: public UObject
 {
 	GENERATED_BODY()
 public:
+	void Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName, const TArray<UCountry*>& InvitedCountries);
+
 	void Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName);
 
 	void AddMember(UCountry* Country);
@@ -19,6 +21,14 @@ public:
 	FColor GetColor() const;
 
 	bool IsCountryMember(UCountry* Country) const;
+
+	UCountry* GetLeader() const;
+
+	bool IsCountryLeader(UCountry* Country) const;
+
+	void Dissolve();
+
+	int Size() const;
 private:
 	FText AllianceName;
 

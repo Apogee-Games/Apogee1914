@@ -28,7 +28,6 @@ void UCountryRelationMap::UpdateMap()
 
 	const TArray<UProvince*>& Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces(); 
 	UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
-	URelationshipsManager* RelationshipsManager = GetGameInstance()->GetSubsystem<URelationshipsManager>();
 
 	UCountry* Germany = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("GER");
 	
@@ -36,7 +35,7 @@ void UCountryRelationMap::UpdateMap()
 	{
 		// TODO: Add for each country :)
 		
-		FColor Color = ColorsMapping[RelationshipsManager->GetRelation(Germany, Province->GetCountryController())];
+		FColor Color = ColorsMapping[Germany->GetRelation(Province->GetCountryController())];
 		for (const int32 Position: ProvincesMap->GetProvincePositions(Province->GetId()))
 		{
 			Colors[Position] = Color;

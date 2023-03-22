@@ -391,6 +391,7 @@ void AHumanPlayerHUD::InitAllianceCreationWidget()
 		AllianceCreationWidget = CreateWidget<UAllianceCreationWidget>(GetOwningPlayerController(), AllianceCreationWidgetClass);
 		if (AllianceCreationWidget)
 		{
+			AllianceCreationWidget->Init();
 			Widgets.Add(AllianceCreationWidget);
 		}
 	}

@@ -1,40 +1,58 @@
 ﻿#include "Diplomacy/Instances/War.h"
-
-#include "MyGameInstance.h"
-#include "Diplomacy/Managers/RelationshipsManager.h"
+#include "Administration/Instances/Country.h"
 
 void UWar::Init(UCountry* ProvidedAttackerLeader, UCountry* ProvidedDefenderLeader)
 {
 	AttackerLeader = ProvidedAttackerLeader;
 	DefenderLeader = ProvidedDefenderLeader;
-
-	Cast<URelationshipsManager>(GetOuter())->SetRelation(AttackerLeader, DefenderLeader, War);
 	
+	AttackerLeader->SetRelation(DefenderLeader, War);
+	DefenderLeader->SetRelation(AttackerLeader, War);
+
+	AttackerLeader->AddWar(this);
+	DefenderLeader->AddWar(this);
+
 	Attackers.Add(ProvidedAttackerLeader);
 	Defenders.Add(DefenderLeader);
+	
+	for (const auto& [Country, Relation]: DefenderLeader->GetRelations())
+	{
+		if (Country->MustHelpInDefenciveWar(DefenderLeader))
+		{
+			AddDefender(Country);
+		}
+	}
+
+	for (const auto& [Country, Relation]: AttackerLeader->GetRelations())
+	{
+		if (Country->MustHelpInAggressiveWar(AttackerLeader))
+		{
+			AddAttacker(Country);
+		}
+	}
 }
 
 void UWar::AddAttacker(UCountry* Country)
 {
+	Country->AddWar(this);
 	Attackers.Add(Country);
-
-	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
 
 	for (const auto& Defender: Defenders)
 	{
-		RelationshipsManager->SetRelation(Country, Defender, War);
+		Country->SetRelation(Defender, War);
+		Defender->SetRelation(Country, War);
 	}
 }
 
 void UWar::AddDefender(UCountry* Country)
 {
+	Country->AddWar(this);
 	Defenders.Add(Country);
 	
-	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
-
 	for (const auto& Attacker: Attackers)
 	{
-		RelationshipsManager->SetRelation(Attacker, Country, War);
+		Country->SetRelation(Attacker, War);
+		Attacker->SetRelation(Country, War);
 	}
 }
 
@@ -58,7 +76,7 @@ const TArray<UCountry*>& UWar::GetDefenders() const
 	return Defenders;
 }
 
-bool UWar::CountryParticipates(UCountry* Country) const
+bool UWar::IsMember(UCountry* Country) const
 {
 	return Attackers.Contains(Country) || Defenders.Contains(Country);
 }

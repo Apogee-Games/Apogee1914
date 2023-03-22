@@ -1,6 +1,15 @@
 ﻿#include "Diplomacy/Instances/Alliance.h"
+#include "Administration/Instances/Country.h"
 
-#include "Diplomacy/Managers/RelationshipsManager.h"
+void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName, const TArray<UCountry*>& InvitedCountries)
+{
+	Init(ProvidedAllianceLeader, ProvidedAllianceName);
+
+	for (const auto& InvitedCountry: InvitedCountries)
+	{
+		AddMember(InvitedCountry);
+	}
+}
 
 void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName)
 {
@@ -12,15 +21,14 @@ void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAlli
 
 void UAlliance::AddMember(UCountry* Country)
 {
-	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
 	for (const auto& Member: Members)
 	{
-		RelationshipsManager->SetRelation(Country, Member, Allied);
+		Member->SetRelation(Country, Allied);
+		Country->SetRelation(Member, Allied);
 	}
 	
 	Members.Add(Country);
 	Country->SetAlliance(this);
-
 }
 
 void UAlliance::RemoveMember(UCountry* Country)
@@ -28,10 +36,12 @@ void UAlliance::RemoveMember(UCountry* Country)
 	Members.Remove(Country);
 	Country->SetAlliance(nullptr);
 
-	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	//TODO: Check for leader and leadership migration 
+	
 	for (const auto& Member: Members)
 	{
-		RelationshipsManager->SetRelation(Country, Member, Neutral);
+		Member->SetRelation(Country, Neutral);
+		Country->SetRelation(Member, Neutral);
 	}
 }
 
@@ -48,4 +58,38 @@ FColor UAlliance::GetColor() const
 bool UAlliance::IsCountryMember(UCountry* Country) const
 {
 	return Members.Contains(Country);
+}
+
+UCountry* UAlliance::GetLeader() const
+{
+	return AllianceLeader;
+}
+
+bool UAlliance::IsCountryLeader(UCountry* Country) const
+{
+	return AllianceLeader == Country;
+}
+
+void UAlliance::Dissolve()
+{
+	for (const auto& MemberA: Members)
+	{
+		for (const auto& MemberB: Members)
+		{
+			MemberA->SetRelation(MemberB, Neutral);
+			MemberB->SetRelation(MemberA, Neutral);
+		}
+	}
+	
+	for (const auto& Member: Members)
+	{
+		Member->SetAlliance(nullptr);
+	}
+
+	// TODO: Add removal observer :)
+}
+
+int UAlliance::Size() const
+{
+	return Members.Num();
 }

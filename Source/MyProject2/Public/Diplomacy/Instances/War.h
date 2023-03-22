@@ -1,6 +1,7 @@
 ﻿#pragma once
-#include "Administration/Instances/Country.h"
 #include "War.generated.h"
+
+class UCountry;
 
 UCLASS()
 class UWar: public UObject
@@ -21,7 +22,7 @@ public:
 
 	const TArray<UCountry*>& GetDefenders() const;
 
-	bool CountryParticipates(UCountry* Country) const;
+	bool IsMember(UCountry* Country) const;
 
 	void AddCountryOnSide(UCountry* Country, UCountry* OnSideOfCountry);
 private:
