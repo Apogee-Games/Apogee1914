@@ -4,7 +4,6 @@
 #include "Components/ListView.h"
 #include "Diplomacy/Interfaces/Observables/AllianceCreationObservable.h"
 #include "Diplomacy/Interfaces/Observables/WarDeclarationObservable.h"
-#include "Widgets/Diplomacy/CountryDiplomacyWidget.h"
 
 #include "RelationshipsManager.generated.h"
 

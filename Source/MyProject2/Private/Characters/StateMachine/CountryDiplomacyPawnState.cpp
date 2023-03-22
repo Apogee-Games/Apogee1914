@@ -6,7 +6,6 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Maps/Diplomacy/CountryRelationMap.h"
 #include "Maps/Selection/SelectionMap.h"
-#include "Widgets/Diplomacy/CountryDiplomacyWidget.h"
 
 TSharedPtr<FPawnState> FCountryDiplomacyPawnState::GetInstance()
 {
