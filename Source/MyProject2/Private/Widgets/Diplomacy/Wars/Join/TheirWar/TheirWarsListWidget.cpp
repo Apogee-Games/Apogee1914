@@ -9,13 +9,12 @@
 void UTheirWarsListWidget::SetCountry(UCountry* ProvidedCountry)
 {
 	Country = ProvidedCountry;
-	UCountry* OurCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+	UCountry* OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 
-	const TArray<UWar*> Wars = GetGameInstance()->GetSubsystem<URelationshipsManager>()->GetCountryWars(Country);
 	WarsListView->ClearListItems();
-	for (const auto War: Wars)
+	for (const auto War: Country->GetWars())
 	{
-		if (!War->CountryParticipates(OurCountry))
+		if (!War->IsMember(OwnerCountry))
 		{
 			WarsListView->AddItem(War);
 		}

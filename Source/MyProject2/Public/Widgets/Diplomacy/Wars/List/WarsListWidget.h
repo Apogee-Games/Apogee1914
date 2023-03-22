@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/ListView.h"
-#include "Diplomacy/Instances/War.h"
 #include "Diplomacy/Interfaces/Observers/WarDeclarationObserver.h"
 #include "WarsListWidget.generated.h"
 

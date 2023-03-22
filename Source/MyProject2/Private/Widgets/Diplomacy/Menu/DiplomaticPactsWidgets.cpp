@@ -19,9 +19,8 @@ void UDiplomaticPactsWidgets::SetCountry(UCountry* ProvidedCountry)
 
 void UDiplomaticPactsWidgets::RefreshData()
 {
-	URelationshipsManager* RelationshipsManager = GetGameInstance()->GetSubsystem<URelationshipsManager>();
-	CreateNonAggressionPactButton->SetIsEnabled(RelationshipsManager->CanCreateNonAggressionPact(OwnerCountry, Country));
-	CreateDefencivePactButton->SetIsEnabled(RelationshipsManager->CanCreateDefencivePact(OwnerCountry, Country));
+	CreateNonAggressionPactButton->SetIsEnabled(OwnerCountry->CanCreateNonAggressionPactWith(Country));
+	CreateDefencivePactButton->SetIsEnabled(OwnerCountry->CanCreateDefencivePactWith(Country));
 }
 
 void UDiplomaticPactsWidgets::OnCreateNonAggressionPactButtonClick()

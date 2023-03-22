@@ -13,7 +13,7 @@ void UWarsListWidget::NativeConstruct()
 void UWarsListWidget::WarWasDeclared(UWar* War)
 {
 	UCountry* OwnersCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
-	if (War->CountryParticipates(OwnersCountry))
+	if (War->IsMember(OwnersCountry))
 	{
 		WarsListView->AddItem(War);
 	}

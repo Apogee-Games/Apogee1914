@@ -24,6 +24,8 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* CreateAllianceButton;
 
+	void Init();
+
 	virtual void NativeConstruct() override;
 
 	void SetCountry(UCountry* Country);

@@ -6,11 +6,15 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 
+void UAllianceCreationWidget::Init()
+{
+	CreateAllianceButton->OnClicked.AddDynamic(this, &UAllianceCreationWidget::OnCreateAllianceButtonClick);
+}
+
 void UAllianceCreationWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	CreateAllianceButton->OnClicked.AddDynamic(this, &UAllianceCreationWidget::OnCreateAllianceButtonClick);
 	
 	InvitationalCountriesListView->ClearListItems();
 	ToBeInvitedCountriesListView->ClearListItems();

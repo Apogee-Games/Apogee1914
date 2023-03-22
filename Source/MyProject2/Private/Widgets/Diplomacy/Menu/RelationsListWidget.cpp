@@ -17,14 +17,12 @@ void URelationsListWidget::SetCountry(UCountry* ProvidedCountry)
 
 void URelationsListWidget::RefreshData()
 {
-	URelationshipsManager* RelationshipsManager = GetGameInstance()->GetSubsystem<URelationshipsManager>();
-	
 	for (const auto& [Relation, List] : Lists)
 	{
 		List->ClearListItems();
 	}
 
-	for (const auto& [AnotherCountry, Relation] : RelationshipsManager->GetRelations(Country))
+	for (const auto& [AnotherCountry, Relation] : Country->GetRelations())
 	{
 		if (Relation == Neutral) continue;
 		Lists[Relation]->AddItem(AnotherCountry);

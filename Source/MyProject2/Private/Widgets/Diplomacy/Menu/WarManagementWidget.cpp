@@ -23,16 +23,14 @@ void UWarManagementWidget::SetCountry(UCountry* ProvidedCountry)
 
 void UWarManagementWidget::RefreshData()
 {
-	URelationshipsManager* RelationshipsManager = GetGameInstance()->GetSubsystem<URelationshipsManager>();
-	
-	DeclareWarButton->SetIsEnabled(RelationshipsManager->CanDeclareWar(OwnerCountry, Country));
+	DeclareWarButton->SetIsEnabled(OwnerCountry->CanDeclareWarOn(Country));
 
-	WidgetSwitcher->SetActiveWidgetIndex(Country->GetAlliance()->IsCountryMember(OwnerCountry));
+	WidgetSwitcher->SetActiveWidgetIndex(Country->IsInAlliance() && Country->GetAlliance()->IsCountryMember(OwnerCountry));
 	
-	if (RelationshipsManager->CanCountryJoinWar(Country, OwnerCountry))
+	if (Country->CanJoinCountryWar(OwnerCountry))
 	{
-		AskThemToJoinWarButton->SetIsEnabled(RelationshipsManager->IsTherePossibleWarToJoin(Country, OwnerCountry));
-		AskToJoinTheirWarButton->SetIsEnabled(RelationshipsManager->IsTherePossibleWarToJoin(OwnerCountry, Country));
+		AskThemToJoinWarButton->SetIsEnabled(OwnerCountry->CanCountryJoinOneOfOurWars(Country));
+		AskToJoinTheirWarButton->SetIsEnabled(Country->CanCountryJoinOneOfOurWars(OwnerCountry));
 	}
 	else
 	{

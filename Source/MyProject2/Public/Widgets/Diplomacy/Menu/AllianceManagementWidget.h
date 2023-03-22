@@ -11,6 +11,9 @@ class UAllianceManagementWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UWidgetSwitcher* AllianceInteractionsWidgetSwitcher;
+	
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* CreateAllianceWithAnotherCountryButton;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
@@ -20,7 +23,16 @@ public:
 	UButton* AskThemToJoinAllianceButton;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UWidgetSwitcher* AllianceInteractionsWidgetSwitcher;
+	UButton* AskToJoinTheirAllianceButton;
+	
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* LeaveAllianceButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* DissolveAllianceButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UWidgetSwitcher* AllianceCreationDeletionWidgetSwitcher;
 
 	void SetCountry(UCountry* ProvidedCountry);
 	
@@ -35,11 +47,20 @@ private:
 	UCountry* Country;
 	
 	UFUNCTION()
-	void OnCreateAllianceWithAnotherButtonClick();
+	void OnCreateAllianceWithAnotherCountryButtonClick();
 
 	UFUNCTION()
 	void OnCreateAllianceButtonClick();
 
 	UFUNCTION()
-	void OnAskToJoinAllianceButtonClick();
+	void OnAskThemToJoinAllianceButtonClick();
+
+	UFUNCTION()
+	void OnAskToJoinTheirAllianceButtonClick();
+
+	UFUNCTION()
+	void OnLeaveAllianceButtonClick();
+
+	UFUNCTION()
+	void OnDissolveAllianceButtonClick();
 };
