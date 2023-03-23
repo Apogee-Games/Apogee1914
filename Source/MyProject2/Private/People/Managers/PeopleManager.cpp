@@ -39,7 +39,7 @@ void UPeopleManager::Clear()
 
 void UPeopleManager::Init(UScenario* Scenario)
 {
-	UDataTable* PeoplesDescriptions = Scenario->PeoplesDescriptions;
+	UDataTable* PeoplesDescriptions = Scenario->PeoplesDescriptionsDataTable;
 
 	for (const auto& [Id, Description] : PeoplesDescriptions->GetRowMap())
 	{

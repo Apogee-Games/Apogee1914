@@ -5,7 +5,7 @@ void UMapsSwitcher::SetScenario(UScenario* ProvidedScenario)
 	Scenario = ProvidedScenario;
 }
 
-void UMapsSwitcher::SetAllianceMap(AHumanPlayerPawn* Pawn)
+void UMapsSwitcher::SelectAllianceMap(AHumanPlayerPawn* Pawn)
 {
 	UMaterialInstanceDynamic* MapsMaterial = Pawn->MapActor->MapsMaterialInstanceDynamic;
 	MapsMaterial->SetTextureParameterValue(TEXT("Front"), Scenario->AlliancesMapTexture);
@@ -27,6 +27,12 @@ void UMapsSwitcher::SelectRelationMap(AHumanPlayerPawn* Pawn)
 {
 	UMaterialInstanceDynamic* MapsMaterial = Pawn->MapActor->MapsMaterialInstanceDynamic;
 	MapsMaterial->SetTextureParameterValue(TEXT("Front"), Scenario->CountryRelationMapTexture);
+}
+
+void UMapsSwitcher::SelectIdeologyMap(AHumanPlayerPawn* Pawn)
+{
+	UMaterialInstanceDynamic* MapsMaterial = Pawn->MapActor->MapsMaterialInstanceDynamic;
+	MapsMaterial->SetTextureParameterValue(TEXT("Front"), Scenario->IdeologiesMapTexture);
 }
 
 void UMapsSwitcher::SetApplyProvinceOutlineMap(AHumanPlayerPawn* Pawn, bool Flag)
