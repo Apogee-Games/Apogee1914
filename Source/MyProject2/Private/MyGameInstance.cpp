@@ -56,6 +56,8 @@ void UMyGameInstance::InitializeActiveScenario()
 {
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 
+	GetSubsystem<UIdeologyManager>()->SetScenario(ActiveScenario);
+	
 	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);
@@ -73,6 +75,7 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UAlliancesMap>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<URelationshipsManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UIdeologiesMap>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
 }

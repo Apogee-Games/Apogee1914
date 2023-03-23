@@ -2,11 +2,10 @@
 	{
 		"Name": "AHE",
 		"Tag": "AHE",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "Austro-Hungarian Empire",
 				"CountryColor": {
 					"B": 80,
@@ -20,11 +19,10 @@
 	{
 		"Name": "BEL",
 		"Tag": "BEL",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "Kingdom of Belgium",
 				"CountryColor":
 				{
@@ -39,11 +37,10 @@
 	{
 		"Name": "NET",
 		"Tag": "NET",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "The Kingdom of the Netherlands",
 				"CountryColor":
 				{
@@ -58,11 +55,10 @@
 	{
 		"Name": "LUX",
 		"Tag": "LUX",
-		"RulingFractionTag": "MON",
-		"Fractions": [ 
+		"IdeologyTag": "MON",
+		"Ideologies": [ 
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "The Grand Duchy of Luxembourg",
 				"CountryColor":
 				{
@@ -77,11 +73,10 @@
 	{
 		"Name": "FRA",
 		"Tag": "FRA",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 				{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "French Republic",
 				"RulerId": "RPoincaré",
 				"CountryColor":
@@ -97,11 +92,10 @@
 	{
 		"Name": "GER",
 		"Tag": "GER",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "German Empire",
 				"RulerId": "HWilhelmII",
 				"CountryColor":
@@ -111,17 +105,52 @@
 					"R": 50,
 					"A": 0
 				}
+			},
+			{
+				"IdeologyTag": "REP",
+				"CountryName": "German Repubic",
+				"RulerId": "Erich_Ludendorff",
+				"CountryColor":
+				{
+					"B": 90,
+					"G": 90,
+					"R": 90,
+					"A": 0
+				}
+			},
+			{
+				"IdeologyTag": "COM",
+				"CountryName": "German Democratic Republic",
+				"RulerId": "Erich_Ludendorff",
+				"CountryColor":
+				{
+					"B": 90,
+					"G": 90,
+					"R": 90,
+					"A": 0
+				}
+			},
+			{
+				"IdeologyTag": "NAT",
+				"CountryName": "The Third Reich",
+				"RulerId": "Erich_Ludendorff",
+				"CountryColor":
+				{
+					"B": 90,
+					"G": 90,
+					"R": 90,
+					"A": 0
+				}
 			}
 		]
 	},
 	{
 		"Name": "ITA",
 		"Tag": "ITA",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "Kingdom of Italy",
 				"CountryColor":
 				{
@@ -136,11 +165,10 @@
 	{
 		"Name": "SWI",
 		"Tag": "SWI",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Swiss Confederation",
 				"CountryColor":
 				{
@@ -155,11 +183,10 @@
 	{
 		"Name": "GBR",
 		"Tag": "GBR",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "The United Kingdom of Great Britain and Ireland",
 				"CountryColor":
 				{
@@ -174,11 +201,10 @@
 	{
 		"Name": "SPA",
 		"Tag": "SPA",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "The Kingdom of Spain",
 				"CountryColor":
 				{
@@ -193,11 +219,10 @@
 	{
 		"Name": "POR",
 		"Tag": "POR",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Portuguese Republic",
 				"CountryColor":
 				{
@@ -212,11 +237,10 @@
 	{
 		"Name": "SWE",
 		"Tag": "SWE",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "The Kingdom of Sweden",
 				"CountryColor":
 				{
@@ -231,11 +255,10 @@
 	{
 		"Name": "NOR",
 		"Tag": "NOR",
-		"RulingFractionTag": "MON",
-		"Fractions": [
+		"IdeologyTag": "MON",
+		"Ideologies": [
 			{
-				"FractionTag": "MON",
-				"FractionName": "Monarchists",
+				"IdeologyTag": "MON",
 				"CountryName": "The Kingdom of Norway",
 				"CountryColor":
 				{
@@ -250,11 +273,10 @@
 	{
 		"Name": "BRA",
 		"Tag": "BRA",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of Brazil",
 				"CountryColor":
 				{
@@ -269,11 +291,10 @@
 	{
 		"Name": "USA",
 		"Tag": "USA",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of America",
 				"CountryColor":
 				{
@@ -288,11 +309,10 @@
 	{
 		"Name": "PAR",
 		"Tag": "PAR",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Paraguay",
 				"CountryColor":
 				{
@@ -307,11 +327,10 @@
 	{
 		"Name": "BOL",
 		"Tag": "BOL",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Plurinational State of Bolivia",
 				"CountryColor":
 				{
@@ -326,11 +345,10 @@
 	{
 		"Name": "PER",
 		"Tag": "PER",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Peru",
 				"CountryColor":
 				{
@@ -345,11 +363,10 @@
 	{
 		"Name": "CHI",
 		"Tag": "CHI",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Chile",
 				"CountryColor":
 				{
@@ -364,11 +381,10 @@
 	{
 		"Name": "URU",
 		"Tag": "URU",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Oriental Republic of Uruguay",
 				"CountryColor":
 				{
@@ -383,11 +399,10 @@
 	{
 		"Name": "ARG",
 		"Tag": "ARG",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Argentine Republic",
 				"CountryColor":
 				{
@@ -402,11 +417,10 @@
 	{
 		"Name": "CAN",
 		"Tag": "CAN",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Canada",
 				"CountryColor":
 				{
@@ -421,11 +435,10 @@
 	{
 		"Name": "MEX",
 		"Tag": "MEX",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United Mexican States",
 				"CountryColor":
 				{
@@ -440,11 +453,10 @@
 	{
 		"Name": "VEN",
 		"Tag": "VEN",
-		"RulingFractionTag": "DIC",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DIC",
-				"FractionName": "Dictatorship",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of Venezuela",
 				"CountryColor":
 				{
@@ -459,11 +471,10 @@
 	{
 		"Name": "COL",
 		"Tag": "COL",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of Colombia",
 				"CountryColor":
 				{
@@ -478,11 +489,10 @@
 	{
 		"Name": "ECU",
 		"Tag": "ECU",
-		"RulingFractionTag": "DEM",
-		"Fractions": [
+		"IdeologyTag": "REP",
+		"Ideologies": [
 			{
-				"FractionTag": "DEM",
-				"FractionName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Ecuador",
 				"CountryColor":
 				{

@@ -1,0 +1,46 @@
+[
+	{
+		"Name": "MON",
+		"Tag": "MON",
+		"IdeologyName": "Monarchism",
+		"Color": {
+			"R": 130,
+			"G": 130,
+			"B": 150,
+			"A": 255
+		}
+	}, 
+	{
+		"Name": "REP",
+		"Tag": "REP",
+		"IdeologyName": "Republicanism",
+		"Color": {
+			"R": 20,
+			"G": 20,
+			"B": 160,
+			"A": 255 
+		}
+	},
+	{
+		"Name": "COM",
+		"Tag": "COM",
+		"IdeologyName": "Communism",
+		"Color": {
+			"R": 160,
+			"G": 20,
+			"B": 20,
+			"A": 255 
+		}
+	},
+	{
+		"Name": "NAT",
+		"Tag": "NAT",
+		"IdeologyName": "Nationalism",
+		"Color": {
+			"R": 205, 
+			"G": 133, 
+			"B": 63,
+			"A": 255
+		}
+	}
+]

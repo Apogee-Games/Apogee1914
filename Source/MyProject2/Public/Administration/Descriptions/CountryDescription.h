@@ -1,9 +1,9 @@
 ﻿#pragma once
-#include "FractionDescription.h"
+#include "CountryIdeologyParameters.h"
 #include "Engine/DataTable.h"
 #include "CountryDescription.generated.h"
 
-USTRUCT(BlueprintType)
+USTRUCT()
 struct FCountryDescription: public FTableRowBase
 {
 	GENERATED_BODY()	
@@ -12,8 +12,8 @@ struct FCountryDescription: public FTableRowBase
 	FName Tag;
 
 	UPROPERTY()
-	FName RulingFractionTag;
+	FName IdeologyTag;
 	
 	UPROPERTY()
-	TArray<FFractionDescription> Fractions;
+	TArray<FCountryIdeologyParameters> Ideologies;
 };

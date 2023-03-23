@@ -6,19 +6,13 @@ USTRUCT()
 struct FFractionDescription: public FTableRowBase
 {
 	GENERATED_BODY()
-
-	UPROPERTY()
-	FName FractionTag;
 	
 	UPROPERTY()
-	FName FractionName;
+	FName IdeologyTag;
+	
+	UPROPERTY()
+	FText FractionName;
 
 	UPROPERTY()
-	FName CountryName;
-
-	UPROPERTY()
-	FColor CountryColor;
-
-	UPROPERTY()
-	FName RulerId;
+	int32 MembersNumber;
 };

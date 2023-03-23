@@ -1,5 +1,4 @@
-﻿
-#include "Widgets/TopPanelWidget.h"
+﻿#include "Widgets/TopPanelWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
 void UTopPanelWidget::NativeConstruct()
@@ -9,6 +8,7 @@ void UTopPanelWidget::NativeConstruct()
 	StorageBrowsingButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnStorageBrowsingButtonClick);
 	SupplyBrowsingButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnSupplyBrowsingButton);
 	BuildingCreationButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnBuildingCreationButtonClick);
+	CountryFlagButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnCountryFlagButtonClick);
 
 	UCountry* Country = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 	CountryFlagImage->SetBrushResourceObject(Country->GetFlag());
@@ -34,4 +34,9 @@ void UTopPanelWidget::OnSupplyBrowsingButton()
 void UTopPanelWidget::OnBuildingCreationButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchBuildingCreationState();
+}
+
+void UTopPanelWidget::OnCountryFlagButtonClick()
+{
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchCountryManagementState();
 }

@@ -8,6 +8,7 @@
 #include "Characters/Components/PlaneMapActor.h"
 #include "Characters/Components/UnitsSelectionComponent.h"
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
+#include "Characters/StateMachine/CountryManagementPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
@@ -233,4 +234,17 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SwitchSupplyBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("BKey"), IE_Pressed, this, &AHumanPlayerPawn::SwitchBuildingCreationState);
 	PlayerInputComponent->BindAction(TEXT("Menu"), IE_Pressed, this, &AHumanPlayerPawn::SwitchPause);
+}
+
+void AHumanPlayerPawn::SwitchCountryManagementState()
+{
+	if (IsPaused) return;
+	if (PawnState == FCountryManagementPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	}
+	else
+	{
+		SetPawnState(FCountryManagementPawnState::GetInstance());
+	}
 }

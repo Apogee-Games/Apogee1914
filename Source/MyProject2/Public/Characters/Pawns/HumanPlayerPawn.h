@@ -84,6 +84,8 @@ public:
 	void SwitchSupplyBrowsingState();
 
 	void SwitchBuildingCreationState();
+
+	void SwitchCountryManagementState();
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	

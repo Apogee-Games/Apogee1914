@@ -3,6 +3,7 @@
 #include "Widgets/TimeControllerWidget.h"
 #include "Widgets/TopPanelWidget.h"
 #include "Widgets/Administration/ProvinceDataWidget.h"
+#include "Widgets/Administration/Country/CountryManagementWidget.h"
 #include "Widgets/Diplomacy/Wars/Description/WarDescriptionWidget.h"
 #include "Widgets/Diplomacy/Wars/List//WarsListWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
@@ -78,6 +79,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UTheirWarsListWidget> TheirWarsListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCountryManagementWidget> CountryManagementWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -172,6 +176,9 @@ private:
 
 	UPROPERTY()
 	UTheirWarsListWidget* TheirWarsListWidget;
+
+	UPROPERTY()
+	UCountryManagementWidget* CountryManagementWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -209,4 +216,6 @@ private:
 	void InitAllianceCreationWidget();
 
 	void InitWarsLists();
+
+	void InitCountryManagementWidget();
 };

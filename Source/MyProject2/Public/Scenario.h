@@ -41,7 +41,13 @@ public:
 	UDataTable* EventsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* PeoplesDescriptions;
+	UDataTable* PeoplesDescriptionsDataTable;
+
+	UPROPERTY(EditDefaultsOnly)
+	UDataTable* ParliamentsDescriptionsDataTable;
+
+	UPROPERTY(EditDefaultsOnly)
+	UDataTable* IdeologyDescriptionsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
@@ -63,4 +69,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* AlliancesMapTexture;
+
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* IdeologiesMapTexture;
 };
