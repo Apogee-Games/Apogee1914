@@ -1,18 +1,15 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "CountryIdeologyParameter.generated.h"
+#include "CountryIdeologyParameters.generated.h"
 
 USTRUCT()
-struct FCountryIdeologyParameter: public FTableRowBase
+struct FCountryIdeologyParameters: public FTableRowBase
 {
 	GENERATED_BODY()
 
 	UPROPERTY()
 	FName IdeologyTag;
 	
-	UPROPERTY()
-	FName IdeologyName;
-
 	UPROPERTY()
 	FName CountryName;
 
