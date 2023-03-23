@@ -436,5 +436,62 @@
 				}
 			}
 		]
+	},
+	{
+		"Name": "VEN",
+		"Tag": "VEN",
+		"RulingFractionTag": "DIC",
+		"Fractions": [
+			{
+				"FractionTag": "DIC",
+				"FractionName": "Dictatorship",
+				"CountryName": "The United States of Venezuela",
+				"CountryColor":
+				{
+					"B": 80,
+					"G": 40,
+					"R": 80,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "COL",
+		"Tag": "COL",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "The United States of Colombia",
+				"CountryColor":
+				{
+					"B": 180,
+					"G": 40,
+					"R": 80,
+					"A": 0
+				}
+			}
+		]
+	},
+	{
+		"Name": "ECU",
+		"Tag": "ECU",
+		"RulingFractionTag": "DEM",
+		"Fractions": [
+			{
+				"FractionTag": "DEM",
+				"FractionName": "Democrats",
+				"CountryName": "Republic of Ecuador",
+				"CountryColor":
+				{
+					"B": 180,
+					"G": 40,
+					"R": 180,
+					"A": 0
+				}
+			}
+		]
 	}
 ]

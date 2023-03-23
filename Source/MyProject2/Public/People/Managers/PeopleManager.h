@@ -19,4 +19,8 @@ private:
 	TMap<FName, UPerson*> People;
 	
 	TMap<FName, TMap<FName, TArray<UPerson*>>> CountryProfessionPeople;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

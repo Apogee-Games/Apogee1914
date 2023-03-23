@@ -6,21 +6,8 @@
 
 void UProvinceManager::SetScenario(UScenario* Scenario)
 {
-	UDataTable* ProvinceDescriptionDataTable = Scenario->ProvinceDescriptionDataTable;
-
-	UDataTable* TerrainDescriptionDataTable = Scenario->TerrainDescriptionDataTable;
-	
-	UDataTable* ResourcesDescriptionDataTable = Scenario->ResourcesDescriptionDataTable;
-
-	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
-		if(Value == nullptr) continue;
-		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
-		UProvince* Province = NewObject<UProvince>(this); 
-		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
-		ProvinceMap.Add(Key, Province);
-	}
-	
-	ProvinceMap.GenerateValueArray(ProvincesArray);
+	Clear();
+	Init(Scenario);
 }
 
 UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
@@ -36,4 +23,33 @@ UProvince* UProvinceManager::GetProvince(const FName& ProvinceColorHex) const
 const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 {
 	return ProvincesArray;
+}
+
+void UProvinceManager::Clear()
+{
+	for (const auto& Province: ProvincesArray)
+	{
+		Province->MarkAsGarbage();
+	}
+	ProvinceMap.Empty();
+	ProvincesArray.Empty();
+}
+
+void UProvinceManager::Init(UScenario* Scenario)
+{
+	UDataTable* ProvinceDescriptionDataTable = Scenario->ProvinceDescriptionDataTable;
+
+	UDataTable* TerrainDescriptionDataTable = Scenario->TerrainDescriptionDataTable;
+	
+	UDataTable* ResourcesDescriptionDataTable = Scenario->ResourcesDescriptionDataTable;
+
+	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
+		if(Value == nullptr) continue;
+		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
+		UProvince* Province = NewObject<UProvince>(this); 
+		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
+		ProvinceMap.Add(Key, Province);
+	}
+	
+	ProvinceMap.GenerateValueArray(ProvincesArray);
 }

@@ -2,17 +2,10 @@
 
 #include "Administration/Managers/CountriesManager.h"
 
-void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner)
-{
-	Init(ProvidedUnitDescription, ProvidedProvince, ProvidedCountryOwner, ProvidedCountryOwner);
-}
-
-void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner, UCountry* ProvidedCountryController)
+void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince)
 {
 	UnitDescription = ProvidedUnitDescription;
 	Province = ProvidedProvince;
-	CountryOwner = ProvidedCountryOwner;
-	CountryController = ProvidedCountryController;
 	SupplyNeeds = NewObject<UUnitSupplyNeeds>();
 	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
 }
@@ -60,16 +53,6 @@ int32 UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
 	return Result;
 }
 
-UCountry* UUnit::GetCountryOwner() const
-{
-	return CountryOwner;
-}
-
-UCountry* UUnit::GetCountryController() const
-{
-	return CountryController;
-}
-
 int32 UUnit::GetUnitTypeEquipmentRequirement(const FName& GoodName) const
 {
 	return UnitDescription->EquipmentRequirements[GoodName];
@@ -79,7 +62,6 @@ UUnitSupplyNeeds* UUnit::GetSupplyNeeds() const
 {
 	return SupplyNeeds;
 }
-
 
 const FName& UUnit::GetUnitName() const
 {

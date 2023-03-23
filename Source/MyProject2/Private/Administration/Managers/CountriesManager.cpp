@@ -7,17 +7,8 @@
 
 void UCountriesManager::SetScenario(UScenario* Scenario)
 {
-	for (const auto& [Key, Value]: Scenario->CountryDescriptionDataTable->GetRowMap())
-	{
-		UCountry* Country = NewObject<UCountry>(this);
-		Country->Init(reinterpret_cast<FCountryDescription*>(Value)); // TODO: Add removal of countries
-		CountryMap.Add(Key, Country);
-	}
-
-	for (const auto& Pair: Scenario->CountryDescriptionDataTable->GetRowMap())
-	{
-		CountriesTagsList.Add(Pair.Key);
-	}
+	Clear();
+	Init(Scenario);
 }
 
 const TArray<FName>& UCountriesManager::GetCountriesTagsList()
@@ -93,4 +84,29 @@ UCountry* UCountriesManager::GetCountry(const FName& Tag)
 const TMap<FName, UCountry*>& UCountriesManager::GetCountryMap() const
 {
 	return CountryMap;
+}
+
+void UCountriesManager::Clear()
+{
+	for (const auto& [Name, Country]: CountryMap)
+	{
+		Country->MarkAsGarbage();
+	}
+	CountryMap.Empty();
+	CountriesTagsList.Empty();
+}
+
+void UCountriesManager::Init(UScenario* Scenario)
+{
+	for (const auto& [Key, Value]: Scenario->CountryDescriptionDataTable->GetRowMap())
+	{
+		UCountry* Country = NewObject<UCountry>(this);
+		Country->Init(reinterpret_cast<FCountryDescription*>(Value)); // TODO: Add removal of countries
+		CountryMap.Add(Key, Country);
+	}
+
+	for (const auto& Pair: Scenario->CountryDescriptionDataTable->GetRowMap())
+	{
+		CountriesTagsList.Add(Pair.Key);
+	}
 }

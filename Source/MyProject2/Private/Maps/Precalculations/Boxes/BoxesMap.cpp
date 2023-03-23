@@ -16,11 +16,8 @@ void UBoxesMap::Initialize(FSubsystemCollectionBase& Collection)
 
 void UBoxesMap::SetScenario(UScenario* Scenario)
 {
-	SizeVector = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetSizeVector();
-
-	CalculateProvinceCorners();
-	
-	CalculateBoxes();
+	Clear();
+	Init(Scenario);
 }
 
 const TArray<TSharedPtr<FProvincesBox>>& UBoxesMap::GetBoxes() const
@@ -177,3 +174,20 @@ void UBoxesMap::AddProvincesToBox(TSharedPtr<FProvincesBox> Box, UProvince* From
 		AddProvincesToBox(Box, ToProvince, Country, ProvinceManager);
 	}
 }
+
+void UBoxesMap::Init(UScenario* Scenario)
+{
+	SizeVector = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetSizeVector();
+
+	CalculateProvinceCorners();
+	
+	CalculateBoxes();
+}
+
+void UBoxesMap::Clear()
+{
+	Boxes.Empty();
+	LeftTopCorners.Empty();
+	RightBottomCorners.Empty();
+}
+

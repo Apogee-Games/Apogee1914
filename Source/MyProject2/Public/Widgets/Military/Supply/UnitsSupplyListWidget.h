@@ -17,4 +17,6 @@ public:
 	void Init();
 
 	virtual void UnitIsCreated(UUnit* Unit) override;
+
+	virtual void NativeDestruct() override;
 };

@@ -4,7 +4,7 @@
 #include "UnitsCollection.generated.h"
 
 UCLASS()
-class UUnitsCollection: public UObject, public TFCollection<UUnit*>, public ICommandable
+class UUnitsCollection: public UObject, public TFMilitaryCollection<UUnit*>, public ICommandable
 {
 	GENERATED_BODY()
 public:

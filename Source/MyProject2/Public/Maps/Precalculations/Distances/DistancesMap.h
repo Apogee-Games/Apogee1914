@@ -6,7 +6,7 @@
 #include "DistancesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UDistancesMap: public UGameInstanceSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver, public FOnFullInitialization
+class UDistancesMap: public UGameInstanceSubsystem, public ICountryDistancesObservable, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
@@ -57,4 +57,8 @@ private:
 	}
 
 	FRunnableThread* GetDistanceCalculator(UObject* Object, bool (UObject::*Func)(const FColor&, const FColor&) const, TArray<int32>& Distance, TCHAR* Name);
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

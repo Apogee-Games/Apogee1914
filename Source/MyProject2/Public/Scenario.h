@@ -57,4 +57,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* CountriesMapTexture;
+
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* CountryRelationMapTexture;
+
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* AlliancesMapTexture;
 };

@@ -31,4 +31,8 @@ private:
 	const FColor* GetCountryFlagColors(UCountry* Country);
 
 	void UnlockAllCountriesFlagColors();
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

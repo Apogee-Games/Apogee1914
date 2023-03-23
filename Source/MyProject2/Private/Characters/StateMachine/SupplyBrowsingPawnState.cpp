@@ -31,7 +31,7 @@ bool FSupplyBrowsingPawnState::MustWidgetBeVisible(UUserWidget* Widget)
 
 bool FSupplyBrowsingPawnState::CanWidgetBeVisible(UUserWidget* Widget)
 {
-	return dynamic_cast<UStorageGoodsListWidget*>(Widget) != nullptr;
+	return false;
 }
 
 FSupplyBrowsingPawnState::FSupplyBrowsingPawnState()

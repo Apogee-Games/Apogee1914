@@ -7,7 +7,7 @@
 #include "BoxesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UBoxesMap: public UGameInstanceSubsystem, public FOnFullInitialization, public IProvinceControllingCountryObserver, public IBoxObservable
+class UBoxesMap: public UGameInstanceSubsystem, public IProvinceControllingCountryObserver, public IBoxObservable
 {
 	GENERATED_BODY()
 public:
@@ -48,5 +48,8 @@ private:
 	bool AddProvinceToNeighbourBoxes(UProvince* Province);
 
 	void CreateNewBox(UProvince* Province);
-};
 
+	void Clear();
+
+	void Init(UScenario* Scenario);
+};

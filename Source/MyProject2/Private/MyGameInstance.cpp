@@ -3,21 +3,21 @@
 
 #include "MyGameInstance.h"
 
+#include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
+#include "Maps/Diplomacy/CountryRelationMap.h"
 #include "People/Managers/PeopleManager.h"
 
 void UMyGameInstance::OnStart()
 {
 	Super::OnStart();
-	
-	InitializeManagers();
 }
 
 void UMyGameInstance::SetScenario(UScenario* Scenario)
 {
 	if (ActiveScenario == Scenario) return;
 	ActiveScenario = Scenario;
-	InitializeManagers();
+	InitializeActiveScenario();
 }
 
 const FName& UMyGameInstance::GetRuledCountry(APlayerController* PlayerController)
@@ -52,7 +52,7 @@ bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
 	return CountriesRuledByPlayers.Contains(CountryTag) && CountriesRuledByPlayers[CountryTag];
 }
 
-void UMyGameInstance::InitializeManagers()
+void UMyGameInstance::InitializeActiveScenario()
 {
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 
@@ -68,4 +68,11 @@ void UMyGameInstance::InitializeManagers()
 	GetSubsystem<UFlagsMap>()->SetScenario(ActiveScenario);
 	GetSubsystem<UCountriesMap>()->SetScenario(ActiveScenario);
 	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UCountryRelationMap>()->SetScenario(ActiveScenario);
+	GetSubsystem<UAlliancesMap>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<URelationshipsManager>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
 }

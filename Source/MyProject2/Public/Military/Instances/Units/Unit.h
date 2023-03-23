@@ -1,7 +1,7 @@
 
 #pragma once
-#include "Administration/Instances/Country.h"
 #include "Administration/Instances/Province.h"
+#include "Interfaces/Ownable.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/UnitSupplyNeeds.h"
 #include "Unit.generated.h"
@@ -21,13 +21,11 @@ inline FName MilitaryBranchNames[3] = {
 };
 
 UCLASS()
-class UUnit: public UObject
+class UUnit: public UObject, public IOwnable
 {
 	GENERATED_BODY()
 public:
-	virtual void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner);
-	
-	virtual void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince, UCountry* ProvidedCountryOwner, UCountry* ProvidedCountryController);
+	virtual void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince);
 
 	bool CanTransportUnits() const;
 
@@ -38,10 +36,6 @@ public:
 	UProvince* GetPosition() const;
 	
 	int32 Estimate(const TArray<TPair<UProvince*, int32>>& Path);
-
-	UCountry* GetCountryOwner() const;
-
-	UCountry* GetCountryController() const;
 
 	int32 GetUnitTypeEquipmentRequirement(const FName& GoodName) const;
 
@@ -56,11 +50,7 @@ public:
 	// FString GetProvinceAccessType(UProvince* Province);
 
 	// void AddTransportedUnit(UUnit* Unit);
-
-	// void RemoveTransportedUnit(UUnit* Unit);
-	
 private:
-	
 	const FUnitDescription* UnitDescription;
 
 	//TSet<UUnit*> TransportedUnits; // TODO: May be extract it to another interface
@@ -70,12 +60,6 @@ private:
 	
 	UPROPERTY()
 	UProvince* Province;
-
-	UPROPERTY()
-	UCountry* CountryOwner;
-
-	UPROPERTY()
-	UCountry* CountryController;
 };
 
 // TODO: Add UnitMoverObserver

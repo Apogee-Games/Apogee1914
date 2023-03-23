@@ -16,8 +16,8 @@ void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
 
 void UFlagsMap::SetScenario(UScenario* Scenario)
 {
-	FlagsMapTexture = Scenario->FlagsMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
+	Clear();
+	Init(Scenario);
 }
 
 void UFlagsMap::UpdateAllBoxes()
@@ -51,6 +51,23 @@ void UFlagsMap::UnlockAllCountriesFlagColors()
 	}
 	CountriesFlagColorsCount.Empty();
 	CountriesFlagColors.Empty();
+}
+
+void UFlagsMap::Clear()
+{
+	FlagsMapTexture = nullptr;
+	
+	UnlockAllCountriesFlagColors();
+	
+	CountriesFlagColors.Empty();
+	CountriesFlagColorsCount.Empty();
+}
+
+void UFlagsMap::Init(UScenario* Scenario)
+{
+	FlagsMapTexture = Scenario->FlagsMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
+	UpdateAllBoxes();
 }
 
 void UFlagsMap::UpdateBoxes(const TArray<TSharedPtr<FProvincesBox>>& Boxes)

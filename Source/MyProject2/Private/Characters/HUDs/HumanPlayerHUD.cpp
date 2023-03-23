@@ -17,6 +17,14 @@ void AHumanPlayerHUD::BeginPlay()
 	InitTimeControllerWidget();
 	InitUnitsCollectionsWidget();
 	InitCommanderListWidget();
+	InitMenuWidget();
+	InitTopPanelWidget();
+	InitCountryDiplomacyWidget();
+	InitWarsListWidget();
+	InitWarDescriptionWidget();
+	InitMapsSwitcher();
+	InitAllianceCreationWidget();
+	InitWarsLists();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -68,6 +76,46 @@ UCommanderListWidget* AHumanPlayerHUD::GetCommanderListWidget() const
 	return CommanderListWidget;
 }
 
+UMenuWidget* AHumanPlayerHUD::GetMenuWidget() const
+{
+	return MenuWidget;
+}
+
+UTopPanelWidget* AHumanPlayerHUD::GetTopPanelWidget() const
+{
+	return TopPanelWidget;
+}
+
+UCountryDiplomacyWidget* AHumanPlayerHUD::GetCountryDiplomacyWidget() const
+{
+	return CountryDiplomacyWidget;
+}
+
+UWarsListWidget* AHumanPlayerHUD::GetWarsListWidget() const
+{
+	return WarsListWidget;
+}
+
+UWarDescriptionWidget* AHumanPlayerHUD::GetWarDescriptionWidget() const
+{
+	return WarDescriptionWidget;
+}
+
+UAllianceCreationWidget* AHumanPlayerHUD::GetAllianceCreationWidget() const
+{
+	return AllianceCreationWidget;
+}
+
+UOurWarsListWidget* AHumanPlayerHUD::GetOurWarsListWidget() const
+{
+	return OurWarsListWidget;
+}
+
+UTheirWarsListWidget* AHumanPlayerHUD::GetTheirWarsListWidget() const
+{
+	return TheirWarsListWidget;
+}
+
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
 {
 	const TSharedPtr<FPawnState> PawnState = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetPawnState();
@@ -97,12 +145,29 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	{
 		Widget->RemoveFromParent();
 	}
-	if (TimeControllerWidget) {
+	if (TimeControllerWidget)
+	{
 		TimeControllerWidget->RemoveFromParent();
 	}
 	if (UnitsCollectionsWidget)
 	{
 		UnitsCollectionsWidget->RemoveFromParent();
+	}
+	if (MenuWidget)
+	{
+		MenuWidget->RemoveFromParent();
+	}
+	if (TopPanelWidget)
+	{
+		TopPanelWidget->RemoveFromParent();
+	}
+	if (WarsListWidget)
+	{
+		WarsListWidget->RemoveFromParent();
+	}
+	if (MapsSwitcherWidget)
+	{
+		MapsSwitcherWidget->RemoveFromParent();
 	}
 }
 
@@ -243,5 +308,111 @@ void AHumanPlayerHUD::InitCommanderListWidget()
 			}
 			Widgets.Add(CommanderListWidget);
 		}	
+	}
+}
+
+void AHumanPlayerHUD::InitMenuWidget()
+{
+	if (MenuWidgetClass)
+	{
+		MenuWidget = CreateWidget<UMenuWidget>(GetOwningPlayerController(), MenuWidgetClass);
+		if (MenuWidget)
+		{
+			MenuWidget->Init();
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitTopPanelWidget()
+{
+	if (TopPanelWidgetClass)
+	{
+		TopPanelWidget = CreateWidget<UTopPanelWidget>(GetOwningPlayerController(), TopPanelWidgetClass);
+		if (TopPanelWidget)
+		{
+			TopPanelWidget->AddToPlayerScreen();
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitCountryDiplomacyWidget()
+{
+	if (CountryDiplomacyWidgetClass)
+	{
+		CountryDiplomacyWidget = CreateWidget<UCountryDiplomacyWidget>(GetOwningPlayerController(), CountryDiplomacyWidgetClass);
+		if (CountryDiplomacyWidget)
+		{
+			CountryDiplomacyWidget->Init();
+			Widgets.Add(CountryDiplomacyWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitWarsListWidget()
+{
+	if (WarsListWidgetClass)
+	{
+		WarsListWidget = CreateWidget<UWarsListWidget>(GetOwningPlayerController(), WarsListWidgetClass);
+		if (WarsListWidget)
+		{
+			WarsListWidget->AddToPlayerScreen();
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitWarDescriptionWidget()
+{
+	if (WarDescriptionWidgetClass)
+	{
+		WarDescriptionWidget = CreateWidget<UWarDescriptionWidget>(GetOwningPlayerController(), WarDescriptionWidgetClass);
+		if (WarDescriptionWidget)
+		{
+			Widgets.Add(WarDescriptionWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitMapsSwitcher()
+{
+	if (MapsSwitcherWidgetClass)
+	{
+		MapsSwitcherWidget = CreateWidget<UMapsSwitcherWidget>(GetOwningPlayerController(), MapsSwitcherWidgetClass);
+		if (MapsSwitcherWidget)
+		{
+			MapsSwitcherWidget->AddToPlayerScreen();
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitAllianceCreationWidget()
+{
+	if (AllianceCreationWidgetClass)
+	{
+		AllianceCreationWidget = CreateWidget<UAllianceCreationWidget>(GetOwningPlayerController(), AllianceCreationWidgetClass);
+		if (AllianceCreationWidget)
+		{
+			AllianceCreationWidget->Init();
+			Widgets.Add(AllianceCreationWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitWarsLists()
+{
+	if (OurWarsListWidgetClass)
+	{
+		OurWarsListWidget = CreateWidget<UOurWarsListWidget>(GetOwningPlayerController(), OurWarsListWidgetClass);
+		if (OurWarsListWidget)
+		{
+			Widgets.Add(OurWarsListWidget);
+		}
+	}
+	if (TheirWarsListWidgetClass)
+	{
+		TheirWarsListWidget = CreateWidget<UTheirWarsListWidget>(GetOwningPlayerController(), TheirWarsListWidgetClass);
+		if (TheirWarsListWidget)
+		{
+			Widgets.Add(TheirWarsListWidget);
+		}
 	}
 }

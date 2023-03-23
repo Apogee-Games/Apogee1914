@@ -4,7 +4,6 @@
 class FMapBrowsingPawnState: public FPawnState
 {
 public:
-
 	static TSharedPtr<FPawnState> GetInstance();
 	
 	virtual TSharedPtr<FPawnState> LeftClick(APawn* ProvidedPawn) override;

@@ -17,10 +17,14 @@ void UBuildingManager::OnWorldBeginPlay(UWorld& InWorld)
 	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Produce, FTimespan(1, 0, 0, 0));
 }
 
-UBuilding* UBuildingManager::BuildBuilding(const FBuildingDescription* Description, UProvince* Province, UStorage* Storage)
+UBuilding* UBuildingManager::BuildBuilding(const FBuildingDescription* Description, UProvince* Province)
 {
 	UBuilding* Building = NewObject<UBuilding>();
-	Building->Init(Description, Province, Storage);
+	Building->Init(Description, Province);
+
+	Building->SetCountryOwner(Province->GetCountryController());
+	Building->SetCountryController(Province->GetCountryController());
+
 	Buildings.Add(Building);
 	Province->AddBuilding(Building);
 	return Building;

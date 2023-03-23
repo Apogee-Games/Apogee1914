@@ -38,3 +38,9 @@ void UUnitsSupplyController::Supply()
 		Supplier->Supply();
 	}
 }
+
+void UUnitsSupplyController::Deinitialize()
+{
+	Super::Deinitialize();
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+}

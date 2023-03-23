@@ -5,7 +5,7 @@
 #include "UnitsCollectionGroup.generated.h"
 
 UCLASS()
-class UUnitsCollectionGroup: public UObject, public TFCollection<UUnitsCollection*>, public ICommandable
+class UUnitsCollectionGroup: public UObject, public TFMilitaryCollection<UUnitsCollection*>, public ICommandable
 {
 	GENERATED_BODY()
 public:
@@ -18,7 +18,6 @@ public:
 	virtual int32 GetSize() const override;
 
 	virtual bool Contains(UUnitsCollection* Item) override;
-
 private:
 	UPROPERTY()
 	TSet<UUnitsCollection*> Collections;

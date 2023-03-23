@@ -2,7 +2,7 @@
 #include "Unit.h"
 
 template <class T>
-class TFCollection
+class TFMilitaryCollection: public IOwnable
 {
 public:
 	virtual void Init(EMilitaryBranch ProvidedMilitaryBranch);
@@ -19,20 +19,20 @@ public:
 
 	EMilitaryBranch GetMilitaryBranch() const;
 	
-	virtual ~TFCollection() = default;
+	virtual ~TFMilitaryCollection() = default;
 protected:
 	UPROPERTY()
 	EMilitaryBranch MilitaryBranch;
 };
 
 template <class T>
-void TFCollection<T>::Init(EMilitaryBranch ProvidedMilitaryBranch)
+void TFMilitaryCollection<T>::Init(EMilitaryBranch ProvidedMilitaryBranch)
 {
 	MilitaryBranch = ProvidedMilitaryBranch;
 }
 
 template <class T>
-EMilitaryBranch TFCollection<T>::GetMilitaryBranch() const
+EMilitaryBranch TFMilitaryCollection<T>::GetMilitaryBranch() const
 {
 	return MilitaryBranch;
 }

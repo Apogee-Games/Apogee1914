@@ -30,4 +30,8 @@ private:
 	FColor SelectedProvince = FColor(0, 0, 0);
 
 	void SelectProvince(const FColor& Color);
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

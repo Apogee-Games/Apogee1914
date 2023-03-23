@@ -42,4 +42,8 @@ private:
 	TMap<FName, UCountry*> CountryMap;
 	
 	TArray<FName> CountriesTagsList;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

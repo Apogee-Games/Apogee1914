@@ -23,4 +23,8 @@ public:
 private:
 	UPROPERTY()
 	TMap<FName, UState*> StateMap;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

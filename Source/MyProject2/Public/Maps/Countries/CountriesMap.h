@@ -30,4 +30,8 @@ private:
 	FVector2D SizeVector;
 
 	FRunnableThread* UpdateCountryColor(UProvince* Province, FColor* CountriesColor) const;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

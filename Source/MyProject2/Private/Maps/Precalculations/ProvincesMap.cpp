@@ -9,19 +9,8 @@
 
 void UProvincesMap::SetScenario(UScenario* Scenario)
 {
-	ProvincesMapTexture = Scenario->ProvincesMapTexture;
-	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
-
-	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
-	
-	CalculateMappers(ProvincesMapTexture);
-	
-	FindNeighbours();
-
-	CalculateBorders();
-	
-	//GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
-	// TODO: think of order (meaning new controller -> update distances or new owner update distances)
+	Clear();
+	Init(Scenario);
 }
 
 FVector2d UProvincesMap::GetSizeVector() const
@@ -156,4 +145,30 @@ void UProvincesMap::AddBorder(const FColor& A, const FColor& B, int32 i)
 	}
 	Borders[{A, B}].Add(i);
 	Borders[{B, A}].Add(i);
+}
+
+void UProvincesMap::Clear()
+{
+	ProvincesMapTexture = nullptr;
+	ColorPosition.Empty();
+	Neighbours.Empty();
+	Borders.Empty();
+	PositionColor.Empty();
+}
+
+void UProvincesMap::Init(UScenario* Scenario)
+{
+	ProvincesMapTexture = Scenario->ProvincesMapTexture;
+	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
+
+	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
+	
+	CalculateMappers(ProvincesMapTexture);
+	
+	FindNeighbours();
+
+	CalculateBorders();
+	
+	//GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
+	// TODO: think of order (meaning new controller -> update distances or new owner update distances)
 }

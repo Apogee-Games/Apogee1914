@@ -4,6 +4,7 @@
 bool UUnitsCollection::Add(UUnit* Unit)
 {
 	if (Unit->GetMilitaryBranch() != MilitaryBranch) return false;
+	if (Unit->GetCountryController() != CountryController) return false;
 	Units.Add(Unit);
 	return true;
 }
@@ -11,6 +12,7 @@ bool UUnitsCollection::Add(UUnit* Unit)
 bool UUnitsCollection::Remove(UUnit* Unit)
 {
 	if (Unit->GetMilitaryBranch() != MilitaryBranch) return false;
+	if (Unit->GetCountryController() != CountryController) return false;
 	return Units.Remove(Unit) != 0;
 }
 

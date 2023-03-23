@@ -65,6 +65,123 @@ TArray<UStorage*> UCountry::GetStorages() const
 	return {Storage, LowerStrata->GetStorage(), MiddleStrata->GetStorage(), UpperStrata->GetStorage()};
 }
 
+void UCountry::SetAlliance(UAlliance* ProvidedAlliance)
+{
+	Alliance = ProvidedAlliance;
+}
+
+UAlliance* UCountry::GetAlliance() const
+{
+	return Alliance;
+}
+
+bool UCountry::IsInAlliance() const
+{
+	return Alliance != nullptr;
+}
+
+ERelationType UCountry::GetRelation(UCountry* Country)
+{
+	return Relations.Contains(Country) ? Relations[Country] : Neutral;
+}
+
+void UCountry::SetRelation(UCountry* Country, ERelationType Relation)
+{
+	if (Relation == Neutral)
+	{
+		Relations.Remove(Country);
+	} else {
+		Relations.Add(Country, Relation);
+	}
+}
+
+bool UCountry::CanDeclareWarOn(UCountry* Country)
+{
+	return (CanDeclareWarList & GetRelation(Country));
+}
+
+bool UCountry::CanCreateNonAggressionPactWith(UCountry* Country)
+{
+	return (CanCreateNonAggressionPactList & GetRelation(Country));
+}
+
+bool UCountry::CanCreateDefencivePactWith(UCountry* Country)
+{
+	return (CanCreateDefencivePactList & GetRelation(Country));
+}
+
+bool UCountry::CanCreateAllianceWith(UCountry* Country)
+{
+	return (CanCreateAllianceList & GetRelation(Country));
+}
+
+bool UCountry::MustHelpInDefenciveWar(UCountry* Country)
+{
+	return (MustHelpInDefenciveWarList & GetRelation(Country));
+}
+
+bool UCountry::MustHelpInAggressiveWar(UCountry* Country)
+{
+	return (MustHelpInAggressiveWarList & GetRelation(Country));
+}
+
+bool UCountry::CanJoinCountryWar(UCountry* Country)
+{
+	return (CanJoinCountriesWarList & GetRelation(Country));
+}
+
+bool UCountry::HasNonAggressionPactWith(UCountry* Country)
+{
+	return Relations.Contains(Country) && Relations[Country] == NonAggressionPact;
+}
+
+bool UCountry::HasDefencivePactWith(UCountry* Country)
+{
+	return Relations.Contains(Country) && Relations[Country] == DefencivePact;
+}
+
+const TMap<UCountry*, ERelationType>& UCountry::GetRelations() const
+{
+	return Relations;
+}
+
+void UCountry::AddWar(UWar* War)
+{
+	Wars.Add(War);
+}
+
+void UCountry::RemoveWar(UWar* War)
+{
+	Wars.Remove(War);
+}
+
+const TArray<UWar*>& UCountry::GetWars() const
+{
+	return Wars;
+}
+
+bool UCountry::IsCountryInWar() const
+{
+	return !Wars.IsEmpty();
+}
+
+bool UCountry::CanCountryJoinOneOfOurWars(UCountry* Country) const
+{
+	for (const auto& War: Wars)
+	{
+		if (!War->IsMember(Country)) //TODO: Add logic to check if country can join :)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool UCountry::IsCountryInWarWith(UCountry* Country)
+{
+	return Relations.Contains(Country) && Relations[Country] == War;
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>();

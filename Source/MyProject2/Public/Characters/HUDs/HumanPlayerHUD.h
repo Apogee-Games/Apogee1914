@@ -1,14 +1,23 @@
 #pragma once
 #include "GameFramework/HUD.h"
 #include "Widgets/TimeControllerWidget.h"
+#include "Widgets/TopPanelWidget.h"
 #include "Widgets/Administration/ProvinceDataWidget.h"
+#include "Widgets/Diplomacy/Wars/Description/WarDescriptionWidget.h"
+#include "Widgets/Diplomacy/Wars/List//WarsListWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
+#include "Widgets/Maps/MapsSwitcherWidget.h"
+#include "Widgets/Menu/MenuWidget.h"
 #include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 #include "Widgets/Military/Commanders/CommanderListWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
+#include "Widgets/Diplomacy/Alliance/Creation/AllianceCreationWidget.h"
+#include "Widgets/Diplomacy/Menu/CountryDiplomacyWidget.h"
+#include "Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListWidget.h"
+#include "Widgets/Diplomacy/Wars/Join/TheirWar/TheirWarsListWidget.h"
 #include "HumanPlayerHUD.generated.h"
 
 UCLASS()
@@ -42,6 +51,33 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCommanderListWidget> CommanderListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMenuWidget> MenuWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UTopPanelWidget> TopPanelWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCountryDiplomacyWidget> CountryDiplomacyWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UWarsListWidget> WarsListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UWarDescriptionWidget> WarDescriptionWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMapsSwitcherWidget> MapsSwitcherWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAllianceCreationWidget> AllianceCreationWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOurWarsListWidget> OurWarsListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UTheirWarsListWidget> TheirWarsListWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -62,6 +98,22 @@ public:
 	UUnitsCollectionsWidget* GetUnitsCollectionsWidget() const;
 
 	UCommanderListWidget* GetCommanderListWidget() const;
+
+	UMenuWidget* GetMenuWidget() const;
+
+	UTopPanelWidget* GetTopPanelWidget() const;
+
+	UCountryDiplomacyWidget* GetCountryDiplomacyWidget() const;
+
+	UWarsListWidget* GetWarsListWidget() const;
+	
+	UWarDescriptionWidget* GetWarDescriptionWidget() const;
+
+	UAllianceCreationWidget* GetAllianceCreationWidget() const;
+
+	UOurWarsListWidget* GetOurWarsListWidget() const;
+
+	UTheirWarsListWidget* GetTheirWarsListWidget() const;
 	
 	void UpdateWidgetsVisibility();
 	
@@ -93,6 +145,33 @@ private:
 
 	UPROPERTY()
 	UCommanderListWidget* CommanderListWidget;
+
+	UPROPERTY()
+	UMenuWidget* MenuWidget;
+
+	UPROPERTY()
+	UTopPanelWidget* TopPanelWidget;
+
+	UPROPERTY()
+	UCountryDiplomacyWidget* CountryDiplomacyWidget;
+
+	UPROPERTY()
+	UWarsListWidget* WarsListWidget;
+
+	UPROPERTY()
+	UWarDescriptionWidget* WarDescriptionWidget;
+
+	UPROPERTY()
+	UMapsSwitcherWidget* MapsSwitcherWidget;
+
+	UPROPERTY()
+	UAllianceCreationWidget* AllianceCreationWidget;
+
+	UPROPERTY()
+	UOurWarsListWidget* OurWarsListWidget;
+
+	UPROPERTY()
+	UTheirWarsListWidget* TheirWarsListWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -114,4 +193,20 @@ private:
 	void InitUnitsCollectionsWidget();
 
 	void InitCommanderListWidget();
+
+	void InitMenuWidget();
+
+	void InitTopPanelWidget();
+
+	void InitCountryDiplomacyWidget();
+
+	void InitWarsListWidget();
+
+	void InitWarDescriptionWidget();
+
+	void InitMapsSwitcher();
+
+	void InitAllianceCreationWidget();
+
+	void InitWarsLists();
 };

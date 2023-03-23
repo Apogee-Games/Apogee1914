@@ -21,6 +21,8 @@ public:
 	virtual void UnitsCollectionIsCreated(UUnitsCollection* UnitsCollection) override;
 	
 	virtual void UnitsCollectionGroupIsCreated(UUnitsCollectionGroup* UnitsCollectionGroup) override;
+
+	virtual void NativeDestruct() override;
 private:
 	UPROPERTY()
 	TMap<EMilitaryBranch, UUnitsCollectionGroup*> DefaultCollectionGroups; // To contain collections that are not in collection group

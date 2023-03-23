@@ -3,6 +3,7 @@
 bool UUnitsCollectionGroup::Add(UUnitsCollection* Collection)
 {
 	if (Collection->GetMilitaryBranch() != MilitaryBranch) return false;
+	if (Collection->GetCountryController() != CountryController) return false;
 	Collections.Add(Collection);
 	return true;
 }
@@ -10,6 +11,7 @@ bool UUnitsCollectionGroup::Add(UUnitsCollection* Collection)
 bool UUnitsCollectionGroup::Remove(UUnitsCollection* Collection)
 {
 	if (Collection->GetMilitaryBranch() != MilitaryBranch) return false;
+	if (Collection->GetCountryController() != CountryController) return false;
 	return Collections.Remove(Collection) != 0;
 }
 
