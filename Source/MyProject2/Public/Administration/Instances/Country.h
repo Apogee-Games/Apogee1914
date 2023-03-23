@@ -81,6 +81,8 @@ public:
 	UParliament* GetFirstChamber() const;
 
 	UParliament* GetSecondChamber() const;
+
+	UIdeology* GetIdeology() const;
 private:
 	FName Name;
 
@@ -88,10 +90,11 @@ private:
 
 	FColor Color;
 
-	FName IdeologyTag;
+	UPROPERTY()
+	UIdeology* Ideology;
 
 	UPROPERTY()
-	TMap<FName, FIdeologyDescription> Ideologies;
+	TMap<FName, FCountryIdeologyParameters> Ideologies;
 	
 	UPROPERTY()
 	UTexture2D* Flag = nullptr;

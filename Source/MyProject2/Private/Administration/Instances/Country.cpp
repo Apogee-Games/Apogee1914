@@ -1,4 +1,6 @@
 #include "Administration/Instances/Country.h"
+
+#include "Administration/Managers/IdeologyManager.h"
 #include "People/Managers/PeopleManager.h"
 #include "Utils/TextureUtils.h"
 
@@ -6,12 +8,12 @@ void UCountry::Init(FCountryDescription* CountryDescription, FParliamentDescript
 {
 
 	if (FirstChamber) {
-		FirstChamberParliament = NewObject<UParliament>();
+		FirstChamberParliament = NewObject<UParliament>(this);
 		FirstChamberParliament->Init(FirstChamber);
 	}
 	
 	if (SecondChamber) {
-		SecondChamberParliament = NewObject<UParliament>();
+		SecondChamberParliament = NewObject<UParliament>(this);
 		SecondChamberParliament->Init(FirstChamber);
 	}
 	
@@ -33,12 +35,12 @@ void UCountry::Init(FCountryDescription* CountryDescription, FParliamentDescript
 
 const FColor& UCountry::GetColor() const
 {
-	return Ideologies[IdeologyTag].CountryColor;
+	return Ideologies[Ideology->GetTag()].CountryColor;
 }
 
 const FName& UCountry::GetName() const
 {
-	return Ideologies[IdeologyTag].CountryName;
+	return Ideologies[Ideology->GetTag()].CountryName;
 }
 
 const FName& UCountry::GetTag() const
@@ -59,9 +61,11 @@ UStorage* UCountry::GetStorage() const
 
 void UCountry::SetIdeology(const FName& ProvidedIdeologyTag)
 {
-	IdeologyTag = ProvidedIdeologyTag;
+	Ideology = GetWorld()->GetGameInstance()->GetSubsystem<UIdeologyManager>()->GetIdeology(ProvidedIdeologyTag);
+	
 	UPeopleManager* PeopleManager = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>();
-	Ruler = PeopleManager->GetPerson(Ideologies[IdeologyTag].RulerId);
+	Ruler = PeopleManager->GetPerson(Ideologies[Ideology->GetTag()].RulerId);
+	
 	LoadFlag();
 }
 
@@ -203,6 +207,11 @@ UParliament* UCountry::GetSecondChamber() const
 	return SecondChamberParliament;
 }
 
+UIdeology* UCountry::GetIdeology() const
+{
+	return Ideology;
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>();
@@ -216,5 +225,5 @@ void UCountry::InitStrata()
 
 void UCountry::LoadFlag() 
 {
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + IdeologyTag.ToString());
+	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + Ideology->GetTag().ToString());
 }
