@@ -1,9 +1,10 @@
 ﻿#pragma once
-#include "Administration/Instances/Country.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Components/WidgetSwitcher.h"
 #include "DiplomaticPactsWidgets.generated.h"
 
+class UCountry;
 UCLASS()
 class UDiplomaticPactsWidgets: public UUserWidget
 {
@@ -13,8 +14,20 @@ public:
 	UButton* CreateNonAggressionPactButton;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* BreakNonAggressionPactButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UWidgetSwitcher* NonAggressionPactCreationRemovalWidgetSwitcher;
+	
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* CreateDefencivePactButton;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* BreakDefencivePactButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UWidgetSwitcher* DefencivePactCreationRemovalWidgetSwitcher;
+	
 	void Init();
 	
 	void SetCountry(UCountry* ProvidedCountry);
@@ -30,7 +43,13 @@ private:
 	
 	UFUNCTION()
 	void OnCreateNonAggressionPactButtonClick();
-	
+
+	UFUNCTION()
+	void OnBreakNonAggressionPactButtonClick();
+
 	UFUNCTION()
 	void OnCreateDefencivePactButtonClick();
+
+	UFUNCTION()
+	void OnBreakDefencivePactButtonClick();
 };

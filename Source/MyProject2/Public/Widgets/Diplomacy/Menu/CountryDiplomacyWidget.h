@@ -31,6 +31,9 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UAllianceManagementWidget* AllianceManagementWidget;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UWidgetSwitcher* WidgetSwitcher;
 	
 	void Init();
 	

@@ -45,8 +45,8 @@ void UAllianceManagementWidget::RefreshData()
 	} else if (OwnerCountry->IsInAlliance() || Country->IsInAlliance())
 	{
 		AllianceInteractionsWidgetSwitcher->SetActiveWidgetIndex(2);
-		AskThemToJoinAllianceButton->SetIsEnabled(OwnerCountry->IsInAlliance());
-		AskToJoinTheirAllianceButton->SetIsEnabled(Country->IsInAlliance());
+		AskThemToJoinAllianceButton->SetIsEnabled(OwnerCountry->IsInAlliance() && OwnerCountry->GetAlliance()->CountryCanJoin(Country)); 
+		AskToJoinTheirAllianceButton->SetIsEnabled(Country->IsInAlliance() && Country->GetAlliance()->CountryCanJoin(OwnerCountry));
 	} else 
 	{
 		AllianceInteractionsWidgetSwitcher->SetActiveWidgetIndex(1);
@@ -68,23 +68,23 @@ void UAllianceManagementWidget::OnCreateAllianceButtonClick()
 void UAllianceManagementWidget::OnAskThemToJoinAllianceButtonClick()
 {
 	OwnerCountry->GetAlliance()->AddMember(Country);
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FCountryDiplomacyPawnState::GetInstance());
+	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }
 
 void UAllianceManagementWidget::OnAskToJoinTheirAllianceButtonClick()
 {
 	Country->GetAlliance()->AddMember(OwnerCountry);
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FCountryDiplomacyPawnState::GetInstance());
+	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }
 
 void UAllianceManagementWidget::OnLeaveAllianceButtonClick()
 {
 	OwnerCountry->GetAlliance()->RemoveMember(OwnerCountry);
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FCountryDiplomacyPawnState::GetInstance());
+	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }
 
 void UAllianceManagementWidget::OnDissolveAllianceButtonClick()
 {
 	OwnerCountry->GetAlliance()->Dissolve();
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FCountryDiplomacyPawnState::GetInstance());
+	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }

@@ -25,11 +25,19 @@ void UCountryDiplomacyWidget::SetCountry(UCountry* ProvidedCountry)
 
 void UCountryDiplomacyWidget::RefreshData()
 {
-	DiplomaticPactsWidget->RefreshData();
-	WarManagementWidget->RefreshData();
-	RelationsListWidget->RefreshData();
 	AllianceManagementWidget->RefreshData();
 
+	if (Country == OwnerCountry)
+	{
+		WidgetSwitcher->SetActiveWidgetIndex(0);
+	} else
+	{
+		WidgetSwitcher->SetActiveWidgetIndex(1);
+		DiplomaticPactsWidget->RefreshData();
+		WarManagementWidget->RefreshData();
+		RelationsListWidget->RefreshData();
+	}
+	
 	CountryFlag->SetBrushResourceObject(Country->GetFlag());
 	CountryNameTextBlock->SetText(FText::FromName(Country->GetName()));
 }
