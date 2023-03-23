@@ -55,6 +55,18 @@ FColor UAlliance::GetColor() const
 	return AllianceLeader->GetColor();
 }
 
+bool UAlliance::CountryCanJoin(UCountry* Country)
+{
+	for (const auto& Member: Members)
+	{
+		if (Country->IsCountryInWarWith(Member))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 bool UAlliance::IsCountryMember(UCountry* Country) const
 {
 	return Members.Contains(Country);

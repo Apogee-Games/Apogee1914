@@ -20,6 +20,8 @@ public:
 
 	FColor GetColor() const;
 
+	bool CountryCanJoin(UCountry* Country);
+	
 	bool IsCountryMember(UCountry* Country) const;
 
 	UCountry* GetLeader() const;
