@@ -1,9 +1,9 @@
 ﻿#pragma once
 #include "Engine/DataTable.h"
-#include "IdeologyDescription.generated.h"
+#include "CountryIdeologyParameter.generated.h"
 
 USTRUCT()
-struct FIdeologyDescription: public FTableRowBase
+struct FCountryIdeologyParameter: public FTableRowBase
 {
 	GENERATED_BODY()
 
