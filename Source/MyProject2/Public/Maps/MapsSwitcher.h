@@ -17,14 +17,16 @@ public:
 	
 	void SetScenario(UScenario* ProvidedScenario);
 
-	void SetAllianceMap(AHumanPlayerPawn* Pawn);
+	void SelectAllianceMap(AHumanPlayerPawn* Pawn);
 	
 	void SelectFlagsMap(AHumanPlayerPawn* Pawn);
-
+	
 	void SelectCountriesMap(AHumanPlayerPawn* Pawn);
 
 	void SelectRelationMap(AHumanPlayerPawn* Pawn);
 
+	void SelectIdeologyMap(AHumanPlayerPawn* Pawn);
+	
 	void SetApplyProvinceOutlineMap(AHumanPlayerPawn* Pawn, bool Flag);
 
 	void SetApplySelectionMap(AHumanPlayerPawn* Pawn, bool Flag);
