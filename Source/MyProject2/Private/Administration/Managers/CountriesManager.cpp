@@ -99,7 +99,7 @@ void UCountriesManager::Clear()
 
 void UCountriesManager::Init(UScenario* Scenario)
 {
-	UDataTable* ParliamentsDescriptions = Scenario->ParliamentsDescriptions;
+	UDataTable* ParliamentsDescriptions = Scenario->ParliamentsDescriptionsDataTable;
 	
 	for (const auto& [Key, Value]: Scenario->CountryDescriptionDataTable->GetRowMap())
 	{
