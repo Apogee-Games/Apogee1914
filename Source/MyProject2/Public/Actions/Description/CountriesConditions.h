@@ -1,9 +1,9 @@
 #pragma once
 #include "Engine/DataTable.h"
-#include "EventCountriesConditions.generated.h"
+#include "CountriesConditions.generated.h"
 
 USTRUCT()
-struct FEventCountriesConditions : public FTableRowBase
+struct FCountriesConditions : public FTableRowBase
 {
 	GENERATED_BODY()
 

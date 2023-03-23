@@ -1,7 +1,7 @@
 #pragma once
 #include "EventChoice.h"
-#include "EventCountriesConditions.h"
 #include "Actions/Description/Condition.h"
+#include "Actions/Description/CountriesConditions.h"
 #include "Engine/DataTable.h"
 #include "EventDescription.generated.h"
 
@@ -23,7 +23,7 @@ struct FEventDescription: public FTableRowBase
 	bool TriggerOnce;
 	
 	UPROPERTY()
-	FEventCountriesConditions CountriesConditions;
+	FCountriesConditions CountriesConditions;
 
 	UPROPERTY()
 	TArray<FCondition> Conditions;
