@@ -1,6 +1,7 @@
 [
 	{
 		"Name": "GER1",
+		"ParliamentName": "Reichstag",
 		"Fractions": [
 			{
 				"IdeologyTag": "MON",
@@ -10,7 +11,17 @@
 			{
 				"IdeologyTag": "REP",
 				"FractionName": "Republicans",
-				"MembersNumber": 40
+				"MembersNumber": 30
+			}, 
+			{
+				"IdeologyTag": "COM",
+				"FractionName": "Communists",
+				"MembersNumber": 5
+			},
+			{
+				"IdeologyTag": "NAT",
+				"FractionName": "Nationalists",
+				"MembersNumber": 5
 			}
 		]
 	}

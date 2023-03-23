@@ -6,7 +6,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "Austro-Hungarian Empire",
 				"CountryColor": {
 					"B": 80,
@@ -24,7 +23,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "Kingdom of Belgium",
 				"CountryColor":
 				{
@@ -43,7 +41,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "The Kingdom of the Netherlands",
 				"CountryColor":
 				{
@@ -62,7 +59,6 @@
 		"Ideologies": [ 
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "The Grand Duchy of Luxembourg",
 				"CountryColor":
 				{
@@ -77,11 +73,10 @@
 	{
 		"Name": "FRA",
 		"Tag": "FRA",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 				{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "French Republic",
 				"RulerId": "RPoincaré",
 				"CountryColor":
@@ -101,7 +96,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "German Empire",
 				"RulerId": "HWilhelmII",
 				"CountryColor":
@@ -109,6 +103,42 @@
 					"B": 50,
 					"G": 50,
 					"R": 50,
+					"A": 0
+				}
+			},
+			{
+				"IdeologyTag": "REP",
+				"CountryName": "German Repubic",
+				"RulerId": "Erich_Ludendorff",
+				"CountryColor":
+				{
+					"B": 90,
+					"G": 90,
+					"R": 90,
+					"A": 0
+				}
+			},
+			{
+				"IdeologyTag": "COM",
+				"CountryName": "German Democratic Republic",
+				"RulerId": "Erich_Ludendorff",
+				"CountryColor":
+				{
+					"B": 90,
+					"G": 90,
+					"R": 90,
+					"A": 0
+				}
+			},
+			{
+				"IdeologyTag": "NAT",
+				"CountryName": "The Third Reich",
+				"RulerId": "Erich_Ludendorff",
+				"CountryColor":
+				{
+					"B": 90,
+					"G": 90,
+					"R": 90,
 					"A": 0
 				}
 			}
@@ -121,7 +151,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "Kingdom of Italy",
 				"CountryColor":
 				{
@@ -136,11 +165,10 @@
 	{
 		"Name": "SWI",
 		"Tag": "SWI",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Swiss Confederation",
 				"CountryColor":
 				{
@@ -159,7 +187,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "The United Kingdom of Great Britain and Ireland",
 				"CountryColor":
 				{
@@ -178,7 +205,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "The Kingdom of Spain",
 				"CountryColor":
 				{
@@ -193,11 +219,10 @@
 	{
 		"Name": "POR",
 		"Tag": "POR",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Portuguese Republic",
 				"CountryColor":
 				{
@@ -216,7 +241,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "The Kingdom of Sweden",
 				"CountryColor":
 				{
@@ -235,7 +259,6 @@
 		"Ideologies": [
 			{
 				"IdeologyTag": "MON",
-				"IdeologyName": "Monarchists",
 				"CountryName": "The Kingdom of Norway",
 				"CountryColor":
 				{
@@ -250,11 +273,10 @@
 	{
 		"Name": "BRA",
 		"Tag": "BRA",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of Brazil",
 				"CountryColor":
 				{
@@ -269,11 +291,10 @@
 	{
 		"Name": "USA",
 		"Tag": "USA",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of America",
 				"CountryColor":
 				{
@@ -288,11 +309,10 @@
 	{
 		"Name": "PAR",
 		"Tag": "PAR",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Paraguay",
 				"CountryColor":
 				{
@@ -307,11 +327,10 @@
 	{
 		"Name": "BOL",
 		"Tag": "BOL",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Plurinational State of Bolivia",
 				"CountryColor":
 				{
@@ -326,11 +345,10 @@
 	{
 		"Name": "PER",
 		"Tag": "PER",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Peru",
 				"CountryColor":
 				{
@@ -345,11 +363,10 @@
 	{
 		"Name": "CHI",
 		"Tag": "CHI",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Chile",
 				"CountryColor":
 				{
@@ -364,11 +381,10 @@
 	{
 		"Name": "URU",
 		"Tag": "URU",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Oriental Republic of Uruguay",
 				"CountryColor":
 				{
@@ -383,11 +399,10 @@
 	{
 		"Name": "ARG",
 		"Tag": "ARG",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Argentine Republic",
 				"CountryColor":
 				{
@@ -402,11 +417,10 @@
 	{
 		"Name": "CAN",
 		"Tag": "CAN",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Canada",
 				"CountryColor":
 				{
@@ -421,11 +435,10 @@
 	{
 		"Name": "MEX",
 		"Tag": "MEX",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United Mexican States",
 				"CountryColor":
 				{
@@ -440,11 +453,10 @@
 	{
 		"Name": "VEN",
 		"Tag": "VEN",
-		"IdeologyTag": "DIC",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DIC",
-				"IdeologyName": "Dictatorship",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of Venezuela",
 				"CountryColor":
 				{
@@ -459,11 +471,10 @@
 	{
 		"Name": "COL",
 		"Tag": "COL",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "The United States of Colombia",
 				"CountryColor":
 				{
@@ -478,11 +489,10 @@
 	{
 		"Name": "ECU",
 		"Tag": "ECU",
-		"IdeologyTag": "DEM",
+		"IdeologyTag": "REP",
 		"Ideologies": [
 			{
-				"IdeologyTag": "DEM",
-				"IdeologyName": "Democrats",
+				"IdeologyTag": "REP",
 				"CountryName": "Republic of Ecuador",
 				"CountryColor":
 				{
