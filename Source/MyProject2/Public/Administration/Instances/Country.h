@@ -48,6 +48,10 @@ public:
 	bool MustHelpInAggressiveWar(UCountry* Country);
 
 	bool CanJoinCountryWar(UCountry* Country);
+
+	bool HasNonAggressionPactWith(UCountry* Country);
+
+	bool HasDefencivePactWith(UCountry* Country);
 	
 	const TMap<UCountry*, ERelationType>& GetRelations() const;
 
@@ -68,6 +72,8 @@ public:
 	bool IsCountryInWar() const;
 
 	bool CanCountryJoinOneOfOurWars(UCountry* Country) const;
+
+	bool IsCountryInWarWith(UCountry* Country);
 private:
 	FName Name;
 

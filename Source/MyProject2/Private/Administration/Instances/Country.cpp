@@ -130,6 +130,16 @@ bool UCountry::CanJoinCountryWar(UCountry* Country)
 	return (CanJoinCountriesWarList & GetRelation(Country));
 }
 
+bool UCountry::HasNonAggressionPactWith(UCountry* Country)
+{
+	return Relations.Contains(Country) && Relations[Country] == NonAggressionPact;
+}
+
+bool UCountry::HasDefencivePactWith(UCountry* Country)
+{
+	return Relations.Contains(Country) && Relations[Country] == DefencivePact;
+}
+
 const TMap<UCountry*, ERelationType>& UCountry::GetRelations() const
 {
 	return Relations;
@@ -165,6 +175,11 @@ bool UCountry::CanCountryJoinOneOfOurWars(UCountry* Country) const
 		}
 	}
 	return false;
+}
+
+bool UCountry::IsCountryInWarWith(UCountry* Country)
+{
+	return Relations.Contains(Country) && Relations[Country] == War;
 }
 
 void UCountry::InitStrata()
