@@ -28,10 +28,24 @@ void URelationshipsManager::CreateNonAggressionPact(UCountry* CountryA, UCountry
 	CountryB->SetRelation(CountryA, NonAggressionPact);
 }
 
+void URelationshipsManager::BreakNonAggressionPact(UCountry* CountryA, UCountry* CountryB)
+{
+	// TODO: Add some logic to make a it a bit painful :)
+	CountryA->SetRelation(CountryB, Neutral);
+	CountryB->SetRelation(CountryA, Neutral);
+}
+
 void URelationshipsManager::CreateDefencivePact(UCountry* CountryA, UCountry* CountryB)
 {
 	CountryA->SetRelation(CountryB, DefencivePact);
 	CountryB->SetRelation(CountryA, DefencivePact);
+}
+
+void URelationshipsManager::BreakDefencivePact(UCountry* CountryA, UCountry* CountryB)
+{
+	// TODO: Add some logic to make a it a bit painful :)
+	CountryA->SetRelation(CountryB, Neutral);
+	CountryB->SetRelation(CountryA, Neutral);
 }
 
 void URelationshipsManager::CreateAlliance(UCountry* Country, const FText& AllianceName)
@@ -61,7 +75,7 @@ void URelationshipsManager::Init(UScenario* Scenario)
 {
 	UCountry* France = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("FRA");
 	UCountry* Spain = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("SPA");
-	CreateAlliance(France, FText::FromString(TEXT("West powers")), {Spain});
+	DeclareWar(France, Spain);
 
 	GetGameInstance()->GetSubsystem<UCountryRelationMap>()->UpdateMap();
 	GetGameInstance()->GetSubsystem<UAlliancesMap>()->UpdateMap();
