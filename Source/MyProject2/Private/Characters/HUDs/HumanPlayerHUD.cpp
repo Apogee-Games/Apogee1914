@@ -25,6 +25,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitMapsSwitcher();
 	InitAllianceCreationWidget();
 	InitWarsLists();
+	InitCountryManagementWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -413,6 +414,18 @@ void AHumanPlayerHUD::InitWarsLists()
 		if (TheirWarsListWidget)
 		{
 			Widgets.Add(TheirWarsListWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitCountryManagementWidget()
+{
+	if (CountryManagementWidgetClass)
+	{
+		CountryManagementWidget = CreateWidget<UCountryManagementWidget>(GetOwningPlayerController(), CountryManagementWidgetClass);
+		if (CountryManagementWidget)
+		{
+			Widgets.Add(CountryManagementWidget);
 		}
 	}
 }
