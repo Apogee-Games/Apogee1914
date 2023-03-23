@@ -14,6 +14,9 @@ public:
 	UImage* CountryFlagImage;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* CountryFlagButton;
+	
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* ManpowerTextBlock;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
@@ -44,4 +47,7 @@ private:
 
 	UFUNCTION()
 	void OnBuildingCreationButtonClick();
+
+	UFUNCTION()
+	void OnCountryFlagButtonClick();
 };
