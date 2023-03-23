@@ -1,0 +1,17 @@
+[
+	{
+		"Name": "GER1",
+		"Fractions": [
+			{
+				"IdeologyTag": "MON",
+				"FractionName": "Monarchists",
+				"MembersNumber": 60
+			},
+			{
+				"IdeologyTag": "REP",
+				"FractionName": "Republicans",
+				"MembersNumber": 40
+			}
+		]
+	}
+]

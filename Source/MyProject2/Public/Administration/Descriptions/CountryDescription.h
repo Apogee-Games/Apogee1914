@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "FractionDescription.h"
+#include "IdeologyDescription.h"
 #include "Engine/DataTable.h"
 #include "CountryDescription.generated.h"
 
@@ -12,8 +12,8 @@ struct FCountryDescription: public FTableRowBase
 	FName Tag;
 
 	UPROPERTY()
-	FName RulingFractionTag;
+	FName IdeologyTag;
 	
 	UPROPERTY()
-	TArray<FFractionDescription> Fractions;
+	TArray<FIdeologyDescription> Ideologies;
 };

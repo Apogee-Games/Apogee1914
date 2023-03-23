@@ -44,6 +44,9 @@ public:
 	UDataTable* PeoplesDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
+	UDataTable* ParliamentsDescriptions;
+
+	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
 
 	UPROPERTY(EditDefaultsOnly)

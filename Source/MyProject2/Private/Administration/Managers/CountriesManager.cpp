@@ -2,6 +2,7 @@
 #include "Administration/Managers/CountriesManager.h"
 
 #include "MyGameInstance.h"
+#include "Administration/Descriptions/ParliamentDescription.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
@@ -98,13 +99,19 @@ void UCountriesManager::Clear()
 
 void UCountriesManager::Init(UScenario* Scenario)
 {
+	UDataTable* ParliamentsDescriptions = Scenario->ParliamentsDescriptions;
+	
 	for (const auto& [Key, Value]: Scenario->CountryDescriptionDataTable->GetRowMap())
 	{
 		UCountry* Country = NewObject<UCountry>(this);
-		Country->Init(reinterpret_cast<FCountryDescription*>(Value)); // TODO: Add removal of countries
+
+		FParliamentDescription* FirstChamber = reinterpret_cast<FParliamentDescription*>(ParliamentsDescriptions->FindRowUnchecked(FName(Key.ToString() + "1")));
+		FParliamentDescription* SecondChamber = reinterpret_cast<FParliamentDescription*>(ParliamentsDescriptions->FindRowUnchecked(FName(Key.ToString() + "2")));
+
+		Country->Init(reinterpret_cast<FCountryDescription*>(Value), FirstChamber, SecondChamber); // TODO: Add removal of countries
 		CountryMap.Add(Key, Country);
 	}
-
+	
 	for (const auto& Pair: Scenario->CountryDescriptionDataTable->GetRowMap())
 	{
 		CountriesTagsList.Add(Pair.Key);

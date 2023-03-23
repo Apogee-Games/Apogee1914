@@ -1,5 +1,7 @@
 #pragma once
+#include "Parliament.h"
 #include "Administration/Descriptions/CountryDescription.h"
+#include "Administration/Descriptions/ParliamentDescription.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "Economics/Instances/Market.h"
 #include "Economics/Instances/Strata.h"
@@ -11,7 +13,7 @@ class UCountry: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(FCountryDescription* CountryDescription);
+	void Init(FCountryDescription* CountryDescription, FParliamentDescription* FirstChamber, FParliamentDescription* SecondChamber);
 
 	const FColor& GetColor() const;
 
@@ -21,7 +23,7 @@ public:
 
 	UTexture2D* GetFlag();
 
-	void SetRulingFraction(const FName& ProvidedRulingFractionTag);
+	void SetIdeology(const FName& ProvidedIdeologyTag);
 
 	UPerson* GetRuler() const;
 
@@ -74,6 +76,11 @@ public:
 	bool CanCountryJoinOneOfOurWars(UCountry* Country) const;
 
 	bool IsCountryInWarWith(UCountry* Country);
+
+
+	UParliament* GetFirstChamber() const;
+
+	UParliament* GetSecondChamber() const;
 private:
 	FName Name;
 
@@ -81,10 +88,10 @@ private:
 
 	FColor Color;
 
-	FName RulingFractionTag;
+	FName IdeologyTag;
 
 	UPROPERTY()
-	TMap<FName, FFractionDescription> Fractions;
+	TMap<FName, FIdeologyDescription> Ideologies;
 	
 	UPROPERTY()
 	UTexture2D* Flag = nullptr;
@@ -114,6 +121,12 @@ private:
 
 	UPROPERTY()
 	TArray<UWar*> Wars;
+
+	UPROPERTY()
+	UParliament* FirstChamberParliament;
+
+	UPROPERTY()
+	UParliament* SecondChamberParliament;
 	
 	void InitStrata();
 

@@ -1,18 +1,29 @@
 #include "Administration/Instances/Country.h"
-
 #include "People/Managers/PeopleManager.h"
 #include "Utils/TextureUtils.h"
 
-void UCountry::Init(FCountryDescription* CountryDescription)
+void UCountry::Init(FCountryDescription* CountryDescription, FParliamentDescription* FirstChamber, FParliamentDescription* SecondChamber)
 {
-	for (const auto FractionDescription: CountryDescription->Fractions)
+
+	if (FirstChamber) {
+		FirstChamberParliament = NewObject<UParliament>();
+		FirstChamberParliament->Init(FirstChamber);
+	}
+	
+	if (SecondChamber) {
+		SecondChamberParliament = NewObject<UParliament>();
+		SecondChamberParliament->Init(FirstChamber);
+	}
+	
+	
+	for (const auto IdeologyDescription: CountryDescription->Ideologies)
 	{
-		Fractions.Add(FractionDescription.FractionTag, FractionDescription);
+		Ideologies.Add(IdeologyDescription.IdeologyTag, IdeologyDescription);
 	}
 	
 	Tag = CountryDescription->Tag;
 	
-	SetRulingFraction(CountryDescription->RulingFractionTag);
+	SetIdeology(CountryDescription->IdeologyTag);
 	
 	InitStrata();
 
@@ -22,12 +33,12 @@ void UCountry::Init(FCountryDescription* CountryDescription)
 
 const FColor& UCountry::GetColor() const
 {
-	return Fractions[RulingFractionTag].CountryColor;
+	return Ideologies[IdeologyTag].CountryColor;
 }
 
 const FName& UCountry::GetName() const
 {
-	return Fractions[RulingFractionTag].CountryName;
+	return Ideologies[IdeologyTag].CountryName;
 }
 
 const FName& UCountry::GetTag() const
@@ -46,11 +57,11 @@ UStorage* UCountry::GetStorage() const
 	return Storage;
 }
 
-void UCountry::SetRulingFraction(const FName& ProvidedRulingFractionTag)
+void UCountry::SetIdeology(const FName& ProvidedIdeologyTag)
 {
-	RulingFractionTag = ProvidedRulingFractionTag;
+	IdeologyTag = ProvidedIdeologyTag;
 	UPeopleManager* PeopleManager = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>();
-	Ruler = PeopleManager->GetPerson(Fractions[RulingFractionTag].RulerId);
+	Ruler = PeopleManager->GetPerson(Ideologies[IdeologyTag].RulerId);
 	LoadFlag();
 }
 
@@ -182,6 +193,16 @@ bool UCountry::IsCountryInWarWith(UCountry* Country)
 	return Relations.Contains(Country) && Relations[Country] == War;
 }
 
+UParliament* UCountry::GetFirstChamber() const
+{
+	return FirstChamberParliament;
+}
+
+UParliament* UCountry::GetSecondChamber() const
+{
+	return SecondChamberParliament;
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>();
@@ -195,5 +216,5 @@ void UCountry::InitStrata()
 
 void UCountry::LoadFlag() 
 {
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + RulingFractionTag.ToString());
+	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + IdeologyTag.ToString());
 }
