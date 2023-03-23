@@ -2,13 +2,21 @@
 
 void UParliament::Init(FParliamentDescription* Description)
 {
-	for (auto& Fraction: Description->Fractions)
+	ParliamentName = Description->ParliamentName;
+	for (auto& FractionDescription: Description->Fractions)
 	{
-		FractionsMap.Add(Fraction.IdeologyTag, Fraction);
+		UFraction* Fraction = NewObject<UFraction>(this);
+		Fraction->Init(FractionDescription);
+		Fractions.Add(FractionDescription.IdeologyTag, Fraction);
 	}
 }
 
-const TMap<FName, FFractionDescription>& UParliament::GetFractionsMap() const
+const FText& UParliament::GetName() const
 {
-	return FractionsMap;
+	return ParliamentName;
+}
+
+const TMap<FName, UFraction*>& UParliament::GetFractionsMap() const
+{
+	return Fractions;
 }

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Fraction.h"
 #include "Administration/Descriptions/ParliamentDescription.h"
 
 #include "Parliament.generated.h"
@@ -10,7 +11,12 @@ class UParliament: public UObject
 public:
 	void Init(FParliamentDescription* Description);
 
-	const TMap<FName, FFractionDescription>& GetFractionsMap() const;
+	const FText& GetName() const;
+	
+	const TMap<FName, UFraction*>& GetFractionsMap() const;
 private:
-	TMap<FName, FFractionDescription> FractionsMap;
+	FText ParliamentName;
+	
+	UPROPERTY()
+	TMap<FName, UFraction*> Fractions;
 };
