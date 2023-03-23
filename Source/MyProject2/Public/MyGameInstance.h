@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "InGameTime.h"
 #include "Scenario.h"
+#include "Administration/Managers/IdeologyManager.h"
 #include "Administration/Managers/StateManager.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
-#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "Economics/Managers/BuildingManager.h"
 #include "Economics/Managers/GoodManager.h"
@@ -18,6 +18,7 @@
 #include "Maps/Countries/CountriesMap.h"
 #include "Maps/Diplomacy/AlliancesMap.h"
 #include "Maps/Flags/FlagsMap.h"
+#include "Maps/Ideologies/IdeologiesMap.h"
 #include "Maps/Objects/ObjectMap.h"
 #include "Maps/Outlines/OutlineMap.h"
 #include "Maps/Precalculations/ProvincesMap.h"
@@ -72,6 +73,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly);
 	TSubclassOf<UEventInstancesController> EventInstancesControllerClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UIdeologyManager> IdeologyManagerClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UCountriesManager> CountriesManagerClass;
@@ -120,6 +124,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UAlliancesMap> AlliancesMapClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UIdeologiesMap> IdeologiesMapClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UMapsSwitcher> MapsSwitcherClass;
