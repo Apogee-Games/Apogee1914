@@ -1,10 +1,8 @@
 ﻿#include "Widgets/Diplomacy/Wars/Join/TheirWar/TheirWarsListWidget.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
-#include "Characters/StateMachine/CountryDiplomacyPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Diplomacy/Instances/War.h"
-#include "Diplomacy/Managers/RelationshipsManager.h"
 
 void UTheirWarsListWidget::SetCountry(UCountry* ProvidedCountry)
 {
