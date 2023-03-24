@@ -35,7 +35,7 @@ void UAllianceManagementWidget::RefreshData()
 		} else
 		{
 			AllianceCreationDeletionWidgetSwitcher->SetActiveWidgetIndex(0);
-			CreateAllianceButton->SetIsEnabled(true);
+			CreateAllianceButton->SetIsEnabled(!OwnerCountry->IsNonAligned());
 		}
 	} else if (OwnerCountry->IsInAlliance() && Country->IsInAlliance())
 	{
