@@ -50,6 +50,9 @@ public:
 	UDataTable* IdeologyDescriptionsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
+	UDataTable* LawsDescriptionDataTable;
+
+	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
 
 	UPROPERTY(EditDefaultsOnly)
