@@ -9,6 +9,7 @@
 #include "Characters/Components/UnitsSelectionComponent.h"
 #include "Characters/StateMachine/BuildingCreationPawnState.h"
 #include "Characters/StateMachine/CountryManagementPawnState.h"
+#include "Characters/StateMachine/LawsBrowsingPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
@@ -247,4 +248,18 @@ void AHumanPlayerPawn::SwitchCountryManagementState()
 	{
 		SetPawnState(FCountryManagementPawnState::GetInstance());
 	}
+}
+
+void AHumanPlayerPawn::SwitchLawsBrowsingState()
+{
+	if (IsPaused) return;
+	if (PawnState == FLawsBrowsingPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	}
+	else
+	{
+		SetPawnState(FLawsBrowsingPawnState::GetInstance());
+	}
+
 }
