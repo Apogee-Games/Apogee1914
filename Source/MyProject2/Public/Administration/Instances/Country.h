@@ -83,6 +83,10 @@ public:
 	UParliament* GetSecondChamber() const;
 
 	UIdeology* GetIdeology() const;
+
+	void SetIsNonAligned(bool IsNonAligned);
+
+	bool IsNonAligned() const;
 private:
 	FName Name;
 
@@ -130,6 +134,8 @@ private:
 
 	UPROPERTY()
 	UParliament* SecondChamberParliament;
+
+	bool bIsNonAligned = false;
 	
 	void InitStrata();
 

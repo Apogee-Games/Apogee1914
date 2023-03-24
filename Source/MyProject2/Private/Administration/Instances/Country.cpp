@@ -122,12 +122,12 @@ bool UCountry::CanCreateNonAggressionPactWith(UCountry* Country)
 
 bool UCountry::CanCreateDefencivePactWith(UCountry* Country)
 {
-	return (CanCreateDefencivePactList & GetRelation(Country));
+	return (CanCreateDefencivePactList & GetRelation(Country)) && !bIsNonAligned;
 }
 
 bool UCountry::CanCreateAllianceWith(UCountry* Country)
 {
-	return (CanCreateAllianceList & GetRelation(Country));
+	return (CanCreateAllianceList & GetRelation(Country))  && !bIsNonAligned;
 }
 
 bool UCountry::MustHelpInDefenciveWar(UCountry* Country)
@@ -210,6 +210,20 @@ UParliament* UCountry::GetSecondChamber() const
 UIdeology* UCountry::GetIdeology() const
 {
 	return Ideology;
+}
+
+void UCountry::SetIsNonAligned(bool IsNonAligned)
+{
+	bIsNonAligned = IsNonAligned;
+	if (!bIsNonAligned && Alliance)
+	{
+		Alliance->RemoveMember(this);
+	}
+}
+
+bool UCountry::IsNonAligned() const
+{
+	return bIsNonAligned;
 }
 
 void UCountry::InitStrata()
