@@ -36,7 +36,7 @@ void UAlliance::RemoveMember(UCountry* Country)
 	Members.Remove(Country);
 	Country->SetAlliance(nullptr);
 
-	//TODO: Check for leader and leadership migration 
+	//TODO: Check for leader and do leadership migration 
 	
 	for (const auto& Member: Members)
 	{
