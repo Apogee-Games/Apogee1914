@@ -11,6 +11,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	FColor NonAlliedCountryColor = FColor(200, 200, 200);
 
+	UPROPERTY(EditDefaultsOnly)
+	FColor NonAlignedCountryColor;
+	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
 	void SetScenario(UScenario* Scenario);
@@ -25,4 +28,6 @@ private:
 	void Clear();
 
 	void Init(UScenario* Scenario);
+
+	FColor GetColor(UCountry* Country);
 };
