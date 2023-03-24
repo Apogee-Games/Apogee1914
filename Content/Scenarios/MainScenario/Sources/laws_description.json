@@ -1,0 +1,31 @@
+[
+	{
+		"Name": "Neutrality",
+		"LawName": "Non Alignment",
+		"Description": "Being part of any alliance will drag us into useless conflicts, so we should stay out of them.",
+		"Group": "Diplomacy",
+		"Subgroup": "Alliances",
+		"CountriesConditions": {
+			"ForAll": true,
+			"CountriesTags": []
+		},
+		"Conditions": [
+			{
+				"Name": "NonAlignment",
+				"Values": {
+					"IsNonAligned": 0
+				},
+				"Description": "We are not non aligned yet."
+			}
+		],
+		"Outcomes": [
+			{
+				"Name": "NonAlignment",
+				"Values": {
+					"IsNonAligned": 1
+				},
+				"Description": "We will become non aligned."
+			}
+		]
+	}
+]
