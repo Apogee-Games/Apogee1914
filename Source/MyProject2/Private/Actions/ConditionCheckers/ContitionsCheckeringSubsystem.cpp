@@ -19,26 +19,31 @@ void UConditionsCheckingSubsystem::RegisterConditionChecker(const FName& Name, F
 
 bool UConditionsCheckingSubsystem::CheckConditions(TArray<FCondition>& Conditions, const FName& CountryTag)
 {
-	for (auto& EventConditions : Conditions)
+	for (auto& Condition : Conditions)
 	{
-		if (!ConditionsCheckers.Contains(EventConditions.Name)) return false;
-		bool AddedCountry = false;
-
-		if (!EventConditions.Values.Contains("Country"))
-		{
-			EventConditions.Values.Add("Country", CountryTag.ToString());
-			AddedCountry = true;
-		}
-
-		const bool HasPassed = ConditionsCheckers[EventConditions.Name]->Check(EventConditions.Values);
-
-		if (AddedCountry)
-		{
-			EventConditions.Values.Remove("Country");
-		}
-
-		if (!HasPassed) return false;
+		if (!CheckCondition(Condition, CountryTag)) return false;
 	}
 	
 	return true;
+}
+
+bool UConditionsCheckingSubsystem::CheckCondition(FCondition& Condition, const FName& CountryTag)
+{
+	if (!ConditionsCheckers.Contains(Condition.Name)) return false;
+	bool AddedCountry = false;
+
+	if (!Condition.Values.Contains("Country"))
+	{
+		Condition.Values.Add("Country", CountryTag.ToString());
+		AddedCountry = true;
+	}
+
+	const bool HasPassed = ConditionsCheckers[Condition.Name]->Check(Condition.Values);
+
+	if (AddedCountry)
+	{
+		Condition.Values.Remove("Country");
+	}
+
+	return HasPassed;
 }
