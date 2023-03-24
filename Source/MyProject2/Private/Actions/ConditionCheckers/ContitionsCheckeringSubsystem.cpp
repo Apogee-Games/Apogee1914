@@ -1,8 +1,15 @@
 #include "InGameTime.h"
+#include "MyGameInstance.h"
 #include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
 #include "Actions/ConditionCheckers/DatePassedConditionChecker.h"
 #include "Actions/ConditionCheckers/ExactDateConditionChecker.h"
+#include "Actions/ConditionCheckers/NonAlignmentConditionChecker.h"
 #include "Actions/Description/Condition.h"
+
+bool UConditionsCheckingSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UConditionsCheckingSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
@@ -10,6 +17,9 @@ void UConditionsCheckingSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	UInGameTime* InGameTime = GetWorld()->GetSubsystem<UInGameTime>();
 	RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(InGameTime));
 	RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(InGameTime));
+
+	UCountriesManager* CountriesManager = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>();
+	RegisterConditionChecker("NonAlignment", new FNonAlignmentConditionChecker(CountriesManager));
 }
 
 void UConditionsCheckingSubsystem::RegisterConditionChecker(const FName& Name, FConditionChecker* Checker)

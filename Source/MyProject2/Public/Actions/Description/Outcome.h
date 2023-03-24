@@ -11,5 +11,8 @@ struct FOutcome : public FTableRowBase
 	FName Name;
 
 	UPROPERTY()
+	FText Description;
+	
+	UPROPERTY()
 	TMap<FName, FString> Values;
 };

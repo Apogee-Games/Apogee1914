@@ -1,11 +1,20 @@
 
 #include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
-#include "Actions/OutcomeAppliers/StabilityOutcomeApplier.h"
+
+#include "MyGameInstance.h"
+#include "Actions/OutcomeAppliers/NonAlignedOutcomeApplier.h"
+
+bool UOutcomesApplierSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+{
+	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+}
 
 void UOutcomesApplierSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	RegisterOutcomeApplier("Stability", new FStabilityOutcomeApplier(GetWorld()->GetGameState<AGameLevelGameState>()));
+	
+	UCountriesManager* CountriesManager = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>();
+	RegisterOutcomeApplier("NonAlignment", new FNonAlignedOutcomeApplier(CountriesManager));
 }
 
 void UOutcomesApplierSubsystem::RegisterOutcomeApplier(const FName& Name, FOutcomeApplier* OutcomeApplier)
