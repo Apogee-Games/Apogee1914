@@ -20,6 +20,24 @@
 		}, 
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/ELudendorff"
+	},
+	{
+		"Name": "Helmuth_Moltke",
+		"PersonName": "Helmuth von Moltke the Younger",
+		"CountryTag": "GER",
+		"Age": 66,
+		"Skills": {}, 
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Helmuth_Moltke"
+	}, 
+	{
+		"Name": "Paul_Hindenburg",
+		"PersonName": "Paul von Hindenburg",
+		"CountryTag": "GER",
+		"Age": 67,
+		"Skills": {}, 
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Paul_Hindenburg"
 	}, 
 	{
 		"Name": "HWilhelmII",
@@ -38,5 +56,744 @@
 		"Skills": {},
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/RPoincaré"
-	}
+	},
+	{
+		"Name": "JJoffre",
+		"PersonName": "Joseph Joffre",
+		"CountryTag": "FRA",
+		"Age": 62,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/JJoffre"
+	},
+	{
+		"Name": "CMangin",
+		"PersonName": "Charles Mangin",
+		"CountryTag": "FRA",
+		"Age": 54,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/CMangin"
+	},
+	{
+		"Name": "FFoch",
+		"PersonName": "Ferdinand Foch",
+		"CountryTag": "FRA",
+		"Age": 62,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/FFoch"
+	},
+	{
+		"Name": "PPétain",
+		"PersonName": "Philippe Pétain",
+		"CountryTag": "FRA",
+		"Age": 58,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/PPétain"
+	},
+
+	{
+		"Name": "Franz_Joseph",
+		"PersonName": "Franz Joseph I",
+		"CountryTag": "AHE",
+		"Age": 84,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/FranzJoseph"
+	},
+	{
+		"Name": "Conrad_Hötzendorf",
+		"PersonName": "Conrad von Hötzendorf",
+		"CountryTag": "AHE",
+		"Age": 61,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Conrad_Hötzendorf"
+	},
+	{
+		"Name": "Hermann_Kövessháza",
+		"PersonName": "Hermann Kövess von Kövessháza",
+		"CountryTag": "AHE",
+		"Age": 60,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Hermann_Kövessháza"
+	},
+	{
+		"Name": "Franz_Ferdinand",
+		"PersonName": "Franz Ferdinand",
+		"CountryTag": "AHE",
+		"Age": 50,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Franz_Ferdinand"
+	},
+	{
+		"Name": "Svetozar_Boroević",
+		"PersonName": "Svetozar Boroević",
+		"CountryTag": "AHE",
+		"Age": 57,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Svetozar_Boroević"
+	},
+	{
+		"Name": "Albert",
+		"PersonName": "Albert I",
+		"CountryTag": "BEL",
+		"Age": 39,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Albert"
+	},
+	{
+		"Name": "GLeman",
+		"PersonName": "Gérard Leman",
+		"CountryTag": "BEL",
+		"Age": 63,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Albert"
+	},
+	{
+		"Name": "Émile_SaintGeorges",
+		"PersonName": "Émile Dossin de Saint-Georges",
+		"CountryTag": "BEL",
+		"Age": 55,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Émile_SaintGeorges"
+	},
+	{
+		"Name": "Victor_Smissen",
+		"PersonName": "Victor van der Smissen",
+		"CountryTag": "BEL",
+		"Age": 55,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Victor_Smissen"
+	},
+	{
+		"Name": "ACeuninck",
+		"PersonName": "Armand de Ceuninck",
+		"CountryTag": "BEL",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/ACeuninck"
+	},
+	{
+		"Name": "Wilhelmina",
+		"PersonName": "Wilhelmina",
+		"CountryTag": "NET",
+		"Age": 34,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Wilhelmina"
+	},
+	{
+		"Name": "SCornelis",
+		"PersonName": "Snijders Cornelis",
+		"CountryTag": "NET",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/SCornelis"
+	},
+	{
+		"Name": "CHendrikus",
+		"PersonName": "Colijn Hendrikus",
+		"CountryTag": "NET",
+		"Age": 42,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/CHendrikus"
+	},
+	{
+		"Name": "Joannes_Benedictus",
+		"PersonName": "Joannes Benedictus van Heutsz",
+		"CountryTag": "NET",
+		"Age": 58,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Joannes_Benedictus"
+	},
+	{
+		"Name": "Frederik_Pop",
+		"PersonName": "Willem Frederik Pop",
+		"CountryTag": "NET",
+		"Age": 58,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Frederik_Pop"
+	},
+	{
+		"Name": "MAdélaïde",
+		"PersonName": "Marie-Adélaïde",
+		"CountryTag": "LUX",
+		"Age": 20,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/MAdélaïde"
+	},
+	{
+		"Name": "Victor_Emmanuel",
+		"PersonName": "Victor Emmanuel III",
+		"CountryTag": "ITA",
+		"Age": 45,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Victor Emmanuel III"
+	},
+	{
+		"Name": "Luigi_Cadorna",
+		"PersonName": "Luigi Cadorna",
+		"CountryTag": "ITA",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Luigi_Cadorna"
+	},
+	{
+		"Name": "Armando_Diaz",
+		"PersonName": "Armando Diaz",
+		"CountryTag": "ITA",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Victor Emmanuel III"
+	},
+	{
+		"Name": "Pietro_Badoglio",
+		"PersonName": "Pietro_Badoglio",
+		"CountryTag": "ITA",
+		"Age": 48,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Pietro_Badoglio"
+	},
+	{
+		"Name": "Giulio_Douhet",
+		"PersonName": "Giulio Douhet",
+		"CountryTag": "ITA",
+		"Age": 40,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Giulio_Douhet"
+	},
+	{
+		"Name": "Arthur_Hoffmann",
+		"PersonName": "Arthur Hoffmann",
+		"CountryTag": "SWI",
+		"Age": 67,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Arthur_Hoffmann"
+	},
+	{
+		"Name": "Ulrich_Wille",
+		"PersonName": "Ulrich Wille",
+		"CountryTag": "SWI",
+		"Age": 58,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Ulrich_Wille"
+	},
+	{
+		"Name": "Hans_Herzog",
+		"PersonName": "Arthur Hoffmann",
+		"CountryTag": "SWI",
+		"Age": 51,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Hans_Herzog"
+	},
+	{
+		"Name": "Henri_Guisan",
+		"PersonName": "Henri Guisan",
+		"CountryTag": "SWI",
+		"Age": 33,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Henri_Guisan"
+	},
+	{
+		"Name": "Max_Waibel",
+		"PersonName": "Max Waibel",
+		"CountryTag": "SWI",
+		"Age": 43,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Max_Waibel"
+	},
+	{
+		"Name": "GeorgeV",
+		"PersonName": "George V",
+		"CountryTag": "GBR",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/GeorgeV"
+	},
+	{
+		"Name": "John_French",
+		"PersonName": "Sir John French",
+		"CountryTag": "GBR",
+		"Age": 62,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/John_French"
+	},
+	{
+		"Name": "Douglas_Haig",
+		"PersonName": "Douglas Haig",
+		"CountryTag": "GBR",
+		"Age": 44,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Douglas_Haig"
+	},
+	{
+		"Name": "Smith_Dorrien",
+		"PersonName": "Horace Smith-Dorrien",
+		"CountryTag": "GBR",
+		"Age": 62,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Smith_Dorrien"
+	},
+	{
+		"Name": "Herbert_Kitchener",
+		"PersonName": "Herbert Kitchener",
+		"CountryTag": "GBR",
+		"Age": 64,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Herbert_Kitchener"
+	},
+	{
+		"Name": "Alfonso",
+		"PersonName": "Alfonso XIII",
+		"CountryTag": "SPA",
+		"Age": 28,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Alfonso"
+	},
+	{
+		"Name": "JJovellar",
+		"PersonName": "Joaquín Jovellar",
+		"CountryTag": "SPA",
+		"Age": 70,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/JJovellar"
+	},
+	{
+		"Name": "José_Sacanell",
+		"PersonName": "José Sanjurjo y Sacanell",
+		"CountryTag": "SPA",
+		"Age": 42,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/José_Sacanell"
+	},
+	{
+		"Name": "José_Vega",
+		"PersonName": "José Marina Vega",
+		"CountryTag": "SPA",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/José_Vega"
+	},
+	{
+		"Name": "Fernando_Rivera",
+		"PersonName": "Fernando Primo de Rivera",
+		"CountryTag": "SPA",
+		"Age": 36,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Fernando_Rivera"
+	},
+	{
+		"Name": "Manuel",
+		"PersonName": "Manuel II",
+		"CountryTag": "POR",
+		"Age": 24,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Manuel"
+	},
+	{
+		"Name": "Joaquim_Castro",
+		"PersonName": "Joaquim Pimenta de Castro",
+		"CountryTag": "POR",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Joaquim_Castro"
+	},
+	{
+		"Name": "Norton_Matos",
+		"PersonName": "Norton de Matos",
+		"CountryTag": "POR",
+		"Age": 39,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Norton_Matos"
+	},
+	{
+		"Name": "Óscar_Carmona",
+		"PersonName": "Óscar Carmona",
+		"CountryTag": "POR",
+		"Age": 37,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Óscar_Carmona"
+	},
+	{
+		"Name": "Gomes_Costa",
+		"PersonName": "Gomes da Costa",
+		"CountryTag": "POR",
+		"Age": 45,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Gomes_Costa"
+	},
+	{
+		"Name": "Gustav",
+		"PersonName": "Gustav V",
+		"CountryTag": "SWE",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Gustav"
+	},
+	{
+		"Name": "Ernst_Linder",
+		"PersonName": "Ernst Linder",
+		"CountryTag": "SWE",
+		"Age": 57,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Ernst Linder"
+	},
+	{
+		"Name": "Olof_Thörnell",
+		"PersonName": "Olof Thörnell",
+		"CountryTag": "SWE",
+		"Age": 54,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Olof_Thörnell"
+	},
+	{
+		"Name": "Carl_Ehrensvärd",
+		"PersonName": "Carl_Ehrensvärd",
+		"CountryTag": "SWE",
+		"Age": 22,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Carl_Ehrensvärd"
+	},
+	{
+		"Name": "Axel_Rappe",
+		"PersonName": "Axel Rappe",
+		"CountryTag": "SWE",
+		"Age": 30,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Axel_Rappe"
+	},
+	{
+		"Name": "Haakon",
+		"PersonName": "Haakon VII",
+		"CountryTag": "NOR",
+		"Age": 42,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Haakon"
+	},
+	{
+		"Name": "Venceslau_Brás",
+		"PersonName": "Venceslau Brás",
+		"CountryTag": "BRA",
+		"Age": 46,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Venceslau_Brás"
+	},
+	{
+		"Name": "Hermes_Fonseca",
+		"PersonName": "Hermes da Fonseca",
+		"CountryTag": "BRA",
+		"Age": 59,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Hermes_Fonseca"
+	},
+	{
+		"Name": "José_Albuquerque",
+		"PersonName": "José Pessoa Cavalcanti de Albuquerque",
+		"CountryTag": "BRA",
+		"Age": 29,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/José_Albuquerque"
+	},
+	{
+		"Name": "Setembrino_Carvalho",
+		"PersonName": "Setembrino de Carvalho",
+		"CountryTag": "BRA",
+		"Age": 60,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Setembrino_Carvalho"
+	},
+	{
+		"Name": "Pedro_Frontin",
+		"PersonName": "Pedro Max Fernando Frontin",
+		"CountryTag": "BRA",
+		"Age": 47,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Pedro_Frontin"
+	},
+	{
+		"Name": "Woodrow_Wilson",
+		"PersonName": "Woodrow Wilson",
+		"CountryTag": "USA",
+		"Age": 57,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Woodrow_Wilson"
+	},
+	{
+		"Name": "Leonard_Wood",
+		"PersonName": "Leonard Wood",
+		"CountryTag": "USA",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Leonard_Wood"
+	},
+	{
+		"Name": "Frederick_Funston",
+		"PersonName": "Frederick Funston",
+		"CountryTag": "USA",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Frederick_Funston"
+	},
+	{
+		"Name": "William_Graves",
+		"PersonName": "William S. Graves",
+		"CountryTag": "USA",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/William_Graves"
+	},
+	{
+		"Name": "Tasker_Bliss",
+		"PersonName": "Tasker H. Bliss",
+		"CountryTag": "USA",
+		"Age": 51,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Tasker_Bliss"
+	},
+	{
+		"Name": "Eduardo_Schaerer",
+		"PersonName": "Eduardo Schaerer",
+		"CountryTag": "PAR",
+		"Age": 55,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Eduardo_Schaerer"
+	},
+	{
+		"Name": "Ismael_Montes",
+		"PersonName": "Ismael Montes",
+		"CountryTag": "BOL",
+		"Age": 53,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Ismael_Montes"
+	},
+	{
+		"Name": "Oscar_Benavides",
+		"PersonName": "Óscar Raymundo Benavides Larrea",
+		"CountryTag": "PER",
+		"Age": 38,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Oscar_Benavides"
+	},
+	{
+		"Name": "Ramón_Luco",
+		"PersonName": "Ramón Barros Luco",
+		"CountryTag": "CHI",
+		"Age": 79,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Ramón_Luco"
+	},
+	{
+		"Name": "Roberto_Renard",
+		"PersonName": "Roberto Silva Renard",
+		"CountryTag": "CHI",
+		"Age": 51,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Roberto_Renard"
+	},
+	{
+		"Name": "Pedro_Dartnel",
+		"PersonName": "Pedro Pablo Dartnell Encina",
+		"CountryTag": "CHI",
+		"Age": 41,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Pedro_Dartnel"
+	},
+	{
+		"Name": "Feliciano_Viera",
+		"PersonName": "Feliciano Viera",
+		"CountryTag": "URU",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Feliciano_Viera"
+	},
+	{
+		"Name": "Victorino_Plaza",
+		"PersonName": "Victorino de la Plaza",
+		"CountryTag": "ARG",
+		"Age": 74,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Victorino_Plaza"
+	},
+	{
+		"Name": "Pablo_Riccheri",
+		"PersonName": "Pablo Riccheri",
+		"CountryTag": "ARG",
+		"Age": 45,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Pablo_Riccheri"
+	},
+	{
+		"Name": "Enrique_Mosconi",
+		"PersonName": "Enrique Carlos Alberto Mosconi",
+		"CountryTag": "ARG",
+		"Age": 37,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Enrique_Mosconi"
+	},
+	{
+		"Name": "Manuel_Savio",
+		"PersonName": "Manuel Savio",
+		"CountryTag": "ARG",
+		"Age": 21,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Nicolás_Levalle"
+	},
+	{
+		"Name": "Robert_Borden",
+		"PersonName": "Sir Robert Borden",
+		"CountryTag": "CAN",
+		"Age": 60,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Robert_Borden"
+	},
+	{
+		"Name": "William_Otter",
+		"PersonName": "William Otter",
+		"CountryTag": "CAN",
+		"Age": 62,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/William_Otter"
+	},
+	{
+		"Name": "Samuel_Hughes",
+		"PersonName": "Samuel Hughes",
+		"CountryTag": "CAN",
+		"Age": 60,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Samuel_Hughes"
+	},
+	{
+		"Name": "Garnet_Hughes",
+		"PersonName": "Garnet Hughes",
+		"CountryTag": "CAN",
+		"Age": 48,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Garnet_Hughes"
+	},
+	{
+		"Name": "Edwin_Alderson",
+		"PersonName": "Sir Robert Borden",
+		"CountryTag": "CAN",
+		"Age": 60,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Edwin_Alderson"
+	},
+	{
+		"Name": "Victoriano_Huerta",
+		"PersonName": "Victoriano Huerta",
+		"CountryTag": "MEX",
+		"Age": 63,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Victoriano_Huerta"
+	},
+	{
+		"Name": "Pancho_Villa",
+		"PersonName": "Pancho Villa",
+		"CountryTag": "MEX",
+		"Age": 36,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Pancho_Villa"
+	},
+	{
+		"Name": "Alvaro_Obregón",
+		"PersonName": "Alvaro Obregón",
+		"CountryTag": "MEX",
+		"Age": 34,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Alvaro_Obregón"
+	},
+	{
+		"Name": "Venustiano_Carranza",
+		"PersonName": "Pancho Villa",
+		"CountryTag": "MEX",
+		"Age": 56,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Venustiano_Carranza"
+	},
+	{
+		"Name": "Pablo_González",
+		"PersonName": "Pablo González",
+		"CountryTag": "MEX",
+		"Age": 49,
+		"Skills": {},
+		"Professions": ["Commander"],
+		"ImagePath": "/Game/Images/People/Pablo_González"
+	},
 ]
