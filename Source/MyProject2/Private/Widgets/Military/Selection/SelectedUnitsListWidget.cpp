@@ -2,9 +2,21 @@
 
 #include "Military/Instances/Units/Unit.h"
 
+void USelectedUnitsListWidget::Init()
+{
+	SelectedUnitsWidget->Init();
+}
+
 void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnit*>& Units)
 {
 	SelectedUnitsWidget->SetSelectedUnits(Units);
+	if (Units.Num())
+	{
+		SelectedUnitsWidget->SetVisibility(ESlateVisibility::Visible);
+	} else
+	{
+		SelectedUnitsWidget->SetVisibility(ESlateVisibility::Collapsed);
+	}
 }
 
 void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnitsCollection*>& UnitsCollections)

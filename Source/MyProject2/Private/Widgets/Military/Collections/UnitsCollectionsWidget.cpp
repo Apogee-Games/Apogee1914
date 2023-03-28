@@ -17,6 +17,8 @@ void UUnitsCollectionsWidget::UnitsCollectionIsCreated(UUnitsCollection* UnitsCo
 	{
 		UUnitsCollectionGroup* UnitsCollectionGroup = NewObject<UUnitsCollectionGroup>();
 		UnitsCollectionGroup->Init(UnitsCollection->GetMilitaryBranch());
+		UnitsCollectionGroup->SetCountryOwner(UnitsCollection->GetCountryOwner());
+		UnitsCollectionGroup->SetCountryController(UnitsCollection->GetCountryOwner());
 		DefaultCollectionGroups.Add(UnitsCollection->GetMilitaryBranch(), UnitsCollectionGroup);
 		CollectionsGroupsListView->AddItem(UnitsCollectionGroup);
 	}

@@ -20,6 +20,8 @@ inline FName MilitaryBranchNames[3] = {
 	"AirForce"
 };
 
+class UUnitsCollection;
+
 UCLASS()
 class UUnit: public UObject, public IOwnable
 {
@@ -45,6 +47,10 @@ public:
 
 	virtual EMilitaryBranch GetMilitaryBranch() const;
 
+	void SetUnitsCollection(UUnitsCollection* ProvidedUnitsCollection);
+
+	UUnitsCollection* GetUnitsCollection() const;
+
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);
@@ -53,6 +59,9 @@ public:
 private:
 	const FUnitDescription* UnitDescription;
 
+	UPROPERTY()
+	UUnitsCollection* UnitsCollection;
+	
 	//TSet<UUnit*> TransportedUnits; // TODO: May be extract it to another interface
 
 	UPROPERTY()

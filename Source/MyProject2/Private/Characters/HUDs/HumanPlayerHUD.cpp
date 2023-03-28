@@ -246,6 +246,7 @@ void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
 		UnitInstancesListDescriptionWidget = CreateWidget<USelectedUnitsListWidget>(GetOwningPlayerController(), UnitInstancesListDescriptionWidgetClass);
 		if (UnitInstancesListDescriptionWidget)
 		{
+			UnitInstancesListDescriptionWidget->Init();
 			Widgets.Add(UnitInstancesListDescriptionWidget);
 		}
 	}

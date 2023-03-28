@@ -5,7 +5,15 @@ bool UUnitsCollection::Add(UUnit* Unit)
 {
 	if (Unit->GetMilitaryBranch() != MilitaryBranch) return false;
 	if (Unit->GetCountryController() != CountryController) return false;
+	
+	UUnitsCollection* PreviousUnitsCollection = Unit->GetUnitsCollection();
+	if (PreviousUnitsCollection)
+	{
+		PreviousUnitsCollection->Remove(Unit);
+	}
+	
 	Units.Add(Unit);
+	Unit->SetUnitsCollection(this);
 	return true;
 }
 
@@ -13,6 +21,7 @@ bool UUnitsCollection::Remove(UUnit* Unit)
 {
 	if (Unit->GetMilitaryBranch() != MilitaryBranch) return false;
 	if (Unit->GetCountryController() != CountryController) return false;
+	Unit->SetUnitsCollection(nullptr);
 	return Units.Remove(Unit) != 0;
 }
 

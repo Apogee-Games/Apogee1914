@@ -15,6 +15,16 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* UnitsNumberTextBlock;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* CreateUnitsCollectionButton;
+
+	void Init(EMilitaryBranch MilitaryBranch = EMilitaryBranch::Army); // TODO: Remove default and add other branches :)
 	
 	void SetSelectedUnits(const TSet<UUnit*>& Units) const;
+private:
+	EMilitaryBranch MilitaryBranch;
+	
+	UFUNCTION()
+	void OnCreateUnitsCollectionButtonClick();
 };

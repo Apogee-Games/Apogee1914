@@ -19,6 +19,8 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* UnitsCollectionGroupsListView;
+
+	void Init();
 	
 	void SetSelectedUnits(const TSet<UUnit*>& Units);
 
