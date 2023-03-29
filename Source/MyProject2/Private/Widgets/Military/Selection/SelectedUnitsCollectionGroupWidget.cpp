@@ -1,5 +1,6 @@
 ﻿#include "Widgets/Military/Selection/SelectedUnitsCollectionGroupWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Characters/StateMachine/CommanderSelectionPawnState.h"
 #include "Military/Managers/UnitsFactory.h"
 
 void USelectedUnitsCollectionGroupWidget::NativeConstruct()
@@ -7,6 +8,7 @@ void USelectedUnitsCollectionGroupWidget::NativeConstruct()
 	Super::NativeConstruct();
 	Button->OnClicked.AddDynamic(this, &USelectedUnitsCollectionGroupWidget::OnButtonClick);
 	RemoveUnitsCollectionGroupButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton);
+	CommanderButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionGroupWidget::OnCommanderButtonClick);
 }
 
 void USelectedUnitsCollectionGroupWidget::SetSelectedUnits(UObject* ProvidedUnitsCollectionGroup)
@@ -26,6 +28,17 @@ void USelectedUnitsCollectionGroupWidget::RefreshData()
 	
 	const FName MilitaryBranchName = MilitaryBranchNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
 	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
+
+	UPerson* Commander = UnitsCollectionGroup->GetCommander();
+	if (Commander)
+	{
+		CommanderImage->SetBrushResourceObject(Commander->GetImage());
+		CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+	} else
+	{
+		CommanderImage->SetBrushResourceObject(nullptr);
+		CommanderNameTextBlock->SetText(FText::FromString(TEXT("None")));
+	}
 }
 
 void USelectedUnitsCollectionGroupWidget::OnButtonClick()
@@ -43,4 +56,10 @@ void USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton()
 	
 	SelectionComponent->UnSelectUnits(UnitsCollectionGroup);
 	SelectionComponent->SelectUnits(UnitsCollectionGroup, true);
+}
+
+void USelectedUnitsCollectionGroupWidget::OnCommanderButtonClick()
+{
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetCommandable(UnitsCollectionGroup);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FCommanderSelectionPawnState::GetInstance());
 }

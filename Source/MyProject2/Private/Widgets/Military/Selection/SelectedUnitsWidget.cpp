@@ -7,8 +7,10 @@
 void USelectedUnitsWidget::Init(EMilitaryBranch ProvidedMilitaryBranch)
 {
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	
 	CreateUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick);
 	RemoveAllUnitsButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnRemoveAllUnitsButtonClick);
+	
 	MilitaryBranch = ProvidedMilitaryBranch;
 }
 
@@ -32,12 +34,14 @@ void USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick()
 {
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
 	UUnitsFactory* Factory = GetWorld()->GetSubsystem<UUnitsFactory>();
+
 	UUnitsCollection* UnitsCollection = Factory->CreateUnitCollection(MilitaryBranch, Pawn->GetRuledCountry());
 	for (const auto& Unit: UnitsListView->GetListItems())
 	{
 		UnitsCollection->Add(Cast<UUnit>(Unit));
 	}
-	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollection);
+
+	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollection, true);
 }
 
 void USelectedUnitsWidget::OnRemoveAllUnitsButtonClick()

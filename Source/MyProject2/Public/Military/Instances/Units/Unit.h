@@ -7,7 +7,7 @@
 #include "Unit.generated.h"
 
 UENUM()
-enum class EMilitaryBranch
+enum EMilitaryBranch
 {
 	Army = 0,
 	Navy = 1,
@@ -19,6 +19,14 @@ inline FName MilitaryBranchNames[3] = {
 	"Navy",
 	"AirForce"
 };
+
+inline EMilitaryBranch MilitaryBranches[3] = {
+	Army, Navy, AirForce
+};
+
+inline int32 MilitaryBranchesNumber = 3;
+
+//TODO: Come up with the fix for this :)
 
 class UUnitsCollection;
 

@@ -31,5 +31,16 @@
 			"Coal": 200
 		},
 		"ManpowerRequirements": 2000
+	},
+	{
+		"Name": "Air1",
+		"UnitName": "Air",
+		"CanTransport": false,
+		"MilitaryBranch": "AirForce",
+		"EquipmentRequirements": {
+			"Iron": 200,
+			"Coal": 200
+		},
+		"ManpowerRequirements": 2000
 	}
 ]

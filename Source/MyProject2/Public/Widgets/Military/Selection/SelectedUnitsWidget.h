@@ -22,8 +22,10 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* RemoveAllUnitsButton;
+
+	// TODO: Add button to create units collections group :)
 	
-	void Init(EMilitaryBranch MilitaryBranch = EMilitaryBranch::Army); // TODO: Remove default and add other branches :)
+	void Init(EMilitaryBranch MilitaryBranch);
 	
 	void SetSelectedUnits(const TSet<UUnit*>& Units) const;
 

@@ -5,6 +5,11 @@
 
 // TODO: add logic to use military branches during selection
 
+UUnitsSelectionComponent::UUnitsSelectionComponent()
+{
+	Selections.SetNum(MilitaryBranchesNumber);	
+}
+
 void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool AddToExisting)
 {
 	UpdatePawnState();
@@ -13,7 +18,7 @@ void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectio
 
 	RemoveUnitsSelectedByUnitsCollectionGroup(UnitsCollectionGroup);
 
-	SelectedUnitsCollectionGroups.Add(UnitsCollectionGroup);
+	Selections[UnitsCollectionGroup->GetMilitaryBranch()].SelectedUnitsCollectionGroups.Add(UnitsCollectionGroup);
 
 	SelectedUnitsWereUpdated();
 }
@@ -26,7 +31,7 @@ void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection, bo
 	
 	RemoveUnitsSelectedByUnitsCollection(UnitsCollection);
 
-	SelectedUnitsCollections.Add(UnitsCollection);
+	Selections[UnitsCollection->GetMilitaryBranch()].SelectedUnitsCollections.Add(UnitsCollection);
 
 	SelectedUnitsWereUpdated();
 }
@@ -36,10 +41,10 @@ void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units, bool Add
 	UpdatePawnState();
 	
 	ClearSelectionIfNeeded(AddToExisting);
-		
+
 	for (const auto& Unit: Units)
 	{
-		SelectedUnits.Add(Unit);
+		Selections[Unit->GetMilitaryBranch()].SelectedUnits.Add(Unit);
 	}
 	
 	SelectedUnitsWereUpdated();
@@ -51,7 +56,7 @@ void UUnitsSelectionComponent::SelectUnit(UUnit* Unit, bool AddToExisting)
 
 	ClearSelectionIfNeeded(AddToExisting);
 
-	SelectedUnits.Add(Unit);
+	Selections[Unit->GetMilitaryBranch()].SelectedUnits.Add(Unit);
 
 	SelectedUnitsWereUpdated();
 	// TODO: Add check for controlled country
@@ -59,33 +64,24 @@ void UUnitsSelectionComponent::SelectUnit(UUnit* Unit, bool AddToExisting)
 
 void UUnitsSelectionComponent::ClearSelectedUnits()
 {
-	SelectedUnits.Empty();
-
-	SelectedUnitsCollections.Empty();
-
-	SelectedUnitsCollectionGroups.Empty();
+	for (auto& Selection: Selections)
+	{
+		Selection.SelectedUnits.Empty();
+		Selection.SelectedUnitsCollections.Empty();
+		Selection.SelectedUnitsCollectionGroups.Empty();
+	}
 
 	SelectedUnitsWereUpdated();
 }
 
-const TSet<UUnitsCollectionGroup*>& UUnitsSelectionComponent::GetSelectedUnitsCollectionGroups() const
+const TArray<FUnitsSelection>& UUnitsSelectionComponent::GetUnitsSelectionsByBranch() const
 {
-	return SelectedUnitsCollectionGroups;
-}
-
-const TSet<UUnitsCollection*>& UUnitsSelectionComponent::GetSelectedUnitsCollections() const
-{
-	return SelectedUnitsCollections;
-}
-
-const TSet<UUnit*>& UUnitsSelectionComponent::GetSelectedUnits() const
-{
-	return SelectedUnits;
+	return Selections;
 }
 
 void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollection* UnitsCollection, bool NotifyAboutUpdate)
 {
-	SelectedUnitsCollections.Remove(UnitsCollection);
+	Selections[UnitsCollection->GetMilitaryBranch()].SelectedUnitsCollections.Remove(UnitsCollection);
 	if (NotifyAboutUpdate)
 	{
 		SelectedUnitsWereUpdated();
@@ -94,20 +90,28 @@ void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollection* UnitsCollection, 
 
 void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate)
 {
-	SelectedUnitsCollectionGroups.Remove(UnitsCollectionGroup);
+	Selections[UnitsCollectionGroup->GetMilitaryBranch()].SelectedUnitsCollectionGroups.Remove(UnitsCollectionGroup);
 	if (NotifyAboutUpdate)
 	{
 		SelectedUnitsWereUpdated();
 	}
 }
 
+bool UUnitsSelectionComponent::HasSelectedUnits() const
+{
+	for (const auto& Selection: Selections)
+	{
+		if (Selection.SelectedUnits.Num() || Selection.SelectedUnitsCollections.Num() || Selection.SelectedUnitsCollectionGroups.Num())
+			return true;
+	}
+	return false;
+}
+
 void UUnitsSelectionComponent::SelectedUnitsWereUpdated() const
 {
 	APlayerController* PlayerController = GetOwner<AHumanPlayerPawn>()->GetController<APlayerController>();
 	AHumanPlayerHUD* HUD = PlayerController->GetHUD<AHumanPlayerHUD>();
-	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnits);
-	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnitsCollections);
-	HUD->GetUnitInstancesListDescriptionWidget()->SetSelectedUnits(SelectedUnitsCollectionGroups);
+	HUD->GetUnitInstancesListDescriptionWidget()->SetSelections(Selections);
 	// TODO: Think if it worth to add logic for separation adding units to selection or making new selection :) 
 }
 
@@ -127,7 +131,7 @@ void UUnitsSelectionComponent::RemoveUnitsSelectedByUnitsCollection(UUnitsCollec
 {
 	TArray<UUnit*> UnitsToClear;
 	
-	for (const auto Unit: SelectedUnits)
+	for (const auto Unit: Selections[UnitsCollection->GetMilitaryBranch()].SelectedUnits)
 	{
 		if (UnitsCollection->Contains(Unit))
 		{
@@ -135,9 +139,10 @@ void UUnitsSelectionComponent::RemoveUnitsSelectedByUnitsCollection(UUnitsCollec
 		}
 	}
 
+	int32 MilitaryBranch = UnitsCollection->GetMilitaryBranch();
 	for (const auto Unit: UnitsToClear)
 	{
-		SelectedUnits.Remove(Unit);
+		Selections[MilitaryBranch].SelectedUnits.Remove(Unit);
 	}
 }
 
@@ -147,8 +152,8 @@ void UUnitsSelectionComponent::RemoveUnitsSelectedByUnitsCollectionGroup(UUnitsC
 	{
 		RemoveUnitsSelectedByUnitsCollection(UnitsCollection);
 	}
-
+	int32 MilitaryBranch = UnitsCollectionGroup->GetMilitaryBranch();
 	for (const auto UnitsCollection: UnitsCollectionGroup->GetAll()) {
-		SelectedUnitsCollections.Remove(UnitsCollection);
+		Selections[MilitaryBranch].SelectedUnitsCollections.Remove(UnitsCollection);
 	}
 }
