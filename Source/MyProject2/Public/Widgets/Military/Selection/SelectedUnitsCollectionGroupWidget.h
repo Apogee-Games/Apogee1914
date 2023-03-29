@@ -23,6 +23,9 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* Button;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* RemoveUnitsCollectionGroupButton;
+	
 	virtual void NativeConstruct() override;
 	
 	UFUNCTION(BlueprintCallable)
@@ -37,4 +40,7 @@ private:
 
 	UFUNCTION()
 	void OnButtonClick();
+
+	UFUNCTION()
+	void OnRemoveUnitsCollectionGroupButton();
 };

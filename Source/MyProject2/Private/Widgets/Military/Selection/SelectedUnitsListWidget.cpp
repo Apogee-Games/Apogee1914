@@ -21,7 +21,7 @@ void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnit*>& Units)
 
 void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnitsCollection*>& UnitsCollections)
 {
-	UnitsCollectionsListView->ClearListItems();
+ 	UnitsCollectionsListView->ClearListItems();
 	for (const auto UnitsCollection: UnitsCollections)
 	{
 		UnitsCollectionsListView->AddItem(UnitsCollection);
@@ -31,8 +31,8 @@ void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnitsCollection*>& U
 void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups)
 {
 	UnitsCollectionGroupsListView->ClearListItems();
-	for (const auto UnitsCollection: UnitsCollectionGroups)
+	for (const auto UnitsCollectionGroup: UnitsCollectionGroups)
 	{
-		UnitsCollectionGroupsListView->AddItem(UnitsCollection);
+		UnitsCollectionGroupsListView->AddItem(UnitsCollectionGroup);
 	}
 }

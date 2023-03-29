@@ -18,6 +18,8 @@ public:
 	virtual int32 GetSize() const override;
 
 	virtual bool Contains(UUnitsCollection* Item) override;
+	
+	void ClearCollections();
 private:
 	UPROPERTY()
 	TSet<UUnitsCollection*> Collections;

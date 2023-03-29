@@ -1,10 +1,12 @@
 ﻿#include "Widgets/Military/Selection/SelectedUnitsCollectionGroupWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Military/Managers/UnitsFactory.h"
 
 void USelectedUnitsCollectionGroupWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	Button->OnClicked.AddDynamic(this, &USelectedUnitsCollectionGroupWidget::OnButtonClick);
+	RemoveUnitsCollectionGroupButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton);
 }
 
 void USelectedUnitsCollectionGroupWidget::SetSelectedUnits(UObject* ProvidedUnitsCollectionGroup)
@@ -29,4 +31,16 @@ void USelectedUnitsCollectionGroupWidget::RefreshData()
 void USelectedUnitsCollectionGroupWidget::OnButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->SelectUnits(UnitsCollectionGroup);
+}
+
+void USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton()
+{
+	TArray<UUnitsCollection*> UnitsCollectionsCopy = UnitsCollectionGroup->GetAll().Array();
+
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollectionGroup(UnitsCollectionGroup);
+
+	UUnitsSelectionComponent* SelectionComponent = GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent;
+	
+	SelectionComponent->UnSelectUnits(UnitsCollectionGroup);
+	SelectionComponent->SelectUnits(UnitsCollectionGroup, true);
 }

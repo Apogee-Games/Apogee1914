@@ -16,6 +16,8 @@ public:
 	void Supply();
 
 	void AddUnit(UUnit* Unit);
+
+	void RemoveUnit(UUnit* Unit);
 private:
 	UPROPERTY()
 	UStorage* Storage;

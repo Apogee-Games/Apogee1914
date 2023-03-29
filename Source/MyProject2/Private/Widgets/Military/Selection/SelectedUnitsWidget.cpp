@@ -6,7 +6,9 @@
 
 void USelectedUnitsWidget::Init(EMilitaryBranch ProvidedMilitaryBranch)
 {
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 	CreateUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick);
+	RemoveAllUnitsButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnRemoveAllUnitsButtonClick);
 	MilitaryBranch = ProvidedMilitaryBranch;
 }
 
@@ -21,6 +23,11 @@ void USelectedUnitsWidget::SetSelectedUnits(const TSet<UUnit*>& Units) const
 	UnitsNumberTextBlock->SetText(FText::FromString(FString::FromInt(Units.Num())));
 }
 
+void USelectedUnitsWidget::UnitIsRemoved(UUnit* Unit)
+{
+	UnitsListView->RemoveItem(Unit);
+}
+
 void USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick()
 {
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
@@ -31,4 +38,18 @@ void USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick()
 		UnitsCollection->Add(Cast<UUnit>(Unit));
 	}
 	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollection);
+}
+
+void USelectedUnitsWidget::OnRemoveAllUnitsButtonClick()
+{
+	UUnitsFactory* Factory = GetWorld()->GetSubsystem<UUnitsFactory>();
+	TArray<UObject*> UnitsArrayCopy = UnitsListView->GetListItems();
+	for (const auto& Unit: UnitsArrayCopy)
+	{
+		Factory->RemoveUnit(Cast<UUnit>(Unit));
+	}
+
+	// TODO: We can pass array of units to remove and notification will happen only when all of them have benn removed, this way we should get rid of coping :) 
+	
+	UnitsNumberTextBlock->SetText(FText::FromString(FString::FromInt(0))); 
 }

@@ -68,17 +68,34 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch 
 void UUnitsFactory::RemoveUnit(UUnit* Unit)
 {
 	NotifyUnitRemoval(Unit);
-	delete Unit;
+	UUnitsCollection* Collection = Unit->GetUnitsCollection();
+	if (Collection)
+	{
+		Collection->Remove(Unit);
+	}
+	Unit->MarkAsGarbage();
 }
 
 void UUnitsFactory::RemoveUnitCollection(UUnitsCollection* UnitsCollection)
 {
 	NotifyUnitsCollectionRemoval(UnitsCollection);
-	delete UnitsCollection;
+
+	UUnitsCollectionGroup* CollectionGroup = UnitsCollection->GetUnitsCollectionGroup();
+	if (CollectionGroup)
+	{
+		CollectionGroup->Remove(UnitsCollection);
+	}
+
+	UnitsCollection->ClearUnits();
+	
+	UnitsCollection->MarkAsGarbage();
 }
 
 void UUnitsFactory::RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup)
 {
 	NotifyUnitsCollectionGroupRemoval(UnitsCollectionGroup);
-	delete UnitsCollectionGroup;
+
+	UnitsCollectionGroup->ClearCollections();
+	
+	UnitsCollectionGroup->MarkAsGarbage();
 }

@@ -2,6 +2,7 @@
 #include "Military/Instances/Units/Unit.h"
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
+#include "Widgets/Military/Selection/SelectedUnitsCollectionWidget.h"
 
 #include "UnitsSelectionComponent.generated.h"
 
@@ -12,13 +13,13 @@ class UUnitsSelectionComponent: public USceneComponent
 {
 	GENERATED_BODY()
 public:
-	void SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup);
+	void SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool AddToExisting = false);
 	
-	void SelectUnits(UUnitsCollection* UnitsCollection);
+	void SelectUnits(UUnitsCollection* UnitsCollection, bool AddToExisting = false);
 	
-	void SelectUnits(const TArray<UUnit*>& Units);
+	void SelectUnits(const TArray<UUnit*>& Units, bool AddToExisting = false);
 
-	void SelectUnit(UUnit* Unit);
+	void SelectUnit(UUnit* Unit, bool AddToExisting = false);
 
 	void ClearSelectedUnits();
 
@@ -27,6 +28,10 @@ public:
 	const TSet<UUnitsCollection*>& GetSelectedUnitsCollections() const;
 	
 	const TSet<UUnit*>& GetSelectedUnits() const;
+	
+	void UnSelectUnits(UUnitsCollection* UnitsCollection, bool NotifyAboutUpdate = false);
+
+	void UnSelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate = false);
 private:
 	UPROPERTY()
 	TSet<UUnit*> SelectedUnits;
@@ -41,7 +46,7 @@ private:
 
 	void UpdatePawnState() const;
 
-	void ClearSelectionIfNeeded();
+	void ClearSelectionIfNeeded(bool AddToExisting = false);
 
 	void RemoveUnitsSelectedByUnitsCollection(UUnitsCollection* UnitsCollection);
 

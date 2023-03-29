@@ -2,11 +2,12 @@
 #include "Military/Instances/CountryUnitsSupplier.h"
 #include "Military/Interfaces/Observables/UnitSupplyObservable.h"
 #include "Military/Interfaces/Observers/UnitCreationObserver.h"
+#include "Military/Interfaces/Observers/UnitRemovalObserver.h"
 #include "UnitsSupplyController.generated.h"
 
 
 UCLASS(Abstract, Blueprintable)
-class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserver, public IUnitSupplyObservable
+class UUnitsSupplyController: public UWorldSubsystem, public IUnitCreationObserver, public IUnitSupplyObservable, public IUnitRemovalObserver
 {
 	GENERATED_BODY()
 public:
@@ -19,10 +20,12 @@ public:
 	
 	virtual void UnitIsCreated(UUnit* Unit) override;
 
+	virtual void UnitIsRemoved(UUnit* Unit) override;
+
 	void Supply();
 	
 	virtual void Deinitialize() override;
-	
+
 private:
 	UPROPERTY()
 	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;

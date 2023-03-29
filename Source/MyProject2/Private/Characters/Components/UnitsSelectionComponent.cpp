@@ -5,11 +5,11 @@
 
 // TODO: add logic to use military branches during selection
 
-void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup)
+void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool AddToExisting)
 {
 	UpdatePawnState();
 	
-	ClearSelectionIfNeeded();
+	ClearSelectionIfNeeded(AddToExisting);
 
 	RemoveUnitsSelectedByUnitsCollectionGroup(UnitsCollectionGroup);
 
@@ -18,11 +18,11 @@ void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectio
 	SelectedUnitsWereUpdated();
 }
 
-void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection)
+void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection, bool AddToExisting)
 {
 	UpdatePawnState();
-	
-	ClearSelectionIfNeeded();
+
+	ClearSelectionIfNeeded(AddToExisting);
 	
 	RemoveUnitsSelectedByUnitsCollection(UnitsCollection);
 
@@ -31,12 +31,12 @@ void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection)
 	SelectedUnitsWereUpdated();
 }
 
-void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units)
+void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units, bool AddToExisting)
 {
 	UpdatePawnState();
 	
-	ClearSelectionIfNeeded();
-	
+	ClearSelectionIfNeeded(AddToExisting);
+		
 	for (const auto& Unit: Units)
 	{
 		SelectedUnits.Add(Unit);
@@ -45,11 +45,11 @@ void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units)
 	SelectedUnitsWereUpdated();
 }
 
-void UUnitsSelectionComponent::SelectUnit(UUnit* Unit)
+void UUnitsSelectionComponent::SelectUnit(UUnit* Unit, bool AddToExisting)
 {
 	UpdatePawnState();
 
-	ClearSelectionIfNeeded();
+	ClearSelectionIfNeeded(AddToExisting);
 
 	SelectedUnits.Add(Unit);
 
@@ -83,6 +83,24 @@ const TSet<UUnit*>& UUnitsSelectionComponent::GetSelectedUnits() const
 	return SelectedUnits;
 }
 
+void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollection* UnitsCollection, bool NotifyAboutUpdate)
+{
+	SelectedUnitsCollections.Remove(UnitsCollection);
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
+void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate)
+{
+	SelectedUnitsCollectionGroups.Remove(UnitsCollectionGroup);
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
 void UUnitsSelectionComponent::SelectedUnitsWereUpdated() const
 {
 	APlayerController* PlayerController = GetOwner<AHumanPlayerPawn>()->GetController<APlayerController>();
@@ -98,9 +116,9 @@ void UUnitsSelectionComponent::UpdatePawnState() const
 	GetOwner<AHumanPlayerPawn>()->SetPawnState(FMilitaryControlPawnState::GetInstance());
 }
 
-void UUnitsSelectionComponent::ClearSelectionIfNeeded()
+void UUnitsSelectionComponent::ClearSelectionIfNeeded(bool AddToExisting)
 {
-	if (GetOwner<AHumanPlayerPawn>()->IsShiftPressed()) return;
+	if (GetOwner<AHumanPlayerPawn>()->IsShiftPressed() || AddToExisting) return; // TODO: Do I need Shift here now? 
 
 	ClearSelectedUnits();
 }

@@ -13,9 +13,6 @@ class USelectedUnitWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UImage* FlagImage;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* ProvinceNameTextBlock;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
@@ -24,6 +21,9 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* Button;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* RemoveUnitButton;
+	
 	virtual void NativeConstruct() override;
 	
 	UFUNCTION(BlueprintCallable)
@@ -36,5 +36,8 @@ private:
 	UUnit* Unit;
 
 	UFUNCTION()
-	void OnClick();
+	void OnButtonClick();
+
+	UFUNCTION()
+	void OnRemoveUnitButtonClick();
 };

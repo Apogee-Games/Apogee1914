@@ -1,11 +1,14 @@
 ﻿
 #include "Widgets/Military/Selection/SelectedUnitsCollectionWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Military/Managers/UnitsFactory.h"
 
 void USelectedUnitsCollectionWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	Button->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnButtonClick);
+	RemoveUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 }
 
 void USelectedUnitsCollectionWidget::SetSelectedUnits(UObject* ProvidedUnitsCollection)
@@ -26,7 +29,30 @@ void USelectedUnitsCollectionWidget::RefreshData()
 	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
 }
 
+void USelectedUnitsCollectionWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
+}
+
+void USelectedUnitsCollectionWidget::UnitIsRemoved(UUnit* Unit)
+{
+	UnitsListView->RemoveItem(Unit);
+}
+
 void USelectedUnitsCollectionWidget::OnButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->SelectUnits(UnitsCollection);
+}
+
+void USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick()
+{
+	TArray<UUnit*> UnitsCopy = UnitsCollection->GetAll().Array();
+
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
+
+	UUnitsSelectionComponent* SelectionComponent = GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent;
+	
+	SelectionComponent->UnSelectUnits(UnitsCollection);
+	SelectionComponent->SelectUnits(UnitsCopy, true);
 }
