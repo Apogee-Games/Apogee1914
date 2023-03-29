@@ -21,9 +21,6 @@ public:
 	UButton* CommanderButton;
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UTextBlock* CommanderNameTextBlock;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UImage* CommanderImage;
 	
 	virtual void NativeConstruct() override;

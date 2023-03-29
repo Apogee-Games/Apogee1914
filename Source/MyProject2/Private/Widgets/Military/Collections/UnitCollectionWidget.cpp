@@ -24,11 +24,11 @@ void UUnitCollectionWidget::RefreshData()
 	if (Commander)
 	{
 		CommanderImage->SetBrushResourceObject(Commander->GetImage());
-		CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+		//CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
 	} else
 	{
 		CommanderImage->SetBrushResourceObject(nullptr);
-		CommanderNameTextBlock->SetText(FText::FromString(TEXT("None")));
+		//CommanderNameTextBlock->SetText(FText::FromString(TEXT("None")));
 	}
 }
 

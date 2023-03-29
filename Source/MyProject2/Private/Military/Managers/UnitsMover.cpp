@@ -41,7 +41,7 @@ void UUnitsMover::MoveUnits(const TSet<UUnit*>& Units, UProvince* To)
 	}
 }
 
-void UUnitsMover::MoveUnits(const TSet<UUnitsCollection*> UnitsCollections, UProvince* To)
+void UUnitsMover::MoveUnits(const TSet<UUnitsCollection*>& UnitsCollections, UProvince* To)
 {
 	for (const auto& UnitsCollection: UnitsCollections)
 	{
@@ -49,11 +49,21 @@ void UUnitsMover::MoveUnits(const TSet<UUnitsCollection*> UnitsCollections, UPro
 	}
 }
 
-void UUnitsMover::MoveUnits(const TSet<UUnitsCollectionGroup*> UnitsCollectionGroups, UProvince* To)
+void UUnitsMover::MoveUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups, UProvince* To)
 {
 	for (const auto& UnitsCollectionsGroup: UnitsCollectionGroups)
 	{
 		MoveUnits(UnitsCollectionsGroup->GetAll(), To);
+	}
+}
+
+void UUnitsMover::MoveUnits(const TArray<FUnitsSelection>& Selections, UProvince* To)
+{
+	for (const auto& Selection: Selections)
+	{
+		MoveUnits(Selection.SelectedUnits, To);
+		MoveUnits(Selection.SelectedUnitsCollections, To);
+		MoveUnits(Selection.SelectedUnitsCollectionGroups, To);
 	}
 }
 

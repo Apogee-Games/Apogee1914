@@ -12,14 +12,17 @@ void UUnitCollectionGroupWidget::NativeConstruct()
 void UUnitCollectionGroupWidget::SetUnitsCollectionGroup(UObject* ProvidedUnitsCollectionGroup)
 {
 	UnitsCollectionGroup = Cast<UUnitsCollectionGroup>(ProvidedUnitsCollectionGroup);
-	for (const auto& UnitsCollection: UnitsCollectionGroup->GetAll())
-	{
-		UnitsCollectionsListView->AddItem(UnitsCollection);
-	}
 }
 
 void UUnitCollectionGroupWidget::RefreshData()
 {
+	UnitsCollectionsListView->ClearListItems();
+
+	for (const auto& UnitsCollection: UnitsCollectionGroup->GetAll())
+	{
+		UnitsCollectionsListView->AddItem(UnitsCollection);
+	}
+	
 	const FName MilitaryBranchName = MilitaryBranchNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
 	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
 	
@@ -30,11 +33,11 @@ void UUnitCollectionGroupWidget::RefreshData()
 	if (Commander)
 	{
 		CommanderImage->SetBrushResourceObject(Commander->GetImage());
-		CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+		//CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
 	} else
 	{
 		CommanderImage->SetBrushResourceObject(nullptr);
-		CommanderNameTextBlock->SetText(FText::FromString(TEXT("None")));
+		//CommanderNameTextBlock->SetText(FText::FromString(TEXT("None")));
 	}
 }
 

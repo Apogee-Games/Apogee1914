@@ -37,3 +37,8 @@ void UUnitsCollectionsWidget::NativeDestruct()
 	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupCreationObserver(this);
 }
 
+void UUnitsCollectionsWidget::UnitsCollectionIsRemoved(UUnitsCollection* UnitsCollection)
+{
+	DefaultCollectionGroups[UnitsCollection->GetMilitaryBranch()]->Remove(UnitsCollection);
+}
+

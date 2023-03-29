@@ -3,6 +3,7 @@
 
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
+#include "Characters/StateMachine/MilitaryControlPawnState.h"
 #include "Military/Managers/CommandersManager.h"
 
 void UCommanderWidget::SetCommander(UObject* ProvidedCommander)
@@ -28,7 +29,7 @@ void UCommanderWidget::NativeConstruct()
 void UCommanderWidget::OnButtonClick()
 {
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
-	Pawn->SetPawnState(FMapBrowsingPawnState::GetInstance());
+	Pawn->SetPawnState(FMilitaryControlPawnState::GetInstance());
 
 	if (ICommandable* Commandable = Pawn->GetSelectedCommandable())
 	{
