@@ -9,6 +9,7 @@ void UTopPanelWidget::NativeConstruct()
 	SupplyBrowsingButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnSupplyBrowsingButton);
 	BuildingCreationButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnBuildingCreationButtonClick);
 	CountryFlagButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnCountryFlagButtonClick);
+	LawsBrowsingButton->OnClicked.AddDynamic(this, &UTopPanelWidget::OnLawsBrowsingButtonClick);
 
 	UCountry* Country = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 	CountryFlagImage->SetBrushResourceObject(Country->GetFlag());
@@ -39,4 +40,9 @@ void UTopPanelWidget::OnBuildingCreationButtonClick()
 void UTopPanelWidget::OnCountryFlagButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchCountryManagementState();
+}
+
+void UTopPanelWidget::OnLawsBrowsingButtonClick()
+{
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchLawsBrowsingState();
 }

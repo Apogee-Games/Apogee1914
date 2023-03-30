@@ -10,7 +10,10 @@ class UOutcomesApplierSubsystem: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	
 	/**
 	 * Method used to add choice outcome applier
 	 */

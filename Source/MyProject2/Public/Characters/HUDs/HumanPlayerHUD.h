@@ -4,6 +4,8 @@
 #include "Widgets/TopPanelWidget.h"
 #include "Widgets/Administration/ProvinceDataWidget.h"
 #include "Widgets/Administration/Country/CountryManagementWidget.h"
+#include "Widgets/Administration/Laws/LawsGroupWidget.h"
+#include "Widgets/Administration/Laws/LawsWidget.h"
 #include "Widgets/Diplomacy/Wars/Description/WarDescriptionWidget.h"
 #include "Widgets/Diplomacy/Wars/List//WarsListWidget.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
@@ -82,6 +84,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCountryManagementWidget> CountryManagementWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<ULawsWidget> LawsWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -118,7 +123,7 @@ public:
 	UOurWarsListWidget* GetOurWarsListWidget() const;
 
 	UTheirWarsListWidget* GetTheirWarsListWidget() const;
-	
+
 	void UpdateWidgetsVisibility();
 	
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -179,6 +184,9 @@ private:
 
 	UPROPERTY()
 	UCountryManagementWidget* CountryManagementWidget;
+
+	UPROPERTY()
+	ULawsWidget* LawsWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -218,4 +226,6 @@ private:
 	void InitWarsLists();
 
 	void InitCountryManagementWidget();
+
+	void InitLawsWidget();
 };

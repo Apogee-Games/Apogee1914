@@ -28,16 +28,9 @@ void UAlliancesMap::UpdateMap()
 	
 	for (const auto& Province: Provinces)
 	{
-		FColor Color;
+		UCountry* Country = Province->GetCountryController();
+		FColor Color = GetColor(Country);
 
-		if (Province->GetCountryController()->GetAlliance())
-		{
-			Color = Province->GetCountryController()->GetAlliance()->GetColor();
-		} else
-		{
-			Color = NonAlliedCountryColor;
-		}
-		
 		for (const auto& Position: ProvincesMap->GetProvincePositions(Province->GetId()))
 		{
 			Colors[Position] = Color;
@@ -61,4 +54,11 @@ void UAlliancesMap::Clear()
 void UAlliancesMap::Init(UScenario* Scenario)
 {
 	AlliancesMapTexture = Scenario->AlliancesMapTexture;
+}
+
+FColor UAlliancesMap::GetColor(UCountry* Country)
+{
+	if (Country->IsNonAligned()) return NonAlignedCountryColor;
+	if (!Country->IsInAlliance()) return NonAlliedCountryColor;
+	return Country->GetAlliance()->GetColor();
 }

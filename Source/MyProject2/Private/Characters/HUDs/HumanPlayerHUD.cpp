@@ -26,6 +26,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitAllianceCreationWidget();
 	InitWarsLists();
 	InitCountryManagementWidget();
+	InitLawsWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -278,7 +279,7 @@ void AHumanPlayerHUD::InitTimeControllerWidget()
 		TimeControllerWidget = CreateWidget<UTimeControllerWidget>(GetOwningPlayerController(), TimeControllerClass);
 		if (TimeControllerWidget)
 		{
-			TimeControllerWidget->AddToPlayerScreen();
+			TimeControllerWidget->AddToPlayerScreen(1);
 		}
 	}
 }
@@ -331,7 +332,7 @@ void AHumanPlayerHUD::InitTopPanelWidget()
 		TopPanelWidget = CreateWidget<UTopPanelWidget>(GetOwningPlayerController(), TopPanelWidgetClass);
 		if (TopPanelWidget)
 		{
-			TopPanelWidget->AddToPlayerScreen();
+			TopPanelWidget->AddToPlayerScreen(1);
 		}
 	}
 }
@@ -426,6 +427,19 @@ void AHumanPlayerHUD::InitCountryManagementWidget()
 		if (CountryManagementWidget)
 		{
 			Widgets.Add(CountryManagementWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitLawsWidget()
+{
+	if (LawsWidgetClass)
+	{
+		LawsWidget = CreateWidget<ULawsWidget>(GetOwningPlayerController(), LawsWidgetClass);
+		if (LawsWidget)
+		{
+			LawsWidget->Init();
+			Widgets.Add(LawsWidget);
 		}
 	}
 }

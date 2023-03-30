@@ -24,4 +24,5 @@ void UTheirWarsListWidget::SetSelectedWar(UWar* War)
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
 	War->AddCountryOnSide(Pawn->GetRuledCountry(), Country);
 	Pawn->SetPawnState(FMapBrowsingPawnState::GetInstance());
+	// TODO: Move to item :)
 }

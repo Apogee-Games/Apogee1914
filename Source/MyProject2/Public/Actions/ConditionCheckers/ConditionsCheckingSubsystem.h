@@ -11,6 +11,8 @@ class UConditionsCheckingSubsystem: public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
 	/**
@@ -22,6 +24,8 @@ public:
 	 * Method used to check event or choice conditions
 	 */
 	bool CheckConditions(TArray<FCondition>& Conditions, const FName& CountryTag);
+
+	bool CheckCondition(FCondition& Condition, const FName& CountryTag);
 
 private:
 	TMap<FName, FConditionChecker*> ConditionsCheckers;

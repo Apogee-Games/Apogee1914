@@ -54,6 +54,8 @@ bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
 
 void UMyGameInstance::InitializeActiveScenario()
 {
+	GetSubsystem<ULawManager>()->SetScenario(ActiveScenario);
+	
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UIdeologyManager>()->SetScenario(ActiveScenario);
