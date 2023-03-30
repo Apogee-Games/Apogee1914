@@ -6,8 +6,6 @@
 
 void USelectedUnitsWidget::Init(EMilitaryBranch ProvidedMilitaryBranch)
 {
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
-	
 	CreateUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick);
 	RemoveAllUnitsButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnRemoveAllUnitsButtonClick);
 	
@@ -25,35 +23,20 @@ void USelectedUnitsWidget::SetSelectedUnits(const TSet<UUnit*>& Units) const
 	UnitsNumberTextBlock->SetText(FText::FromString(FString::FromInt(Units.Num())));
 }
 
-void USelectedUnitsWidget::UnitIsRemoved(UUnit* Unit)
-{
-	UnitsListView->RemoveItem(Unit);
-}
-
 void USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick()
 {
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
-	UUnitsFactory* Factory = GetWorld()->GetSubsystem<UUnitsFactory>();
+	
+	const TArray<UUnit*>& Units = reinterpret_cast<const TArray<UUnit*>&>(UnitsListView->GetListItems());
+	UUnitsCollection* UnitsCollection = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollection(MilitaryBranch, Pawn->GetRuledCountry(), Units);
 
-	UUnitsCollection* UnitsCollection = Factory->CreateUnitCollection(MilitaryBranch, Pawn->GetRuledCountry());
-	for (const auto& Unit: UnitsListView->GetListItems())
-	{
-		UnitsCollection->Add(Cast<UUnit>(Unit));
-	}
-
-	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollection, true);
+	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollection, true, true);
 }
 
 void USelectedUnitsWidget::OnRemoveAllUnitsButtonClick()
 {
-	UUnitsFactory* Factory = GetWorld()->GetSubsystem<UUnitsFactory>();
-	TArray<UObject*> UnitsArrayCopy = UnitsListView->GetListItems();
-	for (const auto& Unit: UnitsArrayCopy)
-	{
-		Factory->RemoveUnit(Cast<UUnit>(Unit));
-	}
-
-	// TODO: We can pass array of units to remove and notification will happen only when all of them have benn removed, this way we should get rid of coping :) 
+	const TArray<UUnit*>& Units = reinterpret_cast<const TArray<UUnit*>&>(UnitsListView->GetListItems());
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnits(Units);
 	
-	UnitsNumberTextBlock->SetText(FText::FromString(FString::FromInt(0))); 
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->UnSelectUnits(Units, true);
 }

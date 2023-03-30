@@ -29,8 +29,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Init(UObject* Object);
 
+	UFUNCTION(BlueprintCallable)
 	void RefreshData();
-
 private:
 	UPROPERTY()
 	UUnit* Unit;

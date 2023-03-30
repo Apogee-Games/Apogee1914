@@ -61,14 +61,13 @@ void USelectedUnitsCollectionWidget::OnButtonClick()
 
 void USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick()
 {
-	TArray<UUnit*> UnitsCopy = UnitsCollection->GetAll().Array();
-
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
-
 	UUnitsSelectionComponent* SelectionComponent = GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent;
+
+	SelectionComponent->SelectUnits(UnitsCollection->GetAll(), false, true);
 	
-	SelectionComponent->UnSelectUnits(UnitsCollection);
-	SelectionComponent->SelectUnits(UnitsCopy, true);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
+	
+	SelectionComponent->UnSelectUnits(UnitsCollection, true);
 }
 
 void USelectedUnitsCollectionWidget::OnCommanderButtonClick()

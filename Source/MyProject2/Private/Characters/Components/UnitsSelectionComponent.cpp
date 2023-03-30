@@ -10,7 +10,7 @@ UUnitsSelectionComponent::UUnitsSelectionComponent()
 	Selections.SetNum(MilitaryBranchesNumber);	
 }
 
-void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool AddToExisting)
+void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate, bool AddToExisting)
 {
 	UpdatePawnState();
 	
@@ -20,10 +20,37 @@ void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectio
 
 	Selections[UnitsCollectionGroup->GetMilitaryBranch()].SelectedUnitsCollectionGroups.Add(UnitsCollectionGroup);
 
-	SelectedUnitsWereUpdated();
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
 }
 
-void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection, bool AddToExisting)
+void UUnitsSelectionComponent::SelectUnits(const TSet<UUnitsCollection*>& UnitsCollections, bool NotifyAboutUpdate, bool AddToExisting)
+{
+	for (const auto& UnitsCollection: UnitsCollections)
+	{
+		SelectUnits(UnitsCollection, false, AddToExisting);		
+	}
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
+void UUnitsSelectionComponent::SelectUnits(const TArray<UUnitsCollection*>& UnitsCollections, bool NotifyAboutUpdate, bool AddToExisting)
+{
+	for (const auto& UnitsCollection: UnitsCollections)
+	{
+		SelectUnits(UnitsCollection, false, AddToExisting);		
+	}
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
+void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection, bool NotifyAboutUpdate, bool AddToExisting)
 {
 	UpdatePawnState();
 
@@ -33,10 +60,13 @@ void UUnitsSelectionComponent::SelectUnits(UUnitsCollection* UnitsCollection, bo
 
 	Selections[UnitsCollection->GetMilitaryBranch()].SelectedUnitsCollections.Add(UnitsCollection);
 
-	SelectedUnitsWereUpdated();
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
 }
 
-void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units, bool AddToExisting)
+void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units, bool NotifyAboutUpdate, bool AddToExisting)
 {
 	UpdatePawnState();
 	
@@ -47,19 +77,39 @@ void UUnitsSelectionComponent::SelectUnits(const TArray<UUnit*>& Units, bool Add
 		Selections[Unit->GetMilitaryBranch()].SelectedUnits.Add(Unit);
 	}
 	
-	SelectedUnitsWereUpdated();
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
 }
 
-void UUnitsSelectionComponent::SelectUnit(UUnit* Unit, bool AddToExisting)
+void UUnitsSelectionComponent::SelectUnits(const TSet<UUnit*>& Units, bool NotifyAboutUpdate, bool AddToExisting)
+{
+	UpdatePawnState();
+	
+	ClearSelectionIfNeeded(AddToExisting);
+
+	for (const auto& Unit: Units)
+	{
+		Selections[Unit->GetMilitaryBranch()].SelectedUnits.Add(Unit);
+	}
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
+void UUnitsSelectionComponent::SelectUnit(UUnit* Unit, bool NotifyAboutUpdate, bool AddToExisting)
 {
 	UpdatePawnState();
 
 	ClearSelectionIfNeeded(AddToExisting);
 
 	Selections[Unit->GetMilitaryBranch()].SelectedUnits.Add(Unit);
-
-	SelectedUnitsWereUpdated();
-	// TODO: Add check for controlled country
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
 }
 
 void UUnitsSelectionComponent::ClearSelectedUnits()
@@ -79,6 +129,18 @@ const TArray<FUnitsSelection>& UUnitsSelectionComponent::GetUnitsSelectionsByBra
 	return Selections;
 }
 
+void UUnitsSelectionComponent::UnSelectUnits(const TArray<UUnitsCollection*>& UnitsCollections, bool NotifyAboutUpdate)
+{
+	for (const auto& UnitsCollection: UnitsCollections)
+	{
+		Selections[UnitsCollection->GetMilitaryBranch()].SelectedUnitsCollections.Remove(UnitsCollection);
+	}
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
 void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollection* UnitsCollection, bool NotifyAboutUpdate)
 {
 	Selections[UnitsCollection->GetMilitaryBranch()].SelectedUnitsCollections.Remove(UnitsCollection);
@@ -91,6 +153,27 @@ void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollection* UnitsCollection, 
 void UUnitsSelectionComponent::UnSelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate)
 {
 	Selections[UnitsCollectionGroup->GetMilitaryBranch()].SelectedUnitsCollectionGroups.Remove(UnitsCollectionGroup);
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
+void UUnitsSelectionComponent::UnSelectUnits(const TArray<UUnit*>& Units, bool NotifyAboutUpdate)
+{
+	for (const auto& Unit: Units)
+	{
+		Selections[Unit->GetMilitaryBranch()].SelectedUnits.Remove(Unit);
+	}
+	if (NotifyAboutUpdate)
+	{
+		SelectedUnitsWereUpdated();
+	}
+}
+
+void UUnitsSelectionComponent::UnSelectUnit(UUnit* Unit, bool NotifyAboutUpdate)
+{
+	Selections[Unit->GetMilitaryBranch()].SelectedUnits.Remove(Unit);
 	if (NotifyAboutUpdate)
 	{
 		SelectedUnitsWereUpdated();

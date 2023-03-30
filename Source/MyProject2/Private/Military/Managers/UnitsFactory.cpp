@@ -39,6 +39,16 @@ UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince*
 	return Unit;
 }
 
+UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner, const TArray<UUnit*>& Units)
+{
+	UUnitsCollection* UnitsCollection = CreateUnitCollection(MilitaryBranch, CountryOwner);
+	for (const auto& Unit: Units)
+	{
+		UnitsCollection->Add(Unit);
+	}
+	return UnitsCollection;
+}
+
 UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner)
 {
 	UUnitsCollection* UnitCollection = NewObject<UUnitsCollection>();
@@ -50,6 +60,16 @@ UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBr
 
 	NotifyUnitsCollectionCreation(UnitCollection);
 	return UnitCollection;
+}
+
+UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner, const TArray<UUnitsCollection*>& UnitsCollections)
+{
+	UUnitsCollectionGroup* UnitsCollectionGroup = CreateUnitCollectionGroup(MilitaryBranch, CountryOwner);
+	for (const auto& UnitsCollection: UnitsCollections)
+	{
+		UnitsCollectionGroup->Add(UnitsCollection);
+	}
+	return UnitsCollectionGroup;
 }
 
 UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner)
@@ -65,9 +85,18 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch 
 	return UnitCollectionGroup;
 }
 
+void UUnitsFactory::RemoveUnits(const TArray<UUnit*>& Units)
+{
+	for (const auto& Unit: Units)
+	{
+		RemoveUnit(Unit);
+	}
+}
+
 void UUnitsFactory::RemoveUnit(UUnit* Unit)
 {
 	NotifyUnitRemoval(Unit);
+	
 	UUnitsCollection* Collection = Unit->GetUnitsCollection();
 	if (Collection)
 	{

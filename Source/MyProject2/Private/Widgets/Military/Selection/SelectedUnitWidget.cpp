@@ -35,4 +35,5 @@ void USelectedUnitWidget::OnButtonClick()
 void USelectedUnitWidget::OnRemoveUnitButtonClick()
 {
 	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnit(Unit);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->UnSelectUnit(Unit, true);
 }
