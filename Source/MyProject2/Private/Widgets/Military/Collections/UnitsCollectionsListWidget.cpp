@@ -12,6 +12,7 @@ void UUnitsCollectionsListWidget::NativeConstruct()
 	for (int i = 0; i < MilitaryBranchesNumber; ++i)
 	{
 		MilitaryBranchUnitsCollectionsListWidget[i] = CreateWidget<UMilitaryBranchUnitsCollectionsListWidget>(GetOwningPlayer(), MilitaryBranchUnitsCollectionsListWidgetClass);
+		MilitaryBranchUnitsCollectionsListWidget[i]->Init(MilitaryBranches[i]);
 		MilitaryBranchesUnitsCollectionsScrollBox->AddChild(MilitaryBranchUnitsCollectionsListWidget[i]);
 	}
 }

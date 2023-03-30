@@ -23,7 +23,7 @@ void UUnitCollectionGroupWidget::RefreshData()
 		UnitsCollectionsListView->AddItem(UnitsCollection);
 	}
 	
-	const FName MilitaryBranchName = MilitaryBranchNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
+	const FName MilitaryBranchName = MilitaryBranchesNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
 	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
 	
 	CollectionGroupSizeTextBlock->SetText(FText::FromString(FString::FromInt(UnitsCollectionGroup->GetSize())));

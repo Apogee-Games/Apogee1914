@@ -1,13 +1,15 @@
 ﻿#include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 
-void UUnitsCollectionsWidget::AddUnitsCollection(UUnitsCollection* UnitsCollection)
+bool UUnitsCollectionsWidget::AddUnitsCollection(UUnitsCollection* UnitsCollection)
 {
 	UnitsCollections.Add(UnitsCollection);
+	return false;
 }
 
-void UUnitsCollectionsWidget::RemoveUnitsCollection(UUnitsCollection* UnitsCollection)
+bool UUnitsCollectionsWidget::RemoveUnitsCollection(UUnitsCollection* UnitsCollection)
 {
 	UnitsCollections.Remove(UnitsCollection);
+	return UnitsCollections.IsEmpty();
 }
 
 void UUnitsCollectionsWidget::RefreshData()

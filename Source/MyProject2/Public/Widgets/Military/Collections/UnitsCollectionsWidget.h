@@ -12,9 +12,9 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* UnitsCollectionsListView;
 
-	void AddUnitsCollection(UUnitsCollection* UnitsCollection);
+	bool AddUnitsCollection(UUnitsCollection* UnitsCollection);
 
-	void RemoveUnitsCollection(UUnitsCollection* UnitsCollection);
+	bool RemoveUnitsCollection(UUnitsCollection* UnitsCollection);
 
 	UFUNCTION(BlueprintCallable)
 	void RefreshData();

@@ -3,7 +3,8 @@
 void USelectedMilitaryBranchUnitsListWidget::Init(EMilitaryBranch MilitaryBranch)
 {
 	SelectedUnitsWidget->Init(MilitaryBranch);
-	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchNames[MilitaryBranch]));
+	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchesNames[MilitaryBranch]));
+	MilitaryBranchExpandableArea->BorderBrush.TintColor = MilitaryBranchesColors[MilitaryBranch];
 }
 
 void USelectedMilitaryBranchUnitsListWidget::SetSelection(const FUnitsSelection& Selection)

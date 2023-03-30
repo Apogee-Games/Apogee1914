@@ -14,7 +14,7 @@ enum EMilitaryBranch
 	AirForce = 2
 };
 
-inline FName MilitaryBranchNames[3] = {
+inline FName MilitaryBranchesNames[3] = {
 	"Army",
 	"Navy",
 	"AirForce"
@@ -25,6 +25,10 @@ inline EMilitaryBranch MilitaryBranches[3] = {
 };
 
 inline int32 MilitaryBranchesNumber = 3;
+
+inline FColor MilitaryBranchesColors[3] = {
+	FColor::Green, FColor::Blue, FColor::Silver
+};
 
 //TODO: Come up with the fix for this :)
 

@@ -1,20 +1,41 @@
 ﻿#include "Widgets/Military/Collections/MilitaryBranchUnitsCollectionsListWidget.h"
 
+void UMilitaryBranchUnitsCollectionsListWidget::Init(EMilitaryBranch MilitaryBranch)
+{
+	Border->BrushColor = MilitaryBranchesColors[MilitaryBranch];
+	UpdateVisibility();
+}
+
 void UMilitaryBranchUnitsCollectionsListWidget::AddUnitsCollection(UUnitsCollection* UnitsCollection) {
-	UnitsCollectionsWidget->AddUnitsCollection(UnitsCollection);
+	IsUnitsCollectionsEmpty = UnitsCollectionsWidget->AddUnitsCollection(UnitsCollection);
+	UpdateVisibility();
 }
 
 void UMilitaryBranchUnitsCollectionsListWidget::RemoveUnistCollection(UUnitsCollection* UnitsCollection)
 {
-	UnitsCollectionsWidget->RemoveUnitsCollection(UnitsCollection);
+	IsUnitsCollectionsEmpty = UnitsCollectionsWidget->RemoveUnitsCollection(UnitsCollection);
+	UpdateVisibility();
 }
 
 void UMilitaryBranchUnitsCollectionsListWidget::AddUnitsCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup)
 {
-	UnitsCollectionGroupsWidget->AddUnitsCollectionGroup(UnitsCollectionGroup);
+	IsUnitsCollectionsGroupsEmpty = UnitsCollectionGroupsWidget->AddUnitsCollectionGroup(UnitsCollectionGroup);
+	UpdateVisibility();
 }
 
 void UMilitaryBranchUnitsCollectionsListWidget::RemoveUnitsCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup)
 {
-	UnitsCollectionGroupsWidget->RemoveUnitsCollectionGroup(UnitsCollectionGroup);
+	IsUnitsCollectionsGroupsEmpty = UnitsCollectionGroupsWidget->RemoveUnitsCollectionGroup(UnitsCollectionGroup);
+	UpdateVisibility();
+}
+
+void UMilitaryBranchUnitsCollectionsListWidget::UpdateVisibility()
+{
+	if (IsUnitsCollectionsEmpty && IsUnitsCollectionsGroupsEmpty)
+	{
+		SetVisibility(ESlateVisibility::Collapsed);
+	} else
+	{
+		SetVisibility(ESlateVisibility::Visible);
+	}
 }

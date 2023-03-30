@@ -26,7 +26,7 @@ void USelectedUnitsCollectionGroupWidget::RefreshData()
 
 	UnitsCollectionNumberTextBlock->SetText(FText::FromString(FString::FromInt(UnitsCollectionGroup->GetSize())));
 	
-	const FName MilitaryBranchName = MilitaryBranchNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
+	const FName MilitaryBranchName = MilitaryBranchesNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
 	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
 
 	UPerson* Commander = UnitsCollectionGroup->GetCommander();

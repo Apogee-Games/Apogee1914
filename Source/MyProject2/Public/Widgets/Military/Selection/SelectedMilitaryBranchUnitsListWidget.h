@@ -2,7 +2,7 @@
 #include "Blueprint/UserWidget.h"
 #include "SelectedUnitsWidget.h"
 #include "Characters/Components/UnitsSelectionComponent.h"
-#include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
+#include "Components/ExpandableArea.h"
 #include "SelectedMilitaryBranchUnitsListWidget.generated.h"
 
 UCLASS()
@@ -21,6 +21,9 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* MilitaryBranchTextBlock;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UExpandableArea* MilitaryBranchExpandableArea;
 	
 	void Init(EMilitaryBranch MilitaryBranch);
 	

@@ -12,7 +12,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* UnitsCollectionGroupsListView;
 
-	void AddUnitsCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup);
+	bool AddUnitsCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup);
 
-	void RemoveUnitsCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup);
+	bool RemoveUnitsCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup);
 };
