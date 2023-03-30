@@ -25,7 +25,7 @@ public:
 	void Supply();
 	
 	virtual void Deinitialize() override;
-
+  
 private:
 	UPROPERTY()
 	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;
