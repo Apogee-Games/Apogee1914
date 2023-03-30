@@ -3,5 +3,5 @@
 
 EMilitaryBranch UFlight::GetMilitaryBranch() const
 {
-	return EMilitaryBranch::Navy;
+	return EMilitaryBranch::AirForce;
 }

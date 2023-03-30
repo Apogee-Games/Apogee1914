@@ -31,5 +31,27 @@
 			"Coal": 200
 		},
 		"ManpowerRequirements": 2000
+	},
+	{
+		"Name": "Air1",
+		"UnitName": "Air",
+		"CanTransport": false,
+		"MilitaryBranch": "AirForce",
+		"EquipmentRequirements": {
+			"Iron": 200,
+			"Coal": 200
+		},
+		"ManpowerRequirements": 2000
+	},
+	{
+		"Name": "Navy1",
+		"UnitName": "Navy",
+		"CanTransport": false,
+		"MilitaryBranch": "Navy",
+		"EquipmentRequirements": {
+			"Iron": 200,
+			"Coal": 200
+		},
+		"ManpowerRequirements": 2000
 	}
 ]

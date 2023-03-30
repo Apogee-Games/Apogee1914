@@ -1,4 +1,5 @@
 #pragma once
+#include "Characters/Components/UnitsSelectionComponent.h"
 #include "Maps/Graph.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
@@ -23,9 +24,11 @@ public:
 
 	virtual void MoveUnits(const TSet<UUnit*>& Units, UProvince* To);
 
-	virtual void MoveUnits(const TSet<UUnitsCollection*> UnitsCollections, UProvince* To);
+	virtual void MoveUnits(const TSet<UUnitsCollection*>& UnitsCollections, UProvince* To);
 
-	virtual void MoveUnits(const TSet<UUnitsCollectionGroup*> UnitsCollectionGroups, UProvince* To);
+	virtual void MoveUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups, UProvince* To);
+
+	virtual void MoveUnits(const TArray<FUnitsSelection>& Selections, UProvince* To);
 	
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 

@@ -30,8 +30,9 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UImage* CommanderImage;
 
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	/*UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* CommanderNameTextBlock;
+	*/
 	
 	virtual void NativeConstruct() override;
 	

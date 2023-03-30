@@ -1,7 +1,10 @@
 #pragma once
+#include "SelectedMilitaryBranchUnitsListWidget.h"
 #include "SelectedUnitsWidget.h"
 #include "Blueprint/UserWidget.h"
+#include "Characters/Components/UnitsSelectionComponent.h"
 #include "Components/ListView.h"
+#include "Components/ScrollBox.h"
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
 #include "SelectedUnitsListWidget.generated.h"
@@ -12,17 +15,15 @@ class USelectedUnitsListWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	USelectedUnitsWidget* SelectedUnitsWidget;
+	UScrollBox* UnitsListsScrollBox;
 
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UListView* UnitsCollectionsListView;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<USelectedMilitaryBranchUnitsListWidget> SelectedMilitaryBranchUnitsListWidgetCLass;
 
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UListView* UnitsCollectionGroupsListView;
+	void Init();
 	
-	void SetSelectedUnits(const TSet<UUnit*>& Units);
-
-	void SetSelectedUnits(const TSet<UUnitsCollection*>& UnitsCollections);
-	
-	void SetSelectedUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups);
+	void SetSelections(const TArray<FUnitsSelection>& Selections);
+private:
+	UPROPERTY()
+	TArray<USelectedMilitaryBranchUnitsListWidget*> MilitaryBranchUnitsListWidgets;
 };

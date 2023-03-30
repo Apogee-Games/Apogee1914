@@ -73,3 +73,13 @@ EMilitaryBranch UUnit::GetMilitaryBranch() const
 	return EMilitaryBranch::Army;
 }
 
+void UUnit::SetUnitsCollection(UUnitsCollection* ProvidedUnitsCollection)
+{
+	 UnitsCollection = ProvidedUnitsCollection;
+}
+
+UUnitsCollection* UUnit::GetUnitsCollection() const
+{
+	return UnitsCollection;
+}
+

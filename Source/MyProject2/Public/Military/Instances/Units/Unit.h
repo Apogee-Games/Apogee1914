@@ -7,18 +7,32 @@
 #include "Unit.generated.h"
 
 UENUM()
-enum class EMilitaryBranch
+enum EMilitaryBranch
 {
 	Army = 0,
 	Navy = 1,
 	AirForce = 2
 };
 
-inline FName MilitaryBranchNames[3] = {
+inline FName MilitaryBranchesNames[3] = {
 	"Army",
 	"Navy",
 	"AirForce"
 };
+
+inline EMilitaryBranch MilitaryBranches[3] = {
+	Army, Navy, AirForce
+};
+
+inline int32 MilitaryBranchesNumber = 3;
+
+inline FColor MilitaryBranchesColors[3] = {
+	FColor::Green, FColor::Blue, FColor::Silver
+};
+
+//TODO: Come up with the fix for this :)
+
+class UUnitsCollection;
 
 UCLASS()
 class UUnit: public UObject, public IOwnable
@@ -45,6 +59,10 @@ public:
 
 	virtual EMilitaryBranch GetMilitaryBranch() const;
 
+	void SetUnitsCollection(UUnitsCollection* ProvidedUnitsCollection);
+
+	UUnitsCollection* GetUnitsCollection() const;
+
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);
@@ -53,6 +71,9 @@ public:
 private:
 	const FUnitDescription* UnitDescription;
 
+	UPROPERTY()
+	UUnitsCollection* UnitsCollection;
+	
 	//TSet<UUnit*> TransportedUnits; // TODO: May be extract it to another interface
 
 	UPROPERTY()

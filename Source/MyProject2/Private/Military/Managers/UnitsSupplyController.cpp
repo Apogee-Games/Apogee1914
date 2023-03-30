@@ -23,12 +23,18 @@ void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
 	}
 
 	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, SupplyTimeDelta);
 }
 
 void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)
 {
 	CountrySupplier[Unit->GetCountryController()]->AddUnit(Unit);
+}
+
+void UUnitsSupplyController::UnitIsRemoved(UUnit* Unit)
+{
+	CountrySupplier[Unit->GetCountryController()]->RemoveUnit(Unit);
 }
 
 void UUnitsSupplyController::Supply()

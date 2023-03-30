@@ -2,25 +2,21 @@
 
 #include "Military/Instances/Units/Unit.h"
 
-void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnit*>& Units)
+void USelectedUnitsListWidget::Init()
 {
-	SelectedUnitsWidget->SetSelectedUnits(Units);
-}
-
-void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnitsCollection*>& UnitsCollections)
-{
-	UnitsCollectionsListView->ClearListItems();
-	for (const auto UnitsCollection: UnitsCollections)
+	MilitaryBranchUnitsListWidgets.SetNum(MilitaryBranchesNumber);
+	for (int i = 0; i < MilitaryBranchesNumber; ++i)
 	{
-		UnitsCollectionsListView->AddItem(UnitsCollection);
+		MilitaryBranchUnitsListWidgets[i] = CreateWidget<USelectedMilitaryBranchUnitsListWidget>(GetOwningPlayer(), SelectedMilitaryBranchUnitsListWidgetCLass);
+		MilitaryBranchUnitsListWidgets[i]->Init(MilitaryBranches[i]);
+		UnitsListsScrollBox->AddChild(MilitaryBranchUnitsListWidgets[i]);
 	}
 }
 
-void USelectedUnitsListWidget::SetSelectedUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups)
+void USelectedUnitsListWidget::SetSelections(const TArray<FUnitsSelection>& Selections)
 {
-	UnitsCollectionGroupsListView->ClearListItems();
-	for (const auto UnitsCollection: UnitsCollectionGroups)
+	for (int i = 0; i < Selections.Num(); ++i)
 	{
-		UnitsCollectionGroupsListView->AddItem(UnitsCollection);
+		MilitaryBranchUnitsListWidgets[i]->SetSelection(Selections[i]);
 	}
 }

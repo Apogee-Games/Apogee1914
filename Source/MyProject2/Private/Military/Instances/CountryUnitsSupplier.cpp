@@ -22,6 +22,12 @@ void UCountryUnitsSupplier::AddUnit(UUnit* Unit)
 	Units.Add(Unit);
 }
 
+void UCountryUnitsSupplier::RemoveUnit(UUnit* Unit)
+{
+	Units.Remove(Unit);
+	// TODO: Free used resources :)
+}
+
 void UCountryUnitsSupplier::Supply(UUnit* Unit)
 {
 	// TODO: Add manpower supply

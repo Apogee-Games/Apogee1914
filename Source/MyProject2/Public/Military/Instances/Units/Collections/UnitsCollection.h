@@ -3,6 +3,8 @@
 #include "Military/Interfaces/Commandable.h"
 #include "UnitsCollection.generated.h"
 
+class UUnitsCollectionGroup;
+
 UCLASS()
 class UUnitsCollection: public UObject, public TFMilitaryCollection<UUnit*>, public ICommandable
 {
@@ -17,7 +19,16 @@ public:
 	virtual int32 GetSize() const override;
 
 	virtual bool Contains(UUnit* Unit) override;
+
+	void SetUnitsCollectionGroup(UUnitsCollectionGroup* ProvidedUnitsCollectionGroup);
+	
+	UUnitsCollectionGroup* GetUnitsCollectionGroup();
+
+	void ClearUnits();
 private:
+	UPROPERTY()
+	UUnitsCollectionGroup* UnitsCollectionGroup;
+	
 	UPROPERTY()
 	TSet<UUnit*> Units;
 };

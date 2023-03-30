@@ -12,7 +12,7 @@
 #include "Widgets/Economics/Storage/StorageGoodsListWidget.h"
 #include "Widgets/Maps/MapsSwitcherWidget.h"
 #include "Widgets/Menu/MenuWidget.h"
-#include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
+#include "Widgets/Military/Collections/UnitsCollectionsListWidget.h"
 #include "Widgets/Military/Commanders/CommanderListWidget.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
@@ -50,7 +50,7 @@ public:
 	TSubclassOf<UTimeControllerWidget> TimeControllerClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UUnitsCollectionsWidget> UnitsCollectionsWidgetClass;
+	TSubclassOf<UUnitsCollectionsListWidget> UnitsCollectionsListWidgetClass;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCommanderListWidget> CommanderListWidgetClass;
@@ -104,7 +104,7 @@ public:
 
 	UBuildingsTypesListWidget* GetBuildingsTypesListWidget() const;
 	
-	UUnitsCollectionsWidget* GetUnitsCollectionsWidget() const;
+	UUnitsCollectionsListWidget* GetUnitsCollectionsListWidget() const;
 
 	UCommanderListWidget* GetCommanderListWidget() const;
 
@@ -150,7 +150,7 @@ private:
 	UTimeControllerWidget* TimeControllerWidget;
 
 	UPROPERTY()
-	UUnitsCollectionsWidget* UnitsCollectionsWidget;
+	UUnitsCollectionsListWidget* UnitsCollectionsListWidget;
 
 	UPROPERTY()
 	UCommanderListWidget* CommanderListWidget;
@@ -205,7 +205,7 @@ private:
 	
 	void InitTimeControllerWidget();
 
-	void InitUnitsCollectionsWidget();
+	void InitUnitsCollectionsListWidget();
 
 	void InitCommanderListWidget();
 

@@ -15,7 +15,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitUnitsSupplyListWidget();
 	InitUnitInstancesListDescriptionWidget();
 	InitTimeControllerWidget();
-	InitUnitsCollectionsWidget();
+	InitUnitsCollectionsListWidget();
 	InitCommanderListWidget();
 	InitMenuWidget();
 	InitTopPanelWidget();
@@ -68,9 +68,9 @@ UBuildingsTypesListWidget* AHumanPlayerHUD::GetBuildingsTypesListWidget() const
 	return BuildingsTypesListWidget;
 }
 
-UUnitsCollectionsWidget* AHumanPlayerHUD::GetUnitsCollectionsWidget() const
+UUnitsCollectionsListWidget* AHumanPlayerHUD::GetUnitsCollectionsListWidget() const
 {
-	return UnitsCollectionsWidget;
+	return UnitsCollectionsListWidget;
 }
 
 UCommanderListWidget* AHumanPlayerHUD::GetCommanderListWidget() const
@@ -151,9 +151,9 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	{
 		TimeControllerWidget->RemoveFromParent();
 	}
-	if (UnitsCollectionsWidget)
+	if (UnitsCollectionsListWidget)
 	{
-		UnitsCollectionsWidget->RemoveFromParent();
+		UnitsCollectionsListWidget->RemoveFromParent();
 	}
 	if (MenuWidget)
 	{
@@ -246,6 +246,7 @@ void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
 		UnitInstancesListDescriptionWidget = CreateWidget<USelectedUnitsListWidget>(GetOwningPlayerController(), UnitInstancesListDescriptionWidgetClass);
 		if (UnitInstancesListDescriptionWidget)
 		{
+			UnitInstancesListDescriptionWidget->Init();
 			Widgets.Add(UnitInstancesListDescriptionWidget);
 		}
 	}
@@ -284,13 +285,13 @@ void AHumanPlayerHUD::InitTimeControllerWidget()
 	}
 }
 
-void AHumanPlayerHUD::InitUnitsCollectionsWidget()
+void AHumanPlayerHUD::InitUnitsCollectionsListWidget()
 {
-	if (UnitsCollectionsWidgetClass)
+	if (UnitsCollectionsListWidgetClass)
 	{
-		UnitsCollectionsWidget = CreateWidget<UUnitsCollectionsWidget>(GetOwningPlayerController(), UnitsCollectionsWidgetClass);
-		if (UnitsCollectionsWidget) {
-			UnitsCollectionsWidget->AddToPlayerScreen();
+		UnitsCollectionsListWidget = CreateWidget<UUnitsCollectionsListWidget>(GetOwningPlayerController(), UnitsCollectionsListWidgetClass);
+		if (UnitsCollectionsListWidget) {
+			UnitsCollectionsListWidget->AddToPlayerScreen();
 		}
 	}
 }

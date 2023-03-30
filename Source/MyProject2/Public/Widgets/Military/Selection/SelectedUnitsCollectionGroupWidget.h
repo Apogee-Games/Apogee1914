@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "Components/Image.h"
 #include "Components/ListView.h"
 #include "Components/TextBlock.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
@@ -23,6 +24,18 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* Button;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* RemoveUnitsCollectionGroupButton;
+
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UImage* CommanderImage;
+    
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UTextBlock* CommanderNameTextBlock;
+    
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* CommanderButton;
+	
 	virtual void NativeConstruct() override;
 	
 	UFUNCTION(BlueprintCallable)
@@ -37,4 +50,10 @@ private:
 
 	UFUNCTION()
 	void OnButtonClick();
+
+	UFUNCTION()
+	void OnRemoveUnitsCollectionGroupButton();
+
+	UFUNCTION()
+	void OnCommanderButtonClick();
 };

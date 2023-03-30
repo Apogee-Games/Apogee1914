@@ -24,6 +24,11 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::LeftClick(APawn* ProvidedPawn)
 TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn)
 {
 	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
+
+	if (!Pawn->UnitSelectionComponent->HasSelectedUnits())
+	{
+		return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);
+	}
 	
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 
@@ -31,20 +36,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn
 
 	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
 
-	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetSelectedUnits(), To);
-	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetSelectedUnitsCollections(), To);
-	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetSelectedUnitsCollectionGroups(), To);
-	
-	for (const auto& UnitsCollectionGroup: Pawn->UnitSelectionComponent->GetSelectedUnitsCollectionGroups())
-	{
-		for (const auto& UnitsCollection: UnitsCollectionGroup->GetAll())
-		{
-			for (const auto& Unit: UnitsCollection->GetAll())
-			{
-				UnitsMover->MoveUnit(Unit, To);
-			}
-		}
-	}
+	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetUnitsSelectionsByBranch(), To);
 
 	return Instance;
 }
