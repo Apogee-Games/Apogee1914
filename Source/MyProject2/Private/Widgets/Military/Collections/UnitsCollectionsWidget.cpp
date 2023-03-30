@@ -1,44 +1,21 @@
-#include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
+﻿#include "Widgets/Military/Collections/UnitsCollectionsWidget.h"
 
-#include "Administration/Managers/ProvinceManager.h"
-#include "Military/Managers/UnitsFactory.h"
-
-void UUnitsCollectionsWidget::NativeConstruct()
+void UUnitsCollectionsWidget::AddUnitsCollection(UUnitsCollection* UnitsCollection)
 {
-	Super::NativeConstruct();
-
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupCreationObserver(this);
+	UnitsCollections.Add(UnitsCollection);
 }
 
-void UUnitsCollectionsWidget::UnitsCollectionIsCreated(UUnitsCollection* UnitsCollection)
+void UUnitsCollectionsWidget::RemoveUnitsCollection(UUnitsCollection* UnitsCollection)
 {
-	if (!DefaultCollectionGroups.Contains(UnitsCollection->GetMilitaryBranch()))
+	UnitsCollections.Remove(UnitsCollection);
+}
+
+void UUnitsCollectionsWidget::RefreshData()
+{
+	UnitsCollectionsListView->ClearListItems();
+	for (const auto& UnitsCollection: UnitsCollections)
 	{
-		UUnitsCollectionGroup* UnitsCollectionGroup = NewObject<UUnitsCollectionGroup>();
-		UnitsCollectionGroup->Init(UnitsCollection->GetMilitaryBranch());
-		UnitsCollectionGroup->SetCountryOwner(UnitsCollection->GetCountryOwner());
-		UnitsCollectionGroup->SetCountryController(UnitsCollection->GetCountryOwner());
-		DefaultCollectionGroups.Add(UnitsCollection->GetMilitaryBranch(), UnitsCollectionGroup);
-		CollectionsGroupsListView->AddItem(UnitsCollectionGroup);
+		if (UnitsCollection->GetUnitsCollectionGroup()) continue;
+		UnitsCollectionsListView->AddItem(UnitsCollection);
 	}
-	DefaultCollectionGroups[UnitsCollection->GetMilitaryBranch()]->Add(UnitsCollection);
 }
-
-void UUnitsCollectionsWidget::UnitsCollectionGroupIsCreated(UUnitsCollectionGroup* UnitsCollectionGroup)
-{
-	CollectionsGroupsListView->AddItem(UnitsCollectionGroup); 
-}
-
-void UUnitsCollectionsWidget::NativeDestruct()
-{
-	Super::NativeDestruct();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupCreationObserver(this);
-}
-
-void UUnitsCollectionsWidget::UnitsCollectionIsRemoved(UUnitsCollection* UnitsCollection)
-{
-	DefaultCollectionGroups[UnitsCollection->GetMilitaryBranch()]->Remove(UnitsCollection);
-}
-
