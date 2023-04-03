@@ -1,6 +1,5 @@
 #pragma once
-#include "Economics/Instances/Building.h"
-#include "Economics/Instances/Storage.h"
+#include "Economics/Instances/Buildings/Building.h"
 #include "BuildingManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
@@ -14,7 +13,7 @@ public:
 	
 	UBuilding* BuildBuilding(UBuildingDescription* Description, UProvince* Province);
 
-	void Produce();
+	void Tick();
 
 	void DestroyBuilding(UBuilding* Building);
 private:

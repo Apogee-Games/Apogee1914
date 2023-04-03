@@ -1,7 +1,4 @@
-
-
 #include "Economics/Managers//BuildingManager.h"
-
 #include "InGameTime.h"
 #include "Administration/Instances/Province.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
@@ -14,12 +11,12 @@ bool UBuildingManager::ShouldCreateSubsystem(UObject* Outer) const
 void UBuildingManager::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Produce, FTimespan(1, 0, 0, 0));
+	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Tick, FTimespan(1, 0, 0, 0));
 }
 
 UBuilding* UBuildingManager::BuildBuilding(UBuildingDescription* Description, UProvince* Province)
 {
-	UBuilding* Building = NewObject<UBuilding>();
+	UBuilding* Building = NewObject<UBuilding>(this, Description->Class);
 	Building->Init(Description, Province);
 
 	Building->SetCountryOwner(Province->GetCountryController());
@@ -30,12 +27,12 @@ UBuilding* UBuildingManager::BuildBuilding(UBuildingDescription* Description, UP
 	return Building;
 }
 
-void UBuildingManager::Produce()
+void UBuildingManager::Tick()
 {
-	/*for (auto& Building: Buildings)
+	for (auto& Building: Buildings)
 	{
-		Building->Produce();
-	}*/
+		Building->Tick();
+	}
 }
 
 void UBuildingManager::DestroyBuilding(UBuilding* Building)

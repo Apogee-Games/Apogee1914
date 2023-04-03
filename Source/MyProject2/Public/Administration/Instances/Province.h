@@ -4,7 +4,7 @@
 #include "ProvinceResources.h"
 #include "Administration/Descriptions/ProvinceDescription.h"
 #include "Administration/Descriptions/TerrainDescription.h"
-#include "Economics/Instances/Building.h"
+#include "Economics/Instances/Buildings/Building.h"
 #include "Province.generated.h"
 
 UCLASS()
