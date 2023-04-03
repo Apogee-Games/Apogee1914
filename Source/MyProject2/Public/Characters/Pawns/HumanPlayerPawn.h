@@ -56,7 +56,7 @@ public:
 
 	void SelectUnitDescription(const FUnitDescription* UnitDescription);
 
-	void SelectBuildingDescription(const FBuildingDescription* BuildingDescription);
+	void SelectBuildingDescription(UBuildingDescription* BuildingDescription);
 
 	void SetCommandable(ICommandable* Commandable);
 
@@ -64,7 +64,7 @@ public:
 		
 	const FUnitDescription* GetSelectedUnitDescription() const;
 
-	const FBuildingDescription* GetSelectedBuildingDescription() const;
+	UBuildingDescription* GetSelectedBuildingDescription() const;
 
 	const FName& GetRuledCountryTag() const;
 
@@ -107,8 +107,9 @@ private:
 	bool bIsShiftPressed = false;
 
 	const FUnitDescription* SelectedUnitDescription;
-	
-	const FBuildingDescription* SelectedBuildingDescription;
+
+	UPROPERTY()
+	UBuildingDescription* SelectedBuildingDescription;
 
 	ICommandable* SelectedCommandable;
 	

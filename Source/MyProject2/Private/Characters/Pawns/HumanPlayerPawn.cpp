@@ -59,7 +59,7 @@ void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescrip
 	SelectedUnitDescription = UnitDescription;
 }
 
-void AHumanPlayerPawn::SelectBuildingDescription(const FBuildingDescription* BuildingDescription)
+void AHumanPlayerPawn::SelectBuildingDescription(UBuildingDescription* BuildingDescription)
 {
 	SelectedBuildingDescription = BuildingDescription;
 }
@@ -79,7 +79,7 @@ const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
 	return SelectedUnitDescription;
 }
 
-const FBuildingDescription* AHumanPlayerPawn::GetSelectedBuildingDescription() const
+UBuildingDescription* AHumanPlayerPawn::GetSelectedBuildingDescription() const
 {
 	return SelectedBuildingDescription;
 }

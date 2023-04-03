@@ -261,13 +261,7 @@ void AHumanPlayerHUD::InitBuildingsTypesListWidget()
 		
 		if (BuildingsTypesListWidget)
 		{
-
-			UDataTable* BuildingsDescriptionDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptionDataTable;
-
-			for (const auto& [BuildingName, BuildingDescription]: BuildingsDescriptionDataTable->GetRowMap())
-			{
-				BuildingsTypesListWidget->AddBuildingType(reinterpret_cast<FBuildingDescription*>(BuildingDescription));
-			}
+			BuildingsTypesListWidget->Init(GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptions);
 			Widgets.Add(BuildingsTypesListWidget);
 		}
 	}

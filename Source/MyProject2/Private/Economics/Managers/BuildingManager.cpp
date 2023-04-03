@@ -17,7 +17,7 @@ void UBuildingManager::OnWorldBeginPlay(UWorld& InWorld)
 	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Produce, FTimespan(1, 0, 0, 0));
 }
 
-UBuilding* UBuildingManager::BuildBuilding(const FBuildingDescription* Description, UProvince* Province)
+UBuilding* UBuildingManager::BuildBuilding(UBuildingDescription* Description, UProvince* Province)
 {
 	UBuilding* Building = NewObject<UBuilding>();
 	Building->Init(Description, Province);
@@ -32,10 +32,10 @@ UBuilding* UBuildingManager::BuildBuilding(const FBuildingDescription* Descripti
 
 void UBuildingManager::Produce()
 {
-	for (auto& Building: Buildings)
+	/*for (auto& Building: Buildings)
 	{
 		Building->Produce();
-	}
+	}*/
 }
 
 void UBuildingManager::DestroyBuilding(UBuilding* Building)

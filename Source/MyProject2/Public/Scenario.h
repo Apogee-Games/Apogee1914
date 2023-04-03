@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Economics/Description/Buildings/BuildingDescription.h"
 #include "Engine/DataTable.h"
 #include "Scenario.generated.h"
 
@@ -35,7 +36,7 @@ public:
 	UDataTable* UnitsDescriptionDataTable;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* BuildingsDescriptionDataTable;
+	TArray<UBuildingDescription*> BuildingsDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* EventsDataTable;

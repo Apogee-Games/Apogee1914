@@ -1,52 +1,16 @@
-
 #include "Widgets/Economics/Buildings/Creation/BuildingTypeDescriptionWidget.h"
-
 #include "Characters/Pawns/HumanPlayerPawn.h"
-#include "Widgets/Economics/Buildings/Carriers/BuildingDescriptionCarrier.h"
-#include "Widgets/Economics/Buildings/Carriers/GoodConsumptionCarrier.h"
-#include "Widgets/Economics/Buildings/Carriers/GoodProductionCarrier.h"
-#include "Widgets/Economics/Buildings/Carriers/ResourceConsumptionCarrier.h"
 
-void UBuildingTypeDescriptionWidget::RefreshData()
-{
-	BuildingNameTextBlock->SetText(FText::FromName(BuildingDescription->BuildingName));
-	MaxLaboursTextBlock->SetText(FText::FromString(FString::FromInt(BuildingDescription->MaxLabours)));
-
-	for (const auto& [GoodName, Amount]: BuildingDescription->GoodConsumption)
-	{
-		UGoodConsumptionCarrier* Carrier = NewObject<UGoodConsumptionCarrier>();
-		Carrier->Init(BuildingDescription, GoodName);
-		GoodsConsumptionListView->AddItem(Carrier);	
-	}
-
-	for (const auto& [ResourceName, Amount]: BuildingDescription->ResourceConsumption)
-	{
-		UResourceConsumptionCarrier* Carrier = NewObject<UResourceConsumptionCarrier>();
-		Carrier->Init(BuildingDescription, ResourceName);
-		ResourcesConsumptionListView->AddItem(Carrier);	
-	}
-
-	for (const auto& [GoodName, Amount]: BuildingDescription->GoodOutput)
-	{
-		UGoodProductionCarrier* Carrier = NewObject<UGoodProductionCarrier>();
-		Carrier->Init(BuildingDescription, GoodName);
-		GoodsProductionListView->AddItem(Carrier);	
-	}
-	
-}
-
-void UBuildingTypeDescriptionWidget::OnClick()
+void UBuildingTypeDescriptionWidget::OnButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->SelectBuildingDescription(BuildingDescription);
 }
 
-void UBuildingTypeDescriptionWidget::NativeConstruct()
+void UBuildingTypeDescriptionWidget::Init(UBuildingDescription* ProvidedBuildingDescription)
 {
-	Super::NativeConstruct();
-	Button->OnClicked.AddDynamic(this, &UBuildingTypeDescriptionWidget::OnClick);
+	BuildingDescription = ProvidedBuildingDescription;
+	BuildingNameTextBlock->SetText(BuildingDescription->Name);
+
+	Button->OnClicked.AddDynamic(this, &UBuildingTypeDescriptionWidget::OnButtonClick);
 }
 
-void UBuildingTypeDescriptionWidget::SetCarrier(UObject* ProvidedCarrier)
-{
-	BuildingDescription = Cast<UBuildingDescriptionCarrier>(ProvidedCarrier)->GetBuildingDescription();
-}

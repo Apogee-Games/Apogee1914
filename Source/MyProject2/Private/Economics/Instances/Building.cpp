@@ -2,6 +2,7 @@
 
 #include "Economics/Instances/Building.h"
 
+/*
 void UBuilding::Produce()
 {
 	// TODO: Temporary system, Think of better system that will count productivity and else
@@ -9,26 +10,28 @@ void UBuilding::Produce()
 	DemandGoods(ProductCount);
 	SupplyGoods(ProductCount);
 }
+*/
 
-void UBuilding::Init(const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince)
+void UBuilding::Init(UBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince)
 {
 	BuildingDescription = ProvidedBuildingDescription;	
 	Labours = 0;
 	Province = ProvidedProvince;
 }
 
-void UBuilding::Init(const FBuildingInstanceDescription* BuildingInstanceDescription, const FBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage)
+void UBuilding::Init(const FBuildingInstanceDescription* BuildingInstanceDescription, UBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince, UStorage* ProvidedStorage)
 {
 	BuildingDescription = ProvidedBuildingDescription;	
 	Labours = BuildingInstanceDescription->Labours;
 	Province = ProvidedProvince;
 }
 
-const FBuildingDescription* UBuilding::GetBuildingDescription() const
+UBuildingDescription* UBuilding::GetBuildingDescription() const
 {
 	return BuildingDescription;
 }
 
+/*
 int32 UBuilding::GetLabours() const
 {
 	return Labours;
@@ -38,12 +41,14 @@ int32 UBuilding::GetMaxLabours() const
 {
 	return BuildingDescription->MaxLabours;
 }
+*/
 
 UProvince* UBuilding::GetProvince() const
 {
 	return Province;
 }
 
+/*
 const FName& UBuilding::GetBuildingName() const
 {
 	return BuildingDescription->BuildingName;
@@ -80,4 +85,5 @@ void UBuilding::SupplyGoods(int32 ProductCount)
 inline UStorage* UBuilding::GetStorage() const
 {
 	return CountryController ? CountryController->GetStorage() : StrataController->GetStorage();
-} 
+}
+*/

@@ -1,7 +1,9 @@
 #pragma once
+#include "BuildingTypeDescriptionWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ListView.h"
-#include "Economics/Description/BuildingDescription.h"
+#include "Components/ScrollBox.h"
+#include "Economics/Description/Buildings/BuildingDescription.h"
 
 #include "BuildingsTypesListWidget.generated.h"
 
@@ -11,7 +13,12 @@ class UBuildingsTypesListWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
-	UListView* BuildingDescriptionListView;
+	UScrollBox* BuildingsDescriptionScrollBox;
 
-	void AddBuildingType(FBuildingDescription* BuildingDescription);
+	UPROPERTY(EditDefaultsOnly)
+	TMap<FName, TSubclassOf<UBuildingTypeDescriptionWidget>> WidgetsClasses;
+
+	void Init(const TArray<UBuildingDescription*>& BuildingDescriptions);
+private:
+	void AddBuilding(UBuildingDescription* BuildingDescription);
 };

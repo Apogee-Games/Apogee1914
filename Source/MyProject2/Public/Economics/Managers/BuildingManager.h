@@ -12,7 +12,7 @@ public:
 
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	
-	UBuilding* BuildBuilding(const FBuildingDescription* Description, UProvince* Province);
+	UBuilding* BuildBuilding(UBuildingDescription* Description, UProvince* Province);
 
 	void Produce();
 
