@@ -9,10 +9,19 @@ class  ASphereMapActor : public AMapActor
 
 public:
 	UPROPERTY(EditDefaultsOnly)
-	FRotator SphereRotator = FRotator(90, 0, 90);	
-	double SphereSize = 200;
+	FRotator SphereRotator = FRotator(20, 0, 85);
+	  UPROPERTY(EditDefaultsOnly)
+	 FVector3d MinPosition = FVector3d(-100, 0, 0);
+	
+	  UPROPERTY(EditDefaultsOnly)
+	  FVector3d MaxPosition = FVector3d(-15, 200, 200);
+	
+	
+	// double SphereSize = 200*PI;
+	double PlaneSize = 200;
+	
 
-	ASphereMapActor();
+	//ASphereMapActor();
 	
 	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght) override;
 	

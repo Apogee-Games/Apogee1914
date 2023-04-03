@@ -193,7 +193,7 @@ void AHumanPlayerPawn::Move(float DeltaTime)
 		return;
 
 
-	FVector Position = MapActor->GetNewPosition(CameraComponent->GetComponentLocation(), MovementDirection, DeltaTime * SpeedVector.Length());
+	FVector Position = MapActor->GetNewPosition(CameraComponent->GetComponentLocation(), GetActorRotation().RotateVector(MovementDirection), DeltaTime * SpeedVector.Length());
 	FQuat Rotation = MapActor->GetNewRotation(CameraComponent->GetComponentLocation(), Position);
 
 	CameraComponent->SetWorldLocation(Position);
