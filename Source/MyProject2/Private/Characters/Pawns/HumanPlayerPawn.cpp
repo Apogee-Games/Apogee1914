@@ -14,6 +14,7 @@
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
 #include "Characters/StateMachine/UnitCreationPawnState.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()
@@ -30,6 +31,10 @@ AHumanPlayerPawn::AHumanPlayerPawn()
 	UnitSelectionComponent->SetupAttachment(RootComponent);
 
 	MovementComponent = CreateDefaultSubobject<UPlayerMovementComponent>(TEXT("Movement component"));
+	
+	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio component"));
+	
+	AudioComponent->SetupAttachment(RootComponent);
 }
 
 void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
@@ -261,5 +266,16 @@ void AHumanPlayerPawn::SwitchLawsBrowsingState()
 	{
 		SetPawnState(FLawsBrowsingPawnState::GetInstance());
 	}
+}
 
+void AHumanPlayerPawn::Play(USoundBase* Song)
+{
+	AudioComponent->SetSound(Song);
+	AudioComponent->SetPaused(false);
+	AudioComponent->Play();
+}
+
+void AHumanPlayerPawn::SetIsAudioPaused(bool IsAudioPaused)
+{
+	AudioComponent->SetPaused(IsAudioPaused);
 }

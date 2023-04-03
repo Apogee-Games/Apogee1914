@@ -27,6 +27,7 @@ void AHumanPlayerHUD::BeginPlay()
 	InitWarsLists();
 	InitCountryManagementWidget();
 	InitLawsWidget();
+	InitMusicControllerWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -280,7 +281,7 @@ void AHumanPlayerHUD::InitTimeControllerWidget()
 		TimeControllerWidget = CreateWidget<UTimeControllerWidget>(GetOwningPlayerController(), TimeControllerClass);
 		if (TimeControllerWidget)
 		{
-			TimeControllerWidget->AddToPlayerScreen(1);
+			TimeControllerWidget->AddToPlayerScreen(2);
 		}
 	}
 }
@@ -442,5 +443,19 @@ void AHumanPlayerHUD::InitLawsWidget()
 			LawsWidget->Init();
 			Widgets.Add(LawsWidget);
 		}
+	}
+}
+
+void AHumanPlayerHUD::InitMusicControllerWidget()
+{
+	if (MusicControllerWidgetClass)
+	{
+		MusicControllerWidget = CreateWidget<UMusicControllerWidget>(GetOwningPlayerController(), MusicControllerWidgetClass);
+		UDataTable* SongsDescriptionsDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->SongsDescriptionsDataTable;
+		for (const auto& [Name, SongDescription]: SongsDescriptionsDataTable->GetRowMap())
+		{
+			MusicControllerWidget->AddSong(reinterpret_cast<FSongDescription*>(SongDescription));
+		}
+		MusicControllerWidget->AddToPlayerScreen(1);
 	}
 }

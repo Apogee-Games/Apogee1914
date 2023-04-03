@@ -21,6 +21,7 @@
 #include "Widgets/Diplomacy/Menu/CountryDiplomacyWidget.h"
 #include "Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListWidget.h"
 #include "Widgets/Diplomacy/Wars/Join/TheirWar/TheirWarsListWidget.h"
+#include "Widgets/Music/MusicControllerWidget.h"
 #include "HumanPlayerHUD.generated.h"
 
 UCLASS()
@@ -87,6 +88,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ULawsWidget> LawsWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMusicControllerWidget> MusicControllerWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -187,6 +191,9 @@ private:
 
 	UPROPERTY()
 	ULawsWidget* LawsWidget;
+
+	UPROPERTY()
+	UMusicControllerWidget* MusicControllerWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -228,4 +235,6 @@ private:
 	void InitCountryManagementWidget();
 
 	void InitLawsWidget();
+
+	void InitMusicControllerWidget();
 };
