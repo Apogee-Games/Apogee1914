@@ -12,6 +12,7 @@
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Characters/StateMachine/PawnState.h"
+#include "Widgets/Music/MusicControllerWidget.h"
 #include "HumanPlayerPawn.generated.h"
 
 UCLASS()
@@ -33,6 +34,9 @@ public:
 
 	UPROPERTY()
 	UPlayerMovementComponent* MovementComponent;
+
+	UPROPERTY()
+	UAudioComponent* AudioComponent;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -88,6 +92,10 @@ public:
 	void SwitchCountryManagementState();
 
 	void SwitchLawsBrowsingState();
+
+	void Play(USoundBase* Song);
+
+	void SetIsAudioPaused(bool IsAudioPaused);
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	

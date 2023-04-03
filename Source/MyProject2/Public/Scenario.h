@@ -53,6 +53,9 @@ public:
 	UDataTable* LawsDescriptionDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
+	UDataTable* SongsDescriptionsDataTable;
+
+	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
 
 	UPROPERTY(EditDefaultsOnly)
