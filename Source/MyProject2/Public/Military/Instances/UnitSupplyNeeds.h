@@ -1,4 +1,5 @@
 #pragma once
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "UnitSupplyNeeds.generated.h"
 
 UCLASS()
@@ -8,20 +9,21 @@ class UUnitSupplyNeeds: public UObject
 public:
 	void Init(const TMap<FName, int32> &EquipmentRequirements);
 
-	void SupplyEquipment(const FName& GoodName, int32 Amount);
+	void SupplyEquipment(UGoodDescription* Good, int32 Amount);
 
-	int32 DemandEquipment(const FName& GoodName, int32 Amount);
+	int32 DemandEquipment(UGoodDescription* Good, int32 Amount);
 
-	int32 GetGoodSupply(const FName& GoodName) const;
+	int32 GetGoodSupply(UGoodDescription* Good) const;
 
-	int32 GetGoodRequirements(const FName& GoodName) const;
+	int32 GetGoodRequirements(UGoodDescription* Good) const;
 
-	const TMap<FName, int32>& GetNeeds() const;
+	const TMap<UGoodDescription*, int32>& GetNeeds() const;
 
-	const TMap<FName, int32>& GetRequirements() const;
-	
+	const TMap<UGoodDescription*, int32>& GetRequirements() const;
 private:
-	TMap<FName, int32> Needs;
+	UPROPERTY()
+	TMap<UGoodDescription*, int32> Needs;
 	
-	TMap<FName, int32> Requirements;
+	UPROPERTY()
+	TMap<UGoodDescription*, int32> Requirements;
 };
