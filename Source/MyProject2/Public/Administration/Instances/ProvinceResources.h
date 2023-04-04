@@ -8,20 +8,20 @@ class UProvinceResources: public UObject
 {
 	GENERATED_BODY()
 public:
-	void AddResource(uint8* ResourceDescription, int32 Amount);
+	void AddResource(UResourceDescription* ResourceDescription, int32 Amount);
 	
 	void AddResource(UProvinceResource* ProvinceResource);
 
-	int32 GetFreeAmount(const FName& ResourceName) const;
+	int32 GetFreeAmount(UResourceDescription* Resource) const;
 
-	int32 Use(const FName& ResourceName, int32 AmountToUse);
+	int32 Use(UResourceDescription* Resource, int32 AmountToUse);
 
-	void Free(const FName& ResourceName, int32 Amount);
+	void Free(UResourceDescription* Resource, int32 Amount);
 
-	UProvinceResource* GetResource(const FName& ResourceName) const;
+	UProvinceResource* GetResource(UResourceDescription* Resource) const;
 
-	const TMap<FName, UProvinceResource*>& GetMap() const;
+	const TMap<UResourceDescription*, UProvinceResource*>& GetMap() const;
 private:
 	UPROPERTY()
-	TMap<FName, UProvinceResource*> Resources;
+	TMap<UResourceDescription*, UProvinceResource*> Resources;
 };

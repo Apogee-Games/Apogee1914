@@ -14,7 +14,7 @@ class UProvince : public UObject
 public:
 	UProvince();
 
-	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const UDataTable* ResourcesDescriptions);
+	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const TMap<FName, UResourceDescription*>& ResourcesDescriptions);
 
 	const FColor& GetId() const;
 

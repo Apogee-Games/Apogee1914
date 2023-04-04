@@ -41,13 +41,13 @@ void UProvinceManager::Init(UScenario* Scenario)
 
 	UDataTable* TerrainDescriptionDataTable = Scenario->TerrainDescriptionDataTable;
 	
-	UDataTable* ResourcesDescriptionDataTable = Scenario->ResourcesDescriptionDataTable;
+	const TMap<FName, UResourceDescription*>& ResourcesDescriptions = Scenario->ResourcesDescriptions;
 
 	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
 		if(Value == nullptr) continue;
 		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
 		UProvince* Province = NewObject<UProvince>(this); 
-		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
+		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptions); 
 		ProvinceMap.Add(Key, Province);
 	}
 	

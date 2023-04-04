@@ -1,14 +1,7 @@
 
 #include "Administration/Instances/ProvinceResource.h"
 
-void UProvinceResource::Init(uint8* ProvidedResourceDescription, int32 ProvidedAmount)
-{
-	ResourceDescription = reinterpret_cast<FResourceDescription*>(ProvidedResourceDescription);
-	Amount = ProvidedAmount;
-	UsedAmount = 0;
-}
-
-void UProvinceResource::Init(FResourceDescription* ProvidedResourceDescription, int32 ProvidedAmount)
+void UProvinceResource::Init(UResourceDescription* ProvidedResourceDescription, int32 ProvidedAmount)
 {
 	ResourceDescription = ProvidedResourceDescription;
 	Amount = ProvidedAmount;
@@ -33,7 +26,7 @@ int32 UProvinceResource::GetTotalAmount() const
 int32 UProvinceResource::Use(int32 AmountToUse)
 {
 	const int32 CanProvide = FMath::Min(AmountToUse, Amount - UsedAmount);
-	UsedAmount -= CanProvide;
+	UsedAmount += CanProvide;
 	return CanProvide;
 }
 
@@ -42,7 +35,7 @@ void UProvinceResource::Free(int32 AmountToFree)
 	UsedAmount = FMath::Max(0, UsedAmount - AmountToFree);
 }
 
-const FName& UProvinceResource::GetResourceName() const
+UResourceDescription* UProvinceResource::GetResource() const
 {
-	return ResourceDescription->ResourceName;
+	return ResourceDescription;
 }

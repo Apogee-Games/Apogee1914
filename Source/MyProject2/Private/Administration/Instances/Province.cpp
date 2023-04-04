@@ -9,7 +9,7 @@ UProvince::UProvince()
 	Population = NewObject<UProvincePopulation>();
 }
 
-void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const UDataTable* ResourcesDescriptions)
+void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const TMap<FName, UResourceDescription*>& ResourcesDescriptions)
 {
 	Id = ProvinceDescription->Color;
 	Name = ProvinceDescription->ProvinceName;
@@ -20,7 +20,7 @@ void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable
 	Resources = NewObject<UProvinceResources>();
 	for (const auto& [ResourceName, ResourceAmount]: ProvinceDescription->Resources)
 	{
-		Resources->AddResource(ResourcesDescriptions->FindRowUnchecked(ResourceName), ResourceAmount);
+		Resources->AddResource(ResourcesDescriptions[ResourceName], ResourceAmount);
 	}
 
 	Population->Init(ProvinceDescription->Population);
