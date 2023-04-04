@@ -11,7 +11,7 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "Economics/Managers/BuildingManager.h"
-#include "Economics/Managers/GoodManager.h"
+#include "Economics/Managers/GoodsManager.h"
 #include "Economics/Managers/StrataManager.h"
 #include "Engine/GameInstance.h"
 #include "Events/EventInstancesController.h"
@@ -94,7 +94,7 @@ public:
 	TSubclassOf<UBuildingManager> BuildingManagerClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UGoodManager> GoodManagerClass;
+	TSubclassOf<UGoodsManager> GoodManagerClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UStrataManager> StrataManagerClass;

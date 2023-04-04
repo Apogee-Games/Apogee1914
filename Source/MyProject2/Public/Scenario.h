@@ -1,5 +1,7 @@
 ﻿#pragma once
+#include "Economics/Description/ResourceDescription.h"
 #include "Economics/Description/Buildings/BuildingDescription.h"
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "Engine/DataTable.h"
 #include "Scenario.generated.h"
 
@@ -21,13 +23,10 @@ public:
 	UDataTable* TerrainDescriptionDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* ResourcesDescriptionDataTable;
+	TMap<FName, UResourceDescription*> ResourcesDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* StateDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* GoodDescriptionDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* StrataDescriptionDataTable;	
@@ -37,6 +36,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UBuildingDescription*> BuildingsDescriptions;
+
+	UPROPERTY(EditDefaultsOnly)
+	TMap<FName, UGoodDescription*> GoodsDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* EventsDataTable;
