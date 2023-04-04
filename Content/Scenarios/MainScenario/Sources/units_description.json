@@ -5,8 +5,7 @@
 		"CanTransport": true,
 		"MilitaryBranch": "Army",
 		"EquipmentRequirements": {
-			"Iron": 50,
-			"Coal": 50
+			"Gun": 500
 		},
 		"ManpowerRequirements": 500
 	},
@@ -16,8 +15,7 @@
 		"CanTransport": false,
 		"MilitaryBranch": "Army",
 		"EquipmentRequirements": {
-			"Iron": 100,
-			"Coal": 100
+			"Gun": 1000
 		},
 		"ManpowerRequirements": 1000
 	},
@@ -27,8 +25,7 @@
 		"CanTransport": false,
 		"MilitaryBranch": "Army",
 		"EquipmentRequirements": {
-			"Iron": 200,
-			"Coal": 200
+			"Gun": 2000
 		},
 		"ManpowerRequirements": 2000
 	},
@@ -38,8 +35,7 @@
 		"CanTransport": false,
 		"MilitaryBranch": "AirForce",
 		"EquipmentRequirements": {
-			"Iron": 200,
-			"Coal": 200
+			"Gun": 2000
 		},
 		"ManpowerRequirements": 2000
 	},
@@ -49,8 +45,7 @@
 		"CanTransport": false,
 		"MilitaryBranch": "Navy",
 		"EquipmentRequirements": {
-			"Iron": 200,
-			"Coal": 200
+			"Gun": 2000
 		},
 		"ManpowerRequirements": 2000
 	}
