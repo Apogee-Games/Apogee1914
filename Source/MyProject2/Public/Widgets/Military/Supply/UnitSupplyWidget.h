@@ -26,5 +26,6 @@ private:
 	UPROPERTY()
 	UUnit* Unit;
 
-	TSet<FName> AddedGoodNeeds;
+	UPROPERTY()
+	TSet<UGoodDescription*> AddedGoodNeeds;
 };
