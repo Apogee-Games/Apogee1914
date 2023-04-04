@@ -1,15 +1,26 @@
 ﻿#pragma once
-#include "Engine/DataTable.h"
 #include "GoodDescription.generated.h"
 
-USTRUCT()
-struct FGoodDescription : public FTableRowBase
+UCLASS(Abstract)
+class UGoodDescription : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditDefaultsOnly)
+	FName Name;
+
+	UPROPERTY(EditDefaultsOnly)
+	FText NameText;
 	
 	UPROPERTY(EditDefaultsOnly)
-	FName GoodName;
+	FText Description;
 	
 	UPROPERTY(EditDefaultsOnly)
 	int32 AveragePrice = 0;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName Group;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName Subgroup;
 };
