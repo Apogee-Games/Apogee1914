@@ -26,9 +26,9 @@ float UGoodBalance::GetPrice(const int32 GoodAmount) const
 	return GoodAmount*GoodDescription->AveragePrice;
 }
 
-void UGoodBalance::Init(const FGoodDescription* ArgGoodDescription)
+void UGoodBalance::Init(UGoodDescription* ArgGoodDescription)
 {
-	this->GoodDescription = ArgGoodDescription;
+	GoodDescription = ArgGoodDescription;
 }
 
 int32 UGoodBalance::GetSupply() const
@@ -41,7 +41,7 @@ int32 UGoodBalance::GetDemand() const
 	return DemandAmount;
 }
 
-const FGoodDescription* UGoodBalance::GetGoodDescription() const
+UGoodDescription* UGoodBalance::GetGoodDescription() const
 {
 	return GoodDescription;
 }

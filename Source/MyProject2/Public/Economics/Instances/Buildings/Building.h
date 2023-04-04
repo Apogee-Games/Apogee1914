@@ -23,4 +23,10 @@ protected:
 
 	UPROPERTY()
 	UProvince* Province;
+
+	template<class T>
+	T* GetDescription()
+	{
+		return Cast<T>(BuildingDescription);
+	}
 };

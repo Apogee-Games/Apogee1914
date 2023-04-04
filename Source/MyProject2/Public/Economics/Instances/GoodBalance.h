@@ -1,5 +1,5 @@
 #pragma once
-#include "Economics/Description/GoodDescription.h"
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "GoodBalance.generated.h"
 
 UCLASS()
@@ -18,18 +18,19 @@ public:
 
 	float GetPrice(int32 GoodAmount) const;
 	
-	void Init(const FGoodDescription* GoodDescription);
+	void Init(UGoodDescription* GoodDescription);
 	
 	int32 GetSupply() const;
 	
 	int32 GetDemand() const;
 
-	const FGoodDescription* GetGoodDescription() const;
+	UGoodDescription* GetGoodDescription() const;
 	
 private:
 	int32 DemandAmount;
 	
 	int32 SupplyAmount;
 
-	const FGoodDescription* GoodDescription;
+	UPROPERTY()
+	UGoodDescription* GoodDescription;
 };

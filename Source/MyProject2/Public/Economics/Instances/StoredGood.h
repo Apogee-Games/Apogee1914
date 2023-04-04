@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "StoredGood.generated.h"
 
 class UStorage;
@@ -8,7 +8,7 @@ class UStoredGood: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(FName ProvidedGoodName, int32 ProvidedAmount, UStorage* ProvidedStorage);
+	void Init(UGoodDescription* ProvidedGood, int32 ProvidedAmount, UStorage* ProvidedStorage);
 
 	void Supply(int32 SuppliedAmount);
 
@@ -16,14 +16,15 @@ public:
 
 	int32 Demand(int32 DemandedAmount);
 
-	const FName& GetGoodName() const;
+	const FText& GetGoodName() const;
 
 	UStorage* GetStorage() const;
-
 private:
-	FName GoodName;
+	UPROPERTY()
+	UStorage* Storage;
+
+	UPROPERTY()
+	UGoodDescription* Good;
 
 	int32 Amount;
-
-	UStorage* Storage;
 };
