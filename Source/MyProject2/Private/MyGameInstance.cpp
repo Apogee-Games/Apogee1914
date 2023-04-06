@@ -80,4 +80,6 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UIdeologiesMap>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UGoodsManager>()->SetScenario(ActiveScenario);
 }
