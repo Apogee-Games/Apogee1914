@@ -24,6 +24,9 @@ UBuilding* UBuildingManager::BuildBuilding(UBuildingDescription* Description, UP
 
 	Buildings.Add(Building);
 	Province->AddBuilding(Building);
+
+	NotifyBuildingCreation(Building);
+	
 	return Building;
 }
 

@@ -1,9 +1,10 @@
 #pragma once
 #include "Economics/Instances/Buildings/Building.h"
+#include "Economics/Interfaces/Observables/BuildingCreationObservable.h"
 #include "BuildingManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UBuildingManager: public UWorldSubsystem
+class UBuildingManager: public UWorldSubsystem, public IBuildingCreationObservable
 {
 	GENERATED_BODY()
 public:

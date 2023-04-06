@@ -1,19 +1,22 @@
 ﻿#pragma once
 
+#include "Scenario.h"
 #include "Economics/Description/Goods/GoodDescription.h"
 #include "GoodsManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UGoodsManager : public UWorldSubsystem
+class UGoodsManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	UGoodDescription* GetGoodDescription(const FName& GoodName) const;
 private:
 	UPROPERTY()
 	TMap<FName, UGoodDescription*> GoodsDescriptions;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

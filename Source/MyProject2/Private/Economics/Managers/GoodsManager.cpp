@@ -3,18 +3,23 @@
 #include "MyGameInstance.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
-bool UGoodsManager::ShouldCreateSubsystem(UObject* Outer) const
+void UGoodsManager::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UGoodsManager::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GoodsDescriptions = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->GoodsDescriptions;
+	Clear();
+	Init(Scenario);
 }
 
 UGoodDescription* UGoodsManager::GetGoodDescription(const FName& GoodName) const
 {
 	return GoodsDescriptions[GoodName];
+}
+
+void UGoodsManager::Clear()
+{
+	GoodsDescriptions.Empty();
+}
+
+void UGoodsManager::Init(UScenario* Scenario)
+{
+	GoodsDescriptions = Scenario->GoodsDescriptions;
 }
