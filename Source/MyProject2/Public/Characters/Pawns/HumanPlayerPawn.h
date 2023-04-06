@@ -12,6 +12,7 @@
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Characters/StateMachine/PawnState.h"
+#include "Widgets/Economics/Buildings/Production/FactoryProductionWidget.h"
 #include "Widgets/Music/MusicControllerWidget.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -93,9 +94,15 @@ public:
 
 	void SwitchLawsBrowsingState();
 
+	void SwitchProductionBrowsingState();
+
 	void Play(USoundBase* Song);
 
 	void SetIsAudioPaused(bool IsAudioPaused);
+
+	void SetProductionSelectionFactory(UFactoryBuilding* Factory);
+
+	UFactoryBuilding* GetSelectedFactory() const;
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
@@ -112,6 +119,9 @@ private:
 	UBuildingDescription* SelectedBuildingDescription;
 
 	ICommandable* SelectedCommandable;
+
+	UPROPERTY()
+	UFactoryBuilding* SelectedFactory;
 	
 	void LeftClick();
 

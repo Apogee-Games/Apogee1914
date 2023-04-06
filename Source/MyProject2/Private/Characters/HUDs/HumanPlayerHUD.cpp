@@ -28,6 +28,8 @@ void AHumanPlayerHUD::BeginPlay()
 	InitCountryManagementWidget();
 	InitLawsWidget();
 	InitMusicControllerWidget();
+	InitProductionListWidget();
+	InitProducibleGoodsListWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -451,5 +453,30 @@ void AHumanPlayerHUD::InitMusicControllerWidget()
 			MusicControllerWidget->AddSong(reinterpret_cast<FSongDescription*>(SongDescription));
 		}
 		MusicControllerWidget->AddToPlayerScreen(1);
+	}
+}
+
+void AHumanPlayerHUD::InitProductionListWidget()
+{
+	if (ProductionListWidgetClass)
+	{
+		ProductionListWidget = CreateWidget<UProductionListWidget>(GetOwningPlayerController(), ProductionListWidgetClass);
+		if (ProductionListWidget)
+		{
+			ProductionListWidget->Init();
+			Widgets.Add(ProductionListWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitProducibleGoodsListWidget()
+{
+	if (ProducibleGoodsListWidgetClass)
+	{
+		ProducibleGoodsListWidget = CreateWidget<UProducibleGoodsListWidget>(GetOwningPlayerController(), ProducibleGoodsListWidgetClass);
+		if (ProducibleGoodsListWidget)
+		{
+			Widgets.Add(ProducibleGoodsListWidget);
+		}
 	}
 }

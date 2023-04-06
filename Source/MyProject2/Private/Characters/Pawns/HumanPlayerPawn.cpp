@@ -11,6 +11,7 @@
 #include "Characters/StateMachine/CountryManagementPawnState.h"
 #include "Characters/StateMachine/LawsBrowsingPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
+#include "Characters/StateMachine/ProductionBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
 #include "Characters/StateMachine/UnitCreationPawnState.h"
@@ -268,6 +269,19 @@ void AHumanPlayerPawn::SwitchLawsBrowsingState()
 	}
 }
 
+void AHumanPlayerPawn::SwitchProductionBrowsingState()
+{
+	if (IsPaused) return;
+	if (PawnState == FProductionBrowsingPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	}
+	else
+	{
+		SetPawnState(FProductionBrowsingPawnState::GetInstance());
+	}
+}
+
 void AHumanPlayerPawn::Play(USoundBase* Song)
 {
 	AudioComponent->SetSound(Song);
@@ -278,4 +292,14 @@ void AHumanPlayerPawn::Play(USoundBase* Song)
 void AHumanPlayerPawn::SetIsAudioPaused(bool IsAudioPaused)
 {
 	AudioComponent->SetPaused(IsAudioPaused);
+}
+
+void AHumanPlayerPawn::SetProductionSelectionFactory(UFactoryBuilding* Factory)
+{
+	SelectedFactory = Factory;
+}
+
+UFactoryBuilding* AHumanPlayerPawn::GetSelectedFactory() const
+{
+	return SelectedFactory;
 }
