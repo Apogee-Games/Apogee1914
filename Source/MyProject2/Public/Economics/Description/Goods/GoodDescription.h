@@ -23,4 +23,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	FName Subgroup;
+
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* Image;
 };

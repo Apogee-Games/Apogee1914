@@ -9,4 +9,7 @@ class UCookedGoodDescription : public UGoodDescription
 public:
 	UPROPERTY(EditDefaultsOnly)
 	TMap<UGoodDescription*, float> GoodsRequirements;
+
+	UPROPERTY(EditDefaultsOnly)
+	float Cost;
 };
