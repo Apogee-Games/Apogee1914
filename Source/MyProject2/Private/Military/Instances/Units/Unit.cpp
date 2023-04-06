@@ -6,7 +6,7 @@ void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* Pro
 {
 	UnitDescription = ProvidedUnitDescription;
 	Province = ProvidedProvince;
-	SupplyNeeds = NewObject<UUnitSupplyNeeds>();
+	SupplyNeeds = NewObject<UUnitSupplyNeeds>(this);
 	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
 }
 

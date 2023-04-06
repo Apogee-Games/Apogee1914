@@ -4,7 +4,7 @@
 
 void UUnitSupplyNeeds::Init(const TMap<FName, int32>& EquipmentRequirements)
 {
-	const UGoodsManager* GoodsManager = GetWorld()->GetSubsystem<UGoodsManager>();
+	const UGoodsManager* GoodsManager = GetWorld()->GetGameInstance()->GetSubsystem<UGoodsManager>();
 	
 	for (const auto& [GoodName, Requirement]: EquipmentRequirements)
 	{
