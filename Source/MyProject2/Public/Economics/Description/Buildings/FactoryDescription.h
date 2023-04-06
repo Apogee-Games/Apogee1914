@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "BuildingDescription.h"
+#include "Economics/Description/Goods/GoodsGroup.h"
 #include "FactoryDescription.generated.h"
 
 USTRUCT()
@@ -8,11 +9,14 @@ struct FProducibleGoods
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly)
-	FName Group;
+	TArray<UGoodsGroup*> GoodsGroups;
 	
 	UPROPERTY(EditDefaultsOnly)
-	FName Subgroup;
-};
+	TArray<UGoodsSubgroup*> GoodsSubgroups;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UGoodDescription*> Goods;
+}; 
 
 UCLASS()
 class UFactoryDescription: public UBuildingDescription
@@ -20,8 +24,11 @@ class UFactoryDescription: public UBuildingDescription
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditDefaultsOnly)
-	TArray<FProducibleGoods> ProducibleGoodsGroup;
+	FProducibleGoods ProducibleGoods;
 	
 	UPROPERTY(EditDefaultsOnly)
 	int32 MaxLabours = 0;
+
+	UPROPERTY(EditDefaultsOnly)
+	float OutputCost;
 };
