@@ -6,7 +6,7 @@ void UBuilding::Init(UBuildingDescription* ProvidedBuildingDescription, UProvinc
 	Province = ProvidedProvince;
 }
 
-UBuildingDescription* UBuilding::GetBuildingDescription() const
+UBuildingDescription* UBuilding::GetDescription() const
 {
 	return BuildingDescription;
 }
@@ -18,4 +18,9 @@ void UBuilding::Tick()
 UProvince* UBuilding::GetProvince() const
 {
 	return Province;
+}
+
+const FText& UBuilding::GetName() const
+{
+	return BuildingDescription->Name;
 }

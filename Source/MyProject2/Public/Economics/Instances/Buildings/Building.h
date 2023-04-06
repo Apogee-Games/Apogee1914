@@ -12,21 +12,23 @@ class UBuilding : public UObject, public IOwnable
 public:
 	virtual void Init(UBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince);
 	
-	UBuildingDescription* GetBuildingDescription() const;
+	UBuildingDescription* GetDescription() const;
 
+	template<class T>
+	T* GetDescription() const
+	{
+		return Cast<T>(BuildingDescription);
+	}
+	
 	virtual void Tick();
 	
 	UProvince* GetProvince() const;
+
+	const FText& GetName() const;
 protected:
 	UPROPERTY()
 	UBuildingDescription* BuildingDescription;
 
 	UPROPERTY()
 	UProvince* Province;
-
-	template<class T>
-	T* GetDescription()
-	{
-		return Cast<T>(BuildingDescription);
-	}
 };

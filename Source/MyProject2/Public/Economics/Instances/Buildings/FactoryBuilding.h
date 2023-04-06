@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Building.h"
+#include "Economics/Description/Goods/CookedGoodDescription.h"
 #include "FactoryBuilding.generated.h"
 
 UCLASS()
@@ -14,12 +15,19 @@ public:
 	int32 GetLabours() const;
 
 	int32 GetMaxLabours() const;
+
+	void SetGoodToProduce(UCookedGoodDescription* ProvidedGoodToProduce);
+
+	UCookedGoodDescription* GetGoodToProduce() const;
 private:
+	UPROPERTY()
+	UCookedGoodDescription* GoodToProduce;
+	
 	int32 Labours;
 
-	int32 GetPossibleProductOutputCount() const;
+	float GetPossibleProductOutputCount() const;
 
-	void DemandGoods(int32 ProductCount);
+	void DemandGoods(float ProductCount);
 
 	void SupplyGoods(int32 ProductCount);
 
