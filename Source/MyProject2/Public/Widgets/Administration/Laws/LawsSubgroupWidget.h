@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "LawButtonWidget.h"
-#include "Administration/Descriptions/LawDescription.h"
+#include "Administration/Descriptions/Law/LawsSubgroup.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ScrollBox.h"
 #include "LawsSubgroupWidget.generated.h"
@@ -19,9 +19,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ULawButtonWidget> LawButtonWidgetClass; 
 
-	void Init(ULawDescriptionWidget* ProvidedLawDescriptionWidget, const FName& SubgroupName);
-
-	void AddLaw(FLawDescription* LawDescription);
+	void Init(ULawsSubgroup* LawsSubgroup, ULawDescriptionWidget* ProvidedLawDescriptionWidget);
 private:
 	UPROPERTY()
 	ULawDescriptionWidget* LawDescriptionWidget;

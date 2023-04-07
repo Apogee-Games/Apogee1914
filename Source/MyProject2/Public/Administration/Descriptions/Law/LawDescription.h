@@ -5,29 +5,22 @@
 #include "Engine/DataTable.h"
 #include "LawDescription.generated.h"
 
-USTRUCT()
-struct FLawDescription: public FTableRowBase
+
+
+UCLASS()
+class ULawDescription: public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 
-	UPROPERTY()
-	TArray<FCondition> Conditions;
-
-	UPROPERTY()
-	FCountriesConditions CountriesConditions;
-	
-	UPROPERTY()
-	TArray<FOutcome> Outcomes;
-
-	UPROPERTY()
-	FText LawName;
-
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText Description;
-
-	UPROPERTY()
-	FName Group;
-
-	UPROPERTY()
-	FName Subgroup;
+	
+	UPROPERTY(EditDefaultsOnly)
+	TArray<FCondition> Conditions;
+	
+	UPROPERTY(EditDefaultsOnly)
+	TArray<FOutcome> Outcomes;
 };

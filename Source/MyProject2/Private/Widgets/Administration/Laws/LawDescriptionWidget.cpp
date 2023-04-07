@@ -9,7 +9,7 @@ void ULawDescriptionWidget::Init()
 	PassLawButton->OnClicked.AddDynamic(this, &ULawDescriptionWidget::OnPassLawButtonClick);
 }
 
-void ULawDescriptionWidget::SetLaw(FLawDescription* ProvidedLawDescription)
+void ULawDescriptionWidget::SetLaw(ULawDescription* ProvidedLawDescription)
 {
 	LawDescription = ProvidedLawDescription;
 	RefreshData();
@@ -17,7 +17,7 @@ void ULawDescriptionWidget::SetLaw(FLawDescription* ProvidedLawDescription)
 
 void ULawDescriptionWidget::RefreshData()
 {
-	LawNameTextBlock->SetText(LawDescription->LawName);
+	LawNameTextBlock->SetText(LawDescription->Name);
 	LawDescriptionTextBox->SetText(LawDescription->Description);
 	
 	FName CountryTag = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetTag();

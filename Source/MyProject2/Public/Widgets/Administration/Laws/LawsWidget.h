@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "LawsGroupButtonWidget.h"
 #include "LawsGroupWidget.h"
+#include "Administration/Descriptions/Law/LawsGroup.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ListView.h"
 #include "Components/ScrollBox.h"
@@ -28,14 +29,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ULawsGroupWidget> LawsGroupWidgetClass;
 
-
 	void Init();
 private:
-	UPROPERTY()
-	TMap<FName, ULawsGroupWidget*> Groups;
-
-	UPROPERTY()
-	TMap<ULawsGroupWidget*, int32> Indexes;
-
-	void AddLaw(FLawDescription* LawDescription);
+	int GroupsCount = 0;
+	
+	void AddLawsGroup(ULawsGroup* LawsGroup);
 };

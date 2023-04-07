@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "LawConditionWidget.h"
 #include "LawOutcomeWidget.h"
-#include "Administration/Descriptions/LawDescription.h"
+#include "Administration/Descriptions/Law/LawDescription.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/ListView.h"
@@ -38,11 +38,12 @@ public:
 
 	void Init();
 		
-	void SetLaw(FLawDescription* ProvidedLawDescription);
+	void SetLaw(ULawDescription* ProvidedLawDescription);
 
 	void RefreshData();
 private:
-	FLawDescription* LawDescription;
+	UPROPERTY()
+	ULawDescription* LawDescription;
 
 	UFUNCTION()
 	void OnPassLawButtonClick();

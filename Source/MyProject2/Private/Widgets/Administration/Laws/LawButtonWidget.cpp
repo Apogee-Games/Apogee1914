@@ -1,15 +1,15 @@
 ﻿#include "Widgets/Administration/Laws/LawButtonWidget.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
 
-void ULawButtonWidget::Init(FLawDescription* ProvidedLawDescription, ULawDescriptionWidget* ProvidedLawsSubgroupWidget)
+void ULawButtonWidget::Init(ULawDescription* ProvidedLaw, ULawDescriptionWidget* ProvidedLawsSubgroupWidget)
 {
 	Button->OnClicked.AddDynamic(this, &ULawButtonWidget::OnButtonClick);
-	LawDescription = ProvidedLawDescription;
-	LawNameTextBlock->SetText(LawDescription->LawName);
+	Law = ProvidedLaw;
+	LawNameTextBlock->SetText(Law->Name);
 	LawDescriptionWidget = ProvidedLawsSubgroupWidget;
 }
 
 void ULawButtonWidget::OnButtonClick()
 {
-	LawDescriptionWidget->SetLaw(LawDescription);
+	LawDescriptionWidget->SetLaw(Law);
 }

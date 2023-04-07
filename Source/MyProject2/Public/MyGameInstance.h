@@ -6,7 +6,7 @@
 #include "InGameTime.h"
 #include "Scenario.h"
 #include "Administration/Managers/IdeologyManager.h"
-#include "Administration/Managers/LawManager.h"
+#include "Administration/Managers/LawsManager.h"
 #include "Administration/Managers/StateManager.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
@@ -139,5 +139,5 @@ public:
 	TSubclassOf<UUnitsSupplyController> UnitsSupplyControllerClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<ULawManager> LawManagerClass;
+	TSubclassOf<ULawsManager> LawManagerClass;
 };

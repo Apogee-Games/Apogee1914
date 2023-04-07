@@ -60,7 +60,7 @@ void UMyGameInstance::InitializeActiveScenario()
 {
 	GetSubsystem<UInGameTime>()->SetScenario(ActiveScenario);
 
-	GetSubsystem<ULawManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<ULawsManager>()->SetScenario(ActiveScenario);
 	
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 

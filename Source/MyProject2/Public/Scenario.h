@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Administration/Descriptions/Law/LawsGroup.h"
 #include "Economics/Description/ResourceDescription.h"
 #include "Economics/Description/Buildings/BuildingDescription.h"
 #include "Economics/Description/Goods/GoodDescription.h"
@@ -58,7 +59,7 @@ public:
 	UDataTable* IdeologyDescriptionsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* LawsDescriptionDataTable;
+	TArray<ULawsGroup*> LawsGroups;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* SongsDescriptionsDataTable;
