@@ -93,7 +93,7 @@ void UInGameTime::RefreshWidgetDate()
 	UTimeControllerWidget* TimeControllerWidget = GetWorld()->GetFirstPlayerController()->GetHUD<AHumanPlayerHUD>()->GetTimeControllerWidget();
 	if (TimeControllerWidget)
 	{
-		TimeControllerWidget->SetTime(CurrentTime.ToString(TEXT("%Y-%m-%d %H")));
+		TimeControllerWidget->SetTime(GetStringTime());
 	}
 }
 
@@ -110,6 +110,11 @@ void UInGameTime::RefreshWidgetSpeed()
 const FDateTime& UInGameTime::GetTime() const
 {
 	return CurrentTime;
+}
+
+const FText UInGameTime::GetStringTime() const
+{
+	return FText::FromString(CurrentTime.ToString(TEXT("%Y-%m-%d %H")));
 }
 
 void UInGameTime::SpeedUpTime()

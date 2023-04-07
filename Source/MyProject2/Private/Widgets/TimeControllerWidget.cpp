@@ -8,11 +8,13 @@ void UTimeControllerWidget::NativeConstruct()
 	SpeedUpButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::SpeedUpButtonOnClick);
 	SlowDownButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::SlowDownButtonOnClick);
 	PauseButton->OnClicked.AddDynamic(this, &UTimeControllerWidget::PauseButtonOnClick);
+	
+	SetTime(GetGameInstance()->GetSubsystem<UInGameTime>()->GetStringTime());
 }
 
-void UTimeControllerWidget::SetTime(const FString& Time)
+void UTimeControllerWidget::SetTime(const FText& Time)
 {
-	TimeTextBlock->SetText(FText::FromString(Time));
+	TimeTextBlock->SetText(Time);
 }
 
 void UTimeControllerWidget::SetSpeedPercentage(float NewSpeedPercentage)

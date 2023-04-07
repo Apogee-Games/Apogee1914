@@ -30,6 +30,8 @@ public:
 
 	const FDateTime& GetTime() const;
 
+	const FText GetStringTime() const;
+
 	void UpdateCurrentTime(const float DeltaSeconds);
 
 	template<class T>
