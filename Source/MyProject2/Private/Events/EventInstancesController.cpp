@@ -6,7 +6,7 @@
 #include "Administration/Managers/CountriesManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
-void UEventInstancesController::CreateEvent(FEventDescription* Event,
+void UEventInstancesController::CreateEvent(UEventDescription* Event,
                                             const TMap<FName, bool>& ChoicesConditionsEvaluated,
                                             const FName& CountryTag)
 {
@@ -23,7 +23,7 @@ void UEventInstancesController::CreateEvent(FEventDescription* Event,
 	}
 }
 
-void UEventInstancesController::DeleteEventWidget(FEventDescription* Event, const FName& CountryTag)
+void UEventInstancesController::DeleteEventWidget(UEventDescription* Event, const FName& CountryTag)
 {
 	if (!WidgetsInstances.Contains({Event, CountryTag})) return;
 
@@ -42,16 +42,11 @@ void UEventInstancesController::Clear()
 
 void UEventInstancesController::Init(UScenario* Scenario)
 {
-	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
-
-	for (const auto Pair : EventsDataTable->GetRowMap())
-	{
-		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
-	}
+	Events = Scenario->Events;
 	GetGameInstance()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
 }
 
-void UEventInstancesController::CreateEventForAI(FEventDescription* Event,
+void UEventInstancesController::CreateEventForAI(UEventDescription* Event,
                                                  const TMap<FName, bool>& ChoicesConditionsEvaluated,
                                                  const FName& CountryTag)
 {
@@ -62,7 +57,7 @@ void UEventInstancesController::CreateEventForAI(FEventDescription* Event,
 	RegisterChoice(Event, AISelectedChoice, CountryTag);
 }
 
-void UEventInstancesController::CreateEventForPlayer(FEventDescription* Event,
+void UEventInstancesController::CreateEventForPlayer(UEventDescription* Event,
                                                      const TMap<FName, bool>& ChoicesConditionsEvaluated,
                                                      const FName& CountryTag)
 {
@@ -119,7 +114,7 @@ void UEventInstancesController::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-void UEventInstancesController::RegisterChoice(FEventDescription* Event, const FName& ChoiceName,
+void UEventInstancesController::RegisterChoice(UEventDescription* Event, const FName& ChoiceName,
                                                const FName& CountryTag)
 {
 	DeleteEventWidget(Event, CountryTag);
@@ -168,7 +163,7 @@ void UEventInstancesController::CheckEvents()
 	}
 }
 
-const TArray<FName>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
+const TArray<FName>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(UEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
 		       ? GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()

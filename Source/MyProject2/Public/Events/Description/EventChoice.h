@@ -9,18 +9,18 @@ struct FEventChoice: public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FName Name;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText Text;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	float AIChance;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TArray<FOutcome> Outcomes;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TArray<FCondition> Conditions;
 };

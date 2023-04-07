@@ -38,7 +38,7 @@ public:
 	
 	virtual void NativeConstruct() override;
 
-	void Init(FEventDescription* EventDescription, const FName& CountryTag, const TMap<FName, bool>& ChoicesConditionsEvaluated);
+	void Init(UEventDescription* EventDescription, const FName& CountryTag, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 	
 	void Tick();
 private:

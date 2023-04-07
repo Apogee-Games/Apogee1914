@@ -26,34 +26,36 @@ public:
 	
 	void CheckEvents();
 
-	void CreateEvent(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEvent(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 
-	void DeleteEventWidget(FEventDescription* Event, const FName& CountryTag);
+	void DeleteEventWidget(UEventDescription* Event, const FName& CountryTag);
 
-	void RegisterChoice(FEventDescription* Event, const FName& ChoiceName, const FName& CountryTag);
+	void RegisterChoice(UEventDescription* Event, const FName& ChoiceName, const FName& CountryTag);
 
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
-	TSet<TPair<FEventDescription*, FName>> FiredEvents;
+	TSet<TPair<UEventDescription*, FName>> FiredEvents;
 
-	TArray<FEventDescription*> Events;
+	UPROPERTY()
+	TArray<UEventDescription*> Events;
 
-	TMap<FEventDescription*, bool> ActiveEvents;
+	UPROPERTY()
+	TMap<UEventDescription*, bool> ActiveEvents;
 	
-	TMap<TPair<FEventDescription*, FName>, UEventWidget*> WidgetsInstances;
+	TMap<TPair<UEventDescription*, FName>, UEventWidget*> WidgetsInstances;
 
 	void Clear();
 
 	void Init(UScenario* Scenario);
 
-	void CreateEventForAI(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForAI(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 	
-	void CreateEventForPlayer(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForPlayer(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 
 	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 
 	FName FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated) const;
 
-	const TArray<FName>& GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
+	const TArray<FName>& GetCountriesForWhichEventCanBeFired(UEventDescription* Event) const;
 };

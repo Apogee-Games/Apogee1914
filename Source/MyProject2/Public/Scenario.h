@@ -3,6 +3,7 @@
 #include "Economics/Description/Buildings/BuildingDescription.h"
 #include "Economics/Description/Goods/GoodDescription.h"
 #include "Engine/DataTable.h"
+#include "Events/Description/EventDescription.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Scenario.generated.h"
 
@@ -45,7 +46,7 @@ public:
 	TMap<FName, UGoodDescription*> GoodsDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* EventsDataTable;
+	TArray<UEventDescription*> Events;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* PeoplesDescriptionsDataTable;

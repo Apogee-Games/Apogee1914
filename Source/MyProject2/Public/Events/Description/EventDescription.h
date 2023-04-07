@@ -5,29 +5,29 @@
 #include "Engine/DataTable.h"
 #include "EventDescription.generated.h"
 
-USTRUCT()
-struct FEventDescription: public FTableRowBase
+UCLASS()
+class UEventDescription: public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* Image;
 
-	UPROPERTY()
-	FName ImagePath;
-
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText Title;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText Text;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	bool TriggerOnce;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FCountriesConditions CountriesConditions;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TArray<FCondition> Conditions;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TArray<FEventChoice> Choices;
 };

@@ -7,9 +7,9 @@ struct FCountriesConditions : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	bool ForAll;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TArray<FName> CountriesTags;
 };

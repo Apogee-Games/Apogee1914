@@ -2,7 +2,7 @@
 #include "Widgets/Events/EventChoiceCarrier.h"
 
 void UEventChoiceCarrier::Init(const FEventChoice& ProvidedChoice, const FName& ProvidedCountryTag,
-                               FEventDescription* ProvidedEventDescription, const TMap<FName, bool>& ProvidedChoicesConditionsEvaluated)
+                               UEventDescription* ProvidedEventDescription, const TMap<FName, bool>& ProvidedChoicesConditionsEvaluated)
 {
 	Choice = &ProvidedChoice;
 	CountryTag = &ProvidedCountryTag;
@@ -20,7 +20,7 @@ bool UEventChoiceCarrier::IsChoiceActive() const
 	return ChoicesConditionsEvaluated[Choice->Name];
 }
 
-FEventDescription* UEventChoiceCarrier::GetEventDescription() const
+UEventDescription* UEventChoiceCarrier::GetEventDescription() const
 {
 	return EventDescription;
 }
