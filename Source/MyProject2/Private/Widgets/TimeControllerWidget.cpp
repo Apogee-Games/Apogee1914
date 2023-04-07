@@ -22,15 +22,15 @@ void UTimeControllerWidget::SetSpeedPercentage(float NewSpeedPercentage)
 
 void UTimeControllerWidget::SpeedUpButtonOnClick()
 {
-	GetWorld()->GetSubsystem<UInGameTime>()->SpeedUpTime();
+	GetGameInstance()->GetSubsystem<UInGameTime>()->SpeedUpTime();
 }
 
 void UTimeControllerWidget::SlowDownButtonOnClick()
 {
-	GetWorld()->GetSubsystem<UInGameTime>()->SlowDownTime();
+	GetGameInstance()->GetSubsystem<UInGameTime>()->SlowDownTime();
 }
 
 void UTimeControllerWidget::PauseButtonOnClick()
 {
-	GetWorld()->GetSubsystem<UInGameTime>()->SwitchPauseFlag();
+	GetGameInstance()->GetSubsystem<UInGameTime>()->SwitchPauseFlag();
 }

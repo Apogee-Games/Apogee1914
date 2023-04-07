@@ -28,7 +28,7 @@ void USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick()
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
 	
 	const TArray<UUnit*>& Units = reinterpret_cast<const TArray<UUnit*>&>(UnitsListView->GetListItems());
-	UUnitsCollection* UnitsCollection = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollection(MilitaryBranch, Pawn->GetRuledCountry(), Units);
+	UUnitsCollection* UnitsCollection = GetGameInstance()->GetSubsystem<UUnitsFactory>()->CreateUnitCollection(MilitaryBranch, Pawn->GetRuledCountry(), Units);
 
 	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollection, true, true);
 }
@@ -36,7 +36,7 @@ void USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick()
 void USelectedUnitsWidget::OnRemoveAllUnitsButtonClick()
 {
 	const TArray<UUnit*>& Units = reinterpret_cast<const TArray<UUnit*>&>(UnitsListView->GetListItems());
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnits(Units);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnits(Units);
 	
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->UnitSelectionComponent->UnSelectUnits(Units, true);
 }

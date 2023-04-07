@@ -4,17 +4,10 @@
 #include "MyGameInstance.h"
 #include "Actions/OutcomeAppliers/NonAlignedOutcomeApplier.h"
 
-bool UOutcomesApplierSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+void UOutcomesApplierSubsystem::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UOutcomesApplierSubsystem::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	
-	UCountriesManager* CountriesManager = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>();
-	RegisterOutcomeApplier("NonAlignment", new FNonAlignedOutcomeApplier(CountriesManager));
+	Clear();
+	Init(Scenario);
 }
 
 void UOutcomesApplierSubsystem::RegisterOutcomeApplier(const FName& Name, FOutcomeApplier* OutcomeApplier)
@@ -42,4 +35,15 @@ void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const 
 			Outcome.Values.Remove("Country");
 		}
 	}
+}
+
+void UOutcomesApplierSubsystem::Clear()
+{
+	OutcomeAppliers.Empty();
+}
+
+void UOutcomesApplierSubsystem::Init(UScenario* Scenario)
+{
+	UCountriesManager* CountriesManager = GetGameInstance()->GetSubsystem<UCountriesManager>();
+	RegisterOutcomeApplier("NonAlignment", new FNonAlignedOutcomeApplier(CountriesManager));
 }

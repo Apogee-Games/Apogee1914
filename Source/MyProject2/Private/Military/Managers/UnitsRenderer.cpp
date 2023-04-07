@@ -8,28 +8,10 @@
 #include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsMover.h"
 
-bool UUnitsRenderer::ShouldCreateSubsystem(UObject* Outer) const
+void UUnitsRenderer::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UUnitsRenderer::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
-	GetWorld()->GetSubsystem<UUnitsMover>()->AddUnitMovementObserver(this);
-
-	UObjectMap* ObjectMap = GetWorld()->GetGameInstance()->GetSubsystem<UObjectMap>();
-	
-	for (const auto& Province: GetWorld()->GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
-	{
-		AUnitActor* Actor = GetWorld()->SpawnActor<AUnitActor>(UnitActorClass);
-		const FVector2d ImagePosition = ObjectMap->GetProvinceCenter(Province->GetId());
-		const FVector3d WorldPosition = GetWorldPositionFromMapPosition(ImagePosition);
-		Actor->Init(WorldPosition);
-		Actors.Add(Province, Actor);
-	}
+	Clear();
+	Init(Scenario);
 }
 
 void UUnitsRenderer::UnitIsMoved(UUnit* Unit, UProvince* From, UProvince* To)
@@ -48,12 +30,35 @@ void UUnitsRenderer::UnitIsRemoved(UUnit* Unit)
 	Actors[Unit->GetPosition()]->RemoveUnit(Unit);
 }
 
-void UUnitsRenderer::Deinitialize()
+void UUnitsRenderer::InGameWorldInit()
 {
-	Super::Deinitialize();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
-	GetWorld()->GetSubsystem<UUnitsMover>()->RemoveUnitMovementObserver(this);
+	UGameInstance* GameInstance = GetGameInstance();
+	UObjectMap* ObjectMap = GameInstance->GetSubsystem<UObjectMap>();
+	
+	for (const auto& Province: GameInstance->GetSubsystem<UProvinceManager>()->GetAllProvinces())
+	{
+		AUnitActor* Actor = GetWorld()->SpawnActor<AUnitActor>(UnitActorClass);
+		const FVector2d ImagePosition = ObjectMap->GetProvinceCenter(Province->GetId());
+		const FVector3d WorldPosition = GetWorldPositionFromMapPosition(ImagePosition);
+		Actor->Init(WorldPosition);
+		Actors.Add(Province, Actor);
+	}
+}
+
+void UUnitsRenderer::Clear()
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
+	GameInstance->GetSubsystem<UUnitsMover>()->RemoveUnitMovementObserver(this);
+}
+
+void UUnitsRenderer::Init(UScenario* Scenario)
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GameInstance->GetSubsystem<UUnitsMover>()->AddUnitMovementObserver(this);
 }
 
 FVector3d UUnitsRenderer::GetWorldPositionFromMapPosition(const FVector2d& Position)

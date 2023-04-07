@@ -27,7 +27,7 @@ void UEventWidget::Init(FEventDescription* EventDescription, const FName& Countr
 
 	for (const auto& Choice: EventDescription->Choices)
 	{
-		UEventChoiceCarrier* Carrier = NewObject<UEventChoiceCarrier>();
+		UEventChoiceCarrier* Carrier = NewObject<UEventChoiceCarrier>(this); // TODO: Do we need it :)
 		Carrier->Init(Choice, CountryTag, EventDescription, ChoicesConditionsEvaluated);
 		ChoicesListView->AddItem(Carrier);
 	}

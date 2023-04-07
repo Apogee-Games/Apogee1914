@@ -1,5 +1,7 @@
 ﻿#pragma once
-#include "Administration/Instances/Country.h"
+
+class UCountry;
+class UStrata;
 
 class IOwnable
 {

@@ -82,7 +82,7 @@ void USelectedMilitaryBranchUnitsListWidget::OnCreateUnitsCollectionGroupButtonC
 	const TArray<UUnitsCollection*>& UnitsCollections = reinterpret_cast<const TArray<UUnitsCollection*>&>(UnitsCollectionsListView->GetListItems());
 	Pawn->UnitSelectionComponent->UnSelectUnits(UnitsCollections);
 
-	UUnitsCollectionGroup* UnitsCollectionGroup = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollectionGroup(MilitaryBranch, Pawn->GetRuledCountry(), UnitsCollections);
+	UUnitsCollectionGroup* UnitsCollectionGroup = GetGameInstance()->GetSubsystem<UUnitsFactory>()->CreateUnitCollectionGroup(MilitaryBranch, Pawn->GetRuledCountry(), UnitsCollections);
 
 	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollectionGroup);
 }

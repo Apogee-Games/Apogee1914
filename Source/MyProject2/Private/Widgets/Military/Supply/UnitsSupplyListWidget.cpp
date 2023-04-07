@@ -6,7 +6,7 @@
 
 void UUnitsSupplyListWidget::Init()
 {
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
 }
 
 void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
@@ -17,6 +17,6 @@ void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
 void UUnitsSupplyListWidget::NativeDestruct()
 {
 	Super::NativeDestruct();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
 }
 // TODO: Add OnUnitRemove :)

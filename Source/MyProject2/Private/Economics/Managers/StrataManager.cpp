@@ -4,20 +4,24 @@
 #include "Engine/DataTable.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
-bool UStrataManager::ShouldCreateSubsystem(UObject* Outer) const
+void UStrataManager::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-
-void UStrataManager::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	StrataDescriptionDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->StrataDescriptionDataTable;
+	Clear();
+	Init(Scenario);
 }
 
 FStrataDescription* UStrataManager::GetStrataDescription(const FName& Type) const
 {
 	return reinterpret_cast<FStrataDescription*>(StrataDescriptionDataTable->FindRowUnchecked(Type));
+}
+
+void UStrataManager::Clear()
+{
+	StrataDescriptionDataTable = nullptr;
+}
+
+void UStrataManager::Init(UScenario* Scenario)
+{
+	StrataDescriptionDataTable = Scenario->StrataDescriptionDataTable;
 }
 

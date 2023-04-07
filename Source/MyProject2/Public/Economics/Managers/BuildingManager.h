@@ -1,16 +1,15 @@
 #pragma once
+#include "Scenario.h"
 #include "Economics/Instances/Buildings/Building.h"
 #include "Economics/Interfaces/Observables/BuildingCreationObservable.h"
 #include "BuildingManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UBuildingManager: public UWorldSubsystem, public IBuildingCreationObservable
+class UBuildingManager: public UGameInstanceSubsystem, public IBuildingCreationObservable
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	UBuilding* BuildBuilding(UBuildingDescription* Description, UProvince* Province);
 
@@ -20,4 +19,8 @@ public:
 private:
 	UPROPERTY()
 	TArray<UBuilding*> Buildings;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

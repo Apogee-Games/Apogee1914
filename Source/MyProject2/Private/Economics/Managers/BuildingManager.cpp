@@ -3,15 +3,10 @@
 #include "Administration/Instances/Province.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
-bool UBuildingManager::ShouldCreateSubsystem(UObject* Outer) const
+void UBuildingManager::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UBuildingManager::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Tick, FTimespan(1, 0, 0, 0));
+	Clear();
+	Init(Scenario);
 }
 
 UBuilding* UBuildingManager::BuildBuilding(UBuildingDescription* Description, UProvince* Province)
@@ -42,4 +37,15 @@ void UBuildingManager::DestroyBuilding(UBuilding* Building)
 {
 	Buildings.Remove(Building);
 	Building->GetProvince()->RemoveBuilding(Building);
+}
+
+void UBuildingManager::Clear()
+{
+	Buildings.Empty();
+}
+
+void UBuildingManager::Init(UScenario* Scenario)
+{
+	// TODO: Add descriptions
+	GetGameInstance()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UBuildingManager::Tick, FTimespan(1, 0, 0, 0));
 }

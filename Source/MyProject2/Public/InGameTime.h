@@ -1,24 +1,14 @@
 #pragma once
+#include "Scenario.h"
 #include "Widgets/TimeControllerWidget.h"
 #include "InGameTime.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UInGameTime: public UWorldSubsystem
+class UInGameTime: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
-	FDateTime StartTime = FDateTime(1914, 1, 1);
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
-	int32 MaxTimeSpeed = 5;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
-	float SpeedMultiplier = 0.1;
-
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	virtual void Tick(float DeltaTime);
 	
@@ -62,6 +52,14 @@ private:
 	int32 TimeSpeed = 1;
 	
 	int32 TotalObjectNumber = 1;
+
+	int32 MaxTimeSpeed;
+
+	float SpeedMultiplier;
+	
+	void Clear();
+
+	void Init(UScenario* Scenario);
 	
 	void UpdateCurrentTime(const FTimespan& DeltaTimeSpan);
 

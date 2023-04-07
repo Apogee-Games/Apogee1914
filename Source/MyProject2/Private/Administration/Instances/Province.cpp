@@ -6,7 +6,7 @@
 
 UProvince::UProvince()
 {
-	Population = NewObject<UProvincePopulation>();
+	Population = CreateDefaultSubobject<UProvincePopulation>(TEXT("Population"));
 }
 
 void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const TMap<FName, UResourceDescription*>& ResourcesDescriptions)
@@ -17,13 +17,15 @@ void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable
 	ControllerCountry = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(ProvinceDescription->CountryTag);
 	StateId = ProvinceDescription->StateId;
 	
-	Resources = NewObject<UProvinceResources>();
+	Resources = NewObject<UProvinceResources>(this);
 	for (const auto& [ResourceName, ResourceAmount]: ProvinceDescription->Resources)
 	{
 		Resources->AddResource(ResourcesDescriptions[ResourceName], ResourceAmount);
 	}
 
 	Population->Init(ProvinceDescription->Population);
+
+	ControllerCountry->AddProvince(this);
 	
 	// Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
 	
@@ -54,6 +56,8 @@ UCountry* UProvince::GetCountryController() const
 
 void UProvince::TakeControl(UCountry* Country)
 {
+	ControllerCountry->RemoveProvince(this);
+	Country->AddProvince(this);
 	ControllerCountry = Country;
 	Cast<UProvinceManager>(GetOuter())->NotifyProvinceNewControllingCountry(this);
 }
@@ -99,6 +103,21 @@ void UProvince::AddBuilding(UBuilding* Building)
 void UProvince::RemoveBuilding(UBuilding* Building)
 {
 	Buildings.Remove(Building);
+}
+
+void UProvince::AddUnit(UUnit* Unit)
+{
+	Units.Add(Unit);
+}
+
+void UProvince::RemoveUnit(UUnit* Unit)
+{
+	Units.Remove(Unit);
+}
+
+const TArray<UUnit*>& UProvince::GetUnits() const
+{
+	return Units;
 }
 
 const TArray<UBuilding*>& UProvince::GetBuildings() const

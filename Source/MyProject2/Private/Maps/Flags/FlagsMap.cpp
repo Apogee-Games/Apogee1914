@@ -14,6 +14,15 @@ void UFlagsMap::Initialize(FSubsystemCollectionBase& Collection)
 	GetGameInstance()->GetSubsystem<UBoxesMap>()->AddBoxObserver(this);
 }
 
+void UFlagsMap::Tick()
+{
+	if (IsUpdated)
+	{
+		FlagsMapTexture->UpdateResource();
+		IsUpdated = false;
+	}
+}
+
 void UFlagsMap::SetScenario(UScenario* Scenario)
 {
 	Clear();
@@ -68,6 +77,7 @@ void UFlagsMap::Init(UScenario* Scenario)
 	FlagsMapTexture = Scenario->FlagsMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(FlagsMapTexture);
 	UpdateAllBoxes();
+	FlagsMapTexture->UpdateResource();
 }
 
 void UFlagsMap::UpdateBoxes(const TArray<TSharedPtr<FProvincesBox>>& Boxes)
@@ -90,8 +100,8 @@ void UFlagsMap::UpdateBoxes(const TArray<TSharedPtr<FProvincesBox>>& Boxes)
 
 	UnlockAllCountriesFlagColors();
 	FTextureUtils::UnlockPixels(FlagsMapTexture);
-	FlagsMapTexture->UpdateResource();
 
+	IsUpdated = true;
 }
 
 void UFlagsMap::BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box)
@@ -105,5 +115,6 @@ void UFlagsMap::BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box)
 	
 	UnlockAllCountriesFlagColors();
 	FTextureUtils::UnlockPixels(FlagsMapTexture);
-	FlagsMapTexture->UpdateResource();
+
+	IsUpdated = true;
 }

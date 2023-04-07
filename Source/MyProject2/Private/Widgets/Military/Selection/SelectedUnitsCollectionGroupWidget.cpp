@@ -53,7 +53,7 @@ void USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton()
 	SelectionComponent->UnSelectUnits(UnitsCollectionGroup);
 	SelectionComponent->SelectUnits(UnitsCollectionGroup->GetAll(), true, true);
 
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollectionGroup(UnitsCollectionGroup);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollectionGroup(UnitsCollectionGroup);
 }
 
 void USelectedUnitsCollectionGroupWidget::OnCommanderButtonClick()

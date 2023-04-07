@@ -32,6 +32,25 @@ void UEventInstancesController::DeleteEventWidget(FEventDescription* Event, cons
 	WidgetsInstances.Remove({Event, CountryTag});
 }
 
+void UEventInstancesController::Clear()
+{
+	FiredEvents.Empty();
+	Events.Empty();
+	ActiveEvents.Empty();
+	WidgetsInstances.Empty();
+}
+
+void UEventInstancesController::Init(UScenario* Scenario)
+{
+	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
+
+	for (const auto Pair : EventsDataTable->GetRowMap())
+	{
+		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
+	}
+	GetGameInstance()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
+}
+
 void UEventInstancesController::CreateEventForAI(FEventDescription* Event,
                                                  const TMap<FName, bool>& ChoicesConditionsEvaluated,
                                                  const FName& CountryTag)
@@ -94,21 +113,10 @@ FName UEventInstancesController::FindAISelectedChoice(const TArray<FEventChoice>
 	return SelectedChoice;
 }
 
-bool UEventInstancesController::ShouldCreateSubsystem(UObject* Outer) const
+void UEventInstancesController::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
-
-	for (const auto Pair : EventsDataTable->GetRowMap())
-	{
-		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
-	}
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
+	Clear();
+	Init(Scenario);
 }
 
 void UEventInstancesController::RegisterChoice(FEventDescription* Event, const FName& ChoiceName,
@@ -119,7 +127,7 @@ void UEventInstancesController::RegisterChoice(FEventDescription* Event, const F
 	for (auto& Choice : Event->Choices)
 	{
 		if (Choice.Name != ChoiceName) continue;
-		GetWorld()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
+		GetGameInstance()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
 	}
 }
 
@@ -138,7 +146,7 @@ void UEventInstancesController::Tick(float DeltaTime)
 
 void UEventInstancesController::CheckEvents()
 {
-	UConditionsCheckingSubsystem* ConditionsChecker = GetWorld()->GetSubsystem<UConditionsCheckingSubsystem>();
+	UConditionsCheckingSubsystem* ConditionsChecker = GetGameInstance()->GetSubsystem<UConditionsCheckingSubsystem>();
 	for (const auto& Event : Events)
 	{
 		const TArray<FName>& CountriesTags = GetCountriesForWhichEventCanBeFired(Event);

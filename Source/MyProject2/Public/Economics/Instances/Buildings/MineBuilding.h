@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "Building.h"
+#include "Economics/Description/ResourceDescription.h"
+#include "Economics/Instances/Storage.h"
 #include "MineBuilding.generated.h"
 
 UCLASS()

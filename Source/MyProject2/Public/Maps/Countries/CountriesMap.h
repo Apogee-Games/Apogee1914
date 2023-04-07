@@ -10,10 +10,12 @@ class UCountriesMap: public UGameInstanceSubsystem, public IProvinceControllingC
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+
+	void Tick();
 	
 	void SetScenario(UScenario* Scenario);
 	
-	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const;
+	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces);
 
 	void UpdateAllCountriesMapColors();
 	
@@ -24,6 +26,8 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	int32 CrossLineWidth = 10;
 private:
+	bool IsUpdated = true;
+	
 	UPROPERTY()	
 	UTexture2D* CountriesMapTexture;
 

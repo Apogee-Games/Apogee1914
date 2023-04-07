@@ -32,9 +32,9 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn
 	
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 
-	UProvince* To = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>()->GetProvince(Point);
+	UProvince* To = Pawn->GetGameInstance()->GetSubsystem<USelectionMap>()->GetProvince(Point);
 
-	UUnitsMover* UnitsMover = Pawn->GetWorld()->GetSubsystem<UUnitsMover>();
+	UUnitsMover* UnitsMover = Pawn->GetGameInstance()->GetSubsystem<UUnitsMover>();
 
 	UnitsMover->MoveUnits(Pawn->UnitSelectionComponent->GetUnitsSelectionsByBranch(), To);
 

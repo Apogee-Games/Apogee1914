@@ -19,7 +19,7 @@ const FName& UPerson::GetId() const
 
 int32 UPerson::GetAge() const
 {
-	return (GetWorld()->GetSubsystem<UInGameTime>()->GetTime() - DateOfBirth).GetDays() / 365;
+	return (GetWorld()->GetGameInstance()->GetSubsystem<UInGameTime>()->GetTime() - DateOfBirth).GetDays() / 365;
 }
 
 FName UPerson::GetPersonName() const

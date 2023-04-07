@@ -1,4 +1,6 @@
 ﻿#include "Economics/Instances/Buildings/FactoryBuilding.h"
+
+#include "Administration/Instances/Country.h"
 #include "Economics/Description/Buildings/FactoryDescription.h"
 
 

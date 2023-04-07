@@ -3,9 +3,13 @@
 
 #include "MyGameInstance.h"
 
+#include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
+#include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
 #include "Maps/Diplomacy/CountryRelationMap.h"
+#include "Military/Managers/CommandersManager.h"
+#include "Military/Managers/UnitsFactory.h"
 #include "People/Managers/PeopleManager.h"
 
 void UMyGameInstance::OnStart()
@@ -54,6 +58,8 @@ bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
 
 void UMyGameInstance::InitializeActiveScenario()
 {
+	GetSubsystem<UInGameTime>()->SetScenario(ActiveScenario);
+
 	GetSubsystem<ULawManager>()->SetScenario(ActiveScenario);
 	
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
@@ -82,4 +88,17 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UGoodsManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UStrataManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UBuildingManager>()->SetScenario(ActiveScenario);
+	
+	GetSubsystem<UUnitsFactory>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsFactory>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsRenderer>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsMover>()->SetScenario(ActiveScenario);
+	GetSubsystem<UCommandersManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsSupplyController>()->SetScenario(ActiveScenario);
+	
+	GetSubsystem<UConditionsCheckingSubsystem>()->SetScenario(ActiveScenario);
+	GetSubsystem<UEventInstancesController>()->SetScenario(ActiveScenario);
+	GetSubsystem<UOutcomesApplierSubsystem>()->SetScenario(ActiveScenario);
 }

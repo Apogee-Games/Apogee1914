@@ -5,15 +5,10 @@
 #include "Administration/Managers/ProvinceManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
-bool UUnitsMover::ShouldCreateSubsystem(UObject* Outer) const
+void UUnitsMover::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UUnitsMover::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
+	Clear();
+	Init(Scenario);
 }
 
 FGraph* UUnitsMover::GetGraph() const
@@ -28,12 +23,20 @@ void UUnitsMover::SetGraph(FGraph* NewGraph)
 
 void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 {
-	const TArray<TPair<UProvince*, int32>> Path = Graph->FindPath(Unit->GetPosition(), To);
+	const TArray<TPair<UProvince*, int32>>& Path = Graph->FindPath(Unit->GetPosition(), To);
 	Paths.Add(Unit, Path);
 	Positions.Add(Unit, 0);
 }
 
 void UUnitsMover::MoveUnits(const TSet<UUnit*>& Units, UProvince* To)
+{
+	for (const auto& Unit: Units)
+	{
+		MoveUnit(Unit, To);
+	}
+}
+
+void UUnitsMover::MoveUnits(const TArray<UUnit*>& Units, UProvince* To)
 {
 	for (const auto& Unit: Units)
 	{
@@ -79,12 +82,16 @@ void UUnitsMover::DoUnitMovement()
 	RemoveArrivedUnit();
 }
 
-void UUnitsMover::MoveUnit(UUnit* Unit, int32 Position)
+void UUnitsMover::Clear()
 {
-	NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].Key);
-	Unit->Move(Paths[Unit][Position].Key);
-	Positions[Unit]++;
-	if (Positions[Unit] >= Paths[Unit].Num()) UnitsArrived.Enqueue(Unit);
+	Paths.Empty();
+	Positions.Empty();
+	UnitsArrived.Empty();
+}
+
+void UUnitsMover::Init(UScenario* Scenario)
+{
+	GetGameInstance()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
 }
 
 void UUnitsMover::RemoveArrivedUnit()
@@ -105,7 +112,10 @@ void UUnitsMover::MoveUnits()
 		Paths[Unit][Position].Value--;
 		if (Paths[Unit][Position].Value == 0)
 		{
-			MoveUnit(Unit, Position);	
+			NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].Key);
+			Unit->Move(Paths[Unit][Position].Key);
+			Positions[Unit]++;
+			if (Positions[Unit] >= Paths[Unit].Num()) UnitsArrived.Enqueue(Unit);
 		}
 	}
 }

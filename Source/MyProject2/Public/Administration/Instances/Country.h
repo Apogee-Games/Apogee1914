@@ -1,5 +1,6 @@
 #pragma once
 #include "Parliament.h"
+#include "Province.h"
 #include "Administration/Descriptions/CountryDescription.h"
 #include "Administration/Descriptions/ParliamentDescription.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
@@ -71,11 +72,11 @@ public:
 
 	const TArray<UWar*>& GetWars() const;
 
-	bool IsCountryInWar() const;
+	bool IsInWar() const;
 
 	bool CanCountryJoinOneOfOurWars(UCountry* Country) const;
 
-	bool IsCountryInWarWith(UCountry* Country);
+	bool IsInWarWith(UCountry* Country);
 
 
 	UParliament* GetFirstChamber() const;
@@ -87,6 +88,12 @@ public:
 	void SetIsNonAligned(bool IsNonAligned);
 
 	bool IsNonAligned() const;
+
+	void AddProvince(UProvince* Province);
+
+	void RemoveProvince(UProvince* Province);
+
+	const TArray<UProvince*>& GetProvinces() const;
 private:
 	FName Name;
 
@@ -134,6 +141,9 @@ private:
 
 	UPROPERTY()
 	UParliament* SecondChamberParliament;
+
+	UPROPERTY()
+	TArray<UProvince*> Provinces;
 
 	bool bIsNonAligned = false;
 	

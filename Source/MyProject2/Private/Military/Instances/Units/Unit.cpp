@@ -8,6 +8,8 @@ void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* Pro
 	Province = ProvidedProvince;
 	SupplyNeeds = NewObject<UUnitSupplyNeeds>(this);
 	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
+	Province->AddUnit(this);
+
 }
 
 bool UUnit::CanTransportUnits() const
@@ -30,6 +32,9 @@ void UUnit::RemoveTransportedUnit(UUnit* Unit)
 
 void UUnit::Move(UProvince* NewProvince)
 {
+	Province->RemoveUnit(this);
+	NewProvince->AddUnit(this);
+
 	Province = NewProvince;
 	if (Province->GetCountryController() != CountryController)
 	{

@@ -10,7 +10,7 @@ void USelectedUnitsCollectionWidget::NativeConstruct()
 	Button->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnButtonClick);
 	RemoveUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick);
 	CommanderButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnCommanderButtonClick);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 }
 
 void USelectedUnitsCollectionWidget::SetSelectedUnits(UObject* ProvidedUnitsCollection)
@@ -46,7 +46,7 @@ void USelectedUnitsCollectionWidget::RefreshData()
 void USelectedUnitsCollectionWidget::NativeDestruct()
 {
 	Super::NativeDestruct();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
 }
 
 void USelectedUnitsCollectionWidget::UnitIsRemoved(UUnit* Unit)
@@ -65,7 +65,7 @@ void USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick()
 
 	SelectionComponent->SelectUnits(UnitsCollection->GetAll(), false, true);
 	
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
 	
 	SelectionComponent->UnSelectUnits(UnitsCollection, true);
 }

@@ -1,4 +1,6 @@
 ﻿#include "Economics/Instances/Buildings/MineBuilding.h"
+
+#include "Administration/Instances/Country.h"
 #include "Administration/Instances/Province.h"
 #include "Economics/Description/Buildings/MineDescription.h"
 

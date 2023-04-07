@@ -8,6 +8,8 @@ class UFlagsMap: public UGameInstanceSubsystem, public IBoxObserver
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+
+	void Tick();
 	
 	void SetScenario(UScenario* Scenario);
 	
@@ -17,6 +19,8 @@ public:
 
 	virtual void BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box) override;
 private:
+	bool IsUpdated = true;
+	
 	UPROPERTY()
 	UTexture2D* FlagsMapTexture;
 

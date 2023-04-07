@@ -49,7 +49,7 @@ void UStorage::AddGoodIfNotPresent(UGoodDescription* Good)
 {
 	if (!Goods.Contains(Good))
 	{
-		UStoredGood* StoredGood = NewObject<UStoredGood>();
+		UStoredGood* StoredGood = NewObject<UStoredGood>(this);
 		StoredGood->Init(Good, 0, this);
 		Goods.Add(Good, StoredGood);
 	}

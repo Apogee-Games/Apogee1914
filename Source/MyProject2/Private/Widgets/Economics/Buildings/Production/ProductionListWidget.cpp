@@ -5,7 +5,7 @@
 
 void UProductionListWidget::Init()
 {
-	GetWorld()->GetSubsystem<UBuildingManager>()->AddBuildingCreationObserver(this);
+	GetGameInstance()->GetSubsystem<UBuildingManager>()->AddBuildingCreationObserver(this);
 }
 
 void UProductionListWidget::BuildingIsCreated(UBuilding* Building)

@@ -59,7 +59,7 @@ bool UAlliance::CountryCanJoin(UCountry* Country)
 {
 	for (const auto& Member: Members)
 	{
-		if (Country->IsCountryInWarWith(Member))
+		if (Country->IsInWarWith(Member))
 		{
 			return false;
 		}

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Building.h"
 #include "Economics/Description/Goods/CookedGoodDescription.h"
+#include "Economics/Instances/Storage.h"
 #include "FactoryBuilding.generated.h"
 
 UCLASS()

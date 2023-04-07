@@ -6,20 +6,10 @@
 #include "Actions/ConditionCheckers/NonAlignmentConditionChecker.h"
 #include "Actions/Description/Condition.h"
 
-bool UConditionsCheckingSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+void UConditionsCheckingSubsystem::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UConditionsCheckingSubsystem::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	UInGameTime* InGameTime = GetWorld()->GetSubsystem<UInGameTime>();
-	RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(InGameTime));
-	RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(InGameTime));
-
-	UCountriesManager* CountriesManager = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>();
-	RegisterConditionChecker("NonAlignment", new FNonAlignmentConditionChecker(CountriesManager));
+	Clear();
+	Init(Scenario);
 }
 
 void UConditionsCheckingSubsystem::RegisterConditionChecker(const FName& Name, FConditionChecker* Checker)
@@ -56,4 +46,19 @@ bool UConditionsCheckingSubsystem::CheckCondition(FCondition& Condition, const F
 	}
 
 	return HasPassed;
+}
+
+void UConditionsCheckingSubsystem::Clear()
+{
+	ConditionsCheckers.Empty();
+}
+
+void UConditionsCheckingSubsystem::Init(UScenario* Scenario)
+{
+	UInGameTime* InGameTime = GetGameInstance()->GetSubsystem<UInGameTime>();
+	RegisterConditionChecker("ExactDate", new FExactDateConditionChecker(InGameTime));
+	RegisterConditionChecker("DatePassed", new FDatePassedConditionChecker(InGameTime));
+
+	UCountriesManager* CountriesManager = GetGameInstance()->GetSubsystem<UCountriesManager>();
+	RegisterConditionChecker("NonAlignment", new FNonAlignmentConditionChecker(CountriesManager));	
 }

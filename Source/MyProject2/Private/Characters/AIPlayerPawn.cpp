@@ -2,6 +2,8 @@
 
 #include "Characters/AIPlayerPawn.h"
 
+#include "Administration/Managers/CountriesManager.h"
+
 // Sets default values
 AAIPlayerPawn::AAIPlayerPawn()
 {
@@ -12,7 +14,12 @@ AAIPlayerPawn::AAIPlayerPawn()
 
 void AAIPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
 {
-	RuledCountryTag = NewRuledCountryTag;
+	RuledCountry = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
+}
+
+UCountry* AAIPlayerPawn::GetRuledCountry() const
+{
+	return RuledCountry;
 }
 
 // Called when the game starts or when spawned

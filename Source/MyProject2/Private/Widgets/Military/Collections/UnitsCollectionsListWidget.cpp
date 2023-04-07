@@ -5,11 +5,13 @@ void UUnitsCollectionsListWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionRemovalObserver(this);
+	UGameInstance* GameInstance = GetGameInstance();
+
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionRemovalObserver(this);
 	
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupRemovalObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupRemovalObserver(this);
 
 	MilitaryBranchUnitsCollectionsListWidget.SetNum(MilitaryBranchesNumber);
 	for (int i = 0; i < MilitaryBranchesNumber; ++i)
@@ -43,10 +45,12 @@ void UUnitsCollectionsListWidget::UnitsCollectionGroupIsRemoved(UUnitsCollection
 void UUnitsCollectionsListWidget::NativeDestruct()
 {
 	Super::NativeDestruct();
+
+	UGameInstance* GameInstance = GetGameInstance();
+
+	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionRemovalObserver(this);
 	
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionRemovalObserver(this);
-	
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupRemovalObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupRemovalObserver(this);
 }

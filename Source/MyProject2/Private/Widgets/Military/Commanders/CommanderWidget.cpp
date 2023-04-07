@@ -33,6 +33,6 @@ void UCommanderWidget::OnButtonClick()
 
 	if (ICommandable* Commandable = Pawn->GetSelectedCommandable())
 	{
-		GetWorld()->GetSubsystem<UCommandersManager>()->MakeCommander(Commander, Commandable);
+		GetGameInstance()->GetSubsystem<UCommandersManager>()->MakeCommander(Commander, Commandable);
 	}
 }

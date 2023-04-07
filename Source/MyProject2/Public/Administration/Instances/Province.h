@@ -1,11 +1,13 @@
 ﻿#pragma once
-#include "Country.h"
 #include "ProvincePopulation.h"
 #include "ProvinceResources.h"
 #include "Administration/Descriptions/ProvinceDescription.h"
 #include "Administration/Descriptions/TerrainDescription.h"
 #include "Economics/Instances/Buildings/Building.h"
 #include "Province.generated.h"
+
+class UUnit;
+class UCountry;
 
 UCLASS()
 class UProvince : public UObject 
@@ -40,12 +42,17 @@ public:
 
 	void RemoveBuilding(UBuilding* Building);
 
+	void AddUnit(UUnit* Unit);
+
+	void RemoveUnit(UUnit* Unit);
+
+	const TArray<UUnit*>& GetUnits() const;
+
 	const TArray<UBuilding*>& GetBuildings() const;
 
 	//TODO: Tie resource logic to building logic
 	
 private:
-	
 	FColor Id;
 
 	FName Name;
@@ -68,4 +75,7 @@ private:
 	
 	UPROPERTY()
 	TArray<UBuilding*> Buildings;
+
+	UPROPERTY()
+	TArray<UUnit*> Units;
 };

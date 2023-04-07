@@ -1,5 +1,6 @@
 #pragma once
 #include "EditorSubsystem.h"
+#include "Scenario.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Description/EventDescription.h"
 #include "Widgets/Events/EventWidget.h"
@@ -9,7 +10,7 @@
  * Class used to control all events instances
  */
 UCLASS(Abstract, Blueprintable)
-class UEventInstancesController: public UWorldSubsystem
+class UEventInstancesController: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
@@ -19,9 +20,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
 
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	virtual void Tick(float DeltaTime);
 	
@@ -43,6 +42,10 @@ private:
 	TMap<FEventDescription*, bool> ActiveEvents;
 	
 	TMap<TPair<FEventDescription*, FName>, UEventWidget*> WidgetsInstances;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 
 	void CreateEventForAI(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
 	

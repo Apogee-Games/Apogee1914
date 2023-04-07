@@ -54,7 +54,7 @@ UGoodBalance* UMarket::GetBalanceInstanceOrElseInit(UGoodDescription* GoodDescri
 	UGoodBalance* GoodBalance = Balances.FindRef(GoodName);
 	if ( GoodBalance == nullptr)
 	{
-		GoodBalance = NewObject<UGoodBalance>();
+		GoodBalance = NewObject<UGoodBalance>(this);
 		GoodBalance->Init(GoodDescription);
 		Balances.Add(GoodName, GoodBalance);
 	}

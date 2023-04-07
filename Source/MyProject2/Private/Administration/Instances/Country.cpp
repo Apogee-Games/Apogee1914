@@ -29,8 +29,8 @@ void UCountry::Init(FCountryDescription* CountryDescription, FParliamentDescript
 	
 	InitStrata();
 
-	Storage = NewObject<UStorage>();
-	Market = NewObject<UMarket>();
+	Storage = NewObject<UStorage>(this);
+	Market = NewObject<UMarket>(this);
 }
 
 const FColor& UCountry::GetColor() const
@@ -175,7 +175,7 @@ const TArray<UWar*>& UCountry::GetWars() const
 	return Wars;
 }
 
-bool UCountry::IsCountryInWar() const
+bool UCountry::IsInWar() const
 {
 	return !Wars.IsEmpty();
 }
@@ -192,7 +192,7 @@ bool UCountry::CanCountryJoinOneOfOurWars(UCountry* Country) const
 	return false;
 }
 
-bool UCountry::IsCountryInWarWith(UCountry* Country)
+bool UCountry::IsInWarWith(UCountry* Country)
 {
 	return Relations.Contains(Country) && Relations[Country] == War;
 }
@@ -226,13 +226,28 @@ bool UCountry::IsNonAligned() const
 	return bIsNonAligned;
 }
 
+void UCountry::AddProvince(UProvince* Province)
+{
+	Provinces.Add(Province);
+}
+
+void UCountry::RemoveProvince(UProvince* Province)
+{
+	Provinces.Remove(Province);
+}
+
+const TArray<UProvince*>& UCountry::GetProvinces() const
+{
+	return Provinces;
+}
+
 void UCountry::InitStrata()
 {
-	LowerStrata = NewObject<UStrata>();
+	LowerStrata = NewObject<UStrata>(this);
 	LowerStrata->Init("LOW");
-	MiddleStrata = NewObject<UStrata>();
+	MiddleStrata = NewObject<UStrata>(this);
 	MiddleStrata->Init("MIDDLE");
-	UpperStrata = NewObject<UStrata>();
+	UpperStrata = NewObject<UStrata>(this);
 	UpperStrata->Init("UPPER");
 	// TODO: Add proper initialization 
 }

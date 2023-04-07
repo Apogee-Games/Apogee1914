@@ -1,6 +1,7 @@
 ﻿#include "Widgets/Administration/Laws/LawDescriptionWidget.h"
 #include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
 #include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
+#include "Administration/Instances/Country.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
 void ULawDescriptionWidget::Init()
@@ -20,7 +21,7 @@ void ULawDescriptionWidget::RefreshData()
 	LawDescriptionTextBox->SetText(LawDescription->Description);
 	
 	FName CountryTag = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetTag();
-	UConditionsCheckingSubsystem* Checker = GetWorld()->GetSubsystem<UConditionsCheckingSubsystem>();
+	UConditionsCheckingSubsystem* Checker = GetGameInstance()->GetSubsystem<UConditionsCheckingSubsystem>();
 
 	ConditionsScrollBox->ClearChildren();
 
@@ -53,6 +54,6 @@ void ULawDescriptionWidget::RefreshData()
 void ULawDescriptionWidget::OnPassLawButtonClick()
 {
 	FName CountryTag = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountryTag();
-	GetWorld()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(LawDescription->Outcomes, CountryTag);
+	GetGameInstance()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(LawDescription->Outcomes, CountryTag);
 	SetLaw(LawDescription);
 }

@@ -81,4 +81,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* IdeologiesMapTexture;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	FDateTime StartTime = FDateTime(1914, 1, 1);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	int32 MaxTimeSpeed = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	float SpeedMultiplier = 0.1;
 };
