@@ -60,9 +60,9 @@ void UUnitsMover::MoveUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionG
 	}
 }
 
-void UUnitsMover::MoveUnits(const TArray<FUnitsSelection>& Selections, UProvince* To)
+void UUnitsMover::MoveUnits(const TMap<UMilitaryBranchDescription*, FUnitsSelection>& Selections, UProvince* To)
 {
-	for (const auto& Selection: Selections)
+	for (const auto& [MilitaryBranch, Selection]: Selections)
 	{
 		MoveUnits(Selection.SelectedUnits, To);
 		MoveUnits(Selection.SelectedUnitsCollections, To);

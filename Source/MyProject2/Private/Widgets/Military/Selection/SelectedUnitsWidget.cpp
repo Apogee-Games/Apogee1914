@@ -4,7 +4,7 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Military/Managers/UnitsFactory.h"
 
-void USelectedUnitsWidget::Init(EMilitaryBranch ProvidedMilitaryBranch)
+void USelectedUnitsWidget::Init(UMilitaryBranchDescription* ProvidedMilitaryBranch)
 {
 	CreateUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnCreateUnitsCollectionButtonClick);
 	RemoveAllUnitsButton->OnClicked.AddDynamic(this, &USelectedUnitsWidget::OnRemoveAllUnitsButtonClick);

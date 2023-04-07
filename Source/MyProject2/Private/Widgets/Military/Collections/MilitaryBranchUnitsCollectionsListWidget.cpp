@@ -1,8 +1,10 @@
 ﻿#include "Widgets/Military/Collections/MilitaryBranchUnitsCollectionsListWidget.h"
 
-void UMilitaryBranchUnitsCollectionsListWidget::Init(EMilitaryBranch MilitaryBranch)
+#include "Military/Descriptions/MilitaryBranchDescription.h"
+
+void UMilitaryBranchUnitsCollectionsListWidget::Init(UMilitaryBranchDescription* MilitaryBranch)
 {
-	Border->BrushColor = MilitaryBranchesColors[MilitaryBranch];
+	Border->BrushColor = MilitaryBranch->Color;
 	UpdateVisibility();
 }
 

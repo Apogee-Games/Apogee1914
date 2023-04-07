@@ -2,6 +2,7 @@
 #include "Widgets/Military/Selection/SelectedUnitsCollectionWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/CommanderSelectionPawnState.h"
+#include "Military/Descriptions/MilitaryBranchDescription.h"
 #include "Military/Managers/UnitsFactory.h"
 
 void USelectedUnitsCollectionWidget::NativeConstruct()
@@ -28,8 +29,7 @@ void USelectedUnitsCollectionWidget::RefreshData()
 
 	UnitsNumberTextBlock->SetText(FText::FromString(FString::FromInt(UnitsCollection->GetSize())));
 
-	const FName MilitaryBranchName = MilitaryBranchesNames[static_cast<int>(UnitsCollection->GetMilitaryBranch())];
-	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
+	MilitaryBranchTextBlock->SetText(UnitsCollection->GetMilitaryBranch()->Name);
 
 	UPerson* Commander = UnitsCollection->GetCommander();
 	if (Commander)

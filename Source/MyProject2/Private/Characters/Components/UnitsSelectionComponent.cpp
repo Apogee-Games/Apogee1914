@@ -2,12 +2,16 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/MilitaryControlPawnState.h"
+#include "Military/Descriptions/MilitaryBranchDescription.h"
+#include "Military/Managers/UnitsFactory.h"
 
-// TODO: add logic to use military branches during selection
-
-UUnitsSelectionComponent::UUnitsSelectionComponent()
+void UUnitsSelectionComponent::BeginPlay()
 {
-	Selections.SetNum(MilitaryBranchesNumber);	
+	const TArray<UMilitaryBranchDescription*> MilitaryBranches = GetWorld()->GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetMilitaryBranches();
+	for (auto& MilitaryBranch: MilitaryBranches)
+	{
+		Selections.Add(MilitaryBranch, FUnitsSelection());
+	}
 }
 
 void UUnitsSelectionComponent::SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate, bool AddToExisting)
@@ -114,7 +118,7 @@ void UUnitsSelectionComponent::SelectUnit(UUnit* Unit, bool NotifyAboutUpdate, b
 
 void UUnitsSelectionComponent::ClearSelectedUnits()
 {
-	for (auto& Selection: Selections)
+	for (auto& [MilitaryBranch, Selection]: Selections)
 	{
 		Selection.SelectedUnits.Empty();
 		Selection.SelectedUnitsCollections.Empty();
@@ -124,7 +128,7 @@ void UUnitsSelectionComponent::ClearSelectedUnits()
 	SelectedUnitsWereUpdated();
 }
 
-const TArray<FUnitsSelection>& UUnitsSelectionComponent::GetUnitsSelectionsByBranch() const
+const TMap<UMilitaryBranchDescription*, FUnitsSelection>& UUnitsSelectionComponent::GetUnitsSelectionsByBranch() const
 {
 	return Selections;
 }
@@ -182,7 +186,7 @@ void UUnitsSelectionComponent::UnSelectUnit(UUnit* Unit, bool NotifyAboutUpdate)
 
 bool UUnitsSelectionComponent::HasSelectedUnits() const
 {
-	for (const auto& Selection: Selections)
+	for (const auto& [MilitaryBranch, Selection]: Selections)
 	{
 		if (Selection.SelectedUnits.Num() || Selection.SelectedUnitsCollections.Num() || Selection.SelectedUnitsCollectionGroups.Num())
 			return true;
@@ -222,7 +226,7 @@ void UUnitsSelectionComponent::RemoveUnitsSelectedByUnitsCollection(UUnitsCollec
 		}
 	}
 
-	int32 MilitaryBranch = UnitsCollection->GetMilitaryBranch();
+	UMilitaryBranchDescription* MilitaryBranch = UnitsCollection->GetMilitaryBranch();
 	for (const auto Unit: UnitsToClear)
 	{
 		Selections[MilitaryBranch].SelectedUnits.Remove(Unit);
@@ -235,7 +239,7 @@ void UUnitsSelectionComponent::RemoveUnitsSelectedByUnitsCollectionGroup(UUnitsC
 	{
 		RemoveUnitsSelectedByUnitsCollection(UnitsCollection);
 	}
-	int32 MilitaryBranch = UnitsCollectionGroup->GetMilitaryBranch();
+	UMilitaryBranchDescription* MilitaryBranch = UnitsCollectionGroup->GetMilitaryBranch();
 	for (const auto UnitsCollection: UnitsCollectionGroup->GetAll()) {
 		Selections[MilitaryBranch].SelectedUnitsCollections.Remove(UnitsCollection);
 	}

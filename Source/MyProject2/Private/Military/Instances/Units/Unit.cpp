@@ -2,14 +2,13 @@
 
 #include "Administration/Managers/CountriesManager.h"
 
-void UUnit::Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince)
+void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince)
 {
 	UnitDescription = ProvidedUnitDescription;
 	Province = ProvidedProvince;
 	SupplyNeeds = NewObject<UUnitSupplyNeeds>(this);
 	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
 	Province->AddUnit(this);
-
 }
 
 bool UUnit::CanTransportUnits() const
@@ -58,9 +57,9 @@ int32 UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
 	return Result;
 }
 
-int32 UUnit::GetUnitTypeEquipmentRequirement(const FName& GoodName) const
+int32 UUnit::GetUnitTypeEquipmentRequirement(UGoodDescription* Good) const
 {
-	return UnitDescription->EquipmentRequirements[GoodName];
+	return UnitDescription->EquipmentRequirements[Good];
 }
 
 UUnitSupplyNeeds* UUnit::GetSupplyNeeds() const
@@ -73,9 +72,9 @@ const FName& UUnit::GetUnitName() const
 	return UnitDescription->UnitName;
 }
 
-EMilitaryBranch UUnit::GetMilitaryBranch() const
+UMilitaryBranchDescription* UUnit::GetMilitaryBranch() const
 {
-	return EMilitaryBranch::Army;
+	return UnitDescription->MilitaryBranch;
 }
 
 void UUnit::SetUnitsCollection(UUnitsCollection* ProvidedUnitsCollection)

@@ -196,13 +196,7 @@ void AHumanPlayerHUD::InitUnitTypesListWidget()
 		
 		if (UnitTypesListWidget)
 		{
-			UDataTable* UnitsDescriptionDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->UnitsDescriptionDataTable;
-
-			for (const auto& [UnitName, UnitDescription]: UnitsDescriptionDataTable->GetRowMap())
-			{
-				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
-			}
-			
+			UnitTypesListWidget->Init();
 			Widgets.Add(UnitTypesListWidget);
 		}
 	}

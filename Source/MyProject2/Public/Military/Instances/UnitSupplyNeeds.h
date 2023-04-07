@@ -7,7 +7,7 @@ class UUnitSupplyNeeds: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const TMap<FName, int32> &EquipmentRequirements);
+	void Init(const TMap<UGoodDescription*, int32> &EquipmentRequirements);
 
 	void SupplyEquipment(UGoodDescription* Good, int32 Amount);
 

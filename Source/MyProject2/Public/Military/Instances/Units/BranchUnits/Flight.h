@@ -7,5 +7,4 @@ class UFlight: public UUnit
 {
 	GENERATED_BODY()
 public:
-	virtual EMilitaryBranch GetMilitaryBranch() const override;
 };

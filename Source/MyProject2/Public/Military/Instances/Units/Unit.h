@@ -6,30 +6,6 @@
 #include "Military/Instances/UnitSupplyNeeds.h"
 #include "Unit.generated.h"
 
-UENUM()
-enum EMilitaryBranch
-{
-	Army = 0,
-	Navy = 1,
-	AirForce = 2
-};
-
-inline FName MilitaryBranchesNames[3] = {
-	"Army",
-	"Navy",
-	"AirForce"
-};
-
-inline EMilitaryBranch MilitaryBranches[3] = {
-	Army, Navy, AirForce
-};
-
-inline int32 MilitaryBranchesNumber = 3;
-
-inline FColor MilitaryBranchesColors[3] = {
-	FColor::Green, FColor::Blue, FColor::Silver
-};
-
 //TODO: Come up with the fix for this :)
 
 class UUnitsCollection;
@@ -39,7 +15,7 @@ class UUnit: public UObject, public IOwnable
 {
 	GENERATED_BODY()
 public:
-	virtual void Init(const FUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince);
+	virtual void Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince);
 
 	bool CanTransportUnits() const;
 
@@ -51,13 +27,13 @@ public:
 	
 	int32 Estimate(const TArray<TPair<UProvince*, int32>>& Path);
 
-	int32 GetUnitTypeEquipmentRequirement(const FName& GoodName) const;
+	int32 GetUnitTypeEquipmentRequirement(UGoodDescription* Good) const;
 
 	UUnitSupplyNeeds* GetSupplyNeeds() const;
 
 	const FName& GetUnitName() const;
 
-	virtual EMilitaryBranch GetMilitaryBranch() const;
+	UMilitaryBranchDescription* GetMilitaryBranch() const;
 
 	void SetUnitsCollection(UUnitsCollection* ProvidedUnitsCollection);
 
@@ -69,7 +45,8 @@ public:
 
 	// void AddTransportedUnit(UUnit* Unit);
 private:
-	const FUnitDescription* UnitDescription;
+	UPROPERTY()
+	UUnitDescription* UnitDescription;
 
 	UPROPERTY()
 	UUnitsCollection* UnitsCollection;

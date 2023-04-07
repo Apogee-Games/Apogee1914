@@ -8,5 +8,4 @@ class USquadron: public UUnit
 {
 	GENERATED_BODY()
 public:
-	virtual EMilitaryBranch GetMilitaryBranch() const override;
 };

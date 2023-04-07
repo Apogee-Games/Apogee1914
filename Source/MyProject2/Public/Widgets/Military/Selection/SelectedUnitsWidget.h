@@ -23,11 +23,12 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* RemoveAllUnitsButton;
 
-	void Init(EMilitaryBranch MilitaryBranch);
+	void Init(UMilitaryBranchDescription* MilitaryBranch);
 	
 	void SetSelectedUnits(const TSet<UUnit*>& Units) const;
 private:
-	EMilitaryBranch MilitaryBranch;
+	UPROPERTY()
+	UMilitaryBranchDescription* MilitaryBranch;
 	
 	UFUNCTION()
 	void OnCreateUnitsCollectionButtonClick();

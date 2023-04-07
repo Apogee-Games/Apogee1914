@@ -24,17 +24,17 @@ class UUnitsFactory : public UGameInstanceSubsystem, public IUnitsCreationObserv
 public:
 	void SetScenario(UScenario* Scenario);
 
-	UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province);
+	UUnit* CreateUnit(UUnitDescription* Description, UProvince* Province);
 	
-	UUnit* CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
+	UUnit* CreateUnit(UUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
 
-	UUnitsCollection* CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner, const TArray<UUnit*>& UnitsToAdd);
+	UUnitsCollection* CreateUnitCollection(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner, const TArray<UUnit*>& UnitsToAdd);
 	
-	UUnitsCollection* CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner);
+	UUnitsCollection* CreateUnitCollection(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner);
 
-	UUnitsCollectionGroup* CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner, const TArray<UUnitsCollection*>& UnitsCollectionsToAdd);
+	UUnitsCollectionGroup* CreateUnitCollectionGroup(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner, const TArray<UUnitsCollection*>& UnitsCollectionsToAdd);
 		
-	UUnitsCollectionGroup* CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner);
+	UUnitsCollectionGroup* CreateUnitCollectionGroup(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner);
 
 	void RemoveUnits(const TArray<UUnit*>& UnitsToRemove, bool IsClearing = false);
 	
@@ -43,7 +43,17 @@ public:
 	void RemoveUnitCollection(UUnitsCollection* UnitsCollection, bool IsClearing = false);
 
 	void RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup, bool IsClearing = false);
+
+	const TArray<UMilitaryBranchDescription*>& GetMilitaryBranches() const;
+
+	const TArray<UUnitDescription*>& GetUnitsDescriptions() const;
 private:
+	UPROPERTY()
+	TArray<UUnitDescription*> UnitDescriptions;
+
+	UPROPERTY()
+	TArray<UMilitaryBranchDescription*> MilitaryBranches;
+	
 	UPROPERTY()
 	TArray<UUnit*> Units;
 
@@ -56,14 +66,6 @@ private:
 	void Clear();
 
 	void Init(UScenario* Scenario);
-
-	// Need Unit types, Military branch
-	
-	inline static TMap<FName, TSubclassOf<UUnit>> MilitaryBranchUnitsTypes = {
-		{"Army", UDivision::StaticClass()},
-		{"Navy", USquadron::StaticClass()},
-		{"AirForce", UFlight::StaticClass()}
-	};
 };
 
 // TODO: Add remove logic in destructor 

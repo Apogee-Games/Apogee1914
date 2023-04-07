@@ -2,6 +2,7 @@
 #include "Military/Managers/UnitsFactory.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
+#include "Military/Descriptions/MilitaryBranchDescription.h"
 
 void UUnitsFactory::SetScenario(UScenario* Scenario)
 {
@@ -9,9 +10,9 @@ void UUnitsFactory::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province)
+UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Province)
 {
-	UUnit* Unit = NewObject<UUnit>(this, MilitaryBranchUnitsTypes[Description->MilitaryBranch]);
+	UUnit* Unit = NewObject<UUnit>(this, Description->MilitaryBranch->UnitClass);
 	
 	Unit->Init(Description, Province);
 
@@ -24,11 +25,11 @@ UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince*
 	return Unit;
 }
 
-UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
+UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
 {
 	// TODO: Add some logic for delay
 	//TODO: Error checks ?
-	UUnit* Unit = NewObject<UUnit>(this, MilitaryBranchUnitsTypes[Description->MilitaryBranch]);
+	UUnit* Unit = NewObject<UUnit>(this, Description->MilitaryBranch->UnitClass);
 
 	Unit->Init(Description, Province);
 	
@@ -43,7 +44,7 @@ UUnit* UUnitsFactory::CreateUnit(const FUnitDescription* Description, UProvince*
 	return Unit;
 }
 
-UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner, const TArray<UUnit*>& UnitsToAdd)
+UUnitsCollection* UUnitsFactory::CreateUnitCollection(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner, const TArray<UUnit*>& UnitsToAdd)
 {
 	UUnitsCollection* UnitsCollection = CreateUnitCollection(MilitaryBranch, CountryOwner);
 	for (const auto& Unit: UnitsToAdd)
@@ -54,7 +55,7 @@ UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBr
 	return UnitsCollection;
 }
 
-UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner)
+UUnitsCollection* UUnitsFactory::CreateUnitCollection(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner)
 {
 	UUnitsCollection* UnitCollection = NewObject<UUnitsCollection>(this); 
 	
@@ -68,7 +69,7 @@ UUnitsCollection* UUnitsFactory::CreateUnitCollection(EMilitaryBranch MilitaryBr
 	return UnitCollection;
 }
 
-UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner, const TArray<UUnitsCollection*>& UnitsCollectionsToAdd)
+UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner, const TArray<UUnitsCollection*>& UnitsCollectionsToAdd)
 {
 	UUnitsCollectionGroup* UnitsCollectionGroup = CreateUnitCollectionGroup(MilitaryBranch, CountryOwner);
 	for (const auto& UnitsCollection: UnitsCollectionsToAdd)
@@ -79,7 +80,7 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch 
 	return UnitsCollectionGroup;
 }
 
-UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(EMilitaryBranch MilitaryBranch, UCountry* CountryOwner)
+UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner)
 {
 	UUnitsCollectionGroup* UnitCollectionGroup = NewObject<UUnitsCollectionGroup>();
 	
@@ -156,6 +157,16 @@ void UUnitsFactory::RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollec
 	UnitsCollectionGroup->MarkAsGarbage();
 }
 
+const TArray<UMilitaryBranchDescription*>& UUnitsFactory::GetMilitaryBranches() const
+{
+	return MilitaryBranches;
+}
+
+const TArray<UUnitDescription*>& UUnitsFactory::GetUnitsDescriptions() const
+{
+	return UnitDescriptions;
+}
+
 void UUnitsFactory::Clear()
 {
 	for (const auto& Unit: Units)
@@ -173,9 +184,12 @@ void UUnitsFactory::Clear()
 	Units.Empty();
 	UnitsCollections.Empty();
 	UnitsCollectionGroups.Empty();
+	UnitDescriptions.Empty();
+	MilitaryBranches.Empty();
 }
 
 void UUnitsFactory::Init(UScenario* Scenario)
 {
-	
+	UnitDescriptions = Scenario->UnitDescriptions;
+	MilitaryBranches = Scenario->MilitaryBranches;
 }

@@ -13,12 +13,15 @@ void UUnitsCollectionsListWidget::NativeConstruct()
 	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupCreationObserver(this);
 	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupRemovalObserver(this);
 
-	MilitaryBranchUnitsCollectionsListWidget.SetNum(MilitaryBranchesNumber);
-	for (int i = 0; i < MilitaryBranchesNumber; ++i)
+	
+	const TArray<UMilitaryBranchDescription*> MilitaryBranches = GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetMilitaryBranches();
+
+	for (const auto& MilitaryBranch: MilitaryBranches)
 	{
-		MilitaryBranchUnitsCollectionsListWidget[i] = CreateWidget<UMilitaryBranchUnitsCollectionsListWidget>(GetOwningPlayer(), MilitaryBranchUnitsCollectionsListWidgetClass);
-		MilitaryBranchUnitsCollectionsListWidget[i]->Init(MilitaryBranches[i]);
-		MilitaryBranchesUnitsCollectionsScrollBox->AddChild(MilitaryBranchUnitsCollectionsListWidget[i]);
+		UMilitaryBranchUnitsCollectionsListWidget* Widget = CreateWidget<UMilitaryBranchUnitsCollectionsListWidget>(GetOwningPlayer(), MilitaryBranchUnitsCollectionsListWidgetClass); 
+		Widget->Init(MilitaryBranch);
+		MilitaryBranchesUnitsCollectionsScrollBox->AddChild(Widget);
+		MilitaryBranchUnitsCollectionsListWidget.Add(MilitaryBranch, Widget);
 	}
 }
 

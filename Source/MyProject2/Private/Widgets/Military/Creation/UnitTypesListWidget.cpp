@@ -1,10 +1,18 @@
 
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
-#include "Widgets/Military/Carriers/UnitDescriptionCarrier.h"
 
-void UUnitTypesListWidget::AddUnitType(FUnitDescription* UnitDescription)
+#include "Military/Managers/UnitsFactory.h"
+
+void UUnitTypesListWidget::Init()
 {
-	UUnitDescriptionCarrier* UnitDescriptionCarrier = NewObject<UUnitDescriptionCarrier>();
-	UnitDescriptionCarrier->Init(UnitDescription);
-	UnitDescriptionListView->AddItem(UnitDescriptionCarrier);
+	const TArray<UUnitDescription*>& UnitDescriptions = GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetUnitsDescriptions();
+	for (const auto& UnitDescription: UnitDescriptions)
+	{
+		AddUnitType(UnitDescription);
+	}
+}
+
+void UUnitTypesListWidget::AddUnitType(UUnitDescription* UnitDescription)
+{
+	UnitDescriptionListView->AddItem(UnitDescription);
 }

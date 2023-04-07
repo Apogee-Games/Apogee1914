@@ -15,8 +15,9 @@ public:
 	UListView* UnitsListView;
 
 	void Init();
-
+	
 	virtual void UnitIsCreated(UUnit* Unit) override;
-
-	virtual void NativeDestruct() override;
+private:
+	UPROPERTY()
+	UCountry* Country;
 };

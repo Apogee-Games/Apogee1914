@@ -12,5 +12,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
 	UListView* UnitDescriptionListView;
 
-	void AddUnitType(FUnitDescription* UnitDescription);
+	void Init();
+private:
+	
+	void AddUnitType(UUnitDescription* UnitDescription);
 };

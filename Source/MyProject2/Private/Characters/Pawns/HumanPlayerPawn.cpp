@@ -55,7 +55,7 @@ TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
 	return PawnState;
 }
 
-void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescription)
+void AHumanPlayerPawn::SelectUnitDescription(UUnitDescription* UnitDescription)
 {
 	SelectedUnitDescription = UnitDescription;
 }
@@ -75,7 +75,7 @@ ICommandable* AHumanPlayerPawn::GetSelectedCommandable() const
 	return SelectedCommandable;
 }
 
-const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
+UUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
 {
 	return SelectedUnitDescription;
 }

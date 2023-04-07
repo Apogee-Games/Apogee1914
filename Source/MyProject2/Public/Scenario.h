@@ -3,6 +3,7 @@
 #include "Economics/Description/Buildings/BuildingDescription.h"
 #include "Economics/Description/Goods/GoodDescription.h"
 #include "Engine/DataTable.h"
+#include "Military/Descriptions/UnitDescription.h"
 #include "Scenario.generated.h"
 
 UCLASS()
@@ -32,7 +33,10 @@ public:
 	UDataTable* StrataDescriptionDataTable;	
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* UnitsDescriptionDataTable;
+	TArray<UUnitDescription*> UnitDescriptions;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UMilitaryBranchDescription*> MilitaryBranches;
 	
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UBuildingDescription*> BuildingsDescriptions;

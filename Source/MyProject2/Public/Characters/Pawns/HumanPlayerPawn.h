@@ -55,7 +55,7 @@ public:
 
 	TSharedPtr<FPawnState> GetPawnState() const;
 
-	void SelectUnitDescription(const FUnitDescription* UnitDescription);
+	void SelectUnitDescription(UUnitDescription* UnitDescription);
 
 	void SelectBuildingDescription(UBuildingDescription* BuildingDescription);
 
@@ -63,7 +63,7 @@ public:
 
 	ICommandable* GetSelectedCommandable() const;
 		
-	const FUnitDescription* GetSelectedUnitDescription() const;
+	UUnitDescription* GetSelectedUnitDescription() const;
 
 	UBuildingDescription* GetSelectedBuildingDescription() const;
 
@@ -113,7 +113,8 @@ private:
 
 	bool bIsShiftPressed = false;
 
-	const FUnitDescription* SelectedUnitDescription;
+	UPROPERTY()
+	UUnitDescription* SelectedUnitDescription;
 
 	UPROPERTY()
 	UBuildingDescription* SelectedBuildingDescription;

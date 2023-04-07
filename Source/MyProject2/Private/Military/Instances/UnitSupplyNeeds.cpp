@@ -2,13 +2,10 @@
 
 #include "Economics/Managers/GoodsManager.h"
 
-void UUnitSupplyNeeds::Init(const TMap<FName, int32>& EquipmentRequirements)
+void UUnitSupplyNeeds::Init(const TMap<UGoodDescription*, int32>& EquipmentRequirements)
 {
-	const UGoodsManager* GoodsManager = GetWorld()->GetGameInstance()->GetSubsystem<UGoodsManager>();
-	
-	for (const auto& [GoodName, Requirement]: EquipmentRequirements)
+	for (const auto& [Good, Requirement]: EquipmentRequirements)
 	{
-		UGoodDescription* Good = GoodsManager->GetGoodDescription(GoodName); 
 		Needs.Add(Good, Requirement);
 		Requirements.Add(Good, Requirement);
 	}

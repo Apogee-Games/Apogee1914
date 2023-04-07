@@ -92,7 +92,6 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UBuildingManager>()->SetScenario(ActiveScenario);
 	
 	GetSubsystem<UUnitsFactory>()->SetScenario(ActiveScenario);
-	GetSubsystem<UUnitsFactory>()->SetScenario(ActiveScenario);
 	GetSubsystem<UUnitsRenderer>()->SetScenario(ActiveScenario);
 	GetSubsystem<UUnitsMover>()->SetScenario(ActiveScenario);
 	GetSubsystem<UCommandersManager>()->SetScenario(ActiveScenario);

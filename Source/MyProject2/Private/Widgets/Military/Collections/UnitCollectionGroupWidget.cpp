@@ -1,6 +1,7 @@
 #include "Widgets/Military/Collections/UnitCollectionGroupWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/CommanderSelectionPawnState.h"
+#include "Military/Descriptions/MilitaryBranchDescription.h"
 
 void UUnitCollectionGroupWidget::NativeConstruct()
 {
@@ -23,8 +24,7 @@ void UUnitCollectionGroupWidget::RefreshData()
 		UnitsCollectionsListView->AddItem(UnitsCollection);
 	}
 	
-	const FName MilitaryBranchName = MilitaryBranchesNames[static_cast<int>(UnitsCollectionGroup->GetMilitaryBranch())];
-	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
+	MilitaryBranchTextBlock->SetText(UnitsCollectionGroup->GetMilitaryBranch()->Name);
 	
 	CollectionGroupSizeTextBlock->SetText(FText::FromString(FString::FromInt(UnitsCollectionGroup->GetSize())));
 

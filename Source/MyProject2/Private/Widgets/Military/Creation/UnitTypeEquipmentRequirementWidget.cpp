@@ -8,6 +8,6 @@ void UUnitTypeEquipmentRequirementWidget::SetCarrier(UObject* ProvidedCarrier)
 
 void UUnitTypeEquipmentRequirementWidget::RefreshData()
 {
-	GoodNameTextBlock->SetText(FText::FromName(Carrier->GetGoodName()));
+	GoodNameTextBlock->SetText(Carrier->GetGoodName());
 	AmountTextBlock->SetText(FText::FromString(FString::FromInt(Carrier->GetRequirement())));
 }

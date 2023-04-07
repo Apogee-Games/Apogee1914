@@ -22,8 +22,8 @@ public:
 
 	void Init();
 	
-	void SetSelections(const TArray<FUnitsSelection>& Selections);
+	void SetSelections(const TMap<UMilitaryBranchDescription*, FUnitsSelection>& Selections);
 private:
 	UPROPERTY()
-	TArray<USelectedMilitaryBranchUnitsListWidget*> MilitaryBranchUnitsListWidgets;
+	TMap<UMilitaryBranchDescription*, USelectedMilitaryBranchUnitsListWidget*> MilitaryBranchUnitsListWidgets;
 };

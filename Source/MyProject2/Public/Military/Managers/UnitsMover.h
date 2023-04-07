@@ -29,7 +29,7 @@ public:
 
 	virtual void MoveUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups, UProvince* To);
 
-	virtual void MoveUnits(const TArray<FUnitsSelection>& Selections, UProvince* To);
+	virtual void MoveUnits(const TMap<UMilitaryBranchDescription*, FUnitsSelection>& Selections, UProvince* To);
 	
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 

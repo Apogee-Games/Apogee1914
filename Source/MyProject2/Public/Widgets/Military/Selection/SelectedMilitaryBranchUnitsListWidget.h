@@ -34,11 +34,12 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UExpandableArea* MilitaryBranchExpandableArea;
 	
-	void Init(EMilitaryBranch ProvidedMilitaryBranch);
+	void Init(UMilitaryBranchDescription* ProvidedMilitaryBranch);
 	
 	void SetSelection(const FUnitsSelection& Selection);
 private:
-	EMilitaryBranch MilitaryBranch;
+	UPROPERTY()
+	UMilitaryBranchDescription* MilitaryBranch;
 	
 	void AddUnits(const FUnitsSelection& Selection);
 
