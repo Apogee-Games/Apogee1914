@@ -9,6 +9,7 @@ void UUnitsSupplyListWidget::Init()
 {
 	Country = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 }
 
 void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
@@ -19,4 +20,10 @@ void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
 	}
 }
 
-// TODO: Add OnUnitRemove :)
+void UUnitsSupplyListWidget::UnitIsRemoved(UUnit* Unit)
+{
+	if (Country == Unit->GetCountryOwner())
+	{
+		UnitsListView->RemoveItem(Unit);
+	}
+}
