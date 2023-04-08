@@ -10,7 +10,7 @@ void UCountryManagementWidget::NativeConstruct()
 	RulerImage->SetBrushResourceObject(Country->GetRuler()->GetImage());
 	RulerNameTextBlock->SetText(Country->GetRuler()->GetPersonName());
 
-	IdeologyNameTextBlock->SetText(Country->GetIdeology()->GetName());
+	IdeologyNameTextBlock->SetText(Country->GetIdeology()->Name);
 	
 	UParliament* FirstChamberParliament = Country->GetFirstChamber();
 	

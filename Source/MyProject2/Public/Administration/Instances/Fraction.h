@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "Ideology.h"
 #include "Administration/Descriptions/FractionDescription.h"
+#include "Administration/Descriptions/IdeologyDescription.h"
 #include "Fraction.generated.h"
 
 UCLASS()
@@ -10,14 +10,14 @@ class UFraction: public UObject
 public:
 	void Init(const FFractionDescription& ProvidedFractionDescription);
 
-	UIdeology* GetIdeology() const;
+	UIdeologyDescription* GetIdeology() const;
 
 	const FText& GetFractionName() const;
 
 	int32 GetMembersNumber() const;
 private:
 	UPROPERTY()
-	UIdeology* Ideology;
+	UIdeologyDescription* Ideology;
 
 	FText FractionName;
 

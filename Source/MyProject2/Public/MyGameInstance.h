@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "InGameTime.h"
 #include "Scenario.h"
-#include "Administration/Managers/IdeologyManager.h"
 #include "Administration/Managers/LawsManager.h"
 #include "Administration/Managers/StateManager.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
@@ -75,9 +74,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly);
 	TSubclassOf<UEventInstancesController> EventInstancesControllerClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UIdeologyManager> IdeologyManagerClass;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UCountriesManager> CountriesManagerClass;
 

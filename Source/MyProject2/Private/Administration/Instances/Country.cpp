@@ -1,8 +1,6 @@
 #include "Administration/Instances/Country.h"
 
-#include "Administration/Managers/IdeologyManager.h"
 #include "People/Managers/PeopleManager.h"
-#include "Utils/TextureUtils.h"
 
 void UCountry::Init(UCountryDescription* ProvidedCountryDescription)
 {
@@ -17,14 +15,14 @@ void UCountry::Init(UCountryDescription* ProvidedCountryDescription)
 		SecondChamberParliament->Init(ProvidedCountryDescription->SecondChamber);
 	}
 	
-	for (const auto IdeologyDescription: ProvidedCountryDescription->Ideologies)
+	for (const auto& IdeologyDescription: ProvidedCountryDescription->Ideologies)
 	{
-		Ideologies.Add(IdeologyDescription.Tag, IdeologyDescription);
+		IdeologiesParameters.Add(IdeologyDescription.Ideology, IdeologyDescription);
 	}
 	
 	Tag = ProvidedCountryDescription->Tag;
 	
-	SetIdeology(ProvidedCountryDescription->IdeologyTag);
+	SetIdeology(ProvidedCountryDescription->CurrentIdeology);
 	
 	InitStrata();
 
@@ -39,12 +37,12 @@ UCountryDescription* UCountry::GetId() const
 
 const FColor& UCountry::GetColor() const
 {
-	return Ideologies[Ideology->GetTag()].Color;
+	return IdeologiesParameters[Ideology].Color;
 }
 
-const FName& UCountry::GetName() const
+const FText& UCountry::GetName() const
 {
-	return Ideologies[Ideology->GetTag()].Name;
+	return IdeologiesParameters[Ideology].Name;
 }
 
 const FName& UCountry::GetTag() const
@@ -54,8 +52,7 @@ const FName& UCountry::GetTag() const
 
 UTexture2D* UCountry::GetFlag()
 {
-	if (!Flag) LoadFlag();
-	return Flag;
+	return IdeologiesParameters[Ideology].Flag;
 }
 
 UStorage* UCountry::GetStorage() const
@@ -63,21 +60,16 @@ UStorage* UCountry::GetStorage() const
 	return Storage;
 }
 
-void UCountry::SetIdeology(const FName& ProvidedIdeologyTag)
+void UCountry::SetIdeology(UIdeologyDescription* ProvidedIdeology)
 {
-	Ideology = GetWorld()->GetGameInstance()->GetSubsystem<UIdeologyManager>()->GetIdeology(ProvidedIdeologyTag);
-	
-	UPeopleManager* PeopleManager = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>();
-	Ruler = PeopleManager->GetPerson(Ideologies[Ideology->GetTag()].RulerId);
-	
-	LoadFlag();
+	Ideology = ProvidedIdeology;
+	Ruler = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPerson(IdeologiesParameters[ProvidedIdeology].Ruler);
 }
 
 UPerson* UCountry::GetRuler() const
 {
 	return Ruler;
 }
-
 
 TArray<UStorage*> UCountry::GetStorages() const
 {
@@ -211,7 +203,7 @@ UParliament* UCountry::GetSecondChamber() const
 	return SecondChamberParliament;
 }
 
-UIdeology* UCountry::GetIdeology() const
+UIdeologyDescription* UCountry::GetIdeology() const
 {
 	return Ideology;
 }
@@ -254,9 +246,4 @@ void UCountry::InitStrata()
 	UpperStrata = NewObject<UStrata>(this);
 	UpperStrata->Init("UPPER");
 	// TODO: Add proper initialization 
-}
-
-void UCountry::LoadFlag() 
-{
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + Ideology->GetTag().ToString());
 }

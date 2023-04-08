@@ -19,13 +19,13 @@ public:
 	
 	const FColor& GetColor() const;
 
-	const FName& GetName() const;
+	const FText& GetName() const;
 
 	const FName& GetTag() const;
 
 	UTexture2D* GetFlag();
 
-	void SetIdeology(const FName& ProvidedIdeologyTag);
+	void SetIdeology(UIdeologyDescription* ProvidedIdeology);
 
 	UPerson* GetRuler() const;
 
@@ -84,7 +84,7 @@ public:
 
 	UParliament* GetSecondChamber() const;
 
-	UIdeology* GetIdeology() const;
+	UIdeologyDescription* GetIdeology() const;
 
 	void SetIsNonAligned(bool IsNonAligned);
 
@@ -106,10 +106,10 @@ private:
 	FColor Color;
 
 	UPROPERTY()
-	UIdeology* Ideology;
+	UIdeologyDescription* Ideology;
 
 	UPROPERTY()
-	TMap<FName, FCountryIdeologyParameters> Ideologies;
+	TMap<UIdeologyDescription*, FCountryIdeologyParameters> IdeologiesParameters;
 	
 	UPROPERTY()
 	UTexture2D* Flag = nullptr;
@@ -152,8 +152,6 @@ private:
 	bool bIsNonAligned = false;
 	
 	void InitStrata();
-
-	void LoadFlag();
 
 	inline static int32 CanDeclareWarList = 0b00001;
 	inline static int32 CanCreateNonAggressionPactList = 0b00001;

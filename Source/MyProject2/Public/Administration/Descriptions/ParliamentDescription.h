@@ -9,7 +9,7 @@ struct FParliamentDescription: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly)
-	FText ParliamentName;
+	FText Name;
 	
 	UPROPERTY(EditDefaultsOnly)
 	TArray<FFractionDescription> Fractions;

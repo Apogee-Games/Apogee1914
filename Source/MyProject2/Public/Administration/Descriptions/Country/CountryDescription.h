@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "CountryIdeologyParameters.h"
+#include "Administration/Descriptions/IdeologyDescription.h"
 #include "Administration/Descriptions/ParliamentDescription.h"
 #include "Engine/DataTable.h"
 #include "CountryDescription.generated.h"
@@ -13,7 +14,7 @@ public:
 	FName Tag;
 
 	UPROPERTY(EditDefaultsOnly)
-	FName IdeologyTag;
+	UIdeologyDescription* CurrentIdeology;
 	
 	UPROPERTY(EditDefaultsOnly)
 	TArray<FCountryIdeologyParameters> Ideologies;

@@ -3,6 +3,7 @@
 
 #include "Widgets/Administration/ProvinceDataWidget.h"
 
+#include "Administration/Instances/Country.h"
 #include "Administration/Instances/State.h"
 #include "Administration/Managers/StateManager.h"
 
@@ -62,7 +63,7 @@ void UProvinceDataWidget::SetState(UProvince* Province) const
 
 void UProvinceDataWidget::SetCountries(UProvince* Province) const
 {
-	CountryOwnerNameTextBlock->SetText(FText::FromName(Province->GetOwnerCountry()->GetName()));
+	CountryOwnerNameTextBlock->SetText(Province->GetOwnerCountry()->GetName());
 	CountryOwnerFlagImage->SetBrushResourceObject(Province->GetOwnerCountry()->GetFlag());
 
 	if (Province->GetOwnerCountry() == Province->GetCountryController())
@@ -71,7 +72,7 @@ void UProvinceDataWidget::SetCountries(UProvince* Province) const
 	} else
 	{
 		ControllerCanvasPanel->SetVisibility(ESlateVisibility::Visible);
-		CountryControllerNameTextBlock->SetText(FText::FromName(Province->GetCountryController()->GetName()));
+		CountryControllerNameTextBlock->SetText(Province->GetCountryController()->GetName());
 		CountryControllerFlagImage->SetBrushResourceObject(Province->GetCountryController()->GetFlag());
 	}
 }

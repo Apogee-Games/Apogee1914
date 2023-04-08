@@ -22,7 +22,7 @@ void UIdeologiesMap::UpdateMap()
 	
 	for (const auto& Province: Provinces)
 	{
-		FColor Color = Province->GetCountryController()->GetIdeology()->GetColor();
+		FColor Color = Province->GetCountryController()->GetIdeology()->Color;
 		for (const auto& Position: ProvincesMap->GetProvincePositions(Province->GetId()))
 		{
 			Colors[Position] = Color;

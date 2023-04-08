@@ -8,6 +8,6 @@ void UFractionWidget::SetFraction(UObject* ProvidedFraction)
 void UFractionWidget::RefreshData()
 {
 	FractionNameTextBlock->SetText(Fraction->GetFractionName());
-	FractionNameTextBlock->SetColorAndOpacity(Fraction->GetIdeology()->GetColor());
+	FractionNameTextBlock->SetColorAndOpacity(Fraction->GetIdeology()->Color);
 	MembersNumberTextBlock->SetText(FText::FromString(FString::FromInt(Fraction->GetMembersNumber())));
 }

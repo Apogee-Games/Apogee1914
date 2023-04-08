@@ -15,7 +15,7 @@ void UInvitationalCountryWidget::SetCountry(UObject* ProvidedCountry)
 void UInvitationalCountryWidget::RefreshData()
 {
 	CountryFlag->SetBrushResourceObject(Country->GetFlag());
-	CountryNameTextBlock->SetText(FText::FromName(Country->GetName()));
+	CountryNameTextBlock->SetText(Country->GetName());
 }
 
 void UInvitationalCountryWidget::OnButtonClick()

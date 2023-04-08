@@ -13,10 +13,10 @@ public:
 
 	const FText& GetName() const;
 	
-	const TMap<FName, UFraction*>& GetFractionsMap() const;
+	const TMap<UIdeologyDescription*, UFraction*>& GetFractionsMap() const;
 private:
-	FText ParliamentName;
+	FText Name;
 	
 	UPROPERTY()
-	TMap<FName, UFraction*> Fractions;
+	TMap<UIdeologyDescription*, UFraction*> Fractions;
 };

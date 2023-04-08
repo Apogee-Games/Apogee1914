@@ -64,8 +64,6 @@ void UMyGameInstance::InitializeActiveScenario()
 	
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 
-	GetSubsystem<UIdeologyManager>()->SetScenario(ActiveScenario);
-	
 	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Administration/Descriptions/IdeologyDescription.h"
 #include "Engine/DataTable.h"
 #include "People/Description/PersonDescription.h"
 #include "CountryIdeologyParameters.generated.h"
@@ -9,14 +10,17 @@ struct FCountryIdeologyParameters: public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly)
-	FName Tag;
+	UIdeologyDescription* Ideology;
 	
 	UPROPERTY(EditDefaultsOnly)
-	FName Name;
+	FText Name;
 
 	UPROPERTY(EditDefaultsOnly)
 	FColor Color;
 
 	UPROPERTY(EditDefaultsOnly)
-	UPersonDescription* RulerId;
+	UPersonDescription* Ruler;
+
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* Flag;
 };

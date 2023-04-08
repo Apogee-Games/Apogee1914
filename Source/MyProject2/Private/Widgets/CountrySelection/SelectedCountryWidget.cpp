@@ -3,7 +3,7 @@
 void USelectedCountryWidget::SetCountry(UCountry* Country)
 {
 	CountryFlagImage->SetBrushResourceObject(Country->GetFlag());
-	CountryNameTextBlock->SetText(FText::FromName(Country->GetName()));
+	CountryNameTextBlock->SetText(Country->GetName());
 
 	UPerson* Ruler = Country->GetRuler();
 
