@@ -25,8 +25,16 @@ void UProvince::Init(FProvinceDescription* ProvinceDescription, const UDataTable
 
 	Population->Init(ProvinceDescription->Population);
 
-	ControllerCountry->AddProvince(this);
-	
+	if (ControllerCountry)
+	{
+		ControllerCountry->AddProvince(this);
+	} else
+	{
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, FString::Printf(TEXT("No Country %s"), *ProvinceDescription->CountryTag.ToString()));
+		}
+	}
 	// Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
 	
 	// for(const auto& FactoryInstanceDescription : ProvinceDescription->Factories)

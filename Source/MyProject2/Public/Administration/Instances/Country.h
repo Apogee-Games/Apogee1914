@@ -1,7 +1,6 @@
 #pragma once
 #include "Parliament.h"
 #include "Province.h"
-#include "Administration/Descriptions/CountryDescription.h"
 #include "Administration/Descriptions/ParliamentDescription.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "Economics/Instances/Market.h"
@@ -14,7 +13,7 @@ class UCountry: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(FCountryDescription* CountryDescription, FParliamentDescription* FirstChamber, FParliamentDescription* SecondChamber);
+	void Init(UCountryDescription* CountryDescription);
 
 	const FColor& GetColor() const;
 

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Administration/Descriptions/Country/CountryDescription.h"
 #include "Administration/Descriptions/Law/LawsGroup.h"
 #include "Economics/Description/ResourceDescription.h"
 #include "Economics/Description/Buildings/BuildingDescription.h"
@@ -17,7 +18,7 @@ public:
 	FName ScenarioName;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* CountryDescriptionDataTable;
+	TArray<UCountryDescription*> CountryDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* ProvinceDescriptionDataTable;
@@ -51,9 +52,6 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* PeoplesDescriptionsDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* ParliamentsDescriptionsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* IdeologyDescriptionsDataTable;

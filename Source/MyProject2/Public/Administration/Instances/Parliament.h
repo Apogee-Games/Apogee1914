@@ -9,7 +9,7 @@ class UParliament: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(FParliamentDescription* Description);
+	void Init(const FParliamentDescription& Description);
 
 	const FText& GetName() const;
 	

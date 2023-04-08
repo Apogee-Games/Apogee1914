@@ -7,15 +7,15 @@ struct FCountryIdeologyParameters: public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FName IdeologyTag;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FName CountryName;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FColor CountryColor;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FName RulerId;
 };

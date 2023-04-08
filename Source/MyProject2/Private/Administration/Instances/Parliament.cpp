@@ -1,9 +1,9 @@
 ﻿#include "Administration/Instances/Parliament.h"
 
-void UParliament::Init(FParliamentDescription* Description)
+void UParliament::Init(const FParliamentDescription& Description)
 {
-	ParliamentName = Description->ParliamentName;
-	for (auto& FractionDescription: Description->Fractions)
+	ParliamentName = Description.ParliamentName;
+	for (auto& FractionDescription: Description.Fractions)
 	{
 		UFraction* Fraction = NewObject<UFraction>(this);
 		Fraction->Init(FractionDescription);

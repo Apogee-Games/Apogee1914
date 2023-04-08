@@ -4,28 +4,26 @@
 #include "People/Managers/PeopleManager.h"
 #include "Utils/TextureUtils.h"
 
-void UCountry::Init(FCountryDescription* CountryDescription, FParliamentDescription* FirstChamber, FParliamentDescription* SecondChamber)
+void UCountry::Init(UCountryDescription* Description)
 {
-
-	if (FirstChamber) {
+	if (Description->HasFirstChamber || Description->HasTwoChambers) {
 		FirstChamberParliament = NewObject<UParliament>(this);
-		FirstChamberParliament->Init(FirstChamber);
+		FirstChamberParliament->Init(Description->FirstChamber);
 	}
 	
-	if (SecondChamber) {
+	if (Description->HasTwoChambers) {
 		SecondChamberParliament = NewObject<UParliament>(this);
-		SecondChamberParliament->Init(FirstChamber);
+		SecondChamberParliament->Init(Description->SecondChamber);
 	}
 	
-	
-	for (const auto IdeologyDescription: CountryDescription->Ideologies)
+	for (const auto IdeologyDescription: Description->Ideologies)
 	{
 		Ideologies.Add(IdeologyDescription.IdeologyTag, IdeologyDescription);
 	}
 	
-	Tag = CountryDescription->Tag;
+	Tag = Description->Tag;
 	
-	SetIdeology(CountryDescription->IdeologyTag);
+	SetIdeology(Description->IdeologyTag);
 	
 	InitStrata();
 

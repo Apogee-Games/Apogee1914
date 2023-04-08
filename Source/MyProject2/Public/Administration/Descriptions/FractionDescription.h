@@ -7,12 +7,12 @@ struct FFractionDescription: public FTableRowBase
 {
 	GENERATED_BODY()
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FName IdeologyTag;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText FractionName;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	int32 MembersNumber;
 };
