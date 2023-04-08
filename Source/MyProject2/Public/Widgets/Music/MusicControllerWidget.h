@@ -5,6 +5,7 @@
 #include "Components/TextBlock.h"
 #include "Components/WidgetSwitcher.h"
 #include "Music/Description/SongDescription.h"
+#include "Music/Description/SongsGroup.h"
 #include "MusicControllerWidget.generated.h"
 
 class USongsGroupWidget;
@@ -36,15 +37,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<USongsGroupWidget> SongsGroupWidgetClass; 
 	
-	virtual void NativeConstruct() override;
+	void Init(const TArray<USongsGroup*>& SongsGroups);
 	
-	void AddSong(FSongDescription* SongDescription);
-
 	void Select(USongDescriptionWidget* SongDescriptionWidget);
 private:
-	UPROPERTY()
-	TMap<FName, USongsGroupWidget*> Groups;
-	
 	FTimerHandle TimerHandle;
 
 	bool IsPaused = true;

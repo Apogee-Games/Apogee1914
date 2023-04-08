@@ -4,26 +4,19 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Widgets/Music/SongsGroupWidget.h"
 
-void UMusicControllerWidget::NativeConstruct()
+void UMusicControllerWidget::Init(const TArray<USongsGroup*>& SongsGroups)
 {
-	Super::NativeConstruct();
-	
 	PlayMusicButton->OnClicked.AddDynamic(this, &UMusicControllerWidget::OnPlayMusicButton);
 	ViewMusicListButton->OnClicked.AddDynamic(this, &UMusicControllerWidget::OnViewMusicListButtonClick);
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UMusicControllerWidget::UpdateProgress,1, true);
-}
 
-void UMusicControllerWidget::AddSong(FSongDescription* SongDescription)
-{
-	if (!Groups.Contains(SongDescription->Group))
+	for (const auto& Group: SongsGroups)
 	{
 		USongsGroupWidget* SongsGroupWidget = CreateWidget<USongsGroupWidget>(GetOwningPlayer(), SongsGroupWidgetClass);
-		SongsGroupWidget->Init(SongDescription->Group, this);
-		Groups.Add(SongDescription->Group, SongsGroupWidget);
+		SongsGroupWidget->Init(Group, this);
 		SongsGroupsScrollBox->AddChild(SongsGroupWidget);
 	}
-	Groups[SongDescription->Group]->AddSong(SongDescription);
 }
 
 void UMusicControllerWidget::Select(USongDescriptionWidget* SongDescriptionWidget)
@@ -37,14 +30,12 @@ void UMusicControllerWidget::Select(USongDescriptionWidget* SongDescriptionWidge
 
 	SelectedSong->Select();
 
-	CurrentSongNameTextBlock->SetText(SelectedSong->GetSongDescription()->SongName);
-
-	Song = LoadObject<USoundBase>(this, *SelectedSong->GetSongDescription()->Path);
+	CurrentSongNameTextBlock->SetText(SelectedSong->GetSongDescription()->Name);
 	
 	CurrentProgress = 0;
 	IsPaused = false;
 	
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->Play(Song);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->Play(SelectedSong->GetSongDescription()->Song);
 }
 
 void UMusicControllerWidget::OnViewMusicListButtonClick()

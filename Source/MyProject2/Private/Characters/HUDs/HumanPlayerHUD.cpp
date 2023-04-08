@@ -436,12 +436,11 @@ void AHumanPlayerHUD::InitMusicControllerWidget()
 	if (MusicControllerWidgetClass)
 	{
 		MusicControllerWidget = CreateWidget<UMusicControllerWidget>(GetOwningPlayerController(), MusicControllerWidgetClass);
-		UDataTable* SongsDescriptionsDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->SongsDescriptionsDataTable;
-		for (const auto& [Name, SongDescription]: SongsDescriptionsDataTable->GetRowMap())
+		if (MusicControllerWidget)
 		{
-			MusicControllerWidget->AddSong(reinterpret_cast<FSongDescription*>(SongDescription));
+			MusicControllerWidget->Init(GetGameInstance<UMyGameInstance>()->ActiveScenario->SongsGroups);
+			MusicControllerWidget->AddToPlayerScreen(1);
 		}
-		MusicControllerWidget->AddToPlayerScreen(1);
 	}
 }
 

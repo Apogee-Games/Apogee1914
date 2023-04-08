@@ -7,6 +7,7 @@
 #include "Engine/DataTable.h"
 #include "Events/Description/EventDescription.h"
 #include "Military/Descriptions/UnitDescription.h"
+#include "Music/Description/SongsGroup.h"
 #include "People/Description/CountryPeople.h"
 #include "People/Description/PersonDescription.h"
 #include "Scenario.generated.h"
@@ -62,8 +63,8 @@ public:
 	TArray<ULawsGroup*> LawsGroups;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* SongsDescriptionsDataTable;
-
+	TArray<USongsGroup*> SongsGroups;
+	
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
 

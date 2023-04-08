@@ -2,29 +2,23 @@
 #include "Engine/DataTable.h"
 #include "SongDescription.generated.h"
 
-USTRUCT()
-struct FSongDescription: public FTableRowBase
+UCLASS()
+class USongDescription: public UPrimaryDataAsset
 {
 	GENERATED_BODY()
-	
-	UPROPERTY()
-	FText SongName;
+public:
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText WrittenBy;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText SungBy;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText Description;
 
-	UPROPERTY()
-	FString Path;
-
-	UPROPERTY()
-	FName Group;
-
-	UPROPERTY()
-	FName Subgroup;
+	UPROPERTY(EditDefaultsOnly)
+	USoundBase* Song;
 };

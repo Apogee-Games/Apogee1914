@@ -19,13 +19,8 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* GroupNameTextBlock;
 	
-	void Init(FName GroupName, UMusicControllerWidget* ProvidedMusicControllerWidget);
-	
-	void AddSong(FSongDescription* SongDescription);
+	void Init(USongsGroup* SongsGroup, UMusicControllerWidget* ProvidedMusicControllerWidget);
 private:
 	UPROPERTY()
 	UMusicControllerWidget* MusicControllerWidget;
-	
-	UPROPERTY()
-	TMap<FName, USongsSubgroupWidget*> Subgroups;
 };
