@@ -8,7 +8,7 @@ void USelectedCountryWidget::SetCountry(UCountry* Country)
 	UPerson* Ruler = Country->GetRuler();
 
 	RulerImage->SetBrushResourceObject(Ruler->GetImage());
-	RulerNameTextBlock->SetText(FText::FromName(Ruler->GetPersonName()));
+	RulerNameTextBlock->SetText(Ruler->GetPersonName());
 
 	//RulingFractionNameTextBlock->SetText(FText::FromName(Country->))
 }

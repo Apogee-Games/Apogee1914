@@ -7,6 +7,8 @@
 #include "Engine/DataTable.h"
 #include "Events/Description/EventDescription.h"
 #include "Military/Descriptions/UnitDescription.h"
+#include "People/Description/CountryPeople.h"
+#include "People/Description/PersonDescription.h"
 #include "Scenario.generated.h"
 
 UCLASS()
@@ -51,7 +53,7 @@ public:
 	TArray<UEventDescription*> Events;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* PeoplesDescriptionsDataTable;
+	TMap<UCountryDescription*, UCountryPeople*> PeopleDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* IdeologyDescriptionsDataTable;

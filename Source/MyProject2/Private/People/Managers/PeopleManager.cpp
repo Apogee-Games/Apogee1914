@@ -6,24 +6,21 @@ void UPeopleManager::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-UPerson* UPeopleManager::GetPerson(const FName& PersonId) const
+UPerson* UPeopleManager::GetPerson(UPersonDescription* PersonDescription) const
 {
-	return People.Contains(PersonId) ? People[PersonId] : nullptr;
+	return People.Contains(PersonDescription) ? People[PersonDescription] : nullptr;
 }
 
-const TArray<UPerson*>& UPeopleManager::GetPeopleByProfession(const FName& Profession, const FName& CountryTag)
+const TArray<UPerson*>& UPeopleManager::GetPeopleByProfession(UProfessionDescription* Profession, UCountryDescription* Country)
 {
-	if (!CountryProfessionPeople.Contains(CountryTag))
+	if (!CountryProfessionPeople.Contains(Country))
 	{
-		CountryProfessionPeople.Add(CountryTag, {
-			                            {CountryTag, {}}
-		                            });
-	}
-	if (!CountryProfessionPeople[CountryTag].Contains(Profession))
+		CountryProfessionPeople.Add(Country, {});
+	} else if (!CountryProfessionPeople[Country].Contains(Profession))
 	{
-		CountryProfessionPeople[CountryTag].Add(Profession, {});
+		CountryProfessionPeople[Country].Add(Profession, {});
 	}
-	return CountryProfessionPeople[CountryTag][Profession];
+	return CountryProfessionPeople[Country][Profession];
 }
 
 void UPeopleManager::Clear()
@@ -39,29 +36,22 @@ void UPeopleManager::Clear()
 
 void UPeopleManager::Init(UScenario* Scenario)
 {
-	UDataTable* PeoplesDescriptions = Scenario->PeoplesDescriptionsDataTable;
-
-	for (const auto& [Id, Description] : PeoplesDescriptions->GetRowMap())
+	for (const auto& [Country, CountryPeopleDescriptions]: Scenario->PeopleDescriptions)
 	{
-		FPersonDescription* CastedDescription = reinterpret_cast<FPersonDescription*>(Description);
-
-		UPerson* Person = NewObject<UPerson>(this);
-		Person->Init(Id, CastedDescription);
-
-		People.Add(Person->GetId(), Person);
-
-		if (!CountryProfessionPeople.Contains(CastedDescription->CountryTag))
+		TMap<UProfessionDescription*, TArray<UPerson*>> CountryPeople;
+		for (const auto& [Profession, Group]: CountryPeopleDescriptions->ProfessionGroups)
 		{
-			CountryProfessionPeople.Add(CastedDescription->CountryTag, {});
-		}
-
-		for (const auto& ProfessionName : CastedDescription->Professions)
-		{
-			if (!CountryProfessionPeople[CastedDescription->CountryTag].Contains(ProfessionName))
+			TArray<UPerson*> PeopleList;
+			for (const auto& Description: Group->PeopleDescriptions)
 			{
-				CountryProfessionPeople[CastedDescription->CountryTag].Add(ProfessionName, {});
+				if (People.Contains(Description)) continue;
+				UPerson* Person = NewObject<UPerson>(this);
+				Person->Init(Description);
+				People.Add(Description, Person);
+				PeopleList.Add(Person);
 			}
-			CountryProfessionPeople[CastedDescription->CountryTag][ProfessionName].Add(Person);
+			CountryPeople.Add(Profession, PeopleList);
 		}
+		CountryProfessionPeople.Add(Country, CountryPeople);
 	}
 }

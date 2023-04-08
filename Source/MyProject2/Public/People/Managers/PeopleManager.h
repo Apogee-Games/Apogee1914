@@ -11,14 +11,14 @@ class UPeopleManager: public UGameInstanceSubsystem
 public:
 	void SetScenario(UScenario* Scenario);
 
-	UPerson* GetPerson(const FName& PersonId) const;
+	UPerson* GetPerson(UPersonDescription* PersonDescription) const;
 	
-	const TArray<UPerson*>& GetPeopleByProfession(const FName& Profession, const FName& CountryTag);
+	const TArray<UPerson*>& GetPeopleByProfession(UProfessionDescription* Profession, UCountryDescription* Country);
 private:
 	UPROPERTY()
-	TMap<FName, UPerson*> People;
-	
-	TMap<FName, TMap<FName, TArray<UPerson*>>> CountryProfessionPeople;
+	TMap<UPersonDescription*, UPerson*> People;
+
+	TMap<UCountryDescription*, TMap<UProfessionDescription*, TArray<UPerson*>>> CountryProfessionPeople;
 
 	void Clear();
 

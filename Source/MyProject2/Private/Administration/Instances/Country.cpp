@@ -4,26 +4,27 @@
 #include "People/Managers/PeopleManager.h"
 #include "Utils/TextureUtils.h"
 
-void UCountry::Init(UCountryDescription* Description)
+void UCountry::Init(UCountryDescription* ProvidedCountryDescription)
 {
-	if (Description->HasFirstChamber || Description->HasTwoChambers) {
+	CountryDescription = ProvidedCountryDescription;
+	if (ProvidedCountryDescription->HasFirstChamber || ProvidedCountryDescription->HasTwoChambers) {
 		FirstChamberParliament = NewObject<UParliament>(this);
-		FirstChamberParliament->Init(Description->FirstChamber);
+		FirstChamberParliament->Init(ProvidedCountryDescription->FirstChamber);
 	}
 	
-	if (Description->HasTwoChambers) {
+	if (ProvidedCountryDescription->HasTwoChambers) {
 		SecondChamberParliament = NewObject<UParliament>(this);
-		SecondChamberParliament->Init(Description->SecondChamber);
+		SecondChamberParliament->Init(ProvidedCountryDescription->SecondChamber);
 	}
 	
-	for (const auto IdeologyDescription: Description->Ideologies)
+	for (const auto IdeologyDescription: ProvidedCountryDescription->Ideologies)
 	{
-		Ideologies.Add(IdeologyDescription.IdeologyTag, IdeologyDescription);
+		Ideologies.Add(IdeologyDescription.Tag, IdeologyDescription);
 	}
 	
-	Tag = Description->Tag;
+	Tag = ProvidedCountryDescription->Tag;
 	
-	SetIdeology(Description->IdeologyTag);
+	SetIdeology(ProvidedCountryDescription->IdeologyTag);
 	
 	InitStrata();
 
@@ -31,14 +32,19 @@ void UCountry::Init(UCountryDescription* Description)
 	Market = NewObject<UMarket>(this);
 }
 
+UCountryDescription* UCountry::GetId() const
+{
+	return CountryDescription;
+}
+
 const FColor& UCountry::GetColor() const
 {
-	return Ideologies[Ideology->GetTag()].CountryColor;
+	return Ideologies[Ideology->GetTag()].Color;
 }
 
 const FName& UCountry::GetName() const
 {
-	return Ideologies[Ideology->GetTag()].CountryName;
+	return Ideologies[Ideology->GetTag()].Name;
 }
 
 const FName& UCountry::GetTag() const

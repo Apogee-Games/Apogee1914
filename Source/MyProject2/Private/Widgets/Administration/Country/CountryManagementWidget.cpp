@@ -8,7 +8,7 @@ void UCountryManagementWidget::NativeConstruct()
 	UCountry* Country = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 	
 	RulerImage->SetBrushResourceObject(Country->GetRuler()->GetImage());
-	RulerNameTextBlock->SetText(FText::FromName(Country->GetRuler()->GetPersonName()));
+	RulerNameTextBlock->SetText(Country->GetRuler()->GetPersonName());
 
 	IdeologyNameTextBlock->SetText(Country->GetIdeology()->GetName());
 	

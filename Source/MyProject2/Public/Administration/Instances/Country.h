@@ -13,8 +13,10 @@ class UCountry: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(UCountryDescription* CountryDescription);
+	void Init(UCountryDescription* ProvidedCountryDescription);
 
+	UCountryDescription* GetId() const;
+	
 	const FColor& GetColor() const;
 
 	const FName& GetName() const;
@@ -94,6 +96,9 @@ public:
 
 	const TArray<UProvince*>& GetProvinces() const;
 private:
+	UPROPERTY()
+	UCountryDescription* CountryDescription;
+	
 	FName Name;
 
 	FName Tag;

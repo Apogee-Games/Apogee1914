@@ -35,7 +35,7 @@ void USelectedUnitsCollectionWidget::RefreshData()
 	if (Commander)
 	{
 		CommanderImage->SetBrushResourceObject(Commander->GetImage());
-		CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+		CommanderNameTextBlock->SetText(Commander->GetPersonName());
 	} else
 	{
 		CommanderImage->SetBrushResourceObject(nullptr);

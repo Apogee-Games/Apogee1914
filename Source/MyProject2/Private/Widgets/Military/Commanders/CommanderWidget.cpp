@@ -17,7 +17,7 @@ void UCommanderWidget::RefreshData()
 
 	AgeTextBlock->SetText(FText::FromString(FString::FromInt(Commander->GetAge())));
 	
-	NameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+	NameTextBlock->SetText(Commander->GetPersonName());
 }
 
 void UCommanderWidget::NativeConstruct()

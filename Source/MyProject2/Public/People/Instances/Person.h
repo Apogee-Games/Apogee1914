@@ -8,25 +8,22 @@ class UPerson : public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const FName& ProvidedId, const FPersonDescription* Description);
+	void Init(UPersonDescription* Description);
 
-	const FName& GetId() const;
-	
 	int32 GetAge() const;
 
-	FName GetPersonName() const;
+	const FText& GetPersonName() const;
 
-	const TArray<FName>& GetProfessions() const;
+	const TArray<UProfessionDescription*>& GetProfessions() const;
 
 	UTexture2D* GetImage() const;
 private:
-	FName Id;
-	
 	FDateTime DateOfBirth;
 
-	FName PersonName;
+	FText Name;
 
-	TArray<FName> Professions;
+	UPROPERTY()
+	TArray<UProfessionDescription*> Professions;
 
 	UPROPERTY()
 	UTexture2D* Image;

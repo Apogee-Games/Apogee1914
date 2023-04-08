@@ -294,12 +294,7 @@ void AHumanPlayerHUD::InitCommanderListWidget()
 		CommanderListWidget = CreateWidget<UCommanderListWidget>(GetOwningPlayerController(), CommanderListWidgetClass);
 		if (CommanderListWidget)
 		{
-			FName CountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
-			const TArray<UPerson*> People = GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPeopleByProfession(TEXT("Commander"), CountryTag);
-			for (const auto& Person: People)
-			{
-				CommanderListWidget->AddCommander(Person);		
-			}
+			CommanderListWidget->Init();
 			Widgets.Add(CommanderListWidget);
 		}	
 	}
