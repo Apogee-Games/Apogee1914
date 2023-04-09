@@ -14,16 +14,16 @@ const TArray<ULawsGroup*>& ULawsManager::GetCommonLaws() const
 
 const TArray<ULawsGroup*>& ULawsManager::GetCountrySpecificLaw(UCountry* Country)
 {
-	return GetCountrySpecificLaw(Country->GetTag());
+	return GetCountrySpecificLaw(Country->GetId());
 }
 
-const TArray<ULawsGroup*>& ULawsManager::GetCountrySpecificLaw(const FName& CountryTag)
+const TArray<ULawsGroup*>& ULawsManager::GetCountrySpecificLaw(UCountryDescription* CountryDescription)
 {
-	if (!CountrySpecificLawsGroups.Contains(CountryTag))
+	if (!CountrySpecificLawsGroups.Contains(CountryDescription))
 	{
-		CountrySpecificLawsGroups.Add(CountryTag, {});
+		CountrySpecificLawsGroups.Add(CountryDescription, {});
 	}
-	return CountrySpecificLawsGroups[CountryTag];
+	return CountrySpecificLawsGroups[CountryDescription];
 }
 
 
@@ -43,13 +43,13 @@ void ULawsManager::Init(UScenario* Scenario)
 			continue;
 		}
 		
-		for (const auto& CountryTag: LawsGroup->CountriesConditions.CountriesTags)
+		for (const auto& CountryDescription: LawsGroup->CountriesConditions.CountriesTags)
 		{
-			if (!CountrySpecificLawsGroups.Contains(CountryTag))
+			if (!CountrySpecificLawsGroups.Contains(CountryDescription))
 			{
-				CountrySpecificLawsGroups.Add(CountryTag, {});
+				CountrySpecificLawsGroups.Add(CountryDescription, {});
 			}
-			CountrySpecificLawsGroups[CountryTag].Add(LawsGroup);
+			CountrySpecificLawsGroups[CountryDescription].Add(LawsGroup);
 		}
 	}
 }

@@ -16,12 +16,12 @@ public:
 
 	const TArray<ULawsGroup*>& GetCountrySpecificLaw(UCountry* Country);
 
-	const TArray<ULawsGroup*>& GetCountrySpecificLaw(const FName& CountryTag);
+	const TArray<ULawsGroup*>& GetCountrySpecificLaw(UCountryDescription* CountryDescription);
 private:
 	UPROPERTY()
 	TArray<ULawsGroup*> CommonLawsGroups;
 
-	TMap<FName, TArray<ULawsGroup*>> CountrySpecificLawsGroups;
+	TMap<UCountryDescription*, TArray<ULawsGroup*>> CountrySpecificLawsGroups;
 	
 	void Clear();
 

@@ -10,9 +10,9 @@ void UCountriesManager::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-const TArray<FName>& UCountriesManager::GetCountriesTagsList()
+const TArray<UCountryDescription*>& UCountriesManager::GetCountriesDescriptions()
 {
-	return CountriesTagsList;
+	return CountriesDescriptions;
 }
 
 bool UCountriesManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const
@@ -24,7 +24,7 @@ bool UCountriesManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColo
 
 bool UCountriesManager::ExistsCountryWithSuchProvince(const UProvince* Province) const
 {
-	return Province && Province->GetOwnerCountry() && CountryMap.Contains(Province->GetOwnerCountry()->GetTag());
+	return Province && Province->GetOwnerCountry() && CountryMap.Contains(Province->GetOwnerCountry()->GetId());
 }
 
 bool UCountriesManager::AreProvincesOwnedBySameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
@@ -75,12 +75,12 @@ bool UCountriesManager::AreProvincesControlledByDifferentCountry(const UProvince
 	return !AreProvincesControlledBySameCountry(ProvinceA, ProvinceB);
 }
 
-UCountry* UCountriesManager::GetCountry(const FName& Tag)
+UCountry* UCountriesManager::GetCountry(UCountryDescription* CountryDescription)
 {
-	return CountryMap.Contains(Tag) ? CountryMap[Tag] : nullptr;
+	return CountryMap.Contains(CountryDescription) ? CountryMap[CountryDescription] : nullptr;
 }
 
-const TMap<FName, UCountry*>& UCountriesManager::GetCountryMap() const
+const TMap<UCountryDescription*, UCountry*>& UCountriesManager::GetCountryMap() const
 {
 	return CountryMap;
 }
@@ -92,16 +92,16 @@ void UCountriesManager::Clear()
 		Country->MarkAsGarbage();
 	}
 	CountryMap.Empty();
-	CountriesTagsList.Empty();
+	CountriesDescriptions.Empty();
 }
 
 void UCountriesManager::Init(UScenario* Scenario)
 {
-	for (const auto& Description: Scenario->CountryDescriptions)
+	CountriesDescriptions = Scenario->CountriesDescriptions;
+	for (const auto& Description: Scenario->CountriesDescriptions)
 	{
 		UCountry* Country = NewObject<UCountry>(this);
 		Country->Init(Description); // TODO: Add removal of countries
-		CountryMap.Add(Country->GetTag(), Country);
-		CountriesTagsList.Add(Country->GetTag());
+		CountryMap.Add(Description, Country);
 	}
 }

@@ -8,6 +8,6 @@ FNonAlignedOutcomeApplier::FNonAlignedOutcomeApplier(UCountriesManager* Countrie
 
 void FNonAlignedOutcomeApplier::Apply(const TMap<FName, FString>& Values)
 {
-	UCountry* Country = CountriesManager->GetCountry(FName(Values["Country"]));
-	Country->SetIsNonAligned(UKismetStringLibrary::Conv_StringToInt(Values["IsNonAligned"]) != 0);
+//	UCountry* Country = CountriesManager->GetCountry(FName(Values["Country"]));
+//	Country->SetIsNonAligned(UKismetStringLibrary::Conv_StringToInt(Values["IsNonAligned"]) != 0);
 }

@@ -15,7 +15,7 @@ void UOutcomesApplierSubsystem::RegisterOutcomeApplier(const FName& Name, FOutco
 	OutcomeAppliers.Add(Name, OutcomeApplier);
 }
 
-void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const FName& CountryTag)
+void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, UCountryDescription* CountryDescription)
 {
 	for (auto& Outcome: Outcomes)
 	{
@@ -24,7 +24,7 @@ void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const 
 
 		if (!Outcome.Values.Contains("Country"))
 		{
-			Outcome.Values.Add("Country", CountryTag.ToString());
+			Outcome.Values.Add("Country", CountryDescription->Tag.ToString());
 			AddedCountry = true;
 		}
 

@@ -36,5 +36,5 @@ private:
 	void CreateAIPawns();
 
 	UPROPERTY()
-	TMap<FName, AAIPlayerPawn*> AIPawns;
+	TMap<UCountryDescription*, AAIPlayerPawn*> AIPawns;
 };

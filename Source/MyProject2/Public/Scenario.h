@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include "Administration/Descriptions/CountryProvinces.h"
+#include "Administration/Descriptions/ProvinceDescription.h"
 #include "Administration/Descriptions/Country/CountryDescription.h"
 #include "Administration/Descriptions/Law/LawsGroup.h"
 #include "Economics/Description/ResourceDescription.h"
@@ -9,7 +11,6 @@
 #include "Military/Descriptions/UnitDescription.h"
 #include "Music/Description/SongsGroup.h"
 #include "People/Description/CountryPeople.h"
-#include "People/Description/PersonDescription.h"
 #include "Scenario.generated.h"
 
 UCLASS()
@@ -21,20 +22,17 @@ public:
 	FName ScenarioName;
 	
 	UPROPERTY(EditDefaultsOnly)
-	TArray<UCountryDescription*> CountryDescriptions;
+	TArray<UCountryDescription*> CountriesDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* ProvinceDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* TerrainDescriptionDataTable;
-
+	TMap<UCountryDescription*, UCountryProvinces*> ProvincesDescriptions;
+	
 	UPROPERTY(EditDefaultsOnly)
 	TMap<FName, UResourceDescription*> ResourcesDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* StateDescriptionDataTable;
-
+	TArray<UStateDescription*> StatesDescriptions;
+	
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* StrataDescriptionDataTable;	
 	
@@ -55,9 +53,6 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	TMap<UCountryDescription*, UCountryPeople*> PeopleDescriptions;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* IdeologyDescriptionsDataTable;
 
 	UPROPERTY(EditDefaultsOnly)
 	TArray<ULawsGroup*> LawsGroups;

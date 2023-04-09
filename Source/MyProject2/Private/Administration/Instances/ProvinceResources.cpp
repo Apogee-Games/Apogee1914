@@ -1,6 +1,14 @@
 
 #include "Administration/Instances/ProvinceResources.h"
 
+void UProvinceResources::Init(const TMap<UResourceDescription*, int32>& ProvidedResources)
+{
+	for (const auto& [Resource, Amount]: ProvidedResources)
+	{
+		AddResource(Resource, Amount);
+	}
+}
+
 void UProvinceResources::AddResource(UResourceDescription* ResourceDescription, int32 Amount)
 {
 	if (!ResourceDescription) return;

@@ -1,6 +1,7 @@
 #pragma once
 #include "EditorSubsystem.h"
 #include "Scenario.h"
+#include "Administration/Instances/Country.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Description/EventDescription.h"
 #include "Widgets/Events/EventWidget.h"
@@ -26,16 +27,16 @@ public:
 	
 	void CheckEvents();
 
-	void CreateEvent(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEvent(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription);
 
-	void DeleteEventWidget(UEventDescription* Event, const FName& CountryTag);
+	void DeleteEventWidget(UEventDescription* Event, UCountryDescription* CountryDescription);
 
-	void RegisterChoice(UEventDescription* Event, const FName& ChoiceName, const FName& CountryTag);
+	void RegisterChoice(UEventDescription* Event, const FName& ChoiceName, UCountryDescription* CountryDescription);
 
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
-	TSet<TPair<UEventDescription*, FName>> FiredEvents;
+	TSet<TPair<UEventDescription*, UCountryDescription*>> FiredEvents;
 
 	UPROPERTY()
 	TArray<UEventDescription*> Events;
@@ -43,19 +44,19 @@ private:
 	UPROPERTY()
 	TMap<UEventDescription*, bool> ActiveEvents;
 	
-	TMap<TPair<UEventDescription*, FName>, UEventWidget*> WidgetsInstances;
+	TMap<TPair<UEventDescription*, UCountryDescription*>, UEventWidget*> WidgetsInstances;
 
 	void Clear();
 
 	void Init(UScenario* Scenario);
 
-	void CreateEventForAI(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForAI(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription);
 	
-	void CreateEventForPlayer(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForPlayer(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription);
 
 	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 
 	FName FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated) const;
 
-	const TArray<FName>& GetCountriesForWhichEventCanBeFired(UEventDescription* Event) const;
+	const TArray<UCountryDescription*>& GetCountriesForWhichEventCanBeFired(UEventDescription* Event) const;
 };

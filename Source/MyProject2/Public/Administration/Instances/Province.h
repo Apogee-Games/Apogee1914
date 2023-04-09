@@ -16,7 +16,7 @@ class UProvince : public UObject
 public:
 	UProvince();
 
-	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const TMap<FName, UResourceDescription*>& ResourcesDescriptions);
+	void Init(UProvinceDescription* ProvinceDescription);
 
 	const FColor& GetId() const;
 
@@ -28,13 +28,13 @@ public:
 
 	void Conquer(UCountry* Country);
 
-	const FName& GetStateId() const;
+	UStateDescription* GetState() const;
 	
-	const FName& GetName();
+	const FText& GetName();
 
 	const UProvincePopulation* GetPopulation() const;
 
-	const FTerrainDescription* GetTerrain() const;
+	UTerrainDescription* GetTerrain() const;
 
 	UProvinceResources* GetResources() const;
 
@@ -55,7 +55,7 @@ public:
 private:
 	FColor Id;
 
-	FName Name;
+	FText Name;
 
 	UPROPERTY()
 	UCountry* OwnerCountry;
@@ -63,12 +63,14 @@ private:
 	UPROPERTY()
 	UCountry* ControllerCountry;
 
-	FName StateId;
+	UPROPERTY()
+	UStateDescription* State;
 	
 	UPROPERTY()
 	UProvincePopulation* Population;
-	
-	FTerrainDescription* Terrain;
+
+	UPROPERTY()
+	UTerrainDescription* Terrain;
 
 	UPROPERTY()
 	UProvinceResources* Resources;

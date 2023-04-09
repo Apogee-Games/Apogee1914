@@ -13,7 +13,7 @@ EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8*
 	{
 		return EBTNodeResult::Failed;
 	}
-	
+	/*
 	UMyGameInstance* GameInstance = GetWorld()->GetGameInstance<UMyGameInstance>();
 
 	
@@ -50,6 +50,7 @@ EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8*
 			}
 		}
 	}
+	*/
 	
 	return EBTNodeResult::Succeeded;
 }

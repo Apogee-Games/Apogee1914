@@ -7,6 +7,7 @@ FProvinceControllerConditionChecker::FProvinceControllerConditionChecker(UProvin
 
 bool FProvinceControllerConditionChecker::Check(const TMap<FName, FString>& Values)
 {
-	UProvince* Province = ProvinceManager->GetProvince(FName(*Values["Province"]));
-	return Province->GetCountryController()->GetTag() == FName(*Values["Country"]);
+//	UProvince* Province = ProvinceManager->GetProvince(FName(*Values["Province"]));
+//	return Province->GetCountryController()->GetTag() == FName(*Values["Country"]);
+	return false;
 }

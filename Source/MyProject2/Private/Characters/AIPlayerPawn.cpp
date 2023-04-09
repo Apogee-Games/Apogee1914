@@ -12,9 +12,9 @@ AAIPlayerPawn::AAIPlayerPawn()
 
 }
 
-void AAIPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
+void AAIPlayerPawn::SetRuledCountry(UCountry* Country)
 {
-	RuledCountry = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
+	RuledCountry = Country;
 }
 
 UCountry* AAIPlayerPawn::GetRuledCountry() const

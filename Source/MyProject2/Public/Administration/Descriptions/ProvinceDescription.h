@@ -1,30 +1,34 @@
 ﻿#pragma once
-#include "Engine/DataTable.h"
+#include "StateDescription.h"
+#include "TerrainDescription.h"
+#include "Country/CountryDescription.h"
 #include "ProvinceDescription.generated.h"
 
-USTRUCT()
-struct FProvinceDescription : public FTableRowBase
+class UResourceDescription;
+
+UCLASS()
+class UProvinceDescription : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+public:
+	UPROPERTY(EditDefaultsOnly)
 	FColor Color;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FName ProvinceName;
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FName CountryTag;
+	UPROPERTY(EditDefaultsOnly)
+	UCountryDescription* Country;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FName StateId;
+	UPROPERTY(EditDefaultsOnly)
+	UStateDescription* State;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly)
+	UTerrainDescription* Terrain;
+	
+	UPROPERTY(EditDefaultsOnly)
+	TMap<UResourceDescription*, int32> Resources;
+	
+	UPROPERTY(EditDefaultsOnly)
 	int32 Population;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FName TerrainName;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<FName, int32> Resources;
 };

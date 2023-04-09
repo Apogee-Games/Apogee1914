@@ -1,11 +1,13 @@
 
 #include "Widgets/Events/EventChoiceCarrier.h"
 
-void UEventChoiceCarrier::Init(const FEventChoice& ProvidedChoice, const FName& ProvidedCountryTag,
+#include "Administration/Descriptions/Country/CountryDescription.h"
+
+void UEventChoiceCarrier::Init(const FEventChoice& ProvidedChoice, UCountryDescription* ProvidedCountryDescription,
                                UEventDescription* ProvidedEventDescription, const TMap<FName, bool>& ProvidedChoicesConditionsEvaluated)
 {
 	Choice = &ProvidedChoice;
-	CountryTag = &ProvidedCountryTag;
+	CountryDescription = ProvidedCountryDescription;
 	EventDescription = ProvidedEventDescription;
 	ChoicesConditionsEvaluated = ProvidedChoicesConditionsEvaluated;
 }
@@ -30,9 +32,7 @@ const FName& UEventChoiceCarrier::GetChoiceName() const
 	return Choice->Name;
 }
 
-const FName& UEventChoiceCarrier::GetCountryTag() const
+UCountryDescription* UEventChoiceCarrier::GetCountryDescription() const
 {
-	return *CountryTag;
+	return CountryDescription;
 }
-
-

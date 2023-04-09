@@ -16,7 +16,7 @@ void UFactoryProductionWidget::SetFactory(UObject* ProvidedFactory)
 
 void UFactoryProductionWidget::RefreshData()
 {
-	ProvinceNameTextBlock->SetText(FText::FromName(Factory->GetProvince()->GetName()));
+	ProvinceNameTextBlock->SetText(Factory->GetProvince()->GetName());
 	FactoryNameTextBlock->SetText(Factory->GetName());
 	if (Factory->GetGoodToProduce())
 	{

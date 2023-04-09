@@ -23,7 +23,7 @@ void USelectedUnitWidget::Init(UObject* Object)
 void USelectedUnitWidget::RefreshData() 
 {
 	//FlagImage->SetBrushResourceObject(Unit->GetCountryController()->GetFlag());
-	ProvinceNameTextBlock->SetText(FText::FromName(Unit->GetPosition()->GetName()));
+	ProvinceNameTextBlock->SetText(Unit->GetPosition()->GetName());
 	UnitNameTextBlock->SetText(FText::FromName(Unit->GetUnitName()));
 }
 

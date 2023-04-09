@@ -3,13 +3,15 @@
 
 #include "Administration/Managers/ProvinceManager.h"
 
-void UState::Init(FStateDescription* StateDescription, const UProvinceManager* ProvinceManager)
+void UState::Init(UStateDescription* StateDescription)
 {
-	Name = StateDescription->StateName;
+	Name = StateDescription->Name;
 	
-	for (const auto& ProvinceColor: StateDescription->Provinces)
+	const UProvinceManager* ProvinceManager = GetWorld()->GetGameInstance()->GetSubsystem<UProvinceManager>();
+
+	for (const auto& ProvinceDescription: StateDescription->Provinces)
 	{
-		Provinces.Add(ProvinceManager->GetProvince(ProvinceColor));
+		Provinces.Add(ProvinceManager->GetProvince(ProvinceDescription->Color));
 	}
 }
 
@@ -18,7 +20,7 @@ const FName& UState::GetName() const
 	return Name;
 }
 
-TArray<UProvince*> UState::GetProvinces() const
+const TArray<UProvince*>& UState::GetProvinces() const
 {
 	return Provinces;
 }

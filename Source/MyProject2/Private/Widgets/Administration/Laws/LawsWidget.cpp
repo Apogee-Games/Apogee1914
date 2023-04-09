@@ -14,8 +14,8 @@ void ULawsWidget::Init()
 		AddLawsGroup(LawsGroup);
 	}
 	
-	FName Tag = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountryTag();
-	for (const auto& LawsGroup: LawsManager->GetCountrySpecificLaw(Tag))
+	UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
+	for (const auto& LawsGroup: LawsManager->GetCountrySpecificLaw(CountryDescription))
 	{
 		AddLawsGroup(LawsGroup);
 	}

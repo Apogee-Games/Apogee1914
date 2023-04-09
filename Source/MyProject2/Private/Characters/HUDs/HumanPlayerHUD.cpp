@@ -209,8 +209,7 @@ void AHumanPlayerHUD::InitStorageGoodsListWidget()
 		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(GetOwningPlayerController(), StorageGoodsListWidgetClass);
 		if (StorageGoodsListWidget)
 		{
-			const FName RuledCountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
-			const UCountry* Country = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
+			const UCountry* Country = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountry();
 
 			for (const auto& Storage: Country->GetStorages())
 			{

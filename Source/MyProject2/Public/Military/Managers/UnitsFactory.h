@@ -26,7 +26,7 @@ public:
 
 	UUnit* CreateUnit(UUnitDescription* Description, UProvince* Province);
 	
-	UUnit* CreateUnit(UUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag);
+	UUnit* CreateUnit(UUnitDescription* Description, UProvince* Province, UCountryDescription* CountryDescription);
 
 	UUnitsCollection* CreateUnitCollection(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner, const TArray<UUnit*>& UnitsToAdd);
 	

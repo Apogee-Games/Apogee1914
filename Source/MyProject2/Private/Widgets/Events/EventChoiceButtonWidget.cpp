@@ -22,5 +22,5 @@ void UEventChoiceButtonWidget::RefreshData()
 
 void UEventChoiceButtonWidget::OnChoiceButtonClick()
 {
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->RegisterChoice(Carrier->GetEventDescription(), Carrier->GetChoiceName(), Carrier->GetCountryTag());
+	GetGameInstance()->GetSubsystem<UEventInstancesController>()->RegisterChoice(Carrier->GetEventDescription(), Carrier->GetChoiceName(), Carrier->GetCountryDescription());
 }

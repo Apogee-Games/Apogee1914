@@ -11,7 +11,7 @@ void UProvinceDataWidget::SetNewProvince(UProvince* Province)
 {
 	if (!Province) return;
 
-	ProvinceNameTextBlock->SetText(FText::FromName(Province->GetName()));
+	ProvinceNameTextBlock->SetText(Province->GetName());
 
 	SetPopulationNumber(Province->GetPopulation()->GetPopulation());
 
@@ -49,7 +49,7 @@ void UProvinceDataWidget::SetBuildings(UProvince* Province) const
 
 void UProvinceDataWidget::SetState(UProvince* Province) const
 {
-	const UState* State = GetWorld()->GetGameInstance()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
+	const UState* State = GetWorld()->GetGameInstance()->GetSubsystem<UStateManager>()->GetState(Province->GetState());
 
 	if (State)
 	{

@@ -29,7 +29,7 @@ void UCountryRelationMap::UpdateMap()
 	const TArray<UProvince*>& Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces(); 
 	UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
 
-	UCountry* Germany = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("GER");
+	UCountry* Germany = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(GermanyDescription);
 	
 	for (const auto& Province: Provinces)
 	{

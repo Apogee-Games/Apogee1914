@@ -76,21 +76,20 @@ void AGameLevelGameMode::PostLogin(APlayerController* NewPlayer)
 	NewPlayer->SetInputMode(InputModeGameAndUI);
 	NewPlayer->SetShowMouseCursor(true);
 
-	const FName RuledCountryTag = GetGameInstance<UMyGameInstance>()->GetRuledCountry(NewPlayer);
-		
-	NewPlayer->GetPawn<AHumanPlayerPawn>()->SetRuledCountryTag(RuledCountryTag);
+	UCountry* Country = GetGameInstance<UMyGameInstance>()->GetRuledCountry(NewPlayer);
+	NewPlayer->GetPawn<AHumanPlayerPawn>()->SetRuledCountry(Country);
 }
 
 void AGameLevelGameMode::CreateAIPawns()
 {
-	for (const auto& CountryTag : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
+	UCountriesManager* CountriesManager = GetGameInstance()->GetSubsystem<UCountriesManager>();
+	for (const auto& CountryDescription : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesDescriptions())
 	{
-		if (CountryTag != "FRA") continue;
-		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue; // TODO: Filter only active countries
+		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryDescription)) continue; // TODO: Filter only active countries
 		AAIPlayerController* Controller = GetWorld()->SpawnActor<AAIPlayerController>(AIPlayerControllerClass);
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
 		Controller->Possess(Pawn);
-		Pawn->SetRuledCountryTag(CountryTag);
-		AIPawns.Add(CountryTag, Pawn);
+		Pawn->SetRuledCountry(CountriesManager->GetCountry(CountryDescription));
+		AIPawns.Add(CountryDescription, Pawn);
 	}
 }

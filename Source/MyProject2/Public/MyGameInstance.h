@@ -17,6 +17,7 @@
 #include "Maps/MapsSwitcher.h"
 #include "Maps/Countries/CountriesMap.h"
 #include "Maps/Diplomacy/AlliancesMap.h"
+#include "Maps/Diplomacy/CountryRelationMap.h"
 #include "Maps/Flags/FlagsMap.h"
 #include "Maps/Ideologies/IdeologiesMap.h"
 #include "Maps/Objects/ObjectMap.h"
@@ -45,15 +46,15 @@ public:
 
 	void InitializeActiveScenario();
 
-	const FName& GetRuledCountry(APlayerController* PlayerController);
+	UCountry* GetRuledCountry(APlayerController* PlayerController);
 	
-	const FName& GetRuledCountry(int32 PlayerId);
+	UCountry* GetRuledCountry(int32 PlayerId);
 
 	void SetRuledCountry(APlayerController* PlayerController, UCountry* Country);
 	
-	void SetRuledCountry(int32 PlayerId, const FName& CountryTag);
+	void SetRuledCountry(int32 PlayerId, UCountry* Country);
 
-	bool IsCountryRuledByPlayer(const FName& CountryTag);
+	bool IsCountryRuledByPlayer(UCountryDescription* CountryDescription);
 
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UScenario*> Scenarios;
@@ -61,9 +62,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UScenario* ActiveScenario;
 private:
-	TMap<int32, FName> PlayersRuledCountries;
+	UPROPERTY()
+	TMap<int32, UCountry*> PlayersRuledCountries;
 
-	TMap<FName, int32> CountriesRuledByPlayers;
+	UPROPERTY()
+	TMap<UCountryDescription*, int32> CountriesRuledByPlayers;
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;
@@ -121,6 +124,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UAlliancesMap> AlliancesMapClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UCountryRelationMap> CountryRelationMapClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UIdeologiesMap> IdeologiesMapClass;

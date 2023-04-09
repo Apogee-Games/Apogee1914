@@ -22,9 +22,9 @@ public:
 	/**
 	 * Method used to check event or choice conditions
 	 */
-	bool CheckConditions(TArray<FCondition>& Conditions, const FName& CountryTag);
+	bool CheckConditions(TArray<FCondition>& Conditions, UCountryDescription* CountryDescription);
 
-	bool CheckCondition(FCondition& Condition, const FName& CountryTag);
+	bool CheckCondition(FCondition& Condition, UCountryDescription* CountryDescription);
 
 private:
 	TMap<FName, FConditionChecker*> ConditionsCheckers;

@@ -1,16 +1,5 @@
 [
 	{
-		"Name": "Heinz_Gurderian",
-		"PersonName": "Heinz Gurderian",
-		"CountryTag": "GER",
-		"Age": 40,
-		"Skills": {
-			"Combat": 10
-		}, 
-		"Professions": ["Commander"],
-		"ImagePath": "/Game/Images/People/HGuderian"
-	},
-	{
 		"Name": "Erich_Ludendorff",
 		"PersonName": "Erich Ludendorff",
 		"CountryTag": "GER",
@@ -328,6 +317,13 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Max_Waibel"
 	},
+
+
+
+
+
+
+
 	{
 		"Name": "GeorgeV",
 		"PersonName": "George V",
@@ -418,6 +414,9 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Fernando_Rivera"
 	},
+
+
+
 	{
 		"Name": "Manuel",
 		"PersonName": "Manuel II",
@@ -463,6 +462,10 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Gomes_Costa"
 	},
+
+
+
+
 	{
 		"Name": "Gustav",
 		"PersonName": "Gustav V",
@@ -517,6 +520,10 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Haakon"
 	},
+
+
+
+
 	{
 		"Name": "Venceslau_Brás",
 		"PersonName": "Venceslau Brás",
@@ -536,15 +543,6 @@
 		"ImagePath": "/Game/Images/People/Hermes_Fonseca"
 	},
 	{
-		"Name": "José_Albuquerque",
-		"PersonName": "José Pessoa Cavalcanti de Albuquerque",
-		"CountryTag": "BRA",
-		"Age": 29,
-		"Skills": {},
-		"Professions": ["Commander"],
-		"ImagePath": "/Game/Images/People/José_Albuquerque"
-	},
-	{
 		"Name": "Setembrino_Carvalho",
 		"PersonName": "Setembrino de Carvalho",
 		"CountryTag": "BRA",
@@ -553,6 +551,10 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Setembrino_Carvalho"
 	},
+
+
+
+
 	{
 		"Name": "Pedro_Frontin",
 		"PersonName": "Pedro Max Fernando Frontin",
@@ -562,6 +564,9 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Pedro_Frontin"
 	},
+
+
+
 	{
 		"Name": "Woodrow_Wilson",
 		"PersonName": "Woodrow Wilson",
@@ -607,6 +612,9 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Tasker_Bliss"
 	},
+
+
+
 	{
 		"Name": "Eduardo_Schaerer",
 		"PersonName": "Eduardo Schaerer",
@@ -616,6 +624,8 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Eduardo_Schaerer"
 	},
+
+
 	{
 		"Name": "Ismael_Montes",
 		"PersonName": "Ismael Montes",
@@ -625,6 +635,8 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Ismael_Montes"
 	},
+
+
 	{
 		"Name": "Oscar_Benavides",
 		"PersonName": "Óscar Raymundo Benavides Larrea",
@@ -634,6 +646,9 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Oscar_Benavides"
 	},
+
+
+
 	{
 		"Name": "Ramón_Luco",
 		"PersonName": "Ramón Barros Luco",
@@ -661,6 +676,8 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Pedro_Dartnel"
 	},
+
+
 	{
 		"Name": "Feliciano_Viera",
 		"PersonName": "Feliciano Viera",
@@ -670,6 +687,8 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Feliciano_Viera"
 	},
+
+
 	{
 		"Name": "Victorino_Plaza",
 		"PersonName": "Victorino de la Plaza",
@@ -706,6 +725,8 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Nicolás_Levalle"
 	},
+
+
 	{
 		"Name": "Robert_Borden",
 		"PersonName": "Sir Robert Borden",
@@ -751,6 +772,11 @@
 		"Professions": ["Commander"],
 		"ImagePath": "/Game/Images/People/Edwin_Alderson"
 	},
+
+
+
+
+	
 	{
 		"Name": "Victoriano_Huerta",
 		"PersonName": "Victoriano Huerta",

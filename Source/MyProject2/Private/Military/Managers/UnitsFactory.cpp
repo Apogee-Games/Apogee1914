@@ -25,7 +25,7 @@ UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Provi
 	return Unit;
 }
 
-UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Province, const FName& CountryOwnerTag)
+UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Province, UCountryDescription* CountryDescription)
 {
 	// TODO: Add some logic for delay
 	//TODO: Error checks ?
@@ -33,7 +33,7 @@ UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Provi
 
 	Unit->Init(Description, Province);
 	
-	UCountry* CountryOwner = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(CountryOwnerTag);
+	UCountry* CountryOwner = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(CountryDescription);
 
 	Unit->SetCountryOwner(CountryOwner);
 	Unit->SetCountryController(CountryOwner);

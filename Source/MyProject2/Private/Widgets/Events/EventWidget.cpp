@@ -1,6 +1,7 @@
 
 #include "Widgets/Events/EventWidget.h"
 
+#include "Administration/Descriptions/Country/CountryDescription.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Components/Button.h"
 #include "Components/CanvasPanelSlot.h"
@@ -17,7 +18,7 @@ void UEventWidget::NativeConstruct()
 	ButtonForMoving->OnReleased.AddDynamic(this, &UEventWidget::UEventWidget::OnButtonForMovingRelease);
 }
 
-void UEventWidget::Init(UEventDescription* EventDescription, const FName& CountryTag, const TMap<FName, bool>& ChoicesConditionsEvaluated)
+void UEventWidget::Init(UEventDescription* EventDescription, UCountryDescription* CountryDescription, const TMap<FName, bool>& ChoicesConditionsEvaluated)
 {
 	TitleTextBlock->SetText(EventDescription->Title);
 	TextTextBlock->SetText(EventDescription->Text);
@@ -27,7 +28,7 @@ void UEventWidget::Init(UEventDescription* EventDescription, const FName& Countr
 	for (const auto& Choice: EventDescription->Choices)
 	{
 		UEventChoiceCarrier* Carrier = NewObject<UEventChoiceCarrier>(this); // TODO: Do we need it :)
-		Carrier->Init(Choice, CountryTag, EventDescription, ChoicesConditionsEvaluated);
+		Carrier->Init(Choice, CountryDescription, EventDescription, ChoicesConditionsEvaluated);
 		ChoicesListView->AddItem(Carrier);
 	}
 }

@@ -17,24 +17,24 @@ void UConditionsCheckingSubsystem::RegisterConditionChecker(const FName& Name, F
 	ConditionsCheckers.Add(Name, Checker);
 }
 
-bool UConditionsCheckingSubsystem::CheckConditions(TArray<FCondition>& Conditions, const FName& CountryTag)
+bool UConditionsCheckingSubsystem::CheckConditions(TArray<FCondition>& Conditions, UCountryDescription* CountryDescription)
 {
 	for (auto& Condition : Conditions)
 	{
-		if (!CheckCondition(Condition, CountryTag)) return false;
+		if (!CheckCondition(Condition, CountryDescription)) return false;
 	}
 	
 	return true;
 }
 
-bool UConditionsCheckingSubsystem::CheckCondition(FCondition& Condition, const FName& CountryTag)
+bool UConditionsCheckingSubsystem::CheckCondition(FCondition& Condition, UCountryDescription* CountryDescription)
 {
 	if (!ConditionsCheckers.Contains(Condition.Name)) return false;
 	bool AddedCountry = false;
 
 	if (!Condition.Values.Contains("Country"))
 	{
-		Condition.Values.Add("Country", CountryTag.ToString());
+		Condition.Values.Add("Country", CountryDescription->Tag.ToString());
 		AddedCountry = true;
 	}
 

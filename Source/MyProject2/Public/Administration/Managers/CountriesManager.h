@@ -12,7 +12,7 @@ class UCountriesManager: public UGameInstanceSubsystem
 public:
 	void SetScenario(UScenario* Scenario);
 	
-	const TArray<FName>& GetCountriesTagsList();
+	const TArray<UCountryDescription*>& GetCountriesDescriptions();
 	
 	bool ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const;
 
@@ -34,14 +34,15 @@ public:
 
 	bool AreProvincesControlledByDifferentCountry(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 
-	UCountry* GetCountry(const FName& Tag);
+	UCountry* GetCountry(UCountryDescription* CountryDescription);
 
-	const TMap<FName, UCountry*>& GetCountryMap() const;
+	const TMap<UCountryDescription*, UCountry*>& GetCountryMap() const;
 private:
 	UPROPERTY()
-	TMap<FName, UCountry*> CountryMap;
-	
-	TArray<FName> CountriesTagsList;
+	TMap<UCountryDescription*, UCountry*> CountryMap;
+
+	UPROPERTY()
+	TArray<UCountryDescription*> CountriesDescriptions;
 
 	void Clear();
 

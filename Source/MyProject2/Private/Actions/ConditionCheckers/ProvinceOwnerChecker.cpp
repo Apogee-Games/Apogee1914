@@ -8,6 +8,7 @@ FProvinceOwnerConditionChecker::FProvinceOwnerConditionChecker(UProvinceManager*
 
 bool FProvinceOwnerConditionChecker::Check(const TMap<FName, FString>& Values)
 {
-	UProvince* Province = ProvinceManager->GetProvince(FName(*Values["Province"]));
-	return Province->GetOwnerCountry()->GetTag() == FName(*Values["Country"]);
+//	UProvince* Province = ProvinceManager->GetProvince(FName(*Values["Province"]));
+//	return Province->GetOwnerCountry()->GetTag() == FName(*Values["Country"]);
+	return false;
 }

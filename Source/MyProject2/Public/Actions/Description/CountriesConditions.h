@@ -2,6 +2,8 @@
 #include "Engine/DataTable.h"
 #include "CountriesConditions.generated.h"
 
+class UCountryDescription;
+
 USTRUCT()
 struct FCountriesConditions : public FTableRowBase
 {
@@ -11,5 +13,5 @@ struct FCountriesConditions : public FTableRowBase
 	bool ForAll;
 
 	UPROPERTY(EditDefaultsOnly)
-	TArray<FName> CountriesTags;
+	TArray<UCountryDescription*> CountriesTags;
 };

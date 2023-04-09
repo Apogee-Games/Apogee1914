@@ -50,8 +50,7 @@ public:
 
 	void SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState);
 	
-	// Sets tag of country controlled by this Pawn
-	void SetRuledCountryTag(const FName& NewRuledCountryTag);
+	void SetRuledCountry(UCountry* Country);
 
 	TSharedPtr<FPawnState> GetPawnState() const;
 

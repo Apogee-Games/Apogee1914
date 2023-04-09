@@ -45,9 +45,9 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 	GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>()->UpdateWidgetsVisibility();
 }
 
-void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
+void AHumanPlayerPawn::SetRuledCountry(UCountry* Country)
 {
-	RuledCountry = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
+	RuledCountry = Country;
 }
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const

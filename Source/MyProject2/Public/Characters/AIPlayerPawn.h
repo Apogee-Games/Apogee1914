@@ -16,8 +16,7 @@ public:
 	// Sets default values for this pawn's properties
 	AAIPlayerPawn();
 	
-	// Sets tag of country controlled by this Pawn
-	void SetRuledCountryTag(const FName& NewRuledCountryTag);
+	void SetRuledCountry(UCountry* Country);
 
 	UCountry* GetRuledCountry() const;
 
