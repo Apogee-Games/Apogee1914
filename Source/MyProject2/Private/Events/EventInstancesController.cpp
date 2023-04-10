@@ -6,55 +6,65 @@
 #include "Administration/Managers/CountriesManager.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 
-void UEventInstancesController::CreateEvent(FEventDescription* Event,
-                                            const TMap<FName, bool>& ChoicesConditionsEvaluated,
-                                            const FName& CountryTag)
+void UEventInstancesController::CreateEvent(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription)
 {
-	if (WidgetsInstances.Contains({Event, CountryTag})) return;
-	if (Event->TriggerOnce && FiredEvents.Contains({Event, CountryTag})) return;
+	if (WidgetsInstances.Contains({Event, CountryDescription})) return;
+	if (Event->TriggerOnce && FiredEvents.Contains({Event, CountryDescription})) return;
 
-	if (static_cast<UMyGameInstance*>(GetWorld()->GetGameInstance())->IsCountryRuledByPlayer(CountryTag))
+	if (static_cast<UMyGameInstance*>(GetWorld()->GetGameInstance())->IsCountryRuledByPlayer(CountryDescription))
 	{
-		CreateEventForPlayer(Event, ChoicesConditionsEvaluated, CountryTag);
+		CreateEventForPlayer(Event, ChoicesConditionsEvaluated, CountryDescription);
 	}
 	else
 	{
-		CreateEventForAI(Event, ChoicesConditionsEvaluated, CountryTag);
+		CreateEventForAI(Event, ChoicesConditionsEvaluated, CountryDescription);
 	}
 }
 
-void UEventInstancesController::DeleteEventWidget(FEventDescription* Event, const FName& CountryTag)
+void UEventInstancesController::DeleteEventWidget(UEventDescription* Event, UCountryDescription* CountryDescription)
 {
-	if (!WidgetsInstances.Contains({Event, CountryTag})) return;
+	if (!WidgetsInstances.Contains({Event, CountryDescription})) return;
 
-	WidgetsInstances[{Event, CountryTag}]->RemoveFromParent();
+	WidgetsInstances[{Event, CountryDescription}]->RemoveFromParent();
 
-	WidgetsInstances.Remove({Event, CountryTag});
+	WidgetsInstances.Remove({Event, CountryDescription});
 }
 
-void UEventInstancesController::CreateEventForAI(FEventDescription* Event,
-                                                 const TMap<FName, bool>& ChoicesConditionsEvaluated,
-                                                 const FName& CountryTag)
+void UEventInstancesController::Clear()
 {
-	FiredEvents.Add({Event, CountryTag});
+	FiredEvents.Empty();
+	Events.Empty();
+	ActiveEvents.Empty();
+	WidgetsInstances.Empty();
+}
+
+void UEventInstancesController::Init(UScenario* Scenario)
+{
+	Events = Scenario->Events;
+	GetGameInstance()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
+}
+
+void UEventInstancesController::CreateEventForAI(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription)
+{
+	FiredEvents.Add({Event, CountryDescription});
 
 	const FName AISelectedChoice = FindAISelectedChoice(Event->Choices, ChoicesConditionsEvaluated);
 
-	RegisterChoice(Event, AISelectedChoice, CountryTag);
+	RegisterChoice(Event, AISelectedChoice, CountryDescription);
 }
 
-void UEventInstancesController::CreateEventForPlayer(FEventDescription* Event,
+void UEventInstancesController::CreateEventForPlayer(UEventDescription* Event,
                                                      const TMap<FName, bool>& ChoicesConditionsEvaluated,
-                                                     const FName& CountryTag)
+                                                     UCountryDescription* CountryDescription)
 {
-	FiredEvents.Add({Event, CountryTag});
+	FiredEvents.Add({Event, CountryDescription});
 
 	// TODO: Add multiplayer logic ;)
 
 	UEventWidget* EventWidget = CreateWidget<UEventWidget>(GetWorld(), EventWidgetClass);
-	EventWidget->Init(Event, CountryTag, ChoicesConditionsEvaluated);
+	EventWidget->Init(Event, CountryDescription, ChoicesConditionsEvaluated);
 
-	WidgetsInstances.Add({Event, CountryTag}, EventWidget);
+	WidgetsInstances.Add({Event, CountryDescription}, EventWidget);
 	EventWidget->AddToPlayerScreen();
 }
 
@@ -94,32 +104,21 @@ FName UEventInstancesController::FindAISelectedChoice(const TArray<FEventChoice>
 	return SelectedChoice;
 }
 
-bool UEventInstancesController::ShouldCreateSubsystem(UObject* Outer) const
+void UEventInstancesController::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
+	Clear();
+	Init(Scenario);
 }
 
-void UEventInstancesController::OnWorldBeginPlay(UWorld& InWorld)
+void UEventInstancesController::RegisterChoice(UEventDescription* Event, const FName& ChoiceName,
+                                               UCountryDescription* CountryDescription)
 {
-	Super::OnWorldBeginPlay(InWorld);
-	UDataTable* EventsDataTable = GetWorld()->GetGameInstance<UMyGameInstance>()->ActiveScenario->EventsDataTable;
-
-	for (const auto Pair : EventsDataTable->GetRowMap())
-	{
-		Events.Add(reinterpret_cast<FEventDescription*>(Pair.Value));
-	}
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UEventInstancesController::CheckEvents, MinDeltaBetweenEventChecks);
-}
-
-void UEventInstancesController::RegisterChoice(FEventDescription* Event, const FName& ChoiceName,
-                                               const FName& CountryTag)
-{
-	DeleteEventWidget(Event, CountryTag);
+	DeleteEventWidget(Event, CountryDescription);
 
 	for (auto& Choice : Event->Choices)
 	{
 		if (Choice.Name != ChoiceName) continue;
-		GetWorld()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(Choice.Outcomes, CountryTag);
+		GetGameInstance()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(Choice.Outcomes, CountryDescription);
 	}
 }
 
@@ -138,31 +137,31 @@ void UEventInstancesController::Tick(float DeltaTime)
 
 void UEventInstancesController::CheckEvents()
 {
-	UConditionsCheckingSubsystem* ConditionsChecker = GetWorld()->GetSubsystem<UConditionsCheckingSubsystem>();
+	UConditionsCheckingSubsystem* ConditionsChecker = GetGameInstance()->GetSubsystem<UConditionsCheckingSubsystem>();
 	for (const auto& Event : Events)
 	{
-		const TArray<FName>& CountriesTags = GetCountriesForWhichEventCanBeFired(Event);
+		const TArray<UCountryDescription*>& CountryDescriptions = GetCountriesForWhichEventCanBeFired(Event);
 
-		for (auto& CountryTag : CountriesTags)
+		for (auto& CountryDescription : CountryDescriptions)
 		{
-			if (!ConditionsChecker->CheckConditions(Event->Conditions, CountryTag)) continue;
+			if (!ConditionsChecker->CheckConditions(Event->Conditions, CountryDescription)) continue;
 
 			TMap<FName, bool> ChoicesConditionsEvaluated;
 
 			for (auto& Choice : Event->Choices)
 			{
-				bool Result = ConditionsChecker->CheckConditions(Choice.Conditions, CountryTag);
+				bool Result = ConditionsChecker->CheckConditions(Choice.Conditions, CountryDescription);
 				ChoicesConditionsEvaluated.Add(Choice.Name,Result);
 			}
 
-			CreateEvent(Event, ChoicesConditionsEvaluated, CountryTag);
+			CreateEvent(Event, ChoicesConditionsEvaluated, CountryDescription);
 		}
 	}
 }
 
-const TArray<FName>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const
+const TArray<UCountryDescription*>& UEventInstancesController::GetCountriesForWhichEventCanBeFired(UEventDescription* Event) const
 {
 	return Event->CountriesConditions.ForAll
-		       ? GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList()
+		       ? GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesDescriptions()
 		       : Event->CountriesConditions.CountriesTags;
 }

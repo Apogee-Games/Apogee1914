@@ -1,4 +1,5 @@
 #pragma once
+#include "Administration/Descriptions/Country/CountryDescription.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
@@ -38,7 +39,7 @@ public:
 	
 	virtual void NativeConstruct() override;
 
-	void Init(FEventDescription* EventDescription, const FName& CountryTag, const TMap<FName, bool>& ChoicesConditionsEvaluated);
+	void Init(UEventDescription* EventDescription, UCountryDescription* CountryDescription, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 	
 	void Tick();
 private:

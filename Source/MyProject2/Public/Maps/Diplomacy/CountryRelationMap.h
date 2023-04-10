@@ -3,7 +3,7 @@
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "CountryRelationMap.generated.h"
 
-UCLASS()
+UCLASS(Abstract, Blueprintable)
 class UCountryRelationMap: public UGameInstanceSubsystem, public IWarDeclarationObserver, public IAllianceCreationObserver
 {
 	GENERATED_BODY()
@@ -21,6 +21,9 @@ private:
 	UPROPERTY()
 	UTexture2D* CountryRelationMap;
 
+	UPROPERTY(EditDefaultsOnly)
+	UCountryDescription* GermanyDescription;
+
 	FVector2d SizeVector;
 
 	TMap<ERelationType, FColor> ColorsMapping = {
@@ -29,7 +32,7 @@ private:
 		{ERelationType::War, FColor(150, 10, 10)},
 		{ERelationType::DefencivePact, FColor(30, 150, 30)},
 		{ERelationType::Allied, FColor(30, 100, 150)}
-	};
+	}; // TODO: Extract this :)
 
 	void Clear();
 

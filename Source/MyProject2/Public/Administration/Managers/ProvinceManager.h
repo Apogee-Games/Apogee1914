@@ -13,14 +13,12 @@ class UProvinceManager : public UGameInstanceSubsystem, public IProvinceControll
 public:
 	void SetScenario(UScenario* Scenario);
 	
-	UProvince* GetProvince(const FColor& ProvinceColor) const;
-	
-	UProvince* GetProvince(const FName& ProvinceColorHex) const;
+	UProvince* GetProvince(const FColor& Color) const;
 
 	const TArray<UProvince*>& GetAllProvinces() const;
 private:
 	UPROPERTY()
-	TMap<FName, UProvince*> ProvinceMap;
+	TMap<FColor, UProvince*> ProvinceMap;
 
 	UPROPERTY()
 	TArray<UProvince*> ProvincesArray;

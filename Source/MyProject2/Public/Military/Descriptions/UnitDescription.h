@@ -1,26 +1,25 @@
-#pragma once
-#include "Engine/DataTable.h"
+﻿#pragma once
+#include "MilitaryBranchDescription.h"
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "UnitDescription.generated.h"
 
-USTRUCT()
-struct FUnitDescription: public FTableRowBase
+UCLASS()
+class UUnitDescription: public UPrimaryDataAsset
 {
-	
 	GENERATED_BODY()
-
-	UPROPERTY()
+public:
+	UPROPERTY(EditDefaultsOnly)
 	FName UnitName;
 	
-	UPROPERTY()
-	FName MilitaryBranch;
+	UPROPERTY(EditDefaultsOnly)
+	UMilitaryBranchDescription* MilitaryBranch;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	bool CanTransport;
 
-	UPROPERTY()
-	TMap<FName, int32> EquipmentRequirements;
+	UPROPERTY(EditDefaultsOnly)
+	TMap<UGoodDescription*, int32> EquipmentRequirements;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	int32 ManpowerRequirements;
-	
 };

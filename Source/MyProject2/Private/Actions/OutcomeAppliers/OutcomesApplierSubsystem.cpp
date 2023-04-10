@@ -4,17 +4,10 @@
 #include "MyGameInstance.h"
 #include "Actions/OutcomeAppliers/NonAlignedOutcomeApplier.h"
 
-bool UOutcomesApplierSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+void UOutcomesApplierSubsystem::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UOutcomesApplierSubsystem::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	
-	UCountriesManager* CountriesManager = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>();
-	RegisterOutcomeApplier("NonAlignment", new FNonAlignedOutcomeApplier(CountriesManager));
+	Clear();
+	Init(Scenario);
 }
 
 void UOutcomesApplierSubsystem::RegisterOutcomeApplier(const FName& Name, FOutcomeApplier* OutcomeApplier)
@@ -22,7 +15,7 @@ void UOutcomesApplierSubsystem::RegisterOutcomeApplier(const FName& Name, FOutco
 	OutcomeAppliers.Add(Name, OutcomeApplier);
 }
 
-void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const FName& CountryTag)
+void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, UCountryDescription* CountryDescription)
 {
 	for (auto& Outcome: Outcomes)
 	{
@@ -31,7 +24,7 @@ void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const 
 
 		if (!Outcome.Values.Contains("Country"))
 		{
-			Outcome.Values.Add("Country", CountryTag.ToString());
+			Outcome.Values.Add("Country", CountryDescription->Tag.ToString());
 			AddedCountry = true;
 		}
 
@@ -42,4 +35,15 @@ void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, const 
 			Outcome.Values.Remove("Country");
 		}
 	}
+}
+
+void UOutcomesApplierSubsystem::Clear()
+{
+	OutcomeAppliers.Empty();
+}
+
+void UOutcomesApplierSubsystem::Init(UScenario* Scenario)
+{
+	UCountriesManager* CountriesManager = GetGameInstance()->GetSubsystem<UCountriesManager>();
+	RegisterOutcomeApplier("NonAlignment", new FNonAlignedOutcomeApplier(CountriesManager));
 }

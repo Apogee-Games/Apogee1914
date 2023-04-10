@@ -9,14 +9,14 @@ class UParliament: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(FParliamentDescription* Description);
+	void Init(const FParliamentDescription& Description);
 
 	const FText& GetName() const;
 	
-	const TMap<FName, UFraction*>& GetFractionsMap() const;
+	const TMap<UIdeologyDescription*, UFraction*>& GetFractionsMap() const;
 private:
-	FText ParliamentName;
+	FText Name;
 	
 	UPROPERTY()
-	TMap<FName, UFraction*> Fractions;
+	TMap<UIdeologyDescription*, UFraction*> Fractions;
 };

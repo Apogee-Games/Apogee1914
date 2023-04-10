@@ -5,19 +5,19 @@
 #include "CoreMinimal.h"
 #include "InGameTime.h"
 #include "Scenario.h"
-#include "Administration/Managers/IdeologyManager.h"
-#include "Administration/Managers/LawManager.h"
+#include "Administration/Managers/LawsManager.h"
 #include "Administration/Managers/StateManager.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "Economics/Managers/BuildingManager.h"
-#include "Economics/Managers/GoodManager.h"
+#include "Economics/Managers/GoodsManager.h"
 #include "Economics/Managers/StrataManager.h"
 #include "Engine/GameInstance.h"
 #include "Events/EventInstancesController.h"
 #include "Maps/MapsSwitcher.h"
 #include "Maps/Countries/CountriesMap.h"
 #include "Maps/Diplomacy/AlliancesMap.h"
+#include "Maps/Diplomacy/CountryRelationMap.h"
 #include "Maps/Flags/FlagsMap.h"
 #include "Maps/Ideologies/IdeologiesMap.h"
 #include "Maps/Objects/ObjectMap.h"
@@ -46,15 +46,15 @@ public:
 
 	void InitializeActiveScenario();
 
-	const FName& GetRuledCountry(APlayerController* PlayerController);
+	UCountry* GetRuledCountry(APlayerController* PlayerController);
 	
-	const FName& GetRuledCountry(int32 PlayerId);
+	UCountry* GetRuledCountry(int32 PlayerId);
 
 	void SetRuledCountry(APlayerController* PlayerController, UCountry* Country);
 	
-	void SetRuledCountry(int32 PlayerId, const FName& CountryTag);
+	void SetRuledCountry(int32 PlayerId, UCountry* Country);
 
-	bool IsCountryRuledByPlayer(const FName& CountryTag);
+	bool IsCountryRuledByPlayer(UCountryDescription* CountryDescription);
 
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UScenario*> Scenarios;
@@ -62,9 +62,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UScenario* ActiveScenario;
 private:
-	TMap<int32, FName> PlayersRuledCountries;
+	UPROPERTY()
+	TMap<int32, UCountry*> PlayersRuledCountries;
 
-	TMap<FName, int32> CountriesRuledByPlayers;
+	UPROPERTY()
+	TMap<UCountryDescription*, int32> CountriesRuledByPlayers;
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;
@@ -75,9 +77,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly);
 	TSubclassOf<UEventInstancesController> EventInstancesControllerClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UIdeologyManager> IdeologyManagerClass;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UCountriesManager> CountriesManagerClass;
 
@@ -94,7 +93,7 @@ public:
 	TSubclassOf<UBuildingManager> BuildingManagerClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UGoodManager> GoodManagerClass;
+	TSubclassOf<UGoodsManager> GoodManagerClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UStrataManager> StrataManagerClass;
@@ -127,6 +126,9 @@ public:
 	TSubclassOf<UAlliancesMap> AlliancesMapClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UCountryRelationMap> CountryRelationMapClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UIdeologiesMap> IdeologiesMapClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -139,5 +141,5 @@ public:
 	TSubclassOf<UUnitsSupplyController> UnitsSupplyControllerClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<ULawManager> LawManagerClass;
+	TSubclassOf<ULawsManager> LawManagerClass;
 };

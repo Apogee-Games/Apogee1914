@@ -12,6 +12,7 @@
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Characters/StateMachine/PawnState.h"
+#include "Widgets/Economics/Buildings/Production/FactoryProductionWidget.h"
 #include "Widgets/Music/MusicControllerWidget.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -49,22 +50,21 @@ public:
 
 	void SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState);
 	
-	// Sets tag of country controlled by this Pawn
-	void SetRuledCountryTag(const FName& NewRuledCountryTag);
+	void SetRuledCountry(UCountry* Country);
 
 	TSharedPtr<FPawnState> GetPawnState() const;
 
-	void SelectUnitDescription(const FUnitDescription* UnitDescription);
+	void SelectUnitDescription(UUnitDescription* UnitDescription);
 
-	void SelectBuildingDescription(const FBuildingDescription* BuildingDescription);
+	void SelectBuildingDescription(UBuildingDescription* BuildingDescription);
 
 	void SetCommandable(ICommandable* Commandable);
 
 	ICommandable* GetSelectedCommandable() const;
 		
-	const FUnitDescription* GetSelectedUnitDescription() const;
+	UUnitDescription* GetSelectedUnitDescription() const;
 
-	const FBuildingDescription* GetSelectedBuildingDescription() const;
+	UBuildingDescription* GetSelectedBuildingDescription() const;
 
 	const FName& GetRuledCountryTag() const;
 
@@ -93,9 +93,15 @@ public:
 
 	void SwitchLawsBrowsingState();
 
+	void SwitchProductionBrowsingState();
+
 	void Play(USoundBase* Song);
 
 	void SetIsAudioPaused(bool IsAudioPaused);
+
+	void SetProductionSelectionFactory(UFactoryBuilding* Factory);
+
+	UFactoryBuilding* GetSelectedFactory() const;
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
@@ -106,11 +112,16 @@ private:
 
 	bool bIsShiftPressed = false;
 
-	const FUnitDescription* SelectedUnitDescription;
-	
-	const FBuildingDescription* SelectedBuildingDescription;
+	UPROPERTY()
+	UUnitDescription* SelectedUnitDescription;
+
+	UPROPERTY()
+	UBuildingDescription* SelectedBuildingDescription;
 
 	ICommandable* SelectedCommandable;
+
+	UPROPERTY()
+	UFactoryBuilding* SelectedFactory;
 	
 	void LeftClick();
 

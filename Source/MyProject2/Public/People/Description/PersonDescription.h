@@ -1,27 +1,30 @@
 ﻿#pragma once
-#include "Engine/DataTable.h"
+#include "ProfessionDescription.h"
+#include "SkillDescription.h"
 #include "PersonDescription.generated.h"
 
-USTRUCT()
-struct FPersonDescription: public FTableRowBase
+class UCountryDescription;
+
+UCLASS()
+class UPersonDescription: public UPrimaryDataAsset
 {
 	GENERATED_BODY()
-
-	UPROPERTY()
-	FName ImagePath;
+public:
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* Image;
 	
-	UPROPERTY()
-	FName PersonName;
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 
-	UPROPERTY()
-	FName CountryTag;
+	UPROPERTY(EditDefaultsOnly)
+	UCountryDescription* Country;
 	
-	UPROPERTY()
-	FDateTime Age;
+	UPROPERTY(EditDefaultsOnly)
+	FDateTime DataOfBirth;
 
-	UPROPERTY()
-	TMap<FName, FName> Skills;
+	UPROPERTY(EditDefaultsOnly)
+	TMap<USkillDescription*, float> Skills;
 
-	UPROPERTY()
-	TArray<FName> Professions;
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UProfessionDescription*> Professions;
 };

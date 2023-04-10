@@ -5,26 +5,10 @@
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Military/Managers/UnitsFactory.h"
 
-
-bool UUnitsSupplyController::ShouldCreateSubsystem(UObject* Outer) const
+void UUnitsSupplyController::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UUnitsSupplyController::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-
-	for (auto& [CountryTag, Country]: GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountryMap())
-	{
-		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(this);
-		Supplier->Init(Country->GetStorage());
-		CountrySupplier.Add(Country, Supplier);
-	}
-
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
-	GetWorld()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, SupplyTimeDelta);
+	Clear();
+	Init(Scenario);
 }
 
 void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)
@@ -45,8 +29,28 @@ void UUnitsSupplyController::Supply()
 	}
 }
 
-void UUnitsSupplyController::Deinitialize()
+void UUnitsSupplyController::Clear()
 {
-	Super::Deinitialize();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+	for (const auto& [Country, Supplier]: CountrySupplier)
+	{
+		Supplier->MarkAsGarbage();
+	}
+	CountrySupplier.Empty();
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+}
+
+void UUnitsSupplyController::Init(UScenario* Scenario)
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	
+	for (auto& [CountryTag, Country]: GameInstance->GetSubsystem<UCountriesManager>()->GetCountryMap())
+	{
+		UCountryUnitsSupplier* Supplier = NewObject<UCountryUnitsSupplier>(this);
+		Supplier->Init(Country->GetStorage());
+		CountrySupplier.Add(Country, Supplier);
+	}
+
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GameInstance->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, SupplyTimeDelta);
 }

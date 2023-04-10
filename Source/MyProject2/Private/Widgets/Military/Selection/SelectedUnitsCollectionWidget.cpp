@@ -2,6 +2,7 @@
 #include "Widgets/Military/Selection/SelectedUnitsCollectionWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/CommanderSelectionPawnState.h"
+#include "Military/Descriptions/MilitaryBranchDescription.h"
 #include "Military/Managers/UnitsFactory.h"
 
 void USelectedUnitsCollectionWidget::NativeConstruct()
@@ -10,7 +11,7 @@ void USelectedUnitsCollectionWidget::NativeConstruct()
 	Button->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnButtonClick);
 	RemoveUnitsCollectionButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick);
 	CommanderButton->OnClicked.AddDynamic(this, &USelectedUnitsCollectionWidget::OnCommanderButtonClick);
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 }
 
 void USelectedUnitsCollectionWidget::SetSelectedUnits(UObject* ProvidedUnitsCollection)
@@ -28,14 +29,13 @@ void USelectedUnitsCollectionWidget::RefreshData()
 
 	UnitsNumberTextBlock->SetText(FText::FromString(FString::FromInt(UnitsCollection->GetSize())));
 
-	const FName MilitaryBranchName = MilitaryBranchesNames[static_cast<int>(UnitsCollection->GetMilitaryBranch())];
-	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchName));
+	MilitaryBranchTextBlock->SetText(UnitsCollection->GetMilitaryBranch()->Name);
 
 	UPerson* Commander = UnitsCollection->GetCommander();
 	if (Commander)
 	{
 		CommanderImage->SetBrushResourceObject(Commander->GetImage());
-		CommanderNameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+		CommanderNameTextBlock->SetText(Commander->GetPersonName());
 	} else
 	{
 		CommanderImage->SetBrushResourceObject(nullptr);
@@ -46,7 +46,7 @@ void USelectedUnitsCollectionWidget::RefreshData()
 void USelectedUnitsCollectionWidget::NativeDestruct()
 {
 	Super::NativeDestruct();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitRemovalObserver(this);
 }
 
 void USelectedUnitsCollectionWidget::UnitIsRemoved(UUnit* Unit)
@@ -65,7 +65,7 @@ void USelectedUnitsCollectionWidget::OnRemoveUnitsCollectionButtonClick()
 
 	SelectionComponent->SelectUnits(UnitsCollection->GetAll(), false, true);
 	
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitCollection(UnitsCollection);
 	
 	SelectionComponent->UnSelectUnits(UnitsCollection, true);
 }

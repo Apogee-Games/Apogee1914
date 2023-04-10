@@ -11,6 +11,7 @@
 #include "Characters/StateMachine/CountryManagementPawnState.h"
 #include "Characters/StateMachine/LawsBrowsingPawnState.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
+#include "Characters/StateMachine/ProductionBrowsingPawnState.h"
 #include "Characters/StateMachine/StorageBrowsingPawnState.h"
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
 #include "Characters/StateMachine/UnitCreationPawnState.h"
@@ -44,9 +45,9 @@ void AHumanPlayerPawn::SetPawnState(TSharedPtr<FPawnState> ProvidedPawnState)
 	GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>()->UpdateWidgetsVisibility();
 }
 
-void AHumanPlayerPawn::SetRuledCountryTag(const FName& NewRuledCountryTag)
+void AHumanPlayerPawn::SetRuledCountry(UCountry* Country)
 {
-	RuledCountry = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(NewRuledCountryTag);
+	RuledCountry = Country;
 }
 
 TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
@@ -54,12 +55,12 @@ TSharedPtr<FPawnState> AHumanPlayerPawn::GetPawnState() const
 	return PawnState;
 }
 
-void AHumanPlayerPawn::SelectUnitDescription(const FUnitDescription* UnitDescription)
+void AHumanPlayerPawn::SelectUnitDescription(UUnitDescription* UnitDescription)
 {
 	SelectedUnitDescription = UnitDescription;
 }
 
-void AHumanPlayerPawn::SelectBuildingDescription(const FBuildingDescription* BuildingDescription)
+void AHumanPlayerPawn::SelectBuildingDescription(UBuildingDescription* BuildingDescription)
 {
 	SelectedBuildingDescription = BuildingDescription;
 }
@@ -74,12 +75,12 @@ ICommandable* AHumanPlayerPawn::GetSelectedCommandable() const
 	return SelectedCommandable;
 }
 
-const FUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
+UUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
 {
 	return SelectedUnitDescription;
 }
 
-const FBuildingDescription* AHumanPlayerPawn::GetSelectedBuildingDescription() const
+UBuildingDescription* AHumanPlayerPawn::GetSelectedBuildingDescription() const
 {
 	return SelectedBuildingDescription;
 }
@@ -268,6 +269,19 @@ void AHumanPlayerPawn::SwitchLawsBrowsingState()
 	}
 }
 
+void AHumanPlayerPawn::SwitchProductionBrowsingState()
+{
+	if (IsPaused) return;
+	if (PawnState == FProductionBrowsingPawnState::GetInstance())
+	{
+		SetPawnState(FMapBrowsingPawnState::GetInstance());
+	}
+	else
+	{
+		SetPawnState(FProductionBrowsingPawnState::GetInstance());
+	}
+}
+
 void AHumanPlayerPawn::Play(USoundBase* Song)
 {
 	AudioComponent->SetSound(Song);
@@ -278,4 +292,14 @@ void AHumanPlayerPawn::Play(USoundBase* Song)
 void AHumanPlayerPawn::SetIsAudioPaused(bool IsAudioPaused)
 {
 	AudioComponent->SetPaused(IsAudioPaused);
+}
+
+void AHumanPlayerPawn::SetProductionSelectionFactory(UFactoryBuilding* Factory)
+{
+	SelectedFactory = Factory;
+}
+
+UFactoryBuilding* AHumanPlayerPawn::GetSelectedFactory() const
+{
+	return SelectedFactory;
 }

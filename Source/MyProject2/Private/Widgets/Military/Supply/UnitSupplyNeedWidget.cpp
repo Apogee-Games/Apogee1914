@@ -8,7 +8,7 @@ void UUnitSupplyNeedWidget::SetCarrier(UObject* ProvidedCarrier)
 
 void UUnitSupplyNeedWidget::RefreshData()
 {
-	GoodNameTextBlock->SetText(FText::FromName(Carrier->GetGoodName()));
+	GoodNameTextBlock->SetText(Carrier->GetGoodName());
 	GoodSupplyTextBlock->SetText(FText::FromString(FString::FromInt(Carrier->GetGoodSupply())));
 	GoodRequirementTextBlock->SetText(FText::FromString(FString::FromInt(Carrier->GetGoodRequirements())));
 }

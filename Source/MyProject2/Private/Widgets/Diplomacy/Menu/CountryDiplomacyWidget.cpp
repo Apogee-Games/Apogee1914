@@ -39,5 +39,5 @@ void UCountryDiplomacyWidget::RefreshData()
 	}
 	
 	CountryFlag->SetBrushResourceObject(Country->GetFlag());
-	CountryNameTextBlock->SetText(FText::FromName(Country->GetName()));
+	CountryNameTextBlock->SetText(Country->GetName());
 }

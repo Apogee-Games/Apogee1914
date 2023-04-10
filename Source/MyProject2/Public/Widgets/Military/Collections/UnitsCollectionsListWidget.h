@@ -36,5 +36,5 @@ public:
 	virtual void NativeDestruct() override;
 private:
 	UPROPERTY()
-	TArray<UMilitaryBranchUnitsCollectionsListWidget*> MilitaryBranchUnitsCollectionsListWidget;
+	TMap<UMilitaryBranchDescription*, UMilitaryBranchUnitsCollectionsListWidget*> MilitaryBranchUnitsCollectionsListWidget;
 };

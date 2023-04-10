@@ -37,6 +37,9 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* LawsBrowsingButton;
 
+	UPROPERTY(EditAnywhere, meta=(BindWidget))
+	UButton* ProductionBrowsingButton;
+
 	virtual void NativeConstruct() override;
 private:
 	UFUNCTION()
@@ -56,4 +59,7 @@ private:
 
 	UFUNCTION()
 	void OnLawsBrowsingButtonClick();
+
+	UFUNCTION()
+	void OnProductionBrowsingButtonClick();
 };

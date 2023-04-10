@@ -1,5 +1,6 @@
 #pragma once
 #include "StoredGood.h"
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "Economics/Interfaces/Observables/StorageObservable.h"
 
 #include "Storage.generated.h"
@@ -23,22 +24,22 @@ public:
 	
 	void Init(const FName& StrataType);
 
-	void Supply(const FName& GoodName, const int32 Amount);
+	void Supply(UGoodDescription* Good, const int32 Amount);
 
-	int32 Estimate(const FName& GoodName, const int32 Amount);
+	float Estimate(UGoodDescription* Good, const int32 Amount);
 
-	int32 GetGoodAmount(const FName& GoodName) const;
+	float GetGoodAmount(UGoodDescription* GoodN) const;
 	
-	int32 Demand(const FName& GoodName, const int32 Amount);
+	float Demand(UGoodDescription* Good, const int32 Amount);
 
 	EStorageType GetType() const;
 private:
 	UPROPERTY()
-	TMap<FName, UStoredGood*> Goods;
+	TMap<UGoodDescription*, UStoredGood*> Goods;
 
 	EStorageType Type = EStorageType::Country;
 
-	void AddGoodIfNotPresent(const FName& GoodName);
+	void AddGoodIfNotPresent(UGoodDescription* Good);
 	
 	inline static TMap<FName, EStorageType> StrataTypeToStorageType = {
 		{"LOW", EStorageType::LowerStrata},

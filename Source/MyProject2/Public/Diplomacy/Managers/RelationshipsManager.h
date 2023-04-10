@@ -38,7 +38,6 @@ public:
 	void CreateAlliance(UCountry* Country, const FText& AllianceName);
 
 	void CreateAlliance(UCountry* Country, const FText& AllianceName, const TArray<UCountry*>& InvitedCountries);
-
 private:
 	void Clear();
 

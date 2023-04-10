@@ -8,16 +8,17 @@ class UGoodNeedCarrier: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(UUnitSupplyNeeds* ProvidedUnitSupplyNeed, const FName& ProvidedGoodName);
+	void Init(UUnitSupplyNeeds* ProvidedUnitSupplyNeed, UGoodDescription* ProvidedGoodName);
 
-	int32 GetGoodSupply() const;
+	float GetGoodSupply() const;
 
-	int32 GetGoodRequirements() const;
+	float GetGoodRequirements() const;
 
-	const FName& GetGoodName() const;
+	const FText& GetGoodName() const;
 private:
 	UPROPERTY()
 	UUnitSupplyNeeds* UnitSupplyNeeds;
 
-	const FName* GoodName;
+	UPROPERTY()
+	UGoodDescription* Good;
 };

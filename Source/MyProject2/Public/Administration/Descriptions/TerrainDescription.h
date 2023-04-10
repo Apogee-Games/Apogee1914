@@ -2,14 +2,14 @@
 #include "Engine/DataTable.h"
 #include "TerrainDescription.generated.h"
 
-USTRUCT()
-struct FTerrainDescription : public FTableRowBase
+UCLASS()
+class UTerrainDescription : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
-
-	UPROPERTY()
-	FName TerrainName;
+public:
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	float MovementSpeed = 1;
 };

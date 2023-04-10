@@ -3,31 +3,25 @@
 
 #include "InGameTime.h"
 
-void UPerson::Init(const FName& ProvidedId, const FPersonDescription* Description)
+void UPerson::Init(UPersonDescription* Description)
 {
-	Id = ProvidedId;
-	DateOfBirth = Description->Age;
-	PersonName = Description->PersonName;
+	DateOfBirth = Description->DataOfBirth;
+	Name = Description->Name;
 	Professions = Description->Professions;
-	Image = LoadObject<UTexture2D>(nullptr, *Description->ImagePath.ToString());
-}
-
-const FName& UPerson::GetId() const
-{
-	return Id;
+	Image = Description->Image;
 }
 
 int32 UPerson::GetAge() const
 {
-	return (GetWorld()->GetSubsystem<UInGameTime>()->GetTime() - DateOfBirth).GetDays() / 365;
+	return (GetWorld()->GetGameInstance()->GetSubsystem<UInGameTime>()->GetTime() - DateOfBirth).GetDays() / 365;
 }
 
-FName UPerson::GetPersonName() const
+const FText& UPerson::GetPersonName() const
 {
-	return PersonName;
+	return Name;
 }
 
-const TArray<FName>& UPerson::GetProfessions() const
+const TArray<UProfessionDescription*>& UPerson::GetProfessions() const
 {
 	return Professions;
 }

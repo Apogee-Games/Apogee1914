@@ -1,5 +1,17 @@
 ﻿#pragma once
+#include "Administration/Descriptions/CountryProvinces.h"
+#include "Administration/Descriptions/ProvinceDescription.h"
+#include "Administration/Descriptions/Country/CountryDescription.h"
+#include "Administration/Descriptions/Law/LawsGroup.h"
+#include "Economics/Description/ResourceDescription.h"
+#include "Economics/Description/StrataDescription.h"
+#include "Economics/Description/Buildings/BuildingDescription.h"
+#include "Economics/Description/Goods/GoodDescription.h"
 #include "Engine/DataTable.h"
+#include "Events/Description/EventDescription.h"
+#include "Military/Descriptions/UnitDescription.h"
+#include "Music/Description/SongsGroup.h"
+#include "People/Description/CountryPeople.h"
 #include "Scenario.generated.h"
 
 UCLASS()
@@ -11,50 +23,44 @@ public:
 	FName ScenarioName;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* CountryDescriptionDataTable;
+	TArray<UCountryDescription*> CountriesDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* ProvinceDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* TerrainDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* ResourcesDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* StateDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* GoodDescriptionDataTable;
-
-	UPROPERTY(EditDefaultsOnly)
-	UDataTable* StrataDescriptionDataTable;	
+	TMap<UCountryDescription*, UCountryProvinces*> ProvincesDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* UnitsDescriptionDataTable;
+	TMap<FName, UResourceDescription*> ResourcesDescriptions;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UStateDescription*> StatesDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* BuildingsDescriptionDataTable;
+	TArray<UStrataDescription*> StrataDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* EventsDataTable;
+	TArray<UUnitDescription*> UnitDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* PeoplesDescriptionsDataTable;
+	TArray<UMilitaryBranchDescription*> MilitaryBranches;
+	
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UBuildingDescription*> BuildingsDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* ParliamentsDescriptionsDataTable;
+	TMap<FName, UGoodDescription*> GoodsDescriptions;
+	
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UEventDescription*> Events;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* IdeologyDescriptionsDataTable;
+	TMap<UCountryDescription*, UCountryPeople*> PeopleDescriptions;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* LawsDescriptionDataTable;
+	TArray<ULawsGroup*> LawsGroups;
 
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* SongsDescriptionsDataTable;
-
+	TArray<USongsGroup*> SongsGroups;
+	
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* SelectionMapTexture;
 
@@ -78,4 +84,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* IdeologiesMapTexture;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	FDateTime StartTime = FDateTime(1914, 1, 1);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	int32 MaxTimeSpeed = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
+	float SpeedMultiplier = 0.1;
 };

@@ -8,7 +8,7 @@ void UUnitsListCarrier::AddUnit(UUnit* Unit)
 
 void UUnitsListCarrier::RemoveUnit(UUnit* Unit)
 {
-	Units.Remove(Unit);
+		Units.Remove(Unit);
 }
 
 bool UUnitsListCarrier::IsEmpty() const

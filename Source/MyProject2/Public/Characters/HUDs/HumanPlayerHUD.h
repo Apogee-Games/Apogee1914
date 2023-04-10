@@ -21,6 +21,8 @@
 #include "Widgets/Diplomacy/Menu/CountryDiplomacyWidget.h"
 #include "Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListWidget.h"
 #include "Widgets/Diplomacy/Wars/Join/TheirWar/TheirWarsListWidget.h"
+#include "Widgets/Economics/Buildings/Production/ProducibleGoodsListWidget.h"
+#include "Widgets/Economics/Buildings/Production/ProductionListWidget.h"
 #include "Widgets/Music/MusicControllerWidget.h"
 #include "HumanPlayerHUD.generated.h"
 
@@ -91,6 +93,12 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UMusicControllerWidget> MusicControllerWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UProductionListWidget> ProductionListWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UProducibleGoodsListWidget> ProducibleGoodsListWidgetClass;
 	
 	virtual void BeginPlay() override;
 	
@@ -194,6 +202,12 @@ private:
 
 	UPROPERTY()
 	UMusicControllerWidget* MusicControllerWidget;
+
+	UPROPERTY()
+	UProductionListWidget* ProductionListWidget;
+
+	UPROPERTY()
+	UProducibleGoodsListWidget* ProducibleGoodsListWidget;
 	
 	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
@@ -237,4 +251,8 @@ private:
 	void InitLawsWidget();
 
 	void InitMusicControllerWidget();
+
+	void InitProductionListWidget();
+
+	void InitProducibleGoodsListWidget();
 };

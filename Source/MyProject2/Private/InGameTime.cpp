@@ -1,18 +1,14 @@
 #include "InGameTime.h"
 
 #include "Characters/HUDs/HumanPlayerHUD.h"
+#include "Maps/Countries/CountriesMap.h"
+#include "Maps/Flags/FlagsMap.h"
+#include "Maps/Precalculations/Boxes/BoxesMap.h"
 
-bool UInGameTime::ShouldCreateSubsystem(UObject* Outer) const
+void UInGameTime::SetScenario(UScenario* Scenario)
 {
-	return Super::ShouldCreateSubsystem(Outer) && Outer->GetName() == TEXT("Game");
-}
-
-void UInGameTime::OnWorldBeginPlay(UWorld& InWorld)
-{
-	Super::OnWorldBeginPlay(InWorld);
-	CurrentTime = StartTime;
-	RefreshWidgetDate();
-	RefreshWidgetSpeed();
+	Clear();
+	Init(Scenario);
 }
 
 void UInGameTime::Tick(float DeltaTime)
@@ -47,6 +43,30 @@ void UInGameTime::RegisterListener(UObject* Object, void (UObject::*Function)(),
 	++TotalObjectNumber;
 }
 
+void UInGameTime::Clear()
+{
+	Objects.Empty();
+	Functions.Empty();
+	CurrentDeltas.Empty();
+	Deltas.Empty();
+}
+
+void UInGameTime::Init(UScenario* Scenario)
+{
+	CurrentTime = Scenario->StartTime;
+	MaxTimeSpeed = Scenario->MaxTimeSpeed;
+	SpeedMultiplier = Scenario->SpeedMultiplier;
+	
+	/*
+	RefreshWidgetDate();
+	RefreshWidgetSpeed();
+	*/
+	// TODO: Widgets
+	// TODO: Move these
+	RegisterListener(GetWorld()->GetGameInstance()->GetSubsystem<UCountriesMap>(), &UCountriesMap::Tick, FTimespan(1, 0, 0));
+	RegisterListener(GetWorld()->GetGameInstance()->GetSubsystem<UFlagsMap>(), &UFlagsMap::Tick, FTimespan(1, 0, 0));
+}
+
 void UInGameTime::UpdateCurrentTime(const FTimespan& DeltaTimeSpan)
 {
 	CurrentTime += DeltaTimeSpan;
@@ -73,7 +93,7 @@ void UInGameTime::RefreshWidgetDate()
 	UTimeControllerWidget* TimeControllerWidget = GetWorld()->GetFirstPlayerController()->GetHUD<AHumanPlayerHUD>()->GetTimeControllerWidget();
 	if (TimeControllerWidget)
 	{
-		TimeControllerWidget->SetTime(CurrentTime.ToString(TEXT("%Y-%m-%d %H")));
+		TimeControllerWidget->SetTime(GetStringTime());
 	}
 }
 
@@ -90,6 +110,11 @@ void UInGameTime::RefreshWidgetSpeed()
 const FDateTime& UInGameTime::GetTime() const
 {
 	return CurrentTime;
+}
+
+const FText UInGameTime::GetStringTime() const
+{
+	return FText::FromString(CurrentTime.ToString(TEXT("%Y-%m-%d %H")));
 }
 
 void UInGameTime::SpeedUpTime()

@@ -1,22 +1,29 @@
 
 #include "Widgets/Military/Supply/UnitsSupplyListWidget.h"
 
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsSupplyController.h"
 
 void UUnitsSupplyListWidget::Init()
 {
-	GetWorld()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	Country = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
 }
 
 void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
 {
-	UnitsListView->AddItem(Unit);
+	if (Country == Unit->GetCountryOwner())
+	{
+		UnitsListView->AddItem(Unit);
+	}
 }
 
-void UUnitsSupplyListWidget::NativeDestruct()
+void UUnitsSupplyListWidget::UnitIsRemoved(UUnit* Unit)
 {
-	Super::NativeDestruct();
-	GetWorld()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+	if (Country == Unit->GetCountryOwner())
+	{
+		UnitsListView->RemoveItem(Unit);
+	}
 }
-// TODO: Add OnUnitRemove :)

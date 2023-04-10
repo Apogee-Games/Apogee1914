@@ -3,9 +3,11 @@
 
 #include "LevelsOverides/Game/GameLevelGameMode.h"
 
+#include "AIController.h"
 #include "InGameTime.h"
 #include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
+#include "Characters/AIPlayerController.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "GameFramework/PlayerState.h"
 #include "Characters/AIPlayerPawn.h"
@@ -26,8 +28,8 @@ AGameLevelGameMode::AGameLevelGameMode()
 void AGameLevelGameMode::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	GetWorld()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
-	GetWorld()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
+	GetGameInstance()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
+	GetGameInstance()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
 }
 
 void AGameLevelGameMode::BeginPlay()
@@ -35,8 +37,11 @@ void AGameLevelGameMode::BeginPlay()
 	// Add Unit Descriptions -> Add Widget For Unit Creation -> Tie Widget and Unit Creation
 
 	//GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
+
+	UGameInstance* GameInstance = GetGameInstance();
 	
-	GetWorld()->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
+	GameInstance->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
+	GameInstance->GetSubsystem<UUnitsRenderer>()->InGameWorldInit();
 	
 	Super::BeginPlay();
 	
@@ -54,7 +59,7 @@ void AGameLevelGameMode::BeginPlay()
 		GameInstance->SetRuledCountry(PlayerId, "GER");
 	}*/
 	
-	//CreateAIPawns();
+	CreateAIPawns();
 }
 
 void AGameLevelGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -71,18 +76,20 @@ void AGameLevelGameMode::PostLogin(APlayerController* NewPlayer)
 	NewPlayer->SetInputMode(InputModeGameAndUI);
 	NewPlayer->SetShowMouseCursor(true);
 
-	const FName RuledCountryTag = GetGameInstance<UMyGameInstance>()->GetRuledCountry(NewPlayer);
-		
-	NewPlayer->GetPawn<AHumanPlayerPawn>()->SetRuledCountryTag(RuledCountryTag);
+	UCountry* Country = GetGameInstance<UMyGameInstance>()->GetRuledCountry(NewPlayer);
+	NewPlayer->GetPawn<AHumanPlayerPawn>()->SetRuledCountry(Country);
 }
 
 void AGameLevelGameMode::CreateAIPawns()
 {
-	for (const auto& CountryTag : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesTagsList())
+	UCountriesManager* CountriesManager = GetGameInstance()->GetSubsystem<UCountriesManager>();
+	for (const auto& CountryDescription : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesDescriptions())
 	{
-		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryTag)) continue;
+		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryDescription)) continue; // TODO: Filter only active countries
+		AAIPlayerController* Controller = GetWorld()->SpawnActor<AAIPlayerController>(AIPlayerControllerClass);
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
-		Pawn->SetRuledCountryTag(CountryTag);
-		AIPawns.Add(CountryTag, Pawn);
+		Controller->Possess(Pawn);
+		Pawn->SetRuledCountry(CountriesManager->GetCountry(CountryDescription));
+		AIPawns.Add(CountryDescription, Pawn);
 	}
 }

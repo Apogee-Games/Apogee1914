@@ -1,22 +1,22 @@
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
-
-#include "Military/Instances/Units/Unit.h"
+#include "Military/Managers/UnitsFactory.h"
 
 void USelectedUnitsListWidget::Init()
 {
-	MilitaryBranchUnitsListWidgets.SetNum(MilitaryBranchesNumber);
-	for (int i = 0; i < MilitaryBranchesNumber; ++i)
+	const TArray<UMilitaryBranchDescription*> MilitaryBranches = GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetMilitaryBranches();
+	for (const auto& MilitaryBranch: MilitaryBranches)
 	{
-		MilitaryBranchUnitsListWidgets[i] = CreateWidget<USelectedMilitaryBranchUnitsListWidget>(GetOwningPlayer(), SelectedMilitaryBranchUnitsListWidgetCLass);
-		MilitaryBranchUnitsListWidgets[i]->Init(MilitaryBranches[i]);
-		UnitsListsScrollBox->AddChild(MilitaryBranchUnitsListWidgets[i]);
+		USelectedMilitaryBranchUnitsListWidget* Widget = CreateWidget<USelectedMilitaryBranchUnitsListWidget>(GetOwningPlayer(), SelectedMilitaryBranchUnitsListWidgetCLass);
+		Widget->Init(MilitaryBranch);
+		UnitsListsScrollBox->AddChild(Widget);
+		MilitaryBranchUnitsListWidgets.Add(MilitaryBranch, Widget);
 	}
 }
 
-void USelectedUnitsListWidget::SetSelections(const TArray<FUnitsSelection>& Selections)
+void USelectedUnitsListWidget::SetSelections(const TMap<UMilitaryBranchDescription*, FUnitsSelection>& Selections)
 {
-	for (int i = 0; i < Selections.Num(); ++i)
+	for (const auto& [MilitaryBranch, Selection]: Selections)
 	{
-		MilitaryBranchUnitsListWidgets[i]->SetSelection(Selections[i]);
+		MilitaryBranchUnitsListWidgets[MilitaryBranch]->SetSelection(Selection);
 	}
 }

@@ -16,13 +16,22 @@ void UCountriesMap::Initialize(FSubsystemCollectionBase& Collection)
 	GetGameInstance()->GetSubsystem<UProvinceManager>()->AddProvinceControllingCountryObserver(this);
 }
 
+void UCountriesMap::Tick()
+{
+	if (IsUpdated)
+	{
+		CountriesMapTexture->UpdateResource();
+		IsUpdated = false;
+	}
+}
+
 void UCountriesMap::SetScenario(UScenario* Scenario)
 {
 	Clear();
 	Init(Scenario);
 }
 
-void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) const
+void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces) 
 {
 	TArray<FRunnableThread*> Threads;
 
@@ -40,7 +49,7 @@ void UCountriesMap::UpdateCountriesMapColors(const TArray<UProvince*>& Provinces
 	
 	FTextureUtils::UnlockPixels(CountriesMapTexture);
     
-    CountriesMapTexture->UpdateResource();
+	IsUpdated = true;
 }
 
 void UCountriesMap::UpdateAllCountriesMapColors()
@@ -75,4 +84,5 @@ void UCountriesMap::Init(UScenario* Scenario)
 	CountriesMapTexture = Scenario->CountriesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountriesMapTexture);
 	UpdateCountriesMapColors(GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces());
+	CountriesMapTexture->UpdateResource();
 }

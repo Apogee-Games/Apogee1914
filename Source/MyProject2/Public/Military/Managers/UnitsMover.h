@@ -1,4 +1,5 @@
 #pragma once
+#include "Scenario.h"
 #include "Characters/Components/UnitsSelectionComponent.h"
 #include "Maps/Graph.h"
 #include "Military/Instances/Units/Unit.h"
@@ -8,13 +9,11 @@
 #include "UnitsMover.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UUnitsMover: public UWorldSubsystem, public IUnitMovementObservable
+class UUnitsMover: public UGameInstanceSubsystem, public IUnitMovementObservable
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-	
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	FGraph* GetGraph() const;
 
@@ -24,11 +23,13 @@ public:
 
 	virtual void MoveUnits(const TSet<UUnit*>& Units, UProvince* To);
 
+	virtual void MoveUnits(const TArray<UUnit*>& Units, UProvince* To);
+
 	virtual void MoveUnits(const TSet<UUnitsCollection*>& UnitsCollections, UProvince* To);
 
 	virtual void MoveUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups, UProvince* To);
 
-	virtual void MoveUnits(const TArray<FUnitsSelection>& Selections, UProvince* To);
+	virtual void MoveUnits(const TMap<UMilitaryBranchDescription*, FUnitsSelection>& Selections, UProvince* To);
 	
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 
@@ -47,7 +48,9 @@ private:
 
 	TQueue<UUnit*> UnitsArrived;
 
-	void MoveUnit(UUnit* Unit, int32 Position);
+	void Clear();
+
+	void Init(UScenario* Scenario);
 
 	void RemoveArrivedUnit();
 

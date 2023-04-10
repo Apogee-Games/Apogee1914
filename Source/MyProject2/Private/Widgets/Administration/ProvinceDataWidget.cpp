@@ -3,6 +3,7 @@
 
 #include "Widgets/Administration/ProvinceDataWidget.h"
 
+#include "Administration/Instances/Country.h"
 #include "Administration/Instances/State.h"
 #include "Administration/Managers/StateManager.h"
 
@@ -10,7 +11,7 @@ void UProvinceDataWidget::SetNewProvince(UProvince* Province)
 {
 	if (!Province) return;
 
-	ProvinceNameTextBlock->SetText(FText::FromName(Province->GetName()));
+	ProvinceNameTextBlock->SetText(Province->GetName());
 
 	SetPopulationNumber(Province->GetPopulation()->GetPopulation());
 
@@ -48,7 +49,7 @@ void UProvinceDataWidget::SetBuildings(UProvince* Province) const
 
 void UProvinceDataWidget::SetState(UProvince* Province) const
 {
-	const UState* State = GetWorld()->GetGameInstance()->GetSubsystem<UStateManager>()->GetState(Province->GetStateId());
+	const UState* State = GetWorld()->GetGameInstance()->GetSubsystem<UStateManager>()->GetState(Province->GetState());
 
 	if (State)
 	{
@@ -62,7 +63,7 @@ void UProvinceDataWidget::SetState(UProvince* Province) const
 
 void UProvinceDataWidget::SetCountries(UProvince* Province) const
 {
-	CountryOwnerNameTextBlock->SetText(FText::FromName(Province->GetOwnerCountry()->GetName()));
+	CountryOwnerNameTextBlock->SetText(Province->GetOwnerCountry()->GetName());
 	CountryOwnerFlagImage->SetBrushResourceObject(Province->GetOwnerCountry()->GetFlag());
 
 	if (Province->GetOwnerCountry() == Province->GetCountryController())
@@ -71,7 +72,7 @@ void UProvinceDataWidget::SetCountries(UProvince* Province) const
 	} else
 	{
 		ControllerCanvasPanel->SetVisibility(ESlateVisibility::Visible);
-		CountryControllerNameTextBlock->SetText(FText::FromName(Province->GetCountryController()->GetName()));
+		CountryControllerNameTextBlock->SetText(Province->GetCountryController()->GetName());
 		CountryControllerFlagImage->SetBrushResourceObject(Province->GetCountryController()->GetFlag());
 	}
 }

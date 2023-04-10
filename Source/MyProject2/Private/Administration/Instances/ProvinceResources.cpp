@@ -1,40 +1,49 @@
 
 #include "Administration/Instances/ProvinceResources.h"
 
-void UProvinceResources::AddResource(uint8* ResourceDescription, int32 Amount)
+void UProvinceResources::Init(const TMap<UResourceDescription*, int32>& ProvidedResources)
+{
+	for (const auto& [Resource, Amount]: ProvidedResources)
+	{
+		AddResource(Resource, Amount);
+	}
+}
+
+void UProvinceResources::AddResource(UResourceDescription* ResourceDescription, int32 Amount)
 {
 	if (!ResourceDescription) return;
-	UProvinceResource* Resource = NewObject<UProvinceResource>();
+	UProvinceResource* Resource = NewObject<UProvinceResource>(this);
 	Resource->Init(ResourceDescription, Amount);
-	Resources.Add(Resource->GetResourceName(), Resource);
+	Resources.Add(Resource->GetResource(), Resource);
 }
 
 void UProvinceResources::AddResource(UProvinceResource* ProvinceResource)
 {
-	Resources.Add(ProvinceResource->GetResourceName(), ProvinceResource);
+	Resources.Add(ProvinceResource->GetResource(), ProvinceResource);
 }
 
-int32 UProvinceResources::GetFreeAmount(const FName& ResourceName) const
+int32 UProvinceResources::GetFreeAmount(UResourceDescription* Resource) const
 {
-	return Resources[ResourceName]->GetFreeAmount();
+	return Resources.Contains(Resource) ? Resources[Resource]->GetFreeAmount(): 0;
 }
 
-int32 UProvinceResources::Use(const FName& ResourceName, int32 AmountToUse)
+int32 UProvinceResources::Use(UResourceDescription* Resource, int32 AmountToUse)
 {
-	return Resources[ResourceName]->Use(AmountToUse);
+	return Resources.Contains(Resource) ? Resources[Resource]->Use(AmountToUse) : 0;
 }
 
-void UProvinceResources::Free(const FName& ResourceName, int32 Amount)
+void UProvinceResources::Free(UResourceDescription* Resource, int32 Amount)
 {
-	Resources[ResourceName]->Free(Amount);
+	if (!Resources.Contains(Resource)) return;
+	Resources[Resource]->Free(Amount);
 }
 
-UProvinceResource* UProvinceResources::GetResource(const FName& ResourceName) const
+UProvinceResource* UProvinceResources::GetResource(UResourceDescription* Resource) const
 {
-	return Resources[ResourceName];
+	return Resources.Contains(Resource) ? Resources[Resource]: nullptr;
 }
 
-const TMap<FName, UProvinceResource*>& UProvinceResources::GetMap() const
+const TMap<UResourceDescription*, UProvinceResource*>& UProvinceResources::GetMap() const
 {
 	return Resources;
 }

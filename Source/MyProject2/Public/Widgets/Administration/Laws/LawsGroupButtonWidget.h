@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Administration/Descriptions/Law/LawsGroup.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
@@ -16,7 +17,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* GroupTextBlock;
 	
-	void Init(const FName& GroupName, UWidgetSwitcher* ProvidedWidgetSwitcher, int32 ProvidedIndex);
+	void Init(ULawsGroup* LawsGroup, UWidgetSwitcher* ProvidedWidgetSwitcher, int32 ProvidedIndex);
 private:
 	UPROPERTY()
 	UWidgetSwitcher* WidgetSwitcher;

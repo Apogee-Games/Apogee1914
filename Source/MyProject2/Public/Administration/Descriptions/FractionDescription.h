@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "IdeologyDescription.h"
 #include "Engine/DataTable.h"
 #include "FractionDescription.generated.h"
 
@@ -7,12 +8,12 @@ struct FFractionDescription: public FTableRowBase
 {
 	GENERATED_BODY()
 	
-	UPROPERTY()
-	FName IdeologyTag;
+	UPROPERTY(EditDefaultsOnly)
+	UIdeologyDescription* Ideology;
 	
-	UPROPERTY()
-	FText FractionName;
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	int32 MembersNumber;
 };

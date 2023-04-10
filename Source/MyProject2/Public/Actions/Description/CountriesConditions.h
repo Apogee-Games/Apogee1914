@@ -2,14 +2,16 @@
 #include "Engine/DataTable.h"
 #include "CountriesConditions.generated.h"
 
+class UCountryDescription;
+
 USTRUCT()
 struct FCountriesConditions : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	bool ForAll;
 
-	UPROPERTY()
-	TArray<FName> CountriesTags;
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UCountryDescription*> CountriesTags;
 };

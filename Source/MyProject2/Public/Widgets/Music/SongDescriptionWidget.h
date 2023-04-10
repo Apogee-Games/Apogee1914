@@ -27,15 +27,16 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* Button;
 	
-	void Init(FSongDescription* ProvidedSongDescription, UMusicControllerWidget* ProvidedMusicControllerWidget);
+	void Init(USongDescription* ProvidedSongDescription, UMusicControllerWidget* ProvidedMusicControllerWidget);
 
 	void Select();
 
 	void UnSelect();
 
-	FSongDescription* GetSongDescription();
+	USongDescription* GetSongDescription();
 private:
-	FSongDescription* SongDescription;
+	UPROPERTY()
+	USongDescription* SongDescription;
 	
 	UPROPERTY()
 	UMusicControllerWidget* MusicControllerWidget;

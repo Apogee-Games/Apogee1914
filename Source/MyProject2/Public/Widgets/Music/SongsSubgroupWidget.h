@@ -19,9 +19,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* SubgroupNameTextBlock;
 	
-	void Init(FName SubgroupName, UMusicControllerWidget* ProvidedMusicControllerWidget);
-	
-	void AddSong(FSongDescription* SongDescription);
+	void Init(USongsSubgroup* SongsSubgroup, UMusicControllerWidget* ProvidedMusicControllerWidget);
 private:
 	UPROPERTY()
 	UMusicControllerWidget* MusicControllerWidget;

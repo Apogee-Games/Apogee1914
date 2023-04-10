@@ -1,5 +1,7 @@
 #pragma once
 #include "EditorSubsystem.h"
+#include "Scenario.h"
+#include "Administration/Instances/Country.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Description/EventDescription.h"
 #include "Widgets/Events/EventWidget.h"
@@ -9,7 +11,7 @@
  * Class used to control all events instances
  */
 UCLASS(Abstract, Blueprintable)
-class UEventInstancesController: public UWorldSubsystem
+class UEventInstancesController: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
@@ -19,38 +21,42 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
 
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	virtual void Tick(float DeltaTime);
 	
 	void CheckEvents();
 
-	void CreateEvent(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEvent(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription);
 
-	void DeleteEventWidget(FEventDescription* Event, const FName& CountryTag);
+	void DeleteEventWidget(UEventDescription* Event, UCountryDescription* CountryDescription);
 
-	void RegisterChoice(FEventDescription* Event, const FName& ChoiceName, const FName& CountryTag);
+	void RegisterChoice(UEventDescription* Event, const FName& ChoiceName, UCountryDescription* CountryDescription);
 
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
 private:
-	TSet<TPair<FEventDescription*, FName>> FiredEvents;
+	TSet<TPair<UEventDescription*, UCountryDescription*>> FiredEvents;
 
-	TArray<FEventDescription*> Events;
+	UPROPERTY()
+	TArray<UEventDescription*> Events;
 
-	TMap<FEventDescription*, bool> ActiveEvents;
+	UPROPERTY()
+	TMap<UEventDescription*, bool> ActiveEvents;
 	
-	TMap<TPair<FEventDescription*, FName>, UEventWidget*> WidgetsInstances;
+	TMap<TPair<UEventDescription*, UCountryDescription*>, UEventWidget*> WidgetsInstances;
 
-	void CreateEventForAI(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void Clear();
+
+	void Init(UScenario* Scenario);
+
+	void CreateEventForAI(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription);
 	
-	void CreateEventForPlayer(FEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, const FName& CountryTag);
+	void CreateEventForPlayer(UEventDescription* Event, const TMap<FName, bool>& ChoicesConditionsEvaluated, UCountryDescription* CountryDescription);
 
 	static float CalculateSumOfAIChancesForChoices(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated);
 
 	FName FindAISelectedChoice(const TArray<FEventChoice>& Choices, const TMap<FName, bool>& ChoicesConditionsEvaluated) const;
 
-	const TArray<FName>& GetCountriesForWhichEventCanBeFired(FEventDescription* Event) const;
+	const TArray<UCountryDescription*>& GetCountriesForWhichEventCanBeFired(UEventDescription* Event) const;
 };

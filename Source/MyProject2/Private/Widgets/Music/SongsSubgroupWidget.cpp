@@ -1,14 +1,13 @@
 ﻿#include "Widgets/Music/SongsSubgroupWidget.h"
 
-void USongsSubgroupWidget::Init(FName SubgroupName, UMusicControllerWidget* ProvidedMusicControllerWidget)
+void USongsSubgroupWidget::Init(USongsSubgroup* SongsSubgroup, UMusicControllerWidget* ProvidedMusicControllerWidget)
 {
-	SubgroupNameTextBlock->SetText(FText::FromName(SubgroupName));
+	SubgroupNameTextBlock->SetText(SongsSubgroup->Name);
 	MusicControllerWidget = ProvidedMusicControllerWidget;
-}
-
-void USongsSubgroupWidget::AddSong(FSongDescription* SongDescription)
-{
-	USongDescriptionWidget* SongDescriptionWidget = CreateWidget<USongDescriptionWidget>(GetOwningPlayer(), SongDescriptionWidgetClass);
-	SongDescriptionWidget->Init(SongDescription, MusicControllerWidget);
-	SongsDescriptionsScrollBox->AddChild(SongDescriptionWidget);
+	for (const auto& Song: SongsSubgroup->Songs)
+	{
+		USongDescriptionWidget* SongDescriptionWidget = CreateWidget<USongDescriptionWidget>(GetOwningPlayer(), SongDescriptionWidgetClass);
+		SongDescriptionWidget->Init(Song, MusicControllerWidget);
+		SongsDescriptionsScrollBox->AddChild(SongDescriptionWidget);
+	}
 }

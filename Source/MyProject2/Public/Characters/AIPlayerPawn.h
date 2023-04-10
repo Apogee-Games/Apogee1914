@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Administration/Instances/Country.h"
 #include "GameFramework/Pawn.h"
 #include "AIPlayerPawn.generated.h"
 
@@ -15,8 +16,9 @@ public:
 	// Sets default values for this pawn's properties
 	AAIPlayerPawn();
 	
-	// Sets tag of country controlled by this Pawn
-	void SetRuledCountryTag(const FName& NewRuledCountryTag);
+	void SetRuledCountry(UCountry* Country);
+
+	UCountry* GetRuledCountry() const;
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,7 +32,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 private:
-	/* Tag of country that current pawn controls */
-	FName RuledCountryTag;
-	
+	UPROPERTY()
+	UCountry* RuledCountry;
 };

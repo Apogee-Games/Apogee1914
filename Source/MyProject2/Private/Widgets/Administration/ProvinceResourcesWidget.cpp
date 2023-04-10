@@ -8,7 +8,7 @@ void UProvinceResourcesWidget::SetResource(UObject* ProvidedResource)
 
 void UProvinceResourcesWidget::RefreshData()
 {
-	ResourceNameTextBlock->SetText(FText::FromName(Resource->GetResourceName()));
+	ResourceNameTextBlock->SetText(Resource->GetResource()->NameText);
 	UsedAmountTextBlock->SetText(FText::FromString(FString::FromInt(Resource->GetUsedAmount())));
 	TotalAmountTextBlock->SetText(FText::FromString(FString::FromInt(Resource->GetTotalAmount())));
 }

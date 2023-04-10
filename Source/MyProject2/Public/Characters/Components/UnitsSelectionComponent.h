@@ -32,7 +32,7 @@ class UUnitsSelectionComponent: public USceneComponent
 {
 	GENERATED_BODY()
 public:
-	UUnitsSelectionComponent();
+	virtual void BeginPlay() override;
 	
 	void SelectUnits(UUnitsCollectionGroup* UnitsCollectionGroup, bool NotifyAboutUpdate = true, bool AddToExisting = false);
 
@@ -50,7 +50,7 @@ public:
 
 	void ClearSelectedUnits();
 
-	const TArray<FUnitsSelection>& GetUnitsSelectionsByBranch() const;
+	const TMap<UMilitaryBranchDescription*, FUnitsSelection>& GetUnitsSelectionsByBranch() const;
 	
 	void UnSelectUnits(const TArray<UUnitsCollection*>& UnitsCollections, bool NotifyAboutUpdate = false);
 	
@@ -65,7 +65,7 @@ public:
 	bool HasSelectedUnits() const;
 private:
 	UPROPERTY()
-	TArray<FUnitsSelection> Selections;
+	TMap<UMilitaryBranchDescription*, FUnitsSelection> Selections;
 
 	void SelectedUnitsWereUpdated() const;
 

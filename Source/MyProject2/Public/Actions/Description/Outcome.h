@@ -7,12 +7,12 @@ struct FOutcome : public FTableRowBase
 {
 	GENERATED_BODY()
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FName Name;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FText Description;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TMap<FName, FString> Values;
 };

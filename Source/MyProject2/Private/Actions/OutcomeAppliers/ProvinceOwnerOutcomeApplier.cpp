@@ -9,8 +9,8 @@ FProvinceOwnerOutcomeApplier::FProvinceOwnerOutcomeApplier(UCountriesManager* Co
 
 void FProvinceOwnerOutcomeApplier::Apply(const TMap<FName, FString>& Values)
 {
-	UCountry* Country = CountriesManager->GetCountry(FName(*Values["Country"]));
-	UProvince* Province = ProvinceManager->GetProvince(FName(*Values["Province"]));
+//	UCountry* Country = CountriesManager->GetCountry(FName(*Values["Country"]));
+//	UProvince* Province = ProvinceManager->GetProvince(FName(*Values["Province"]));
 
-	Province->TakeControl(Country);
+//	Province->TakeControl(Country);
 }

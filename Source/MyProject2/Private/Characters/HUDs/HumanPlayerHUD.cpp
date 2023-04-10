@@ -28,6 +28,8 @@ void AHumanPlayerHUD::BeginPlay()
 	InitCountryManagementWidget();
 	InitLawsWidget();
 	InitMusicControllerWidget();
+	InitProductionListWidget();
+	InitProducibleGoodsListWidget();
 }
 
 UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
@@ -194,13 +196,7 @@ void AHumanPlayerHUD::InitUnitTypesListWidget()
 		
 		if (UnitTypesListWidget)
 		{
-			UDataTable* UnitsDescriptionDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->UnitsDescriptionDataTable;
-
-			for (const auto& [UnitName, UnitDescription]: UnitsDescriptionDataTable->GetRowMap())
-			{
-				UnitTypesListWidget->AddUnitType(reinterpret_cast<FUnitDescription*>(UnitDescription));
-			}
-			
+			UnitTypesListWidget->Init();
 			Widgets.Add(UnitTypesListWidget);
 		}
 	}
@@ -213,8 +209,7 @@ void AHumanPlayerHUD::InitStorageGoodsListWidget()
 		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(GetOwningPlayerController(), StorageGoodsListWidgetClass);
 		if (StorageGoodsListWidget)
 		{
-			const FName RuledCountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
-			const UCountry* Country = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(RuledCountryTag);
+			const UCountry* Country = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountry();
 
 			for (const auto& Storage: Country->GetStorages())
 			{
@@ -261,13 +256,7 @@ void AHumanPlayerHUD::InitBuildingsTypesListWidget()
 		
 		if (BuildingsTypesListWidget)
 		{
-
-			UDataTable* BuildingsDescriptionDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptionDataTable;
-
-			for (const auto& [BuildingName, BuildingDescription]: BuildingsDescriptionDataTable->GetRowMap())
-			{
-				BuildingsTypesListWidget->AddBuildingType(reinterpret_cast<FBuildingDescription*>(BuildingDescription));
-			}
+			BuildingsTypesListWidget->Init(GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptions);
 			Widgets.Add(BuildingsTypesListWidget);
 		}
 	}
@@ -304,12 +293,7 @@ void AHumanPlayerHUD::InitCommanderListWidget()
 		CommanderListWidget = CreateWidget<UCommanderListWidget>(GetOwningPlayerController(), CommanderListWidgetClass);
 		if (CommanderListWidget)
 		{
-			FName CountryTag = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountryTag();
-			const TArray<UPerson*> People = GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPeopleByProfession(TEXT("Commander"), CountryTag);
-			for (const auto& Person: People)
-			{
-				CommanderListWidget->AddCommander(Person);		
-			}
+			CommanderListWidget->Init();
 			Widgets.Add(CommanderListWidget);
 		}	
 	}
@@ -451,11 +435,35 @@ void AHumanPlayerHUD::InitMusicControllerWidget()
 	if (MusicControllerWidgetClass)
 	{
 		MusicControllerWidget = CreateWidget<UMusicControllerWidget>(GetOwningPlayerController(), MusicControllerWidgetClass);
-		UDataTable* SongsDescriptionsDataTable = GetGameInstance<UMyGameInstance>()->ActiveScenario->SongsDescriptionsDataTable;
-		for (const auto& [Name, SongDescription]: SongsDescriptionsDataTable->GetRowMap())
+		if (MusicControllerWidget)
 		{
-			MusicControllerWidget->AddSong(reinterpret_cast<FSongDescription*>(SongDescription));
+			MusicControllerWidget->Init(GetGameInstance<UMyGameInstance>()->ActiveScenario->SongsGroups);
+			MusicControllerWidget->AddToPlayerScreen(1);
 		}
-		MusicControllerWidget->AddToPlayerScreen(1);
+	}
+}
+
+void AHumanPlayerHUD::InitProductionListWidget()
+{
+	if (ProductionListWidgetClass)
+	{
+		ProductionListWidget = CreateWidget<UProductionListWidget>(GetOwningPlayerController(), ProductionListWidgetClass);
+		if (ProductionListWidget)
+		{
+			ProductionListWidget->Init();
+			Widgets.Add(ProductionListWidget);
+		}
+	}
+}
+
+void AHumanPlayerHUD::InitProducibleGoodsListWidget()
+{
+	if (ProducibleGoodsListWidgetClass)
+	{
+		ProducibleGoodsListWidget = CreateWidget<UProducibleGoodsListWidget>(GetOwningPlayerController(), ProducibleGoodsListWidgetClass);
+		if (ProducibleGoodsListWidget)
+		{
+			Widgets.Add(ProducibleGoodsListWidget);
+		}
 	}
 }

@@ -21,13 +21,13 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(APawn* ProvidedPawn
 	
 	if (!Pawn->GetSelectedBuildingDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
+	USelectionMap* SelectionMap = Pawn->GetGameInstance()->GetSubsystem<USelectionMap>();
 
 	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	if (Pawn->GetRuledCountry() != Province->GetCountryController()) return Instance;
 
-	UBuildingManager* BuildingManager = Pawn->GetWorld()->GetSubsystem<UBuildingManager>();
+	UBuildingManager* BuildingManager = Pawn->GetGameInstance()->GetSubsystem<UBuildingManager>();
 
 	BuildingManager->BuildBuilding(Pawn->GetSelectedBuildingDescription(), Province);
 

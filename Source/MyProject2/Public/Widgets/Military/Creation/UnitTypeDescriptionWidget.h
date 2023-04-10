@@ -34,9 +34,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RefreshData();
 private:
-	TSet<FName> AddedGoodRequirement;
-	
-	const FUnitDescription* UnitDescription;
+	UPROPERTY()
+	TSet<UGoodDescription*> AddedGoodRequirement;
+
+	UPROPERTY()
+	UUnitDescription* UnitDescription;
 
 	UFUNCTION()
 	void OnButtonClick();

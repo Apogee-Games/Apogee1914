@@ -12,5 +12,8 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* CommandersListView;
 
-	void AddCommander(UPerson* Commander);
+	UPROPERTY(EditDefaultsOnly)
+	UProfessionDescription* CommanderProfession;
+	
+	void Init();
 };

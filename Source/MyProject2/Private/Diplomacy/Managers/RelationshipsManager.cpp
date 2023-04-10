@@ -73,9 +73,9 @@ void URelationshipsManager::Clear()
 
 void URelationshipsManager::Init(UScenario* Scenario)
 {
-	UCountry* France = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("FRA");
-	UCountry* Spain = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("SPA");
-	DeclareWar(France, Spain);
+//	UCountry* France = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("FRA");
+//	UCountry* Spain = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("SPA");
+//	DeclareWar(France, Spain);
 
 	GetGameInstance()->GetSubsystem<UCountryRelationMap>()->UpdateMap();
 	GetGameInstance()->GetSubsystem<UAlliancesMap>()->UpdateMap();

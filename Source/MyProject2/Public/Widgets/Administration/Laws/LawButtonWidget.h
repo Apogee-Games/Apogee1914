@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "LawDescriptionWidget.h"
-#include "Administration/Descriptions/LawDescription.h"
+#include "Administration/Descriptions/Law/LawDescription.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
@@ -17,12 +17,13 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UTextBlock* LawNameTextBlock;
 
-	void Init(FLawDescription* ProvidedLawDescription, ULawDescriptionWidget* ProvidedLawsSubgroupWidget);
+	void Init(ULawDescription* ProvidedLaw, ULawDescriptionWidget* ProvidedLawsSubgroupWidget);
 private:
 	UPROPERTY()
 	ULawDescriptionWidget* LawDescriptionWidget;
-	
-	FLawDescription* LawDescription;
+
+	UPROPERTY()
+	ULawDescription* Law;
 
 	UFUNCTION()
 	void OnButtonClick();

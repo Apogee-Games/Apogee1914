@@ -1,5 +1,5 @@
 #pragma once
-#include "Administration/Descriptions/ResourceDescription.h"
+#include "Economics/Description/ResourceDescription.h"
 
 #include "ProvinceResource.generated.h"
 
@@ -8,9 +8,7 @@ class UProvinceResource: public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(uint8* ProvidedResourceDescription, int32 ProvidedAmount);
-	
-	void Init(FResourceDescription* ProvidedResourceDescription, int32 ProvidedAmount);
+	void Init(UResourceDescription* ProvidedResourceDescription, int32 ProvidedAmount);
 
 	int32 GetFreeAmount() const;
 
@@ -22,10 +20,10 @@ public:
 
 	void Free(int32 AmountToFree);
 
-	const FName& GetResourceName() const;
-
+	UResourceDescription* GetResource() const;
 private:
-	FResourceDescription* ResourceDescription;
+	UPROPERTY()
+	UResourceDescription* ResourceDescription;
 
 	int32 Amount;
 

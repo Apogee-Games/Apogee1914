@@ -10,14 +10,14 @@ void UProvinceManager::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-UProvince* UProvinceManager::GetProvince(const FColor& ProvinceColor) const
+UProvince* UProvinceManager::GetProvince(const FColor& Color) const
 {
-	return GetProvince(*ProvinceColor.ToHex());
-}
-
-UProvince* UProvinceManager::GetProvince(const FName& ProvinceColorHex) const
-{
-	return ProvinceMap.Contains(ProvinceColorHex) ? ProvinceMap[ProvinceColorHex] : nullptr;
+	if (GEngine && !ProvinceMap.Contains(Color))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Blue, Color.ToString());
+		return nullptr;
+	}
+	return ProvinceMap[Color];
 }
 
 const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
@@ -37,18 +37,13 @@ void UProvinceManager::Clear()
 
 void UProvinceManager::Init(UScenario* Scenario)
 {
-	UDataTable* ProvinceDescriptionDataTable = Scenario->ProvinceDescriptionDataTable;
-
-	UDataTable* TerrainDescriptionDataTable = Scenario->TerrainDescriptionDataTable;
-	
-	UDataTable* ResourcesDescriptionDataTable = Scenario->ResourcesDescriptionDataTable;
-
-	for(const auto& [Key,Value]: ProvinceDescriptionDataTable->GetRowMap()) {
-		if(Value == nullptr) continue;
-		FProvinceDescription* ProvinceDescription = reinterpret_cast<FProvinceDescription*>(Value);
-		UProvince* Province = NewObject<UProvince>(this); 
-		Province->Init(ProvinceDescription, TerrainDescriptionDataTable, nullptr, ResourcesDescriptionDataTable); 
-		ProvinceMap.Add(Key, Province);
+	for(const auto& [Country, List]: Scenario->ProvincesDescriptions) {
+		for (const auto& Description: List->Provinces)
+		{
+			UProvince* Province = NewObject<UProvince>(this); 
+			Province->Init(Description); 
+			ProvinceMap.Add(Description->Color, Province);
+		}
 	}
 	
 	ProvinceMap.GenerateValueArray(ProvincesArray);

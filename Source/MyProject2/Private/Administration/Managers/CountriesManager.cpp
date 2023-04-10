@@ -2,9 +2,7 @@
 #include "Administration/Managers/CountriesManager.h"
 
 #include "MyGameInstance.h"
-#include "Administration/Descriptions/ParliamentDescription.h"
 #include "Administration/Managers/ProvinceManager.h"
-#include "LevelsOverides/Game/GameLevelGameState.h"
 
 void UCountriesManager::SetScenario(UScenario* Scenario)
 {
@@ -12,9 +10,9 @@ void UCountriesManager::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-const TArray<FName>& UCountriesManager::GetCountriesTagsList()
+const TArray<UCountryDescription*>& UCountriesManager::GetCountriesDescriptions()
 {
-	return CountriesTagsList;
+	return CountriesDescriptions;
 }
 
 bool UCountriesManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColor) const
@@ -26,7 +24,7 @@ bool UCountriesManager::ExistsCountryWithSuchProvince(const FColor& ProvinceColo
 
 bool UCountriesManager::ExistsCountryWithSuchProvince(const UProvince* Province) const
 {
-	return Province && Province->GetOwnerCountry() && CountryMap.Contains(Province->GetOwnerCountry()->GetTag());
+	return Province && Province->GetOwnerCountry() && CountryMap.Contains(Province->GetOwnerCountry()->GetId());
 }
 
 bool UCountriesManager::AreProvincesOwnedBySameCountry(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const
@@ -77,12 +75,12 @@ bool UCountriesManager::AreProvincesControlledByDifferentCountry(const UProvince
 	return !AreProvincesControlledBySameCountry(ProvinceA, ProvinceB);
 }
 
-UCountry* UCountriesManager::GetCountry(const FName& Tag)
+UCountry* UCountriesManager::GetCountry(UCountryDescription* CountryDescription)
 {
-	return CountryMap.Contains(Tag) ? CountryMap[Tag] : nullptr;
+	return CountryMap.Contains(CountryDescription) ? CountryMap[CountryDescription] : nullptr;
 }
 
-const TMap<FName, UCountry*>& UCountriesManager::GetCountryMap() const
+const TMap<UCountryDescription*, UCountry*>& UCountriesManager::GetCountryMap() const
 {
 	return CountryMap;
 }
@@ -94,26 +92,16 @@ void UCountriesManager::Clear()
 		Country->MarkAsGarbage();
 	}
 	CountryMap.Empty();
-	CountriesTagsList.Empty();
+	CountriesDescriptions.Empty();
 }
 
 void UCountriesManager::Init(UScenario* Scenario)
 {
-	UDataTable* ParliamentsDescriptions = Scenario->ParliamentsDescriptionsDataTable;
-	
-	for (const auto& [Key, Value]: Scenario->CountryDescriptionDataTable->GetRowMap())
+	CountriesDescriptions = Scenario->CountriesDescriptions;
+	for (const auto& Description: Scenario->CountriesDescriptions)
 	{
 		UCountry* Country = NewObject<UCountry>(this);
-
-		FParliamentDescription* FirstChamber = reinterpret_cast<FParliamentDescription*>(ParliamentsDescriptions->FindRowUnchecked(FName(Key.ToString() + "1")));
-		FParliamentDescription* SecondChamber = reinterpret_cast<FParliamentDescription*>(ParliamentsDescriptions->FindRowUnchecked(FName(Key.ToString() + "2")));
-
-		Country->Init(reinterpret_cast<FCountryDescription*>(Value), FirstChamber, SecondChamber); // TODO: Add removal of countries
-		CountryMap.Add(Key, Country);
-	}
-	
-	for (const auto& Pair: Scenario->CountryDescriptionDataTable->GetRowMap())
-	{
-		CountriesTagsList.Add(Pair.Key);
+		Country->Init(Description); // TODO: Add removal of countries
+		CountryMap.Add(Description, Country);
 	}
 }

@@ -1,14 +1,15 @@
 ﻿#include "Widgets/Military/Selection/SelectedMilitaryBranchUnitsListWidget.h"
 
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Military/Descriptions/MilitaryBranchDescription.h"
 #include "Military/Managers/UnitsFactory.h"
 
-void USelectedMilitaryBranchUnitsListWidget::Init(EMilitaryBranch ProvidedMilitaryBranch)
+void USelectedMilitaryBranchUnitsListWidget::Init(UMilitaryBranchDescription* ProvidedMilitaryBranch)
 {
 	MilitaryBranch = ProvidedMilitaryBranch;
 	SelectedUnitsWidget->Init(MilitaryBranch);
-	MilitaryBranchTextBlock->SetText(FText::FromName(MilitaryBranchesNames[MilitaryBranch]));
-	MilitaryBranchExpandableArea->BorderBrush.TintColor = MilitaryBranchesColors[MilitaryBranch];
+	MilitaryBranchTextBlock->SetText(MilitaryBranch->Name);
+	MilitaryBranchExpandableArea->BorderBrush.TintColor = MilitaryBranch->Color;
 	
 	CreateUnitsCollectionGroupButton->OnClicked.AddDynamic(this, &USelectedMilitaryBranchUnitsListWidget::OnCreateUnitsCollectionGroupButtonClick);
 }
@@ -82,7 +83,7 @@ void USelectedMilitaryBranchUnitsListWidget::OnCreateUnitsCollectionGroupButtonC
 	const TArray<UUnitsCollection*>& UnitsCollections = reinterpret_cast<const TArray<UUnitsCollection*>&>(UnitsCollectionsListView->GetListItems());
 	Pawn->UnitSelectionComponent->UnSelectUnits(UnitsCollections);
 
-	UUnitsCollectionGroup* UnitsCollectionGroup = GetWorld()->GetSubsystem<UUnitsFactory>()->CreateUnitCollectionGroup(MilitaryBranch, Pawn->GetRuledCountry(), UnitsCollections);
+	UUnitsCollectionGroup* UnitsCollectionGroup = GetGameInstance()->GetSubsystem<UUnitsFactory>()->CreateUnitCollectionGroup(MilitaryBranch, Pawn->GetRuledCountry(), UnitsCollections);
 
 	Pawn->UnitSelectionComponent->SelectUnits(UnitsCollectionGroup);
 }

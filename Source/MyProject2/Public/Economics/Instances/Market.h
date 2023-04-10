@@ -10,14 +10,14 @@ class UMarket : public UObject
 public:
 	UMarket();
 
-	int32 AddDemand(const FGoodDescription* GoodDescription, int32 AmountOfGood);
+	int32 AddDemand(UGoodDescription* GoodDescription, int32 AmountOfGood);
 	
-	int32 AddSupply(const FGoodDescription* GoodDescription, int32 AmountOfGood);
+	int32 AddSupply(UGoodDescription* GoodDescription, int32 AmountOfGood);
 
 	TArray<TPair<FName, int32>> GetSortedDemands();
 	
 private:
-	UGoodBalance* GetBalanceInstanceOrElseInit(const FGoodDescription* GoodDescription);
+	UGoodBalance* GetBalanceInstanceOrElseInit(UGoodDescription* GoodDescription);
 	
 	void CheckBalanceInstance(const UGoodBalance* GoodBalance);
 	

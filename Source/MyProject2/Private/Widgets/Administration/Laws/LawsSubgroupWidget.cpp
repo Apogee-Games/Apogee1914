@@ -1,14 +1,17 @@
 ﻿#include "Widgets/Administration/Laws/LawsSubgroupWidget.h"
 
-void ULawsSubgroupWidget::Init(ULawDescriptionWidget* ProvidedLawDescriptionWidget, const FName& SubgroupName)
+#include "Administration/Descriptions/Law/LawsSubgroup.h"
+
+void ULawsSubgroupWidget::Init(ULawsSubgroup* LawsSubgroup, ULawDescriptionWidget* ProvidedLawDescriptionWidget)
 {
 	LawDescriptionWidget = ProvidedLawDescriptionWidget;
-	SubgroupNameTextBlock->SetText(FText::FromName(SubgroupName));
+	SubgroupNameTextBlock->SetText(LawsSubgroup->Name);
+	
+	for (auto& Law: LawsSubgroup->Laws)
+	{
+		ULawButtonWidget* LawButtonWidget = CreateWidget<ULawButtonWidget>(GetOwningPlayer(), LawButtonWidgetClass);
+		LawButtonWidget->Init(Law, LawDescriptionWidget);
+		LawsButtonsScrollBox->AddChild(LawButtonWidget);
+	}
 }
 
-void ULawsSubgroupWidget::AddLaw(FLawDescription* LawDescription)
-{
-	ULawButtonWidget* LawButtonWidget = CreateWidget<ULawButtonWidget>(GetOwningPlayer(), LawButtonWidgetClass);
-	LawButtonWidget->Init(LawDescription, LawDescriptionWidget);
-	LawsButtonsScrollBox->AddChild(LawButtonWidget);
-}

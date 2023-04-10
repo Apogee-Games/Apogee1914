@@ -6,7 +6,7 @@ UMarket::UMarket()
 {
 }
 
-int32 UMarket::AddDemand(const FGoodDescription* GoodDescription, const int32 AmountOfGood)
+int32 UMarket::AddDemand(UGoodDescription* GoodDescription, const int32 AmountOfGood)
 {
 	UGoodBalance* GoodBalance = GetBalanceInstanceOrElseInit(GoodDescription);
 	// Add to demand
@@ -17,8 +17,7 @@ int32 UMarket::AddDemand(const FGoodDescription* GoodDescription, const int32 Am
 	
 }
 
-
-int32 UMarket::AddSupply(const FGoodDescription* GoodDescription, const int32 AmountOfGood)
+int32 UMarket::AddSupply(UGoodDescription* GoodDescription, const int32 AmountOfGood)
 {
 	UGoodBalance* GoodBalance = GetBalanceInstanceOrElseInit(GoodDescription);
 	// Add to supply
@@ -47,15 +46,15 @@ TArray<TPair<FName, int32>> UMarket::GetSortedDemands()
 	return SortedDemands;
 }
 
-UGoodBalance* UMarket::GetBalanceInstanceOrElseInit(const FGoodDescription* GoodDescription)
+UGoodBalance* UMarket::GetBalanceInstanceOrElseInit(UGoodDescription* GoodDescription)
 {
 	
-	const FName& GoodName = GoodDescription->GoodName;
+	const FName& GoodName = GoodDescription->Name;
 	
 	UGoodBalance* GoodBalance = Balances.FindRef(GoodName);
 	if ( GoodBalance == nullptr)
 	{
-		GoodBalance = NewObject<UGoodBalance>();
+		GoodBalance = NewObject<UGoodBalance>(this);
 		GoodBalance->Init(GoodDescription);
 		Balances.Add(GoodName, GoodBalance);
 	}
@@ -64,7 +63,7 @@ UGoodBalance* UMarket::GetBalanceInstanceOrElseInit(const FGoodDescription* Good
 
 void UMarket::CheckBalanceInstance(const UGoodBalance* GoodBalance)
 {
-	const FName GoodName = GoodBalance->GetGoodDescription()->GoodName;
+	const FName GoodName = GoodBalance->GetGoodDescription()->Name;
 	if(GoodBalance->GetDemand() == 0 && GoodBalance->GetSupply() == 0) Balances.Remove(GoodName);
 }
 

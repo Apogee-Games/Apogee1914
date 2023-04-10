@@ -1,11 +1,17 @@
-
-
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
-#include "Widgets/Economics/Buildings/Carriers/BuildingDescriptionCarrier.h"
 
-void UBuildingsTypesListWidget::AddBuildingType(FBuildingDescription* BuildingDescription)
+
+void UBuildingsTypesListWidget::Init(const TArray<UBuildingDescription*>& BuildingDescriptions)
 {
-	UBuildingDescriptionCarrier* Carrier = NewObject<UBuildingDescriptionCarrier>();
-	Carrier->Init(BuildingDescription);
-	BuildingDescriptionListView->AddItem(Carrier);
+	for (const auto& Building: BuildingDescriptions)
+	{
+		AddBuilding(Building);
+	}
+}
+
+void UBuildingsTypesListWidget::AddBuilding(UBuildingDescription* BuildingDescription)
+{
+	UBuildingTypeDescriptionWidget* Widget = CreateWidget<UBuildingTypeDescriptionWidget>(GetOwningPlayer(), WidgetsClasses[BuildingDescription->Type]);
+	Widget->Init(BuildingDescription);
+	BuildingsDescriptionScrollBox->AddChild(Widget);
 }

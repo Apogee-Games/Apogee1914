@@ -10,13 +10,11 @@ class UState : public UObject
 {
 	GENERATED_BODY()
 public:
-
-	void Init(FStateDescription* StateDescription, const UProvinceManager* ProvinceManager);
+	void Init(UStateDescription* StateDescription);
 
 	const FName& GetName() const;
 
-	TArray<UProvince*> GetProvinces() const;
-	
+	const TArray<UProvince*>& GetProvinces() const;
 private:
 	FName Name;
 

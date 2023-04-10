@@ -3,9 +3,13 @@
 
 #include "MyGameInstance.h"
 
+#include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
+#include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
 #include "Maps/Diplomacy/CountryRelationMap.h"
+#include "Military/Managers/CommandersManager.h"
+#include "Military/Managers/UnitsFactory.h"
 #include "People/Managers/PeopleManager.h"
 
 void UMyGameInstance::OnStart()
@@ -20,13 +24,13 @@ void UMyGameInstance::SetScenario(UScenario* Scenario)
 	InitializeActiveScenario();
 }
 
-const FName& UMyGameInstance::GetRuledCountry(APlayerController* PlayerController)
+UCountry* UMyGameInstance::GetRuledCountry(APlayerController* PlayerController)
 {
 	int32 PlayerId = GetTypeHash(PlayerController->GetPlayerState<APlayerState>()->GetUniqueId());
 	return GetRuledCountry(PlayerId);
 }
 
-const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId) 
+UCountry* UMyGameInstance::GetRuledCountry(const int32 PlayerId) 
 {
 	return PlayersRuledCountries[PlayerId];
 }
@@ -34,32 +38,30 @@ const FName& UMyGameInstance::GetRuledCountry(const int32 PlayerId)
 void UMyGameInstance::SetRuledCountry(APlayerController* PlayerController, UCountry* Country)
 {
 	int32 PlayerId = GetTypeHash(PlayerController->GetPlayerState<APlayerState>()->GetUniqueId());
-	SetRuledCountry(PlayerId, Country->GetTag());
+	SetRuledCountry(PlayerId, Country);
 }
 
-void UMyGameInstance::SetRuledCountry(const int32 PlayerId, const FName& CountryTag)
+void UMyGameInstance::SetRuledCountry(const int32 PlayerId, UCountry* Country)
 {
-	if (PlayersRuledCountries.Contains(PlayerId)) CountriesRuledByPlayers[PlayersRuledCountries[PlayerId]]--;
-	PlayersRuledCountries.Add(PlayerId, CountryTag);
-	CountriesRuledByPlayers.Add(CountryTag,
-	                            CountriesRuledByPlayers.Contains(CountryTag)
-		                            ? CountriesRuledByPlayers[CountryTag] + 1
-		                            : 1);
+	if (PlayersRuledCountries.Contains(PlayerId)) CountriesRuledByPlayers[PlayersRuledCountries[PlayerId]->GetId()]--;
+	PlayersRuledCountries.Add(PlayerId, Country);
+	CountriesRuledByPlayers.Add(Country->GetId(), CountriesRuledByPlayers.Contains(Country->GetId()) ? CountriesRuledByPlayers[Country->GetId()] + 1 : 1);
 }
 
-bool UMyGameInstance::IsCountryRuledByPlayer(const FName& CountryTag)
+bool UMyGameInstance::IsCountryRuledByPlayer(UCountryDescription* CountryDescription)
 {
-	return CountriesRuledByPlayers.Contains(CountryTag) && CountriesRuledByPlayers[CountryTag];
+	return CountriesRuledByPlayers.Contains(CountryDescription) && CountriesRuledByPlayers[CountryDescription];
+
 }
 
 void UMyGameInstance::InitializeActiveScenario()
 {
-	GetSubsystem<ULawManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UInGameTime>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<ULawsManager>()->SetScenario(ActiveScenario);
 	
 	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
 
-	GetSubsystem<UIdeologyManager>()->SetScenario(ActiveScenario);
-	
 	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);
@@ -80,4 +82,18 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UIdeologiesMap>()->SetScenario(ActiveScenario);
 
 	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
+
+	GetSubsystem<UGoodsManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UStrataManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UBuildingManager>()->SetScenario(ActiveScenario);
+	
+	GetSubsystem<UUnitsFactory>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsRenderer>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsMover>()->SetScenario(ActiveScenario);
+	GetSubsystem<UCommandersManager>()->SetScenario(ActiveScenario);
+	GetSubsystem<UUnitsSupplyController>()->SetScenario(ActiveScenario);
+	
+	GetSubsystem<UConditionsCheckingSubsystem>()->SetScenario(ActiveScenario);
+	GetSubsystem<UEventInstancesController>()->SetScenario(ActiveScenario);
+	GetSubsystem<UOutcomesApplierSubsystem>()->SetScenario(ActiveScenario);
 }

@@ -1,15 +1,16 @@
 #pragma once
-#include "Engine/DataTable.h"
 #include "StateDescription.generated.h"
 
-USTRUCT()
-struct FStateDescription : public FTableRowBase
+class UProvinceDescription;
+
+UCLASS()
+class UStateDescription: public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditDefaultsOnly)
+	FName Name;
 
-	UPROPERTY()
-	FName StateName;
-
-	UPROPERTY()
-	TArray<FName> Provinces;
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UProvinceDescription*> Provinces;
 };

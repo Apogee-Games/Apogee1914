@@ -2,6 +2,8 @@
 
 #include "Economics/Instances/Storage.h"
 
+#include "Economics/Description/Goods/GoodDescription.h"
+
 void UStorage::Init(EStorageType ProvidedType)
 {
 	Type = ProvidedType;
@@ -12,29 +14,29 @@ void UStorage::Init(const FName& StrataType)
 	Type = StrataTypeToStorageType[StrataType];
 }
 
-void UStorage::Supply(const FName& GoodName, const int32 Amount)
+void UStorage::Supply(UGoodDescription* Good, const int32 Amount)
 {
-	AddGoodIfNotPresent(GoodName);
-	Goods[GoodName]->Supply(Amount);
-	NotifyGoodUpdate(Type, Goods[GoodName]);
+	AddGoodIfNotPresent(Good);
+	Goods[Good]->Supply(Amount);
+	NotifyGoodUpdate(Type, Goods[Good]);
 }
 
-int32 UStorage::Estimate(const FName& GoodName, const int32 Amount)
+float UStorage::Estimate(UGoodDescription* Good, const int32 Amount)
 {
-	AddGoodIfNotPresent(GoodName);
-	return FMath::Min(Goods[GoodName]->GetAmount(), Amount);
+	AddGoodIfNotPresent(Good);
+	return FMath::Min(Goods[Good]->GetAmount(), Amount);
 }
 
-int32 UStorage::GetGoodAmount(const FName& GoodName) const
+float UStorage::GetGoodAmount(UGoodDescription* Good) const
 {
-	return !Goods.Contains(GoodName) ? 0 : Goods[GoodName]->GetAmount(); 
+	return !Goods.Contains(Good) ? 0 : Goods[Good]->GetAmount(); 
 }
 
-int32 UStorage::Demand(const FName& GoodName, const int32 Amount)
+float UStorage::Demand(UGoodDescription* Good, const int32 Amount)
 {
-	AddGoodIfNotPresent(GoodName);
-	const int32 CanProvide = Goods[GoodName]->Demand(Amount);
-	NotifyGoodUpdate(Type, Goods[GoodName]);
+	AddGoodIfNotPresent(Good);
+	const int32 CanProvide = Goods[Good]->Demand(Amount);
+	NotifyGoodUpdate(Type, Goods[Good]);
 	return CanProvide;
 }
 
@@ -43,12 +45,12 @@ EStorageType UStorage::GetType() const
 	return Type;
 }
 
-void UStorage::AddGoodIfNotPresent(const FName& GoodName)
+void UStorage::AddGoodIfNotPresent(UGoodDescription* Good)
 {
-	if (!Goods.Contains(GoodName))
+	if (!Goods.Contains(Good))
 	{
-		UStoredGood* Good = NewObject<UStoredGood>();
-		Good->Init(GoodName, 0, this);
-		Goods.Add(GoodName, Good);
+		UStoredGood* StoredGood = NewObject<UStoredGood>(this);
+		StoredGood->Init(Good, 0, this);
+		Goods.Add(Good, StoredGood);
 	}
 }

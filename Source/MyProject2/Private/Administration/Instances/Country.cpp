@@ -1,46 +1,48 @@
 #include "Administration/Instances/Country.h"
 
-#include "Administration/Managers/IdeologyManager.h"
 #include "People/Managers/PeopleManager.h"
-#include "Utils/TextureUtils.h"
 
-void UCountry::Init(FCountryDescription* CountryDescription, FParliamentDescription* FirstChamber, FParliamentDescription* SecondChamber)
+void UCountry::Init(UCountryDescription* ProvidedCountryDescription)
 {
-
-	if (FirstChamber) {
+	CountryDescription = ProvidedCountryDescription;
+	if (ProvidedCountryDescription->HasFirstChamber || ProvidedCountryDescription->HasTwoChambers) {
 		FirstChamberParliament = NewObject<UParliament>(this);
-		FirstChamberParliament->Init(FirstChamber);
+		FirstChamberParliament->Init(ProvidedCountryDescription->FirstChamber);
 	}
 	
-	if (SecondChamber) {
+	if (ProvidedCountryDescription->HasTwoChambers) {
 		SecondChamberParliament = NewObject<UParliament>(this);
-		SecondChamberParliament->Init(FirstChamber);
+		SecondChamberParliament->Init(ProvidedCountryDescription->SecondChamber);
 	}
 	
-	
-	for (const auto IdeologyDescription: CountryDescription->Ideologies)
+	for (const auto& IdeologyDescription: ProvidedCountryDescription->Ideologies)
 	{
-		Ideologies.Add(IdeologyDescription.IdeologyTag, IdeologyDescription);
+		IdeologiesParameters.Add(IdeologyDescription.Ideology, IdeologyDescription);
 	}
 	
-	Tag = CountryDescription->Tag;
+	Tag = ProvidedCountryDescription->Tag;
 	
-	SetIdeology(CountryDescription->IdeologyTag);
+	SetIdeology(ProvidedCountryDescription->CurrentIdeology);
 	
 	InitStrata();
 
-	Storage = NewObject<UStorage>();
-	Market = NewObject<UMarket>();
+	Storage = NewObject<UStorage>(this);
+	Market = NewObject<UMarket>(this);
+}
+
+UCountryDescription* UCountry::GetId() const
+{
+	return CountryDescription;
 }
 
 const FColor& UCountry::GetColor() const
 {
-	return Ideologies[Ideology->GetTag()].CountryColor;
+	return IdeologiesParameters[Ideology].Color;
 }
 
-const FName& UCountry::GetName() const
+const FText& UCountry::GetName() const
 {
-	return Ideologies[Ideology->GetTag()].CountryName;
+	return IdeologiesParameters[Ideology].Name;
 }
 
 const FName& UCountry::GetTag() const
@@ -50,8 +52,7 @@ const FName& UCountry::GetTag() const
 
 UTexture2D* UCountry::GetFlag()
 {
-	if (!Flag) LoadFlag();
-	return Flag;
+	return IdeologiesParameters[Ideology].Flag;
 }
 
 UStorage* UCountry::GetStorage() const
@@ -59,21 +60,16 @@ UStorage* UCountry::GetStorage() const
 	return Storage;
 }
 
-void UCountry::SetIdeology(const FName& ProvidedIdeologyTag)
+void UCountry::SetIdeology(UIdeologyDescription* ProvidedIdeology)
 {
-	Ideology = GetWorld()->GetGameInstance()->GetSubsystem<UIdeologyManager>()->GetIdeology(ProvidedIdeologyTag);
-	
-	UPeopleManager* PeopleManager = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>();
-	Ruler = PeopleManager->GetPerson(Ideologies[Ideology->GetTag()].RulerId);
-	
-	LoadFlag();
+	Ideology = ProvidedIdeology;
+	Ruler = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPerson(IdeologiesParameters[ProvidedIdeology].Ruler);
 }
 
 UPerson* UCountry::GetRuler() const
 {
 	return Ruler;
 }
-
 
 TArray<UStorage*> UCountry::GetStorages() const
 {
@@ -175,7 +171,7 @@ const TArray<UWar*>& UCountry::GetWars() const
 	return Wars;
 }
 
-bool UCountry::IsCountryInWar() const
+bool UCountry::IsInWar() const
 {
 	return !Wars.IsEmpty();
 }
@@ -192,7 +188,7 @@ bool UCountry::CanCountryJoinOneOfOurWars(UCountry* Country) const
 	return false;
 }
 
-bool UCountry::IsCountryInWarWith(UCountry* Country)
+bool UCountry::IsInWarWith(UCountry* Country)
 {
 	return Relations.Contains(Country) && Relations[Country] == War;
 }
@@ -207,7 +203,7 @@ UParliament* UCountry::GetSecondChamber() const
 	return SecondChamberParliament;
 }
 
-UIdeology* UCountry::GetIdeology() const
+UIdeologyDescription* UCountry::GetIdeology() const
 {
 	return Ideology;
 }
@@ -226,18 +222,28 @@ bool UCountry::IsNonAligned() const
 	return bIsNonAligned;
 }
 
-void UCountry::InitStrata()
+void UCountry::AddProvince(UProvince* Province)
 {
-	LowerStrata = NewObject<UStrata>();
-	LowerStrata->Init("LOW");
-	MiddleStrata = NewObject<UStrata>();
-	MiddleStrata->Init("MIDDLE");
-	UpperStrata = NewObject<UStrata>();
-	UpperStrata->Init("UPPER");
-	// TODO: Add proper initialization 
+	Provinces.Add(Province);
 }
 
-void UCountry::LoadFlag() 
+void UCountry::RemoveProvince(UProvince* Province)
 {
-	Flag = FTextureUtils::LoadTexture("/Game/images/flags/" + Tag.ToString() + "/" + Ideology->GetTag().ToString());
+	Provinces.Remove(Province);
+}
+
+const TArray<UProvince*>& UCountry::GetProvinces() const
+{
+	return Provinces;
+}
+
+void UCountry::InitStrata()
+{
+	LowerStrata = NewObject<UStrata>(this);
+	LowerStrata->Init("LOW");
+	MiddleStrata = NewObject<UStrata>(this);
+	MiddleStrata->Init("MIDDLE");
+	UpperStrata = NewObject<UStrata>(this);
+	UpperStrata->Init("UPPER");
+	// TODO: Add proper initialization 
 }

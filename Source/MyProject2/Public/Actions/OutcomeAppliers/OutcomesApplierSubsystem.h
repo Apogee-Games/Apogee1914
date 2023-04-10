@@ -1,18 +1,17 @@
 #pragma once
 #include "OutcomeApplier.h"
+#include "Scenario.h"
 #include "Actions/Description/Outcome.h"
 #include "OutcomesApplierSubsystem.generated.h"
 /**
  * Class manages separate outcome appliers and allows to apply choice outcomes
  */
 UCLASS()
-class UOutcomesApplierSubsystem: public UWorldSubsystem
+class UOutcomesApplierSubsystem: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
+	void SetScenario(UScenario* Scenario);
 	
 	/**
 	 * Method used to add choice outcome applier
@@ -22,7 +21,11 @@ public:
 	/**
 	 * Method used to apply event choice outcomes
 	 */
-	void ApplyOutcomes(TArray<FOutcome>& Outcomes, const FName& CountryTag);
+	void ApplyOutcomes(TArray<FOutcome>& Outcomes, UCountryDescription* CountryDescription);
 private:
 	TMap<FName, FOutcomeApplier*> OutcomeAppliers;
+
+	void Clear();
+
+	void Init(UScenario* Scenario);
 };

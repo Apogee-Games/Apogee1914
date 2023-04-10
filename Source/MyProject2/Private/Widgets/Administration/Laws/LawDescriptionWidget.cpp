@@ -1,6 +1,7 @@
 ﻿#include "Widgets/Administration/Laws/LawDescriptionWidget.h"
 #include "Actions/ConditionCheckers/ConditionsCheckingSubsystem.h"
 #include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
+#include "Administration/Instances/Country.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
 void ULawDescriptionWidget::Init()
@@ -8,7 +9,7 @@ void ULawDescriptionWidget::Init()
 	PassLawButton->OnClicked.AddDynamic(this, &ULawDescriptionWidget::OnPassLawButtonClick);
 }
 
-void ULawDescriptionWidget::SetLaw(FLawDescription* ProvidedLawDescription)
+void ULawDescriptionWidget::SetLaw(ULawDescription* ProvidedLawDescription)
 {
 	LawDescription = ProvidedLawDescription;
 	RefreshData();
@@ -16,11 +17,11 @@ void ULawDescriptionWidget::SetLaw(FLawDescription* ProvidedLawDescription)
 
 void ULawDescriptionWidget::RefreshData()
 {
-	LawNameTextBlock->SetText(LawDescription->LawName);
+	LawNameTextBlock->SetText(LawDescription->Name);
 	LawDescriptionTextBox->SetText(LawDescription->Description);
 	
-	FName CountryTag = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetTag();
-	UConditionsCheckingSubsystem* Checker = GetWorld()->GetSubsystem<UConditionsCheckingSubsystem>();
+	UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
+	UConditionsCheckingSubsystem* Checker = GetGameInstance()->GetSubsystem<UConditionsCheckingSubsystem>();
 
 	ConditionsScrollBox->ClearChildren();
 
@@ -30,7 +31,7 @@ void ULawDescriptionWidget::RefreshData()
 	{
 		ULawConditionWidget* ConditionWidget = CreateWidget<ULawConditionWidget>(GetOwningPlayer(), LawConditionWidgetClass);
 
-		const bool IsFulfilled = Checker->CheckCondition(Condition, CountryTag);
+		const bool IsFulfilled = Checker->CheckCondition(Condition, CountryDescription);
 
 		ConditionWidget->SetCondition(Condition, IsFulfilled);
 		ConditionsScrollBox->AddChild(ConditionWidget);
@@ -52,7 +53,7 @@ void ULawDescriptionWidget::RefreshData()
 
 void ULawDescriptionWidget::OnPassLawButtonClick()
 {
-	FName CountryTag = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountryTag();
-	GetWorld()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(LawDescription->Outcomes, CountryTag);
+	UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
+	GetGameInstance()->GetSubsystem<UOutcomesApplierSubsystem>()->ApplyOutcomes(LawDescription->Outcomes, CountryDescription);
 	SetLaw(LawDescription);
 }

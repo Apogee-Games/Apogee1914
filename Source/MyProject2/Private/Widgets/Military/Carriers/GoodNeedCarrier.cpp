@@ -2,23 +2,23 @@
 
 #include "Widgets/Military/Carriers/GoodNeedCarrier.h"
 
-void UGoodNeedCarrier::Init(UUnitSupplyNeeds* ProvidedUnitSupplyNeed, const FName& ProvidedGoodName)
+void UGoodNeedCarrier::Init(UUnitSupplyNeeds* ProvidedUnitSupplyNeed, UGoodDescription* ProvidedGood)
 {
 	UnitSupplyNeeds = ProvidedUnitSupplyNeed;
-	GoodName = &ProvidedGoodName;
+	Good = ProvidedGood;
 }
 
-int32 UGoodNeedCarrier::GetGoodSupply() const
+float UGoodNeedCarrier::GetGoodSupply() const
 {
-	return UnitSupplyNeeds->GetGoodSupply(*GoodName);
+	return UnitSupplyNeeds->GetGoodSupply(Good);
 }
 
-int32 UGoodNeedCarrier::GetGoodRequirements() const
+float UGoodNeedCarrier::GetGoodRequirements() const
 {
-	return UnitSupplyNeeds->GetGoodRequirements(*GoodName);
+	return UnitSupplyNeeds->GetGoodRequirements(Good);
 }
 
-const FName& UGoodNeedCarrier::GetGoodName() const
+const FText& UGoodNeedCarrier::GetGoodName() const
 {
-	return *GoodName;
+	return Good->NameText;
 }

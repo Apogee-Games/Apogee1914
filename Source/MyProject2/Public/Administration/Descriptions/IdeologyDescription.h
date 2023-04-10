@@ -1,18 +1,14 @@
 ﻿#pragma once
-#include "Engine/DataTable.h"
 #include "IdeologyDescription.generated.h"
 
-USTRUCT()
-struct FIdeologyDescription: public FTableRowBase
+UCLASS()
+class UIdeologyDescription: public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 
-	UPROPERTY()
-	FName Tag;
-
-	UPROPERTY()
-	FText IdeologyName;
-
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	FColor Color;
 };

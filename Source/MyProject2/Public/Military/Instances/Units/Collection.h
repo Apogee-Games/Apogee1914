@@ -5,7 +5,7 @@ template <class T>
 class TFMilitaryCollection: public IOwnable
 {
 public:
-	virtual void Init(EMilitaryBranch ProvidedMilitaryBranch);
+	virtual void Init(UMilitaryBranchDescription* ProvidedMilitaryBranch);
 
 	virtual bool Add(T Item) = 0;
 
@@ -17,22 +17,22 @@ public:
 
 	virtual bool Contains(T Item) = 0;
 
-	EMilitaryBranch GetMilitaryBranch() const;
+	UMilitaryBranchDescription* GetMilitaryBranch() const;
 	
 	virtual ~TFMilitaryCollection() = default;
 protected:
 	UPROPERTY()
-	EMilitaryBranch MilitaryBranch;
+	UMilitaryBranchDescription* MilitaryBranch;
 };
 
 template <class T>
-void TFMilitaryCollection<T>::Init(EMilitaryBranch ProvidedMilitaryBranch)
+void TFMilitaryCollection<T>::Init(UMilitaryBranchDescription* ProvidedMilitaryBranch)
 {
 	MilitaryBranch = ProvidedMilitaryBranch;
 }
 
 template <class T>
-EMilitaryBranch TFMilitaryCollection<T>::GetMilitaryBranch() const
+UMilitaryBranchDescription* TFMilitaryCollection<T>::GetMilitaryBranch() const
 {
 	return MilitaryBranch;
 }

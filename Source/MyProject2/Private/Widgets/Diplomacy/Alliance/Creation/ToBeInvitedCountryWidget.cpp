@@ -15,7 +15,7 @@ void UToBeInvitedCountryWidget::SetCountry(UObject* ProvidedCountry)
 void UToBeInvitedCountryWidget::RefreshData()
 {
 	CountryFlag->SetBrushResourceObject(Country->GetFlag());
-	CountryNameTextBlock->SetText(FText::FromName(Country->GetName()));
+	CountryNameTextBlock->SetText(Country->GetName());
 }
 
 void UToBeInvitedCountryWidget::OnButtonClick()

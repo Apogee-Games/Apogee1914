@@ -1,22 +1,22 @@
 ﻿#include "Administration/Instances/Parliament.h"
 
-void UParliament::Init(FParliamentDescription* Description)
+void UParliament::Init(const FParliamentDescription& Description)
 {
-	ParliamentName = Description->ParliamentName;
-	for (auto& FractionDescription: Description->Fractions)
+	Name = Description.Name;
+	for (auto& FractionDescription: Description.Fractions)
 	{
 		UFraction* Fraction = NewObject<UFraction>(this);
 		Fraction->Init(FractionDescription);
-		Fractions.Add(FractionDescription.IdeologyTag, Fraction);
+		Fractions.Add(FractionDescription.Ideology, Fraction);
 	}
 }
 
 const FText& UParliament::GetName() const
 {
-	return ParliamentName;
+	return Name;
 }
 
-const TMap<FName, UFraction*>& UParliament::GetFractionsMap() const
+const TMap<UIdeologyDescription*, UFraction*>& UParliament::GetFractionsMap() const
 {
 	return Fractions;
 }

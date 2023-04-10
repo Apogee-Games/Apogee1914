@@ -40,6 +40,10 @@ bool UProvincesMap::HasProvincePosition(const FColor& Color) const
 
 const TArray<int32>& UProvincesMap::GetProvincePositions(const FColor& Color) const
 {
+	if (GEngine && !ColorPosition.Contains(Color))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, Color.ToHex());
+	}
 	return ColorPosition[Color];
 }
 

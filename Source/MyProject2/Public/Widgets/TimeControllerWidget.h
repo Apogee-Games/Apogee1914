@@ -27,7 +27,7 @@ public:
 
 	virtual void NativeConstruct() override;
 	
-	void SetTime(const FString& Time);
+	void SetTime(const FText& Time);
 
 	void SetSpeedPercentage(float NewSpeedPercentage);
 private:

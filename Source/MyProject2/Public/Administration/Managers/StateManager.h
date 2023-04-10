@@ -11,7 +11,7 @@ class UStateManager: public UGameInstanceSubsystem
 public:
 	void SetScenario(UScenario* Scenario);
 	
-	UState* GetState(const FName& StateId) const;
+	UState* GetState(UStateDescription* StateDescription) const;
 	
 	bool AreProvincesInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 
@@ -22,7 +22,7 @@ public:
 	bool AreProvincesNotInTheSameState(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
 private:
 	UPROPERTY()
-	TMap<FName, UState*> StateMap;
+	TMap<UStateDescription*, UState*> StateMap;
 
 	void Clear();
 

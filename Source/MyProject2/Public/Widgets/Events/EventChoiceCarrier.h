@@ -1,4 +1,5 @@
 #pragma once
+#include "Administration/Descriptions/Country/CountryDescription.h"
 #include "Events/Description/EventDescription.h"
 
 #include "EventChoiceCarrier.generated.h"
@@ -8,26 +9,28 @@ class UEventChoiceCarrier : public UObject
 {
 	GENERATED_BODY()
 public:
-	void Init(const FEventChoice& ProvidedChoice, const FName& ProvidedCountryTag,
-	          FEventDescription* ProvidedEventDescription,
+	void Init(const FEventChoice& ProvidedChoice, UCountryDescription* ProvidedCountryDescription,
+	          UEventDescription* ProvidedEventDescription,
 	          const TMap<FName, bool>& ProvidedChoicesConditionsEvaluated);
 
 	const FText& GetChoiceText() const;
 
 	bool IsChoiceActive() const;
 
-	FEventDescription* GetEventDescription() const;
+	UEventDescription* GetEventDescription() const;
 
 	const FName& GetChoiceName() const;
 
-	const FName& GetCountryTag() const;
+	UCountryDescription* GetCountryDescription() const;
 	
 private:
 	const FEventChoice* Choice;
-	
-	const FName* CountryTag;
-	
-	FEventDescription* EventDescription;
+
+	UPROPERTY()
+	UCountryDescription* CountryDescription;
+
+	UPROPERTY()
+	UEventDescription* EventDescription;
 	
 	TMap<FName, bool> ChoicesConditionsEvaluated;
 };

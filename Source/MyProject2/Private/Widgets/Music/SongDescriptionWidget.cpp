@@ -1,9 +1,9 @@
 ﻿#include "Widgets/Music/SongDescriptionWidget.h"
 
-void USongDescriptionWidget::Init(FSongDescription* ProvidedSongDescription, UMusicControllerWidget* ProvidedMusicControllerWidget)
+void USongDescriptionWidget::Init(USongDescription* ProvidedSongDescription, UMusicControllerWidget* ProvidedMusicControllerWidget)
 {
 	SongDescription = ProvidedSongDescription;
-	SongNameTextBlock->SetText(SongDescription->SongName);
+	SongNameTextBlock->SetText(SongDescription->Name);
 	WrittenByTextBlock->SetText(SongDescription->WrittenBy);
 	SungByTextBlock->SetText(SongDescription->SungBy);
 	SongDescriptionEditableTextBlock->SetText(SongDescription->Description);
@@ -23,7 +23,7 @@ void USongDescriptionWidget::UnSelect()
 	Button->SetIsEnabled(true);
 }
 
-FSongDescription* USongDescriptionWidget::GetSongDescription()
+USongDescription* USongDescriptionWidget::GetSongDescription()
 {
 	return SongDescription;
 }

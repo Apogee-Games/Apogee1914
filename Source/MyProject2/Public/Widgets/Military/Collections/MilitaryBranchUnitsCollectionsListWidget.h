@@ -20,7 +20,7 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UBorder* Border;
 
-	void Init(EMilitaryBranch MilitaryBranch);
+	void Init(UMilitaryBranchDescription* MilitaryBranch);
 	
 	void AddUnitsCollection(UUnitsCollection* UnitsCollection);
 

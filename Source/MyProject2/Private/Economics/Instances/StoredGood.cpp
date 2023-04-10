@@ -2,9 +2,9 @@
 
 #include "Economics/Instances/StoredGood.h"
 
-void UStoredGood::Init(FName ProvidedGoodName, int32 ProvidedAmount, UStorage* ProvidedStorage)
+void UStoredGood::Init(UGoodDescription* ProvidedGood, int32 ProvidedAmount, UStorage* ProvidedStorage)
 {
-	GoodName = ProvidedGoodName;
+	Good = ProvidedGood;
 	Amount = ProvidedAmount;
 	Storage = ProvidedStorage;
 }
@@ -26,9 +26,9 @@ int32 UStoredGood::Demand(int32 DemandedAmount)
 	return PossibleAmount;
 }
 
-const FName& UStoredGood::GetGoodName() const
+const FText& UStoredGood::GetGoodName() const
 {
-	return GoodName;
+	return Good->NameText;
 }
 
 UStorage* UStoredGood::GetStorage() const

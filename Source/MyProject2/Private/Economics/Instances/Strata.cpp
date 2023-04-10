@@ -7,7 +7,7 @@ UStrata::UStrata()
 
 void UStrata::Init(const FName& ProvidedType)
 {
-	StrataMarket = NewObject<UMarket>();
+	StrataMarket = NewObject<UMarket>(this);
 	Storage = NewObject<UStorage>();
 	Type = ProvidedType;
 	Storage->Init(Type);

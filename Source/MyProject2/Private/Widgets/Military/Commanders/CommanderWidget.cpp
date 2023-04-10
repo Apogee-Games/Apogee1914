@@ -17,7 +17,7 @@ void UCommanderWidget::RefreshData()
 
 	AgeTextBlock->SetText(FText::FromString(FString::FromInt(Commander->GetAge())));
 	
-	NameTextBlock->SetText(FText::FromName(Commander->GetPersonName()));
+	NameTextBlock->SetText(Commander->GetPersonName());
 }
 
 void UCommanderWidget::NativeConstruct()
@@ -33,6 +33,6 @@ void UCommanderWidget::OnButtonClick()
 
 	if (ICommandable* Commandable = Pawn->GetSelectedCommandable())
 	{
-		GetWorld()->GetSubsystem<UCommandersManager>()->MakeCommander(Commander, Commandable);
+		GetGameInstance()->GetSubsystem<UCommandersManager>()->MakeCommander(Commander, Commandable);
 	}
 }

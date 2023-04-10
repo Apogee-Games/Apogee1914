@@ -1,11 +1,13 @@
 ﻿#pragma once
-#include "Country.h"
 #include "ProvincePopulation.h"
 #include "ProvinceResources.h"
 #include "Administration/Descriptions/ProvinceDescription.h"
 #include "Administration/Descriptions/TerrainDescription.h"
-#include "Economics/Instances/Building.h"
+#include "Economics/Instances/Buildings/Building.h"
 #include "Province.generated.h"
+
+class UUnit;
+class UCountry;
 
 UCLASS()
 class UProvince : public UObject 
@@ -14,7 +16,7 @@ class UProvince : public UObject
 public:
 	UProvince();
 
-	void Init(FProvinceDescription* ProvinceDescription, const UDataTable* TerrainDT, const UDataTable* FactoryDT, const UDataTable* ResourcesDescriptions);
+	void Init(UProvinceDescription* ProvinceDescription);
 
 	const FColor& GetId() const;
 
@@ -26,13 +28,13 @@ public:
 
 	void Conquer(UCountry* Country);
 
-	const FName& GetStateId() const;
+	UStateDescription* GetState() const;
 	
-	const FName& GetName();
+	const FText& GetName();
 
 	const UProvincePopulation* GetPopulation() const;
 
-	const FTerrainDescription* GetTerrain() const;
+	UTerrainDescription* GetTerrain() const;
 
 	UProvinceResources* GetResources() const;
 
@@ -40,15 +42,20 @@ public:
 
 	void RemoveBuilding(UBuilding* Building);
 
+	void AddUnit(UUnit* Unit);
+
+	void RemoveUnit(UUnit* Unit);
+
+	const TArray<UUnit*>& GetUnits() const;
+
 	const TArray<UBuilding*>& GetBuildings() const;
 
 	//TODO: Tie resource logic to building logic
 	
 private:
-	
 	FColor Id;
 
-	FName Name;
+	FText Name;
 
 	UPROPERTY()
 	UCountry* OwnerCountry;
@@ -56,16 +63,21 @@ private:
 	UPROPERTY()
 	UCountry* ControllerCountry;
 
-	FName StateId;
+	UPROPERTY()
+	UStateDescription* State;
 	
 	UPROPERTY()
 	UProvincePopulation* Population;
-	
-	FTerrainDescription* Terrain;
+
+	UPROPERTY()
+	UTerrainDescription* Terrain;
 
 	UPROPERTY()
 	UProvinceResources* Resources;
 	
 	UPROPERTY()
 	TArray<UBuilding*> Buildings;
+
+	UPROPERTY()
+	TArray<UUnit*> Units;
 };

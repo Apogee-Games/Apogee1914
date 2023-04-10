@@ -1,6 +1,7 @@
 
 #include "Maps/Countries/CountryMapUpdater.h"
 
+#include "Administration/Instances/Country.h"
 #include "Utils/TextureUtils.h"
 
 FCountryMapUpdater::FCountryMapUpdater(FColor* CountriesColors, const TArray<int32>& PixelsToUpdate,

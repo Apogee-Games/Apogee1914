@@ -24,6 +24,6 @@ void UStorageGoodWidget::SetGood(UObject* ProvidedGood)
 
 void UStorageGoodWidget::RefreshData()
 {
-	GoodNameTextBlock->SetText(FText::FromName(Good->GetGoodName()));
+	GoodNameTextBlock->SetText(Good->GetGoodName());
 	TypeTextBlockMapping[Good->GetStorage()->GetType()]->SetText(FText::FromString(FString::FromInt(Good->GetAmount())));
 }

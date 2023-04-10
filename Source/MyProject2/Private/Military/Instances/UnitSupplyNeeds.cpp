@@ -1,42 +1,44 @@
 #include "Military/Instances/UnitSupplyNeeds.h"
 
-void UUnitSupplyNeeds::Init(const TMap<FName, int32>& EquipmentRequirements)
+#include "Economics/Managers/GoodsManager.h"
+
+void UUnitSupplyNeeds::Init(const TMap<UGoodDescription*, int32>& EquipmentRequirements)
 {
-	for (const auto& [GoodName, Requirement]: EquipmentRequirements)
+	for (const auto& [Good, Requirement]: EquipmentRequirements)
 	{
-		Needs.Add(GoodName, Requirement);
-		Requirements.Add(GoodName, Requirement);
+		Needs.Add(Good, Requirement);
+		Requirements.Add(Good, Requirement);
 	}
 }
 
-void UUnitSupplyNeeds::SupplyEquipment(const FName& GoodName, int32 Amount)
+void UUnitSupplyNeeds::SupplyEquipment(UGoodDescription* Good, int32 Amount)
 {
-	Needs[GoodName] -= Amount;
+	Needs[Good] -= Amount;
 }
 
-int32 UUnitSupplyNeeds::DemandEquipment(const FName& GoodName, int32 Amount)
+int32 UUnitSupplyNeeds::DemandEquipment(UGoodDescription* Good, int32 Amount)
 {
-	const int32 PossibleAmount = FMath::Min(GetGoodSupply(GoodName), Amount);
-	Needs[GoodName] += PossibleAmount;
+	const int32 PossibleAmount = FMath::Min(GetGoodSupply(Good), Amount);
+	Needs[Good] += PossibleAmount;
 	return PossibleAmount;
 }
 
-int32 UUnitSupplyNeeds::GetGoodSupply(const FName& GoodName) const
+int32 UUnitSupplyNeeds::GetGoodSupply(UGoodDescription* Good) const
 {
-	return Requirements[GoodName] - Needs[GoodName];
+	return Requirements[Good] - Needs[Good];
 }
 
-int32 UUnitSupplyNeeds::GetGoodRequirements(const FName& GoodName) const
+int32 UUnitSupplyNeeds::GetGoodRequirements(UGoodDescription* Good) const
 {
-	return Requirements[GoodName];
+	return Requirements[Good];
 }
 
-const TMap<FName, int32>& UUnitSupplyNeeds::GetNeeds() const
+const TMap<UGoodDescription*, int32>& UUnitSupplyNeeds::GetNeeds() const
 {
 	return Needs;
 }
 
-const TMap<FName, int32>& UUnitSupplyNeeds::GetRequirements() const
+const TMap<UGoodDescription*, int32>& UUnitSupplyNeeds::GetRequirements() const
 {
 	return Requirements;
 }
