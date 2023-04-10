@@ -10,10 +10,9 @@ class UStrataManager : public UGameInstanceSubsystem
 public:
 	void SetScenario(UScenario* Scenario);
 	
-	FStrataDescription* GetStrataDescription(const FName& Type) const;
+	const TArray<UStrataDescription*>& GetStratasDescriptions() const;
 private:
-	UPROPERTY()
-	UDataTable* StrataDescriptionDataTable;
+	TArray<UStrataDescription*> StrataDescriptions;
 
 	void Clear();
 

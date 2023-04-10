@@ -2,7 +2,6 @@
 
 #include "MyGameInstance.h"
 #include "Engine/DataTable.h"
-#include "LevelsOverides/Game/GameLevelGameState.h"
 
 void UStrataManager::SetScenario(UScenario* Scenario)
 {
@@ -10,18 +9,18 @@ void UStrataManager::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-FStrataDescription* UStrataManager::GetStrataDescription(const FName& Type) const
+const TArray<UStrataDescription*>& UStrataManager::GetStratasDescriptions() const
 {
-	return reinterpret_cast<FStrataDescription*>(StrataDescriptionDataTable->FindRowUnchecked(Type));
+	return StrataDescriptions;	
 }
 
 void UStrataManager::Clear()
 {
-	StrataDescriptionDataTable = nullptr;
+	StrataDescriptions.Empty();
 }
 
 void UStrataManager::Init(UScenario* Scenario)
 {
-	StrataDescriptionDataTable = Scenario->StrataDescriptionDataTable;
+	StrataDescriptions = Scenario->StrataDescriptions;
 }
 

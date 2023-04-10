@@ -4,6 +4,7 @@
 #include "Administration/Descriptions/Country/CountryDescription.h"
 #include "Administration/Descriptions/Law/LawsGroup.h"
 #include "Economics/Description/ResourceDescription.h"
+#include "Economics/Description/StrataDescription.h"
 #include "Economics/Description/Buildings/BuildingDescription.h"
 #include "Economics/Description/Goods/GoodDescription.h"
 #include "Engine/DataTable.h"
@@ -34,7 +35,7 @@ public:
 	TArray<UStateDescription*> StatesDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* StrataDescriptionDataTable;	
+	TArray<UStrataDescription*> StrataDescriptions;
 	
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UUnitDescription*> UnitDescriptions;
