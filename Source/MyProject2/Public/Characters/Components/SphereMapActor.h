@@ -8,22 +8,9 @@ class  ASphereMapActor : public AMapActor
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditDefaultsOnly)
-	FRotator SphereRotator = FRotator(20, 0, 85);
-	  UPROPERTY(EditDefaultsOnly)
-	 FVector3d MinPosition = FVector3d(-100, 0, 0);
-	
-	  UPROPERTY(EditDefaultsOnly)
-	  FVector3d MaxPosition = FVector3d(-15, 200, 200);
-	
-	
-	// double SphereSize = 200*PI;
-	//double PlaneSize = 200;
 	float Radius=-1;
 	UPROPERTY(EditDefaultsOnly);
-	FVector3d SphereCenter=FVector3d (159, 95, 81);
-
-	//ASphereMapActor();
+	FVector3d SphereCenter=FVector3d (159, 95, 81);	
 	
 	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght) override;
 	
