@@ -3,7 +3,7 @@
 
 #include "InGameTime.h"
 #include "Administration/Managers/ProvinceManager.h"
-#include "LevelsOverides/Game/GameLevelGameState.h"
+#include "Maps/Precalculations/ProvincesMap.h"
 
 void UUnitsMover::SetScenario(UScenario* Scenario)
 {
@@ -11,19 +11,15 @@ void UUnitsMover::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-FGraph* UUnitsMover::GetGraph() const
+const FGraph& UUnitsMover::GetGraph() const
 {
 	return Graph;
 }
 
-void UUnitsMover::SetGraph(FGraph* NewGraph)
-{
-	Graph = NewGraph;
-}
-
 void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 {
-	const TArray<TPair<UProvince*, int32>>& Path = Graph->FindPath(Unit->GetPosition(), To);
+	if (RetreatingUnits.Contains(Unit)) return;
+	const TArray<TPair<UProvince*, int32>>& Path = Graph.FindPath(Unit->GetPosition(), To);
 	Paths.Add(Unit, Path);
 	Positions.Add(Unit, 0);
 }
@@ -72,7 +68,7 @@ void UUnitsMover::MoveUnits(const TMap<UMilitaryBranchDescription*, FUnitsSelect
 
 int32 UUnitsMover::Estimate(UUnit* Unit, UProvince* To)
 {
-	const TArray<TPair<UProvince*, int32>> Path = Graph->FindPath(Unit->GetPosition(), To);
+	const TArray<TPair<UProvince*, int32>> Path = Graph.FindPath(Unit->GetPosition(), To);
 	return Unit->Estimate(Path);
 }
 
@@ -80,6 +76,33 @@ void UUnitsMover::DoUnitMovement()
 {
 	MoveUnits();
 	RemoveArrivedUnit();
+}
+
+void UUnitsMover::SuspendMovement(UUnit* Unit)
+{
+	SuspendedUnits.Add(Unit);
+}
+
+void UUnitsMover::UnSuspendMovement(UUnit* Unit)
+{
+	SuspendedUnits.Remove(Unit);
+	if (Paths[Unit][Positions[Unit]].Value == 0)
+	{
+		Paths.Remove(Unit);
+		Positions.Remove(Unit);
+	}
+}
+
+bool UUnitsMover::Retreat(UUnit* Unit)
+{
+	TArray<TPair<UProvince*, int32>> Path = Graph.CreateRetreatPath(Unit->GetPosition(), Unit->GetCountryController());
+	if (!Path.IsEmpty())
+	{
+		Paths.Add(Unit, Path);
+		Positions.Add(Unit, 0);
+		RetreatingUnits.Add(Unit);
+	}
+	return !Path.IsEmpty();
 }
 
 void UUnitsMover::Clear()
@@ -91,7 +114,9 @@ void UUnitsMover::Clear()
 
 void UUnitsMover::Init(UScenario* Scenario)
 {
-	GetGameInstance()->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
+	UGameInstance* GameInstance = GetGameInstance();
+	Graph = FGraph(GameInstance->GetSubsystem<UProvincesMap>()->GetNeighbourProvinces());
+	GameInstance->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
 }
 
 void UUnitsMover::RemoveArrivedUnit()
@@ -100,8 +125,10 @@ void UUnitsMover::RemoveArrivedUnit()
 	{
 		UUnit* Unit;
 		UnitsArrived.Dequeue(Unit);
+		if (SuspendedUnits.Contains(Unit)) continue;
 		Paths.Remove(Unit);
 		Positions.Remove(Unit);
+		RetreatingUnits.Remove(Unit);
 	}
 }
 
@@ -109,6 +136,7 @@ void UUnitsMover::MoveUnits()
 {
 	for (const auto& [Unit, Position]: Positions)
 	{
+		if (SuspendedUnits.Contains(Unit)) continue;
 		Paths[Unit][Position].Value--;
 		if (Paths[Unit][Position].Value == 0)
 		{

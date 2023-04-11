@@ -39,6 +39,14 @@ public:
 
 	UUnitsCollection* GetUnitsCollection() const;
 
+	float GetAttackScore();
+
+	float GetDefenceScore();
+	
+	float Damage(float DamageScore);
+
+	float GetManpower() const;
+
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);
@@ -58,6 +66,10 @@ private:
 	
 	UPROPERTY()
 	UProvince* Province;
+
+	float Manpower;
+
+	float Training = 0;
 };
 
 // TODO: Add UnitMoverObserver

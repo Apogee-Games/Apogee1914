@@ -40,7 +40,6 @@ void AGameLevelGameMode::BeginPlay()
 
 	UGameInstance* GameInstance = GetGameInstance();
 	
-	GameInstance->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
 	GameInstance->GetSubsystem<UUnitsRenderer>()->InGameWorldInit();
 	
 	Super::BeginPlay();
@@ -86,6 +85,7 @@ void AGameLevelGameMode::CreateAIPawns()
 	for (const auto& CountryDescription : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesDescriptions())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryDescription)) continue; // TODO: Filter only active countries
+		if (CountryDescription->Tag != "FRA") continue; // TODO: Remove this :)
 		AAIPlayerController* Controller = GetWorld()->SpawnActor<AAIPlayerController>(AIPlayerControllerClass);
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
 		Controller->Possess(Pawn);

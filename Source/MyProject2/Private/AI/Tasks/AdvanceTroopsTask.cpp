@@ -14,10 +14,9 @@ EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& Owne
 	
 	UMyGameInstance* GameInstance = GetWorld()->GetGameInstance<UMyGameInstance>();
 	UProvincesMap* ProvincesMap = GameInstance->GetSubsystem<UProvincesMap>();
-	UProvinceManager* ProvinceManager = GameInstance->GetSubsystem<UProvinceManager>();
 	UUnitsMover* UnitsMover = GameInstance->GetSubsystem<UUnitsMover>();
 	
-	const TMap<FColor, TSet<FColor>>& Neigbours = ProvincesMap->GetNeighbours();
+	const TMap<UProvince*, TSet<UProvince*>>& Neigbours = ProvincesMap->GetNeighbourProvinces();
 
 	TArray<UUnit*> MovableUnits;
 	TArray<UProvince*> Provinces;
@@ -30,13 +29,12 @@ EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& Owne
 		
 		bool HasEnemyNeighbour = false;
 		
-		for (const auto& NeighbourColor: Neigbours[Province->GetId()])
+		for (const auto& Neighbour: Neigbours[Province])
 		{
-			UProvince* NeighbourProvince = ProvinceManager->GetProvince(NeighbourColor);
-			if (NeighbourProvince && NeighbourProvince->GetCountryController()->IsInWarWith(Country))
+			if (Neighbour && Neighbour->GetCountryController()->IsInWarWith(Country))
 			{
 				HasEnemyNeighbour = true;
-				Provinces.Add(NeighbourProvince);
+				Provinces.Add(Neighbour);
 			} 
 		}
 
@@ -44,7 +42,10 @@ EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& Owne
 		{
 			for (const auto& Unit: Units)
 			{
-				MovableUnits.Add(Unit);
+				if (Unit->GetManpower())
+				{
+					MovableUnits.Add(Unit);
+				}
 			}
 		}
 	}

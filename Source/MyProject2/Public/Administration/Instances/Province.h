@@ -23,6 +23,8 @@ public:
 	UCountry* GetOwnerCountry() const;
 
 	UCountry* GetCountryController() const;
+
+	void UpdateControllerCountry();
 	
 	void TakeControl(UCountry* Country);
 
@@ -51,6 +53,11 @@ public:
 	const TArray<UBuilding*>& GetBuildings() const;
 
 	//TODO: Tie resource logic to building logic
+
+
+	const TArray<UUnit*>& GetAttackers() const;
+
+	const TArray<UUnit*>& GetDefenders() const;
 	
 private:
 	FColor Id;
@@ -80,4 +87,7 @@ private:
 
 	UPROPERTY()
 	TArray<UUnit*> Units;
+
+	UPROPERTY()
+	TArray<UUnit*> Attackers;
 };

@@ -26,6 +26,7 @@
 #include "Maps/Precalculations/Boxes/BoxesMap.h"
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 #include "Maps/Selection/SelectionMap.h"
+#include "Military/Managers/BattlesManager.h"
 #include "Military/Managers/UnitsMover.h"
 #include "Military/Managers/UnitsRenderer.h"
 #include "Military/Managers/UnitsSupplyController.h"
@@ -142,4 +143,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<ULawsManager> LawManagerClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UBattlesManager> BattlesManagerClass;
 };

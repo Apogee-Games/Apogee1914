@@ -42,3 +42,15 @@ const TMap<UGoodDescription*, int32>& UUnitSupplyNeeds::GetRequirements() const
 {
 	return Requirements;
 }
+
+float UUnitSupplyNeeds::GetSupplyPercentage()
+{
+	float SupplyPercentage = 1.0;
+
+	for (const auto& [Good, Required]: Requirements)
+	{
+		SupplyPercentage *= (Required - Needs[Good]) / Required;
+	}
+
+	return SupplyPercentage;
+}

@@ -20,6 +20,8 @@ public:
 	const TMap<UGoodDescription*, int32>& GetNeeds() const;
 
 	const TMap<UGoodDescription*, int32>& GetRequirements() const;
+
+	float GetSupplyPercentage();
 private:
 	UPROPERTY()
 	TMap<UGoodDescription*, int32> Needs;

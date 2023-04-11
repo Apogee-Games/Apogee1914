@@ -3,6 +3,9 @@
 
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameMode.h"
+#include "Military/Instances/Units/Unit.h"
+#include "Military/Managers/BattlesManager.h"
 
 UProvince::UProvince()
 {
@@ -63,6 +66,19 @@ UCountry* UProvince::GetCountryController() const
 	return ControllerCountry;
 }
 
+void UProvince::UpdateControllerCountry()
+{
+	if (Units.IsEmpty() && !Attackers.IsEmpty())
+	{
+		TakeControl(Attackers[0]->GetCountryController());
+		for (const auto& Attacker : Attackers)
+		{
+			Units.Add(Attacker);
+		}
+		Attackers.Empty();
+	}
+}
+
 void UProvince::TakeControl(UCountry* Country)
 {
 	ControllerCountry->RemoveProvince(this);
@@ -116,11 +132,22 @@ void UProvince::RemoveBuilding(UBuilding* Building)
 
 void UProvince::AddUnit(UUnit* Unit)
 {
-	Units.Add(Unit);
+	if (ControllerCountry->IsInWarWith(Unit->GetCountryController()))
+	{
+		if (Attackers.IsEmpty())
+		{
+			GetWorld()->GetGameInstance()->GetSubsystem<UBattlesManager>()->AddBattle(this);
+		}
+		Attackers.Add(Unit);
+	} else
+	{
+		Units.Add(Unit);
+	}
 }
 
 void UProvince::RemoveUnit(UUnit* Unit)
 {
+	Attackers.Remove(Unit);
 	Units.Remove(Unit);
 }
 
@@ -132,6 +159,16 @@ const TArray<UUnit*>& UProvince::GetUnits() const
 const TArray<UBuilding*>& UProvince::GetBuildings() const
 {
 	return Buildings;
+}
+
+const TArray<UUnit*>& UProvince::GetAttackers() const
+{
+	return Attackers;
+}
+
+const TArray<UUnit*>& UProvince::GetDefenders() const
+{
+	return Units;
 }
 
 

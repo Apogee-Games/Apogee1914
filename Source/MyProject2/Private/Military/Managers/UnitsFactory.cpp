@@ -112,6 +112,8 @@ void UUnitsFactory::RemoveUnit(UUnit* Unit, bool IsClearing)
 		Collection->Remove(Unit);
 	}
 
+	Unit->GetPosition()->RemoveUnit(Unit);
+
 	if (!IsClearing)
 	{
 		Units.Remove(Unit);

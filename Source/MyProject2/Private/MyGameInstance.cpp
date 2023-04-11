@@ -8,6 +8,7 @@
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
 #include "Maps/Diplomacy/CountryRelationMap.h"
+#include "Military/Managers/BattlesManager.h"
 #include "Military/Managers/CommandersManager.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "People/Managers/PeopleManager.h"
@@ -92,6 +93,7 @@ void UMyGameInstance::InitializeActiveScenario()
 	GetSubsystem<UUnitsMover>()->SetScenario(ActiveScenario);
 	GetSubsystem<UCommandersManager>()->SetScenario(ActiveScenario);
 	GetSubsystem<UUnitsSupplyController>()->SetScenario(ActiveScenario);
+	GetSubsystem<UBattlesManager>()->SetScenario(ActiveScenario);
 	
 	GetSubsystem<UConditionsCheckingSubsystem>()->SetScenario(ActiveScenario);
 	GetSubsystem<UEventInstancesController>()->SetScenario(ActiveScenario);

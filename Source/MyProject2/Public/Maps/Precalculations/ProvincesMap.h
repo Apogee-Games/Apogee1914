@@ -16,7 +16,9 @@ public:
 
 	const TArray<FColor>& GetColors() const;
 
-	const TMap<FColor, TSet<FColor>>& GetNeighbours() const;
+	const TMap<FColor, TSet<FColor>>& GetNeighbourColors() const;
+
+	const TMap<UProvince*, TSet<UProvince*>>& GetNeighbourProvinces();
 
 	const FColor& GetColor(int32 Position) const;
 
@@ -28,10 +30,12 @@ public:
 private:
 	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;
+
+	TMap<UProvince*, TSet<UProvince*>> NeighbourProvinces;
 	
 	TMap<FColor, TArray<int32>> ColorPosition;
 
-	TMap<FColor, TSet<FColor>> Neighbours;
+	TMap<FColor, TSet<FColor>> NeighbourColors;
 
 	TMap<TPair<FColor, FColor>, TArray<int32>> Borders;
 
