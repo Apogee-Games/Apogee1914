@@ -30,7 +30,9 @@ FVector2d ASphereMapActor::GetMapPosition(FVector3d WorldPosition)
   	*/
   	
   	
-  	Radius=sqrt((WorldPosition.X - 159)*(WorldPosition.X - 159)+(WorldPosition.Y - 95)*(WorldPosition.Y - 95)+(WorldPosition.Z - 81)*(WorldPosition.Z - 81));
+  	//float Radius=sqrt((WorldPosition.X - 159)*(WorldPosition.X - 159)+(WorldPosition.Y - 95)*(WorldPosition.Y - 95)+(WorldPosition.Z - 81)*(WorldPosition.Z - 81));
+  	FVector Vector= WorldPosition-SphereCenter;
+  	if(Radius==-1) Radius=Vector.Size();
   	float theta = atan2( WorldPosition.X - 159,WorldPosition.Y - 95) / (2 * PI) + 0.5;
   	float phi = acos((WorldPosition.Z - 81) / Radius) / PI;
   

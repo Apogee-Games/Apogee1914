@@ -18,9 +18,10 @@ public:
 	
 	
 	// double SphereSize = 200*PI;
-	double PlaneSize = 200;
-	float Radius;
-	 FVector3d SphereCenter=FVector3d (159, 95, 81);
+	//double PlaneSize = 200;
+	float Radius=-1;
+	UPROPERTY(EditDefaultsOnly);
+	FVector3d SphereCenter=FVector3d (159, 95, 81);
 
 	//ASphereMapActor();
 	
