@@ -18,7 +18,7 @@ class UMusicControllerWidget: public UUserWidget
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* PlayMusicButton;
-
+	
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* ViewMusicListButton;
 	
@@ -43,6 +43,13 @@ public:
 private:
 	FTimerHandle TimerHandle;
 
+	FButtonStyle PlayStyle;
+	FButtonStyle PauseStyle;
+
+	void ResumePlaying();
+
+	void PausePlaying();
+	
 	bool IsPaused = true;
 	
 	int32 CurrentProgress = 0;
@@ -62,3 +69,5 @@ private:
 	UFUNCTION()
 	void UpdateProgress();
 };
+
+
