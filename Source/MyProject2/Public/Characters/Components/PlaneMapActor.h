@@ -16,7 +16,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	FVector3d MaxPosition = FVector3d(-15, 200, 200);
 	
-	double PlaneSize = 200;
+	double PlaneSideSize = 200;
 
 	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght) override;
 	

@@ -1,11 +1,11 @@
 
-#include "Characters/UnitActor.h"
+#include "Characters/ProvinceActor.h"
 
 #include "Components/WidgetComponent.h"
 #include "Military/Instances/Units/Unit.h"
 #include "Widgets/Military/Map/UnitInformationListWidget.h"
 
-AUnitActor::AUnitActor()
+AProvinceActor::AProvinceActor()
 {
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Scene"));
 	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
@@ -18,17 +18,35 @@ AUnitActor::AUnitActor()
 }
 
 // TODO: Think of way to customise UnitMesh depending on units 
-void AUnitActor::Init(const FVector3d& Position)
+void AProvinceActor::Init()
 {
-	SetActorLocation(Position);
-
 	WidgetComponent->InitWidget();
 	GetWidget<UUnitInformationListWidget>()->SetVisibility(ESlateVisibility::Hidden);
 
 	StaticMeshComponent->SetVisibility(false);
 }
 
-void AUnitActor::AddUnit(UUnit* Unit)
+void AProvinceActor::AddAttacker(UUnit* Unit)
+{
+	AddUnit(Unit);
+}
+
+void AProvinceActor::AddDefender(UUnit* Unit)
+{
+	AddUnit(Unit);
+}
+
+void AProvinceActor::RemoveAttacker(UUnit* Unit)
+{
+	RemoveUnit(Unit);
+}
+
+void AProvinceActor::RemoveDefender(UUnit* Unit)
+{
+	RemoveUnit(Unit);
+}
+
+void AProvinceActor::AddUnit(UUnit* Unit)
 {
 	Units.Add(Unit);
 
@@ -37,7 +55,7 @@ void AUnitActor::AddUnit(UUnit* Unit)
 	GetWidget<UUnitInformationListWidget>()->AddUnit(Unit);
 }
 
-void AUnitActor::RemoveUnit(UUnit* Unit)
+void AProvinceActor::RemoveUnit(UUnit* Unit)
 {
 	Units.Remove(Unit);
 
@@ -46,7 +64,7 @@ void AUnitActor::RemoveUnit(UUnit* Unit)
 	GetWidget<UUnitInformationListWidget>()->RemoveUnit(Unit);
 }
 
-void AUnitActor::UpdateWidgetVisibility() const
+void AProvinceActor::UpdateWidgetVisibility() const
 {
 	if (Units.Num() == 0)
 	{

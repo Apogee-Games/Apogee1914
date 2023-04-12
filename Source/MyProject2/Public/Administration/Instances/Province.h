@@ -3,6 +3,7 @@
 #include "ProvinceResources.h"
 #include "Administration/Descriptions/ProvinceDescription.h"
 #include "Administration/Descriptions/TerrainDescription.h"
+#include "Characters/ProvinceActor.h"
 #include "Economics/Instances/Buildings/Building.h"
 #include "Province.generated.h"
 
@@ -18,6 +19,8 @@ public:
 
 	void Init(UProvinceDescription* ProvinceDescription);
 
+	void InitProvinceActor(FVector Location);
+	
 	const FColor& GetId() const;
 
 	UCountry* GetOwnerCountry() const;
@@ -90,4 +93,7 @@ private:
 
 	UPROPERTY()
 	TArray<UUnit*> Attackers;
+
+	UPROPERTY()
+	AProvinceActor* ProvinceActor;
 };

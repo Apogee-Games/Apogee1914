@@ -9,13 +9,13 @@ FVector3d APlaneMapActor::GetNewPosition(FVector3d Position, FVector3d Direction
 
 FVector2d APlaneMapActor::GetMapPosition(FVector3d WorldPosition)
 {
-	WorldPosition /= PlaneSize;
+	WorldPosition /= PlaneSideSize;
 	return FVector2D(WorldPosition.Y, 1.0 - WorldPosition.Z);
 }
 
 FVector3d APlaneMapActor::GetWorldPosition(FVector2d MapPosition)
 {
-	return FVector3d(0, MapPosition.X, MapPosition.Y);
+	return FVector3d(0, MapPosition.X, 1 - MapPosition.Y) * PlaneSideSize;
 }
 
 FQuat APlaneMapActor::GetNewRotation(FVector3d Position, FVector3d NewPosition)

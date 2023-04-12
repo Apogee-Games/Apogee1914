@@ -14,7 +14,6 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Events/EventInstancesController.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
-#include "Military/Managers/UnitsMover.h"
 
 AGameLevelGameMode::AGameLevelGameMode()
 {
@@ -38,11 +37,16 @@ void AGameLevelGameMode::BeginPlay()
 
 	//GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
 
-	UGameInstance* GameInstance = GetGameInstance();
-	
-	GameInstance->GetSubsystem<UUnitsRenderer>()->InGameWorldInit();
-	
 	Super::BeginPlay();
+
+	UObjectMap* ObjectMap = GetGameInstance()->GetSubsystem<UObjectMap>();
+	AMapActor* MapActor = GetWorld()->GetFirstPlayerController()->GetPawn<AHumanPlayerPawn>()->GetMapActor();
+	for (const auto& Province : GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
+	{
+		const FVector2d MapPosition = ObjectMap->GetProvinceCenter(Province->GetId());
+		const FVector3d WorldPosition = MapActor->GetWorldPosition(MapPosition);
+		Province->InitProvinceActor(WorldPosition);
+	}
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	/*const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());

@@ -117,9 +117,10 @@ void AHumanPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));
-	
-	MovementComponent->Init(MapActor);
+	if (!MapActor)
+	{
+		InitMapActor();
+	}
 	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
@@ -156,6 +157,12 @@ void AHumanPlayerPawn::SwitchPause()
 	{
 		Pause();
 	}
+}
+
+void AHumanPlayerPawn::InitMapActor()
+{
+	MapActor = Cast<AMapActor>(GetWorld()->SpawnActor(MapActorClass));
+	MovementComponent->Init(MapActor);
 }
 
 // Called every frame
@@ -302,4 +309,13 @@ void AHumanPlayerPawn::SetProductionSelectionFactory(UFactoryBuilding* Factory)
 UFactoryBuilding* AHumanPlayerPawn::GetSelectedFactory() const
 {
 	return SelectedFactory;
+}
+
+AMapActor* AHumanPlayerPawn::GetMapActor()
+{
+	if (!MapActor)
+	{
+		InitMapActor();
+	}
+	return MapActor;
 }

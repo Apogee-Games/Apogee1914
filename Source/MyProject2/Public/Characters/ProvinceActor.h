@@ -1,12 +1,12 @@
 #pragma once
 #include "Components/WidgetComponent.h"
 #include "Engine/StaticMeshActor.h"
-#include "UnitActor.generated.h"
+#include "ProvinceActor.generated.h"
 
 class UUnit;
 
 UCLASS()
-class AUnitActor: public AActor
+class AProvinceActor: public AActor
 {
 	GENERATED_BODY()
 public:
@@ -16,14 +16,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* StaticMeshComponent;
 	
-	AUnitActor();
+	AProvinceActor();
 	
-	void Init(const FVector3d& Position);
+	void Init();
 
+	void AddAttacker(UUnit* Unit);
+
+	void AddDefender(UUnit* Unit);
+
+	void RemoveAttacker(UUnit* Unit);
+
+	void RemoveDefender(UUnit* Unit);
+	
 	void AddUnit(UUnit* Unit);
 
 	void RemoveUnit(UUnit* Unit);
 private:
+	UPROPERTY()
 	TArray<UUnit*> Units;
 	
 	template <class T>
@@ -33,7 +42,7 @@ private:
 };
 
 template <class T>
-T* AUnitActor::GetWidget() const
+T* AProvinceActor::GetWidget() const
 {
 	return Cast<T>(WidgetComponent->GetWidget());
 }
