@@ -4,6 +4,7 @@
 #include "Administration/Instances/Province.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "Maps/Precalculations/ProvincesMap.h"
+#include "Maps/Diplomacy/AllianceMapUpdater.h"
 #include "Utils/TextureUtils.h"
 
 void UAlliancesMap::Initialize(FSubsystemCollectionBase& Collection)
@@ -19,26 +20,27 @@ void UAlliancesMap::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-void UAlliancesMap::UpdateMap()
+void UAlliancesMap::UpdateMap() const 
 {
-	TArray<UProvince*> Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces();
-	UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
+	TArray<FRunnableThread*> Threads;
 
-	FColor* Colors = FTextureUtils::GetPixels(AlliancesMapTexture, LOCK_READ_WRITE);
+	FColor* AlliancesColors = FTextureUtils::GetPixels(AlliancesMapTexture, LOCK_READ_WRITE);
+	TArray<UProvince*> Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces();
 	
 	for (const auto& Province: Provinces)
 	{
-		UCountry* Country = Province->GetCountryController();
-		FColor Color = GetColor(Country);
-
-		for (const auto& Position: ProvincesMap->GetProvincePositions(Province->GetId()))
-		{
-			Colors[Position] = Color;
-		}
+		Threads.Add(UpdateAllianceColor(Province, AlliancesColors));
 	}
-
+	
+	for (const auto& Thread: Threads)
+	{
+		Thread->WaitForCompletion();
+	}
+	
 	FTextureUtils::UnlockPixels(AlliancesMapTexture);
+	
 	AlliancesMapTexture->UpdateResource();
+	
 }
 
 void UAlliancesMap::AllianceWasCreated(UAlliance* Alliance)
@@ -56,9 +58,9 @@ void UAlliancesMap::Init(UScenario* Scenario)
 	AlliancesMapTexture = Scenario->AlliancesMapTexture;
 }
 
-FColor UAlliancesMap::GetColor(UCountry* Country)
+FRunnableThread* UAlliancesMap::UpdateAllianceColor(UProvince* Province, FColor* AlliancesColor) const
 {
-	if (Country->IsNonAligned()) return NonAlignedCountryColor;
-	if (!Country->IsInAlliance()) return NonAlliedCountryColor;
-	return Country->GetAlliance()->GetColor();
+	const TArray<int32>& PixelsToUpdate = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetProvincePositions(Province->GetId());
+	FAllianceMapUpdater* Updater = new FAllianceMapUpdater(AlliancesColor, PixelsToUpdate, Province,NonAlignedCountryColor,NonAlliedCountryColor);
+	return FRunnableThread::Create(Updater, *Province->GetName().ToString());	
 }

@@ -1,7 +1,9 @@
 ﻿#pragma once
 #include "Scenario.h"
 #include "Diplomacy/Interfaces/Observers/AllianceCreationObserver.h"
+#include "Administration/Instances/Province.h"
 #include "AlliancesMap.generated.h"
+
 
 UCLASS(Abstract, Blueprintable)
 class UAlliancesMap: public UGameInstanceSubsystem, public IAllianceCreationObserver
@@ -18,7 +20,7 @@ public:
 	
 	void SetScenario(UScenario* Scenario);
 
-	void UpdateMap();
+	void UpdateMap() const;
 
 	virtual void AllianceWasCreated(UAlliance* Alliance) override;
 private:
@@ -27,7 +29,8 @@ private:
 
 	void Clear();
 
+	FRunnableThread* UpdateAllianceColor(UProvince* Province, FColor* AlliancesColor) const;
+
 	void Init(UScenario* Scenario);
 
-	FColor GetColor(UCountry* Country);
 };
