@@ -19,7 +19,7 @@ public:
 
 	void Init(UProvinceDescription* ProvinceDescription);
 
-	void InitProvinceActor(FVector Location);
+	void InitProvinceActor(FVector Location, FVector2d TopLeft, FVector2d BottomRight);
 	
 	const FColor& GetId() const;
 

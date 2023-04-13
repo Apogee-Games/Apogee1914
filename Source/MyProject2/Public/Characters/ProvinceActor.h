@@ -1,4 +1,5 @@
 #pragma once
+#include "Components/TextRenderComponent.h"
 #include "Components/WidgetComponent.h"
 #include "Engine/StaticMeshActor.h"
 #include "ProvinceActor.generated.h"
@@ -15,10 +16,16 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* StaticMeshComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTextRenderComponent* ProvinceNameRenderer;
+
+	UPROPERTY(EditDefaultsOnly)
+	float LenghtScale = 1;
 	
 	AProvinceActor();
 	
-	void Init();
+	void Init(const FText& ProvinceName, FVector2d TopLeft, FVector2d BottomRight);
 
 	void AddAttacker(UUnit* Unit);
 

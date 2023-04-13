@@ -32,7 +32,7 @@ public:
 	
 	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght);
 
-	virtual FQuat GetNewRotation(FVector3d Position, FVector3d NewPosition);
+	virtual FQuat GetNewRotation(FVector3d Position, FVector3d NewPosition, FQuat Rotation);
 	
 	virtual FVector2d GetMapPosition(APawn* Pawn);
 	

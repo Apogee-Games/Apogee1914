@@ -17,10 +17,10 @@ void UBattlesManager::AddBattle(UProvince* Province)
 {
 	Provinces.Add(Province);
 	UUnitsMover* UnitsMover = GetGameInstance()->GetSubsystem<UUnitsMover>();
-	for (const auto& Unit: Province->GetAttackers())
+	/*for (const auto& Unit: Province->GetAttackers())
 	{
 		UnitsMover->SuspendMovement(Unit);
-	}
+	}*/
 }
 
 void UBattlesManager::Tick()

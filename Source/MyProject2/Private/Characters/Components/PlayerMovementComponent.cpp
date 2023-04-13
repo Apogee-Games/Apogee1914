@@ -7,16 +7,16 @@ void UPlayerMovementComponent::Init(AMapActor* ProvidedMapActor)
 
 void UPlayerMovementComponent::Move(float DeltaTime)
 {
-	if ((MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0)) ||
-		SpeedVector == FVector(0, 0, 0))
-			return;
+	if (MovementDirection == FVector(0, 0, 0) && RotationDirection == FRotator(0, 0, 0))
+	{
+		return;
+	}
 
-
-	FVector Position = MapActor->GetNewPosition(GetOwner()->GetActorLocation(), MovementDirection, DeltaTime * SpeedVector.Length());
-	FQuat Rotation = MapActor->GetNewRotation(GetOwner()->GetActorLocation(), Position);
+	FVector Position = MapActor->GetNewPosition(GetOwner()->GetActorLocation(), MovementDirection, DeltaTime);
+	FQuat Rotation = MapActor->GetNewRotation(GetOwner()->GetActorLocation(), Position, GetOwner()->GetActorQuat());
 
 	GetOwner()->SetActorLocation(Position);
-	GetOwner()->AddActorWorldRotation(Rotation);
+	GetOwner()->SetActorRotation(Rotation);
 }
 
 void UPlayerMovementComponent::Scroll(float Value)

@@ -31,7 +31,7 @@ FVector3d AMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, flo
 	return FVector3d(0, 0, 0);
 }
 
-FQuat AMapActor::GetNewRotation(FVector3d Position, FVector3d NewPosition)
+FQuat AMapActor::GetNewRotation(FVector3d Position, FVector3d NewPosition, FQuat Rotation)
 {
 	return FQuat(0, 0, 0, 0);
 }

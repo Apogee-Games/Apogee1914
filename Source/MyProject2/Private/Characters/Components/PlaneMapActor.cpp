@@ -1,10 +1,10 @@
 
 #include "Characters/Components/PlaneMapActor.h"
 
-FVector3d APlaneMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght)
+FVector3d APlaneMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, float DeltaTime)
 {
 	Direction.Normalize();
-	return ClampVector(Position + Direction * Lenght, MinPosition, MaxPosition);
+	return ClampVector(Position + Direction * SpeedVector * DeltaTime, MinPosition, MaxPosition);
 }
 
 FVector2d APlaneMapActor::GetMapPosition(FVector3d WorldPosition)
@@ -18,7 +18,11 @@ FVector3d APlaneMapActor::GetWorldPosition(FVector2d MapPosition)
 	return FVector3d(0, MapPosition.X, 1 - MapPosition.Y) * PlaneSideSize;
 }
 
-FQuat APlaneMapActor::GetNewRotation(FVector3d Position, FVector3d NewPosition)
+FQuat APlaneMapActor::GetNewRotation(FVector3d Position, FVector3d NewPosition, FQuat Rotation)
 {
-	return FRotator(90 * (NewPosition.X - Position.X) / (MaxPosition.X - MinPosition.X), 0, 0).Quaternion();	
+	const FRotator DeltaRotation = FRotator(PitchDelta * (NewPosition.X - Position.X), 0, 0);
+	const FQuat NewRotation = Rotation * DeltaRotation.Quaternion();
+	FRotator Rotator = NewRotation.Rotator();
+	Rotator.Pitch = FMath::Clamp(Rotator.Pitch, MinPitch, MaxPitch);
+	return Rotator.Quaternion();	
 }

@@ -41,11 +41,16 @@ void AGameLevelGameMode::BeginPlay()
 
 	UObjectMap* ObjectMap = GetGameInstance()->GetSubsystem<UObjectMap>();
 	AMapActor* MapActor = GetWorld()->GetFirstPlayerController()->GetPawn<AHumanPlayerPawn>()->GetMapActor();
+	UBoxesMap* BoxesMap = GetGameInstance()->GetSubsystem<UBoxesMap>();
 	for (const auto& Province : GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{
 		const FVector2d MapPosition = ObjectMap->GetProvinceCenter(Province->GetId());
 		const FVector3d WorldPosition = MapActor->GetWorldPosition(MapPosition);
-		Province->InitProvinceActor(WorldPosition);
+
+		const FVector2d TopLeft = BoxesMap->GetLeftTopCorner(Province);
+		const FVector2d BottomRight = BoxesMap->GetRightBottomCorner(Province);
+
+		Province->InitProvinceActor(WorldPosition, TopLeft, BottomRight);
 	}
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
