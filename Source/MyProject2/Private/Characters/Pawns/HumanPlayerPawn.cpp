@@ -230,7 +230,6 @@ void AHumanPlayerPawn::SwitchBuildingCreationState()
 	}
 }
 
-
 // Called to bind functionality to input
 void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

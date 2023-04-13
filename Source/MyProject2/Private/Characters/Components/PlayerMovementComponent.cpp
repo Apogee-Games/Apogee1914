@@ -12,7 +12,7 @@ void UPlayerMovementComponent::Move(float DeltaTime)
 		return;
 	}
 
-	FVector Position = MapActor->GetNewPosition(GetOwner()->GetActorLocation(), MovementDirection, DeltaTime);
+	FVector Position = MapActor->GetNewPosition(GetOwner()->GetActorLocation(), MovementDirection, GetOwner()->GetActorRotation(), DeltaTime);
 	FQuat Rotation = MapActor->GetNewRotation(GetOwner()->GetActorLocation(), Position, GetOwner()->GetActorQuat());
 
 	GetOwner()->SetActorLocation(Position);

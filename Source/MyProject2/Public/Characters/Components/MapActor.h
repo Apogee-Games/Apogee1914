@@ -30,7 +30,7 @@ public:
 
 	virtual void BeginPlay() override;
 	
-	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght);
+	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, FRotator Rotation, float Lenght);
 
 	virtual FQuat GetNewRotation(FVector3d Position, FVector3d NewPosition, FQuat Rotation);
 	

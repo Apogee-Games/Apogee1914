@@ -26,7 +26,7 @@ void AMapActor::BeginPlay()
 	MapsStaticMeshComponent->SetMaterial(0, MapsMaterialInstanceDynamic);
 }
 
-FVector3d AMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, float Lenght)
+FVector3d AMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, FRotator Rotation, float Lenght)
 {
 	return FVector3d(0, 0, 0);
 }

@@ -1,7 +1,7 @@
 
 #include "Characters/Components/PlaneMapActor.h"
 
-FVector3d APlaneMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, float DeltaTime)
+FVector3d APlaneMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, FRotator Rotation, float DeltaTime)
 {
 	Direction.Normalize();
 	return ClampVector(Position + Direction * SpeedVector * DeltaTime, MinPosition, MaxPosition);
