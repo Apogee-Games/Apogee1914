@@ -20,8 +20,6 @@ private:
 	FVector MovementDirection = FVector(0, 0, 0);
 
 	FRotator RotationDirection = FRotator(0, 0, 0);
-
-	FVector SpeedVector = FVector(10, 10, 10);
 	
 	UPROPERTY()
 	AMapActor* MapActor;

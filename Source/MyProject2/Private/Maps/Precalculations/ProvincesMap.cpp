@@ -23,9 +23,14 @@ const TArray<FColor>& UProvincesMap::GetColors() const
 	return PositionColor;
 }
 
-const TMap<FColor, TSet<FColor>>& UProvincesMap::GetNeighbours() const
+const TMap<FColor, TSet<FColor>>& UProvincesMap::GetNeighbourColors() const
 {
-	return Neighbours;
+	return NeighbourColors;
+}
+
+const TMap<UProvince*, TSet<UProvince*>>& UProvincesMap::GetNeighbourProvinces()
+{
+	return NeighbourProvinces;
 }
 
 const FColor& UProvincesMap::GetColor(int32 Position) const
@@ -78,7 +83,7 @@ void UProvincesMap::FindNeighbours()
 {
 	for (const auto& [Color, Positions]: ColorPosition)
 	{
-		Neighbours.Add(Color);	
+		NeighbourColors.Add(Color);	
 	}
 
 	int32 Width = static_cast<int>(SizeVector.X);
@@ -91,25 +96,46 @@ void UProvincesMap::FindNeighbours()
 		
 		if (x > 0 && PositionColor[i] != PositionColor[i - 1])
 		{
-			Neighbours[PositionColor[i]].Add(PositionColor[i - 1]);
-			Neighbours[PositionColor[i - 1]].Add(PositionColor[i]);
+			NeighbourColors[PositionColor[i]].Add(PositionColor[i - 1]);
+			NeighbourColors[PositionColor[i - 1]].Add(PositionColor[i]);
 		}
 		if (x + 1 < SizeVector.X && PositionColor[i] != PositionColor[i + 1])
 		{
-			Neighbours[PositionColor[i]].Add(PositionColor[i + 1]);
-			Neighbours[PositionColor[i + 1]].Add(PositionColor[i]);
+			NeighbourColors[PositionColor[i]].Add(PositionColor[i + 1]);
+			NeighbourColors[PositionColor[i + 1]].Add(PositionColor[i]);
 		}
 		if (y > 0 && PositionColor[i] != PositionColor[i - Width])
 		{
-			Neighbours[PositionColor[i]].Add(PositionColor[i - Width]);
-			Neighbours[PositionColor[i - Width]].Add(PositionColor[i]);
+			NeighbourColors[PositionColor[i]].Add(PositionColor[i - Width]);
+			NeighbourColors[PositionColor[i - Width]].Add(PositionColor[i]);
 		}
 		if (y + 1 < Height && PositionColor[i] != PositionColor[i + Width])
 		{
-			Neighbours[PositionColor[i]].Add(PositionColor[i + Width]);
-			Neighbours[PositionColor[i + Width]].Add(PositionColor[i]);
+			NeighbourColors[PositionColor[i]].Add(PositionColor[i + Width]);
+			NeighbourColors[PositionColor[i + Width]].Add(PositionColor[i]);
 		}
 	}
+
+	// TODO: Think of uniting this two types
+	
+	UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+
+	for (const auto& [Color, DirectNeighboursColors]: NeighbourColors)
+	{
+		UProvince* Province = ProvinceManager->GetProvince(Color);
+		if (!Province) continue;;
+
+		TSet<UProvince*> ProvinceDirectNeighbours;
+		for (const auto& ColorB: DirectNeighboursColors)
+		{
+			UProvince* ProvinceB = ProvinceManager->GetProvince(ColorB);
+			if (!ProvinceB) continue;
+
+			ProvinceDirectNeighbours.Add(ProvinceB);
+		}
+		NeighbourProvinces.Add(Province, ProvinceDirectNeighbours);
+	}
+	
 }
 
 void UProvincesMap::CalculateBorders()
@@ -155,7 +181,7 @@ void UProvincesMap::Clear()
 {
 	ProvincesMapTexture = nullptr;
 	ColorPosition.Empty();
-	Neighbours.Empty();
+	NeighbourColors.Empty();
 	Borders.Empty();
 	PositionColor.Empty();
 }

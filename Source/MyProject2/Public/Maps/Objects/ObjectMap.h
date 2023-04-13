@@ -13,7 +13,7 @@ public:
 private:
 	TMap<FColor, FVector2d> ProvinceCenters;
 
-	void CalculateProvinceCenter(const FColor& Color);
+	FVector2d CalculateProvinceCenter(const FColor& Color);
 
 	void Clear();
 

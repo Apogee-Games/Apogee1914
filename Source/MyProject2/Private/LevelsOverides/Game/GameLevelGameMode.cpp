@@ -14,7 +14,6 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Events/EventInstancesController.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
-#include "Military/Managers/UnitsMover.h"
 
 AGameLevelGameMode::AGameLevelGameMode()
 {
@@ -38,12 +37,21 @@ void AGameLevelGameMode::BeginPlay()
 
 	//GetWorld()->Exec(GetWorld(), TEXT("viewmode unlit"));
 
-	UGameInstance* GameInstance = GetGameInstance();
-	
-	GameInstance->GetSubsystem<UUnitsMover>()->SetGraph(new FGraph({}));
-	GameInstance->GetSubsystem<UUnitsRenderer>()->InGameWorldInit();
-	
 	Super::BeginPlay();
+
+	UObjectMap* ObjectMap = GetGameInstance()->GetSubsystem<UObjectMap>();
+	AMapActor* MapActor = GetWorld()->GetFirstPlayerController()->GetPawn<AHumanPlayerPawn>()->GetMapActor();
+	UBoxesMap* BoxesMap = GetGameInstance()->GetSubsystem<UBoxesMap>();
+	for (const auto& Province : GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
+	{
+		const FVector2d MapPosition = ObjectMap->GetProvinceCenter(Province->GetId());
+		const FVector3d WorldPosition = MapActor->GetWorldPosition(MapPosition);
+
+		const FVector2d TopLeft = BoxesMap->GetLeftTopCorner(Province);
+		const FVector2d BottomRight = BoxesMap->GetRightBottomCorner(Province);
+
+		Province->InitProvinceActor(WorldPosition, TopLeft, BottomRight);
+	}
 	
 	// Temporary initialization of Ruled tag will be removed when lobby will be added
 	/*const int32 LocalPlayerControllersNumber = UGameplayStatics::GetNumPlayerControllers(GetWorld());
@@ -86,6 +94,7 @@ void AGameLevelGameMode::CreateAIPawns()
 	for (const auto& CountryDescription : GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountriesDescriptions())
 	{
 		if (GetGameInstance<UMyGameInstance>()->IsCountryRuledByPlayer(CountryDescription)) continue; // TODO: Filter only active countries
+		if (CountryDescription->Tag != "FRA") continue; // TODO: Remove this :)
 		AAIPlayerController* Controller = GetWorld()->SpawnActor<AAIPlayerController>(AIPlayerControllerClass);
 		AAIPlayerPawn* Pawn = GetWorld()->SpawnActor<AAIPlayerPawn>(AAIPlayerPawn::StaticClass());
 		Controller->Possess(Pawn);

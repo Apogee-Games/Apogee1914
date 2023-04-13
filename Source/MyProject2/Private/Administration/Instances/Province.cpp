@@ -1,8 +1,12 @@
 ﻿
 #include "Administration/Instances/Province.h"
 
+#include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/ProvinceManager.h"
+#include "LevelsOverides/Game/GameLevelGameMode.h"
+#include "Military/Instances/Units/Unit.h"
+#include "Military/Managers/BattlesManager.h"
 
 UProvince::UProvince()
 {
@@ -14,7 +18,9 @@ void UProvince::Init(UProvinceDescription* ProvinceDescription)
 	Id = ProvinceDescription->Color;
 	Name = ProvinceDescription->Name;
 
-	UCountriesManager* CountriesManager = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>();
+	UMyGameInstance* GameInstance = GetWorld()->GetGameInstance<UMyGameInstance>();
+	
+	UCountriesManager* CountriesManager = GameInstance->GetSubsystem<UCountriesManager>();
 	
 	OwnerCountry = CountriesManager->GetCountry(ProvinceDescription->Country);
 	ControllerCountry = CountriesManager->GetCountry(ProvinceDescription->Country);
@@ -36,6 +42,7 @@ void UProvince::Init(UProvinceDescription* ProvinceDescription)
 			GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, FString::Printf(TEXT("No Country %s"), *ProvinceDescription->Country->Tag.ToString()));
 		}
 	}
+
 	// Terrain = reinterpret_cast<FTerrainDescription*>(TerrainDT->FindRowUnchecked(FName(ProvinceDescription->TerrainName)));
 	
 	// for(const auto& FactoryInstanceDescription : ProvinceDescription->Factories)
@@ -46,6 +53,16 @@ void UProvince::Init(UProvinceDescription* ProvinceDescription)
 	// 	ProvinceFactory->Init(FactoryInstanceDescription, FactoryDescription);
 	// 	Factories.Add(ProvinceFactory);
 	// }
+}
+
+void UProvince::InitProvinceActor(FVector Location, FVector2d TopLeft, FVector2d BottomRight)
+{
+	FActorSpawnParameters Parameters;
+	Parameters.Name = FName(Name.ToString() + ControllerCountry->GetId()->Tag.ToString());
+	ProvinceActor = GetWorld()->SpawnActor<AProvinceActor>(GetWorld()->GetGameInstance<UMyGameInstance>()->ProvinceActorClass, Parameters);
+	ProvinceActor->Init(Name, TopLeft, BottomRight);
+	ProvinceActor->SetActorLabel(Name.ToString() + ControllerCountry->GetId()->Tag.ToString());
+	ProvinceActor->SetActorLocation(Location);
 }
 
 const FColor& UProvince::GetId() const
@@ -61,6 +78,19 @@ UCountry* UProvince::GetOwnerCountry() const
 UCountry* UProvince::GetCountryController() const
 {
 	return ControllerCountry;
+}
+
+void UProvince::UpdateControllerCountry()
+{
+	if (Units.IsEmpty() && !Attackers.IsEmpty())
+	{
+		TakeControl(Attackers[0]->GetCountryController());
+		for (const auto& Attacker : Attackers)
+		{
+			Units.Add(Attacker);
+		}
+		Attackers.Empty();
+	}
 }
 
 void UProvince::TakeControl(UCountry* Country)
@@ -116,12 +146,31 @@ void UProvince::RemoveBuilding(UBuilding* Building)
 
 void UProvince::AddUnit(UUnit* Unit)
 {
-	Units.Add(Unit);
+	if (ControllerCountry->IsInWarWith(Unit->GetCountryController()))
+	{
+		Attackers.Add(Unit);
+		ProvinceActor->AddAttacker(Unit);
+		if (Attackers.Num() == 1)
+		{
+			GetWorld()->GetGameInstance()->GetSubsystem<UBattlesManager>()->AddBattle(this);
+		}
+	} else
+	{
+		Units.Add(Unit);
+		ProvinceActor->AddDefender(Unit);
+	}
 }
 
 void UProvince::RemoveUnit(UUnit* Unit)
 {
-	Units.Remove(Unit);
+	if (Units.Contains(Unit))
+	{
+		ProvinceActor->RemoveDefender(Unit);
+		Units.Remove(Unit);
+	} else {
+		ProvinceActor->RemoveAttacker(Unit);
+		Attackers.Remove(Unit);
+	}
 }
 
 const TArray<UUnit*>& UProvince::GetUnits() const
@@ -132,6 +181,16 @@ const TArray<UUnit*>& UProvince::GetUnits() const
 const TArray<UBuilding*>& UProvince::GetBuildings() const
 {
 	return Buildings;
+}
+
+const TArray<UUnit*>& UProvince::GetAttackers() const
+{
+	return Attackers;
+}
+
+const TArray<UUnit*>& UProvince::GetDefenders() const
+{
+	return Units;
 }
 
 

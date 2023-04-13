@@ -26,8 +26,8 @@
 #include "Maps/Precalculations/Boxes/BoxesMap.h"
 #include "Maps/Precalculations/Distances/DistancesMap.h"
 #include "Maps/Selection/SelectionMap.h"
+#include "Military/Managers/BattlesManager.h"
 #include "Military/Managers/UnitsMover.h"
-#include "Military/Managers/UnitsRenderer.h"
 #include "Military/Managers/UnitsSupplyController.h"
 #include "Particles/ParticleSystem.h"
 #include "MyGameInstance.generated.h"
@@ -61,6 +61,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UScenario* ActiveScenario;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AProvinceActor> ProvinceActorClass;
 private:
 	UPROPERTY()
 	TMap<int32, UCountry*> PlayersRuledCountries;
@@ -70,9 +73,6 @@ private:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
 	TSubclassOf<UInGameTime> InGameTimeClass;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly) 
-	TSubclassOf<UUnitsRenderer> UnitsRendererClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly);
 	TSubclassOf<UEventInstancesController> EventInstancesControllerClass;
@@ -142,4 +142,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<ULawsManager> LawManagerClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UBattlesManager> BattlesManagerClass;
 };

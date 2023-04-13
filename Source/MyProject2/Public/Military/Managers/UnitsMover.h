@@ -15,9 +15,7 @@ class UUnitsMover: public UGameInstanceSubsystem, public IUnitMovementObservable
 public:
 	void SetScenario(UScenario* Scenario);
 	
-	FGraph* GetGraph() const;
-
-	void SetGraph(FGraph* NewGraph);
+	const FGraph& GetGraph() const;
 
 	virtual void MoveUnit(UUnit* Unit, UProvince* To);
 
@@ -34,19 +32,31 @@ public:
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
 
 	virtual void DoUnitMovement();
+	
+	void SuspendMovement(UUnit* Unit);
+
+	void UnSuspendMovement(UUnit* Unit);
+
+	bool Retreat(UUnit* Unit);
 
 	UPROPERTY(EditDefaultsOnly)
 	FTimespan UnitMoveTimeDelta = FTimespan(1, 0, 0);
 	
 private:
-	FGraph* Graph = nullptr;
+	FGraph Graph;
 
 	TMap<UUnit*, TArray<TPair<UProvince*, int32>>> Paths;
 
 	UPROPERTY()
 	TMap<UUnit*, int32> Positions;
 
+	UPROPERTY()
+	TSet<UUnit*> RetreatingUnits;
+
 	TQueue<UUnit*> UnitsArrived;
+
+	UPROPERTY()
+	TSet<UUnit*> SuspendedUnits;
 
 	void Clear();
 

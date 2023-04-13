@@ -25,6 +25,7 @@ void USelectedUnitWidget::RefreshData()
 	//FlagImage->SetBrushResourceObject(Unit->GetCountryController()->GetFlag());
 	ProvinceNameTextBlock->SetText(Unit->GetPosition()->GetName());
 	UnitNameTextBlock->SetText(FText::FromName(Unit->GetUnitName()));
+	ManpowerTextBlock->SetText(FText::FromString(FString::FromInt(Unit->GetManpower())));
 }
 
 void USelectedUnitWidget::OnButtonClick()

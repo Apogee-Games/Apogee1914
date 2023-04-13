@@ -1,5 +1,7 @@
 
 #include "Widgets/Military/Map/UnitInformationWidget.h"
+
+#include "Administration/Instances/Country.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
 void UUnitInformationWidget::NativeConstruct()

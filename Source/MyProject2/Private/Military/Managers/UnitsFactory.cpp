@@ -13,12 +13,12 @@ void UUnitsFactory::SetScenario(UScenario* Scenario)
 UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Province)
 {
 	UUnit* Unit = NewObject<UUnit>(this, Description->MilitaryBranch->UnitClass);
-	
-	Unit->Init(Description, Province);
 
 	Unit->SetCountryOwner(Province->GetCountryController());
 	Unit->SetCountryController(Province->GetCountryController());
 
+	Unit->Init(Description, Province);
+	
 	NotifyUnitCreation(Unit);
 	Units.Add(Unit);
 	
@@ -31,12 +31,12 @@ UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Provi
 	//TODO: Error checks ?
 	UUnit* Unit = NewObject<UUnit>(this, Description->MilitaryBranch->UnitClass);
 
-	Unit->Init(Description, Province);
-	
 	UCountry* CountryOwner = GetWorld()->GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(CountryDescription);
 
 	Unit->SetCountryOwner(CountryOwner);
 	Unit->SetCountryController(CountryOwner);
+	
+	Unit->Init(Description, Province);
 	
 	NotifyUnitCreation(Unit);
 	Units.Add(Unit);
@@ -59,10 +59,10 @@ UUnitsCollection* UUnitsFactory::CreateUnitCollection(UMilitaryBranchDescription
 {
 	UUnitsCollection* UnitCollection = NewObject<UUnitsCollection>(this); 
 	
-	UnitCollection->Init(MilitaryBranch);
-
 	UnitCollection->SetCountryOwner(CountryOwner);
 	UnitCollection->SetCountryController(CountryOwner);
+
+	UnitCollection->Init(MilitaryBranch);
 
 	NotifyUnitsCollectionCreation(UnitCollection);
 	UnitsCollections.Add(UnitCollection);
@@ -84,11 +84,11 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(UMilitaryBranchD
 {
 	UUnitsCollectionGroup* UnitCollectionGroup = NewObject<UUnitsCollectionGroup>();
 	
-	UnitCollectionGroup->Init(MilitaryBranch);
-
 	UnitCollectionGroup->SetCountryOwner(CountryOwner);
 	UnitCollectionGroup->SetCountryController(CountryOwner);
-	
+
+	UnitCollectionGroup->Init(MilitaryBranch);
+
 	NotifyUnitsCollectionGroupCreation(UnitCollectionGroup);
 	UnitsCollectionGroups.Add(UnitCollectionGroup);
 	return UnitCollectionGroup;
@@ -111,6 +111,8 @@ void UUnitsFactory::RemoveUnit(UUnit* Unit, bool IsClearing)
 	{
 		Collection->Remove(Unit);
 	}
+
+	Unit->GetPosition()->RemoveUnit(Unit);
 
 	if (!IsClearing)
 	{

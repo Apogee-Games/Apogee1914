@@ -60,7 +60,7 @@ void UBoxesMap::RemoveProvinceFromBox(UProvince* Province)
 bool UBoxesMap::AddProvinceToNeighbourBoxes(UProvince* Province)
 {
 	const UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
-	const TSet<FColor>& Neighbours = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbours()[Province->GetId()];
+	const TSet<FColor>& Neighbours = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbourColors()[Province->GetId()];
 
 	TArray<TSharedPtr<FProvincesBox>> SameCountryBoxes;
 
@@ -152,7 +152,7 @@ void UBoxesMap::CalculateProvinceCorners()
 void UBoxesMap::CalculateBoxes()
 {
 	UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
-	const TMap<FColor, TSet<FColor>>& Neighbours = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbours();
+	const TMap<FColor, TSet<FColor>>& Neighbours = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbourColors();
 	for (const auto& [From, Tos]: Neighbours)
 	{
 		UProvince* Province = ProvinceManager->GetProvince(From);
@@ -167,7 +167,7 @@ void UBoxesMap::AddProvincesToBox(TSharedPtr<FProvincesBox> Box, UProvince* From
 {
 	Box->AddProvince(FromProvince);
 	ProvinceBox.Add(FromProvince, Box);
-	for (const auto& To: GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbours()[FromProvince->GetId()])
+	for (const auto& To: GetGameInstance()->GetSubsystem<UProvincesMap>()->GetNeighbourColors()[FromProvince->GetId()])
 	{
 		UProvince* ToProvince = ProvinceManager->GetProvince(To);
 		if (!ToProvince || ToProvince->GetCountryController() != Country || ProvinceBox.Contains(ToProvince)) continue;

@@ -22,4 +22,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	int32 ManpowerRequirements;
+
+	UPROPERTY(EditDefaultsOnly)
+	float Attack;
+
+	UPROPERTY(EditDefaultsOnly)
+	float Defence;
+	
+	UPROPERTY(EditDefaultsOnly)
+	float PersonDeathScore;
 };

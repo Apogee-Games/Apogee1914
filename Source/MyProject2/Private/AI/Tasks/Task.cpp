@@ -13,17 +13,16 @@ EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8*
 	{
 		return EBTNodeResult::Failed;
 	}
-	/*
+
 	UMyGameInstance* GameInstance = GetWorld()->GetGameInstance<UMyGameInstance>();
 
 	
 	UBoxesMap* BoxesMap = GameInstance->GetSubsystem<UBoxesMap>();
 	UProvincesMap* ProvincesMap = GameInstance->GetSubsystem<UProvincesMap>();
-	UProvinceManager* ProvinceManager = GameInstance->GetSubsystem<UProvinceManager>();
 	UUnitsFactory* Factory = GameInstance->GetSubsystem<UUnitsFactory>();
 
 	
-	const TMap<FColor, TSet<FColor>>& Neigbours = ProvincesMap->GetNeighbours();
+	const TMap<UProvince*, TSet<UProvince*>>& Neigbours = ProvincesMap->GetNeighbourProvinces();
 
 	for (const auto& Box: BoxesMap->GetBoxes())
 	{
@@ -34,10 +33,9 @@ EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8*
 				if (Province->GetUnits().Num() < 3)
 				{
 					bool IsBorderProvince = false;
-					for (const auto& Neighbour: Neigbours[Province->GetId()])
+					for (const auto& Neighbour: Neigbours[Province])
 					{
-						UProvince* NeighbourProvince = ProvinceManager->GetProvince(Neighbour);
-						if (NeighbourProvince && NeighbourProvince->GetCountryController() != Province->GetCountryController())
+						if (Neighbour && Neighbour->GetCountryController() != Province->GetCountryController())
 						{
 							IsBorderProvince = true;
 							break;
@@ -50,7 +48,6 @@ EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8*
 			}
 		}
 	}
-	*/
 	
 	return EBTNodeResult::Succeeded;
 }

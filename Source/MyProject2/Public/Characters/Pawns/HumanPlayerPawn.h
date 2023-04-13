@@ -102,6 +102,8 @@ public:
 	void SetProductionSelectionFactory(UFactoryBuilding* Factory);
 
 	UFactoryBuilding* GetSelectedFactory() const;
+
+	AMapActor* GetMapActor();
 private:
 	TSharedPtr<FPawnState> PawnState = nullptr;
 	
@@ -132,4 +134,6 @@ private:
 	void ShiftReleased();
 
 	void SwitchPause();
+
+	void InitMapActor();
 };

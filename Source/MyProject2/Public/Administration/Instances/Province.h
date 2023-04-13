@@ -3,6 +3,7 @@
 #include "ProvinceResources.h"
 #include "Administration/Descriptions/ProvinceDescription.h"
 #include "Administration/Descriptions/TerrainDescription.h"
+#include "Characters/ProvinceActor.h"
 #include "Economics/Instances/Buildings/Building.h"
 #include "Province.generated.h"
 
@@ -18,11 +19,15 @@ public:
 
 	void Init(UProvinceDescription* ProvinceDescription);
 
+	void InitProvinceActor(FVector Location, FVector2d TopLeft, FVector2d BottomRight);
+	
 	const FColor& GetId() const;
 
 	UCountry* GetOwnerCountry() const;
 
 	UCountry* GetCountryController() const;
+
+	void UpdateControllerCountry();
 	
 	void TakeControl(UCountry* Country);
 
@@ -51,6 +56,11 @@ public:
 	const TArray<UBuilding*>& GetBuildings() const;
 
 	//TODO: Tie resource logic to building logic
+
+
+	const TArray<UUnit*>& GetAttackers() const;
+
+	const TArray<UUnit*>& GetDefenders() const;
 	
 private:
 	FColor Id;
@@ -80,4 +90,10 @@ private:
 
 	UPROPERTY()
 	TArray<UUnit*> Units;
+
+	UPROPERTY()
+	TArray<UUnit*> Attackers;
+
+	UPROPERTY()
+	AProvinceActor* ProvinceActor;
 };

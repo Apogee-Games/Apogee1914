@@ -1,6 +1,7 @@
 #include "Military/Instances/Units/Unit.h"
 
 #include "Administration/Managers/CountriesManager.h"
+#include "Economics/Description/Goods/MilitaryGoodDescription.h"
 
 void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince)
 {
@@ -9,6 +10,7 @@ void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedP
 	SupplyNeeds = NewObject<UUnitSupplyNeeds>(this);
 	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
 	Province->AddUnit(this);
+	Manpower = UnitDescription->ManpowerRequirements;
 }
 
 bool UUnit::CanTransportUnits() const
@@ -35,10 +37,6 @@ void UUnit::Move(UProvince* NewProvince)
 	NewProvince->AddUnit(this);
 
 	Province = NewProvince;
-	if (Province->GetCountryController() != CountryController)
-	{
-		Province->TakeControl(CountryController);
-	}
 }
 
 UProvince* UUnit::GetPosition() const
@@ -85,5 +83,56 @@ void UUnit::SetUnitsCollection(UUnitsCollection* ProvidedUnitsCollection)
 UUnitsCollection* UUnit::GetUnitsCollection() const
 {
 	return UnitsCollection;
+}
+
+float UUnit::GetAttackScore()
+{
+	float EquipmentSupplyScale = FMath::Max(0.1, SupplyNeeds->GetSupplyPercentage());
+	
+	float Score = UnitDescription->Attack * Manpower * (Training + 1) * EquipmentSupplyScale;
+
+	float EquipmentScore = 0;
+
+	for (const auto& [Good, Required]: UnitDescription->EquipmentRequirements)
+	{
+		UMilitaryGoodDescription* MilitaryGood = Cast<UMilitaryGoodDescription>(Good);
+		if (MilitaryGood) {
+			EquipmentScore += SupplyNeeds->GetGoodSupply(Good) * MilitaryGood->Attack; // TODO: Think about it again
+		}
+	}
+
+	return Score + EquipmentScore;
+}
+
+float UUnit::GetDefenceScore()
+{
+	float EquipmentSupplyScale = FMath::Max(0.1, SupplyNeeds->GetSupplyPercentage());
+
+	float Score = UnitDescription->Defence * Manpower * (Training + 1) * EquipmentSupplyScale;
+
+	float EquipmentScore = 0;
+
+	for (const auto& [Good, Required]: UnitDescription->EquipmentRequirements)
+	{
+		UMilitaryGoodDescription* MilitaryGood = Cast<UMilitaryGoodDescription>(Good);
+		if (MilitaryGood) {
+			EquipmentScore += SupplyNeeds->GetGoodSupply(Good) * MilitaryGood->Defence; // TODO: Think about it again
+		}
+	}
+
+	return Score + EquipmentScore;
+}
+
+float UUnit::Damage(float DamageScore)
+{
+	if (Manpower <= 0 || DamageScore <= 0) return 0;
+	float Dead = FMath::Min(Manpower, DamageScore / UnitDescription->PersonDeathScore);
+	Manpower -= Dead;
+	return Dead * UnitDescription->PersonDeathScore;
+}
+
+float UUnit::GetManpower() const
+{
+	return Manpower;
 }
 
