@@ -8,17 +8,9 @@ void UMusicControllerWidget::Init(const TArray<USongsGroup*>& SongsGroups)
 {
 	PlayMusicButton->OnClicked.AddDynamic(this, &UMusicControllerWidget::OnPlayMusicButton);
 	ViewMusicListButton->OnClicked.AddDynamic(this, &UMusicControllerWidget::OnViewMusicListButtonClick);
-
-	// Init buttonStyles
-	PlayStyle = FButtonStyle(PlayMusicButton->WidgetStyle);
-	PauseStyle = FButtonStyle(PlayMusicButton->WidgetStyle);
-	UTexture2D* PlayTexture = LoadObject<UTexture2D>(nullptr, TEXT("/Game/Images/Widgets/musicPlay"));
-	UTexture2D* PauseTexture = LoadObject<UTexture2D>(nullptr, TEXT("/Game/Images/Widgets/musicPause"));
-	// Set images
-	PlayStyle.Normal.SetResourceObject(PlayTexture);
-	PauseStyle.Normal.SetResourceObject(PauseTexture);
+	PausePlaying();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UMusicControllerWidget::UpdateProgress,1, true);
-
+    
 	for (const auto& Group: SongsGroups)
 	{
 		USongsGroupWidget* SongsGroupWidget = CreateWidget<USongsGroupWidget>(GetOwningPlayer(), SongsGroupWidgetClass);
@@ -66,18 +58,22 @@ void UMusicControllerWidget::UpdateProgress()
 {
 	if (SelectedSong && !IsPaused) {
 		CurrentProgress++;
-		SongPlaybackProgressTextBlock->SetText(FText::FromString(FString::FromInt(CurrentProgress)));
+		const int Minutes = CurrentProgress/60;
+		const int Seconds = CurrentProgress % 60;
+		FString MinutesStr = Minutes < 10 ? "0" + FString::FromInt(Minutes) : FString::FromInt(Minutes);
+		FString SecondsStr = Seconds < 10 ? "0" + FString::FromInt(Seconds) : FString::FromInt(Seconds);
+		SongPlaybackProgressTextBlock->SetText(FText::FromString(MinutesStr + ":" + SecondsStr));
 	}
 }
 
 void UMusicControllerWidget::ResumePlaying()
 {
 	IsPaused = false;
-	PlayMusicButton->SetStyle(PlayStyle);
+	PlayMusicButton->SetStyle(PauseStyle);
 }
 
 void UMusicControllerWidget::PausePlaying()
 {
 	IsPaused = true;
-	PlayMusicButton->SetStyle(PauseStyle);
+	PlayMusicButton->SetStyle(PlayStyle);
 }

@@ -43,7 +43,10 @@ public:
 private:
 	FTimerHandle TimerHandle;
 
+	UPROPERTY(EditDefaultsOnly)
 	FButtonStyle PlayStyle;
+	
+	UPROPERTY(EditDefaultsOnly)
 	FButtonStyle PauseStyle;
 
 	void ResumePlaying();
