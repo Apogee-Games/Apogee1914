@@ -9,10 +9,8 @@ public:
 	
 	virtual uint32 Run() override;
 private:
-	UPROPERTY(EditDefaultsOnly)
 	FColor NonAlliedCountryColor = FColor(200, 200, 200);
-
-	UPROPERTY(EditDefaultsOnly)
+	
 	FColor NonAlignedCountryColor;
 	
 	FColor* AlliancesColors;

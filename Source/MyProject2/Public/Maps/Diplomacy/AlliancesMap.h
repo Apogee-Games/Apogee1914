@@ -7,7 +7,7 @@
 
 
 UCLASS(Abstract, Blueprintable)
-class UAlliancesMap: public UGameInstanceSubsystem, public IAllianceCreationObserver , public IAllianceMembersObserver
+class UAlliancesMap: public UGameInstanceSubsystem, public IAllianceCreationObserver, public IAllianceMembersObserver
 {
 	GENERATED_BODY()
 public:
@@ -21,7 +21,7 @@ public:
 	
 	void SetScenario(UScenario* Scenario);
 
-	void UpdateMap() const;
+	void UpdateMap();
 
 	virtual void AllianceWasCreated(UAlliance* Alliance) override;
 	

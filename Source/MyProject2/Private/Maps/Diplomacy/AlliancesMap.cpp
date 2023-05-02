@@ -21,7 +21,7 @@ void UAlliancesMap::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-void UAlliancesMap::UpdateMap() const 
+void UAlliancesMap::UpdateMap() 
 {
 	TArray<FRunnableThread*> Threads;
 
