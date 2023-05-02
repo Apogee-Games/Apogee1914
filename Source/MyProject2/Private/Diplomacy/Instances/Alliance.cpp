@@ -1,6 +1,7 @@
 ﻿#include "Diplomacy/Instances/Alliance.h"
 #include "Administration/Instances/Country.h"
 
+
 void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName, const TArray<UCountry*>& InvitedCountries)
 {
 	Init(ProvidedAllianceLeader, ProvidedAllianceName);
@@ -29,6 +30,8 @@ void UAlliance::AddMember(UCountry* Country)
 	
 	Members.Add(Country);
 	Country->SetAlliance(this);
+	Cast<URelationshipsManager>(GetOuter())->NotifyMemberJoining(Country);
+	
 }
 
 void UAlliance::RemoveMember(UCountry* Country)
