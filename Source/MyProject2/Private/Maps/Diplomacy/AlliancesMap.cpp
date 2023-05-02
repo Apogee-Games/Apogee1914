@@ -12,6 +12,7 @@ void UAlliancesMap::Initialize(FSubsystemCollectionBase& Collection)
 	Super::Initialize(Collection);
 	Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())->RelationshipsManagerClass);
 	GetGameInstance()->GetSubsystem<URelationshipsManager>()->AddAllianceCreationObserver(this);
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->AddAllianceMembersObserver(this);
 }
 
 void UAlliancesMap::SetScenario(UScenario* Scenario)
@@ -47,6 +48,12 @@ void UAlliancesMap::AllianceWasCreated(UAlliance* Alliance)
 {
 	UpdateMap();
 }
+
+void UAlliancesMap::CountryHasJoinedAlliance(UCountry* Country)
+{
+	UpdateMap();
+}
+
 
 void UAlliancesMap::Clear()
 {

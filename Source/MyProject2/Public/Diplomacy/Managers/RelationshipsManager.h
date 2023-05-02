@@ -3,6 +3,7 @@
 #include "Components/ListView.h"
 #include "Diplomacy/Interfaces/Observables/AllianceCreationObservable.h"
 #include "Diplomacy/Interfaces/Observables/WarDeclarationObservable.h"
+#include "Diplomacy/Interfaces/Observables/AllianceMembersObservable.h"
 #include "Widgets/Diplomacy/Menu/DiplomaticPactsWidgets.h"
 
 #include "RelationshipsManager.generated.h"
@@ -19,7 +20,7 @@ enum ERelationType {
 class UCountry;
 
 UCLASS(Abstract, Blueprintable)
-class URelationshipsManager: public UGameInstanceSubsystem, public IWarDeclarationObservable, public IAllianceCreationObservable
+class URelationshipsManager: public UGameInstanceSubsystem, public IWarDeclarationObservable, public IAllianceCreationObservable, public IAllianceMembersObservable
 {
 	GENERATED_BODY()
 public:

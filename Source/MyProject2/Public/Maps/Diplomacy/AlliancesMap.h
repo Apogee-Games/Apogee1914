@@ -1,12 +1,13 @@
 ﻿#pragma once
 #include "Scenario.h"
 #include "Diplomacy/Interfaces/Observers/AllianceCreationObserver.h"
+#include "Diplomacy/Interfaces/Observers/AllianceMembersObserver.h"
 #include "Administration/Instances/Province.h"
 #include "AlliancesMap.generated.h"
 
 
 UCLASS(Abstract, Blueprintable)
-class UAlliancesMap: public UGameInstanceSubsystem, public IAllianceCreationObserver
+class UAlliancesMap: public UGameInstanceSubsystem, public IAllianceCreationObserver , public IAllianceMembersObserver
 {
 	GENERATED_BODY()
 public:
@@ -23,6 +24,9 @@ public:
 	void UpdateMap() const;
 
 	virtual void AllianceWasCreated(UAlliance* Alliance) override;
+	
+	virtual void CountryHasJoinedAlliance(UCountry* Country) override;
+
 private:
 	UPROPERTY()
 	UTexture2D* AlliancesMapTexture;
