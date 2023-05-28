@@ -2,6 +2,7 @@
 #include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/ProvinceManager.h"
+#include "Maps/Diplomacy/CountryRelationMapUpdater.h"
 #include "Maps/Precalculations/ProvincesMap.h"
 #include "Utils/TextureUtils.h"
 
@@ -30,15 +31,25 @@ void UCountryRelationMap::UpdateMap()
 	UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
 
 	UCountry* Germany = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(GermanyDescription);
-	
-	for (const auto& Province: Provinces)
+
+	for (int i = 0; i < 20; ++i)
 	{
-		// TODO: Add for each country :)
-		
-		FColor Color = ColorsMapping[Germany->GetRelation(Province->GetCountryController())];
-		for (const int32 Position: ProvincesMap->GetProvincePositions(Province->GetId()))
+		TArray<FRunnableThread*> Threads;
+
+		for (const auto& Province: Provinces)
 		{
-			Colors[Position] = Color;
+			FRunnableThread* Thread = UpdateProvince(
+				ProvincesMap->GetProvincePositions(Province->GetId()),
+				Colors,
+				ColorsMapping[Germany->GetRelation(Province->GetCountryController())],
+				ToCStr(Province->GetName().ToString())
+			);
+			Threads.Add(Thread);
+		}
+		
+		for (const auto& Thread: Threads)
+		{
+			Thread->WaitForCompletion();
 		}
 	}
 
@@ -66,4 +77,10 @@ void UCountryRelationMap::Init(UScenario* Scenario)
 {
 	CountryRelationMap = Scenario->CountryRelationMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountryRelationMap);
+}
+
+FRunnableThread* UCountryRelationMap::UpdateProvince(const TArray<int32>& Positions, FColor* Colors, FColor Color, const TCHAR* ProvinceName)
+{
+	FRunnable* Updater = new FCountryRelationMapUpdater(Positions, Colors, Color);
+	return FRunnableThread::Create(Updater, ProvinceName);
 }

@@ -37,4 +37,6 @@ private:
 	void Clear();
 
 	void Init(UScenario* Scenario);
+
+	FRunnableThread* UpdateProvince(const TArray<int32>& Positions, FColor* Colors, FColor Color, const TCHAR* ProvinceName);
 };
