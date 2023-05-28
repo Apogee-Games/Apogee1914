@@ -18,4 +18,6 @@ private:
 	void Clear();
 
 	void Init(UScenario* Scenario);
+
+	FRunnableThread* UpdateProvince(const TArray<int32>& Position, FColor* Colors, FColor Color, const TCHAR* Name);
 };
