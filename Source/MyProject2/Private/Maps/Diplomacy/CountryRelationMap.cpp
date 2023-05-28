@@ -27,34 +27,31 @@ void UCountryRelationMap::UpdateMap()
 
 	FColor* Colors = FTextureUtils::GetPixels(CountryRelationMap, LOCK_READ_WRITE);
 
-	const TArray<UProvince*>& Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces(); 
+	const TArray<UProvince*>& Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces();
 	UProvincesMap* ProvincesMap = GetGameInstance()->GetSubsystem<UProvincesMap>();
 
 	UCountry* Germany = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry(GermanyDescription);
 
-	for (int i = 0; i < 20; ++i)
-	{
-		TArray<FRunnableThread*> Threads;
+	TArray<FRunnableThread*> Threads;
 
-		for (const auto& Province: Provinces)
-		{
-			FRunnableThread* Thread = UpdateProvince(
-				ProvincesMap->GetProvincePositions(Province->GetId()),
-				Colors,
-				ColorsMapping[Germany->GetRelation(Province->GetCountryController())],
-				ToCStr(Province->GetName().ToString())
-			);
-			Threads.Add(Thread);
-		}
-		
-		for (const auto& Thread: Threads)
-		{
-			Thread->WaitForCompletion();
-		}
+	for (const auto& Province : Provinces)
+	{
+		FRunnableThread* Thread = UpdateProvince(
+			ProvincesMap->GetProvincePositions(Province->GetId()),
+			Colors,
+			ColorsMapping[Germany->GetRelation(Province->GetCountryController())],
+			ToCStr(Province->GetName().ToString())
+		);
+		Threads.Add(Thread);
+	}
+
+	for (const auto& Thread : Threads)
+	{
+		Thread->WaitForCompletion();
 	}
 
 	FTextureUtils::UnlockPixels(CountryRelationMap);
-	
+
 	CountryRelationMap->UpdateResource();
 }
 
@@ -79,7 +76,8 @@ void UCountryRelationMap::Init(UScenario* Scenario)
 	SizeVector = FTextureUtils::GetTextureSizeVector(CountryRelationMap);
 }
 
-FRunnableThread* UCountryRelationMap::UpdateProvince(const TArray<int32>& Positions, FColor* Colors, FColor Color, const TCHAR* ProvinceName)
+FRunnableThread* UCountryRelationMap::UpdateProvince(const TArray<int32>& Positions, FColor* Colors, FColor Color,
+                                                     const TCHAR* ProvinceName)
 {
 	FRunnable* Updater = new FCountryRelationMapUpdater(Positions, Colors, Color);
 	return FRunnableThread::Create(Updater, ProvinceName);
