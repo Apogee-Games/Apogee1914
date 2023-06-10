@@ -1,0 +1,85 @@
+\doxysection{Province\+Data\+Widget.\+cpp}
+\hypertarget{_province_data_widget_8cpp_source}{}\label{_province_data_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Administration/ProvinceDataWidget.cpp@{Source/MyProject2/Private/Widgets/Administration/ProvinceDataWidget.cpp}}
+\mbox{\hyperlink{_province_data_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00001}00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_data_widget_8h}{Widgets/Administration/ProvinceDataWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_state_8h}{Administration/Instances/State.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_state_manager_8h}{Administration/Managers/StateManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00010}\mbox{\hyperlink{class_u_province_data_widget_a261eb73c062645ff38c983a8671a950b}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_province_data_widget_a261eb73c062645ff38c983a8671a950b}{UProvinceDataWidget::SetNewProvince}}(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province)}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Province)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_ae71207f7383a86923b9075af08206a67}{ProvinceNameTextBlock}}-\/>SetText(Province-\/>\mbox{\hyperlink{class_u_province_a07652749e2275af3adc975438dca430a}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00016}00016\ \ \ \ \ SetPopulationNumber(Province-\/>\mbox{\hyperlink{class_u_province_adbd1e37afd94e7112b4abe784ecec4b6}{GetPopulation}}()-\/>\mbox{\hyperlink{class_u_province_population_ad6a3d5ed29ff0bf8aab3d3b213efb0ae}{GetPopulation}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00018}00018\ \ \ \ \ SetResources(Province);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00020}00020\ \ \ \ \ SetBuildings(Province);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00022}00022\ \ \ \ \ SetState(Province);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00024}00024\ \ \ \ \ SetCountries(Province);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00027}00027\ \textcolor{keywordtype}{void}\ UProvinceDataWidget::SetPopulationNumber(int32\ Population)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00028}00028\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a2f8ca92e8f9f3a514c47b37a41170321}{PopulationNumberTextBlock}}-\/>SetText(FText::FromString(FString::FromInt(Population)));}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00032}00032\ \textcolor{keywordtype}{void}\ UProvinceDataWidget::SetResources(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00033}00033\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a1c8ec493e2171bb736a3a2c915b0d942}{ResourcesListView}}-\/>ClearListItems();}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [ResourceName,\ Resource]\ :\ Province-\/>GetResources()-\/>GetMap())}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00036}00036\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a1c8ec493e2171bb736a3a2c915b0d942}{ResourcesListView}}-\/>AddItem(Resource);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00041}00041\ \textcolor{keywordtype}{void}\ UProvinceDataWidget::SetBuildings(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00042}00042\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a11b02bded42314ed7a1797aaa885daa3}{BuildingsListView}}-\/>ClearListItems();}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Building\ :\ Province-\/>GetBuildings())}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00045}00045\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a11b02bded42314ed7a1797aaa885daa3}{BuildingsListView}}-\/>AddItem(Building);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00050}00050\ \textcolor{keywordtype}{void}\ UProvinceDataWidget::SetState(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00051}00051\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_state}{UState}}*\ State\ =\ GetWorld()-\/>GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_state_manager}{UStateManager}}>()-\/>GetState(Province-\/>\mbox{\hyperlink{class_u_province_aea49d78d27a6c0a9249d701c8475575b}{GetState}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (State)}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00055}00055\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_ad82b6c639c23e2cf47da12de6e42b61a}{StateNameTextBlock}}-\/>SetText(FText::FromName(State-\/>\mbox{\hyperlink{class_u_state_a207c57df2ef1314b3a6337a6ff866015}{GetName}}()));}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_ad82b6c639c23e2cf47da12de6e42b61a}{StateNameTextBlock}}-\/>SetText(FText::FromName(TEXT(\textcolor{stringliteral}{"{}None"{}})));}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00064}00064\ \textcolor{keywordtype}{void}\ UProvinceDataWidget::SetCountries(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00065}00065\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a3e82b4d1abef32595f38d2b06b0ed5d9}{CountryOwnerNameTextBlock}}-\/>SetText(Province-\/>\mbox{\hyperlink{class_u_province_a4d28b57c5703a8e8fa3f7f192fd86803}{GetOwnerCountry}}()-\/>\mbox{\hyperlink{class_u_country_afb442bf07ae5b28548391b1e2e0f8b7e}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a1c1d79161b8fd4b6ae4dc68788835057}{CountryOwnerFlagImage}}-\/>SetBrushResourceObject(Province-\/>\mbox{\hyperlink{class_u_province_a4d28b57c5703a8e8fa3f7f192fd86803}{GetOwnerCountry}}()-\/>\mbox{\hyperlink{class_u_country_a16735b2d91e920dbc49fff8e48567929}{GetFlag}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (Province-\/>\mbox{\hyperlink{class_u_province_a4d28b57c5703a8e8fa3f7f192fd86803}{GetOwnerCountry}}()\ ==\ Province-\/>\mbox{\hyperlink{class_u_province_a52fe4665aa2bd5b36359636da1c0bd1f}{GetCountryController}}())}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a5936dd6859d2d44bc7a366721197ea15}{ControllerCanvasPanel}}-\/>SetVisibility(ESlateVisibility::Collapsed);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00072}00072\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00073}00073\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_a5936dd6859d2d44bc7a366721197ea15}{ControllerCanvasPanel}}-\/>SetVisibility(ESlateVisibility::Visible);}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_ac363fd66604f03e9a2d2f96d0915b243}{CountryControllerNameTextBlock}}-\/>SetText(Province-\/>\mbox{\hyperlink{class_u_province_a52fe4665aa2bd5b36359636da1c0bd1f}{GetCountryController}}()-\/>\mbox{\hyperlink{class_u_country_afb442bf07ae5b28548391b1e2e0f8b7e}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget_ac4b5938c4aa99ee2ee67baf66163966c}{CountryControllerFlagImage}}-\/>SetBrushResourceObject(Province-\/>\mbox{\hyperlink{class_u_province_a52fe4665aa2bd5b36359636da1c0bd1f}{GetCountryController}}()-\/>\mbox{\hyperlink{class_u_country_a16735b2d91e920dbc49fff8e48567929}{GetFlag}}());}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00078}00078\ \}}
+\DoxyCodeLine{\Hypertarget{_province_data_widget_8cpp_source_l00079}00079\ }
+
+\end{DoxyCode}

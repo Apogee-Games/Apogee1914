@@ -1,0 +1,63 @@
+\doxysection{Provinces\+Box.\+h}
+\hypertarget{_provinces_box_8h_source}{}\label{_provinces_box_8h_source}\index{Source/MyProject2/Public/Maps/Precalculations/Boxes/ProvincesBox.h@{Source/MyProject2/Public/Maps/Precalculations/Boxes/ProvincesBox.h}}
+\mbox{\hyperlink{_provinces_box_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_8h}{Administration/Instances/Province.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00005}00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_boxes_map}{UBoxesMap}};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00007}\mbox{\hyperlink{class_f_provinces_box}{00007}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_f_provinces_box}{FProvincesBox}}}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00009}00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_f_provinces_box}{FProvincesBox}}(\mbox{\hyperlink{class_u_boxes_map}{UBoxesMap}}*\ BoxesMap,\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ Country);}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_provinces_box_a19363bb1488ada77b31e7a99948eb783}{AddProvince}}(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province);}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_provinces_box_ae09569b553fc1e1d4db0148dd85c090d}{RemoveProvince}}(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province);}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00016}00016\ \ \ \ \ FVector2d\ \mbox{\hyperlink{class_f_provinces_box_a8bdcacd576c40579103296bd20e8b202}{GetLeftTopCorner}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00017}00017\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00018}00018\ \ \ \ \ FVector2d\ \mbox{\hyperlink{class_f_provinces_box_a101f150c75181f424ef6aeae9e4e99c6}{GetRightBottomCorner}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{class_f_provinces_box_a75b2511baa5e667615761d157a41d4fe}{GetCountry}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{const}\ TArray<UProvince*>\&\ \mbox{\hyperlink{class_f_provinces_box_a35503c9da4ba3dfd436d9c705260fc11}{GetProvinces}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_provinces_box_ac2c708735acbd809463143ded6d6ed39}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_f_provinces_box}{FProvincesBox}}\&\ ProvincesBox)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_provinces_box_a31434ade49927f18180127594be3af6e}{operator>}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_f_provinces_box}{FProvincesBox}}\&\ ProvincesBox)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_provinces_box_adfbafd2cb93427daf84b0124e3e01363}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_f_provinces_box}{FProvincesBox}}\&\ ProvincesBox)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00030}\mbox{\hyperlink{class_f_provinces_box_a70f0213aee2c7cf2ebc6d4fcaab77c32}{00030}}\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_provinces_box_a70f0213aee2c7cf2ebc6d4fcaab77c32}{CompareAscending}}(\textcolor{keyword}{const}\ TSharedPtr<FProvincesBox>\&\ A,\ \textcolor{keyword}{const}\ TSharedPtr<FProvincesBox>\&\ B)}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A-\/>GetProvinces().Num()\ <\ B-\/>GetProvinces().Num();}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00035}00035\ \ \ \ \ \mbox{\hyperlink{class_f_provinces_box_a5dd427e32de261e06a2f670fc2b4f346}{\string~FProvincesBox}}();}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00037}00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00038}00038\ \ \ \ \ FVector2d\ SizeVector;}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_boxes_map}{UBoxesMap}}*\ BoxesMap;}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00041}00041\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}};}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00044}00044\ \ \ \ \ TArray<UProvince*>\ Provinces;}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00046}00046\ \ \ \ \ FVector2d\ LeftTopCorner;}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00047}00047\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00048}00048\ \ \ \ \ FVector2d\ RightBottomCorner;}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{void}\ AddProvincePositions(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province);}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{void}\ RecalculateCorners();}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00053}00053\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{void}\ ResetCorners();}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{void}\ AddAllProvincesPositions();}
+\DoxyCodeLine{\Hypertarget{_provinces_box_8h_source_l00057}00057\ \};}
+
+\end{DoxyCode}

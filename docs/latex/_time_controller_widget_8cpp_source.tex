@@ -1,0 +1,44 @@
+\doxysection{Time\+Controller\+Widget.\+cpp}
+\hypertarget{_time_controller_widget_8cpp_source}{}\label{_time_controller_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/TimeControllerWidget.cpp@{Source/MyProject2/Private/Widgets/TimeControllerWidget.cpp}}
+\mbox{\hyperlink{_time_controller_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_time_controller_widget_8h}{Widgets/TimeControllerWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_in_game_time_8h}{InGameTime.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00005}\mbox{\hyperlink{class_u_time_controller_widget_a0d7bb962f51df35af1f29fa21a5529c4}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_time_controller_widget_a0d7bb962f51df35af1f29fa21a5529c4}{UTimeControllerWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00007}00007\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_u_time_controller_widget_a1334ff16a9a4fb0de681df0969dbfa63}{SpeedUpButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UTimeControllerWidget::SpeedUpButtonOnClick);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_u_time_controller_widget_aec6053e8db99541d682764e730ecadad}{SlowDownButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UTimeControllerWidget::SlowDownButtonOnClick);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_u_time_controller_widget_a6bdcbd1243a0f44c88bcd0d45ccd2a3b}{PauseButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UTimeControllerWidget::PauseButtonOnClick);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00011}00011\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_u_time_controller_widget_a75ddcea860d6472e153c82282fd3d25d}{SetTime}}(GetGameInstance()-\/>GetSubsystem<UInGameTime>()-\/>GetStringTime());}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00015}\mbox{\hyperlink{class_u_time_controller_widget_a75ddcea860d6472e153c82282fd3d25d}{00015}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_time_controller_widget_a75ddcea860d6472e153c82282fd3d25d}{UTimeControllerWidget::SetTime}}(\textcolor{keyword}{const}\ FText\&\ Time)}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_u_time_controller_widget_ac449c574156fdd383f4d4370bbd720a8}{TimeTextBlock}}-\/>SetText(Time);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00020}\mbox{\hyperlink{class_u_time_controller_widget_ad6a5e6df83b94a7088c245a4f8392690}{00020}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_time_controller_widget_ad6a5e6df83b94a7088c245a4f8392690}{UTimeControllerWidget::SetSpeedPercentage}}(\textcolor{keywordtype}{float}\ NewSpeedPercentage)}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{class_u_time_controller_widget_a49380bea871047a4f8b6692eec9f720c}{SpeedProgressBar}}-\/>SetPercent(NewSpeedPercentage);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00025}00025\ \textcolor{keywordtype}{void}\ UTimeControllerWidget::SpeedUpButtonOnClick()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00027}00027\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_in_game_time}{UInGameTime}}>()-\/>SpeedUpTime();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00030}00030\ \textcolor{keywordtype}{void}\ UTimeControllerWidget::SlowDownButtonOnClick()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00032}00032\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_in_game_time}{UInGameTime}}>()-\/>SlowDownTime();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00035}00035\ \textcolor{keywordtype}{void}\ UTimeControllerWidget::PauseButtonOnClick()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00037}00037\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_in_game_time}{UInGameTime}}>()-\/>SwitchPauseFlag();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8cpp_source_l00038}00038\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,67 @@
+\doxysection{Maps\+Switcher.\+cpp}
+\hypertarget{_maps_switcher_8cpp_source}{}\label{_maps_switcher_8cpp_source}\index{Source/MyProject2/Private/Maps/MapsSwitcher.cpp@{Source/MyProject2/Private/Maps/MapsSwitcher.cpp}}
+\mbox{\hyperlink{_maps_switcher_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_maps_switcher_8h}{Maps/MapsSwitcher.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00003}\mbox{\hyperlink{class_u_maps_switcher_a1e06e2a82ba8be925e93872cfc8072b6}{00003}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_a1e06e2a82ba8be925e93872cfc8072b6}{UMapsSwitcher::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ ProvidedScenario)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00005}00005\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}\ =\ ProvidedScenario;}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00006}00006\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00008}\mbox{\hyperlink{class_u_maps_switcher_a88736aa416b9f717eca533783a5f5122}{00008}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_a88736aa416b9f717eca533783a5f5122}{UMapsSwitcher::SelectAllianceMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00010}00010\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00011}00011\ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Front"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_a9985d6f55e76aae954e3c0e954ba90f0}{AlliancesMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00014}\mbox{\hyperlink{class_u_maps_switcher_a878e020e51391a5d705824cc2f3cb8dd}{00014}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_a878e020e51391a5d705824cc2f3cb8dd}{UMapsSwitcher::SelectFlagsMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00016}00016\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00017}00017\ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Front"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_a2c626a396f8d659d9224c6bd9d23bfac}{FlagsMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00020}\mbox{\hyperlink{class_u_maps_switcher_ab3b72b858e6201bd56de3398a435bc55}{00020}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_ab3b72b858e6201bd56de3398a435bc55}{UMapsSwitcher::SelectCountriesMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00022}00022\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00023}00023\ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Front"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_a5059966029888f3cffcc7890e6fe6d18}{CountriesMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00026}\mbox{\hyperlink{class_u_maps_switcher_a4df5e1a9d7e0522fb9ae9664908042ce}{00026}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_a4df5e1a9d7e0522fb9ae9664908042ce}{UMapsSwitcher::SelectRelationMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00028}00028\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00029}00029\ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Front"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_a3bab1d9929ce19de22b8c98f8f633538}{CountryRelationMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00032}\mbox{\hyperlink{class_u_maps_switcher_aa6e9db36bc67c8512b9537d7f8f74a58}{00032}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_aa6e9db36bc67c8512b9537d7f8f74a58}{UMapsSwitcher::SelectIdeologyMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00034}00034\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00035}00035\ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Front"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_aac9173255adde7e0f1257b29a71fb7d8}{IdeologiesMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00038}\mbox{\hyperlink{class_u_maps_switcher_a6aee4c22e54101cf5b6bbde552c23f88}{00038}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_a6aee4c22e54101cf5b6bbde552c23f88}{UMapsSwitcher::SetApplyProvinceOutlineMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn,\ \textcolor{keywordtype}{bool}\ Flag)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00040}00040\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (Flag)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Outlines"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_a9c855fd93a58ca5fa404be94f4227032}{OutlinesMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00044}00044\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00045}00045\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Outlines"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a43ef2e71f010e0571b1aa76f41dd70fd}{BlankMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00050}\mbox{\hyperlink{class_u_maps_switcher_a83c7328fc19c1428bac7035206d0da56}{00050}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_a83c7328fc19c1428bac7035206d0da56}{UMapsSwitcher::SetApplySelectionMap}}(\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn,\ \textcolor{keywordtype}{bool}\ Flag)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00052}00052\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterial\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{MapsMaterialInstanceDynamic}};}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (Flag)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Selection"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a2b4c6d6daeb9507c565a327772c15488}{Scenario}}-\/>\mbox{\hyperlink{class_u_scenario_ac05975ccf02c8b23f308bad2098e5ed3}{SelectionMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00056}00056\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ MapsMaterial-\/>SetTextureParameterValue(TEXT(\textcolor{stringliteral}{"{}Selection"{}}),\ \mbox{\hyperlink{class_u_maps_switcher_a43ef2e71f010e0571b1aa76f41dd70fd}{BlankMapTexture}});}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_8cpp_source_l00061}00061\ }
+
+\end{DoxyCode}

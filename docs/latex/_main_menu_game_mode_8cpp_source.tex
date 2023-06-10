@@ -1,0 +1,29 @@
+\doxysection{Main\+Menu\+Game\+Mode.\+cpp}
+\hypertarget{_main_menu_game_mode_8cpp_source}{}\label{_main_menu_game_mode_8cpp_source}\index{Source/MyProject2/Private/LevelsOverides/MainMenu/MainMenuGameMode.cpp@{Source/MyProject2/Private/LevelsOverides/MainMenu/MainMenuGameMode.cpp}}
+\mbox{\hyperlink{_main_menu_game_mode_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_main_menu_game_mode_8h}{LevelsOverides/MainMenu/MainMenuGameMode.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_main_menu_pawn_8h}{Characters/Pawns/MainMenuPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00006}\mbox{\hyperlink{class_a_main_menu_game_mode_a27b08b4e476fa4834a060c4d55dec0cb}{00006}}\ \mbox{\hyperlink{class_a_main_menu_game_mode_a27b08b4e476fa4834a060c4d55dec0cb}{AMainMenuGameMode::AMainMenuGameMode}}()}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00008}00008\ \ \ \ \ DefaultPawnClass\ =\ AMainMenuPawn::StaticClass();}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00009}00009\ \}}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00011}\mbox{\hyperlink{class_a_main_menu_game_mode_a14079595881bc3c34aa5508f08815c1d}{00011}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_main_menu_game_mode_a14079595881bc3c34aa5508f08815c1d}{AMainMenuGameMode::BeginPlay}}()}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00013}00013\ \ \ \ \ Super::BeginPlay();}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00014}00014\ \ \ \ \ GetGameInstance<UMyGameInstance>()-\/>InitializeActiveScenario();}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00017}\mbox{\hyperlink{class_a_main_menu_game_mode_a74dcbadc57f4734c3a729e625308c3ea}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_main_menu_game_mode_a74dcbadc57f4734c3a729e625308c3ea}{AMainMenuGameMode::PostLogin}}(APlayerController*\ NewPlayer)}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00019}00019\ \ \ \ \ Super::PostLogin(NewPlayer);}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00020}00020\ \ \ \ \ FInputModeUIOnly\ InputMode;}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00021}00021\ \ \ \ \ NewPlayer-\/>SetInputMode(InputMode);}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00022}00022\ \ \ \ \ NewPlayer-\/>SetShowMouseCursor(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_main_menu_game_mode_8cpp_source_l00023}00023\ \}}
+
+\end{DoxyCode}

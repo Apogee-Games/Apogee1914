@@ -1,0 +1,241 @@
+\doxysection{UUnits\+Factory Class Reference}
+\hypertarget{class_u_units_factory}{}\label{class_u_units_factory}\index{UUnitsFactory@{UUnitsFactory}}
+
+
+{\ttfamily \#include $<$Units\+Factory.\+h$>$}
+
+Inheritance diagram for UUnits\+Factory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.627451cm]{class_u_units_factory}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_units_factory_a238afd9d243e4285aea89a49df33e9a9}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_factory_acf45528d03c519813106d63dff265c33}{Create\+Unit}} (\mbox{\hyperlink{class_u_unit_description}{UUnit\+Description}} \texorpdfstring{$\ast$}{*}Description, \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}Province)
+\item 
+\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_factory_a0e27d896473dbec159084de2fcc12fae}{Create\+Unit}} (\mbox{\hyperlink{class_u_unit_description}{UUnit\+Description}} \texorpdfstring{$\ast$}{*}Description, \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}Province, \mbox{\hyperlink{class_u_country_description}{UCountry\+Description}} \texorpdfstring{$\ast$}{*}Country\+Description)
+\item 
+\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_factory_a98eed81914e3e5ec83b3e71e44408480}{Create\+Unit\+Collection}} (\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}Military\+Branch, \mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}Country\+Owner, const TArray$<$ \mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} $>$ \&Units\+To\+Add)
+\item 
+\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_factory_a8b044d4da53d41662c8357d8b050a54c}{Create\+Unit\+Collection}} (\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}Military\+Branch, \mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}Country\+Owner)
+\item 
+\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_factory_a056eacfb1a8c886fb00ce8f6b71fed1c}{Create\+Unit\+Collection\+Group}} (\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}Military\+Branch, \mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}Country\+Owner, const TArray$<$ \mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*} $>$ \&Units\+Collections\+To\+Add)
+\item 
+\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_factory_a3304ea89ecefe0c394d8638279e3487e}{Create\+Unit\+Collection\+Group}} (\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}Military\+Branch, \mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}Country\+Owner)
+\item 
+void \mbox{\hyperlink{class_u_units_factory_ae5ede58dd26a3718b42a359f738d499d}{Remove\+Units}} (const TArray$<$ \mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} $>$ \&Units\+To\+Remove, bool Is\+Clearing=false)
+\item 
+void \mbox{\hyperlink{class_u_units_factory_ad4e3662bc794cf4ec8bdf75b5afed757}{Remove\+Unit}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit, bool Is\+Clearing=false)
+\item 
+void \mbox{\hyperlink{class_u_units_factory_af998047f7efe4687a91263a232c73a1b}{Remove\+Unit\+Collection}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection, bool Is\+Clearing=false)
+\item 
+void \mbox{\hyperlink{class_u_units_factory_a734dc2f1fa146d218f5e6567ab5f3539}{Remove\+Unit\+Collection\+Group}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection\+Group, bool Is\+Clearing=false)
+\item 
+const TArray$<$ \mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{class_u_units_factory_a90cf3d28a8a93c173a2d724eeedc898b}{Get\+Military\+Branches}} () const
+\item 
+const TArray$<$ \mbox{\hyperlink{class_u_unit_description}{UUnit\+Description}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{class_u_units_factory_ab9666adeb3c02816be50fa9de106e365}{Get\+Units\+Descriptions}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_creation_observable}{IUnits\+Creation\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_units_creation_observable_a9e363f748ae08a7291c1c6f499c2161b}{Notify\+Unit\+Creation}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit)
+\item 
+bool \mbox{\hyperlink{class_i_units_creation_observable_ada073a3f821e5c6e68dc2b02b554acc3}{Add\+Unit\+Creation\+Observer}} (\mbox{\hyperlink{class_i_unit_creation_observer}{IUnit\+Creation\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_units_creation_observable_ad4af0727931a680b79e32a17b24436c2}{Remove\+Unit\+Creation\+Observer}} (\mbox{\hyperlink{class_i_unit_creation_observer}{IUnit\+Creation\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_unit_removal_observable}{IUnit\+Removal\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_unit_removal_observable_abeae3483360cfdb0b9e5e388c63598da}{Notify\+Unit\+Removal}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit)
+\item 
+bool \mbox{\hyperlink{class_i_unit_removal_observable_a6bd8006a9a4e98a98b5309af801d616b}{Add\+Unit\+Removal\+Observer}} (\mbox{\hyperlink{class_i_unit_removal_observer}{IUnit\+Removal\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_unit_removal_observable_af6514d0b32f37dcc657b91b42b46ea75}{Remove\+Unit\+Removal\+Observer}} (\mbox{\hyperlink{class_i_unit_removal_observer}{IUnit\+Removal\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_creation_observable}{IUnits\+Collection\+Creation\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_units_collection_creation_observable_a31aaf1f2e4e1c0a37f8902995f0a28c7}{Notify\+Units\+Collection\+Creation}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_creation_observable_a2b7f79cf45355751ffc8b0d18fdc4f00}{Add\+Units\+Collection\+Creation\+Observer}} (\mbox{\hyperlink{class_i_units_collection_creation_observer}{IUnits\+Collection\+Creation\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_creation_observable_ac285d811b8f15c5d62e489e03b60b8d9}{Remove\+Units\+Collection\+Creation\+Observer}} (\mbox{\hyperlink{class_i_units_collection_creation_observer}{IUnits\+Collection\+Creation\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_group_creation_observable}{IUnits\+Collection\+Group\+Creation\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_units_collection_group_creation_observable_a406c5ec39e485df38c3db089be2a729b}{Notify\+Units\+Collection\+Group\+Creation}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_group_creation_observable_af0590ba9cf338e193557094b6fa03f44}{Add\+Units\+Collection\+Group\+Creation\+Observer}} (\mbox{\hyperlink{class_i_units_collection_group_creation_observer}{IUnits\+Collection\+Group\+Creation\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_group_creation_observable_a31a51769c858c5c681549eb369330af3}{Remove\+Units\+Collection\+Group\+Creation\+Observer}} (\mbox{\hyperlink{class_i_units_collection_group_creation_observer}{IUnits\+Collection\+Group\+Creation\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_removal_observable}{IUnits\+Collection\+Removal\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_units_collection_removal_observable_aadd1dcdf6122386f11677a9c6e728719}{Notify\+Units\+Collection\+Removal}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_removal_observable_a30b3724a9644cec1d88d9b2536a18627}{Add\+Units\+Collection\+Removal\+Observer}} (\mbox{\hyperlink{class_i_units_collection_removal_observer}{IUnits\+Collection\+Removal\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_removal_observable_ad43ac8fc278891bf9bff1e1269cce90b}{Remove\+Units\+Collection\+Removal\+Observer}} (\mbox{\hyperlink{class_i_units_collection_removal_observer}{IUnits\+Collection\+Removal\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_group_removal_observable}{IUnits\+Collection\+Group\+Removal\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_units_collection_group_removal_observable_a0e36f7c617fe4507db06cab9c72d648f}{Notify\+Units\+Collection\+Group\+Removal}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection\+Group)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_group_removal_observable_ac3d17d45ef555451125e378f56b2b133}{Add\+Units\+Collection\+Group\+Removal\+Observer}} (\mbox{\hyperlink{class_i_units_collection_group_removal_observer}{IUnits\+Collection\+Group\+Removal\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_units_collection_group_removal_observable_a52c5bfaa2d019242ec35ca9c75973ecc}{Remove\+Units\+Collection\+Group\+Removal\+Observer}} (\mbox{\hyperlink{class_i_units_collection_group_removal_observer}{IUnits\+Collection\+Group\+Removal\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8h_source_l00021}{21}} of file \mbox{\hyperlink{_units_factory_8h_source}{Units\+Factory.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_units_factory_acf45528d03c519813106d63dff265c33}\label{class_u_units_factory_acf45528d03c519813106d63dff265c33} 
+\index{UUnitsFactory@{UUnitsFactory}!CreateUnit@{CreateUnit}}
+\index{CreateUnit@{CreateUnit}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{CreateUnit()}{CreateUnit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} UUnits\+Factory\+::\+Create\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_unit_description}{UUnit\+Description}} \texorpdfstring{$\ast$}{*}}]{Description,  }\item[{\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{Province }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a0e27d896473dbec159084de2fcc12fae}\label{class_u_units_factory_a0e27d896473dbec159084de2fcc12fae} 
+\index{UUnitsFactory@{UUnitsFactory}!CreateUnit@{CreateUnit}}
+\index{CreateUnit@{CreateUnit}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{CreateUnit()}{CreateUnit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} UUnits\+Factory\+::\+Create\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_unit_description}{UUnit\+Description}} \texorpdfstring{$\ast$}{*}}]{Description,  }\item[{\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{Province,  }\item[{\mbox{\hyperlink{class_u_country_description}{UCountry\+Description}} \texorpdfstring{$\ast$}{*}}]{Country\+Description }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a8b044d4da53d41662c8357d8b050a54c}\label{class_u_units_factory_a8b044d4da53d41662c8357d8b050a54c} 
+\index{UUnitsFactory@{UUnitsFactory}!CreateUnitCollection@{CreateUnitCollection}}
+\index{CreateUnitCollection@{CreateUnitCollection}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{CreateUnitCollection()}{CreateUnitCollection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*} UUnits\+Factory\+::\+Create\+Unit\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}}]{Military\+Branch,  }\item[{\mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}}]{Country\+Owner }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a98eed81914e3e5ec83b3e71e44408480}\label{class_u_units_factory_a98eed81914e3e5ec83b3e71e44408480} 
+\index{UUnitsFactory@{UUnitsFactory}!CreateUnitCollection@{CreateUnitCollection}}
+\index{CreateUnitCollection@{CreateUnitCollection}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{CreateUnitCollection()}{CreateUnitCollection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*} UUnits\+Factory\+::\+Create\+Unit\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}}]{Military\+Branch,  }\item[{\mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}}]{Country\+Owner,  }\item[{const TArray$<$ \mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} $>$ \&}]{Units\+To\+Add }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a3304ea89ecefe0c394d8638279e3487e}\label{class_u_units_factory_a3304ea89ecefe0c394d8638279e3487e} 
+\index{UUnitsFactory@{UUnitsFactory}!CreateUnitCollectionGroup@{CreateUnitCollectionGroup}}
+\index{CreateUnitCollectionGroup@{CreateUnitCollectionGroup}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{CreateUnitCollectionGroup()}{CreateUnitCollectionGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*} UUnits\+Factory\+::\+Create\+Unit\+Collection\+Group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}}]{Military\+Branch,  }\item[{\mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}}]{Country\+Owner }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a056eacfb1a8c886fb00ce8f6b71fed1c}\label{class_u_units_factory_a056eacfb1a8c886fb00ce8f6b71fed1c} 
+\index{UUnitsFactory@{UUnitsFactory}!CreateUnitCollectionGroup@{CreateUnitCollectionGroup}}
+\index{CreateUnitCollectionGroup@{CreateUnitCollectionGroup}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{CreateUnitCollectionGroup()}{CreateUnitCollectionGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*} UUnits\+Factory\+::\+Create\+Unit\+Collection\+Group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*}}]{Military\+Branch,  }\item[{\mbox{\hyperlink{class_u_country}{UCountry}} \texorpdfstring{$\ast$}{*}}]{Country\+Owner,  }\item[{const TArray$<$ \mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*} $>$ \&}]{Units\+Collections\+To\+Add }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00072}{72}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a90cf3d28a8a93c173a2d724eeedc898b}\label{class_u_units_factory_a90cf3d28a8a93c173a2d724eeedc898b} 
+\index{UUnitsFactory@{UUnitsFactory}!GetMilitaryBranches@{GetMilitaryBranches}}
+\index{GetMilitaryBranches@{GetMilitaryBranches}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{GetMilitaryBranches()}{GetMilitaryBranches()}}
+{\footnotesize\ttfamily const TArray$<$ \mbox{\hyperlink{class_u_military_branch_description}{UMilitary\+Branch\+Description}} \texorpdfstring{$\ast$}{*} $>$ \& UUnits\+Factory\+::\+Get\+Military\+Branches (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_ab9666adeb3c02816be50fa9de106e365}\label{class_u_units_factory_ab9666adeb3c02816be50fa9de106e365} 
+\index{UUnitsFactory@{UUnitsFactory}!GetUnitsDescriptions@{GetUnitsDescriptions}}
+\index{GetUnitsDescriptions@{GetUnitsDescriptions}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{GetUnitsDescriptions()}{GetUnitsDescriptions()}}
+{\footnotesize\ttfamily const TArray$<$ \mbox{\hyperlink{class_u_unit_description}{UUnit\+Description}} \texorpdfstring{$\ast$}{*} $>$ \& UUnits\+Factory\+::\+Get\+Units\+Descriptions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00167}{167}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_ad4e3662bc794cf4ec8bdf75b5afed757}\label{class_u_units_factory_ad4e3662bc794cf4ec8bdf75b5afed757} 
+\index{UUnitsFactory@{UUnitsFactory}!RemoveUnit@{RemoveUnit}}
+\index{RemoveUnit@{RemoveUnit}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{RemoveUnit()}{RemoveUnit()}}
+{\footnotesize\ttfamily void UUnits\+Factory\+::\+Remove\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}}]{Unit,  }\item[{bool}]{Is\+Clearing = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00105}{105}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_af998047f7efe4687a91263a232c73a1b}\label{class_u_units_factory_af998047f7efe4687a91263a232c73a1b} 
+\index{UUnitsFactory@{UUnitsFactory}!RemoveUnitCollection@{RemoveUnitCollection}}
+\index{RemoveUnitCollection@{RemoveUnitCollection}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{RemoveUnitCollection()}{RemoveUnitCollection()}}
+{\footnotesize\ttfamily void UUnits\+Factory\+::\+Remove\+Unit\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}}]{Units\+Collection,  }\item[{bool}]{Is\+Clearing = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a734dc2f1fa146d218f5e6567ab5f3539}\label{class_u_units_factory_a734dc2f1fa146d218f5e6567ab5f3539} 
+\index{UUnitsFactory@{UUnitsFactory}!RemoveUnitCollectionGroup@{RemoveUnitCollectionGroup}}
+\index{RemoveUnitCollectionGroup@{RemoveUnitCollectionGroup}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{RemoveUnitCollectionGroup()}{RemoveUnitCollectionGroup()}}
+{\footnotesize\ttfamily void UUnits\+Factory\+::\+Remove\+Unit\+Collection\+Group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}}]{Units\+Collection\+Group,  }\item[{bool}]{Is\+Clearing = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00147}{147}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_ae5ede58dd26a3718b42a359f738d499d}\label{class_u_units_factory_ae5ede58dd26a3718b42a359f738d499d} 
+\index{UUnitsFactory@{UUnitsFactory}!RemoveUnits@{RemoveUnits}}
+\index{RemoveUnits@{RemoveUnits}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{RemoveUnits()}{RemoveUnits()}}
+{\footnotesize\ttfamily void UUnits\+Factory\+::\+Remove\+Units (\begin{DoxyParamCaption}\item[{const TArray$<$ \mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*} $>$ \&}]{Units\+To\+Remove,  }\item[{bool}]{Is\+Clearing = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00097}{97}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+\Hypertarget{class_u_units_factory_a238afd9d243e4285aea89a49df33e9a9}\label{class_u_units_factory_a238afd9d243e4285aea89a49df33e9a9} 
+\index{UUnitsFactory@{UUnitsFactory}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UUnitsFactory@{UUnitsFactory}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UUnits\+Factory\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_factory_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{_units_factory_8cpp_source}{Units\+Factory.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Military/\+Managers/\mbox{\hyperlink{_units_factory_8h}{Units\+Factory.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Military/\+Managers/\mbox{\hyperlink{_units_factory_8cpp}{Units\+Factory.\+cpp}}\end{DoxyCompactItemize}

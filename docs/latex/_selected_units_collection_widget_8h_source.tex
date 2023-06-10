@@ -1,0 +1,68 @@
+\doxysection{Selected\+Units\+Collection\+Widget.\+h}
+\hypertarget{_selected_units_collection_widget_8h_source}{}\label{_selected_units_collection_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Military/Selection/SelectedUnitsCollectionWidget.h@{Source/MyProject2/Public/Widgets/Military/Selection/SelectedUnitsCollectionWidget.h}}
+\mbox{\hyperlink{_selected_units_collection_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/Image.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/ListView.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_collection_8h}{Military/Instances/Units/Collections/UnitsCollection.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_removal_observer_8h}{Military/Interfaces/Observers/UnitRemovalObserver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_units_collection_widget_8generated_8h}{SelectedUnitsCollectionWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00010}00010\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00011}\mbox{\hyperlink{class_u_selected_units_collection_widget}{00011}}\ class\ \mbox{\hyperlink{class_u_selected_units_collection_widget}{USelectedUnitsCollectionWidget}}:\ public\ UUserWidget,\ public\ \mbox{\hyperlink{class_i_unit_removal_observer}{IUnitRemovalObserver}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00013}00013\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00014}00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00015}00015\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00016}\mbox{\hyperlink{class_u_selected_units_collection_widget_af49fd755a31010cf4cf583a330255a87}{00016}}\ \ \ \ \ UListView*\ UnitsListView;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00018}00018\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00019}\mbox{\hyperlink{class_u_selected_units_collection_widget_acd9603b15eaf81e74916787e853e8eff}{00019}}\ \ \ \ \ UTextBlock*\ MilitaryBranchTextBlock;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00020}00020\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00021}00021\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00022}\mbox{\hyperlink{class_u_selected_units_collection_widget_a128f9990d88c37f6f33d56f3469f1faa}{00022}}\ \ \ \ \ UTextBlock*\ UnitsNumberTextBlock;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00023}00023\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00024}00024\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00025}\mbox{\hyperlink{class_u_selected_units_collection_widget_ab6c5bb6a9cbfeca6c80bc46f105e09ad}{00025}}\ \ \ \ \ UButton*\ Button;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00027}00027\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00028}\mbox{\hyperlink{class_u_selected_units_collection_widget_a05b0d371b1e4ad9640e7b129c799f8e5}{00028}}\ \ \ \ \ UButton*\ RemoveUnitsCollectionButton;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00030}00030\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00031}\mbox{\hyperlink{class_u_selected_units_collection_widget_a2b78b2bd4b6d9b843d90732674286fbb}{00031}}\ \ \ \ \ UImage*\ CommanderImage;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00033}00033\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00034}\mbox{\hyperlink{class_u_selected_units_collection_widget_ac55bdf6b8ba35d5c0ebb7e85f9f88975}{00034}}\ \ \ \ \ UTextBlock*\ CommanderNameTextBlock;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00036}00036\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00037}\mbox{\hyperlink{class_u_selected_units_collection_widget_a2a76a5d23129a58aee31fb4dcb12a0f8}{00037}}\ \ \ \ \ UButton*\ CommanderButton;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00038}00038\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00039}00039\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ NativeConstruct()\ override;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00041}00041\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{void}\ SetSelectedUnits(UObject*\ ProvidedUnitsCollection);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00044}00044\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00047}00047\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ NativeDestruct()\ override;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00048}00048\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00049}00049\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ UnitIsRemoved(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit)\ override;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00050}00050\ private:}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00051}00051\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{class_u_units_collection}{UUnitsCollection}}*\ UnitsCollection;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00054}00054\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00055}00055\ \ \ \ \ \textcolor{keywordtype}{void}\ OnButtonClick();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00057}00057\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{void}\ OnRemoveUnitsCollectionButtonClick();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00060}00060\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{void}\ OnCommanderButtonClick();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_widget_8h_source_l00062}00062\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,70 @@
+\doxysection{State\+Manager.\+cpp}
+\hypertarget{_state_manager_8cpp_source}{}\label{_state_manager_8cpp_source}\index{Source/MyProject2/Private/Administration/Managers/StateManager.cpp@{Source/MyProject2/Private/Administration/Managers/StateManager.cpp}}
+\mbox{\hyperlink{_state_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_state_manager_8h}{Administration/Managers/StateManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scenario_8h}{Scenario.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_level_game_state_8h}{LevelsOverides/Game/GameLevelGameState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00009}\mbox{\hyperlink{class_u_state_manager_a6c1228744d3634dd00fcc4b3d77363af}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_state_manager_a6c1228744d3634dd00fcc4b3d77363af}{UStateManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00011}00011\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00012}00012\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00015}\mbox{\hyperlink{class_u_state_manager_a6a6f2ec1886ed50178937c4bf3c2ad99}{00015}}\ \mbox{\hyperlink{class_u_state}{UState}}*\ \mbox{\hyperlink{class_u_state_manager_a6a6f2ec1886ed50178937c4bf3c2ad99}{UStateManager::GetState}}(\mbox{\hyperlink{class_u_state_description}{UStateDescription}}*\ StateDescription)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00016}00016\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ StateMap.Contains(StateDescription)\ ?\ StateMap[StateDescription]\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00020}\mbox{\hyperlink{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d}{00020}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d}{UStateManager::AreProvincesInTheSameState}}(\textcolor{keyword}{const}\ FColor\&\ ProvinceAColor,\ \textcolor{keyword}{const}\ FColor\&\ ProvinceBColor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00021}00021\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}*\ ProvinceManager\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}>();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceA\ =\ ProvinceManager-\/>\mbox{\hyperlink{class_u_province_manager_acb88a4e0b6bc09a83f26a263774cc2fe}{GetProvince}}(ProvinceAColor);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceB\ =\ ProvinceManager-\/>\mbox{\hyperlink{class_u_province_manager_acb88a4e0b6bc09a83f26a263774cc2fe}{GetProvince}}(ProvinceBColor);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d}{AreProvincesInTheSameState}}(ProvinceA,\ ProvinceB);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00028}\mbox{\hyperlink{class_u_state_manager_a303e80063a1077af351c8effad63802a}{00028}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d}{UStateManager::AreProvincesInTheSameState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceA,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceB)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00029}00029\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ ProvinceA\ \&\&\ ProvinceB\ \&\&\ ProvinceA-\/>\mbox{\hyperlink{class_u_province_aea49d78d27a6c0a9249d701c8475575b}{GetState}}()\ ==\ ProvinceB-\/>\mbox{\hyperlink{class_u_province_aea49d78d27a6c0a9249d701c8475575b}{GetState}}();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00033}\mbox{\hyperlink{class_u_state_manager_a386f23b9597a5f72de83235716df899d}{00033}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_state_manager_a386f23b9597a5f72de83235716df899d}{UStateManager::AreProvincesNotInTheSameState}}(\textcolor{keyword}{const}\ FColor\&\ ProvinceAColor,\ \textcolor{keyword}{const}\ FColor\&\ ProvinceBColor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00034}00034\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}*\ ProvinceManager\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}>();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceA\ =\ ProvinceManager-\/>\mbox{\hyperlink{class_u_province_manager_acb88a4e0b6bc09a83f26a263774cc2fe}{GetProvince}}(ProvinceAColor);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceB\ =\ ProvinceManager-\/>\mbox{\hyperlink{class_u_province_manager_acb88a4e0b6bc09a83f26a263774cc2fe}{GetProvince}}(ProvinceBColor);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_state_manager_a386f23b9597a5f72de83235716df899d}{AreProvincesNotInTheSameState}}(ProvinceA,\ ProvinceB);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00041}\mbox{\hyperlink{class_u_state_manager_a561448bb2698d63c49509cac5b135491}{00041}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_state_manager_a386f23b9597a5f72de83235716df899d}{UStateManager::AreProvincesNotInTheSameState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceA,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvinceB)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00042}00042\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{return}\ ProvinceA\ \&\&\ ProvinceB\ \&\&\ ProvinceA-\/>\mbox{\hyperlink{class_u_province_aea49d78d27a6c0a9249d701c8475575b}{GetState}}()\ !=\ ProvinceB-\/>\mbox{\hyperlink{class_u_province_aea49d78d27a6c0a9249d701c8475575b}{GetState}}();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00046}00046\ \textcolor{keywordtype}{void}\ UStateManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00047}00047\ \{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [Name,\ State]:\ StateMap)}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00049}00049\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ State-\/>MarkAsGarbage();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00052}00052\ \ \ \ \ StateMap.Empty();}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00055}00055\ \textcolor{keywordtype}{void}\ UStateManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00056}00056\ \{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Description:\ Scenario-\/>StatesDescriptions)}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_state}{UState}}*\ State\ =\ NewObject<UState>(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ State-\/>\mbox{\hyperlink{class_u_state_a301ef450e880463210913b8dd30394bd}{Init}}(Description);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ StateMap.Add(Description,\ State);}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_manager_8cpp_source_l00064}00064\ \}}
+
+\end{DoxyCode}

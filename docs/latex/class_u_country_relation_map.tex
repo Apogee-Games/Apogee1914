@@ -1,0 +1,113 @@
+\doxysection{UCountry\+Relation\+Map Class Reference}
+\hypertarget{class_u_country_relation_map}{}\label{class_u_country_relation_map}\index{UCountryRelationMap@{UCountryRelationMap}}
+
+
+{\ttfamily \#include $<$Country\+Relation\+Map.\+h$>$}
+
+Inheritance diagram for UCountry\+Relation\+Map\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_country_relation_map}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_country_relation_map_ae9b129bfac98781f6a824deec024d004}{Initialize}} (FSubsystem\+Collection\+Base \&Collection) override
+\item 
+void \mbox{\hyperlink{class_u_country_relation_map_abfedf0bc0e9bcff76081f51d27bd9c72}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+void \mbox{\hyperlink{class_u_country_relation_map_a45d7948bef88a6a8908df43dd7a383be}{Update\+Map}} ()
+\item 
+virtual void \mbox{\hyperlink{class_u_country_relation_map_ae09d99950ad43861b84c9b7eba8bfac4}{War\+Was\+Declared}} (\mbox{\hyperlink{class_u_war}{UWar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66}{War}}) override
+\item 
+virtual void \mbox{\hyperlink{class_u_country_relation_map_ada953f590935bc2a29788008e431ec08}{Alliance\+Was\+Created}} (\mbox{\hyperlink{class_u_alliance}{UAlliance}} \texorpdfstring{$\ast$}{*}Alliance) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_war_declaration_observer}{IWar\+Declaration\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_war_declaration_observer_a201498008ece76859265d2615d5da508}{\texorpdfstring{$\sim$}{\string~}\+IWar\+Declaration\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_war_declaration_observer_ac3377fdc9216cd32bf0fd9d3c6a7021f}{War\+Was\+Declared}} (\mbox{\hyperlink{class_u_war}{UWar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66}{War}})=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_alliance_creation_observer}{IAlliance\+Creation\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_alliance_creation_observer_a4ce2b290ab56e6adb0236b736bb6e301}{\texorpdfstring{$\sim$}{\string~}\+IAlliance\+Creation\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_alliance_creation_observer_a36d19164e130f27de9a850f293dd07b3}{Alliance\+Was\+Created}} (\mbox{\hyperlink{class_u_alliance}{UAlliance}} \texorpdfstring{$\ast$}{*}Alliance)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_country_relation_map_8h_source_l00007}{7}} of file \mbox{\hyperlink{_country_relation_map_8h_source}{Country\+Relation\+Map.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_country_relation_map_ada953f590935bc2a29788008e431ec08}\label{class_u_country_relation_map_ada953f590935bc2a29788008e431ec08} 
+\index{UCountryRelationMap@{UCountryRelationMap}!AllianceWasCreated@{AllianceWasCreated}}
+\index{AllianceWasCreated@{AllianceWasCreated}!UCountryRelationMap@{UCountryRelationMap}}
+\doxysubsubsection{\texorpdfstring{AllianceWasCreated()}{AllianceWasCreated()}}
+{\footnotesize\ttfamily void UCountry\+Relation\+Map\+::\+Alliance\+Was\+Created (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_alliance}{UAlliance}} \texorpdfstring{$\ast$}{*}}]{Alliance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_alliance_creation_observer_a36d19164e130f27de9a850f293dd07b3}{IAlliance\+Creation\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_country_relation_map_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{_country_relation_map_8cpp_source}{Country\+Relation\+Map.\+cpp}}.
+
+\Hypertarget{class_u_country_relation_map_ae9b129bfac98781f6a824deec024d004}\label{class_u_country_relation_map_ae9b129bfac98781f6a824deec024d004} 
+\index{UCountryRelationMap@{UCountryRelationMap}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!UCountryRelationMap@{UCountryRelationMap}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void UCountry\+Relation\+Map\+::\+Initialize (\begin{DoxyParamCaption}\item[{FSubsystem\+Collection\+Base \&}]{Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_country_relation_map_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{_country_relation_map_8cpp_source}{Country\+Relation\+Map.\+cpp}}.
+
+\Hypertarget{class_u_country_relation_map_abfedf0bc0e9bcff76081f51d27bd9c72}\label{class_u_country_relation_map_abfedf0bc0e9bcff76081f51d27bd9c72} 
+\index{UCountryRelationMap@{UCountryRelationMap}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UCountryRelationMap@{UCountryRelationMap}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UCountry\+Relation\+Map\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_country_relation_map_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{_country_relation_map_8cpp_source}{Country\+Relation\+Map.\+cpp}}.
+
+\Hypertarget{class_u_country_relation_map_a45d7948bef88a6a8908df43dd7a383be}\label{class_u_country_relation_map_a45d7948bef88a6a8908df43dd7a383be} 
+\index{UCountryRelationMap@{UCountryRelationMap}!UpdateMap@{UpdateMap}}
+\index{UpdateMap@{UpdateMap}!UCountryRelationMap@{UCountryRelationMap}}
+\doxysubsubsection{\texorpdfstring{UpdateMap()}{UpdateMap()}}
+{\footnotesize\ttfamily void UCountry\+Relation\+Map\+::\+Update\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_country_relation_map_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{_country_relation_map_8cpp_source}{Country\+Relation\+Map.\+cpp}}.
+
+\Hypertarget{class_u_country_relation_map_ae09d99950ad43861b84c9b7eba8bfac4}\label{class_u_country_relation_map_ae09d99950ad43861b84c9b7eba8bfac4} 
+\index{UCountryRelationMap@{UCountryRelationMap}!WarWasDeclared@{WarWasDeclared}}
+\index{WarWasDeclared@{WarWasDeclared}!UCountryRelationMap@{UCountryRelationMap}}
+\doxysubsubsection{\texorpdfstring{WarWasDeclared()}{WarWasDeclared()}}
+{\footnotesize\ttfamily void UCountry\+Relation\+Map\+::\+War\+Was\+Declared (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_war}{UWar}} \texorpdfstring{$\ast$}{*}}]{War }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_war_declaration_observer_ac3377fdc9216cd32bf0fd9d3c6a7021f}{IWar\+Declaration\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_country_relation_map_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{_country_relation_map_8cpp_source}{Country\+Relation\+Map.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Maps/\+Diplomacy/\mbox{\hyperlink{_country_relation_map_8h}{Country\+Relation\+Map.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Maps/\+Diplomacy/\mbox{\hyperlink{_country_relation_map_8cpp}{Country\+Relation\+Map.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,41 @@
+\doxysection{Laws\+Widget.\+cpp}
+\hypertarget{_laws_widget_8cpp_source}{}\label{_laws_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Administration/Laws/LawsWidget.cpp@{Source/MyProject2/Private/Widgets/Administration/Laws/LawsWidget.cpp}}
+\mbox{\hyperlink{_laws_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_laws_widget_8h}{Widgets/Administration/Laws/LawsWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_laws_manager_8h}{Administration/Managers/LawsManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00006}\mbox{\hyperlink{class_u_laws_widget_a012bbe93665a144ef72a0fdc612211cb}{00006}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_laws_widget_a012bbe93665a144ef72a0fdc612211cb}{ULawsWidget::Init}}()}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_u_laws_widget_a03744a60af46685237bbdc7f0156efc1}{LawDescriptionWidget}}-\/>\mbox{\hyperlink{class_u_law_description_widget_ade1bd436bd14ca6557ffa3ff6935662d}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_u_laws_manager}{ULawsManager}}*\ LawsManager\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_laws_manager}{ULawsManager}}>();}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00011}00011\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ LawsGroup:\ LawsManager-\/>\mbox{\hyperlink{class_u_laws_manager_aa821cbe3f0f658981fda8222ae014358}{GetCommonLaws}}())}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ AddLawsGroup(LawsGroup);}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00016}00016\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>GetRuledCountry()-\/>GetId();}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ LawsGroup:\ LawsManager-\/>\mbox{\hyperlink{class_u_laws_manager_ab8b197d9552d63d789d9642425995816}{GetCountrySpecificLaw}}(CountryDescription))}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ AddLawsGroup(LawsGroup);}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00024}00024\ \textcolor{keywordtype}{void}\ ULawsWidget::AddLawsGroup(\mbox{\hyperlink{class_u_laws_group}{ULawsGroup}}*\ LawsGroup)}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_u_laws_group_widget}{ULawsGroupWidget}}*\ LawsGroupWidget\ =\ CreateWidget<ULawsGroupWidget>(GetOwningPlayer(),\ \mbox{\hyperlink{class_u_laws_widget_aa6881d8f2943ef07f0dc09e3879b3a49}{LawsGroupWidgetClass}});}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00027}00027\ \ \ \ \ LawsGroupWidget-\/>\mbox{\hyperlink{class_u_laws_group_widget_a6fef3382e659838a7429ecd977ea5e6e}{Init}}(LawsGroup,\ \mbox{\hyperlink{class_u_laws_widget_a03744a60af46685237bbdc7f0156efc1}{LawDescriptionWidget}});}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_u_laws_widget_adde0cec93b69c29d4f2446c80e7bf739}{GroupsWidgetSwitcher}}-\/>AddChild(LawsGroupWidget);}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_u_laws_group_button_widget}{ULawsGroupButtonWidget}}*\ LawsGroupButtonWidget\ =\ CreateWidget<ULawsGroupButtonWidget>(GetOwningPlayer(),\ \mbox{\hyperlink{class_u_laws_widget_a8d80014927b71a6914093c7d94d9bc5d}{LawsGroupButtonWidgetClass}});}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00031}00031\ \ \ \ \ LawsGroupButtonWidget-\/>\mbox{\hyperlink{class_u_laws_group_button_widget_a1025806880be860191a8b3af393f9ac2}{Init}}(LawsGroup,\ \mbox{\hyperlink{class_u_laws_widget_adde0cec93b69c29d4f2446c80e7bf739}{GroupsWidgetSwitcher}},\ GroupsCount);}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{class_u_laws_widget_aa6e6b9c4516d40748e0206242c5d8c6a}{GroupsButtonsScrollBox}}-\/>AddChild(LawsGroupButtonWidget);}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00034}00034\ \ \ \ \ ++GroupsCount;}
+\DoxyCodeLine{\Hypertarget{_laws_widget_8cpp_source_l00035}00035\ \}}
+
+\end{DoxyCode}

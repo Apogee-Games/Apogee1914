@@ -1,0 +1,61 @@
+\doxysection{Diplomatic\+Pacts\+Widgets.\+h}
+\hypertarget{_diplomatic_pacts_widgets_8h_source}{}\label{_diplomatic_pacts_widgets_8h_source}\index{Source/MyProject2/Public/Widgets/Diplomacy/Menu/DiplomaticPactsWidgets.h@{Source/MyProject2/Public/Widgets/Diplomacy/Menu/DiplomaticPactsWidgets.h}}
+\mbox{\hyperlink{_diplomatic_pacts_widgets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/WidgetSwitcher.h"{}}}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_diplomatic_pacts_widgets_8generated_8h}{DiplomaticPactsWidgets.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00007}00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_country}{UCountry}};}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00008}00008\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00009}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets}{00009}}\ class\ \mbox{\hyperlink{class_u_diplomatic_pacts_widgets}{UDiplomaticPactsWidgets}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00011}00011\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00014}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_aeb68686c855d15c6d9371a4a4c27736d}{00014}}\ \ \ \ \ UButton*\ CreateNonAggressionPactButton;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00017}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a0b5a752bc088aab97bb1ced04345d23e}{00017}}\ \ \ \ \ UButton*\ BreakNonAggressionPactButton;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00020}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a39c0109a266df29f3c3a6b9f17897f3c}{00020}}\ \ \ \ \ UWidgetSwitcher*\ NonAggressionPactCreationRemovalWidgetSwitcher;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00022}00022\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00023}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a60289156e24c71922fabb1abc5fca686}{00023}}\ \ \ \ \ UButton*\ CreateDefencivePactButton;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00025}00025\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00026}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a6399703ff7c7dee447335392199e0bb9}{00026}}\ \ \ \ \ UButton*\ BreakDefencivePactButton;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00028}00028\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00029}\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a9d44c2a3f1266f8097f6579c3396554f}{00029}}\ \ \ \ \ UWidgetSwitcher*\ DefencivePactCreationRemovalWidgetSwitcher;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00030}00030\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_country_ad43e99af0817973c748648b87e343f3b}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00033}00033\ \ \ \ \ \textcolor{keywordtype}{void}\ SetCountry(\mbox{\hyperlink{class_u_country}{UCountry}}*\ ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00036}00036\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00037}00037\ private:}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00038}00038\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00039}00039\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ OwnerCountry;}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00041}00041\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}};}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00043}00043\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00044}00044\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}\ OnCreateNonAggressionPactButtonClick();}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00047}00047\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{void}\ OnBreakNonAggressionPactButtonClick();}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00050}00050\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{void}\ OnCreateDefencivePactButtonClick();}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00053}00053\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{void}\ OnBreakDefencivePactButtonClick();}
+\DoxyCodeLine{\Hypertarget{_diplomatic_pacts_widgets_8h_source_l00055}00055\ \};}
+
+\end{DoxyCode}

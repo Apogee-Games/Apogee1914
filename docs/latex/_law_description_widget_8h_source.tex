@@ -1,0 +1,56 @@
+\doxysection{Law\+Description\+Widget.\+h}
+\hypertarget{_law_description_widget_8h_source}{}\label{_law_description_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Administration/Laws/LawDescriptionWidget.h@{Source/MyProject2/Public/Widgets/Administration/Laws/LawDescriptionWidget.h}}
+\mbox{\hyperlink{_law_description_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_law_condition_widget_8h}{LawConditionWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_law_outcome_widget_8h}{LawOutcomeWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_law_description_8h}{Administration/Descriptions/Law/LawDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}Components/ListView.h"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}Components/MultiLineEditableText.h"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}Components/ScrollBox.h"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_law_description_widget_8generated_8h}{LawDescriptionWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00013}00013\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00014}\mbox{\hyperlink{class_u_law_description_widget}{00014}}\ class\ \mbox{\hyperlink{class_u_law_description_widget}{ULawDescriptionWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00016}00016\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00017}00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00018}00018\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00019}\mbox{\hyperlink{class_u_law_description_widget_a4a9a6eccd35e309baf625a7e4c40ca49}{00019}}\ \ \ \ \ UTextBlock*\ LawNameTextBlock;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00021}00021\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00022}\mbox{\hyperlink{class_u_law_description_widget_a0e2fc1026ac3a5c4735c51a20a7d1e4f}{00022}}\ \ \ \ \ UMultiLineEditableText*\ LawDescriptionTextBox;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00024}00024\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00025}\mbox{\hyperlink{class_u_law_description_widget_a0dc11762190712424c42b1b0f2f3f107}{00025}}\ \ \ \ \ UScrollBox*\ ConditionsScrollBox;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00027}00027\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00028}\mbox{\hyperlink{class_u_law_description_widget_acb91365bb946e44dbfd48f03fdbf0fcc}{00028}}\ \ \ \ \ UScrollBox*\ OutcomesScrollBox;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00029}00029\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00030}00030\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00031}\mbox{\hyperlink{class_u_law_description_widget_a0500e30cd5948d734491214ce5a1b36f}{00031}}\ \ \ \ \ UButton*\ PassLawButton;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00033}00033\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00034}\mbox{\hyperlink{class_u_law_description_widget_affcaf0049003b4d97a60679fd01cd36e}{00034}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_law_condition_widget}{ULawConditionWidget}}>\ LawConditionWidgetClass;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00036}00036\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00037}\mbox{\hyperlink{class_u_law_description_widget_ae6a28acca36a97a432bf276454539894}{00037}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_law_outcome_widget}{ULawOutcomeWidget}}>\ LawOutcomeWidgetClass;\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{void}\ SetLaw(\mbox{\hyperlink{class_u_law_description}{ULawDescription}}*\ ProvidedLawDescription);}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00044}00044\ private:}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00045}00045\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{class_u_law_description}{ULawDescription}}*\ LawDescription;}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00048}00048\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{void}\ OnPassLawButtonClick();}
+\DoxyCodeLine{\Hypertarget{_law_description_widget_8h_source_l00050}00050\ \};}
+
+\end{DoxyCode}

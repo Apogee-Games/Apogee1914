@@ -1,0 +1,63 @@
+\doxysection{People\+Manager.\+cpp}
+\hypertarget{_people_manager_8cpp_source}{}\label{_people_manager_8cpp_source}\index{Source/MyProject2/Private/People/Managers/PeopleManager.cpp@{Source/MyProject2/Private/People/Managers/PeopleManager.cpp}}
+\mbox{\hyperlink{_people_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_people_manager_8h}{People/Managers/PeopleManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00003}\mbox{\hyperlink{class_u_people_manager_aa5272cb9d7abd1fc9139a1cfe900e11a}{00003}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_people_manager_aa5272cb9d7abd1fc9139a1cfe900e11a}{UPeopleManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00005}00005\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00006}00006\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00009}\mbox{\hyperlink{class_u_people_manager_a37fea1cb418fb6f9e37ac3dfd9b5a008}{00009}}\ \mbox{\hyperlink{class_u_person}{UPerson}}*\ \mbox{\hyperlink{class_u_people_manager_a37fea1cb418fb6f9e37ac3dfd9b5a008}{UPeopleManager::GetPerson}}(\mbox{\hyperlink{class_u_person_description}{UPersonDescription}}*\ PersonDescription)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00010}00010\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{return}\ People.Contains(PersonDescription)\ ?\ People[PersonDescription]\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00014}\mbox{\hyperlink{class_u_people_manager_a887c6ab02b68e6f2ca633d7095a5e855}{00014}}\ \textcolor{keyword}{const}\ TArray<UPerson*>\&\ \mbox{\hyperlink{class_u_people_manager_a887c6ab02b68e6f2ca633d7095a5e855}{UPeopleManager::GetPeopleByProfession}}(\mbox{\hyperlink{class_u_profession_description}{UProfessionDescription}}*\ Profession,\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (!CountryProfessionPeople.Contains(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}))}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00017}00017\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ CountryProfessionPeople.Add(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ \{\});}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00019}00019\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!CountryProfessionPeople[\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}].Contains(Profession))}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00020}00020\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ CountryProfessionPeople[\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}].Add(Profession,\ \{\});}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{return}\ CountryProfessionPeople[\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}][Profession];}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00026}00026\ \textcolor{keywordtype}{void}\ UPeopleManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [Name,\ Person]\ :\ People)}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ Person-\/>MarkAsGarbage();}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00033}00033\ \ \ \ \ People.Empty();}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00034}00034\ \ \ \ \ CountryProfessionPeople.Empty();}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00037}00037\ \textcolor{keywordtype}{void}\ UPeopleManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ CountryPeopleDescriptions]:\ Scenario-\/>PeopleDescriptions)}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00040}00040\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ TMap<UProfessionDescription*,\ TArray<UPerson*>>\ CountryPeople;}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [Profession,\ Group]:\ CountryPeopleDescriptions-\/>ProfessionGroups)}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ TArray<UPerson*>\ PeopleList;}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Description:\ Group-\/>PeopleDescriptions)}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (People.Contains(Description))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_person}{UPerson}}*\ Person\ =\ NewObject<UPerson>(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Person-\/>\mbox{\hyperlink{class_u_person_ad64f8dd80ff241afe706afc38e54d267}{Init}}(Description);}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ People.Add(Description,\ Person);}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PeopleList.Add(Person);}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ CountryPeople.Add(Profession,\ PeopleList);}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ CountryProfessionPeople.Add(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ CountryPeople);}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_people_manager_8cpp_source_l00057}00057\ \}}
+
+\end{DoxyCode}

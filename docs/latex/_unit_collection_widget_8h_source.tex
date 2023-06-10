@@ -1,0 +1,49 @@
+\doxysection{Unit\+Collection\+Widget.\+h}
+\hypertarget{_unit_collection_widget_8h_source}{}\label{_unit_collection_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Military/Collections/UnitCollectionWidget.h@{Source/MyProject2/Public/Widgets/Military/Collections/UnitCollectionWidget.h}}
+\mbox{\hyperlink{_unit_collection_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/Image.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_collection_8h}{Military/Instances/Units/Collections/UnitsCollection.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_collection_widget_8generated_8h}{UnitCollectionWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00009}00009\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00010}\mbox{\hyperlink{class_u_unit_collection_widget}{00010}}\ class\ \mbox{\hyperlink{class_u_unit_collection_widget}{UUnitCollectionWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00012}00012\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00014}00014\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00015}\mbox{\hyperlink{class_u_unit_collection_widget_a77c9facc2e095303c2c54ac35839b7ff}{00015}}\ \ \ \ \ UTextBlock*\ CollectionSizeTextBlock;}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00018}\mbox{\hyperlink{class_u_unit_collection_widget_a4df8aae579a9aa066ab33012d81ff9d8}{00018}}\ \ \ \ \ UButton*\ Button;}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00020}00020\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00021}\mbox{\hyperlink{class_u_unit_collection_widget_a5805138e9953a0af40511200f7c4a1aa}{00021}}\ \ \ \ \ UButton*\ CommanderButton;}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00023}00023\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00024}\mbox{\hyperlink{class_u_unit_collection_widget_a76c3fb0b24d009db70e477fb1285683f}{00024}}\ \ \ \ \ UImage*\ CommanderImage;}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00026}00026\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ NativeConstruct()\ override;}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00028}00028\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{void}\ SetUnitCollection(UObject*\ ProvidedUnitsCollection);}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00031}00031\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00034}00034\ private:}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00035}00035\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00036}00036\ \ \ \ \ \mbox{\hyperlink{class_u_units_collection}{UUnitsCollection}}*\ UnitsCollection;}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00038}00038\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{void}\ OnButtonClick();}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00041}00041\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{void}\ OnCommanderButtonClick();}
+\DoxyCodeLine{\Hypertarget{_unit_collection_widget_8h_source_l00043}00043\ \};}
+
+\end{DoxyCode}

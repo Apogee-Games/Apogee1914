@@ -1,0 +1,69 @@
+\doxysection{Selected\+Units\+Collection\+Group\+Widget.\+cpp}
+\hypertarget{_selected_units_collection_group_widget_8cpp_source}{}\label{_selected_units_collection_group_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Military/Selection/SelectedUnitsCollectionGroupWidget.cpp@{Source/MyProject2/Private/Widgets/Military/Selection/SelectedUnitsCollectionGroupWidget.cpp}}
+\mbox{\hyperlink{_selected_units_collection_group_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_units_collection_group_widget_8h}{Widgets/Military/Selection/SelectedUnitsCollectionGroupWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_commander_selection_pawn_state_8h}{Characters/StateMachine/CommanderSelectionPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_military_branch_description_8h}{Military/Descriptions/MilitaryBranchDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_factory_8h}{Military/Managers/UnitsFactory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00007}\mbox{\hyperlink{class_u_selected_units_collection_group_widget_a1ced9e2d5823d68d2dec77d7739a9b0d}{00007}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_a1ced9e2d5823d68d2dec77d7739a9b0d}{USelectedUnitsCollectionGroupWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00009}00009\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_af48b56b398828b7c04c9bad4666752f8}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&USelectedUnitsCollectionGroupWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_aa4e727ebddb17e18336b0670607b6dcd}{RemoveUnitsCollectionGroupButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_a3f8add31c67da6b49a7d5af791a3b6a0}{CommanderButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&USelectedUnitsCollectionGroupWidget::OnCommanderButtonClick);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00015}\mbox{\hyperlink{class_u_selected_units_collection_group_widget_a6d17f5ad7d9eece881c38d5d365dfdd2}{00015}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_a6d17f5ad7d9eece881c38d5d365dfdd2}{USelectedUnitsCollectionGroupWidget::SetSelectedUnits}}(UObject*\ ProvidedUnitsCollectionGroup)}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00017}00017\ \ \ \ \ UnitsCollectionGroup\ =\ Cast<UUnitsCollectionGroup>(ProvidedUnitsCollectionGroup);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00020}\mbox{\hyperlink{class_u_selected_units_collection_group_widget_a910e989bb916a52946313b09306878e0}{00020}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_a910e989bb916a52946313b09306878e0}{USelectedUnitsCollectionGroupWidget::RefreshData}}()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_a328649fb48548be2e1e7bc31ee8f8ca8}{UnitsCollectionListView}}-\/>ClearListItems();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ UnitsCollection:\ UnitsCollectionGroup-\/>\mbox{\hyperlink{class_u_units_collection_group_adc21459c2e63af516cf0e129c616ee25}{GetAll}}())}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_a328649fb48548be2e1e7bc31ee8f8ca8}{UnitsCollectionListView}}-\/>AddItem(UnitsCollection);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00026}00026\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_abd5623a998aa49b50160062568b8a9cb}{UnitsCollectionNumberTextBlock}}-\/>SetText(FText::FromString(FString::FromInt(UnitsCollectionGroup-\/>\mbox{\hyperlink{class_u_units_collection_group_a21e39b1e42b8bc74ddf4fc222053930c}{GetSize}}())));}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00029}00029\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_aa86bec15e169fd4ff47b4a44da265446}{MilitaryBranchTextBlock}}-\/>SetText(UnitsCollectionGroup-\/>\mbox{\hyperlink{class_t_f_military_collection_a004026c9e8594516d7a13efffac573c8}{GetMilitaryBranch}}()-\/>\mbox{\hyperlink{class_u_military_branch_description_a6ea8cfd03cfe090f28d79922ad92f7f1}{Name}});}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{class_u_person}{UPerson}}*\ Commander\ =\ UnitsCollectionGroup-\/>\mbox{\hyperlink{class_i_commandable_af3872417749f5b6f8f99dc947d7aaebb}{GetCommander}}();}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (Commander)}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_ae3db5b44e4f51382825525441e0cedc2}{CommanderImage}}-\/>SetBrushResourceObject(Commander-\/>\mbox{\hyperlink{class_u_person_a4057c307e2aaabf1e4c29e7ace5149c1}{GetImage}}());}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_abadae13b06191e7eb739de6a999aa42a}{CommanderNameTextBlock}}-\/>SetText(Commander-\/>\mbox{\hyperlink{class_u_person_a8f2a54ad1a9bfce1c6d0af2f793c784b}{GetPersonName}}());}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00037}00037\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_ae3db5b44e4f51382825525441e0cedc2}{CommanderImage}}-\/>SetBrushResourceObject(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_selected_units_collection_group_widget_abadae13b06191e7eb739de6a999aa42a}{CommanderNameTextBlock}}-\/>SetText(FText::FromString(TEXT(\textcolor{stringliteral}{"{}None"{}})));}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00044}00044\ \textcolor{keywordtype}{void}\ USelectedUnitsCollectionGroupWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00045}00045\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00046}00046\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>UnitSelectionComponent-\/>SelectUnits(UnitsCollectionGroup);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00049}00049\ \textcolor{keywordtype}{void}\ USelectedUnitsCollectionGroupWidget::OnRemoveUnitsCollectionGroupButton()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00050}00050\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00051}00051\ \ \ \ \ \mbox{\hyperlink{class_u_units_selection_component}{UUnitsSelectionComponent}}*\ SelectionComponent\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>UnitSelectionComponent;}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00053}00053\ \ \ \ \ SelectionComponent-\/>\mbox{\hyperlink{class_u_units_selection_component_a3cb041e2c31acd658ca0e36bf584ad72}{UnSelectUnits}}(UnitsCollectionGroup);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00054}00054\ \ \ \ \ SelectionComponent-\/>\mbox{\hyperlink{class_u_units_selection_component_aff0cc6737bfc9fe37934cb7eb68384ae}{SelectUnits}}(UnitsCollectionGroup-\/>\mbox{\hyperlink{class_u_units_collection_group_adc21459c2e63af516cf0e129c616ee25}{GetAll}}(),\ \textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00056}00056\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_units_factory}{UUnitsFactory}}>()-\/>RemoveUnitCollectionGroup(UnitsCollectionGroup);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00059}00059\ \textcolor{keywordtype}{void}\ USelectedUnitsCollectionGroupWidget::OnCommanderButtonClick()}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00061}00061\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>SetCommandable(UnitsCollectionGroup);}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00062}00062\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>SetPawnState(\mbox{\hyperlink{class_f_commander_selection_pawn_state_adb2f4dedae12c5fcd118684fd8fc9396}{FCommanderSelectionPawnState::GetInstance}}());}
+\DoxyCodeLine{\Hypertarget{_selected_units_collection_group_widget_8cpp_source_l00063}00063\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,46 @@
+\doxysection{Selected\+Unit\+Widget.\+cpp}
+\hypertarget{_selected_unit_widget_8cpp_source}{}\label{_selected_unit_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Military/Selection/SelectedUnitWidget.cpp@{Source/MyProject2/Private/Widgets/Military/Selection/SelectedUnitWidget.cpp}}
+\mbox{\hyperlink{_selected_unit_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_unit_widget_8h}{Widgets/Military/Selection/SelectedUnitWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_in_game_time_8h}{InGameTime.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_8h}{Military/Instances/Units/Unit.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_factory_8h}{Military/Managers/UnitsFactory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00010}\mbox{\hyperlink{class_u_selected_unit_widget_a20f6ab55a5c5315e1b3e7f9d33e97111}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_selected_unit_widget_a20f6ab55a5c5315e1b3e7f9d33e97111}{USelectedUnitWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00012}00012\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00013}00013\ \ \ \ \ \mbox{\hyperlink{class_u_selected_unit_widget_a89a6e96cb3532438d9d4df9391f31dc6}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&USelectedUnitWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{class_u_selected_unit_widget_a292f9548407b73011e2d072c299c5754}{RemoveUnitButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&USelectedUnitWidget::OnRemoveUnitButtonClick);}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00017}\mbox{\hyperlink{class_u_selected_unit_widget_aa1c4e037eb9051f8251c16240cf03369}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_selected_unit_widget_aa1c4e037eb9051f8251c16240cf03369}{USelectedUnitWidget::Init}}(UObject*\ Object)\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00019}00019\ \ \ \ \ Unit\ =\ Cast<UUnit>(Object);}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_u_selected_unit_widget_ab8fd21b5a83a5bc27221df6d82974103}{RefreshData}}();}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00023}\mbox{\hyperlink{class_u_selected_unit_widget_ab8fd21b5a83a5bc27221df6d82974103}{00023}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_selected_unit_widget_ab8fd21b5a83a5bc27221df6d82974103}{USelectedUnitWidget::RefreshData}}()\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//FlagImage-\/>SetBrushResourceObject(Unit-\/>GetCountryController()-\/>GetFlag());}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_u_selected_unit_widget_a191306713eb86352c998272a1e27a52c}{ProvinceNameTextBlock}}-\/>SetText(Unit-\/>\mbox{\hyperlink{class_u_unit_ac46662daa5e444422bee5ad74c78174c}{GetPosition}}()-\/>\mbox{\hyperlink{class_u_province_a07652749e2275af3adc975438dca430a}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_u_selected_unit_widget_a848762b0e859a4cb618cc06c5e6d7060}{UnitNameTextBlock}}-\/>SetText(FText::FromName(Unit-\/>\mbox{\hyperlink{class_u_unit_ae38e0036d8101a77e17e0316ef95d1c4}{GetUnitName}}()));}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_u_selected_unit_widget_a7eab70a4996fa0b9d5179964ec8b5846}{ManpowerTextBlock}}-\/>SetText(FText::FromString(FString::FromInt(Unit-\/>\mbox{\hyperlink{class_u_unit_a0c02b785585c63aecc7f3624b3224fba}{GetManpower}}())));}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00031}00031\ \textcolor{keywordtype}{void}\ USelectedUnitWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00033}00033\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>UnitSelectionComponent-\/>SelectUnit(Unit);}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00036}00036\ \textcolor{keywordtype}{void}\ USelectedUnitWidget::OnRemoveUnitButtonClick()}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00038}00038\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_units_factory}{UUnitsFactory}}>()-\/>RemoveUnit(Unit);}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00039}00039\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>UnitSelectionComponent-\/>UnSelectUnit(Unit,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_selected_unit_widget_8cpp_source_l00040}00040\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\doxysection{Commander\+Widget.\+cpp}
+\hypertarget{_commander_widget_8cpp_source}{}\label{_commander_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Military/Commanders/CommanderWidget.cpp@{Source/MyProject2/Private/Widgets/Military/Commanders/CommanderWidget.cpp}}
+\mbox{\hyperlink{_commander_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_commander_widget_8h}{Widgets/Military/Commanders/CommanderWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_browsing_pawn_state_8h}{Characters/StateMachine/MapBrowsingPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_military_control_pawn_state_8h}{Characters/StateMachine/MilitaryControlPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_commanders_manager_8h}{Military/Managers/CommandersManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00009}\mbox{\hyperlink{class_u_commander_widget_a4bb9a28463a641d3c8ebb5000207a817}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_commander_widget_a4bb9a28463a641d3c8ebb5000207a817}{UCommanderWidget::SetCommander}}(UObject*\ ProvidedCommander)}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00011}00011\ \ \ \ \ Commander\ =\ Cast<UPerson>(ProvidedCommander);}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00014}\mbox{\hyperlink{class_u_commander_widget_a6dbe8cb4de9bb4ac7ffff3f90e3d6862}{00014}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_commander_widget_a6dbe8cb4de9bb4ac7ffff3f90e3d6862}{UCommanderWidget::RefreshData}}()}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{class_u_commander_widget_af31edb07d37112d87f1eca33c0004f3a}{CommanderImage}}-\/>SetBrushResourceObject(Commander-\/>\mbox{\hyperlink{class_u_person_a4057c307e2aaabf1e4c29e7ace5149c1}{GetImage}}());}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_u_commander_widget_a1801cc46cfd15c76d217d529cc260f9b}{AgeTextBlock}}-\/>SetText(FText::FromString(FString::FromInt(Commander-\/>\mbox{\hyperlink{class_u_person_a6b126682b65f608034525dfd40ffe3d9}{GetAge}}())));}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00019}00019\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_u_commander_widget_a4766af878e1d27b2fd70315aa56327ff}{NameTextBlock}}-\/>SetText(Commander-\/>\mbox{\hyperlink{class_u_person_a8f2a54ad1a9bfce1c6d0af2f793c784b}{GetPersonName}}());}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00023}\mbox{\hyperlink{class_u_commander_widget_ae1d78698eaf1e6135e1a22e577258a2d}{00023}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_commander_widget_ae1d78698eaf1e6135e1a22e577258a2d}{UCommanderWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00025}00025\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_u_commander_widget_a2514552948e8daa4f5d08f13a2db7e68}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UCommanderWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00029}00029\ \textcolor{keywordtype}{void}\ UCommanderWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>();}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00032}00032\ \ \ \ \ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a465f805981f2caf994316fe1195d492a}{SetPawnState}}(\mbox{\hyperlink{class_f_military_control_pawn_state_a62faf8230e14d49284429cdf50d3d894}{FMilitaryControlPawnState::GetInstance}}());}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_i_commandable}{ICommandable}}*\ Commandable\ =\ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a37f4f3c195ec3fa402abf27b370f335d}{GetSelectedCommandable}}())}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00035}00035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_commanders_manager}{UCommandersManager}}>()-\/>MakeCommander(Commander,\ Commandable);}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_commander_widget_8cpp_source_l00038}00038\ \}}
+
+\end{DoxyCode}

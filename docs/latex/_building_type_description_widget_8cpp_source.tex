@@ -1,0 +1,22 @@
+\doxysection{Building\+Type\+Description\+Widget.\+cpp}
+\hypertarget{_building_type_description_widget_8cpp_source}{}\label{_building_type_description_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Economics/Buildings/Creation/BuildingTypeDescriptionWidget.cpp@{Source/MyProject2/Private/Widgets/Economics/Buildings/Creation/BuildingTypeDescriptionWidget.cpp}}
+\mbox{\hyperlink{_building_type_description_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_building_type_description_widget_8h}{Widgets/Economics/Buildings/Creation/BuildingTypeDescriptionWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00004}\mbox{\hyperlink{class_u_building_type_description_widget_adbf396e8560785b302777bded0b55139}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_building_type_description_widget_adbf396e8560785b302777bded0b55139}{UBuildingTypeDescriptionWidget::OnButtonClick}}()}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00006}00006\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>SelectBuildingDescription(\mbox{\hyperlink{class_u_building_type_description_widget_a43365ea2de567fde42fd7933df77e3b9}{BuildingDescription}});}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00009}\mbox{\hyperlink{class_u_building_type_description_widget_a6c2de78acacb0fcb457044f404655826}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_building_type_description_widget_a6c2de78acacb0fcb457044f404655826}{UBuildingTypeDescriptionWidget::Init}}(\mbox{\hyperlink{class_u_building_description}{UBuildingDescription}}*\ ProvidedBuildingDescription)}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_u_building_type_description_widget_a43365ea2de567fde42fd7933df77e3b9}{BuildingDescription}}\ =\ ProvidedBuildingDescription;}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_u_building_type_description_widget_ac6e475456f272be3e568fd269530eaea}{BuildingNameTextBlock}}-\/>SetText(\mbox{\hyperlink{class_u_building_type_description_widget_a43365ea2de567fde42fd7933df77e3b9}{BuildingDescription}}-\/>\mbox{\hyperlink{class_u_building_description_ae3f8b2ab2e71eaeb0462d61e8e6e82df}{Name}});}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{class_u_building_type_description_widget_a86f1bb88fac82c55b5d5b7b65ce91067}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_u_building_type_description_widget_adbf396e8560785b302777bded0b55139}{UBuildingTypeDescriptionWidget::OnButtonClick}});}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_building_type_description_widget_8cpp_source_l00016}00016\ }
+
+\end{DoxyCode}

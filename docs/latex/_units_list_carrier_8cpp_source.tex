@@ -1,0 +1,38 @@
+\doxysection{Units\+List\+Carrier.\+cpp}
+\hypertarget{_units_list_carrier_8cpp_source}{}\label{_units_list_carrier_8cpp_source}\index{Source/MyProject2/Private/Widgets/Military/Carriers/UnitsListCarrier.cpp@{Source/MyProject2/Private/Widgets/Military/Carriers/UnitsListCarrier.cpp}}
+\mbox{\hyperlink{_units_list_carrier_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_list_carrier_8h}{Widgets/Military/Carriers/UnitsListCarrier.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00004}\mbox{\hyperlink{class_u_units_list_carrier_a119ac2ff5826aa68431d045d784ea97f}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_units_list_carrier_a119ac2ff5826aa68431d045d784ea97f}{UUnitsListCarrier::AddUnit}}(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit)}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00006}00006\ \ \ \ \ Units.Add(Unit);}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00009}\mbox{\hyperlink{class_u_units_list_carrier_a00efcbab15b7171f7e3270b0efdb9ebd}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_units_list_carrier_a00efcbab15b7171f7e3270b0efdb9ebd}{UUnitsListCarrier::RemoveUnit}}(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit)}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00011}00011\ \ \ \ \ Units.Remove(Unit);}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00014}\mbox{\hyperlink{class_u_units_list_carrier_ae9a6002f248bda1ef41c2994245b4140}{00014}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_units_list_carrier_ae9a6002f248bda1ef41c2994245b4140}{UUnitsListCarrier::IsEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00015}00015\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{return}\ Units.IsEmpty();}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00017}00017\ \}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00019}\mbox{\hyperlink{class_u_units_list_carrier_ade9d28eb8804442e2f58df3eb5e6408a}{00019}}\ int32\ \mbox{\hyperlink{class_u_units_list_carrier_ade9d28eb8804442e2f58df3eb5e6408a}{UUnitsListCarrier::Num}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00020}00020\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{return}\ Units.Num();}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00024}\mbox{\hyperlink{class_u_units_list_carrier_a14af086bd2fc90c4b35b3be7271b0b58}{00024}}\ \mbox{\hyperlink{class_u_unit}{UUnit}}*\ \mbox{\hyperlink{class_u_units_list_carrier_a14af086bd2fc90c4b35b3be7271b0b58}{UUnitsListCarrier::GetFirst}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00025}00025\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ Units.IsEmpty()\ ?\ nullptr\ :\ Units[0];}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00029}\mbox{\hyperlink{class_u_units_list_carrier_a4066737984d1fcd70f67ae07c1c9edb8}{00029}}\ \textcolor{keyword}{const}\ TArray<UUnit*>\&\ \mbox{\hyperlink{class_u_units_list_carrier_a4066737984d1fcd70f67ae07c1c9edb8}{UUnitsListCarrier::GetUnits}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00030}00030\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{return}\ Units;}
+\DoxyCodeLine{\Hypertarget{_units_list_carrier_8cpp_source_l00032}00032\ \}}
+
+\end{DoxyCode}

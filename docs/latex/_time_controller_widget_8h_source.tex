@@ -1,0 +1,48 @@
+\doxysection{Time\+Controller\+Widget.\+h}
+\hypertarget{_time_controller_widget_8h_source}{}\label{_time_controller_widget_8h_source}\index{Source/MyProject2/Public/Widgets/TimeControllerWidget.h@{Source/MyProject2/Public/Widgets/TimeControllerWidget.h}}
+\mbox{\hyperlink{_time_controller_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/ProgressBar.h"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_time_controller_widget_8generated_8h}{TimeControllerWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00008}00008\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00009}\mbox{\hyperlink{class_u_time_controller_widget}{00009}}\ class\ \mbox{\hyperlink{_unreal_editor_2_debug_game_2_my_project2_2_definitions_8_my_project2_8h_a2f93b02f35bbefa1d666cf587191d830}{MYPROJECT2\_API}}\ \mbox{\hyperlink{class_u_time_controller_widget}{UTimeControllerWidget}}\ :\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00011}00011\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00014}\mbox{\hyperlink{class_u_time_controller_widget_a1334ff16a9a4fb0de681df0969dbfa63}{00014}}\ \ \ \ \ UButton*\ SpeedUpButton;}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00017}\mbox{\hyperlink{class_u_time_controller_widget_aec6053e8db99541d682764e730ecadad}{00017}}\ \ \ \ \ UButton*\ SlowDownButton;}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00020}\mbox{\hyperlink{class_u_time_controller_widget_a6bdcbd1243a0f44c88bcd0d45ccd2a3b}{00020}}\ \ \ \ \ UButton*\ PauseButton;}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00022}00022\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00023}\mbox{\hyperlink{class_u_time_controller_widget_ac449c574156fdd383f4d4370bbd720a8}{00023}}\ \ \ \ \ UTextBlock*\ TimeTextBlock;}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00025}00025\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00026}\mbox{\hyperlink{class_u_time_controller_widget_a49380bea871047a4f8b6692eec9f720c}{00026}}\ \ \ \ \ UProgressBar*\ SpeedProgressBar;}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00028}00028\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ NativeConstruct()\ override;}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00029}00029\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ SetTime(const\ FText\&\ Time);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ SetSpeedPercentage(\textcolor{keywordtype}{float}\ NewSpeedPercentage);}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00033}00033\ private:}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00034}00034\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{void}\ SpeedUpButtonOnClick();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00037}00037\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordtype}{void}\ SlowDownButtonOnClick();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00040}00040\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{void}\ PauseButtonOnClick();}
+\DoxyCodeLine{\Hypertarget{_time_controller_widget_8h_source_l00042}00042\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,46 @@
+\doxysection{Country\+Selection\+HUD.\+h}
+\hypertarget{_country_selection_h_u_d_8h_source}{}\label{_country_selection_h_u_d_8h_source}\index{Source/MyProject2/Public/Characters/HUDs/CountrySelectionHUD.h@{Source/MyProject2/Public/Characters/HUDs/CountrySelectionHUD.h}}
+\mbox{\hyperlink{_country_selection_h_u_d_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}GameFramework/HUD.h"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_selection_controls_widget_8h}{Widgets/CountrySelection/CountrySelectionControlsWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scenario_selection_widget_8h}{Widgets/CountrySelection/ScenarioSelectionWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_country_widget_8h}{Widgets/CountrySelection/SelectedCountryWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_selection_h_u_d_8generated_8h}{CountrySelectionHUD.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00008}00008\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00009}\mbox{\hyperlink{class_a_country_selection_h_u_d}{00009}}\ class\ \mbox{\hyperlink{class_a_country_selection_h_u_d}{ACountrySelectionHUD}}:\ public\ AHUD}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00011}00011\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00014}\mbox{\hyperlink{class_a_country_selection_h_u_d_af260d6a6e8f10cf784f55731ccacd7b4}{00014}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_scenario_selection_widget}{UScenarioSelectionWidget}}>\ ScenarioSelectionWidgetClass;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00017}\mbox{\hyperlink{class_a_country_selection_h_u_d_a4693a73b67ec8c3917a9ac99a6eac002}{00017}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_selected_country_widget}{USelectedCountryWidget}}>\ SelectedCountryWidgetClass;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00020}\mbox{\hyperlink{class_a_country_selection_h_u_d_a12caa8bc7f1e3d4002afe25f4ef34c49}{00020}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_country_selection_controls_widget}{UCountrySelectionControlsWidget}}>\ CountrySelectionControlsWidgetClass;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00022}00022\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlay()\ override;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00023}00023\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{class_u_scenario_selection_widget}{UScenarioSelectionWidget}}*\ GetScenarioSelectionWidget()\ const;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_u_selected_country_widget}{USelectedCountryWidget}}*\ GetSelectedCountryWidget()\ const;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_u_country_selection_controls_widget}{UCountrySelectionControlsWidget}}*\ GetCountrySelectionControlsWidget()\ const;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00030}00030\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ EndPlay(const\ EEndPlayReason::Type\ EndPlayReason)\ override;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00031}00031\ private:}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00032}00032\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_u_scenario_selection_widget}{UScenarioSelectionWidget}}*\ ScenarioSelectionWidget;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00035}00035\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00036}00036\ \ \ \ \ \mbox{\hyperlink{class_u_selected_country_widget}{USelectedCountryWidget}}*\ SelectedCountryWidget;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00038}00038\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00039}00039\ \ \ \ \ \mbox{\hyperlink{class_u_country_selection_controls_widget}{UCountrySelectionControlsWidget}}*\ CountrySelectionControlsWidget;}
+\DoxyCodeLine{\Hypertarget{_country_selection_h_u_d_8h_source_l00040}00040\ \};}
+
+\end{DoxyCode}

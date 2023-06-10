@@ -1,0 +1,43 @@
+\doxysection{AIPlayer\+Pawn.\+h}
+\hypertarget{_a_i_player_pawn_8h_source}{}\label{_a_i_player_pawn_8h_source}\index{Source/MyProject2/Public/Characters/AIPlayerPawn.h@{Source/MyProject2/Public/Characters/AIPlayerPawn.h}}
+\mbox{\hyperlink{_a_i_player_pawn_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00001}00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00003}00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}GameFramework/Pawn.h"{}}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_a_i_player_pawn_8generated_8h}{AIPlayerPawn.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00010}00010\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00011}\mbox{\hyperlink{class_a_a_i_player_pawn}{00011}}\ class\ \mbox{\hyperlink{_unreal_editor_2_debug_game_2_my_project2_2_definitions_8_my_project2_8h_a2f93b02f35bbefa1d666cf587191d830}{MYPROJECT2\_API}}\ \mbox{\hyperlink{class_a_a_i_player_pawn}{AAIPlayerPawn}}\ :\ public\ APawn}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00013}00013\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00015}00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//\ Sets\ default\ values\ for\ this\ pawn's\ properties}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_a_a_i_player_pawn}{AAIPlayerPawn}}();}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ SetRuledCountry(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ GetRuledCountry()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00023}00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ Called\ when\ the\ game\ starts\ or\ when\ spawned}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ BeginPlay()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00027}00027\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00028}00028\ \ \ \ \ \textcolor{comment}{//\ Called\ every\ frame}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Tick(\textcolor{keywordtype}{float}\ DeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Called\ to\ bind\ functionality\ to\ input}}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ SetupPlayerInputComponent(\textcolor{keyword}{class}\ UInputComponent*\ PlayerInputComponent)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00033}00033\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00034}00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00035}00035\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00036}00036\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ RuledCountry;}
+\DoxyCodeLine{\Hypertarget{_a_i_player_pawn_8h_source_l00037}00037\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,22 @@
+\doxysection{Alliance\+Members\+Observable.\+h}
+\hypertarget{_alliance_members_observable_8h_source}{}\label{_alliance_members_observable_8h_source}\index{Source/MyProject2/Public/Diplomacy/Interfaces/Observables/AllianceMembersObservable.h@{Source/MyProject2/Public/Diplomacy/Interfaces/Observables/AllianceMembersObservable.h}}
+\mbox{\hyperlink{_alliance_members_observable_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliance_8h}{Diplomacy/Instances/Alliance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliance_members_observer_8h}{Diplomacy/Interfaces/Observers/AllianceMembersObserver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00005}\mbox{\hyperlink{class_i_alliance_members_observable}{00005}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_alliance_members_observable}{IAllianceMembersObservable}}}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00007}00007\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_alliance_members_observable_af722de49c57ae1a2da3dd71a06c791ca}{NotifyMemberJoining}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00009}00009\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_alliance_members_observable_aa6402ed050a55d6e59801866b4f5fe4d}{AddAllianceMembersObserver}}(\mbox{\hyperlink{class_i_alliance_members_observer}{IAllianceMembersObserver}}*\ Observer);}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00011}00011\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_alliance_members_observable_a89e83d96d62708a8ee69c20d36c940be}{RemoveAllianceMembersObserver}}(\mbox{\hyperlink{class_i_alliance_members_observer}{IAllianceMembersObserver}}*\ Observer);}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00013}00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00014}00014\ \ \ \ \ TArray<IAllianceMembersObserver*>\ Observers;}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00015}00015\ \};}
+\DoxyCodeLine{\Hypertarget{_alliance_members_observable_8h_source_l00016}00016\ }
+
+\end{DoxyCode}

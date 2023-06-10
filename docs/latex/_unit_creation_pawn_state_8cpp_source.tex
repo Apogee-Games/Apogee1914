@@ -1,0 +1,62 @@
+\doxysection{Unit\+Creation\+Pawn\+State.\+cpp}
+\hypertarget{_unit_creation_pawn_state_8cpp_source}{}\label{_unit_creation_pawn_state_8cpp_source}\index{Source/MyProject2/Private/Characters/StateMachine/UnitCreationPawnState.cpp@{Source/MyProject2/Private/Characters/StateMachine/UnitCreationPawnState.cpp}}
+\mbox{\hyperlink{_unit_creation_pawn_state_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_creation_pawn_state_8h}{Characters/StateMachine/UnitCreationPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_browsing_pawn_state_8h}{Characters/StateMachine/MapBrowsingPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selection_map_8h}{Maps/Selection/SelectionMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_factory_8h}{Military/Managers/UnitsFactory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_types_list_widget_8h}{Widgets/Military/Creation/UnitTypesListWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00009}\mbox{\hyperlink{class_f_unit_creation_pawn_state_a2baef9e465b5629428673e28360a049a}{00009}}\ TSharedPtr<FPawnState>\ \mbox{\hyperlink{class_f_unit_creation_pawn_state_a2baef9e465b5629428673e28360a049a}{FUnitCreationPawnState::GetInstance}}()}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Instance)}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ Instance\ =\ TSharedPtr<FUnitCreationPawnState>(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_f_unit_creation_pawn_state}{FUnitCreationPawnState}});}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00014}00014\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00016}00016\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00018}\mbox{\hyperlink{class_f_unit_creation_pawn_state_aa95d4e4f1fd54b47674a827887073444}{00018}}\ TSharedPtr<FPawnState>\ \mbox{\hyperlink{class_f_unit_creation_pawn_state_aa95d4e4f1fd54b47674a827887073444}{FUnitCreationPawnState::LeftClick}}(APawn*\ ProvidedPawn)}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn\ =\ Cast<AHumanPlayerPawn>(ProvidedPawn);}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_ae7ace3a302bb304debb6aff521a382d7}{GetSelectedUnitDescription}}())\ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00023}00023\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{class_u_selection_map}{USelectionMap}}*\ SelectionMap\ =\ Pawn-\/>GetWorld()-\/>GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_selection_map}{USelectionMap}}>();}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_u_province}{UProvince}}*\ Province\ =\ SelectionMap-\/>\mbox{\hyperlink{class_u_selection_map_a83e936f6458d3b3a0eeb1af422b942b8}{SelectProvince}}(Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_a98a08b3a098872514854648ca3bd4e59}{GetMapPosition}}(Pawn));}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a559f6ca83acfd176f44c7a5aa52b4e19}{GetRuledCountry}}()\ !=\ Province-\/>GetCountryController())\ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_u_units_factory}{UUnitsFactory}}*\ UnitsFactory\ =\ Pawn-\/>GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_units_factory}{UUnitsFactory}}>();}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00032}00032\ \ \ \ \ UnitsFactory-\/>\mbox{\hyperlink{class_u_units_factory_acf45528d03c519813106d63dff265c33}{CreateUnit}}(Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_ae7ace3a302bb304debb6aff521a382d7}{GetSelectedUnitDescription}}(),\ Province);}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ method\ overload\ to\ be\ able\ to\ pass\ country\ not\ just\ its\ tag}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00038}\mbox{\hyperlink{class_f_unit_creation_pawn_state_abd3c4c03553409f32e91b4d8ab79e876}{00038}}\ TSharedPtr<FPawnState>\ \mbox{\hyperlink{class_f_unit_creation_pawn_state_abd3c4c03553409f32e91b4d8ab79e876}{FUnitCreationPawnState::RightClick}}(APawn*\ ProvidedPawn)}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_f_map_browsing_pawn_state_a230a615dd424fa408439094deb42a031}{FMapBrowsingPawnState::GetInstance}}()-\/>RightClick(ProvidedPawn);\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00043}\mbox{\hyperlink{class_f_unit_creation_pawn_state_a9ebcc2ba4bf674204853d2e227c5966f}{00043}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_unit_creation_pawn_state_a9ebcc2ba4bf674204853d2e227c5966f}{FUnitCreationPawnState::MustWidgetBeVisible}}(UUserWidget*\ Widget)}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{class_u_unit_types_list_widget}{UUnitTypesListWidget}}*\textcolor{keyword}{>}(Widget)\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00048}\mbox{\hyperlink{class_f_unit_creation_pawn_state_a93eda9f17b1b90eb5e7619912508db79}{00048}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_unit_creation_pawn_state_a93eda9f17b1b90eb5e7619912508db79}{FUnitCreationPawnState::CanWidgetBeVisible}}(UUserWidget*\ Widget)}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00049}00049\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_f_unit_creation_pawn_state_a9ebcc2ba4bf674204853d2e227c5966f}{MustWidgetBeVisible}}(Widget);}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00053}00053\ FUnitCreationPawnState::FUnitCreationPawnState()}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00054}00054\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_creation_pawn_state_8cpp_source_l00056}00056\ }
+
+\end{DoxyCode}

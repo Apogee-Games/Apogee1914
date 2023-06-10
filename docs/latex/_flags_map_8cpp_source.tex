@@ -1,0 +1,126 @@
+\doxysection{Flags\+Map.\+cpp}
+\hypertarget{_flags_map_8cpp_source}{}\label{_flags_map_8cpp_source}\index{Source/MyProject2/Private/Maps/Flags/FlagsMap.cpp@{Source/MyProject2/Private/Maps/Flags/FlagsMap.cpp}}
+\mbox{\hyperlink{_flags_map_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_flags_map_8h}{Maps/Flags/FlagsMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_level_game_state_8h}{LevelsOverides/Game/GameLevelGameState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_flag_box_updater_8h}{Maps/Flags/FlagBoxUpdater.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_provinces_map_8h}{Maps/Precalculations/ProvincesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_utils_8h}{Utils/TextureUtils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00010}\mbox{\hyperlink{class_u_flags_map_a2b8b36c34aaf00e0156a595394223fa4}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_flags_map_a2b8b36c34aaf00e0156a595394223fa4}{UFlagsMap::Initialize}}(FSubsystemCollectionBase\&\ Collection)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00012}00012\ \ \ \ \ Super::Initialize(Collection);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00013}00013\ \ \ \ \ Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())-\/>BoxesMapClass);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00014}00014\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_boxes_map}{UBoxesMap}}>()-\/>AddBoxObserver(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00017}\mbox{\hyperlink{class_u_flags_map_ad6d0ea37d6aedcefc1f1a253007de0e2}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_flags_map_ad6d0ea37d6aedcefc1f1a253007de0e2}{UFlagsMap::Tick}}()}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (IsUpdated)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00020}00020\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ FlagsMapTexture-\/>UpdateResource();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ IsUpdated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00026}\mbox{\hyperlink{class_u_flags_map_aa079d8429e6d2e3c0fa54f181d8c16bd}{00026}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_flags_map_aa079d8429e6d2e3c0fa54f181d8c16bd}{UFlagsMap::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00028}00028\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00029}00029\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00032}\mbox{\hyperlink{class_u_flags_map_aec558c9b41caaaa4fb646e29985d87c0}{00032}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_flags_map_aec558c9b41caaaa4fb646e29985d87c0}{UFlagsMap::UpdateAllBoxes}}()}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{class_u_flags_map_a9fa382f525097e9d389a94b53a22b780}{UpdateBoxes}}(GetGameInstance()-\/>GetSubsystem<UBoxesMap>()-\/>GetBoxes());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00037}00037\ FRunnableThread*\ UFlagsMap::UpdateBox(\textcolor{keyword}{const}\ TSharedPtr<FProvincesBox>\&\ Box,\ FColor*\ FlagsColors,\ \textcolor{keyword}{const}\ FColor*\ CountryFlagColor,\ \textcolor{keyword}{const}\ FVector2d\&\ CountryFlagColorSizeVector)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_u_provinces_map}{UProvincesMap}}*\ ProvincesMap\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_provinces_map}{UProvincesMap}}>();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00040}00040\ \ \ \ \ FRunnable*\ Runnable\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_f_flag_box_updater}{FFlagBoxUpdater}}(Box,\ ProvincesMap,\ FlagsColors,\ CountryFlagColor,\ CountryFlagColorSizeVector);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{return}\ FRunnableThread::Create(Runnable,\ *Box-\/>GetCountry()-\/>GetTag().ToString());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00044}00044\ \textcolor{keyword}{const}\ FColor*\ UFlagsMap::GetCountryFlagColors(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00045}00045\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (!CountriesFlagColors.Contains(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}))}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00047}00047\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ CountriesFlagColorsCount.Add(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ 0);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ CountriesFlagColors.Add(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ \mbox{\hyperlink{class_f_texture_utils_a8c1159b872ca709a8afb50e8c6d52bdf}{FTextureUtils::GetPixels}}(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>GetFlag(),\ LOCK\_READ\_ONLY));}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00051}00051\ \ \ \ \ CountriesFlagColorsCount[\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}]++;}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{return}\ CountriesFlagColors[\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}];}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00055}00055\ \textcolor{keywordtype}{void}\ UFlagsMap::UnlockAllCountriesFlagColors()}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00056}00056\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ CountryColors]:\ CountriesFlagColors)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_f_texture_utils_aeb5cc9c4bf836375685c81435835c4e5}{FTextureUtils::UnlockPixels}}(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>GetFlag());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00061}00061\ \ \ \ \ CountriesFlagColorsCount.Empty();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00062}00062\ \ \ \ \ CountriesFlagColors.Empty();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00065}00065\ \textcolor{keywordtype}{void}\ UFlagsMap::Clear()}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00067}00067\ \ \ \ \ FlagsMapTexture\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00068}00068\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00069}00069\ \ \ \ \ UnlockAllCountriesFlagColors();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00070}00070\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00071}00071\ \ \ \ \ CountriesFlagColors.Empty();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00072}00072\ \ \ \ \ CountriesFlagColorsCount.Empty();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00075}00075\ \textcolor{keywordtype}{void}\ UFlagsMap::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00076}00076\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00077}00077\ \ \ \ \ FlagsMapTexture\ =\ Scenario-\/>\mbox{\hyperlink{class_u_scenario_a2c626a396f8d659d9224c6bd9d23bfac}{FlagsMapTexture}};}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00078}00078\ \ \ \ \ SizeVector\ =\ \mbox{\hyperlink{class_f_texture_utils_acf015f4d7f91a2c03a508f23f86cbe84}{FTextureUtils::GetTextureSizeVector}}(FlagsMapTexture);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{class_u_flags_map_aec558c9b41caaaa4fb646e29985d87c0}{UpdateAllBoxes}}();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00080}00080\ \ \ \ \ FlagsMapTexture-\/>UpdateResource();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00083}\mbox{\hyperlink{class_u_flags_map_a9fa382f525097e9d389a94b53a22b780}{00083}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_flags_map_a9fa382f525097e9d389a94b53a22b780}{UFlagsMap::UpdateBoxes}}(\textcolor{keyword}{const}\ TArray<TSharedPtr<FProvincesBox>>\&\ Boxes)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00084}00084\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00085}00085\ \ \ \ \ TArray<FRunnableThread*>\ Threads;}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00086}00086\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00087}00087\ \ \ \ \ FColor*\ FlagsColors\ =\ \mbox{\hyperlink{class_f_texture_utils_a8c1159b872ca709a8afb50e8c6d52bdf}{FTextureUtils::GetPixels}}(FlagsMapTexture,\ LOCK\_READ\_WRITE);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Box:\ Boxes)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00090}00090\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FColor*\ CountryFlagColors\ =\ GetCountryFlagColors(Box-\/>GetCountry());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ FVector2d\ CountryFlagColorsSizeVector\ =\ \mbox{\hyperlink{class_f_texture_utils_acf015f4d7f91a2c03a508f23f86cbe84}{FTextureUtils::GetTextureSizeVector}}(Box-\/>GetCountry()-\/>GetFlag());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ Threads.Add(UpdateBox(Box,\ FlagsColors,\ CountryFlagColors,\ CountryFlagColorsSizeVector));}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00095}00095\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Thread:\ Threads)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00097}00097\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ Thread-\/>WaitForCompletion();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00101}00101\ \ \ \ \ UnlockAllCountriesFlagColors();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00102}00102\ \ \ \ \ \mbox{\hyperlink{class_f_texture_utils_aeb5cc9c4bf836375685c81435835c4e5}{FTextureUtils::UnlockPixels}}(FlagsMapTexture);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00104}00104\ \ \ \ \ IsUpdated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00105}00105\ \}}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00107}\mbox{\hyperlink{class_u_flags_map_aa5dcf060ad494a7d450d800fb79c6d85}{00107}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_flags_map_aa5dcf060ad494a7d450d800fb79c6d85}{UFlagsMap::BoxWasUpdated}}(\textcolor{keyword}{const}\ TSharedPtr<FProvincesBox>\&\ Box)}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00108}00108\ \{}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00109}00109\ \ \ \ \ FColor*\ FlagsColors\ =\ \mbox{\hyperlink{class_f_texture_utils_a8c1159b872ca709a8afb50e8c6d52bdf}{FTextureUtils::GetPixels}}(FlagsMapTexture,\ LOCK\_READ\_WRITE);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keyword}{const}\ FColor*\ CountryFlagColors\ =\ GetCountryFlagColors(Box-\/>GetCountry());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00112}00112\ \ \ \ \ FVector2d\ CountryFlagColorsSizeVector\ =\ \mbox{\hyperlink{class_f_texture_utils_acf015f4d7f91a2c03a508f23f86cbe84}{FTextureUtils::GetTextureSizeVector}}(Box-\/>GetCountry()-\/>GetFlag());}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00113}00113\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00114}00114\ \ \ \ \ UpdateBox(Box,\ FlagsColors,\ CountryFlagColors,\ CountryFlagColorsSizeVector)-\/>WaitForCompletion();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00115}00115\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00116}00116\ \ \ \ \ UnlockAllCountriesFlagColors();}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00117}00117\ \ \ \ \ \mbox{\hyperlink{class_f_texture_utils_aeb5cc9c4bf836375685c81435835c4e5}{FTextureUtils::UnlockPixels}}(FlagsMapTexture);}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00119}00119\ \ \ \ \ IsUpdated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_flags_map_8cpp_source_l00120}00120\ \}}
+
+\end{DoxyCode}

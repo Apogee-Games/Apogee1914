@@ -1,0 +1,40 @@
+\doxysection{Unit\+Description.\+h}
+\hypertarget{_unit_description_8h_source}{}\label{_unit_description_8h_source}\index{Source/MyProject2/Public/Military/Descriptions/UnitDescription.h@{Source/MyProject2/Public/Military/Descriptions/UnitDescription.h}}
+\mbox{\hyperlink{_unit_description_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_military_branch_description_8h}{MilitaryBranchDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_good_description_8h}{Economics/Description/Goods/GoodDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_description_8generated_8h}{UnitDescription.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00006}00006\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00007}\mbox{\hyperlink{class_u_unit_description}{00007}}\ class\ \mbox{\hyperlink{class_u_unit_description}{UUnitDescription}}:\ public\ UPrimaryDataAsset}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00009}00009\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00010}00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00011}00011\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00012}\mbox{\hyperlink{class_u_unit_description_ab3b3198d76ac8ba2eb3735610093f149}{00012}}\ \ \ \ \ FName\ UnitName;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00013}00013\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00014}00014\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00015}\mbox{\hyperlink{class_u_unit_description_a36e4408d1c94546683d6b2778429c991}{00015}}\ \ \ \ \ \mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ MilitaryBranch;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00016}00016\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00018}\mbox{\hyperlink{class_u_unit_description_a75e40105e2c5c62bc48df2019135eff4}{00018}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ CanTransport;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00020}00020\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00021}\mbox{\hyperlink{class_u_unit_description_a4b4ec2004661b5130cbcaae969536f64}{00021}}\ \ \ \ \ TMap<\mbox{\hyperlink{class_u_good_description}{UGoodDescription}}*,\ int32>\ EquipmentRequirements;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00023}00023\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00024}\mbox{\hyperlink{class_u_unit_description_adba22c5a859abbd6fbe65181685aa594}{00024}}\ \ \ \ \ int32\ ManpowerRequirements;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00026}00026\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00027}\mbox{\hyperlink{class_u_unit_description_a8e9b05b63b6a86c982646011d6b6c28b}{00027}}\ \ \ \ \ \textcolor{keywordtype}{float}\ Attack;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00029}00029\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00030}\mbox{\hyperlink{class_u_unit_description_a9758b51b63841c08b94bb533436cdf29}{00030}}\ \ \ \ \ \textcolor{keywordtype}{float}\ Defence;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00031}00031\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00032}00032\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00033}\mbox{\hyperlink{class_u_unit_description_a3dc6495b94e8de78730310adc8f20640}{00033}}\ \ \ \ \ \textcolor{keywordtype}{float}\ PersonDeathScore;}
+\DoxyCodeLine{\Hypertarget{_unit_description_8h_source_l00034}00034\ \};}
+
+\end{DoxyCode}

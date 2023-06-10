@@ -1,0 +1,20 @@
+\doxysection{Province\+Owner\+Checker.\+cpp}
+\hypertarget{_province_owner_checker_8cpp_source}{}\label{_province_owner_checker_8cpp_source}\index{Source/MyProject2/Private/Actions/ConditionCheckers/ProvinceOwnerChecker.cpp@{Source/MyProject2/Private/Actions/ConditionCheckers/ProvinceOwnerChecker.cpp}}
+\mbox{\hyperlink{_province_owner_checker_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_owner_checker_8h}{Actions/ConditionCheckers/ProvinceOwnerChecker.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00004}\mbox{\hyperlink{class_f_province_owner_condition_checker_aad2e73de92486d19e57123db60434037}{00004}}\ \mbox{\hyperlink{class_f_province_owner_condition_checker_aad2e73de92486d19e57123db60434037}{FProvinceOwnerConditionChecker::FProvinceOwnerConditionChecker}}(\mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}*\ ProvinceManager):ProvinceManager(ProvinceManager)}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00009}\mbox{\hyperlink{class_f_province_owner_condition_checker_a2cb1d684412dd43b6e8ca62a4d1a0e4f}{00009}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_province_owner_condition_checker_a2cb1d684412dd43b6e8ca62a4d1a0e4f}{FProvinceOwnerConditionChecker::Check}}(\textcolor{keyword}{const}\ TMap<FName,\ FString>\&\ Values)}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00011}00011\ \textcolor{comment}{//\ \ UProvince*\ Province\ =\ ProvinceManager-\/>GetProvince(FName(*Values["{}Province"{}]));}}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00012}00012\ \textcolor{comment}{//\ \ return\ Province-\/>GetOwnerCountry()-\/>GetTag()\ ==\ FName(*Values["{}Country"{}]);}}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_province_owner_checker_8cpp_source_l00014}00014\ \}}
+
+\end{DoxyCode}

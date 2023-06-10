@@ -1,0 +1,83 @@
+\doxysection{FDate\+Passed\+Condition\+Checker Class Reference}
+\hypertarget{class_f_date_passed_condition_checker}{}\label{class_f_date_passed_condition_checker}\index{FDatePassedConditionChecker@{FDatePassedConditionChecker}}
+
+
+Event condition checker that checks if provided date have pass relatively to in game time.  
+
+
+
+
+{\ttfamily \#include $<$Date\+Passed\+Condition\+Checker.\+h$>$}
+
+Inheritance diagram for FDate\+Passed\+Condition\+Checker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_date_passed_condition_checker}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_date_passed_condition_checker_a7292c1641e2c27daa6a0a2629467818a}{FDate\+Passed\+Condition\+Checker}} (\mbox{\hyperlink{class_u_in_game_time}{UIn\+Game\+Time}} \texorpdfstring{$\ast$}{*}Game\+Time)
+\item 
+virtual bool \mbox{\hyperlink{class_f_date_passed_condition_checker_af72362eb571d5d6a9c79f5a980200bf3}{Check}} (const TMap$<$ FName, FString $>$ \&Values) override
+\begin{DoxyCompactList}\small\item\em Method that checks date condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_f_condition_checker}{FCondition\+Checker}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{class_f_condition_checker_aa7e3b607af75e655e233705b6eb1012a}{Check}} (const TMap$<$ FName, FString $>$ \&Values)=0
+\item 
+virtual \mbox{\hyperlink{class_f_condition_checker_aab4c8b0c46a9d800bc52a5dfd1802784}{\texorpdfstring{$\sim$}{\string~}\+FCondition\+Checker}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Event condition checker that checks if provided date have pass relatively to in game time. 
+
+Definition at line \mbox{\hyperlink{_date_passed_condition_checker_8h_source_l00008}{8}} of file \mbox{\hyperlink{_date_passed_condition_checker_8h_source}{Date\+Passed\+Condition\+Checker.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_f_date_passed_condition_checker_a7292c1641e2c27daa6a0a2629467818a}\label{class_f_date_passed_condition_checker_a7292c1641e2c27daa6a0a2629467818a} 
+\index{FDatePassedConditionChecker@{FDatePassedConditionChecker}!FDatePassedConditionChecker@{FDatePassedConditionChecker}}
+\index{FDatePassedConditionChecker@{FDatePassedConditionChecker}!FDatePassedConditionChecker@{FDatePassedConditionChecker}}
+\doxysubsubsection{\texorpdfstring{FDatePassedConditionChecker()}{FDatePassedConditionChecker()}}
+{\footnotesize\ttfamily FDate\+Passed\+Condition\+Checker\+::\+FDate\+Passed\+Condition\+Checker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_in_game_time}{UIn\+Game\+Time}} \texorpdfstring{$\ast$}{*}}]{Game\+Time }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_date_passed_condition_checker_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_date_passed_condition_checker_8cpp_source}{Date\+Passed\+Condition\+Checker.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_f_date_passed_condition_checker_af72362eb571d5d6a9c79f5a980200bf3}\label{class_f_date_passed_condition_checker_af72362eb571d5d6a9c79f5a980200bf3} 
+\index{FDatePassedConditionChecker@{FDatePassedConditionChecker}!Check@{Check}}
+\index{Check@{Check}!FDatePassedConditionChecker@{FDatePassedConditionChecker}}
+\doxysubsubsection{\texorpdfstring{Check()}{Check()}}
+{\footnotesize\ttfamily bool FDate\+Passed\+Condition\+Checker\+::\+Check (\begin{DoxyParamCaption}\item[{const TMap$<$ FName, FString $>$ \&}]{Values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Method that checks date condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Values} & -\/ provided values, should have Year field -\/ to represent desired year Month field -\/ to represent desired month Day field -\/ to represent desired day Hour field -\/ to represent desired hour \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_f_condition_checker_aa7e3b607af75e655e233705b6eb1012a}{FCondition\+Checker}}.
+
+
+
+Definition at line \mbox{\hyperlink{_date_passed_condition_checker_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{_date_passed_condition_checker_8cpp_source}{Date\+Passed\+Condition\+Checker.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Actions/\+Condition\+Checkers/\mbox{\hyperlink{_date_passed_condition_checker_8h}{Date\+Passed\+Condition\+Checker.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Actions/\+Condition\+Checkers/\mbox{\hyperlink{_date_passed_condition_checker_8cpp}{Date\+Passed\+Condition\+Checker.\+cpp}}\end{DoxyCompactItemize}

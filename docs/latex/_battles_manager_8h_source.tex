@@ -1,0 +1,51 @@
+\doxysection{Battles\+Manager.\+h}
+\hypertarget{_battles_manager_8h_source}{}\label{_battles_manager_8h_source}\index{Source/MyProject2/Public/Military/Managers/BattlesManager.h@{Source/MyProject2/Public/Military/Managers/BattlesManager.h}}
+\mbox{\hyperlink{_battles_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00001}00001\ \textcolor{comment}{//\ Fill\ out\ your\ copyright\ notice\ in\ the\ Description\ page\ of\ Project\ Settings.}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00003}00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scenario_8h}{Scenario.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_factory_8h}{UnitsFactory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_mover_8h}{UnitsMover.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_8h}{Administration/Instances/Province.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_battles_manager_8generated_8h}{BattlesManager.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00015}00015\ UCLASS(Abstract,\ Blueprintable)}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00016}\mbox{\hyperlink{class_u_battles_manager}{00016}}\ class\ \mbox{\hyperlink{_unreal_editor_2_debug_game_2_my_project2_2_definitions_8_my_project2_8h_a2f93b02f35bbefa1d666cf587191d830}{MYPROJECT2\_API}}\ \mbox{\hyperlink{class_u_battles_manager}{UBattlesManager}}\ :\ public\ UGameInstanceSubsystem}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00018}00018\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00019}00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{void}\ SetScenario(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00022}00022\ \ \ \ \ \textcolor{keywordtype}{void}\ AddBattle(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}\ Tick();}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00026}00026\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00027}\mbox{\hyperlink{class_u_battles_manager_afb8230b7ea89bdc1a1d25d88b436dff3}{00027}}\ \ \ \ \ FTimespan\ BattleUpdateMidDelta\ =\ FTimespan(1,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00029}00029\ private:}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00030}00030\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00031}00031\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_province}{UProvince}}*>\ Provinces;}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00033}00033\ \ \ \ \ TQueue<\mbox{\hyperlink{class_u_province}{UProvince}}*>\ FinishedBattleProvinces;}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{void}\ Clear();}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{void}\ Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{void}\ TickBattle(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province,\ \mbox{\hyperlink{class_u_units_mover}{UUnitsMover}}*\ UnitsMover,\ \mbox{\hyperlink{class_u_units_factory}{UUnitsFactory}}*\ UnitsFactory);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{float}\ CalculateAttackScore(const\ TArray<\mbox{\hyperlink{class_u_unit}{UUnit}}*>\&\ Units);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{void}\ ApplyDamage(const\ TArray<\mbox{\hyperlink{class_u_unit}{UUnit}}*>\&\ Units,\ \textcolor{keywordtype}{float}\ AttackScore,\ TQueue<\mbox{\hyperlink{class_u_unit}{UUnit}}*>\&\ UnitsToRemove,\ \mbox{\hyperlink{class_u_units_mover}{UUnitsMover}}*\ UnitsMover);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveUnits(TQueue<\mbox{\hyperlink{class_u_unit}{UUnit}}*>\&\ UnitsToRemove,\ \mbox{\hyperlink{class_u_units_factory}{UUnitsFactory}}*\ UnitsFactory);}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00047}00047\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveFinishedBattles();}
+\DoxyCodeLine{\Hypertarget{_battles_manager_8h_source_l00048}00048\ \};}
+
+\end{DoxyCode}

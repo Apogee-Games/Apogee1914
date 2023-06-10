@@ -1,0 +1,67 @@
+\doxysection{UOutcomes\+Applier\+Subsystem Class Reference}
+\hypertarget{class_u_outcomes_applier_subsystem}{}\label{class_u_outcomes_applier_subsystem}\index{UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}}
+
+
+{\ttfamily \#include $<$Outcomes\+Applier\+Subsystem.\+h$>$}
+
+Inheritance diagram for UOutcomes\+Applier\+Subsystem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_outcomes_applier_subsystem}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_outcomes_applier_subsystem_a70cd2737dfb51873737faef270cbcacc}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+void \mbox{\hyperlink{class_u_outcomes_applier_subsystem_afc74dc9a3b95e3527f0fffe09b8f6965}{Register\+Outcome\+Applier}} (const FName \&Name, \mbox{\hyperlink{class_f_outcome_applier}{FOutcome\+Applier}} \texorpdfstring{$\ast$}{*}Outcome\+Applier)
+\item 
+void \mbox{\hyperlink{class_u_outcomes_applier_subsystem_ad4d0d27d676940a1335c920adfeccd7c}{Apply\+Outcomes}} (TArray$<$ \mbox{\hyperlink{struct_f_outcome}{FOutcome}} $>$ \&Outcomes, \mbox{\hyperlink{class_u_country_description}{UCountry\+Description}} \texorpdfstring{$\ast$}{*}Country\+Description)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class manages separate outcome appliers and allows to apply choice outcomes 
+
+Definition at line \mbox{\hyperlink{_outcomes_applier_subsystem_8h_source_l00010}{10}} of file \mbox{\hyperlink{_outcomes_applier_subsystem_8h_source}{Outcomes\+Applier\+Subsystem.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_outcomes_applier_subsystem_ad4d0d27d676940a1335c920adfeccd7c}\label{class_u_outcomes_applier_subsystem_ad4d0d27d676940a1335c920adfeccd7c} 
+\index{UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}!ApplyOutcomes@{ApplyOutcomes}}
+\index{ApplyOutcomes@{ApplyOutcomes}!UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}}
+\doxysubsubsection{\texorpdfstring{ApplyOutcomes()}{ApplyOutcomes()}}
+{\footnotesize\ttfamily void UOutcomes\+Applier\+Subsystem\+::\+Apply\+Outcomes (\begin{DoxyParamCaption}\item[{TArray$<$ \mbox{\hyperlink{struct_f_outcome}{FOutcome}} $>$ \&}]{Outcomes,  }\item[{\mbox{\hyperlink{class_u_country_description}{UCountry\+Description}} \texorpdfstring{$\ast$}{*}}]{Country\+Description }\end{DoxyParamCaption})}
+
+Method used to apply event choice outcomes 
+
+Definition at line \mbox{\hyperlink{_outcomes_applier_subsystem_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{_outcomes_applier_subsystem_8cpp_source}{Outcomes\+Applier\+Subsystem.\+cpp}}.
+
+\Hypertarget{class_u_outcomes_applier_subsystem_afc74dc9a3b95e3527f0fffe09b8f6965}\label{class_u_outcomes_applier_subsystem_afc74dc9a3b95e3527f0fffe09b8f6965} 
+\index{UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}!RegisterOutcomeApplier@{RegisterOutcomeApplier}}
+\index{RegisterOutcomeApplier@{RegisterOutcomeApplier}!UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}}
+\doxysubsubsection{\texorpdfstring{RegisterOutcomeApplier()}{RegisterOutcomeApplier()}}
+{\footnotesize\ttfamily void UOutcomes\+Applier\+Subsystem\+::\+Register\+Outcome\+Applier (\begin{DoxyParamCaption}\item[{const FName \&}]{Name,  }\item[{\mbox{\hyperlink{class_f_outcome_applier}{FOutcome\+Applier}} \texorpdfstring{$\ast$}{*}}]{Outcome\+Applier }\end{DoxyParamCaption})}
+
+Method used to add choice outcome applier 
+
+Definition at line \mbox{\hyperlink{_outcomes_applier_subsystem_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_outcomes_applier_subsystem_8cpp_source}{Outcomes\+Applier\+Subsystem.\+cpp}}.
+
+\Hypertarget{class_u_outcomes_applier_subsystem_a70cd2737dfb51873737faef270cbcacc}\label{class_u_outcomes_applier_subsystem_a70cd2737dfb51873737faef270cbcacc} 
+\index{UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UOutcomesApplierSubsystem@{UOutcomesApplierSubsystem}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UOutcomes\+Applier\+Subsystem\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_outcomes_applier_subsystem_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{_outcomes_applier_subsystem_8cpp_source}{Outcomes\+Applier\+Subsystem.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Actions/\+Outcome\+Appliers/\mbox{\hyperlink{_outcomes_applier_subsystem_8h}{Outcomes\+Applier\+Subsystem.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Actions/\+Outcome\+Appliers/\mbox{\hyperlink{_outcomes_applier_subsystem_8cpp}{Outcomes\+Applier\+Subsystem.\+cpp}}\end{DoxyCompactItemize}

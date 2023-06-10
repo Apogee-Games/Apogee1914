@@ -1,0 +1,116 @@
+\doxysection{Alliance.\+cpp}
+\hypertarget{_alliance_8cpp_source}{}\label{_alliance_8cpp_source}\index{Source/MyProject2/Private/Diplomacy/Instances/Alliance.cpp@{Source/MyProject2/Private/Diplomacy/Instances/Alliance.cpp}}
+\mbox{\hyperlink{_alliance_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliance_8h}{Diplomacy/Instances/Alliance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00005}\mbox{\hyperlink{class_u_alliance_a8a0a443b4754a0b3a02ee75c0f4e5c96}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_a8a0a443b4754a0b3a02ee75c0f4e5c96}{UAlliance::Init}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ ProvidedAllianceLeader,\ \textcolor{keyword}{const}\ FText\&\ ProvidedAllianceName,\ \textcolor{keyword}{const}\ TArray<UCountry*>\&\ InvitedCountries)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00007}00007\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_a8a0a443b4754a0b3a02ee75c0f4e5c96}{Init}}(ProvidedAllianceLeader,\ ProvidedAllianceName);}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00009}00009\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ InvitedCountry:\ InvitedCountries)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00010}00010\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_alliance_a5bd0352a03e101f4e463c2d6d31b5a05}{AddMember}}(InvitedCountry);}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00012}00012\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00015}\mbox{\hyperlink{class_u_alliance_ab0e34474e988582dec0d6adc761aa9e3}{00015}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_a8a0a443b4754a0b3a02ee75c0f4e5c96}{UAlliance::Init}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ ProvidedAllianceLeader,\ \textcolor{keyword}{const}\ FText\&\ ProvidedAllianceName)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00017}00017\ \ \ \ \ ProvidedAllianceLeader-\/>\mbox{\hyperlink{class_u_country_a9d431dd4158fa11a99e0558d2a8d0ab1}{SetAlliance}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00018}00018\ \ \ \ \ AllianceLeader\ =\ ProvidedAllianceLeader;}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00019}00019\ \ \ \ \ Members.Add(AllianceLeader);}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00020}00020\ \ \ \ \ AllianceName\ =\ ProvidedAllianceName;}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00023}\mbox{\hyperlink{class_u_alliance_a5bd0352a03e101f4e463c2d6d31b5a05}{00023}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_a5bd0352a03e101f4e463c2d6d31b5a05}{UAlliance::AddMember}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Member:\ Members)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ Member-\/>SetRelation(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca07f8af9aad288a7123a8c7daa2fc2243}{Allied}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>SetRelation(Member,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca07f8af9aad288a7123a8c7daa2fc2243}{Allied}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00030}00030\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00031}00031\ \ \ \ \ Members.Add(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>SetAlliance(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00033}00033\ \ \ \ \ Cast<URelationshipsManager>(GetOuter())-\/>NotifyMemberJoining(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00037}\mbox{\hyperlink{class_u_alliance_ac257515e3a7ed83844615c4011552149}{00037}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_ac257515e3a7ed83844615c4011552149}{UAlliance::RemoveMember}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00039}00039\ \ \ \ \ Members.Remove(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00040}00040\ \ \ \ \ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>SetAlliance(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//TODO:\ Check\ for\ leader\ and\ do\ leadership\ migration\ }}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00043}00043\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Member:\ Members)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00045}00045\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ Member-\/>SetRelation(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>SetRelation(Member,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00051}\mbox{\hyperlink{class_u_alliance_aa58659ec8d00adbc511f551da343ef19}{00051}}\ \textcolor{keyword}{const}\ FText\&\ \mbox{\hyperlink{class_u_alliance_aa58659ec8d00adbc511f551da343ef19}{UAlliance::GetName}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00052}00052\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{return}\ AllianceName;}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00056}\mbox{\hyperlink{class_u_alliance_a43d0b55805cfe16f27850e960ce17a33}{00056}}\ FColor\ \mbox{\hyperlink{class_u_alliance_a43d0b55805cfe16f27850e960ce17a33}{UAlliance::GetColor}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00057}00057\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{return}\ AllianceLeader-\/>\mbox{\hyperlink{class_u_country_aae4ede43bd1dbb01b1e96461240c7764}{GetColor}}();}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00059}00059\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00061}\mbox{\hyperlink{class_u_alliance_a4640595a46db904ebc9ea5a0e2f39091}{00061}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_alliance_a4640595a46db904ebc9ea5a0e2f39091}{UAlliance::CountryCanJoin}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00062}00062\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Member:\ Members)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00064}00064\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>IsInWarWith(Member))}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00071}00071\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00073}\mbox{\hyperlink{class_u_alliance_a9b02493372dfdb94837b93ecd6c86d42}{00073}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_alliance_a9b02493372dfdb94837b93ecd6c86d42}{UAlliance::IsCountryMember}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00074}00074\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{return}\ Members.Contains(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00078}\mbox{\hyperlink{class_u_alliance_a0a386a8bc6bdc6f34226c552c228b470}{00078}}\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{class_u_alliance_a0a386a8bc6bdc6f34226c552c228b470}{UAlliance::GetLeader}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00079}00079\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{return}\ AllianceLeader;}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00083}\mbox{\hyperlink{class_u_alliance_a2cea7d2fe2c2bbc8c174249481241875}{00083}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_alliance_a2cea7d2fe2c2bbc8c174249481241875}{UAlliance::IsCountryLeader}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00084}00084\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{return}\ AllianceLeader\ ==\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}};}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00086}00086\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00088}\mbox{\hyperlink{class_u_alliance_acb0b6c31cf79edcacbaf50669081a60a}{00088}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_acb0b6c31cf79edcacbaf50669081a60a}{UAlliance::Dissolve}}()}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00089}00089\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ MemberA:\ Members)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00091}00091\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ MemberB:\ Members)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ MemberA-\/>SetRelation(MemberB,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ MemberB-\/>SetRelation(MemberA,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00098}00098\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Member:\ Members)}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00100}00100\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ Member-\/>SetAlliance(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ removal\ observer\ :)}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00105}00105\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00107}\mbox{\hyperlink{class_u_alliance_a08ca744df08b9bdd1b2f73a1139c7885}{00107}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_u_alliance_a08ca744df08b9bdd1b2f73a1139c7885}{UAlliance::Size}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00108}00108\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{return}\ Members.Num();}
+\DoxyCodeLine{\Hypertarget{_alliance_8cpp_source_l00110}00110\ \}}
+
+\end{DoxyCode}

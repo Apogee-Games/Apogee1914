@@ -1,0 +1,35 @@
+\doxysection{Sphere\+Map\+Actor.\+h}
+\hypertarget{_sphere_map_actor_8h_source}{}\label{_sphere_map_actor_8h_source}\index{Source/MyProject2/Public/Characters/Components/SphereMapActor.h@{Source/MyProject2/Public/Characters/Components/SphereMapActor.h}}
+\mbox{\hyperlink{_sphere_map_actor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_actor_8h}{MapActor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sphere_map_actor_8generated_8h}{SphereMapActor.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00005}00005\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00006}\mbox{\hyperlink{class_a_sphere_map_actor}{00006}}\ class\ \mbox{\hyperlink{class_a_sphere_map_actor}{ASphereMapActor}}\ :\ public\ \mbox{\hyperlink{class_a_map_actor}{AMapActor}}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00008}00008\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00009}00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00010}00010\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00011}\mbox{\hyperlink{class_a_sphere_map_actor_a930444670b467afd77b118f72a284dfe}{00011}}\ \ \ \ \ float\ Radius\ =\ 1281.04114;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditDefaultsOnly)\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00014}\mbox{\hyperlink{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65}{00014}}\ \ \ \ \ FVector3d\ SphereCenter\ =\ FVector3d(159,\ 95,\ 81);}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00017}\mbox{\hyperlink{class_a_sphere_map_actor_a6edf6ac445faa5439e4d902b394ee7bf}{00017}}\ \ \ \ \ FRotator\ SphereRotation\ =\ FRotator(0,\ 100,\ 30);}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00020}\mbox{\hyperlink{class_a_sphere_map_actor_a4d351da73976af82cbb0411d0a122714}{00020}}\ \ \ \ \ FVector3d\ SpeedVector\ =\ FVector3d(100,\ 100,\ 100);}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00022}00022\ \ \ \ \ virtual\ FVector3d\ GetNewPosition(FVector3d\ Position,\ FVector3d\ Direction,\ FRotator\ Rotation,\ \textcolor{keywordtype}{float}\ DeltaTime)\ override;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00024}00024\ \ \ \ \ virtual\ FVector2d\ GetMapPosition(FVector3d\ WorldPosition)\ override;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00026}00026\ \ \ \ \ virtual\ FVector3d\ GetWorldPosition(FVector2d\ MapPosition)\ override;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00028}00028\ \ \ \ \ virtual\ FQuat\ GetNewRotation(FVector3d\ Position,\ FVector3d\ NewPosition,\ FQuat\ Rotation)\ override;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8h_source_l00029}00029\ \};}
+
+\end{DoxyCode}

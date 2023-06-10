@@ -1,0 +1,35 @@
+\doxysection{Selected\+Units\+List\+Widget.\+h}
+\hypertarget{_selected_units_list_widget_8h_source}{}\label{_selected_units_list_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Military/Selection/SelectedUnitsListWidget.h@{Source/MyProject2/Public/Widgets/Military/Selection/SelectedUnitsListWidget.h}}
+\mbox{\hyperlink{_selected_units_list_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_military_branch_units_list_widget_8h}{SelectedMilitaryBranchUnitsListWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_units_widget_8h}{SelectedUnitsWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_selection_component_8h}{Characters/Components/UnitsSelectionComponent.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}Components/ListView.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}Components/ScrollBox.h"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_collection_8h}{Military/Instances/Units/Collections/UnitsCollection.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_collection_group_8h}{Military/Instances/Units/Collections/UnitsCollectionGroup.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selected_units_list_widget_8generated_8h}{SelectedUnitsListWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00012}00012\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00013}\mbox{\hyperlink{class_u_selected_units_list_widget}{00013}}\ class\ \mbox{\hyperlink{class_u_selected_units_list_widget}{USelectedUnitsListWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00015}00015\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00016}00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00018}\mbox{\hyperlink{class_u_selected_units_list_widget_a69ccdb5d4ed59d2aea469bcf38ebe53f}{00018}}\ \ \ \ \ UScrollBox*\ UnitsListsScrollBox;}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00020}00020\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00021}\mbox{\hyperlink{class_u_selected_units_list_widget_af08bae8147235eca4902f907cd4c9940}{00021}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_u_selected_military_branch_units_list_widget}{USelectedMilitaryBranchUnitsListWidget}}>\ SelectedMilitaryBranchUnitsListWidgetCLass;}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00023}00023\ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00024}00024\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{void}\ SetSelections(const\ TMap<\mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*,\ \mbox{\hyperlink{struct_f_units_selection}{FUnitsSelection}}>\&\ Selections);}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00026}00026\ private:}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00027}00027\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00028}00028\ \ \ \ \ TMap<\mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*,\ \mbox{\hyperlink{class_u_selected_military_branch_units_list_widget}{USelectedMilitaryBranchUnitsListWidget}}*>\ MilitaryBranchUnitsListWidgets;}
+\DoxyCodeLine{\Hypertarget{_selected_units_list_widget_8h_source_l00029}00029\ \};}
+
+\end{DoxyCode}

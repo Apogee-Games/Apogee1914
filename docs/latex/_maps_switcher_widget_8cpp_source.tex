@@ -1,0 +1,56 @@
+\doxysection{Maps\+Switcher\+Widget.\+cpp}
+\hypertarget{_maps_switcher_widget_8cpp_source}{}\label{_maps_switcher_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Maps/MapsSwitcherWidget.cpp@{Source/MyProject2/Private/Widgets/Maps/MapsSwitcherWidget.cpp}}
+\mbox{\hyperlink{_maps_switcher_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_maps_switcher_widget_8h}{Widgets/Maps/MapsSwitcherWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_maps_switcher_8h}{Maps/MapsSwitcher.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00005}\mbox{\hyperlink{class_u_maps_switcher_widget_afc1e24ccf1341c64103139a560bb002d}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_maps_switcher_widget_afc1e24ccf1341c64103139a560bb002d}{UMapsSwitcherWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00007}00007\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_a1b54f3cb269d3d647c04e8cc6a7685e0}{FlagsMapButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnFlagsMapButtonClick);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_a4baf030febea8319d872790159db220f}{CountriesMapButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnCountriesMapButtonClick);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_a4545429c68d0412f4765caf42e03ab17}{RelationsMapButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnRelationsMapButtonClick);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_a9287ebd01b0b07f848f2e636c5d93434}{AlliancesMapButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnAlliancesMapButton);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_ace3bc309fd3171b22786557e0f5d297d}{IdeologyMapButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnIdeologyMapButtonClick);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00013}00013\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_a5eaf779d91f55268609535eda878218f}{SelectionMapCheckBox}}-\/>OnCheckStateChanged.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnSelectionMapCheckBoxCheck);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{class_u_maps_switcher_widget_a9d35191004b834080df2f7248dfdb9ba}{ProvinceOutlineMapCheckBox}}-\/>OnCheckStateChanged.AddDynamic(\textcolor{keyword}{this},\ \&UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00017}00017\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnFlagsMapButtonClick()}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00019}00019\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SelectFlagsMap(GetOwningPlayerPawn<AHumanPlayerPawn>());}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00022}00022\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnCountriesMapButtonClick()}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00024}00024\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SelectCountriesMap(GetOwningPlayerPawn<AHumanPlayerPawn>());}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00027}00027\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnRelationsMapButtonClick()}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00029}00029\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SelectRelationMap(GetOwningPlayerPawn<AHumanPlayerPawn>());}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00032}00032\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnAlliancesMapButton()}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00034}00034\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SelectAllianceMap(GetOwningPlayerPawn<AHumanPlayerPawn>());}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00037}00037\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnIdeologyMapButtonClick()}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00039}00039\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SelectIdeologyMap(GetOwningPlayerPawn<AHumanPlayerPawn>());}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00042}00042\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnSelectionMapCheckBoxCheck(\textcolor{keywordtype}{bool}\ Value)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00044}00044\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SetApplySelectionMap(GetOwningPlayerPawn<AHumanPlayerPawn>(),\ Value);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00047}00047\ \textcolor{keywordtype}{void}\ UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck(\textcolor{keywordtype}{bool}\ Value)}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00049}00049\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_maps_switcher}{UMapsSwitcher}}>()-\/>SetApplyProvinceOutlineMap(GetOwningPlayerPawn<AHumanPlayerPawn>(),\ Value);}
+\DoxyCodeLine{\Hypertarget{_maps_switcher_widget_8cpp_source_l00050}00050\ \}}
+
+\end{DoxyCode}

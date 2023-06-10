@@ -1,0 +1,31 @@
+\doxysection{Our\+Wars\+List\+Item\+Widget.\+cpp}
+\hypertarget{_our_wars_list_item_widget_8cpp_source}{}\label{_our_wars_list_item_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListItemWidget.cpp@{Source/MyProject2/Private/Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListItemWidget.cpp}}
+\mbox{\hyperlink{_our_wars_list_item_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_our_wars_list_item_widget_8h}{Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListItemWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_h_u_d_8h}{Characters/HUDs/HumanPlayerHUD.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00004}\mbox{\hyperlink{class_u_our_wars_list_item_widget_af355f0f5151ace4f633794f1b44f4fdc}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_our_wars_list_item_widget_af355f0f5151ace4f633794f1b44f4fdc}{UOurWarsListItemWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00006}00006\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00007}00007\ \ \ \ \ \mbox{\hyperlink{class_u_our_wars_list_item_widget_a41a418bc66014f5cb513f79a3dba7878}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UOurWarsListItemWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00010}\mbox{\hyperlink{class_u_our_wars_list_item_widget_a6ea7074472781ba268ec84c68f75f1cf}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_our_wars_list_item_widget_a6ea7074472781ba268ec84c68f75f1cf}{UOurWarsListItemWidget::SetWar}}(UObject*\ ProvidedWar)}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00012}00012\ \ \ \ \ War\ =\ Cast<UWar>(ProvidedWar);}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00015}\mbox{\hyperlink{class_u_our_wars_list_item_widget_ae2f432171aada9cc5f78e7484320b9d7}{00015}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_our_wars_list_item_widget_ae2f432171aada9cc5f78e7484320b9d7}{UOurWarsListItemWidget::RefreshData}}()}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_u_our_wars_list_item_widget_a7540fdc1421c077ece155d97445172bd}{AttackerFlagImage}}-\/>SetBrushResourceObject(War-\/>\mbox{\hyperlink{class_u_war_ae7923649df07d880710443045b5114ec}{GetAttackerLeader}}()-\/>\mbox{\hyperlink{class_u_country_a16735b2d91e920dbc49fff8e48567929}{GetFlag}}());}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_u_our_wars_list_item_widget_ab931e243aa57447a722a0b61e85562a3}{DefenderFlagImage}}-\/>SetBrushResourceObject(War-\/>\mbox{\hyperlink{class_u_war_ac78bda761427ed742d8943414bbc4098}{GetDefenderLeader}}()-\/>\mbox{\hyperlink{class_u_country_a16735b2d91e920dbc49fff8e48567929}{GetFlag}}());}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_u_our_wars_list_item_widget_a5250093fcc627ae40729aa49f54efde5}{WarNameTextBlock}}-\/>SetText(FText::FromString(War-\/>GetName()));}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00022}00022\ \textcolor{keywordtype}{void}\ UOurWarsListItemWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00024}00024\ \ \ \ \ GetOwningPlayer()-\/>GetHUD<\mbox{\hyperlink{class_a_human_player_h_u_d}{AHumanPlayerHUD}}>()-\/>GetOurWarsListWidget()-\/>SetSelectedWar(War);}
+\DoxyCodeLine{\Hypertarget{_our_wars_list_item_widget_8cpp_source_l00025}00025\ \}}
+
+\end{DoxyCode}

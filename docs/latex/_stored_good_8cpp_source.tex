@@ -1,0 +1,43 @@
+\doxysection{Stored\+Good.\+cpp}
+\hypertarget{_stored_good_8cpp_source}{}\label{_stored_good_8cpp_source}\index{Source/MyProject2/Private/Economics/Instances/StoredGood.cpp@{Source/MyProject2/Private/Economics/Instances/StoredGood.cpp}}
+\mbox{\hyperlink{_stored_good_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_stored_good_8h}{Economics/Instances/StoredGood.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00005}\mbox{\hyperlink{class_u_stored_good_a51c3ae47b11e7de17eba72759b123137}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_stored_good_a51c3ae47b11e7de17eba72759b123137}{UStoredGood::Init}}(\mbox{\hyperlink{class_u_good_description}{UGoodDescription}}*\ ProvidedGood,\ int32\ ProvidedAmount,\ \mbox{\hyperlink{class_u_storage}{UStorage}}*\ ProvidedStorage)}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00007}00007\ \ \ \ \ Good\ =\ ProvidedGood;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00008}00008\ \ \ \ \ Amount\ =\ ProvidedAmount;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00009}00009\ \ \ \ \ Storage\ =\ ProvidedStorage;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00012}\mbox{\hyperlink{class_u_stored_good_a2899cea4a73002370d5f8b44a98733ba}{00012}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_stored_good_a2899cea4a73002370d5f8b44a98733ba}{UStoredGood::Supply}}(int32\ SuppliedAmount)}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00014}00014\ \ \ \ \ Amount\ +=\ SuppliedAmount;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00017}\mbox{\hyperlink{class_u_stored_good_a9489829420dacc6a7809d7b51fbc2034}{00017}}\ int32\ \mbox{\hyperlink{class_u_stored_good_a9489829420dacc6a7809d7b51fbc2034}{UStoredGood::GetAmount}}()}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{return}\ Amount;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00022}\mbox{\hyperlink{class_u_stored_good_aae40452f5463b1cf639c65fcd6d54afa}{00022}}\ int32\ \mbox{\hyperlink{class_u_stored_good_aae40452f5463b1cf639c65fcd6d54afa}{UStoredGood::Demand}}(int32\ DemandedAmount)}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ PossibleAmount\ =\ FMath::Min(Amount,\ DemandedAmount);}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00025}00025\ \ \ \ \ Amount\ -\/=\ PossibleAmount;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ PossibleAmount;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00029}\mbox{\hyperlink{class_u_stored_good_ab958b50d63309e375cad0fb39d7c79a0}{00029}}\ \textcolor{keyword}{const}\ FText\&\ \mbox{\hyperlink{class_u_stored_good_ab958b50d63309e375cad0fb39d7c79a0}{UStoredGood::GetGoodName}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00030}00030\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{return}\ Good-\/>\mbox{\hyperlink{class_u_good_description_ab9cca0bfdc4c6fff7a6a451fe7231b75}{NameText}};}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00034}\mbox{\hyperlink{class_u_stored_good_af05680f96d6ccf128af8c79c422970b1}{00034}}\ \mbox{\hyperlink{class_u_storage}{UStorage}}*\ \mbox{\hyperlink{class_u_stored_good_af05680f96d6ccf128af8c79c422970b1}{UStoredGood::GetStorage}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00035}00035\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{return}\ Storage;}
+\DoxyCodeLine{\Hypertarget{_stored_good_8cpp_source_l00037}00037\ \}}
+
+\end{DoxyCode}

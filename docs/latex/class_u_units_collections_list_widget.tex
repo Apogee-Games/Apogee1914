@@ -1,0 +1,177 @@
+\doxysection{UUnits\+Collections\+List\+Widget Class Reference}
+\hypertarget{class_u_units_collections_list_widget}{}\label{class_u_units_collections_list_widget}\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+
+
+{\ttfamily \#include $<$Units\+Collections\+List\+Widget.\+h$>$}
+
+Inheritance diagram for UUnits\+Collections\+List\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.921811cm]{class_u_units_collections_list_widget}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_units_collections_list_widget_abfb689dd7747acaccfcf1dd12315e158}{Native\+Construct}} () override
+\item 
+virtual void \mbox{\hyperlink{class_u_units_collections_list_widget_a57a0b9f92a9ad588c37b335d2e15e1c7}{Units\+Collection\+Is\+Created}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection) override
+\item 
+virtual void \mbox{\hyperlink{class_u_units_collections_list_widget_a8e8e53ec3f18af2d7f52cfac41c39111}{Units\+Collection\+Group\+Is\+Created}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection\+Group) override
+\item 
+virtual void \mbox{\hyperlink{class_u_units_collections_list_widget_aa183b5305ecdbbbe1f72a719b0e0bf8f}{Units\+Collection\+Is\+Removed}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection) override
+\item 
+virtual void \mbox{\hyperlink{class_u_units_collections_list_widget_a1fcf5d4b8f60d0d064512795317f9903}{Units\+Collection\+Group\+Is\+Removed}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection\+Group) override
+\item 
+virtual void \mbox{\hyperlink{class_u_units_collections_list_widget_a51284f27f74099759783516566e466a3}{Native\+Destruct}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_creation_observer}{IUnits\+Collection\+Creation\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_units_collection_creation_observer_a82b2da3cafc0474dd0f845be52679596}{\texorpdfstring{$\sim$}{\string~}\+IUnits\+Collection\+Creation\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_units_collection_creation_observer_a33750df11bcf55b12c587ffbdaf73966}{Units\+Collection\+Is\+Created}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_group_creation_observer}{IUnits\+Collection\+Group\+Creation\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_units_collection_group_creation_observer_a771ee77f14c45c6fa68b20cb12246195}{\texorpdfstring{$\sim$}{\string~}\+IUnits\+Collection\+Group\+Creation\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_units_collection_group_creation_observer_a16eb4dcba3f886c771ea87344a286bcc}{Units\+Collection\+Group\+Is\+Created}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection\+Group)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_removal_observer}{IUnits\+Collection\+Removal\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_units_collection_removal_observer_a545de6af62a6ea59a31ca2b954eb466d}{\texorpdfstring{$\sim$}{\string~}\+IUnits\+Collection\+Removal\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_units_collection_removal_observer_a7c8121d139304d2ab45e20c1aa9af5ce}{Units\+Collection\+Is\+Removed}} (\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}Units\+Collection)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_units_collection_group_removal_observer}{IUnits\+Collection\+Group\+Removal\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_units_collection_group_removal_observer_a97fca67981917c6e572c67f464772e2f}{\texorpdfstring{$\sim$}{\string~}\+IUnits\+Collection\+Group\+Removal\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_units_collection_group_removal_observer_ab46d9bbaf04cf978b38dde7949da325a}{Units\+Collection\+Group\+Is\+Removed}} (\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}Units\+Collection\+Group)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+UScroll\+Box \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_units_collections_list_widget_a276e767c191d4cb69eef08d71267889d}{Military\+Branches\+Units\+Collections\+Scroll\+Box}}
+\item 
+TSubclass\+Of$<$ \mbox{\hyperlink{class_u_military_branch_units_collections_list_widget}{UMilitary\+Branch\+Units\+Collections\+List\+Widget}} $>$ \mbox{\hyperlink{class_u_units_collections_list_widget_af0946b9d678555cf03d5c29667504c71}{Military\+Branch\+Units\+Collections\+List\+Widget\+Class}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8h_source_l00014}{14}} of file \mbox{\hyperlink{_units_collections_list_widget_8h_source}{Units\+Collections\+List\+Widget.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_units_collections_list_widget_abfb689dd7747acaccfcf1dd12315e158}\label{class_u_units_collections_list_widget_abfb689dd7747acaccfcf1dd12315e158} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!NativeConstruct@{NativeConstruct}}
+\index{NativeConstruct@{NativeConstruct}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{NativeConstruct()}{NativeConstruct()}}
+{\footnotesize\ttfamily void UUnits\+Collections\+List\+Widget\+::\+Native\+Construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{_units_collections_list_widget_8cpp_source}{Units\+Collections\+List\+Widget.\+cpp}}.
+
+\Hypertarget{class_u_units_collections_list_widget_a51284f27f74099759783516566e466a3}\label{class_u_units_collections_list_widget_a51284f27f74099759783516566e466a3} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!NativeDestruct@{NativeDestruct}}
+\index{NativeDestruct@{NativeDestruct}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{NativeDestruct()}{NativeDestruct()}}
+{\footnotesize\ttfamily void UUnits\+Collections\+List\+Widget\+::\+Native\+Destruct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_units_collections_list_widget_8cpp_source}{Units\+Collections\+List\+Widget.\+cpp}}.
+
+\Hypertarget{class_u_units_collections_list_widget_a8e8e53ec3f18af2d7f52cfac41c39111}\label{class_u_units_collections_list_widget_a8e8e53ec3f18af2d7f52cfac41c39111} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!UnitsCollectionGroupIsCreated@{UnitsCollectionGroupIsCreated}}
+\index{UnitsCollectionGroupIsCreated@{UnitsCollectionGroupIsCreated}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{UnitsCollectionGroupIsCreated()}{UnitsCollectionGroupIsCreated()}}
+{\footnotesize\ttfamily void UUnits\+Collections\+List\+Widget\+::\+Units\+Collection\+Group\+Is\+Created (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}}]{Units\+Collection\+Group }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_units_collection_group_creation_observer_a16eb4dcba3f886c771ea87344a286bcc}{IUnits\+Collection\+Group\+Creation\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_units_collections_list_widget_8cpp_source}{Units\+Collections\+List\+Widget.\+cpp}}.
+
+\Hypertarget{class_u_units_collections_list_widget_a1fcf5d4b8f60d0d064512795317f9903}\label{class_u_units_collections_list_widget_a1fcf5d4b8f60d0d064512795317f9903} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!UnitsCollectionGroupIsRemoved@{UnitsCollectionGroupIsRemoved}}
+\index{UnitsCollectionGroupIsRemoved@{UnitsCollectionGroupIsRemoved}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{UnitsCollectionGroupIsRemoved()}{UnitsCollectionGroupIsRemoved()}}
+{\footnotesize\ttfamily void UUnits\+Collections\+List\+Widget\+::\+Units\+Collection\+Group\+Is\+Removed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_units_collection_group}{UUnits\+Collection\+Group}} \texorpdfstring{$\ast$}{*}}]{Units\+Collection\+Group }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_units_collection_group_removal_observer_ab46d9bbaf04cf978b38dde7949da325a}{IUnits\+Collection\+Group\+Removal\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_units_collections_list_widget_8cpp_source}{Units\+Collections\+List\+Widget.\+cpp}}.
+
+\Hypertarget{class_u_units_collections_list_widget_a57a0b9f92a9ad588c37b335d2e15e1c7}\label{class_u_units_collections_list_widget_a57a0b9f92a9ad588c37b335d2e15e1c7} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!UnitsCollectionIsCreated@{UnitsCollectionIsCreated}}
+\index{UnitsCollectionIsCreated@{UnitsCollectionIsCreated}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{UnitsCollectionIsCreated()}{UnitsCollectionIsCreated()}}
+{\footnotesize\ttfamily void UUnits\+Collections\+List\+Widget\+::\+Units\+Collection\+Is\+Created (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}}]{Units\+Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_units_collection_creation_observer_a33750df11bcf55b12c587ffbdaf73966}{IUnits\+Collection\+Creation\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_units_collections_list_widget_8cpp_source}{Units\+Collections\+List\+Widget.\+cpp}}.
+
+\Hypertarget{class_u_units_collections_list_widget_aa183b5305ecdbbbe1f72a719b0e0bf8f}\label{class_u_units_collections_list_widget_aa183b5305ecdbbbe1f72a719b0e0bf8f} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!UnitsCollectionIsRemoved@{UnitsCollectionIsRemoved}}
+\index{UnitsCollectionIsRemoved@{UnitsCollectionIsRemoved}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{UnitsCollectionIsRemoved()}{UnitsCollectionIsRemoved()}}
+{\footnotesize\ttfamily void UUnits\+Collections\+List\+Widget\+::\+Units\+Collection\+Is\+Removed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_units_collection}{UUnits\+Collection}} \texorpdfstring{$\ast$}{*}}]{Units\+Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_units_collection_removal_observer_a7c8121d139304d2ab45e20c1aa9af5ce}{IUnits\+Collection\+Removal\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_units_collections_list_widget_8cpp_source}{Units\+Collections\+List\+Widget.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_units_collections_list_widget_a276e767c191d4cb69eef08d71267889d}\label{class_u_units_collections_list_widget_a276e767c191d4cb69eef08d71267889d} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!MilitaryBranchesUnitsCollectionsScrollBox@{MilitaryBranchesUnitsCollectionsScrollBox}}
+\index{MilitaryBranchesUnitsCollectionsScrollBox@{MilitaryBranchesUnitsCollectionsScrollBox}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{MilitaryBranchesUnitsCollectionsScrollBox}{MilitaryBranchesUnitsCollectionsScrollBox}}
+{\footnotesize\ttfamily UScroll\+Box\texorpdfstring{$\ast$}{*} UUnits\+Collections\+List\+Widget\+::\+Military\+Branches\+Units\+Collections\+Scroll\+Box}
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8h_source_l00021}{21}} of file \mbox{\hyperlink{_units_collections_list_widget_8h_source}{Units\+Collections\+List\+Widget.\+h}}.
+
+\Hypertarget{class_u_units_collections_list_widget_af0946b9d678555cf03d5c29667504c71}\label{class_u_units_collections_list_widget_af0946b9d678555cf03d5c29667504c71} 
+\index{UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}!MilitaryBranchUnitsCollectionsListWidgetClass@{MilitaryBranchUnitsCollectionsListWidgetClass}}
+\index{MilitaryBranchUnitsCollectionsListWidgetClass@{MilitaryBranchUnitsCollectionsListWidgetClass}!UUnitsCollectionsListWidget@{UUnitsCollectionsListWidget}}
+\doxysubsubsection{\texorpdfstring{MilitaryBranchUnitsCollectionsListWidgetClass}{MilitaryBranchUnitsCollectionsListWidgetClass}}
+{\footnotesize\ttfamily TSubclass\+Of$<$\mbox{\hyperlink{class_u_military_branch_units_collections_list_widget}{UMilitary\+Branch\+Units\+Collections\+List\+Widget}}$>$ UUnits\+Collections\+List\+Widget\+::\+Military\+Branch\+Units\+Collections\+List\+Widget\+Class}
+
+
+
+Definition at line \mbox{\hyperlink{_units_collections_list_widget_8h_source_l00024}{24}} of file \mbox{\hyperlink{_units_collections_list_widget_8h_source}{Units\+Collections\+List\+Widget.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Widgets/\+Military/\+Collections/\mbox{\hyperlink{_units_collections_list_widget_8h}{Units\+Collections\+List\+Widget.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Widgets/\+Military/\+Collections/\mbox{\hyperlink{_units_collections_list_widget_8cpp}{Units\+Collections\+List\+Widget.\+cpp}}\end{DoxyCompactItemize}

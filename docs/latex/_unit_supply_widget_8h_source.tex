@@ -1,0 +1,37 @@
+\doxysection{Unit\+Supply\+Widget.\+h}
+\hypertarget{_unit_supply_widget_8h_source}{}\label{_unit_supply_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Military/Supply/UnitSupplyWidget.h@{Source/MyProject2/Public/Widgets/Military/Supply/UnitSupplyWidget.h}}
+\mbox{\hyperlink{_unit_supply_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/ListView.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_8h}{Military/Instances/Units/Unit.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_supply_widget_8generated_8h}{UnitSupplyWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00009}00009\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00010}\mbox{\hyperlink{class_u_unit_supply_widget}{00010}}\ class\ \mbox{\hyperlink{class_u_unit_supply_widget}{UUnitSupplyWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00012}00012\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00014}00014\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00015}\mbox{\hyperlink{class_u_unit_supply_widget_a07b5d1594eb73b1ebdf3d30b50f77408}{00015}}\ \ \ \ \ UTextBlock*\ UnitNameTextBlock;}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00018}\mbox{\hyperlink{class_u_unit_supply_widget_a7e008fa520b907e032fb80cd700661e4}{00018}}\ \ \ \ \ UListView*\ SuppliesListView;}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00019}00019\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00020}00020\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{void}\ SetUnit(UObject*\ ProvidedUnit);}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00023}00023\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00025}00025\ private:}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00026}00026\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit;}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00029}00029\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00030}00030\ \ \ \ \ TSet<\mbox{\hyperlink{class_u_good_description}{UGoodDescription}}*>\ AddedGoodNeeds;}
+\DoxyCodeLine{\Hypertarget{_unit_supply_widget_8h_source_l00031}00031\ \};}
+
+\end{DoxyCode}

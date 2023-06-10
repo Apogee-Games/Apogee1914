@@ -1,0 +1,185 @@
+\doxysection{UDistances\+Map Class Reference}
+\hypertarget{class_u_distances_map}{}\label{class_u_distances_map}\index{UDistancesMap@{UDistancesMap}}
+
+
+{\ttfamily \#include $<$Distances\+Map.\+h$>$}
+
+Inheritance diagram for UDistances\+Map\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.728395cm]{class_u_distances_map}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_u_distances_map_a72ccef4044afe367a78b3e7e968a6c3c}{Initialize}} (FSubsystem\+Collection\+Base \&Collection) override
+\item 
+void \mbox{\hyperlink{class_u_distances_map_a57297c3690e54ea119162c79ac4faa3e}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+void \mbox{\hyperlink{class_u_distances_map_a96ee1c8a1c9aaa33f46f98b430a16863}{Init}} ()
+\item 
+int32 \mbox{\hyperlink{class_u_distances_map_aa2835a165fdc12c32b4658734024131e}{Get\+Provinces\+Distance}} (int32 Position) const
+\item 
+int32 \mbox{\hyperlink{class_u_distances_map_a0cdc392118a409daa2f09c724f79409f}{Get\+States\+Distance}} (int32 Position) const
+\item 
+int32 \mbox{\hyperlink{class_u_distances_map_a9e0897b22b4494dfa785cff468b2fb73}{Get\+Countries\+Distance}} (int32 Position) const
+\item 
+const TArray$<$ int32 $>$ \& \mbox{\hyperlink{class_u_distances_map_a86981afbceaf4de6f3d65d25124369aa}{Get\+Provinces\+Distances}} () const
+\item 
+const TArray$<$ int32 $>$ \& \mbox{\hyperlink{class_u_distances_map_a60109b74a8652a65ae8a250e372af391}{Get\+States\+Distances}} () const
+\item 
+const TArray$<$ int32 $>$ \& \mbox{\hyperlink{class_u_distances_map_a4582011199edcbfc23b4a31f45493350}{Get\+Countries\+Distances}} () const
+\item 
+virtual void \mbox{\hyperlink{class_u_distances_map_a7ea611b001128de93885005c8a15f7b2}{Province\+Has\+New\+Owning\+Country}} (\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}Province) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_country_distances_observable}{ICountry\+Distances\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_country_distances_observable_a2ebe4c5b3928ddfa02dc6aa00fc0639c}{Notify\+Country\+Distances\+Update}} (const TArray$<$ \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*} $>$ \&Provinces)
+\item 
+bool \mbox{\hyperlink{class_i_country_distances_observable_a22241b7f8805de69381abfa18c5d27a6}{Add\+Country\+Distances\+Observer}} (\mbox{\hyperlink{class_i_country_distances_observer}{ICountry\+Distances\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_country_distances_observable_a522381ff12ff65b0c8f6009eb244c192}{Remove\+Country\+Distances\+Observer}} (\mbox{\hyperlink{class_i_country_distances_observer}{ICountry\+Distances\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_province_owning_country_observer}{IProvince\+Owning\+Country\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_province_owning_country_observer_a85fc38751756a4e8ffd7aa9af12ba752}{\texorpdfstring{$\sim$}{\string~}\+IProvince\+Owning\+Country\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_province_owning_country_observer_ae6108b1359176b28a4d8e85cab66dc80}{Province\+Has\+New\+Owning\+Country}} (\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}Province)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int32 \mbox{\hyperlink{class_u_distances_map_a47ef995cb969828eec87ee48cb7ada41}{Depth}} = 15
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8h_source_l00009}{9}} of file \mbox{\hyperlink{_distances_map_8h_source}{Distances\+Map.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_distances_map_a9e0897b22b4494dfa785cff468b2fb73}\label{class_u_distances_map_a9e0897b22b4494dfa785cff468b2fb73} 
+\index{UDistancesMap@{UDistancesMap}!GetCountriesDistance@{GetCountriesDistance}}
+\index{GetCountriesDistance@{GetCountriesDistance}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{GetCountriesDistance()}{GetCountriesDistance()}}
+{\footnotesize\ttfamily int32 UDistances\+Map\+::\+Get\+Countries\+Distance (\begin{DoxyParamCaption}\item[{int32}]{Position }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a4582011199edcbfc23b4a31f45493350}\label{class_u_distances_map_a4582011199edcbfc23b4a31f45493350} 
+\index{UDistancesMap@{UDistancesMap}!GetCountriesDistances@{GetCountriesDistances}}
+\index{GetCountriesDistances@{GetCountriesDistances}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{GetCountriesDistances()}{GetCountriesDistances()}}
+{\footnotesize\ttfamily const TArray$<$ int32 $>$ \& UDistances\+Map\+::\+Get\+Countries\+Distances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_aa2835a165fdc12c32b4658734024131e}\label{class_u_distances_map_aa2835a165fdc12c32b4658734024131e} 
+\index{UDistancesMap@{UDistancesMap}!GetProvincesDistance@{GetProvincesDistance}}
+\index{GetProvincesDistance@{GetProvincesDistance}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{GetProvincesDistance()}{GetProvincesDistance()}}
+{\footnotesize\ttfamily int32 UDistances\+Map\+::\+Get\+Provinces\+Distance (\begin{DoxyParamCaption}\item[{int32}]{Position }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a86981afbceaf4de6f3d65d25124369aa}\label{class_u_distances_map_a86981afbceaf4de6f3d65d25124369aa} 
+\index{UDistancesMap@{UDistancesMap}!GetProvincesDistances@{GetProvincesDistances}}
+\index{GetProvincesDistances@{GetProvincesDistances}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{GetProvincesDistances()}{GetProvincesDistances()}}
+{\footnotesize\ttfamily const TArray$<$ int32 $>$ \& UDistances\+Map\+::\+Get\+Provinces\+Distances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a0cdc392118a409daa2f09c724f79409f}\label{class_u_distances_map_a0cdc392118a409daa2f09c724f79409f} 
+\index{UDistancesMap@{UDistancesMap}!GetStatesDistance@{GetStatesDistance}}
+\index{GetStatesDistance@{GetStatesDistance}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{GetStatesDistance()}{GetStatesDistance()}}
+{\footnotesize\ttfamily int32 UDistances\+Map\+::\+Get\+States\+Distance (\begin{DoxyParamCaption}\item[{int32}]{Position }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a60109b74a8652a65ae8a250e372af391}\label{class_u_distances_map_a60109b74a8652a65ae8a250e372af391} 
+\index{UDistancesMap@{UDistancesMap}!GetStatesDistances@{GetStatesDistances}}
+\index{GetStatesDistances@{GetStatesDistances}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{GetStatesDistances()}{GetStatesDistances()}}
+{\footnotesize\ttfamily const TArray$<$ int32 $>$ \& UDistances\+Map\+::\+Get\+States\+Distances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a96ee1c8a1c9aaa33f46f98b430a16863}\label{class_u_distances_map_a96ee1c8a1c9aaa33f46f98b430a16863} 
+\index{UDistancesMap@{UDistancesMap}!Init@{Init}}
+\index{Init@{Init}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void UDistances\+Map\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_u_distances_map_a72ccef4044afe367a78b3e7e968a6c3c}\label{class_u_distances_map_a72ccef4044afe367a78b3e7e968a6c3c} 
+\index{UDistancesMap@{UDistancesMap}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void UDistances\+Map\+::\+Initialize (\begin{DoxyParamCaption}\item[{FSubsystem\+Collection\+Base \&}]{Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a7ea611b001128de93885005c8a15f7b2}\label{class_u_distances_map_a7ea611b001128de93885005c8a15f7b2} 
+\index{UDistancesMap@{UDistancesMap}!ProvinceHasNewOwningCountry@{ProvinceHasNewOwningCountry}}
+\index{ProvinceHasNewOwningCountry@{ProvinceHasNewOwningCountry}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{ProvinceHasNewOwningCountry()}{ProvinceHasNewOwningCountry()}}
+{\footnotesize\ttfamily void UDistances\+Map\+::\+Province\+Has\+New\+Owning\+Country (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{Province }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_province_owning_country_observer_ae6108b1359176b28a4d8e85cab66dc80}{IProvince\+Owning\+Country\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+\Hypertarget{class_u_distances_map_a57297c3690e54ea119162c79ac4faa3e}\label{class_u_distances_map_a57297c3690e54ea119162c79ac4faa3e} 
+\index{UDistancesMap@{UDistancesMap}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UDistances\+Map\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{_distances_map_8cpp_source}{Distances\+Map.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_distances_map_a47ef995cb969828eec87ee48cb7ada41}\label{class_u_distances_map_a47ef995cb969828eec87ee48cb7ada41} 
+\index{UDistancesMap@{UDistancesMap}!Depth@{Depth}}
+\index{Depth@{Depth}!UDistancesMap@{UDistancesMap}}
+\doxysubsubsection{\texorpdfstring{Depth}{Depth}}
+{\footnotesize\ttfamily int32 UDistances\+Map\+::\+Depth = 15}
+
+
+
+Definition at line \mbox{\hyperlink{_distances_map_8h_source_l00035}{35}} of file \mbox{\hyperlink{_distances_map_8h_source}{Distances\+Map.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Maps/\+Precalculations/\+Distances/\mbox{\hyperlink{_distances_map_8h}{Distances\+Map.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Maps/\+Precalculations/\+Distances/\mbox{\hyperlink{_distances_map_8cpp}{Distances\+Map.\+cpp}}\end{DoxyCompactItemize}

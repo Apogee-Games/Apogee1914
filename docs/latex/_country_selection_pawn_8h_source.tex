@@ -1,0 +1,52 @@
+\doxysection{Country\+Selection\+Pawn.\+h}
+\hypertarget{_country_selection_pawn_8h_source}{}\label{_country_selection_pawn_8h_source}\index{Source/MyProject2/Public/Characters/Pawns/CountrySelectionPawn.h@{Source/MyProject2/Public/Characters/Pawns/CountrySelectionPawn.h}}
+\mbox{\hyperlink{_country_selection_pawn_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Camera/CameraComponent.h"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_actor_8h}{Characters/Components/MapActor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_player_movement_component_8h}{Characters/Components/PlayerMovementComponent.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pawn_state_8h}{Characters/StateMachine/PawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scenario_selection_widget_8h}{Widgets/CountrySelection/ScenarioSelectionWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_selection_pawn_8generated_8h}{CountrySelectionPawn.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00010}00010\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00011}\mbox{\hyperlink{class_a_country_selection_pawn}{00011}}\ class\ \mbox{\hyperlink{class_a_country_selection_pawn}{ACountrySelectionPawn}}:\ public\ APawn}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00013}00013\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00014}00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00015}00015\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00016}\mbox{\hyperlink{class_a_country_selection_pawn_a667ab117ce6fcd404304e5ad6edb9d57}{00016}}\ \ \ \ \ TSubclassOf<\mbox{\hyperlink{class_a_map_actor}{AMapActor}}>\ MapActorClass;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00017}00017\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00018}00018\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00019}\mbox{\hyperlink{class_a_country_selection_pawn_a24d68f16a38a91ffcc940e5b562dcc29}{00019}}\ \ \ \ \ \mbox{\hyperlink{class_a_map_actor}{AMapActor}}*\ MapActor;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00021}00021\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00022}\mbox{\hyperlink{class_a_country_selection_pawn_a9c9a870d9863dc68c940c0c4ec0a6497}{00022}}\ \ \ \ \ UCameraComponent*\ CameraComponent;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00024}00024\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00025}\mbox{\hyperlink{class_a_country_selection_pawn_a08626f2ba66d77229ad241041fffa305}{00025}}\ \ \ \ \ \mbox{\hyperlink{class_u_player_movement_component}{UPlayerMovementComponent}}*\ MovementComponent;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_a_country_selection_pawn}{ACountrySelectionPawn}}();}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00029}00029\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ BeginPlay()\ override;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00031}00031\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ Tick(\textcolor{keywordtype}{float}\ DeltaSeconds)\ override;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00033}00033\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ SetupPlayerInputComponent(UInputComponent*\ PlayerInputComponent)\ override;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{void}\ SetPawnState(TSharedPtr<\mbox{\hyperlink{class_f_pawn_state}{FPawnState}}>\ ProvidedPawnState);}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00037}00037\ \ \ \ \ TSharedPtr<\mbox{\hyperlink{class_f_pawn_state}{FPawnState}}>\ GetPawnState()\ const;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00039}00039\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ EndPlay(const\ EEndPlayReason::Type\ EndPlayReason)\ override;}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00040}00040\ private:}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00041}00041\ \ \ \ \ TSharedPtr<\mbox{\hyperlink{class_f_pawn_state}{FPawnState}}>\ PawnState\ =\ \textcolor{keywordtype}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{void}\ LeftClick();}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}\ RightClick();}
+\DoxyCodeLine{\Hypertarget{_country_selection_pawn_8h_source_l00046}00046\ \};}
+
+\end{DoxyCode}

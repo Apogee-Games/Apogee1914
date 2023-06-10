@@ -1,0 +1,105 @@
+\doxysection{FDistance\+Cleaner Class Reference}
+\hypertarget{class_f_distance_cleaner}{}\label{class_f_distance_cleaner}\index{FDistanceCleaner@{FDistanceCleaner}}
+
+
+{\ttfamily \#include $<$Distance\+Cleaner.\+h$>$}
+
+Inheritance diagram for FDistance\+Cleaner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_f_distance_cleaner}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_distance_cleaner_aa65c6269c598354cf0d1166aface2296}{FDistance\+Cleaner}} (TArray$<$ int32 $>$ \&\mbox{\hyperlink{class_i_distance_processor_ae4ccb653bab152289b96b5b0ed870abe}{Distances}}, const FVector2d \&\mbox{\hyperlink{class_i_distance_processor_a66a133a1a08d431b1c677b84f0dd4f08}{Size\+Vector}}, int32 \mbox{\hyperlink{class_i_distance_processor_a9db9eda8c29c47cf29d0df375cc0c8c4}{Depth}})
+\item 
+virtual void \mbox{\hyperlink{class_f_distance_cleaner_a0195ad55a7eee146184b17fccb08497e}{Add\+Start\+Point}} (int32 Point) override
+\item 
+void \mbox{\hyperlink{class_f_distance_cleaner_a655efe7398e01ec558ce6d2987518237}{Add\+Possible\+Points}} (const TArray$<$ int32 $>$ \&Points)
+\item 
+virtual uint32 \mbox{\hyperlink{class_f_distance_cleaner_a0b277544b5ffcfb5f0cc908127afe1f5}{Run}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_distance_processor}{IDistance\+Processor}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_distance_processor_a32b3f9a087db9b00264afb8a70e4ba2f}{IDistance\+Processor}} (TArray$<$ int32 $>$ \&\mbox{\hyperlink{class_i_distance_processor_ae4ccb653bab152289b96b5b0ed870abe}{Distances}}, const FVector2d \&\mbox{\hyperlink{class_i_distance_processor_a66a133a1a08d431b1c677b84f0dd4f08}{Size\+Vector}}, int32 \mbox{\hyperlink{class_i_distance_processor_a9db9eda8c29c47cf29d0df375cc0c8c4}{Depth}})
+\item 
+virtual void \mbox{\hyperlink{class_i_distance_processor_a92bc77f6b44c7006472916cea164f8e9}{Add\+Start\+Point}} (int32 Point)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_i_distance_processor}{IDistance\+Processor}}}
+\begin{DoxyCompactItemize}
+\item 
+TQueue$<$ int32 $>$ \mbox{\hyperlink{class_i_distance_processor_a96132478f49d621e00df8362a37f3963}{Queue}}
+\item 
+TArray$<$ int32 $>$ \& \mbox{\hyperlink{class_i_distance_processor_ae4ccb653bab152289b96b5b0ed870abe}{Distances}}
+\item 
+const FVector2d \mbox{\hyperlink{class_i_distance_processor_a66a133a1a08d431b1c677b84f0dd4f08}{Size\+Vector}}
+\item 
+int32 \mbox{\hyperlink{class_i_distance_processor_a9db9eda8c29c47cf29d0df375cc0c8c4}{Depth}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_distance_cleaner_8h_source_l00004}{4}} of file \mbox{\hyperlink{_distance_cleaner_8h_source}{Distance\+Cleaner.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_f_distance_cleaner_aa65c6269c598354cf0d1166aface2296}\label{class_f_distance_cleaner_aa65c6269c598354cf0d1166aface2296} 
+\index{FDistanceCleaner@{FDistanceCleaner}!FDistanceCleaner@{FDistanceCleaner}}
+\index{FDistanceCleaner@{FDistanceCleaner}!FDistanceCleaner@{FDistanceCleaner}}
+\doxysubsubsection{\texorpdfstring{FDistanceCleaner()}{FDistanceCleaner()}}
+{\footnotesize\ttfamily FDistance\+Cleaner\+::\+FDistance\+Cleaner (\begin{DoxyParamCaption}\item[{TArray$<$ int32 $>$ \&}]{Distances,  }\item[{const FVector2d \&}]{Size\+Vector,  }\item[{int32}]{Depth }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_distance_cleaner_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_distance_cleaner_8cpp_source}{Distance\+Cleaner.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_f_distance_cleaner_a655efe7398e01ec558ce6d2987518237}\label{class_f_distance_cleaner_a655efe7398e01ec558ce6d2987518237} 
+\index{FDistanceCleaner@{FDistanceCleaner}!AddPossiblePoints@{AddPossiblePoints}}
+\index{AddPossiblePoints@{AddPossiblePoints}!FDistanceCleaner@{FDistanceCleaner}}
+\doxysubsubsection{\texorpdfstring{AddPossiblePoints()}{AddPossiblePoints()}}
+{\footnotesize\ttfamily void FDistance\+Cleaner\+::\+Add\+Possible\+Points (\begin{DoxyParamCaption}\item[{const TArray$<$ int32 $>$ \&}]{Points }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_distance_cleaner_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_distance_cleaner_8cpp_source}{Distance\+Cleaner.\+cpp}}.
+
+\Hypertarget{class_f_distance_cleaner_a0195ad55a7eee146184b17fccb08497e}\label{class_f_distance_cleaner_a0195ad55a7eee146184b17fccb08497e} 
+\index{FDistanceCleaner@{FDistanceCleaner}!AddStartPoint@{AddStartPoint}}
+\index{AddStartPoint@{AddStartPoint}!FDistanceCleaner@{FDistanceCleaner}}
+\doxysubsubsection{\texorpdfstring{AddStartPoint()}{AddStartPoint()}}
+{\footnotesize\ttfamily void FDistance\+Cleaner\+::\+Add\+Start\+Point (\begin{DoxyParamCaption}\item[{int32}]{Point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_i_distance_processor_a92bc77f6b44c7006472916cea164f8e9}{IDistance\+Processor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_distance_cleaner_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{_distance_cleaner_8cpp_source}{Distance\+Cleaner.\+cpp}}.
+
+\Hypertarget{class_f_distance_cleaner_a0b277544b5ffcfb5f0cc908127afe1f5}\label{class_f_distance_cleaner_a0b277544b5ffcfb5f0cc908127afe1f5} 
+\index{FDistanceCleaner@{FDistanceCleaner}!Run@{Run}}
+\index{Run@{Run}!FDistanceCleaner@{FDistanceCleaner}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}}
+{\footnotesize\ttfamily uint32 FDistance\+Cleaner\+::\+Run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_distance_cleaner_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{_distance_cleaner_8cpp_source}{Distance\+Cleaner.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Maps/\+Precalculations/\+Distances/\mbox{\hyperlink{_distance_cleaner_8h}{Distance\+Cleaner.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Maps/\+Precalculations/\+Distances/\mbox{\hyperlink{_distance_cleaner_8cpp}{Distance\+Cleaner.\+cpp}}\end{DoxyCompactItemize}

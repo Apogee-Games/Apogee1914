@@ -1,0 +1,31 @@
+\doxysection{Goods\+Manager.\+cpp}
+\hypertarget{_goods_manager_8cpp_source}{}\label{_goods_manager_8cpp_source}\index{Source/MyProject2/Private/Economics/Managers/GoodsManager.cpp@{Source/MyProject2/Private/Economics/Managers/GoodsManager.cpp}}
+\mbox{\hyperlink{_goods_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_goods_manager_8h}{Economics/Managers/GoodsManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_level_game_state_8h}{LevelsOverides/Game/GameLevelGameState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00006}\mbox{\hyperlink{class_u_goods_manager_a2491969630011aaaf943177650880b96}{00006}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_goods_manager_a2491969630011aaaf943177650880b96}{UGoodsManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00008}00008\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00009}00009\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00012}\mbox{\hyperlink{class_u_goods_manager_a034a6c73aaec44e28b0263115e976a80}{00012}}\ \mbox{\hyperlink{class_u_good_description}{UGoodDescription}}*\ \mbox{\hyperlink{class_u_goods_manager_a034a6c73aaec44e28b0263115e976a80}{UGoodsManager::GetGoodDescription}}(\textcolor{keyword}{const}\ FName\&\ GoodName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00013}00013\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{return}\ GoodsDescriptions[GoodName];}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00017}00017\ \textcolor{keywordtype}{void}\ UGoodsManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00019}00019\ \ \ \ \ GoodsDescriptions.Empty();}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00022}00022\ \textcolor{keywordtype}{void}\ UGoodsManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00024}00024\ \ \ \ \ GoodsDescriptions\ =\ Scenario-\/>\mbox{\hyperlink{class_u_scenario_a82b3e7a8e7b26febef8917f8caebd544}{GoodsDescriptions}};}
+\DoxyCodeLine{\Hypertarget{_goods_manager_8cpp_source_l00025}00025\ \}}
+
+\end{DoxyCode}

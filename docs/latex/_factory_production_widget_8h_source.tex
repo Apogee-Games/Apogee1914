@@ -1,0 +1,41 @@
+\doxysection{Factory\+Production\+Widget.\+h}
+\hypertarget{_factory_production_widget_8h_source}{}\label{_factory_production_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Economics/Buildings/Production/FactoryProductionWidget.h@{Source/MyProject2/Public/Widgets/Economics/Buildings/Production/FactoryProductionWidget.h}}
+\mbox{\hyperlink{_factory_production_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_factory_building_8h}{Economics/Instances/Buildings/FactoryBuilding.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_factory_production_widget_8generated_8h}{FactoryProductionWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00008}00008\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00009}\mbox{\hyperlink{class_u_factory_production_widget}{00009}}\ class\ \mbox{\hyperlink{class_u_factory_production_widget}{UFactoryProductionWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00011}00011\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00014}\mbox{\hyperlink{class_u_factory_production_widget_a3ca16320f32fb1a3a817818af308cc45}{00014}}\ \ \ \ \ UTextBlock*\ ProvinceNameTextBlock;}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00017}\mbox{\hyperlink{class_u_factory_production_widget_a8f65555a5f50092135185a597e087a58}{00017}}\ \ \ \ \ UTextBlock*\ FactoryNameTextBlock;}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00020}\mbox{\hyperlink{class_u_factory_production_widget_a1921b5569881880788841d88d53b7e63}{00020}}\ \ \ \ \ UButton*\ ProductionGoodSelectionButton;}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00022}00022\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ NativeConstruct()\ override;}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00023}00023\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00024}00024\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{void}\ SetFactory(UObject*\ ProvidedFactory);}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00027}00027\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00029}00029\ private:}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00030}00030\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{class_u_factory_building}{UFactoryBuilding}}*\ Factory;}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00033}00033\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{void}\ OnProductionGoodSelectionButtonClick();}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8h_source_l00035}00035\ \};}
+
+\end{DoxyCode}

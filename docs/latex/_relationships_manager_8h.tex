@@ -1,0 +1,61 @@
+\doxysection{Source/\+My\+Project2/\+Public/\+Diplomacy/\+Managers/\+Relationships\+Manager.h File Reference}
+\hypertarget{_relationships_manager_8h}{}\label{_relationships_manager_8h}\index{Source/MyProject2/Public/Diplomacy/Managers/RelationshipsManager.h@{Source/MyProject2/Public/Diplomacy/Managers/RelationshipsManager.h}}
+{\ttfamily \#include \"{}Scenario.\+h\"{}}\newline
+{\ttfamily \#include \"{}Components/\+List\+View.\+h\"{}}\newline
+{\ttfamily \#include \"{}Diplomacy/\+Interfaces/\+Observables/\+Alliance\+Creation\+Observable.\+h\"{}}\newline
+{\ttfamily \#include \"{}Diplomacy/\+Interfaces/\+Observables/\+War\+Declaration\+Observable.\+h\"{}}\newline
+{\ttfamily \#include \"{}Diplomacy/\+Interfaces/\+Observables/\+Alliance\+Members\+Observable.\+h\"{}}\newline
+{\ttfamily \#include \"{}Widgets/\+Diplomacy/\+Menu/\+Diplomatic\+Pacts\+Widgets.\+h\"{}}\newline
+{\ttfamily \#include \"{}Relationships\+Manager.\+generated.\+h\"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_u_relationships_manager}{URelationships\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04c}{ERelation\+Type}} \{ \newline
+\mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}} = 1
+, \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca692bf08bd49a59a4b3d3b29aa8e47e22}{Non\+Aggression\+Pact}} = 2
+, \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66}{War}} = 4
+, \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04cacf7b3e3fe23ee305f13d0ca75a9b04ea}{Defencive\+Pact}} = 8
+, \newline
+\mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca07f8af9aad288a7123a8c7daa2fc2243}{Allied}} = 16
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04c}\label{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04c} 
+\index{RelationshipsManager.h@{RelationshipsManager.h}!ERelationType@{ERelationType}}
+\index{ERelationType@{ERelationType}!RelationshipsManager.h@{RelationshipsManager.h}}
+\doxysubsubsection{\texorpdfstring{ERelationType}{ERelationType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04c}{ERelation\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Neutral@{Neutral}!RelationshipsManager.h@{RelationshipsManager.h}}\index{RelationshipsManager.h@{RelationshipsManager.h}!Neutral@{Neutral}}}\Hypertarget{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}\label{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91} 
+Neutral&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NonAggressionPact@{NonAggressionPact}!RelationshipsManager.h@{RelationshipsManager.h}}\index{RelationshipsManager.h@{RelationshipsManager.h}!NonAggressionPact@{NonAggressionPact}}}\Hypertarget{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca692bf08bd49a59a4b3d3b29aa8e47e22}\label{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca692bf08bd49a59a4b3d3b29aa8e47e22} 
+Non\+Aggression\+Pact&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{War@{War}!RelationshipsManager.h@{RelationshipsManager.h}}\index{RelationshipsManager.h@{RelationshipsManager.h}!War@{War}}}\Hypertarget{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66}\label{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66} 
+War&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DefencivePact@{DefencivePact}!RelationshipsManager.h@{RelationshipsManager.h}}\index{RelationshipsManager.h@{RelationshipsManager.h}!DefencivePact@{DefencivePact}}}\Hypertarget{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04cacf7b3e3fe23ee305f13d0ca75a9b04ea}\label{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04cacf7b3e3fe23ee305f13d0ca75a9b04ea} 
+Defencive\+Pact&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Allied@{Allied}!RelationshipsManager.h@{RelationshipsManager.h}}\index{RelationshipsManager.h@{RelationshipsManager.h}!Allied@{Allied}}}\Hypertarget{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca07f8af9aad288a7123a8c7daa2fc2243}\label{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca07f8af9aad288a7123a8c7daa2fc2243} 
+Allied&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_relationships_manager_8h_source_l00012}{12}} of file \mbox{\hyperlink{_relationships_manager_8h_source}{Relationships\+Manager.\+h}}.
+

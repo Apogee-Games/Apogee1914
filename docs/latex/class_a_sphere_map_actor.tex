@@ -1,0 +1,181 @@
+\doxysection{ASphere\+Map\+Actor Class Reference}
+\hypertarget{class_a_sphere_map_actor}{}\label{class_a_sphere_map_actor}\index{ASphereMapActor@{ASphereMapActor}}
+
+
+{\ttfamily \#include $<$Sphere\+Map\+Actor.\+h$>$}
+
+Inheritance diagram for ASphere\+Map\+Actor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_sphere_map_actor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual FVector3d \mbox{\hyperlink{class_a_sphere_map_actor_a4e74eb27bf6cee44fd28e2985ee277de}{Get\+New\+Position}} (FVector3d Position, FVector3d Direction, FRotator Rotation, float Delta\+Time) override
+\item 
+virtual FVector2d \mbox{\hyperlink{class_a_sphere_map_actor_ad2e33b22938ef4b62c97c12b6fa38862}{Get\+Map\+Position}} (FVector3d World\+Position) override
+\item 
+virtual FVector3d \mbox{\hyperlink{class_a_sphere_map_actor_a4c7c3db1c1fad9c27e0e08b6a721063d}{Get\+World\+Position}} (FVector2d Map\+Position) override
+\item 
+virtual FQuat \mbox{\hyperlink{class_a_sphere_map_actor_adad0b33f205378f6baeca6f73863b318}{Get\+New\+Rotation}} (FVector3d Position, FVector3d New\+Position, FQuat Rotation) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_a_map_actor}{AMap\+Actor}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_map_actor_a14d63c13e84ca6e985133719450df193}{AMap\+Actor}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_map_actor_a31f045a7304915a6dea703dd762b2e7b}{Begin\+Play}} () override
+\item 
+virtual FVector3d \mbox{\hyperlink{class_a_map_actor_a835d2881328dc0b18f48aee6258207f6}{Get\+New\+Position}} (FVector3d Position, FVector3d Direction, FRotator Rotation, float Lenght)
+\item 
+virtual FQuat \mbox{\hyperlink{class_a_map_actor_ab0e93d875b0e2208eed4ccdd032c5ac0}{Get\+New\+Rotation}} (FVector3d Position, FVector3d New\+Position, FQuat Rotation)
+\item 
+virtual FVector2d \mbox{\hyperlink{class_a_map_actor_a98a08b3a098872514854648ca3bd4e59}{Get\+Map\+Position}} (APawn \texorpdfstring{$\ast$}{*}Pawn)
+\item 
+virtual FVector2d \mbox{\hyperlink{class_a_map_actor_ab8b6f328e26362a58cfab7e6642aa4fb}{Get\+Map\+Position}} (FVector3d World\+Position)
+\item 
+virtual FVector3d \mbox{\hyperlink{class_a_map_actor_aeade2980cd862fbfc7619ad7337772bc}{Get\+World\+Position}} (FVector2d Map\+Position)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_a_sphere_map_actor_a930444670b467afd77b118f72a284dfe}{Radius}} = 1281.\+04114
+\item 
+FVector3d \mbox{\hyperlink{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65}{Sphere\+Center}} = FVector3d(159, 95, 81)
+\item 
+FRotator \mbox{\hyperlink{class_a_sphere_map_actor_a6edf6ac445faa5439e4d902b394ee7bf}{Sphere\+Rotation}} = FRotator(0, 100, 30)
+\item 
+FVector3d \mbox{\hyperlink{class_a_sphere_map_actor_a4d351da73976af82cbb0411d0a122714}{Speed\+Vector}} = FVector3d(100, 100, 100)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_a_map_actor}{AMap\+Actor}}}
+\begin{DoxyCompactItemize}
+\item 
+UMaterial\+Interface \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a968856f8c5affb17127bc0f97174a557}{Terrain\+Map\+Material\+Interface}}
+\item 
+UMaterial\+Interface \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a3d971a6ae8a68a5cc13c78d1b8149632}{Maps\+Material\+Interface}}
+\item 
+UMaterial\+Instance\+Dynamic \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a4da3fda29e98eecca5a36b622535ac45}{Terrain\+Map\+Material\+Instance\+Dynamic}}
+\item 
+UMaterial\+Instance\+Dynamic \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{Maps\+Material\+Instance\+Dynamic}}
+\item 
+UStatic\+Mesh\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a626b6695283a48d7e706d4dfd1e23d19}{Terrain\+Static\+Mesh\+Component}}
+\item 
+UStatic\+Mesh\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_af19e5a8c3b4a67d1d28a8a57c264a660}{Maps\+Static\+Mesh\+Component}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8h_source_l00006}{6}} of file \mbox{\hyperlink{_sphere_map_actor_8h_source}{Sphere\+Map\+Actor.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_sphere_map_actor_ad2e33b22938ef4b62c97c12b6fa38862}\label{class_a_sphere_map_actor_ad2e33b22938ef4b62c97c12b6fa38862} 
+\index{ASphereMapActor@{ASphereMapActor}!GetMapPosition@{GetMapPosition}}
+\index{GetMapPosition@{GetMapPosition}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{GetMapPosition()}{GetMapPosition()}}
+{\footnotesize\ttfamily FVector2d ASphere\+Map\+Actor\+::\+Get\+Map\+Position (\begin{DoxyParamCaption}\item[{FVector3d}]{World\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_a_map_actor_ab8b6f328e26362a58cfab7e6642aa4fb}{AMap\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{_sphere_map_actor_8cpp_source}{Sphere\+Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_sphere_map_actor_a4e74eb27bf6cee44fd28e2985ee277de}\label{class_a_sphere_map_actor_a4e74eb27bf6cee44fd28e2985ee277de} 
+\index{ASphereMapActor@{ASphereMapActor}!GetNewPosition@{GetNewPosition}}
+\index{GetNewPosition@{GetNewPosition}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{GetNewPosition()}{GetNewPosition()}}
+{\footnotesize\ttfamily FVector3d ASphere\+Map\+Actor\+::\+Get\+New\+Position (\begin{DoxyParamCaption}\item[{FVector3d}]{Position,  }\item[{FVector3d}]{Direction,  }\item[{FRotator}]{Rotation,  }\item[{float}]{Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_a_map_actor_a835d2881328dc0b18f48aee6258207f6}{AMap\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_sphere_map_actor_8cpp_source}{Sphere\+Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_sphere_map_actor_adad0b33f205378f6baeca6f73863b318}\label{class_a_sphere_map_actor_adad0b33f205378f6baeca6f73863b318} 
+\index{ASphereMapActor@{ASphereMapActor}!GetNewRotation@{GetNewRotation}}
+\index{GetNewRotation@{GetNewRotation}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{GetNewRotation()}{GetNewRotation()}}
+{\footnotesize\ttfamily FQuat ASphere\+Map\+Actor\+::\+Get\+New\+Rotation (\begin{DoxyParamCaption}\item[{FVector3d}]{Position,  }\item[{FVector3d}]{New\+Position,  }\item[{FQuat}]{Rotation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_a_map_actor_ab0e93d875b0e2208eed4ccdd032c5ac0}{AMap\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_sphere_map_actor_8cpp_source}{Sphere\+Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_sphere_map_actor_a4c7c3db1c1fad9c27e0e08b6a721063d}\label{class_a_sphere_map_actor_a4c7c3db1c1fad9c27e0e08b6a721063d} 
+\index{ASphereMapActor@{ASphereMapActor}!GetWorldPosition@{GetWorldPosition}}
+\index{GetWorldPosition@{GetWorldPosition}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{GetWorldPosition()}{GetWorldPosition()}}
+{\footnotesize\ttfamily FVector3d ASphere\+Map\+Actor\+::\+Get\+World\+Position (\begin{DoxyParamCaption}\item[{FVector2d}]{Map\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_a_map_actor_aeade2980cd862fbfc7619ad7337772bc}{AMap\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_sphere_map_actor_8cpp_source}{Sphere\+Map\+Actor.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_sphere_map_actor_a930444670b467afd77b118f72a284dfe}\label{class_a_sphere_map_actor_a930444670b467afd77b118f72a284dfe} 
+\index{ASphereMapActor@{ASphereMapActor}!Radius@{Radius}}
+\index{Radius@{Radius}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{Radius}{Radius}}
+{\footnotesize\ttfamily float ASphere\+Map\+Actor\+::\+Radius = 1281.\+04114}
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8h_source_l00011}{11}} of file \mbox{\hyperlink{_sphere_map_actor_8h_source}{Sphere\+Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_sphere_map_actor_a4d351da73976af82cbb0411d0a122714}\label{class_a_sphere_map_actor_a4d351da73976af82cbb0411d0a122714} 
+\index{ASphereMapActor@{ASphereMapActor}!SpeedVector@{SpeedVector}}
+\index{SpeedVector@{SpeedVector}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{SpeedVector}{SpeedVector}}
+{\footnotesize\ttfamily FVector3d ASphere\+Map\+Actor\+::\+Speed\+Vector = FVector3d(100, 100, 100)}
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8h_source_l00020}{20}} of file \mbox{\hyperlink{_sphere_map_actor_8h_source}{Sphere\+Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65}\label{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65} 
+\index{ASphereMapActor@{ASphereMapActor}!SphereCenter@{SphereCenter}}
+\index{SphereCenter@{SphereCenter}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{SphereCenter}{SphereCenter}}
+{\footnotesize\ttfamily FVector3d ASphere\+Map\+Actor\+::\+Sphere\+Center = FVector3d(159, 95, 81)}
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8h_source_l00014}{14}} of file \mbox{\hyperlink{_sphere_map_actor_8h_source}{Sphere\+Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_sphere_map_actor_a6edf6ac445faa5439e4d902b394ee7bf}\label{class_a_sphere_map_actor_a6edf6ac445faa5439e4d902b394ee7bf} 
+\index{ASphereMapActor@{ASphereMapActor}!SphereRotation@{SphereRotation}}
+\index{SphereRotation@{SphereRotation}!ASphereMapActor@{ASphereMapActor}}
+\doxysubsubsection{\texorpdfstring{SphereRotation}{SphereRotation}}
+{\footnotesize\ttfamily FRotator ASphere\+Map\+Actor\+::\+Sphere\+Rotation = FRotator(0, 100, 30)}
+
+
+
+Definition at line \mbox{\hyperlink{_sphere_map_actor_8h_source_l00017}{17}} of file \mbox{\hyperlink{_sphere_map_actor_8h_source}{Sphere\+Map\+Actor.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Characters/\+Components/\mbox{\hyperlink{_sphere_map_actor_8h}{Sphere\+Map\+Actor.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Characters/\+Components/\mbox{\hyperlink{_sphere_map_actor_8cpp}{Sphere\+Map\+Actor.\+cpp}}\end{DoxyCompactItemize}

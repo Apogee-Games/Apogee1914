@@ -1,0 +1,39 @@
+\doxysection{Factory\+Production\+Widget.\+cpp}
+\hypertarget{_factory_production_widget_8cpp_source}{}\label{_factory_production_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Economics/Buildings/Production/FactoryProductionWidget.cpp@{Source/MyProject2/Private/Widgets/Economics/Buildings/Production/FactoryProductionWidget.cpp}}
+\mbox{\hyperlink{_factory_production_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_factory_production_widget_8h}{Widgets/Economics/Buildings/Production/FactoryProductionWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_8h}{Administration/Instances/Province.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_production_selection_pawn_state_8h}{Characters/StateMachine/ProductionSelectionPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00006}\mbox{\hyperlink{class_u_factory_production_widget_a7299166f5f2dcfad0cb6563d2edf4298}{00006}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_factory_production_widget_a7299166f5f2dcfad0cb6563d2edf4298}{UFactoryProductionWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00008}00008\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_u_factory_production_widget_a1921b5569881880788841d88d53b7e63}{ProductionGoodSelectionButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UFactoryProductionWidget::OnProductionGoodSelectionButtonClick);}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00012}\mbox{\hyperlink{class_u_factory_production_widget_a824ba9611502a6193f196498d522400b}{00012}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_factory_production_widget_a824ba9611502a6193f196498d522400b}{UFactoryProductionWidget::SetFactory}}(UObject*\ ProvidedFactory)}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00014}00014\ \ \ \ \ Factory\ =\ Cast<UFactoryBuilding>(ProvidedFactory);}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00017}\mbox{\hyperlink{class_u_factory_production_widget_aa32a91e5ed358676eeef733ffa206898}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_factory_production_widget_aa32a91e5ed358676eeef733ffa206898}{UFactoryProductionWidget::RefreshData}}()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_u_factory_production_widget_a3ca16320f32fb1a3a817818af308cc45}{ProvinceNameTextBlock}}-\/>SetText(Factory-\/>\mbox{\hyperlink{class_u_building_ad30582e75ce6577fee0a4ff738dd93a4}{GetProvince}}()-\/>\mbox{\hyperlink{class_u_province_a07652749e2275af3adc975438dca430a}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_u_factory_production_widget_a8f65555a5f50092135185a597e087a58}{FactoryNameTextBlock}}-\/>SetText(Factory-\/>\mbox{\hyperlink{class_u_building_aea583d894d1ccffcd0aee17c60f30551}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (Factory-\/>\mbox{\hyperlink{class_u_factory_building_ab7c298cece7ff3698098f0a8c15501ab}{GetGoodToProduce}}())}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00022}00022\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_factory_production_widget_a1921b5569881880788841d88d53b7e63}{ProductionGoodSelectionButton}}-\/>WidgetStyle.Normal.SetResourceObject(Factory-\/>\mbox{\hyperlink{class_u_factory_building_ab7c298cece7ff3698098f0a8c15501ab}{GetGoodToProduce}}()-\/>\mbox{\hyperlink{class_u_good_description_a8a238db8bb511a1238b60eca48e896cf}{Image}});}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_factory_production_widget_a1921b5569881880788841d88d53b7e63}{ProductionGoodSelectionButton}}-\/>WidgetStyle.Hovered.SetResourceObject(Factory-\/>\mbox{\hyperlink{class_u_factory_building_ab7c298cece7ff3698098f0a8c15501ab}{GetGoodToProduce}}()-\/>\mbox{\hyperlink{class_u_good_description_a8a238db8bb511a1238b60eca48e896cf}{Image}});}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00028}00028\ \textcolor{keywordtype}{void}\ UFactoryProductionWidget::OnProductionGoodSelectionButtonClick()}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>();}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00031}00031\ \ \ \ \ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a4fc5b8f58789689e54f1750f3381a03c}{SetProductionSelectionFactory}}(Factory);}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00032}00032\ \ \ \ \ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a465f805981f2caf994316fe1195d492a}{SetPawnState}}(\mbox{\hyperlink{class_f_production_selection_pawn_state_ae675540ad25af06a9a42a08dc53843c2}{FProductionSelectionPawnState::GetInstance}}());}
+\DoxyCodeLine{\Hypertarget{_factory_production_widget_8cpp_source_l00033}00033\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,150 @@
+\doxysection{UProvinces\+Map Class Reference}
+\hypertarget{class_u_provinces_map}{}\label{class_u_provinces_map}\index{UProvincesMap@{UProvincesMap}}
+
+
+{\ttfamily \#include $<$Provinces\+Map.\+h$>$}
+
+Inheritance diagram for UProvinces\+Map\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_provinces_map}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_provinces_map_af93191addf0c4bbcdb97f3bc83ee6a5e}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+FVector2d \mbox{\hyperlink{class_u_provinces_map_a539967600636865a3ca10fca31d40c3c}{Get\+Size\+Vector}} () const
+\item 
+const TArray$<$ FColor $>$ \& \mbox{\hyperlink{class_u_provinces_map_a1784fef6a35c565c0a0cf3127bda3c5c}{Get\+Colors}} () const
+\item 
+const TMap$<$ FColor, TSet$<$ FColor $>$ $>$ \& \mbox{\hyperlink{class_u_provinces_map_aee711f800e606dbff6dce6f2621feca2}{Get\+Neighbour\+Colors}} () const
+\item 
+const TMap$<$ \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}, TSet$<$ \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*} $>$ $>$ \& \mbox{\hyperlink{class_u_provinces_map_a320d0d4c78d8b456a7e4a80c14af693b}{Get\+Neighbour\+Provinces}} ()
+\item 
+const FColor \& \mbox{\hyperlink{class_u_provinces_map_ab1638facca06ae86b78a70adb358656b}{Get\+Color}} (int32 Position) const
+\item 
+bool \mbox{\hyperlink{class_u_provinces_map_a44c8565cc2990e2ecd37b8163ad8ae4d}{Has\+Province\+Position}} (const FColor \&Color) const
+\item 
+const TArray$<$ int32 $>$ \& \mbox{\hyperlink{class_u_provinces_map_a4f9126a0cda71089f2c0d14c956c94cd}{Get\+Province\+Positions}} (const FColor \&Color) const
+\item 
+virtual void \mbox{\hyperlink{class_u_provinces_map_a5d3d44c295a401cf84727fd93af0e4e2}{Province\+Has\+New\+Owning\+Country}} (\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}Province) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_province_owning_country_observer}{IProvince\+Owning\+Country\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_province_owning_country_observer_a85fc38751756a4e8ffd7aa9af12ba752}{\texorpdfstring{$\sim$}{\string~}\+IProvince\+Owning\+Country\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_province_owning_country_observer_ae6108b1359176b28a4d8e85cab66dc80}{Province\+Has\+New\+Owning\+Country}} (\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}Province)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8h_source_l00009}{9}} of file \mbox{\hyperlink{_provinces_map_8h_source}{Provinces\+Map.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_provinces_map_ab1638facca06ae86b78a70adb358656b}\label{class_u_provinces_map_ab1638facca06ae86b78a70adb358656b} 
+\index{UProvincesMap@{UProvincesMap}!GetColor@{GetColor}}
+\index{GetColor@{GetColor}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{GetColor()}{GetColor()}}
+{\footnotesize\ttfamily const FColor \& UProvinces\+Map\+::\+Get\+Color (\begin{DoxyParamCaption}\item[{int32}]{Position }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_a1784fef6a35c565c0a0cf3127bda3c5c}\label{class_u_provinces_map_a1784fef6a35c565c0a0cf3127bda3c5c} 
+\index{UProvincesMap@{UProvincesMap}!GetColors@{GetColors}}
+\index{GetColors@{GetColors}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{GetColors()}{GetColors()}}
+{\footnotesize\ttfamily const TArray$<$ FColor $>$ \& UProvinces\+Map\+::\+Get\+Colors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_aee711f800e606dbff6dce6f2621feca2}\label{class_u_provinces_map_aee711f800e606dbff6dce6f2621feca2} 
+\index{UProvincesMap@{UProvincesMap}!GetNeighbourColors@{GetNeighbourColors}}
+\index{GetNeighbourColors@{GetNeighbourColors}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{GetNeighbourColors()}{GetNeighbourColors()}}
+{\footnotesize\ttfamily const TMap$<$ FColor, TSet$<$ FColor $>$ $>$ \& UProvinces\+Map\+::\+Get\+Neighbour\+Colors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_a320d0d4c78d8b456a7e4a80c14af693b}\label{class_u_provinces_map_a320d0d4c78d8b456a7e4a80c14af693b} 
+\index{UProvincesMap@{UProvincesMap}!GetNeighbourProvinces@{GetNeighbourProvinces}}
+\index{GetNeighbourProvinces@{GetNeighbourProvinces}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{GetNeighbourProvinces()}{GetNeighbourProvinces()}}
+{\footnotesize\ttfamily const TMap$<$ \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}, TSet$<$ \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*} $>$ $>$ \& UProvinces\+Map\+::\+Get\+Neighbour\+Provinces (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_a4f9126a0cda71089f2c0d14c956c94cd}\label{class_u_provinces_map_a4f9126a0cda71089f2c0d14c956c94cd} 
+\index{UProvincesMap@{UProvincesMap}!GetProvincePositions@{GetProvincePositions}}
+\index{GetProvincePositions@{GetProvincePositions}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{GetProvincePositions()}{GetProvincePositions()}}
+{\footnotesize\ttfamily const TArray$<$ int32 $>$ \& UProvinces\+Map\+::\+Get\+Province\+Positions (\begin{DoxyParamCaption}\item[{const FColor \&}]{Color }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_a539967600636865a3ca10fca31d40c3c}\label{class_u_provinces_map_a539967600636865a3ca10fca31d40c3c} 
+\index{UProvincesMap@{UProvincesMap}!GetSizeVector@{GetSizeVector}}
+\index{GetSizeVector@{GetSizeVector}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{GetSizeVector()}{GetSizeVector()}}
+{\footnotesize\ttfamily FVector2d UProvinces\+Map\+::\+Get\+Size\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_a44c8565cc2990e2ecd37b8163ad8ae4d}\label{class_u_provinces_map_a44c8565cc2990e2ecd37b8163ad8ae4d} 
+\index{UProvincesMap@{UProvincesMap}!HasProvincePosition@{HasProvincePosition}}
+\index{HasProvincePosition@{HasProvincePosition}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{HasProvincePosition()}{HasProvincePosition()}}
+{\footnotesize\ttfamily bool UProvinces\+Map\+::\+Has\+Province\+Position (\begin{DoxyParamCaption}\item[{const FColor \&}]{Color }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_a5d3d44c295a401cf84727fd93af0e4e2}\label{class_u_provinces_map_a5d3d44c295a401cf84727fd93af0e4e2} 
+\index{UProvincesMap@{UProvincesMap}!ProvinceHasNewOwningCountry@{ProvinceHasNewOwningCountry}}
+\index{ProvinceHasNewOwningCountry@{ProvinceHasNewOwningCountry}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{ProvinceHasNewOwningCountry()}{ProvinceHasNewOwningCountry()}}
+{\footnotesize\ttfamily void UProvinces\+Map\+::\+Province\+Has\+New\+Owning\+Country (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{Province }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_province_owning_country_observer_ae6108b1359176b28a4d8e85cab66dc80}{IProvince\+Owning\+Country\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+\Hypertarget{class_u_provinces_map_af93191addf0c4bbcdb97f3bc83ee6a5e}\label{class_u_provinces_map_af93191addf0c4bbcdb97f3bc83ee6a5e} 
+\index{UProvincesMap@{UProvincesMap}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UProvincesMap@{UProvincesMap}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UProvinces\+Map\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_provinces_map_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{_provinces_map_8cpp_source}{Provinces\+Map.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Maps/\+Precalculations/\mbox{\hyperlink{_provinces_map_8h}{Provinces\+Map.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Maps/\+Precalculations/\mbox{\hyperlink{_provinces_map_8cpp}{Provinces\+Map.\+cpp}}\end{DoxyCompactItemize}

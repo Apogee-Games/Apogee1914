@@ -1,0 +1,103 @@
+\doxysection{UState\+Manager Class Reference}
+\hypertarget{class_u_state_manager}{}\label{class_u_state_manager}\index{UStateManager@{UStateManager}}
+
+
+{\ttfamily \#include $<$State\+Manager.\+h$>$}
+
+Inheritance diagram for UState\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_state_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_state_manager_a6c1228744d3634dd00fcc4b3d77363af}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+\mbox{\hyperlink{class_u_state}{UState}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_u_state_manager_a6a6f2ec1886ed50178937c4bf3c2ad99}{Get\+State}} (\mbox{\hyperlink{class_u_state_description}{UState\+Description}} \texorpdfstring{$\ast$}{*}State\+Description) const
+\item 
+bool \mbox{\hyperlink{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d}{Are\+Provinces\+In\+The\+Same\+State}} (const FColor \&Province\+AColor, const FColor \&Province\+BColor) const
+\item 
+bool \mbox{\hyperlink{class_u_state_manager_a303e80063a1077af351c8effad63802a}{Are\+Provinces\+In\+The\+Same\+State}} (const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}ProvinceA, const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}ProvinceB) const
+\item 
+bool \mbox{\hyperlink{class_u_state_manager_a386f23b9597a5f72de83235716df899d}{Are\+Provinces\+Not\+In\+The\+Same\+State}} (const FColor \&Province\+AColor, const FColor \&Province\+BColor) const
+\item 
+bool \mbox{\hyperlink{class_u_state_manager_a561448bb2698d63c49509cac5b135491}{Are\+Provinces\+Not\+In\+The\+Same\+State}} (const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}ProvinceA, const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}ProvinceB) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8h_source_l00008}{8}} of file \mbox{\hyperlink{_state_manager_8h_source}{State\+Manager.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d}\label{class_u_state_manager_ae848421a7a12f9bbc8338ba9446e863d} 
+\index{UStateManager@{UStateManager}!AreProvincesInTheSameState@{AreProvincesInTheSameState}}
+\index{AreProvincesInTheSameState@{AreProvincesInTheSameState}!UStateManager@{UStateManager}}
+\doxysubsubsection{\texorpdfstring{AreProvincesInTheSameState()}{AreProvincesInTheSameState()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool UState\+Manager\+::\+Are\+Provinces\+In\+The\+Same\+State (\begin{DoxyParamCaption}\item[{const FColor \&}]{Province\+AColor,  }\item[{const FColor \&}]{Province\+BColor }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_state_manager_8cpp_source}{State\+Manager.\+cpp}}.
+
+\Hypertarget{class_u_state_manager_a303e80063a1077af351c8effad63802a}\label{class_u_state_manager_a303e80063a1077af351c8effad63802a} 
+\index{UStateManager@{UStateManager}!AreProvincesInTheSameState@{AreProvincesInTheSameState}}
+\index{AreProvincesInTheSameState@{AreProvincesInTheSameState}!UStateManager@{UStateManager}}
+\doxysubsubsection{\texorpdfstring{AreProvincesInTheSameState()}{AreProvincesInTheSameState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool UState\+Manager\+::\+Are\+Provinces\+In\+The\+Same\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{ProvinceA,  }\item[{const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{ProvinceB }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_state_manager_8cpp_source}{State\+Manager.\+cpp}}.
+
+\Hypertarget{class_u_state_manager_a386f23b9597a5f72de83235716df899d}\label{class_u_state_manager_a386f23b9597a5f72de83235716df899d} 
+\index{UStateManager@{UStateManager}!AreProvincesNotInTheSameState@{AreProvincesNotInTheSameState}}
+\index{AreProvincesNotInTheSameState@{AreProvincesNotInTheSameState}!UStateManager@{UStateManager}}
+\doxysubsubsection{\texorpdfstring{AreProvincesNotInTheSameState()}{AreProvincesNotInTheSameState()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool UState\+Manager\+::\+Are\+Provinces\+Not\+In\+The\+Same\+State (\begin{DoxyParamCaption}\item[{const FColor \&}]{Province\+AColor,  }\item[{const FColor \&}]{Province\+BColor }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_state_manager_8cpp_source}{State\+Manager.\+cpp}}.
+
+\Hypertarget{class_u_state_manager_a561448bb2698d63c49509cac5b135491}\label{class_u_state_manager_a561448bb2698d63c49509cac5b135491} 
+\index{UStateManager@{UStateManager}!AreProvincesNotInTheSameState@{AreProvincesNotInTheSameState}}
+\index{AreProvincesNotInTheSameState@{AreProvincesNotInTheSameState}!UStateManager@{UStateManager}}
+\doxysubsubsection{\texorpdfstring{AreProvincesNotInTheSameState()}{AreProvincesNotInTheSameState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool UState\+Manager\+::\+Are\+Provinces\+Not\+In\+The\+Same\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{ProvinceA,  }\item[{const \mbox{\hyperlink{class_u_province}{UProvince}} \texorpdfstring{$\ast$}{*}}]{ProvinceB }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_state_manager_8cpp_source}{State\+Manager.\+cpp}}.
+
+\Hypertarget{class_u_state_manager_a6a6f2ec1886ed50178937c4bf3c2ad99}\label{class_u_state_manager_a6a6f2ec1886ed50178937c4bf3c2ad99} 
+\index{UStateManager@{UStateManager}!GetState@{GetState}}
+\index{GetState@{GetState}!UStateManager@{UStateManager}}
+\doxysubsubsection{\texorpdfstring{GetState()}{GetState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_state}{UState}} \texorpdfstring{$\ast$}{*} UState\+Manager\+::\+Get\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_state_description}{UState\+Description}} \texorpdfstring{$\ast$}{*}}]{State\+Description }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{_state_manager_8cpp_source}{State\+Manager.\+cpp}}.
+
+\Hypertarget{class_u_state_manager_a6c1228744d3634dd00fcc4b3d77363af}\label{class_u_state_manager_a6c1228744d3634dd00fcc4b3d77363af} 
+\index{UStateManager@{UStateManager}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UStateManager@{UStateManager}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UState\+Manager\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_state_manager_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{_state_manager_8cpp_source}{State\+Manager.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Administration/\+Managers/\mbox{\hyperlink{_state_manager_8h}{State\+Manager.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Administration/\+Managers/\mbox{\hyperlink{_state_manager_8cpp}{State\+Manager.\+cpp}}\end{DoxyCompactItemize}

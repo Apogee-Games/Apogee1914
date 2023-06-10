@@ -1,0 +1,61 @@
+\doxysection{Province\+Actor.\+h}
+\hypertarget{_province_actor_8h_source}{}\label{_province_actor_8h_source}\index{Source/MyProject2/Public/Characters/ProvinceActor.h@{Source/MyProject2/Public/Characters/ProvinceActor.h}}
+\mbox{\hyperlink{_province_actor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Components/TextRenderComponent.h"{}}}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/WidgetComponent.h"{}}}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Engine/StaticMeshActor.h"{}}}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_actor_8generated_8h}{ProvinceActor.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00007}00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_unit}{UUnit}};}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00009}00009\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00010}\mbox{\hyperlink{class_a_province_actor}{00010}}\ class\ \mbox{\hyperlink{class_a_province_actor}{AProvinceActor}}:\ public\ AActor}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00012}00012\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00014}00014\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00015}\mbox{\hyperlink{class_a_province_actor_a5d594b89e207a677d80704371135900a}{00015}}\ \ \ \ \ UWidgetComponent*\ WidgetComponent;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00018}\mbox{\hyperlink{class_a_province_actor_ae8cd1e22015f29e6809b1f36e24ea402}{00018}}\ \ \ \ \ UStaticMeshComponent*\ StaticMeshComponent;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00020}00020\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00021}\mbox{\hyperlink{class_a_province_actor_ad84a6faa28dbb1182bb12bb461f309cc}{00021}}\ \ \ \ \ UTextRenderComponent*\ ProvinceNameRenderer;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00023}00023\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00024}\mbox{\hyperlink{class_a_province_actor_afde849029c089cd2e1f21f6af452308e}{00024}}\ \ \ \ \ \textcolor{keywordtype}{float}\ LenghtScale\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_a_province_actor}{AProvinceActor}}();}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_unit_ab855480bb8b5260492711ed8d39ff030}{Init}}(const\ FText\&\ ProvinceName,\ FVector2d\ TopLeft,\ FVector2d\ BottomRight);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ AddAttacker(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ AddDefender(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveAttacker(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveDefender(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordtype}{void}\ AddUnit(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveUnit(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00041}00041\ private:}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00042}00042\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00043}00043\ \ \ \ \ TArray<\mbox{\hyperlink{class_u_unit}{UUnit}}*>\ Units;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00044}00044\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00045}00045\ \ \ \ \ template\ <class\ T>}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00046}00046\ \ \ \ \ T*\ GetWidget()\ const;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateWidgetVisibility()\ const;}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00049}00049\ \};}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00051}00051\ template\ <class\ T>}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00052}00052\ T*\ \mbox{\hyperlink{class_a_province_actor}{AProvinceActor}}::GetWidget()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00053}00053\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{return}\ Cast<T>(WidgetComponent-\/>GetWidget());}
+\DoxyCodeLine{\Hypertarget{_province_actor_8h_source_l00055}00055\ \}}
+
+\end{DoxyCode}

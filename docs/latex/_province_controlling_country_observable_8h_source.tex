@@ -1,0 +1,23 @@
+\doxysection{Province\+Controlling\+Country\+Observable.\+h}
+\hypertarget{_province_controlling_country_observable_8h_source}{}\label{_province_controlling_country_observable_8h_source}\index{Source/MyProject2/Public/Administration/Interfaces/Observable/ProvinceControllingCountryObservable.h@{Source/MyProject2/Public/Administration/Interfaces/Observable/ProvinceControllingCountryObservable.h}}
+\mbox{\hyperlink{_province_controlling_country_observable_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_controlling_country_observer_8h}{Administration/Interfaces/Observer/ProvinceControllingCountryObserver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00004}00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_province}{UProvince}};}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00006}\mbox{\hyperlink{class_i_province_controlling_country_observable}{00006}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_province_controlling_country_observable}{IProvinceControllingCountryObservable}}}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00008}00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_province_controlling_country_observable_ab92b9bb8fbd1e1c128efbc6be4995a69}{NotifyProvinceNewControllingCountry}}(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Unit);}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00010}00010\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_province_controlling_country_observable_a62de19b26193852771d28296b5a85e35}{AddProvinceControllingCountryObserver}}(\mbox{\hyperlink{class_i_province_controlling_country_observer}{IProvinceControllingCountryObserver}}*\ Observer);}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00012}00012\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_province_controlling_country_observable_a95e07d475ee8b43a6daea33e8f27ff09}{RemoveProvinceControllingCountryObserver}}(\mbox{\hyperlink{class_i_province_controlling_country_observer}{IProvinceControllingCountryObserver}}*\ Observer);}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00015}00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00016}00016\ \ \ \ \ TArray<IProvinceControllingCountryObserver*>\ Observers;}
+\DoxyCodeLine{\Hypertarget{_province_controlling_country_observable_8h_source_l00017}00017\ \};}
+
+\end{DoxyCode}

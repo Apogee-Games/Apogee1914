@@ -1,0 +1,32 @@
+\doxysection{Storage\+Observable.\+cpp}
+\hypertarget{_storage_observable_8cpp_source}{}\label{_storage_observable_8cpp_source}\index{Source/MyProject2/Private/Economics/Interfaces/Observables/StorageObservable.cpp@{Source/MyProject2/Private/Economics/Interfaces/Observables/StorageObservable.cpp}}
+\mbox{\hyperlink{_storage_observable_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_storage_observable_8h}{Economics/Interfaces/Observables/StorageObservable.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_stored_good_8h}{Economics/Instances/StoredGood.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00006}\mbox{\hyperlink{class_i_storage_observable_a46a93201440a454a7c42ac8b35a84e2b}{00006}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_storage_observable_a46a93201440a454a7c42ac8b35a84e2b}{IStorageObservable::NotifyGoodUpdate}}(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781f}{EStorageType}}\ StorageType,\ \mbox{\hyperlink{class_u_stored_good}{UStoredGood}}*\ Good)}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ Observer:\ Observers)}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ Observer-\/>GoodIsUpdated(StorageType,\ Good);}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00011}00011\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00014}\mbox{\hyperlink{class_i_storage_observable_abf0f13ac35f6a107a36b97d54f0f6d30}{00014}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_storage_observable_abf0f13ac35f6a107a36b97d54f0f6d30}{IStorageObservable::AddStorageObserver}}(\mbox{\hyperlink{class_i_storage_observer}{IStorageObserver}}*\ Observer)}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (Observers.Contains(Observer))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00017}00017\ \ \ \ \ Observers.Add(Observer);}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00021}\mbox{\hyperlink{class_i_storage_observable_ad5a6e1366282ab587c3a7b370e3595e8}{00021}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_storage_observable_ad5a6e1366282ab587c3a7b370e3595e8}{IStorageObservable::RemoveStorageObserver}}(\mbox{\hyperlink{class_i_storage_observer}{IStorageObserver}}*\ Observer)}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Observers.Contains(Observer))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00024}00024\ \ \ \ \ Observers.Remove(Observer);}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_storage_observable_8cpp_source_l00026}00026\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,71 @@
+\doxysection{Alliance\+Creation\+Widget.\+cpp}
+\hypertarget{_alliance_creation_widget_8cpp_source}{}\label{_alliance_creation_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Diplomacy/Alliance/Creation/AllianceCreationWidget.cpp@{Source/MyProject2/Private/Widgets/Diplomacy/Alliance/Creation/AllianceCreationWidget.cpp}}
+\mbox{\hyperlink{_alliance_creation_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliance_creation_widget_8h}{Widgets/Diplomacy/Alliance/Creation/AllianceCreationWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_countries_manager_8h}{Administration/Managers/CountriesManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_browsing_pawn_state_8h}{Characters/StateMachine/MapBrowsingPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_relationships_manager_8h}{Diplomacy/Managers/RelationshipsManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00009}\mbox{\hyperlink{class_u_alliance_creation_widget_aadd08160b8cd1b91384921ddbee9ae7a}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_creation_widget_aadd08160b8cd1b91384921ddbee9ae7a}{UAllianceCreationWidget::Init}}()}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_a9fcbd83af48f61e5b0e975d6d28c3583}{CreateAllianceButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UAllianceCreationWidget::OnCreateAllianceButtonClick);}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00014}\mbox{\hyperlink{class_u_alliance_creation_widget_aac59fdafecd37479fb5448cfb6f5c8e6}{00014}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_creation_widget_aac59fdafecd37479fb5448cfb6f5c8e6}{UAllianceCreationWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00016}00016\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_af59e3a468119f582837669355fba30c8}{InvitationalCountriesListView}}-\/>ClearListItems();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_a2c091e8dee25f2d0919d198b27884a21}{ToBeInvitedCountriesListView}}-\/>ClearListItems();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00022}00022\ \ \ \ \ TArray<UCountry*>\ Countries;}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00023}00023\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_countries_manager}{UCountriesManager}}>()-\/>GetCountryMap().GenerateValueArray(Countries);}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00025}00025\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ OwnersCountry\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>GetRuledCountry();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00026}00026\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}:\ Countries)}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00028}00028\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}\ ==\ OwnersCountry)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_af59e3a468119f582837669355fba30c8}{InvitationalCountriesListView}}-\/>AddItem(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00034}\mbox{\hyperlink{class_u_alliance_creation_widget_a4037290f9c180dfb53fadea09bdd3541}{00034}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_creation_widget_a4037290f9c180dfb53fadea09bdd3541}{UAllianceCreationWidget::AddToBeInvitedCountry}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00036}00036\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_af59e3a468119f582837669355fba30c8}{InvitationalCountriesListView}}-\/>RemoveItem(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00037}00037\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_a2c091e8dee25f2d0919d198b27884a21}{ToBeInvitedCountriesListView}}-\/>AddItem(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00040}\mbox{\hyperlink{class_u_alliance_creation_widget_a35d501da671b0b1bac26a12e091ebb2e}{00040}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_alliance_creation_widget_a35d501da671b0b1bac26a12e091ebb2e}{UAllianceCreationWidget::RemoveToBeInvitedCountry}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00041}00041\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_af59e3a468119f582837669355fba30c8}{InvitationalCountriesListView}}-\/>AddItem(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{class_u_alliance_creation_widget_a2c091e8dee25f2d0919d198b27884a21}{ToBeInvitedCountriesListView}}-\/>RemoveItem(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}});}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00046}00046\ \textcolor{keywordtype}{void}\ UAllianceCreationWidget::OnCreateAllianceButtonClick()}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00047}00047\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{class_u_relationships_manager}{URelationshipsManager}}*\ RelationshipsManager\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_relationships_manager}{URelationshipsManager}}>();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00051}00051\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ AllianceLeader\ =\ Pawn-\/>GetRuledCountry();}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00053}00053\ \ \ \ \ FText\ AllianceName\ =\ \mbox{\hyperlink{class_u_alliance_creation_widget_afe618e92ac15ee970d015be48a3580f1}{AllianceNameTextBlock}}-\/>GetText();\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00055}00055\ \ \ \ \ TArray<UCountry*>\ InvitedCountries;}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}:\ \mbox{\hyperlink{class_u_alliance_creation_widget_a2c091e8dee25f2d0919d198b27884a21}{ToBeInvitedCountriesListView}}-\/>GetListItems())}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ InvitedCountries.Add(Cast<UCountry>(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}));}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00061}00061\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00062}00062\ \ \ \ \ RelationshipsManager-\/>\mbox{\hyperlink{class_u_relationships_manager_a71833f1d7db9e847b0ea103d5662766c}{CreateAlliance}}(AllianceLeader,\ AllianceName,\ InvitedCountries);}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00064}00064\ \ \ \ \ Pawn-\/>SetPawnState(\mbox{\hyperlink{class_f_map_browsing_pawn_state_a230a615dd424fa408439094deb42a031}{FMapBrowsingPawnState::GetInstance}}());}
+\DoxyCodeLine{\Hypertarget{_alliance_creation_widget_8cpp_source_l00065}00065\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,128 @@
+\doxysection{UUnits\+Supply\+Controller Class Reference}
+\hypertarget{class_u_units_supply_controller}{}\label{class_u_units_supply_controller}\index{UUnitsSupplyController@{UUnitsSupplyController}}
+
+
+{\ttfamily \#include $<$Units\+Supply\+Controller.\+h$>$}
+
+Inheritance diagram for UUnits\+Supply\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.676647cm]{class_u_units_supply_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_units_supply_controller_a1af66116220f4dfdfc142a723e58b395}{Set\+Scenario}} (\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}Scenario)
+\item 
+virtual void \mbox{\hyperlink{class_u_units_supply_controller_ae51e2d89d549313ed91e8d7e8fb90e42}{Unit\+Is\+Created}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit) override
+\item 
+virtual void \mbox{\hyperlink{class_u_units_supply_controller_ac9433ab6767d0e4a8dabc8decc817c9b}{Unit\+Is\+Removed}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit) override
+\item 
+void \mbox{\hyperlink{class_u_units_supply_controller_ab038552273b9919a564476d5a2c31cc8}{Supply}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_unit_creation_observer}{IUnit\+Creation\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_unit_creation_observer_a3aac2696f6bdd32c460e58f8927c700f}{\texorpdfstring{$\sim$}{\string~}\+IUnit\+Creation\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_unit_creation_observer_afeb250896fc43b883261c4a906b0a175}{Unit\+Is\+Created}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_unit_supply_observable}{IUnit\+Supply\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_unit_supply_observable_ae20a69ee64172ce21fc23d7e30fffdba}{Notify\+Unit\+Supply}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit)
+\item 
+bool \mbox{\hyperlink{class_i_unit_supply_observable_a45d89d0411ae6cc5a48555c6d37693f0}{Add\+Unit\+Supply\+Observer}} (\mbox{\hyperlink{class_i_unit_supply_observer}{IUnit\+Supply\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_unit_supply_observable_a19e848cf2c7ff7c42bcb41bc23138733}{Remove\+Unit\+Supply\+Observer}} (\mbox{\hyperlink{class_i_unit_supply_observer}{IUnit\+Supply\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_unit_removal_observer}{IUnit\+Removal\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_i_unit_removal_observer_acb9f41e5ddb32151cfcda52852382cce}{\texorpdfstring{$\sim$}{\string~}\+IUnit\+Removal\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_i_unit_removal_observer_a0ecc83b8d01f954425dd2538afa85f58}{Unit\+Is\+Removed}} (\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}Unit)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FTimespan \mbox{\hyperlink{class_u_units_supply_controller_a2a6bdd03503cb6a2b378623d6c2deb50}{Supply\+Time\+Delta}} = FTimespan(1, 0, 0, 0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_units_supply_controller_8h_source_l00011}{11}} of file \mbox{\hyperlink{_units_supply_controller_8h_source}{Units\+Supply\+Controller.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_units_supply_controller_a1af66116220f4dfdfc142a723e58b395}\label{class_u_units_supply_controller_a1af66116220f4dfdfc142a723e58b395} 
+\index{UUnitsSupplyController@{UUnitsSupplyController}!SetScenario@{SetScenario}}
+\index{SetScenario@{SetScenario}!UUnitsSupplyController@{UUnitsSupplyController}}
+\doxysubsubsection{\texorpdfstring{SetScenario()}{SetScenario()}}
+{\footnotesize\ttfamily void UUnits\+Supply\+Controller\+::\+Set\+Scenario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_scenario}{UScenario}} \texorpdfstring{$\ast$}{*}}]{Scenario }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_supply_controller_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{_units_supply_controller_8cpp_source}{Units\+Supply\+Controller.\+cpp}}.
+
+\Hypertarget{class_u_units_supply_controller_ab038552273b9919a564476d5a2c31cc8}\label{class_u_units_supply_controller_ab038552273b9919a564476d5a2c31cc8} 
+\index{UUnitsSupplyController@{UUnitsSupplyController}!Supply@{Supply}}
+\index{Supply@{Supply}!UUnitsSupplyController@{UUnitsSupplyController}}
+\doxysubsubsection{\texorpdfstring{Supply()}{Supply()}}
+{\footnotesize\ttfamily void UUnits\+Supply\+Controller\+::\+Supply (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_units_supply_controller_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_units_supply_controller_8cpp_source}{Units\+Supply\+Controller.\+cpp}}.
+
+\Hypertarget{class_u_units_supply_controller_ae51e2d89d549313ed91e8d7e8fb90e42}\label{class_u_units_supply_controller_ae51e2d89d549313ed91e8d7e8fb90e42} 
+\index{UUnitsSupplyController@{UUnitsSupplyController}!UnitIsCreated@{UnitIsCreated}}
+\index{UnitIsCreated@{UnitIsCreated}!UUnitsSupplyController@{UUnitsSupplyController}}
+\doxysubsubsection{\texorpdfstring{UnitIsCreated()}{UnitIsCreated()}}
+{\footnotesize\ttfamily void UUnits\+Supply\+Controller\+::\+Unit\+Is\+Created (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}}]{Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_unit_creation_observer_afeb250896fc43b883261c4a906b0a175}{IUnit\+Creation\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_units_supply_controller_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_units_supply_controller_8cpp_source}{Units\+Supply\+Controller.\+cpp}}.
+
+\Hypertarget{class_u_units_supply_controller_ac9433ab6767d0e4a8dabc8decc817c9b}\label{class_u_units_supply_controller_ac9433ab6767d0e4a8dabc8decc817c9b} 
+\index{UUnitsSupplyController@{UUnitsSupplyController}!UnitIsRemoved@{UnitIsRemoved}}
+\index{UnitIsRemoved@{UnitIsRemoved}!UUnitsSupplyController@{UUnitsSupplyController}}
+\doxysubsubsection{\texorpdfstring{UnitIsRemoved()}{UnitIsRemoved()}}
+{\footnotesize\ttfamily void UUnits\+Supply\+Controller\+::\+Unit\+Is\+Removed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_unit}{UUnit}} \texorpdfstring{$\ast$}{*}}]{Unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_unit_removal_observer_a0ecc83b8d01f954425dd2538afa85f58}{IUnit\+Removal\+Observer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_units_supply_controller_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_units_supply_controller_8cpp_source}{Units\+Supply\+Controller.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_u_units_supply_controller_a2a6bdd03503cb6a2b378623d6c2deb50}\label{class_u_units_supply_controller_a2a6bdd03503cb6a2b378623d6c2deb50} 
+\index{UUnitsSupplyController@{UUnitsSupplyController}!SupplyTimeDelta@{SupplyTimeDelta}}
+\index{SupplyTimeDelta@{SupplyTimeDelta}!UUnitsSupplyController@{UUnitsSupplyController}}
+\doxysubsubsection{\texorpdfstring{SupplyTimeDelta}{SupplyTimeDelta}}
+{\footnotesize\ttfamily FTimespan UUnits\+Supply\+Controller\+::\+Supply\+Time\+Delta = FTimespan(1, 0, 0, 0)}
+
+
+
+Definition at line \mbox{\hyperlink{_units_supply_controller_8h_source_l00018}{18}} of file \mbox{\hyperlink{_units_supply_controller_8h_source}{Units\+Supply\+Controller.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Military/\+Managers/\mbox{\hyperlink{_units_supply_controller_8h}{Units\+Supply\+Controller.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Military/\+Managers/\mbox{\hyperlink{_units_supply_controller_8cpp}{Units\+Supply\+Controller.\+cpp}}\end{DoxyCompactItemize}

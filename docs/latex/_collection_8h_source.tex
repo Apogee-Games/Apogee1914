@@ -1,0 +1,44 @@
+\doxysection{Collection.\+h}
+\hypertarget{_collection_8h_source}{}\label{_collection_8h_source}\index{Source/MyProject2/Public/Military/Instances/Units/Collection.h@{Source/MyProject2/Public/Military/Instances/Units/Collection.h}}
+\mbox{\hyperlink{_collection_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_8h}{Unit.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00004}00004\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00005}\mbox{\hyperlink{class_t_f_military_collection}{00005}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_f_military_collection}{TFMilitaryCollection}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_ownable}{IOwnable}}}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00007}00007\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00008}\mbox{\hyperlink{class_t_f_military_collection_afedd7d559622466d38bd29e29cd27b5b}{00008}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_f_military_collection_afedd7d559622466d38bd29e29cd27b5b}{Init}}(\mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ ProvidedMilitaryBranch);}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00010}\mbox{\hyperlink{class_t_f_military_collection_ac28e9d602fffae8f2b67d40cbe66809a}{00010}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_f_military_collection_ac28e9d602fffae8f2b67d40cbe66809a}{Add}}(T\ Item)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00012}\mbox{\hyperlink{class_t_f_military_collection_a523870e60735aa833f7bbc27120ad411}{00012}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_f_military_collection_a523870e60735aa833f7bbc27120ad411}{Remove}}(T\ Item)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00014}\mbox{\hyperlink{class_t_f_military_collection_aa5d7c6ef69f0edc220f0450206caf349}{00014}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ TSet<T>\&\ \mbox{\hyperlink{class_t_f_military_collection_aa5d7c6ef69f0edc220f0450206caf349}{GetAll}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00016}\mbox{\hyperlink{class_t_f_military_collection_ab1fa3fdbde10117c10e2f16ce41a682e}{00016}}\ \ \ \ \ \textcolor{keyword}{virtual}\ int32\ \mbox{\hyperlink{class_t_f_military_collection_ab1fa3fdbde10117c10e2f16ce41a682e}{GetSize}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00018}\mbox{\hyperlink{class_t_f_military_collection_ab8b3d618216316b5b7efbc624a5d9374}{00018}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_f_military_collection_ab8b3d618216316b5b7efbc624a5d9374}{Contains}}(T\ Item)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00020}\mbox{\hyperlink{class_t_f_military_collection_a004026c9e8594516d7a13efffac573c8}{00020}}\ \ \ \ \ \mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ \mbox{\hyperlink{class_t_f_military_collection_a004026c9e8594516d7a13efffac573c8}{GetMilitaryBranch}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00022}\mbox{\hyperlink{class_t_f_military_collection_ae10c706c22163324710cc5470ecb674d}{00022}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_t_f_military_collection_ae10c706c22163324710cc5470ecb674d}{\string~TFMilitaryCollection}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00023}00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00024}00024\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00025}\mbox{\hyperlink{class_t_f_military_collection_ae1f511f2d09f842b7cb5900bd57c1595}{00025}}\ \ \ \ \ \mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ \mbox{\hyperlink{class_t_f_military_collection_ae1f511f2d09f842b7cb5900bd57c1595}{MilitaryBranch}};}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00026}00026\ \};}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00028}00028\ template\ <class\ T>}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00029}\mbox{\hyperlink{class_t_f_military_collection_afedd7d559622466d38bd29e29cd27b5b}{00029}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_f_military_collection}{TFMilitaryCollection}}<T>::\mbox{\hyperlink{class_t_f_military_collection_afedd7d559622466d38bd29e29cd27b5b}{Init}}(\mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ ProvidedMilitaryBranch)}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{class_t_f_military_collection_ae1f511f2d09f842b7cb5900bd57c1595}{MilitaryBranch}}\ =\ ProvidedMilitaryBranch;}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00034}00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00035}\mbox{\hyperlink{class_t_f_military_collection_a004026c9e8594516d7a13efffac573c8}{00035}}\ \mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ \mbox{\hyperlink{class_t_f_military_collection_a004026c9e8594516d7a13efffac573c8}{TFMilitaryCollection<T>::GetMilitaryBranch}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00036}00036\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_t_f_military_collection_ae1f511f2d09f842b7cb5900bd57c1595}{MilitaryBranch}};}
+\DoxyCodeLine{\Hypertarget{_collection_8h_source_l00038}00038\ \}}
+
+\end{DoxyCode}

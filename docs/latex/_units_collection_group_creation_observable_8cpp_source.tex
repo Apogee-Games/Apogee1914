@@ -1,0 +1,30 @@
+\doxysection{Units\+Collection\+Group\+Creation\+Observable.\+cpp}
+\hypertarget{_units_collection_group_creation_observable_8cpp_source}{}\label{_units_collection_group_creation_observable_8cpp_source}\index{Source/MyProject2/Private/Military/Interfaces/Observables/UnitsCollectionGroupCreationObservable.cpp@{Source/MyProject2/Private/Military/Interfaces/Observables/UnitsCollectionGroupCreationObservable.cpp}}
+\mbox{\hyperlink{_units_collection_group_creation_observable_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_collection_group_creation_observable_8h}{Military/Interfaces/Observables/UnitsCollectionGroupCreationObservable.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00004}\mbox{\hyperlink{class_i_units_collection_group_creation_observable_a406c5ec39e485df38c3db089be2a729b}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_units_collection_group_creation_observable_a406c5ec39e485df38c3db089be2a729b}{IUnitsCollectionGroupCreationObservable::NotifyUnitsCollectionGroupCreation}}(\mbox{\hyperlink{class_u_units_collection_group}{UUnitsCollectionGroup}}*\ UnitsCollectionGroup)}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ Observer\ :\ Observers)}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00007}00007\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ Observer-\/>UnitsCollectionGroupIsCreated(UnitsCollectionGroup);}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00009}00009\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00012}\mbox{\hyperlink{class_i_units_collection_group_creation_observable_af0590ba9cf338e193557094b6fa03f44}{00012}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_units_collection_group_creation_observable_af0590ba9cf338e193557094b6fa03f44}{IUnitsCollectionGroupCreationObservable::AddUnitsCollectionGroupCreationObserver}}(\mbox{\hyperlink{class_i_units_collection_group_creation_observer}{IUnitsCollectionGroupCreationObserver}}*\ Observer)}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (Observers.Contains(Observer))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00015}00015\ \ \ \ \ Observers.Add(Observer);}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00017}00017\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00019}\mbox{\hyperlink{class_i_units_collection_group_creation_observable_a31a51769c858c5c681549eb369330af3}{00019}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_units_collection_group_creation_observable_a31a51769c858c5c681549eb369330af3}{IUnitsCollectionGroupCreationObservable::RemoveUnitsCollectionGroupCreationObserver}}(\mbox{\hyperlink{class_i_units_collection_group_creation_observer}{IUnitsCollectionGroupCreationObserver}}*\ Observer)}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Observers.Contains(Observer))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00022}00022\ \ \ \ \ Observers.Remove(Observer);}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_units_collection_group_creation_observable_8cpp_source_l00024}00024\ \}}
+
+\end{DoxyCode}

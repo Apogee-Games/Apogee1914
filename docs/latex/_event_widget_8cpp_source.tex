@@ -1,0 +1,70 @@
+\doxysection{Event\+Widget.\+cpp}
+\hypertarget{_event_widget_8cpp_source}{}\label{_event_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Events/EventWidget.cpp@{Source/MyProject2/Private/Widgets/Events/EventWidget.cpp}}
+\mbox{\hyperlink{_event_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_widget_8h}{Widgets/Events/EventWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_description_8h}{Administration/Descriptions/Country/CountryDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Blueprint/WidgetLayoutLibrary.h"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}Components/CanvasPanelSlot.h"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}Components/Image.h"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}Engine/Canvas.h"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_utils_8h}{Utils/TextureUtils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_choice_carrier_8h}{Widgets/Events/EventChoiceCarrier.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00014}\mbox{\hyperlink{class_u_event_widget_a1081cd14534142796d30ac9cbb51697b}{00014}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_widget_a1081cd14534142796d30ac9cbb51697b}{UEventWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00016}00016\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_u_event_widget_a7e89d71749a33c350aa303f904791bcc}{ButtonForMoving}}-\/>OnPressed.AddDynamic(\textcolor{keyword}{this},\ \&UEventWidget::OnButtonForMovingPress);}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_u_event_widget_a7e89d71749a33c350aa303f904791bcc}{ButtonForMoving}}-\/>OnReleased.AddDynamic(\textcolor{keyword}{this},\ \&UEventWidget::UEventWidget::OnButtonForMovingRelease);}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00021}\mbox{\hyperlink{class_u_event_widget_a0b68257418f11b3046f2036180b8e263}{00021}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_widget_a0b68257418f11b3046f2036180b8e263}{UEventWidget::Init}}(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ EventDescription,\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription,\ \textcolor{keyword}{const}\ TMap<FName,\ bool>\&\ ChoicesConditionsEvaluated)}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00023}00023\ \ \ \ \ \mbox{\hyperlink{class_u_event_widget_a8497645e5d6886daa7f015c95792ea03}{TitleTextBlock}}-\/>SetText(EventDescription-\/>\mbox{\hyperlink{class_u_event_description_af6d44e6c6a0cd48a8d4bd694ab142a8f}{Title}});}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{class_u_event_widget_aa985fbae228b5489b46775785607a9e0}{TextTextBlock}}-\/>SetText(EventDescription-\/>\mbox{\hyperlink{class_u_event_description_a9d59f3176ac0528b4fab7fb07085a3b0}{Text}});}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_u_event_widget_a94fc2f6957b2d707b692ed003a8db5a1}{Image}}-\/>SetBrushResourceObject(EventDescription-\/>\mbox{\hyperlink{class_u_event_description_a386ec6cfb212d0c30384987beb591bdb}{Image}});}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Choice:\ EventDescription-\/>\mbox{\hyperlink{class_u_event_description_ae0f38f68d46fb93d13ea2970002b01c4}{Choices}})}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_event_choice_carrier}{UEventChoiceCarrier}}*\ Carrier\ =\ NewObject<UEventChoiceCarrier>(\textcolor{keyword}{this});\ \textcolor{comment}{//\ TODO:\ Do\ we\ need\ it\ :)}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ Carrier-\/>\mbox{\hyperlink{class_u_event_choice_carrier_ae4367101c2f9507e0efbe1ced8d85b0e}{Init}}(Choice,\ CountryDescription,\ EventDescription,\ ChoicesConditionsEvaluated);}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_event_widget_a415fa58e3c3f62a2b7361fc9777a914d}{ChoicesListView}}-\/>AddItem(Carrier);}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00036}\mbox{\hyperlink{class_u_event_widget_a1f21fce6ad973e1bfb570602c95d6141}{00036}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_widget_a1f21fce6ad973e1bfb570602c95d6141}{UEventWidget::Tick}}()}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (IsWidgetBeingMoved)}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00039}00039\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FVector2d\ NewCurrentMousePosition\ =\ UWidgetLayoutLibrary::GetMousePositionOnViewport(GetWorld());}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (CurrentMousePosition\ !=\ NewCurrentMousePosition)}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ UCanvasPanelSlot*\ WidgetCanvasSlot\ =\ Cast<UCanvasPanelSlot>(\mbox{\hyperlink{class_u_event_widget_afaa96ca99bb079700ce82fccea3198ca}{WidgetCanvasPanel}}-\/>Slot);}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ FVector2d\ NewWidgetPosition\ =\ WidgetCanvasSlot-\/>GetPosition()\ +\ NewCurrentMousePosition\ -\/\ CurrentMousePosition;}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ WidgetCanvasSlot-\/>SetPosition(NewWidgetPosition);}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ CurrentMousePosition\ =\ NewCurrentMousePosition;}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00055}00055\ \textcolor{keywordtype}{void}\ UEventWidget::OnButtonForMovingPress()}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00056}00056\ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00057}00057\ \ \ \ \ CurrentMousePosition\ =\ UWidgetLayoutLibrary::GetMousePositionOnViewport(GetWorld());}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00058}00058\ \ \ \ \ IsWidgetBeingMoved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00059}00059\ \}}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00061}00061\ \textcolor{keywordtype}{void}\ UEventWidget::OnButtonForMovingRelease()}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00062}00062\ \{}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00063}00063\ \ \ \ \ IsWidgetBeingMoved\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_event_widget_8cpp_source_l00064}00064\ \}}
+
+\end{DoxyCode}

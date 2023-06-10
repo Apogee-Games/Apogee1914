@@ -1,0 +1,37 @@
+\doxysection{Sphere\+Map\+Actor.\+cpp}
+\hypertarget{_sphere_map_actor_8cpp_source}{}\label{_sphere_map_actor_8cpp_source}\index{Source/MyProject2/Private/Characters/Components/SphereMapActor.cpp@{Source/MyProject2/Private/Characters/Components/SphereMapActor.cpp}}
+\mbox{\hyperlink{_sphere_map_actor_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sphere_map_actor_8h}{Characters/Components/SphereMapActor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}VectorTypes.h"{}}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00006}\mbox{\hyperlink{class_a_sphere_map_actor_a4e74eb27bf6cee44fd28e2985ee277de}{00006}}\ FVector3d\ \mbox{\hyperlink{class_a_sphere_map_actor_a4e74eb27bf6cee44fd28e2985ee277de}{ASphereMapActor::GetNewPosition}}(FVector3d\ Position,\ FVector3d\ Direction,\ FRotator\ Roation,\ \textcolor{keywordtype}{float}\ DeltaTime)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00008}00008\ \ \ \ \ Direction.Normalize();}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00009}00009\ \ \ \ \ \textcolor{keywordflow}{return}\ Position\ +\ Roation.RotateVector(Direction)\ *\ \mbox{\hyperlink{class_a_sphere_map_actor_a4d351da73976af82cbb0411d0a122714}{SpeedVector}}\ *\ DeltaTime;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00012}\mbox{\hyperlink{class_a_sphere_map_actor_ad2e33b22938ef4b62c97c12b6fa38862}{00012}}\ FVector2d\ \mbox{\hyperlink{class_a_sphere_map_actor_ad2e33b22938ef4b62c97c12b6fa38862}{ASphereMapActor::GetMapPosition}}(FVector3d\ WorldPosition)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{const}\ FVector\ Vector\ =\ \mbox{\hyperlink{class_a_sphere_map_actor_a6edf6ac445faa5439e4d902b394ee7bf}{SphereRotation}}.UnrotateVector(WorldPosition\ -\/\ \mbox{\hyperlink{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65}{SphereCenter}});}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ theta\ =\ atan2(Vector.X,\ Vector.Y)\ /\ (2\ *\ PI)\ +\ 0.5;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ phi\ =\ acos(Vector.Z\ /\ \mbox{\hyperlink{class_a_sphere_map_actor_a930444670b467afd77b118f72a284dfe}{Radius}})\ /\ PI;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ FVector2d(theta,\ phi);}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00020}\mbox{\hyperlink{class_a_sphere_map_actor_a4c7c3db1c1fad9c27e0e08b6a721063d}{00020}}\ FVector3d\ \mbox{\hyperlink{class_a_sphere_map_actor_a4c7c3db1c1fad9c27e0e08b6a721063d}{ASphereMapActor::GetWorldPosition}}(FVector2d\ MapPosition)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ theta\ =\ (MapPosition.X\ -\/\ 0.5)\ *\ PI\ *\ 2;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ phi\ =\ (MapPosition.Y)\ *\ PI;}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{const}\ FVector\ DirectionVector(sin(phi)\ *\ sin(theta),\ cos(theta)\ *\ sin(phi),\ cos(phi));}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65}{SphereCenter}}\ +\ \mbox{\hyperlink{class_a_sphere_map_actor_a6edf6ac445faa5439e4d902b394ee7bf}{SphereRotation}}.RotateVector(DirectionVector)\ *\ \mbox{\hyperlink{class_a_sphere_map_actor_a930444670b467afd77b118f72a284dfe}{Radius}};}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00028}\mbox{\hyperlink{class_a_sphere_map_actor_adad0b33f205378f6baeca6f73863b318}{00028}}\ FQuat\ \mbox{\hyperlink{class_a_sphere_map_actor_adad0b33f205378f6baeca6f73863b318}{ASphereMapActor::GetNewRotation}}(FVector3d\ Position,\ FVector3d\ NewPosition,\ FQuat\ Rotation)}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_a_sphere_map_actor_af80c2f55039b8f2111c96c791f5bba65}{SphereCenter}}\ -\/\ NewPosition).Rotation().Quaternion();}
+\DoxyCodeLine{\Hypertarget{_sphere_map_actor_8cpp_source_l00031}00031\ \}}
+
+\end{DoxyCode}

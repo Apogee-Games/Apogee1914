@@ -1,0 +1,55 @@
+\doxysection{Outcomes\+Applier\+Subsystem.\+cpp}
+\hypertarget{_outcomes_applier_subsystem_8cpp_source}{}\label{_outcomes_applier_subsystem_8cpp_source}\index{Source/MyProject2/Private/Actions/OutcomeAppliers/OutcomesApplierSubsystem.cpp@{Source/MyProject2/Private/Actions/OutcomeAppliers/OutcomesApplierSubsystem.cpp}}
+\mbox{\hyperlink{_outcomes_applier_subsystem_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_outcomes_applier_subsystem_8h}{Actions/OutcomeAppliers/OutcomesApplierSubsystem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_non_aligned_outcome_applier_8h}{Actions/OutcomeAppliers/NonAlignedOutcomeApplier.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00007}\mbox{\hyperlink{class_u_outcomes_applier_subsystem_a70cd2737dfb51873737faef270cbcacc}{00007}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_outcomes_applier_subsystem_a70cd2737dfb51873737faef270cbcacc}{UOutcomesApplierSubsystem::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00009}00009\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00010}00010\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00013}\mbox{\hyperlink{class_u_outcomes_applier_subsystem_afc74dc9a3b95e3527f0fffe09b8f6965}{00013}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_outcomes_applier_subsystem_afc74dc9a3b95e3527f0fffe09b8f6965}{UOutcomesApplierSubsystem::RegisterOutcomeApplier}}(\textcolor{keyword}{const}\ FName\&\ Name,\ \mbox{\hyperlink{class_f_outcome_applier}{FOutcomeApplier}}*\ OutcomeApplier)}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00015}00015\ \ \ \ \ OutcomeAppliers.Add(Name,\ OutcomeApplier);}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00016}00016\ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00018}\mbox{\hyperlink{class_u_outcomes_applier_subsystem_ad4d0d27d676940a1335c920adfeccd7c}{00018}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_outcomes_applier_subsystem_ad4d0d27d676940a1335c920adfeccd7c}{UOutcomesApplierSubsystem::ApplyOutcomes}}(TArray<FOutcome>\&\ Outcomes,\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ Outcome:\ Outcomes)}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00021}00021\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!OutcomeAppliers.Contains(Outcome.Name))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ AddedCountry\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Outcome.Values.Contains(\textcolor{stringliteral}{"{}Country"{}}))}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ Outcome.Values.Add(\textcolor{stringliteral}{"{}Country"{}},\ CountryDescription-\/>\mbox{\hyperlink{class_u_country_description_aa5b3db38a91e07acca90e9460ead33c5}{Tag}}.ToString());}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ AddedCountry\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ OutcomeAppliers[Outcome.Name]-\/>Apply(Outcome.Values);}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (AddedCountry)}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ Outcome.Values.Remove(\textcolor{stringliteral}{"{}Country"{}});}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00040}00040\ \textcolor{keywordtype}{void}\ UOutcomesApplierSubsystem::Clear()}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00041}00041\ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00042}00042\ \ \ \ \ OutcomeAppliers.Empty();}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00043}00043\ \}}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00045}00045\ \textcolor{keywordtype}{void}\ UOutcomesApplierSubsystem::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00046}00046\ \{}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{class_u_countries_manager}{UCountriesManager}}*\ CountriesManager\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_countries_manager}{UCountriesManager}}>();}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{class_u_outcomes_applier_subsystem_afc74dc9a3b95e3527f0fffe09b8f6965}{RegisterOutcomeApplier}}(\textcolor{stringliteral}{"{}NonAlignment"{}},\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_f_non_aligned_outcome_applier}{FNonAlignedOutcomeApplier}}(CountriesManager));}
+\DoxyCodeLine{\Hypertarget{_outcomes_applier_subsystem_8cpp_source_l00049}00049\ \}}
+
+\end{DoxyCode}

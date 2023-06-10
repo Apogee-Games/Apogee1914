@@ -1,0 +1,47 @@
+\doxysection{Plane\+Map\+Actor.\+h}
+\hypertarget{_plane_map_actor_8h_source}{}\label{_plane_map_actor_8h_source}\index{Source/MyProject2/Public/Characters/Components/PlaneMapActor.h@{Source/MyProject2/Public/Characters/Components/PlaneMapActor.h}}
+\mbox{\hyperlink{_plane_map_actor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_actor_8h}{MapActor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_plane_map_actor_8generated_8h}{PlaneMapActor.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00005}00005\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00006}\mbox{\hyperlink{class_a_plane_map_actor}{00006}}\ class\ \mbox{\hyperlink{class_a_plane_map_actor}{APlaneMapActor}}:\ public\ \mbox{\hyperlink{class_a_map_actor}{AMapActor}}}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00008}00008\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00009}00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00010}00010\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00011}\mbox{\hyperlink{class_a_plane_map_actor_ade517ca7f59023dfe8510ebce77d0031}{00011}}\ \ \ \ \ FRotator\ PlaneRotator\ =\ FRotator(90,\ 0,\ 90);}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00014}\mbox{\hyperlink{class_a_plane_map_actor_a2f33498210be5a337c22200829e17597}{00014}}\ \ \ \ \ FVector3d\ MinPosition\ =\ FVector3d(-\/100,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00017}\mbox{\hyperlink{class_a_plane_map_actor_aa3966e4f11a3d32a4706cdbe6ce1152e}{00017}}\ \ \ \ \ FVector3d\ MaxPosition\ =\ FVector3d(-\/15,\ 200,\ 200);}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00020}\mbox{\hyperlink{class_a_plane_map_actor_aa2c2d30a33cfcc44ad7e307b1b2f0375}{00020}}\ \ \ \ \ \textcolor{keywordtype}{double}\ PlaneSideSize\ =\ 200;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00022}00022\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00023}\mbox{\hyperlink{class_a_plane_map_actor_acbcfcf7ba0d0ac71a9f8f58463d7f3f4}{00023}}\ \ \ \ \ FVector\ SpeedVector\ =\ FVector(50,\ 50,\ 50);}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00025}00025\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00026}\mbox{\hyperlink{class_a_plane_map_actor_ace74bb2978741880a91fce634719914d}{00026}}\ \ \ \ \ \textcolor{keywordtype}{float}\ PitchDelta\ =\ 0.5;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00028}00028\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00029}\mbox{\hyperlink{class_a_plane_map_actor_a0e3b19e7fdd3bced406be62a56e4ea6e}{00029}}\ \ \ \ \ \textcolor{keywordtype}{float}\ MinPitch\ =\ 50;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00030}00030\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00031}00031\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00032}\mbox{\hyperlink{class_a_plane_map_actor_a1cdac1ccea3e95f3d4559d05e2e200b8}{00032}}\ \ \ \ \ \textcolor{keywordtype}{float}\ MaxPitch\ =\ 90;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00033}00033\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00034}00034\ \ \ \ \ virtual\ FVector3d\ GetNewPosition(FVector3d\ Position,\ FVector3d\ Direction,\ FRotator\ Rotation,\ \textcolor{keywordtype}{float}\ DeltaTime)\ override;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00035}00035\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00036}00036\ \ \ \ \ virtual\ FVector2d\ GetMapPosition(FVector3d\ WorldPosition)\ override;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00038}00038\ \ \ \ \ virtual\ FVector3d\ GetWorldPosition(FVector2d\ MapPosition)\ override;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00040}00040\ \ \ \ \ virtual\ FQuat\ GetNewRotation(FVector3d\ Position,\ FVector3d\ NewPosition,\ FQuat\ Rotation)\ override;}
+\DoxyCodeLine{\Hypertarget{_plane_map_actor_8h_source_l00041}00041\ \};}
+
+\end{DoxyCode}

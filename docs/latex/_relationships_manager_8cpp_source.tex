@@ -1,0 +1,88 @@
+\doxysection{Relationships\+Manager.\+cpp}
+\hypertarget{_relationships_manager_8cpp_source}{}\label{_relationships_manager_8cpp_source}\index{Source/MyProject2/Private/Diplomacy/Managers/RelationshipsManager.cpp@{Source/MyProject2/Private/Diplomacy/Managers/RelationshipsManager.cpp}}
+\mbox{\hyperlink{_relationships_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_relationships_manager_8h}{Diplomacy/Managers/RelationshipsManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_countries_manager_8h}{Administration/Managers/CountriesManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliance_8h}{Diplomacy/Instances/Alliance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_war_8h}{Diplomacy/Instances/War.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliances_map_8h}{Maps/Diplomacy/AlliancesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_relation_map_8h}{Maps/Diplomacy/CountryRelationMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00010}\mbox{\hyperlink{class_u_relationships_manager_a904cac6ded1035dcfbb811b5f133fe39}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_a904cac6ded1035dcfbb811b5f133fe39}{URelationshipsManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00012}00012\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00013}00013\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00016}\mbox{\hyperlink{class_u_relationships_manager_a21979c7773c4747483981700e329a202}{00016}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_a21979c7773c4747483981700e329a202}{URelationshipsManager::DeclareWar}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryA,\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryB)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_u_war}{UWar}}*\ WarInstance\ =\ NewObject<UWar>(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00020}00020\ \ \ \ \ WarInstance-\/>\mbox{\hyperlink{class_u_war_a986df4d2828539eda079bd0fbea23299}{Init}}(CountryA,\ CountryB);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{class_i_war_declaration_observable_abffc0d0156093c7f10c3ccf2fc4282be}{NotifyWarDeclaration}}(WarInstance);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00025}\mbox{\hyperlink{class_u_relationships_manager_aa1eab9d6e80022082f57b611ee1614e5}{00025}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_aa1eab9d6e80022082f57b611ee1614e5}{URelationshipsManager::CreateNonAggressionPact}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryA,\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryB)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00027}00027\ \ \ \ \ CountryA-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryB,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca692bf08bd49a59a4b3d3b29aa8e47e22}{NonAggressionPact}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00028}00028\ \ \ \ \ CountryB-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryA,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca692bf08bd49a59a4b3d3b29aa8e47e22}{NonAggressionPact}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00031}\mbox{\hyperlink{class_u_relationships_manager_ab93e08f547f3092b525b6cb1bbd53bd7}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_ab93e08f547f3092b525b6cb1bbd53bd7}{URelationshipsManager::BreakNonAggressionPact}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryA,\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryB)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ some\ logic\ to\ make\ a\ it\ a\ bit\ painful\ :)}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00034}00034\ \ \ \ \ CountryA-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryB,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00035}00035\ \ \ \ \ CountryB-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryA,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00038}\mbox{\hyperlink{class_u_relationships_manager_a3e340a6d2592eba9ba5646bddfd50608}{00038}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_a3e340a6d2592eba9ba5646bddfd50608}{URelationshipsManager::CreateDefencivePact}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryA,\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryB)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00040}00040\ \ \ \ \ CountryA-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryB,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04cacf7b3e3fe23ee305f13d0ca75a9b04ea}{DefencivePact}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00041}00041\ \ \ \ \ CountryB-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryA,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04cacf7b3e3fe23ee305f13d0ca75a9b04ea}{DefencivePact}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00044}\mbox{\hyperlink{class_u_relationships_manager_aaeb3cf47bc9b2d3100bb95ccf27d829d}{00044}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_aaeb3cf47bc9b2d3100bb95ccf27d829d}{URelationshipsManager::BreakDefencivePact}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryA,\ \mbox{\hyperlink{class_u_country}{UCountry}}*\ CountryB)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00045}00045\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ some\ logic\ to\ make\ a\ it\ a\ bit\ painful\ :)}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00047}00047\ \ \ \ \ CountryA-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryB,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00048}00048\ \ \ \ \ CountryB-\/>\mbox{\hyperlink{class_u_country_ad8a118196e7508304864c271a6c790c5}{SetRelation}}(CountryA,\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca32bb6c621f52f6a0932c646d5ed47f91}{Neutral}});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00051}\mbox{\hyperlink{class_u_relationships_manager_a71833f1d7db9e847b0ea103d5662766c}{00051}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_a71833f1d7db9e847b0ea103d5662766c}{URelationshipsManager::CreateAlliance}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ \textcolor{keyword}{const}\ FText\&\ AllianceName)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_u_alliance}{UAlliance}}*\ Alliance\ =\ NewObject<UAlliance>(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00055}00055\ \ \ \ \ Alliance-\/>\mbox{\hyperlink{class_u_alliance_a8a0a443b4754a0b3a02ee75c0f4e5c96}{Init}}(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ AllianceName);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00057}00057\ \ \ \ \ \mbox{\hyperlink{class_i_alliance_creation_observable_a8591892070222523ae1631bc52772773}{NotifyAllianceCreation}}(Alliance);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00060}\mbox{\hyperlink{class_u_relationships_manager_abb4148012b55d6fbe8f773f467dcbbd5}{00060}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_relationships_manager_a71833f1d7db9e847b0ea103d5662766c}{URelationshipsManager::CreateAlliance}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ \textcolor{keyword}{const}\ FText\&\ AllianceName,\ \textcolor{keyword}{const}\ TArray<UCountry*>\&\ InvitedCountries)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00061}00061\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{class_u_alliance}{UAlliance}}*\ Alliance\ =\ NewObject<UAlliance>(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00064}00064\ \ \ \ \ Alliance-\/>\mbox{\hyperlink{class_u_alliance_a8a0a443b4754a0b3a02ee75c0f4e5c96}{Init}}(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ AllianceName,\ InvitedCountries);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{class_i_alliance_creation_observable_a8591892070222523ae1631bc52772773}{NotifyAllianceCreation}}(Alliance);}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00069}00069\ \textcolor{keywordtype}{void}\ URelationshipsManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00070}00070\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00071}00071\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00072}00072\ \}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00074}00074\ \textcolor{keywordtype}{void}\ URelationshipsManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00075}00075\ \{}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00076}00076\ \textcolor{comment}{//\ \ UCountry*\ France\ =\ GetGameInstance()-\/>GetSubsystem<UCountriesManager>()-\/>GetCountry("{}FRA"{});}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00077}00077\ \textcolor{comment}{//\ \ UCountry*\ Spain\ =\ GetGameInstance()-\/>GetSubsystem<UCountriesManager>()-\/>GetCountry("{}SPA"{});}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00078}00078\ \textcolor{comment}{//\ \ DeclareWar(France,\ Spain);}}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00080}00080\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_country_relation_map}{UCountryRelationMap}}>()-\/>UpdateMap();}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00081}00081\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_alliances_map}{UAlliancesMap}}>()-\/>UpdateMap();}
+\DoxyCodeLine{\Hypertarget{_relationships_manager_8cpp_source_l00082}00082\ \}}
+
+\end{DoxyCode}

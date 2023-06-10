@@ -1,0 +1,51 @@
+\doxysection{Unit\+Type\+Description\+Widget.\+h}
+\hypertarget{_unit_type_description_widget_8h_source}{}\label{_unit_type_description_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Military/Creation/UnitTypeDescriptionWidget.h@{Source/MyProject2/Public/Widgets/Military/Creation/UnitTypeDescriptionWidget.h}}
+\mbox{\hyperlink{_unit_type_description_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/ListView.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Components/TextBlock.h"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_description_8h}{Military/Descriptions/UnitDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_type_description_widget_8generated_8h}{UnitTypeDescriptionWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00009}00009\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00010}\mbox{\hyperlink{class_u_unit_type_description_widget}{00010}}\ class\ \mbox{\hyperlink{class_u_unit_type_description_widget}{UUnitTypeDescriptionWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00012}00012\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00014}00014\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00015}\mbox{\hyperlink{class_u_unit_type_description_widget_a331f71128b16bce2a1de51d315cb75da}{00015}}\ \ \ \ \ UTextBlock*\ UnitNameTextBlock;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00018}\mbox{\hyperlink{class_u_unit_type_description_widget_a528130287c0e67893106fd490a22cb10}{00018}}\ \ \ \ \ UTextBlock*\ MilitaryBranchTextBlock;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00020}00020\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00021}\mbox{\hyperlink{class_u_unit_type_description_widget_ab3ce48c79849a7a060b4ea94977bebf4}{00021}}\ \ \ \ \ UTextBlock*\ ManpowerRequirementsTextBlock;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00023}00023\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00024}\mbox{\hyperlink{class_u_unit_type_description_widget_ab6efda36bdcdbfa6dc4e116d69363d46}{00024}}\ \ \ \ \ UListView*\ EquipmentRequirementsListView;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00026}00026\ \ \ \ \ UPROPERTY(BlueprintReadWrite,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00027}\mbox{\hyperlink{class_u_unit_type_description_widget_a004486be8e79aea294a9c0821b414030}{00027}}\ \ \ \ \ UButton*\ Button;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00029}00029\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ NativeConstruct()\ override;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00031}00031\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ SetUnitDescription(UObject*\ ProvidedUnitDescription);}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00034}00034\ \ \ \ \ UFUNCTION(BlueprintCallable)}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00036}00036\ private:}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00037}00037\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00038}00038\ \ \ \ \ TSet<\mbox{\hyperlink{class_u_good_description}{UGoodDescription}}*>\ AddedGoodRequirement;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00040}00040\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{class_u_unit_description}{UUnitDescription}}*\ UnitDescription;}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00043}00043\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{void}\ OnButtonClick();}
+\DoxyCodeLine{\Hypertarget{_unit_type_description_widget_8h_source_l00045}00045\ \};}
+
+\end{DoxyCode}

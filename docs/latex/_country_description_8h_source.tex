@@ -1,0 +1,39 @@
+\doxysection{Country\+Description.\+h}
+\hypertarget{_country_description_8h_source}{}\label{_country_description_8h_source}\index{Source/MyProject2/Public/Administration/Descriptions/Country/CountryDescription.h@{Source/MyProject2/Public/Administration/Descriptions/Country/CountryDescription.h}}
+\mbox{\hyperlink{_country_description_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_ideology_parameters_8h}{CountryIdeologyParameters.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ideology_description_8h}{Administration/Descriptions/IdeologyDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_parliament_description_8h}{Administration/Descriptions/ParliamentDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Engine/DataTable.h"{}}}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_description_8generated_8h}{CountryDescription.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00008}00008\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00009}\mbox{\hyperlink{class_u_country_description}{00009}}\ class\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}:\ public\ UPrimaryDataAsset}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00011}00011\ \ \ \ \ GENERATED\_BODY()\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00014}\mbox{\hyperlink{class_u_country_description_aa5b3db38a91e07acca90e9460ead33c5}{00014}}\ \ \ \ \ FName\ Tag;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00017}\mbox{\hyperlink{class_u_country_description_a7839db3a7ce97c395254e9021607b137}{00017}}\ \ \ \ \ \mbox{\hyperlink{class_u_ideology_description}{UIdeologyDescription}}*\ CurrentIdeology;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00020}\mbox{\hyperlink{class_u_country_description_a28f7ec5b0b544f962114436c757b7461}{00020}}\ \ \ \ \ TArray<\mbox{\hyperlink{struct_f_country_ideology_parameters}{FCountryIdeologyParameters}}>\ Ideologies;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00022}00022\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00023}\mbox{\hyperlink{class_u_country_description_aeae5c0d30addf6648e5d7f15a153c3bf}{00023}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ HasFirstChamber\ =\ false;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00025}00025\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00026}\mbox{\hyperlink{class_u_country_description_aab8cdd0aa67ac2c88282946636f4ee0b}{00026}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ HasTwoChambers\ =\ false;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00028}00028\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00029}\mbox{\hyperlink{class_u_country_description_af90501b073ca2a2157c44b8bc162093e}{00029}}\ \ \ \ \ \mbox{\hyperlink{struct_f_parliament_description}{FParliamentDescription}}\ FirstChamber;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00030}00030\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00031}00031\ \ \ \ \ UPROPERTY(EditDefaultsOnly)}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00032}\mbox{\hyperlink{class_u_country_description_a1cd6dfe019afa1cc316636007cb49c6e}{00032}}\ \ \ \ \ \mbox{\hyperlink{struct_f_parliament_description}{FParliamentDescription}}\ SecondChamber;}
+\DoxyCodeLine{\Hypertarget{_country_description_8h_source_l00033}00033\ \};}
+
+\end{DoxyCode}

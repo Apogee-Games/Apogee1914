@@ -1,0 +1,173 @@
+\doxysection{Event\+Instances\+Controller.\+cpp}
+\hypertarget{_event_instances_controller_8cpp_source}{}\label{_event_instances_controller_8cpp_source}\index{Source/MyProject2/Private/Events/EventInstancesController.cpp@{Source/MyProject2/Private/Events/EventInstancesController.cpp}}
+\mbox{\hyperlink{_event_instances_controller_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_instances_controller_8h}{Events/EventInstancesController.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_conditions_checking_subsystem_8h}{Actions/ConditionCheckers/ConditionsCheckingSubsystem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_outcomes_applier_subsystem_8h}{Actions/OutcomeAppliers/OutcomesApplierSubsystem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_countries_manager_8h}{Administration/Managers/CountriesManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_level_game_state_8h}{LevelsOverides/Game/GameLevelGameState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00009}\mbox{\hyperlink{class_u_event_instances_controller_a2ef80f13d60bf370b6b9d3f36f37d570}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_a2ef80f13d60bf370b6b9d3f36f37d570}{UEventInstancesController::CreateEvent}}(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ Event,\ \textcolor{keyword}{const}\ TMap<FName,\ bool>\&\ ChoicesConditionsEvaluated,\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (WidgetsInstances.Contains(\{Event,\ CountryDescription\}))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (Event-\/>\mbox{\hyperlink{class_u_event_description_a81cd7726e9c1458fd3bc91511ab3d1bc}{TriggerOnce}}\ \&\&\ FiredEvents.Contains(\{Event,\ CountryDescription\}))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_u_my_game_instance}{UMyGameInstance}}*\textcolor{keyword}{>}(GetWorld()-\/>GetGameInstance())-\/>IsCountryRuledByPlayer(CountryDescription))}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ CreateEventForPlayer(Event,\ ChoicesConditionsEvaluated,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00017}00017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ CreateEventForAI(Event,\ ChoicesConditionsEvaluated,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00024}\mbox{\hyperlink{class_u_event_instances_controller_aa0ec956a12d59960590ace7a1e1669d5}{00024}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_aa0ec956a12d59960590ace7a1e1669d5}{UEventInstancesController::DeleteEventWidget}}(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ Event,\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (!WidgetsInstances.Contains(\{Event,\ CountryDescription\}))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00028}00028\ \ \ \ \ WidgetsInstances[\{Event,\ CountryDescription\}]-\/>RemoveFromParent();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00030}00030\ \ \ \ \ WidgetsInstances.Remove(\{Event,\ CountryDescription\});}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00033}00033\ \textcolor{keywordtype}{void}\ UEventInstancesController::Clear()}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00035}00035\ \ \ \ \ FiredEvents.Empty();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00036}00036\ \ \ \ \ Events.Empty();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00037}00037\ \ \ \ \ ActiveEvents.Empty();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00038}00038\ \ \ \ \ WidgetsInstances.Empty();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00041}00041\ \textcolor{keywordtype}{void}\ UEventInstancesController::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00043}00043\ \ \ \ \ Events\ =\ Scenario-\/>\mbox{\hyperlink{class_u_scenario_aede344ff3d7e44a960cdc94d5350d394}{Events}};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00044}00044\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_in_game_time}{UInGameTime}}>()-\/>RegisterListener(\textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_u_event_instances_controller_a48a3c4f89ef8dd63c9333a18c75b7182}{UEventInstancesController::CheckEvents}},\ \mbox{\hyperlink{class_u_event_instances_controller_ac381f15ace65c8d283abcd5a1724509f}{MinDeltaBetweenEventChecks}});}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00047}00047\ \textcolor{keywordtype}{void}\ UEventInstancesController::CreateEventForAI(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ Event,\ \textcolor{keyword}{const}\ TMap<FName,\ bool>\&\ ChoicesConditionsEvaluated,\ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00049}00049\ \ \ \ \ FiredEvents.Add(\{Event,\ CountryDescription\});}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{const}\ FName\ AISelectedChoice\ =\ FindAISelectedChoice(Event-\/>\mbox{\hyperlink{class_u_event_description_ae0f38f68d46fb93d13ea2970002b01c4}{Choices}},\ ChoicesConditionsEvaluated);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_u_event_instances_controller_aea9e2c804e5b48f056a118ea7ebf0aba}{RegisterChoice}}(Event,\ AISelectedChoice,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00056}00056\ \textcolor{keywordtype}{void}\ UEventInstancesController::CreateEventForPlayer(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ Event,}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TMap<FName,\ bool>\&\ ChoicesConditionsEvaluated,}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00059}00059\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00060}00060\ \ \ \ \ FiredEvents.Add(\{Event,\ CountryDescription\});}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ multiplayer\ logic\ ;)}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{class_u_event_widget}{UEventWidget}}*\ EventWidget\ =\ CreateWidget<UEventWidget>(GetWorld(),\ \mbox{\hyperlink{class_u_event_instances_controller_afbf3f2ece8a5e423f05d1837f7b9499c}{EventWidgetClass}});}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00065}00065\ \ \ \ \ EventWidget-\/>\mbox{\hyperlink{class_u_event_widget_a0b68257418f11b3046f2036180b8e263}{Init}}(Event,\ CountryDescription,\ ChoicesConditionsEvaluated);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00067}00067\ \ \ \ \ WidgetsInstances.Add(\{Event,\ CountryDescription\},\ EventWidget);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00068}00068\ \ \ \ \ EventWidget-\/>AddToPlayerScreen();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00071}00071\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ UEventInstancesController::CalculateSumOfAIChancesForChoices(\textcolor{keyword}{const}\ TArray<FEventChoice>\&\ Choices,}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TMap<FName,\ bool>\&\ ChoicesConditionsEvaluated)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00073}00073\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{float}\ SummedChance\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Choice\ :\ Choices)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ChoicesConditionsEvaluated[Choice.Name])\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ SummedChance\ +=\ Choice.AIChance;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{return}\ SummedChance;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00083}00083\ FName\ UEventInstancesController::FindAISelectedChoice(\textcolor{keyword}{const}\ TArray<FEventChoice>\&\ Choices,}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TMap<FName,\ bool>\&\ ChoicesConditionsEvaluated)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00085}00085\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ SummedChance\ =\ CalculateSumOfAIChancesForChoices(Choices,\ ChoicesConditionsEvaluated);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00088}00088\ \ \ \ \ FName\ SelectedChoice;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{float}\ Point\ =\ FMath::FRandRange(0.0,\ SummedChance);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Choice\ :\ Choices)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00092}00092\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ChoicesConditionsEvaluated[Choice.Name])\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Point\ <=\ Choice.AIChance)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ SelectedChoice\ =\ Choice.Name;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ Point\ -\/=\ Choice.AIChance;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{return}\ SelectedChoice;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00105}00105\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00107}\mbox{\hyperlink{class_u_event_instances_controller_abd7d13fd80f51f0fbdfe34f4e3c41b4b}{00107}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_abd7d13fd80f51f0fbdfe34f4e3c41b4b}{UEventInstancesController::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00108}00108\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00109}00109\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00110}00110\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00113}\mbox{\hyperlink{class_u_event_instances_controller_aea9e2c804e5b48f056a118ea7ebf0aba}{00113}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_aea9e2c804e5b48f056a118ea7ebf0aba}{UEventInstancesController::RegisterChoice}}(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ Event,\ \textcolor{keyword}{const}\ FName\&\ ChoiceName,}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00115}00115\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00116}00116\ \ \ \ \ \mbox{\hyperlink{class_u_event_instances_controller_aa0ec956a12d59960590ace7a1e1669d5}{DeleteEventWidget}}(Event,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ Choice\ :\ Event-\/>\mbox{\hyperlink{class_u_event_description_ae0f38f68d46fb93d13ea2970002b01c4}{Choices}})}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Choice.Name\ !=\ ChoiceName)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_outcomes_applier_subsystem}{UOutcomesApplierSubsystem}}>()-\/>ApplyOutcomes(Choice.Outcomes,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00123}00123\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00125}\mbox{\hyperlink{class_u_event_instances_controller_ac65fa092e908acdda412cce5fc2672af}{00125}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_ac65fa092e908acdda412cce5fc2672af}{UEventInstancesController::SetEventWidgetClass}}(\textcolor{keyword}{const}\ TSubclassOf<UEventWidget>\&\ NewEventWidgetClass)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00126}00126\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00127}00127\ \ \ \ \ \mbox{\hyperlink{class_u_event_instances_controller_afbf3f2ece8a5e423f05d1837f7b9499c}{EventWidgetClass}}\ =\ NewEventWidgetClass;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00128}00128\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00130}\mbox{\hyperlink{class_u_event_instances_controller_a19ad3dbe117c4bd6e5de59c52a37118d}{00130}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_a19ad3dbe117c4bd6e5de59c52a37118d}{UEventInstancesController::Tick}}(\textcolor{keywordtype}{float}\ DeltaTime)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00131}00131\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Pair\ :\ WidgetsInstances)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00133}00133\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ Pair.Value-\/>Tick();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00135}00135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00136}00136\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00138}\mbox{\hyperlink{class_u_event_instances_controller_a48a3c4f89ef8dd63c9333a18c75b7182}{00138}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_event_instances_controller_a48a3c4f89ef8dd63c9333a18c75b7182}{UEventInstancesController::CheckEvents}}()}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00139}00139\ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00140}00140\ \ \ \ \ \mbox{\hyperlink{class_u_conditions_checking_subsystem}{UConditionsCheckingSubsystem}}*\ ConditionsChecker\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_conditions_checking_subsystem}{UConditionsCheckingSubsystem}}>();}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Event\ :\ Events)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00142}00142\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TArray<UCountryDescription*>\&\ CountryDescriptions\ =\ GetCountriesForWhichEventCanBeFired(Event);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ CountryDescription\ :\ CountryDescriptions)}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ConditionsChecker-\/>\mbox{\hyperlink{class_u_conditions_checking_subsystem_a0a36c0203856c78fa86308bd8d6e41ed}{CheckConditions}}(Event-\/>\mbox{\hyperlink{class_u_event_description_a5fb68780b1d1e452368cbc464e393494}{Conditions}},\ CountryDescription))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ TMap<FName,\ bool>\ ChoicesConditionsEvaluated;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ Choice\ :\ Event-\/>\mbox{\hyperlink{class_u_event_description_ae0f38f68d46fb93d13ea2970002b01c4}{Choices}})}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Result\ =\ ConditionsChecker-\/>\mbox{\hyperlink{class_u_conditions_checking_subsystem_a0a36c0203856c78fa86308bd8d6e41ed}{CheckConditions}}(Choice.Conditions,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ChoicesConditionsEvaluated.Add(Choice.Name,Result);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_event_instances_controller_a2ef80f13d60bf370b6b9d3f36f37d570}{CreateEvent}}(Event,\ ChoicesConditionsEvaluated,\ CountryDescription);}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00159}00159\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00160}00160\ \}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00162}00162\ \textcolor{keyword}{const}\ TArray<UCountryDescription*>\&\ UEventInstancesController::GetCountriesForWhichEventCanBeFired(\mbox{\hyperlink{class_u_event_description}{UEventDescription}}*\ Event)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00163}00163\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{keywordflow}{return}\ Event-\/>\mbox{\hyperlink{class_u_event_description_ac7ed102e3ed1691c480ec7c84b04b1aa}{CountriesConditions}}.\mbox{\hyperlink{struct_f_countries_conditions_ab7ab52ae2eba3dac0d55ed835fc81291}{ForAll}}}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ GetWorld()-\/>GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_countries_manager}{UCountriesManager}}>()-\/>GetCountriesDescriptions()}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Event-\/>CountriesConditions.CountriesTags;}
+\DoxyCodeLine{\Hypertarget{_event_instances_controller_8cpp_source_l00167}00167\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,172 @@
+\doxysection{ACountry\+Selection\+Pawn Class Reference}
+\hypertarget{class_a_country_selection_pawn}{}\label{class_a_country_selection_pawn}\index{ACountrySelectionPawn@{ACountrySelectionPawn}}
+
+
+{\ttfamily \#include $<$Country\+Selection\+Pawn.\+h$>$}
+
+Inheritance diagram for ACountry\+Selection\+Pawn\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_country_selection_pawn}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_country_selection_pawn_a807f597367309db9c5a9db3f00127a8a}{ACountry\+Selection\+Pawn}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_country_selection_pawn_a471f235785e1d51c8f6facdbb12ad2c1}{Begin\+Play}} () override
+\item 
+virtual void \mbox{\hyperlink{class_a_country_selection_pawn_aab57cb4ba64cfa741b641262a31da4ce}{Tick}} (float Delta\+Seconds) override
+\item 
+virtual void \mbox{\hyperlink{class_a_country_selection_pawn_a7a1d84e65297e72f8ab436af9f5d58dd}{Setup\+Player\+Input\+Component}} (UInput\+Component \texorpdfstring{$\ast$}{*}Player\+Input\+Component) override
+\item 
+void \mbox{\hyperlink{class_a_country_selection_pawn_a671c7ce6987381147b3ee6fe98de9e8f}{Set\+Pawn\+State}} (TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ Provided\+Pawn\+State)
+\item 
+TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ \mbox{\hyperlink{class_a_country_selection_pawn_a5fb27b70c3347ade5e620043d6562842}{Get\+Pawn\+State}} () const
+\item 
+virtual void \mbox{\hyperlink{class_a_country_selection_pawn_a7c21393548cd840a745ab06f6993e769}{End\+Play}} (const EEnd\+Play\+Reason\+::\+Type End\+Play\+Reason) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TSubclass\+Of$<$ \mbox{\hyperlink{class_a_map_actor}{AMap\+Actor}} $>$ \mbox{\hyperlink{class_a_country_selection_pawn_a667ab117ce6fcd404304e5ad6edb9d57}{Map\+Actor\+Class}}
+\item 
+\mbox{\hyperlink{class_a_map_actor}{AMap\+Actor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_country_selection_pawn_a24d68f16a38a91ffcc940e5b562dcc29}{Map\+Actor}}
+\item 
+UCamera\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_country_selection_pawn_a9c9a870d9863dc68c940c0c4ec0a6497}{Camera\+Component}}
+\item 
+\mbox{\hyperlink{class_u_player_movement_component}{UPlayer\+Movement\+Component}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_country_selection_pawn_a08626f2ba66d77229ad241041fffa305}{Movement\+Component}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8h_source_l00011}{11}} of file \mbox{\hyperlink{_country_selection_pawn_8h_source}{Country\+Selection\+Pawn.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_country_selection_pawn_a807f597367309db9c5a9db3f00127a8a}\label{class_a_country_selection_pawn_a807f597367309db9c5a9db3f00127a8a} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{ACountrySelectionPawn()}{ACountrySelectionPawn()}}
+{\footnotesize\ttfamily ACountry\+Selection\+Pawn\+::\+ACountry\+Selection\+Pawn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_country_selection_pawn_a471f235785e1d51c8f6facdbb12ad2c1}\label{class_a_country_selection_pawn_a471f235785e1d51c8f6facdbb12ad2c1} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void ACountry\+Selection\+Pawn\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+\Hypertarget{class_a_country_selection_pawn_a7c21393548cd840a745ab06f6993e769}\label{class_a_country_selection_pawn_a7c21393548cd840a745ab06f6993e769} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!EndPlay@{EndPlay}}
+\index{EndPlay@{EndPlay}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{EndPlay()}{EndPlay()}}
+{\footnotesize\ttfamily void ACountry\+Selection\+Pawn\+::\+End\+Play (\begin{DoxyParamCaption}\item[{const EEnd\+Play\+Reason\+::\+Type}]{End\+Play\+Reason }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+\Hypertarget{class_a_country_selection_pawn_a5fb27b70c3347ade5e620043d6562842}\label{class_a_country_selection_pawn_a5fb27b70c3347ade5e620043d6562842} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!GetPawnState@{GetPawnState}}
+\index{GetPawnState@{GetPawnState}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{GetPawnState()}{GetPawnState()}}
+{\footnotesize\ttfamily TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ ACountry\+Selection\+Pawn\+::\+Get\+Pawn\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+\Hypertarget{class_a_country_selection_pawn_a671c7ce6987381147b3ee6fe98de9e8f}\label{class_a_country_selection_pawn_a671c7ce6987381147b3ee6fe98de9e8f} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!SetPawnState@{SetPawnState}}
+\index{SetPawnState@{SetPawnState}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{SetPawnState()}{SetPawnState()}}
+{\footnotesize\ttfamily void ACountry\+Selection\+Pawn\+::\+Set\+Pawn\+State (\begin{DoxyParamCaption}\item[{TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$}]{Provided\+Pawn\+State }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+\Hypertarget{class_a_country_selection_pawn_a7a1d84e65297e72f8ab436af9f5d58dd}\label{class_a_country_selection_pawn_a7a1d84e65297e72f8ab436af9f5d58dd} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!SetupPlayerInputComponent@{SetupPlayerInputComponent}}
+\index{SetupPlayerInputComponent@{SetupPlayerInputComponent}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{SetupPlayerInputComponent()}{SetupPlayerInputComponent()}}
+{\footnotesize\ttfamily void ACountry\+Selection\+Pawn\+::\+Setup\+Player\+Input\+Component (\begin{DoxyParamCaption}\item[{UInput\+Component \texorpdfstring{$\ast$}{*}}]{Player\+Input\+Component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+\Hypertarget{class_a_country_selection_pawn_aab57cb4ba64cfa741b641262a31da4ce}\label{class_a_country_selection_pawn_aab57cb4ba64cfa741b641262a31da4ce} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!Tick@{Tick}}
+\index{Tick@{Tick}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void ACountry\+Selection\+Pawn\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Seconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{_country_selection_pawn_8cpp_source}{Country\+Selection\+Pawn.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_country_selection_pawn_a9c9a870d9863dc68c940c0c4ec0a6497}\label{class_a_country_selection_pawn_a9c9a870d9863dc68c940c0c4ec0a6497} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!CameraComponent@{CameraComponent}}
+\index{CameraComponent@{CameraComponent}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{CameraComponent}{CameraComponent}}
+{\footnotesize\ttfamily UCamera\+Component\texorpdfstring{$\ast$}{*} ACountry\+Selection\+Pawn\+::\+Camera\+Component}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8h_source_l00022}{22}} of file \mbox{\hyperlink{_country_selection_pawn_8h_source}{Country\+Selection\+Pawn.\+h}}.
+
+\Hypertarget{class_a_country_selection_pawn_a24d68f16a38a91ffcc940e5b562dcc29}\label{class_a_country_selection_pawn_a24d68f16a38a91ffcc940e5b562dcc29} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!MapActor@{MapActor}}
+\index{MapActor@{MapActor}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{MapActor}{MapActor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_a_map_actor}{AMap\+Actor}}\texorpdfstring{$\ast$}{*} ACountry\+Selection\+Pawn\+::\+Map\+Actor}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8h_source_l00019}{19}} of file \mbox{\hyperlink{_country_selection_pawn_8h_source}{Country\+Selection\+Pawn.\+h}}.
+
+\Hypertarget{class_a_country_selection_pawn_a667ab117ce6fcd404304e5ad6edb9d57}\label{class_a_country_selection_pawn_a667ab117ce6fcd404304e5ad6edb9d57} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!MapActorClass@{MapActorClass}}
+\index{MapActorClass@{MapActorClass}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{MapActorClass}{MapActorClass}}
+{\footnotesize\ttfamily TSubclass\+Of$<$\mbox{\hyperlink{class_a_map_actor}{AMap\+Actor}}$>$ ACountry\+Selection\+Pawn\+::\+Map\+Actor\+Class}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8h_source_l00016}{16}} of file \mbox{\hyperlink{_country_selection_pawn_8h_source}{Country\+Selection\+Pawn.\+h}}.
+
+\Hypertarget{class_a_country_selection_pawn_a08626f2ba66d77229ad241041fffa305}\label{class_a_country_selection_pawn_a08626f2ba66d77229ad241041fffa305} 
+\index{ACountrySelectionPawn@{ACountrySelectionPawn}!MovementComponent@{MovementComponent}}
+\index{MovementComponent@{MovementComponent}!ACountrySelectionPawn@{ACountrySelectionPawn}}
+\doxysubsubsection{\texorpdfstring{MovementComponent}{MovementComponent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_u_player_movement_component}{UPlayer\+Movement\+Component}}\texorpdfstring{$\ast$}{*} ACountry\+Selection\+Pawn\+::\+Movement\+Component}
+
+
+
+Definition at line \mbox{\hyperlink{_country_selection_pawn_8h_source_l00025}{25}} of file \mbox{\hyperlink{_country_selection_pawn_8h_source}{Country\+Selection\+Pawn.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Characters/\+Pawns/\mbox{\hyperlink{_country_selection_pawn_8h}{Country\+Selection\+Pawn.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Characters/\+Pawns/\mbox{\hyperlink{_country_selection_pawn_8cpp}{Country\+Selection\+Pawn.\+cpp}}\end{DoxyCompactItemize}

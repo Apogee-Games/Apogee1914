@@ -1,0 +1,72 @@
+\doxysection{Alliance\+Management\+Widget.\+h}
+\hypertarget{_alliance_management_widget_8h_source}{}\label{_alliance_management_widget_8h_source}\index{Source/MyProject2/Public/Widgets/Diplomacy/Menu/AllianceManagementWidget.h@{Source/MyProject2/Public/Widgets/Diplomacy/Menu/AllianceManagementWidget.h}}
+\mbox{\hyperlink{_alliance_management_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Blueprint/UserWidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Components/Button.h"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}Components/WidgetSwitcher.h"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_alliance_management_widget_8generated_8h}{AllianceManagementWidget.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00008}00008\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00009}\mbox{\hyperlink{class_u_alliance_management_widget}{00009}}\ class\ \mbox{\hyperlink{class_u_alliance_management_widget}{UAllianceManagementWidget}}:\ public\ UUserWidget}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00011}00011\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00013}00013\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00014}\mbox{\hyperlink{class_u_alliance_management_widget_a3d31c7087412eab3975e28471e31d6da}{00014}}\ \ \ \ \ UWidgetSwitcher*\ AllianceInteractionsWidgetSwitcher;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00016}00016\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00017}\mbox{\hyperlink{class_u_alliance_management_widget_a9a842416fef462c1f89ccbcdba8ca94f}{00017}}\ \ \ \ \ UButton*\ CreateAllianceWithAnotherCountryButton;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00019}00019\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00020}\mbox{\hyperlink{class_u_alliance_management_widget_ad2e2ce9c35089c5ea7db54cbb709f234}{00020}}\ \ \ \ \ UButton*\ CreateAllianceButton;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00022}00022\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00023}\mbox{\hyperlink{class_u_alliance_management_widget_a9dc83ddb5f727e57ef70868f76ea3ba9}{00023}}\ \ \ \ \ UButton*\ AskThemToJoinAllianceButton;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00025}00025\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00026}\mbox{\hyperlink{class_u_alliance_management_widget_a33bf9229c265f6347623a6138fab8c09}{00026}}\ \ \ \ \ UButton*\ AskToJoinTheirAllianceButton;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00028}00028\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00029}\mbox{\hyperlink{class_u_alliance_management_widget_a085dda100974f613c0618c0b09a5fbbe}{00029}}\ \ \ \ \ UButton*\ LeaveAllianceButton;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00031}00031\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00032}\mbox{\hyperlink{class_u_alliance_management_widget_a544a188d2deefd9dffa8237b596bc803}{00032}}\ \ \ \ \ UButton*\ DissolveAllianceButton;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00034}00034\ \ \ \ \ UPROPERTY(EditAnywhere,\ meta=(BindWidget))}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00035}\mbox{\hyperlink{class_u_alliance_management_widget_a70b5cba38577e020869be19d4df96b33}{00035}}\ \ \ \ \ UWidgetSwitcher*\ AllianceCreationDeletionWidgetSwitcher;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{void}\ SetCountry(\mbox{\hyperlink{class_u_country}{UCountry}}*\ ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00038}00038\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{void}\ RefreshData();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00042}00042\ private:}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00043}00043\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ OwnerCountry;}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00046}00046\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}};}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00048}00048\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00049}00049\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{void}\ OnCreateAllianceWithAnotherCountryButtonClick();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00052}00052\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00053}00053\ \ \ \ \ \textcolor{keywordtype}{void}\ OnCreateAllianceButtonClick();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00055}00055\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{void}\ OnAskThemToJoinAllianceButtonClick();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00058}00058\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{void}\ OnAskToJoinTheirAllianceButtonClick();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00061}00061\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{void}\ OnLeaveAllianceButtonClick();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00064}00064\ \ \ \ \ UFUNCTION()}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{void}\ OnDissolveAllianceButtonClick();}
+\DoxyCodeLine{\Hypertarget{_alliance_management_widget_8h_source_l00066}00066\ \};}
+
+\end{DoxyCode}

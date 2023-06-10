@@ -1,0 +1,22 @@
+\doxysection{Laws\+Group\+Button\+Widget.\+cpp}
+\hypertarget{_laws_group_button_widget_8cpp_source}{}\label{_laws_group_button_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Administration/Laws/LawsGroupButtonWidget.cpp@{Source/MyProject2/Private/Widgets/Administration/Laws/LawsGroupButtonWidget.cpp}}
+\mbox{\hyperlink{_laws_group_button_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_laws_group_button_widget_8h}{Widgets/Administration/Laws/LawsGroupButtonWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_laws_group_8h}{Administration/Descriptions/Law/LawsGroup.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00005}\mbox{\hyperlink{class_u_laws_group_button_widget_a1025806880be860191a8b3af393f9ac2}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_laws_group_button_widget_a1025806880be860191a8b3af393f9ac2}{ULawsGroupButtonWidget::Init}}(\mbox{\hyperlink{class_u_laws_group}{ULawsGroup}}*\ LawsGroup,\ UWidgetSwitcher*\ ProvidedWidgetSwitcher,\ int32\ ProvidedIndex)}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00007}00007\ \ \ \ \ \mbox{\hyperlink{class_u_laws_group_button_widget_a1c9a4dd66aa102399300f296d1cdce29}{GroupButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&ULawsGroupButtonWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_u_laws_group_button_widget_ac229a35559770180b28b51cac5eda205}{GroupTextBlock}}-\/>SetText(LawsGroup-\/>\mbox{\hyperlink{class_u_laws_group_a954f7242e1b9489cde305f2fac69127f}{Name}});}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00009}00009\ \ \ \ \ WidgetSwitcher\ =\ ProvidedWidgetSwitcher;}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00010}00010\ \ \ \ \ Index\ =\ ProvidedIndex;}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00013}00013\ \textcolor{keywordtype}{void}\ ULawsGroupButtonWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00015}00015\ \ \ \ \ WidgetSwitcher-\/>SetActiveWidgetIndex(Index);}
+\DoxyCodeLine{\Hypertarget{_laws_group_button_widget_8cpp_source_l00016}00016\ \}}
+
+\end{DoxyCode}

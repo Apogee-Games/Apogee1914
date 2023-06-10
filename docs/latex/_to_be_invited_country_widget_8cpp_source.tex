@@ -1,0 +1,30 @@
+\doxysection{To\+Be\+Invited\+Country\+Widget.\+cpp}
+\hypertarget{_to_be_invited_country_widget_8cpp_source}{}\label{_to_be_invited_country_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Diplomacy/Alliance/Creation/ToBeInvitedCountryWidget.cpp@{Source/MyProject2/Private/Widgets/Diplomacy/Alliance/Creation/ToBeInvitedCountryWidget.cpp}}
+\mbox{\hyperlink{_to_be_invited_country_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_to_be_invited_country_widget_8h}{Widgets/Diplomacy/Alliance/Creation/ToBeInvitedCountryWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_h_u_d_8h}{Characters/HUDs/HumanPlayerHUD.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00004}\mbox{\hyperlink{class_u_to_be_invited_country_widget_a4ad4501d1018d4ddcf58ba2d8ca7160b}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_to_be_invited_country_widget_a4ad4501d1018d4ddcf58ba2d8ca7160b}{UToBeInvitedCountryWidget::NativeConstruct}}()}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00006}00006\ \ \ \ \ Super::NativeConstruct();}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00007}00007\ \ \ \ \ \mbox{\hyperlink{class_u_to_be_invited_country_widget_aabe28b0bc4988a464b63d3dce5ce1356}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UToBeInvitedCountryWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00010}\mbox{\hyperlink{class_u_to_be_invited_country_widget_ac07d62c72425bd3f47b60431c7ac80a4}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_to_be_invited_country_widget_ac07d62c72425bd3f47b60431c7ac80a4}{UToBeInvitedCountryWidget::SetCountry}}(UObject*\ ProvidedCountry)}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00012}00012\ \ \ \ \ Country\ =\ Cast<UCountry>(ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00015}\mbox{\hyperlink{class_u_to_be_invited_country_widget_a0a7e87fdf115ea15ffa9c36edffde8fa}{00015}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_to_be_invited_country_widget_a0a7e87fdf115ea15ffa9c36edffde8fa}{UToBeInvitedCountryWidget::RefreshData}}()}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_u_to_be_invited_country_widget_abdb106b706717b08d433921488695889}{CountryFlag}}-\/>SetBrushResourceObject(Country-\/>\mbox{\hyperlink{class_u_country_a16735b2d91e920dbc49fff8e48567929}{GetFlag}}());}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_u_to_be_invited_country_widget_a5734cdb90b5ea65fb3e824accc86d370}{CountryNameTextBlock}}-\/>SetText(Country-\/>\mbox{\hyperlink{class_u_country_afb442bf07ae5b28548391b1e2e0f8b7e}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00021}00021\ \textcolor{keywordtype}{void}\ UToBeInvitedCountryWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00023}00023\ \ \ \ \ GetOwningPlayer<APlayerController>()-\/>GetHUD<\mbox{\hyperlink{class_a_human_player_h_u_d}{AHumanPlayerHUD}}>()-\/>GetAllianceCreationWidget()-\/>RemoveToBeInvitedCountry(Country);}
+\DoxyCodeLine{\Hypertarget{_to_be_invited_country_widget_8cpp_source_l00024}00024\ \}}
+
+\end{DoxyCode}

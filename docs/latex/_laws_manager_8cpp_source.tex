@@ -1,0 +1,61 @@
+\doxysection{Laws\+Manager.\+cpp}
+\hypertarget{_laws_manager_8cpp_source}{}\label{_laws_manager_8cpp_source}\index{Source/MyProject2/Private/Administration/Managers/LawsManager.cpp@{Source/MyProject2/Private/Administration/Managers/LawsManager.cpp}}
+\mbox{\hyperlink{_laws_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_laws_manager_8h}{Administration/Managers/LawsManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00004}\mbox{\hyperlink{class_u_laws_manager_ade7a9a2402a23506493cf8a975ba87d4}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_laws_manager_ade7a9a2402a23506493cf8a975ba87d4}{ULawsManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00006}00006\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00007}00007\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00010}\mbox{\hyperlink{class_u_laws_manager_aa821cbe3f0f658981fda8222ae014358}{00010}}\ \textcolor{keyword}{const}\ TArray<ULawsGroup*>\&\ \mbox{\hyperlink{class_u_laws_manager_aa821cbe3f0f658981fda8222ae014358}{ULawsManager::GetCommonLaws}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00011}00011\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{return}\ CommonLawsGroups;}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00015}\mbox{\hyperlink{class_u_laws_manager_ab8b197d9552d63d789d9642425995816}{00015}}\ \textcolor{keyword}{const}\ TArray<ULawsGroup*>\&\ \mbox{\hyperlink{class_u_laws_manager_ab8b197d9552d63d789d9642425995816}{ULawsManager::GetCountrySpecificLaw}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}})}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_u_laws_manager_ab8b197d9552d63d789d9642425995816}{GetCountrySpecificLaw}}(\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}}-\/>GetId());}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00020}\mbox{\hyperlink{class_u_laws_manager_a44f297169449be2cb46353fd0d43f12f}{00020}}\ \textcolor{keyword}{const}\ TArray<ULawsGroup*>\&\ \mbox{\hyperlink{class_u_laws_manager_ab8b197d9552d63d789d9642425995816}{ULawsManager::GetCountrySpecificLaw}}(\mbox{\hyperlink{class_u_country_description}{UCountryDescription}}*\ CountryDescription)}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (!CountrySpecificLawsGroups.Contains(CountryDescription))}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00023}00023\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ CountrySpecificLawsGroups.Add(CountryDescription,\ \{\});}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ CountrySpecificLawsGroups[CountryDescription];}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00030}00030\ \textcolor{keywordtype}{void}\ ULawsManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00032}00032\ \ \ \ \ CommonLawsGroups.Empty();}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00033}00033\ \ \ \ \ CountrySpecificLawsGroups.Empty();}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00036}00036\ \textcolor{keywordtype}{void}\ ULawsManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ LawsGroup:\ Scenario-\/>LawsGroups)}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00039}00039\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LawsGroup-\/>CountriesConditions.ForAll)}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ CommonLawsGroups.Add(LawsGroup);}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ CountryDescription:\ LawsGroup-\/>CountriesConditions.CountriesTags)}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!CountrySpecificLawsGroups.Contains(CountryDescription))}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CountrySpecificLawsGroups.Add(CountryDescription,\ \{\});}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ CountrySpecificLawsGroups[CountryDescription].Add(LawsGroup);}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_laws_manager_8cpp_source_l00055}00055\ \}}
+
+\end{DoxyCode}

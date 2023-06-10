@@ -1,0 +1,27 @@
+\doxysection{Country\+Selection\+Level\+Game\+Mode.\+cpp}
+\hypertarget{_country_selection_level_game_mode_8cpp_source}{}\label{_country_selection_level_game_mode_8cpp_source}\index{Source/MyProject2/Private/LevelsOverides/CountrySelection/CountrySelectionLevelGameMode.cpp@{Source/MyProject2/Private/LevelsOverides/CountrySelection/CountrySelectionLevelGameMode.cpp}}
+\mbox{\hyperlink{_country_selection_level_game_mode_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_selection_level_game_mode_8h}{LevelsOverides/CountrySelection/CountrySelectionLevelGameMode.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_selection_h_u_d_8h}{Characters/HUDs/CountrySelectionHUD.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_selection_pawn_8h}{Characters/Pawns/CountrySelectionPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00006}\mbox{\hyperlink{class_a_country_selection_level_game_mode_ae0840b2b41d88f9685225444b4c83125}{00006}}\ \mbox{\hyperlink{class_a_country_selection_level_game_mode_ae0840b2b41d88f9685225444b4c83125}{ACountrySelectionLevelGameMode::ACountrySelectionLevelGameMode}}()}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00008}00008\ \ \ \ \ DefaultPawnClass\ =\ ACountrySelectionPawn::StaticClass();}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00009}00009\ \ \ \ \ HUDClass\ =\ ACountrySelectionHUD::StaticClass();}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00012}\mbox{\hyperlink{class_a_country_selection_level_game_mode_afef34824308221266d7f483a638d1069}{00012}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_country_selection_level_game_mode_afef34824308221266d7f483a638d1069}{ACountrySelectionLevelGameMode::PostLogin}}(APlayerController*\ NewPlayer)}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00014}00014\ \ \ \ \ Super::PostLogin(NewPlayer);}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00016}00016\ \ \ \ \ FInputModeGameAndUI\ InputMode;}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00017}00017\ \ \ \ \ InputMode.SetHideCursorDuringCapture(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00019}00019\ \ \ \ \ NewPlayer-\/>SetInputMode(InputMode);}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00020}00020\ \ \ \ \ NewPlayer-\/>SetShowMouseCursor(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_country_selection_level_game_mode_8cpp_source_l00021}00021\ \}}
+
+\end{DoxyCode}

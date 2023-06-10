@@ -1,0 +1,66 @@
+\doxysection{Units\+Collection.\+cpp}
+\hypertarget{_units_collection_8cpp_source}{}\label{_units_collection_8cpp_source}\index{Source/MyProject2/Private/Military/Instances/Units/Collections/UnitsCollection.cpp@{Source/MyProject2/Private/Military/Instances/Units/Collections/UnitsCollection.cpp}}
+\mbox{\hyperlink{_units_collection_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_units_collection_8h}{Military/Instances/Units/Collections/UnitsCollection.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00004}\mbox{\hyperlink{class_u_units_collection_a803ce880e3bcbf01a437fc7addeef83c}{00004}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_units_collection_a803ce880e3bcbf01a437fc7addeef83c}{UUnitsCollection::Add}}(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit)}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordflow}{if}\ (Unit-\/>\mbox{\hyperlink{class_u_unit_a21c127808f2234e458a612e572476e38}{GetMilitaryBranch}}()\ !=\ \mbox{\hyperlink{class_t_f_military_collection_ae1f511f2d09f842b7cb5900bd57c1595}{MilitaryBranch}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{if}\ (Unit-\/>\mbox{\hyperlink{class_i_ownable_ada52d5ae19b8dc11a3830c67e0899b1a}{GetCountryController}}()\ !=\ \mbox{\hyperlink{class_i_ownable_ae0fd1c09cbd04b6ffc88f328e2c5656c}{CountryController}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00008}00008\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_u_units_collection}{UUnitsCollection}}*\ PreviousUnitsCollection\ =\ Unit-\/>\mbox{\hyperlink{class_u_unit_a7ca9406e9720369101b3af879af13614}{GetUnitsCollection}}();}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{if}\ (PreviousUnitsCollection)}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ PreviousUnitsCollection-\/>\mbox{\hyperlink{class_u_units_collection_a7939581b4df3282c0a170bc9922bc8f2}{Remove}}(Unit);}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00013}00013\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00014}00014\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00015}00015\ \ \ \ \ Units.Add(Unit);}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00016}00016\ \ \ \ \ Unit-\/>\mbox{\hyperlink{class_u_unit_a2d310ccec9748cb8b44b0d76da870a51}{SetUnitsCollection}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00020}\mbox{\hyperlink{class_u_units_collection_a7939581b4df3282c0a170bc9922bc8f2}{00020}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_units_collection_a7939581b4df3282c0a170bc9922bc8f2}{UUnitsCollection::Remove}}(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit)}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (Unit-\/>\mbox{\hyperlink{class_u_unit_a21c127808f2234e458a612e572476e38}{GetMilitaryBranch}}()\ !=\ \mbox{\hyperlink{class_t_f_military_collection_ae1f511f2d09f842b7cb5900bd57c1595}{MilitaryBranch}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (Unit-\/>\mbox{\hyperlink{class_i_ownable_ada52d5ae19b8dc11a3830c67e0899b1a}{GetCountryController}}()\ !=\ \mbox{\hyperlink{class_i_ownable_ae0fd1c09cbd04b6ffc88f328e2c5656c}{CountryController}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00024}00024\ \ \ \ \ Unit-\/>\mbox{\hyperlink{class_u_unit_a2d310ccec9748cb8b44b0d76da870a51}{SetUnitsCollection}}(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ Units.Remove(Unit)\ !=\ 0;}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00028}\mbox{\hyperlink{class_u_units_collection_a321ae20b8f4034c5e6dc8dc5bca63ac1}{00028}}\ \textcolor{keyword}{const}\ TSet<UUnit*>\&\ \mbox{\hyperlink{class_u_units_collection_a321ae20b8f4034c5e6dc8dc5bca63ac1}{UUnitsCollection::GetAll}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00029}00029\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ Units;}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00033}\mbox{\hyperlink{class_u_units_collection_ab77fe4d80f82fb5ab9e7cd33dc1aa2f7}{00033}}\ int32\ \mbox{\hyperlink{class_u_units_collection_ab77fe4d80f82fb5ab9e7cd33dc1aa2f7}{UUnitsCollection::GetSize}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00034}00034\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ Units.Num();}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00038}\mbox{\hyperlink{class_u_units_collection_a43199c65b24f66c0524fa51ba7a3c0f8}{00038}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_units_collection_a43199c65b24f66c0524fa51ba7a3c0f8}{UUnitsCollection::Contains}}(\mbox{\hyperlink{class_u_unit}{UUnit}}*\ Unit)}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{return}\ Units.Contains(Unit);}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00043}\mbox{\hyperlink{class_u_units_collection_a956980796d7a251d18d9e542d65b844e}{00043}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_units_collection_a956980796d7a251d18d9e542d65b844e}{UUnitsCollection::SetUnitsCollectionGroup}}(\mbox{\hyperlink{class_u_units_collection_group}{UUnitsCollectionGroup}}*\ ProvidedUnitsCollectionGroup)}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00045}00045\ \ \ \ \ UnitsCollectionGroup\ =\ ProvidedUnitsCollectionGroup;}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00048}\mbox{\hyperlink{class_u_units_collection_a767e9021695c65da5b32c2398e1652e3}{00048}}\ \mbox{\hyperlink{class_u_units_collection_group}{UUnitsCollectionGroup}}*\ \mbox{\hyperlink{class_u_units_collection_a767e9021695c65da5b32c2398e1652e3}{UUnitsCollection::GetUnitsCollectionGroup}}()}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00049}00049\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{return}\ UnitsCollectionGroup;}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00053}\mbox{\hyperlink{class_u_units_collection_a06534dba68830bd5f97ef76aa5c5e2c4}{00053}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_units_collection_a06534dba68830bd5f97ef76aa5c5e2c4}{UUnitsCollection::ClearUnits}}()}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00054}00054\ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Unit:\ Units)}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00056}00056\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ Unit-\/>SetUnitsCollection(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00059}00059\ \ \ \ \ Units.Empty();}
+\DoxyCodeLine{\Hypertarget{_units_collection_8cpp_source_l00060}00060\ \}}
+
+\end{DoxyCode}

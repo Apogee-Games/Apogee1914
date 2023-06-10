@@ -1,0 +1,22 @@
+\doxysection{Date\+Passed\+Condition\+Checker.\+cpp}
+\hypertarget{_date_passed_condition_checker_8cpp_source}{}\label{_date_passed_condition_checker_8cpp_source}\index{Source/MyProject2/Private/Actions/ConditionCheckers/DatePassedConditionChecker.cpp@{Source/MyProject2/Private/Actions/ConditionCheckers/DatePassedConditionChecker.cpp}}
+\mbox{\hyperlink{_date_passed_condition_checker_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_date_passed_condition_checker_8h}{Actions/ConditionCheckers/DatePassedConditionChecker.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Kismet/KismetStringLibrary.h"{}}}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00005}\mbox{\hyperlink{class_f_date_passed_condition_checker_a7292c1641e2c27daa6a0a2629467818a}{00005}}\ \mbox{\hyperlink{class_f_date_passed_condition_checker_a7292c1641e2c27daa6a0a2629467818a}{FDatePassedConditionChecker::FDatePassedConditionChecker}}(\mbox{\hyperlink{class_u_in_game_time}{UInGameTime}}*\ GameTime):\ GameTime(GameTime)}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00007}00007\ \}}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00009}\mbox{\hyperlink{class_f_date_passed_condition_checker_af72362eb571d5d6a9c79f5a980200bf3}{00009}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_date_passed_condition_checker_af72362eb571d5d6a9c79f5a980200bf3}{FDatePassedConditionChecker::Check}}(\textcolor{keyword}{const}\ TMap<FName,\ FString>\&\ Values)}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{const}\ FDateTime\ ProvidedDate\ =\ FDateTime(UKismetStringLibrary::Conv\_StringToInt(Values[\textcolor{stringliteral}{"{}Year"{}}]),}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UKismetStringLibrary::Conv\_StringToInt(Values[\textcolor{stringliteral}{"{}Month"{}}]),}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UKismetStringLibrary::Conv\_StringToInt(Values[\textcolor{stringliteral}{"{}Day"{}}]),}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UKismetStringLibrary::Conv\_StringToInt(Values[\textcolor{stringliteral}{"{}Hour"{}}]));}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{return}\ ProvidedDate\ <\ GameTime-\/>\mbox{\hyperlink{class_u_in_game_time_af5a184e6f93b6488625e5739327b4532}{GetTime}}();}
+\DoxyCodeLine{\Hypertarget{_date_passed_condition_checker_8cpp_source_l00016}00016\ \}}
+
+\end{DoxyCode}

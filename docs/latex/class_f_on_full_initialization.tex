@@ -1,0 +1,103 @@
+\doxysection{FOn\+Full\+Initialization Class Reference}
+\hypertarget{class_f_on_full_initialization}{}\label{class_f_on_full_initialization}\index{FOnFullInitialization@{FOnFullInitialization}}
+
+
+{\ttfamily \#include $<$FOn\+Full\+Initialization.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_f_on_full_initialization_a3bdaee955e064e0f6d55e5d2ebf4bc0e}{\texorpdfstring{$\sim$}{\string~}\+FOn\+Full\+Initialization}} ()=default
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{class_f_on_full_initialization_ac63c4b58ddf318f54a8efd6be812d50c}{Register\+On\+Full\+Initialization\+Action}} (T \texorpdfstring{$\ast$}{*}Object, void(T\+::\texorpdfstring{$\ast$}{*}Function)())
+\item 
+virtual void \mbox{\hyperlink{class_f_on_full_initialization_ada177092ae18ff936486e3ff95df0b36}{Register\+On\+Full\+Initialization\+Action}} (UObject \texorpdfstring{$\ast$}{*}Object, void(UObject\+::\texorpdfstring{$\ast$}{*}Function)())
+\item 
+virtual void \mbox{\hyperlink{class_f_on_full_initialization_a28a12d3c67af7876a38fed5b7655ea77}{Perform\+On\+Full\+Initialization\+Actions}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_f_on_full_initialization_a2ae3b03fe74bbe0e63938080a985d118}{b\+Is\+Fully\+Initialized}} = false
+\item 
+TQueue$<$ TPair$<$ UObject \texorpdfstring{$\ast$}{*}, void(UObject\+::\texorpdfstring{$\ast$}{*})()$>$ $>$ \mbox{\hyperlink{class_f_on_full_initialization_a906a0d43014f581118b8ba5c99e08247}{On\+Full\+Initialization\+Actions}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_f_on_full_initialization_8h_source_l00003}{3}} of file \mbox{\hyperlink{_f_on_full_initialization_8h_source}{FOn\+Full\+Initialization.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_f_on_full_initialization_a3bdaee955e064e0f6d55e5d2ebf4bc0e}\label{class_f_on_full_initialization_a3bdaee955e064e0f6d55e5d2ebf4bc0e} 
+\index{FOnFullInitialization@{FOnFullInitialization}!````~FOnFullInitialization@{\texorpdfstring{$\sim$}{\string~}FOnFullInitialization}}
+\index{````~FOnFullInitialization@{\texorpdfstring{$\sim$}{\string~}FOnFullInitialization}!FOnFullInitialization@{FOnFullInitialization}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FOnFullInitialization()}{\string~FOnFullInitialization()}}
+{\footnotesize\ttfamily virtual FOn\+Full\+Initialization\+::\texorpdfstring{$\sim$}{\string~}\+FOn\+Full\+Initialization (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_f_on_full_initialization_a28a12d3c67af7876a38fed5b7655ea77}\label{class_f_on_full_initialization_a28a12d3c67af7876a38fed5b7655ea77} 
+\index{FOnFullInitialization@{FOnFullInitialization}!PerformOnFullInitializationActions@{PerformOnFullInitializationActions}}
+\index{PerformOnFullInitializationActions@{PerformOnFullInitializationActions}!FOnFullInitialization@{FOnFullInitialization}}
+\doxysubsubsection{\texorpdfstring{PerformOnFullInitializationActions()}{PerformOnFullInitializationActions()}}
+{\footnotesize\ttfamily void FOn\+Full\+Initialization\+::\+Perform\+On\+Full\+Initialization\+Actions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_f_on_full_initialization_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_f_on_full_initialization_8cpp_source}{FOn\+Full\+Initialization.\+cpp}}.
+
+\Hypertarget{class_f_on_full_initialization_ac63c4b58ddf318f54a8efd6be812d50c}\label{class_f_on_full_initialization_ac63c4b58ddf318f54a8efd6be812d50c} 
+\index{FOnFullInitialization@{FOnFullInitialization}!RegisterOnFullInitializationAction@{RegisterOnFullInitializationAction}}
+\index{RegisterOnFullInitializationAction@{RegisterOnFullInitializationAction}!FOnFullInitialization@{FOnFullInitialization}}
+\doxysubsubsection{\texorpdfstring{RegisterOnFullInitializationAction()}{RegisterOnFullInitializationAction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void FOn\+Full\+Initialization\+::\+Register\+On\+Full\+Initialization\+Action (\begin{DoxyParamCaption}\item[{T \texorpdfstring{$\ast$}{*}}]{Object,  }\item[{void(T\+::\texorpdfstring{$\ast$}{*})()}]{Function }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_f_on_full_initialization_8h_source_l00022}{22}} of file \mbox{\hyperlink{_f_on_full_initialization_8h_source}{FOn\+Full\+Initialization.\+h}}.
+
+\Hypertarget{class_f_on_full_initialization_ada177092ae18ff936486e3ff95df0b36}\label{class_f_on_full_initialization_ada177092ae18ff936486e3ff95df0b36} 
+\index{FOnFullInitialization@{FOnFullInitialization}!RegisterOnFullInitializationAction@{RegisterOnFullInitializationAction}}
+\index{RegisterOnFullInitializationAction@{RegisterOnFullInitializationAction}!FOnFullInitialization@{FOnFullInitialization}}
+\doxysubsubsection{\texorpdfstring{RegisterOnFullInitializationAction()}{RegisterOnFullInitializationAction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FOn\+Full\+Initialization\+::\+Register\+On\+Full\+Initialization\+Action (\begin{DoxyParamCaption}\item[{UObject \texorpdfstring{$\ast$}{*}}]{Object,  }\item[{void(UObject\+::\texorpdfstring{$\ast$}{*})()}]{Function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_f_on_full_initialization_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{_f_on_full_initialization_8cpp_source}{FOn\+Full\+Initialization.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_f_on_full_initialization_a2ae3b03fe74bbe0e63938080a985d118}\label{class_f_on_full_initialization_a2ae3b03fe74bbe0e63938080a985d118} 
+\index{FOnFullInitialization@{FOnFullInitialization}!bIsFullyInitialized@{bIsFullyInitialized}}
+\index{bIsFullyInitialized@{bIsFullyInitialized}!FOnFullInitialization@{FOnFullInitialization}}
+\doxysubsubsection{\texorpdfstring{bIsFullyInitialized}{bIsFullyInitialized}}
+{\footnotesize\ttfamily bool FOn\+Full\+Initialization\+::b\+Is\+Fully\+Initialized = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_f_on_full_initialization_8h_source_l00016}{16}} of file \mbox{\hyperlink{_f_on_full_initialization_8h_source}{FOn\+Full\+Initialization.\+h}}.
+
+\Hypertarget{class_f_on_full_initialization_a906a0d43014f581118b8ba5c99e08247}\label{class_f_on_full_initialization_a906a0d43014f581118b8ba5c99e08247} 
+\index{FOnFullInitialization@{FOnFullInitialization}!OnFullInitializationActions@{OnFullInitializationActions}}
+\index{OnFullInitializationActions@{OnFullInitializationActions}!FOnFullInitialization@{FOnFullInitialization}}
+\doxysubsubsection{\texorpdfstring{OnFullInitializationActions}{OnFullInitializationActions}}
+{\footnotesize\ttfamily TQueue$<$TPair$<$UObject\texorpdfstring{$\ast$}{*}, void (UObject\+::\texorpdfstring{$\ast$}{*})()$>$ $>$ FOn\+Full\+Initialization\+::\+On\+Full\+Initialization\+Actions\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_f_on_full_initialization_8h_source_l00018}{18}} of file \mbox{\hyperlink{_f_on_full_initialization_8h_source}{FOn\+Full\+Initialization.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Interfaces/\mbox{\hyperlink{_f_on_full_initialization_8h}{FOn\+Full\+Initialization.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Interfaces/\mbox{\hyperlink{_f_on_full_initialization_8cpp}{FOn\+Full\+Initialization.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,144 @@
+\doxysection{Unit.\+cpp}
+\hypertarget{_unit_8cpp_source}{}\label{_unit_8cpp_source}\index{Source/MyProject2/Private/Military/Instances/Units/Unit.cpp@{Source/MyProject2/Private/Military/Instances/Units/Unit.cpp}}
+\mbox{\hyperlink{_unit_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_8h}{Military/Instances/Units/Unit.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_countries_manager_8h}{Administration/Managers/CountriesManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_military_good_description_8h}{Economics/Description/Goods/MilitaryGoodDescription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00006}\mbox{\hyperlink{class_u_unit_ab855480bb8b5260492711ed8d39ff030}{00006}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_unit_ab855480bb8b5260492711ed8d39ff030}{UUnit::Init}}(\mbox{\hyperlink{class_u_unit_description}{UUnitDescription}}*\ ProvidedUnitDescription,\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ ProvidedProvince)}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00008}00008\ \ \ \ \ UnitDescription\ =\ ProvidedUnitDescription;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00009}00009\ \ \ \ \ Province\ =\ ProvidedProvince;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00010}00010\ \ \ \ \ SupplyNeeds\ =\ NewObject<UUnitSupplyNeeds>(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00011}00011\ \ \ \ \ SupplyNeeds-\/>\mbox{\hyperlink{class_u_unit_supply_needs_a2ac582ff4c89b3a654e17bc152fbedc6}{Init}}(ProvidedUnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a4b4ec2004661b5130cbcaae969536f64}{EquipmentRequirements}});}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00012}00012\ \ \ \ \ Province-\/>\mbox{\hyperlink{class_u_province_ae4f1362b8d447e8370138ec53afaf1b0}{AddUnit}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00013}00013\ \ \ \ \ Manpower\ =\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_adba22c5a859abbd6fbe65181685aa594}{ManpowerRequirements}};}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00016}\mbox{\hyperlink{class_u_unit_a90da24389abbe0f77ebf22bc3ef25582}{00016}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_u_unit_a90da24389abbe0f77ebf22bc3ef25582}{UUnit::CanTransportUnits}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00017}00017\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{return}\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a75e40105e2c5c62bc48df2019135eff4}{CanTransport}};}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00021}00021\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00022}00022\ \textcolor{comment}{void\ UUnit::AddTransportedUnit(UUnit*\ Unit)}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00023}00023\ \textcolor{comment}{\{}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00024}00024\ \textcolor{comment}{\ \ \ \ if\ (!CanTransportUnits())\ return;}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00025}00025\ \textcolor{comment}{\ \ \ \ TransportedUnits.Add(Unit);}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00026}00026\ \textcolor{comment}{\}}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00027}00027\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00028}00028\ \textcolor{comment}{void\ UUnit::RemoveTransportedUnit(UUnit*\ Unit)}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00029}00029\ \textcolor{comment}{\{}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00030}00030\ \textcolor{comment}{\ \ \ \ if\ (!CanTransportUnits())\ return;}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00031}00031\ \textcolor{comment}{\ \ \ \ TransportedUnits.Remove(Unit);}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00032}00032\ \textcolor{comment}{\}*/}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00034}\mbox{\hyperlink{class_u_unit_aa75d32b3dc89f054fdf7cfa52bd7fc8e}{00034}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_unit_aa75d32b3dc89f054fdf7cfa52bd7fc8e}{UUnit::Move}}(\mbox{\hyperlink{class_u_province}{UProvince}}*\ NewProvince)}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00036}00036\ \ \ \ \ Province-\/>\mbox{\hyperlink{class_u_province_ac6b4bdfe733bf6a7bc6165347939d0d0}{RemoveUnit}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00037}00037\ \ \ \ \ NewProvince-\/>\mbox{\hyperlink{class_u_province_ae4f1362b8d447e8370138ec53afaf1b0}{AddUnit}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00039}00039\ \ \ \ \ Province\ =\ NewProvince;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00042}\mbox{\hyperlink{class_u_unit_ac46662daa5e444422bee5ad74c78174c}{00042}}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ \mbox{\hyperlink{class_u_unit_ac46662daa5e444422bee5ad74c78174c}{UUnit::GetPosition}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00043}00043\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{return}\ Province;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00047}\mbox{\hyperlink{class_u_unit_aea9a88c83a66913f99be6f41e059dafd}{00047}}\ int32\ \mbox{\hyperlink{class_u_unit_aea9a88c83a66913f99be6f41e059dafd}{UUnit::Estimate}}(\textcolor{keyword}{const}\ TArray<TPair<UProvince*,\ int>>\&\ Path)}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//TODO:\ Add\ additional\ logic\ for\ better\ estimation}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00050}00050\ \ \ \ \ int32\ Result\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Pair\ :\ Path)}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00052}00052\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ Result\ +=\ Pair.Value;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{return}\ Result;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00056}00056\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00058}\mbox{\hyperlink{class_u_unit_a84a61d642c6cb8b5680ec05b4d991130}{00058}}\ int32\ \mbox{\hyperlink{class_u_unit_a84a61d642c6cb8b5680ec05b4d991130}{UUnit::GetUnitTypeEquipmentRequirement}}(\mbox{\hyperlink{class_u_good_description}{UGoodDescription}}*\ Good)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00059}00059\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{return}\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a4b4ec2004661b5130cbcaae969536f64}{EquipmentRequirements}}[Good];}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00063}\mbox{\hyperlink{class_u_unit_a3a85e74943018cfd99d6e5c30bd557fb}{00063}}\ \mbox{\hyperlink{class_u_unit_supply_needs}{UUnitSupplyNeeds}}*\ \mbox{\hyperlink{class_u_unit_a3a85e74943018cfd99d6e5c30bd557fb}{UUnit::GetSupplyNeeds}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00064}00064\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{return}\ SupplyNeeds;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00068}\mbox{\hyperlink{class_u_unit_ae38e0036d8101a77e17e0316ef95d1c4}{00068}}\ \textcolor{keyword}{const}\ FName\&\ \mbox{\hyperlink{class_u_unit_ae38e0036d8101a77e17e0316ef95d1c4}{UUnit::GetUnitName}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00069}00069\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{return}\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_ab3b3198d76ac8ba2eb3735610093f149}{UnitName}};}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00071}00071\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00073}\mbox{\hyperlink{class_u_unit_a21c127808f2234e458a612e572476e38}{00073}}\ \mbox{\hyperlink{class_u_military_branch_description}{UMilitaryBranchDescription}}*\ \mbox{\hyperlink{class_u_unit_a21c127808f2234e458a612e572476e38}{UUnit::GetMilitaryBranch}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00074}00074\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{return}\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a36e4408d1c94546683d6b2778429c991}{MilitaryBranch}};}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00078}\mbox{\hyperlink{class_u_unit_a2d310ccec9748cb8b44b0d76da870a51}{00078}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_unit_a2d310ccec9748cb8b44b0d76da870a51}{UUnit::SetUnitsCollection}}(\mbox{\hyperlink{class_u_units_collection}{UUnitsCollection}}*\ ProvidedUnitsCollection)}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00079}00079\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00080}00080\ \ \ \ \ \ UnitsCollection\ =\ ProvidedUnitsCollection;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00083}\mbox{\hyperlink{class_u_unit_a7ca9406e9720369101b3af879af13614}{00083}}\ \mbox{\hyperlink{class_u_units_collection}{UUnitsCollection}}*\ \mbox{\hyperlink{class_u_unit_a7ca9406e9720369101b3af879af13614}{UUnit::GetUnitsCollection}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00084}00084\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{return}\ UnitsCollection;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00086}00086\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00088}\mbox{\hyperlink{class_u_unit_aeda11c1fb842f78d3cc8ec771f125091}{00088}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_u_unit_aeda11c1fb842f78d3cc8ec771f125091}{UUnit::GetAttackScore}}()}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00089}00089\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{float}\ EquipmentSupplyScale\ =\ FMath::Max(0.1,\ SupplyNeeds-\/>\mbox{\hyperlink{class_u_unit_supply_needs_a6292668433dcf2d8f315523b16f3046b}{GetSupplyPercentage}}());}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00091}00091\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordtype}{float}\ Score\ =\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a8e9b05b63b6a86c982646011d6b6c28b}{Attack}}\ *\ Manpower\ *\ (Training\ +\ 1)\ *\ EquipmentSupplyScale;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordtype}{float}\ EquipmentScore\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [Good,\ Required]:\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a4b4ec2004661b5130cbcaae969536f64}{EquipmentRequirements}})}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00097}00097\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_military_good_description}{UMilitaryGoodDescription}}*\ MilitaryGood\ =\ Cast<UMilitaryGoodDescription>(Good);}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (MilitaryGood)\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ EquipmentScore\ +=\ SupplyNeeds-\/>\mbox{\hyperlink{class_u_unit_supply_needs_af10bec3953c42af34901bf165ef27084}{GetGoodSupply}}(Good)\ *\ MilitaryGood-\/>\mbox{\hyperlink{class_u_military_good_description_a0b3dcbb11be11c03840b68856d8db2dc}{Attack}};\ \textcolor{comment}{//\ TODO:\ Think\ about\ it\ again}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{return}\ Score\ +\ EquipmentScore;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00105}00105\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00107}\mbox{\hyperlink{class_u_unit_a2ed006ff3d8c28db70145630799e58d9}{00107}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_u_unit_a2ed006ff3d8c28db70145630799e58d9}{UUnit::GetDefenceScore}}()}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00108}00108\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordtype}{float}\ EquipmentSupplyScale\ =\ FMath::Max(0.1,\ SupplyNeeds-\/>\mbox{\hyperlink{class_u_unit_supply_needs_a6292668433dcf2d8f315523b16f3046b}{GetSupplyPercentage}}());}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordtype}{float}\ Score\ =\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a9758b51b63841c08b94bb533436cdf29}{Defence}}\ *\ Manpower\ *\ (Training\ +\ 1)\ *\ EquipmentSupplyScale;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{float}\ EquipmentScore\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [Good,\ Required]:\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a4b4ec2004661b5130cbcaae969536f64}{EquipmentRequirements}})}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00116}00116\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_military_good_description}{UMilitaryGoodDescription}}*\ MilitaryGood\ =\ Cast<UMilitaryGoodDescription>(Good);}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (MilitaryGood)\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ EquipmentScore\ +=\ SupplyNeeds-\/>\mbox{\hyperlink{class_u_unit_supply_needs_af10bec3953c42af34901bf165ef27084}{GetGoodSupply}}(Good)\ *\ MilitaryGood-\/>\mbox{\hyperlink{class_u_military_good_description_aebc21ea3177e8dc6c7b5866733579078}{Defence}};\ \textcolor{comment}{//\ TODO:\ Think\ about\ it\ again}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{return}\ Score\ +\ EquipmentScore;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00124}00124\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00126}\mbox{\hyperlink{class_u_unit_a4eb4e2ba7bcaebf530a33deeee28bfc8}{00126}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_u_unit_a4eb4e2ba7bcaebf530a33deeee28bfc8}{UUnit::Damage}}(\textcolor{keywordtype}{float}\ DamageScore)}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00127}00127\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (Manpower\ <=\ 0\ ||\ DamageScore\ <=\ 0)\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{keywordtype}{float}\ Dead\ =\ FMath::Min(Manpower,\ DamageScore\ /\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a3dc6495b94e8de78730310adc8f20640}{PersonDeathScore}});}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00130}00130\ \ \ \ \ Manpower\ -\/=\ Dead;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{return}\ Dead\ *\ UnitDescription-\/>\mbox{\hyperlink{class_u_unit_description_a3dc6495b94e8de78730310adc8f20640}{PersonDeathScore}};}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00132}00132\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00134}\mbox{\hyperlink{class_u_unit_a0c02b785585c63aecc7f3624b3224fba}{00134}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_u_unit_a0c02b785585c63aecc7f3624b3224fba}{UUnit::GetManpower}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00135}00135\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{return}\ Manpower;}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00137}00137\ \}}
+\DoxyCodeLine{\Hypertarget{_unit_8cpp_source_l00138}00138\ }
+
+\end{DoxyCode}

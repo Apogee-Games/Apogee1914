@@ -1,0 +1,32 @@
+\doxysection{Strata\+Manager.\+cpp}
+\hypertarget{_strata_manager_8cpp_source}{}\label{_strata_manager_8cpp_source}\index{Source/MyProject2/Private/Economics/Managers/StrataManager.cpp@{Source/MyProject2/Private/Economics/Managers/StrataManager.cpp}}
+\mbox{\hyperlink{_strata_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_strata_manager_8h}{Economics/Managers//StrataManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Engine/DataTable.h"{}}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00006}\mbox{\hyperlink{class_u_strata_manager_af22dc209724626592a912b355b12e653}{00006}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_strata_manager_af22dc209724626592a912b355b12e653}{UStrataManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00008}00008\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00009}00009\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00012}\mbox{\hyperlink{class_u_strata_manager_a5f5ee9860e9a6d34d4e0811ebd2d2aae}{00012}}\ \textcolor{keyword}{const}\ TArray<UStrataDescription*>\&\ \mbox{\hyperlink{class_u_strata_manager_a5f5ee9860e9a6d34d4e0811ebd2d2aae}{UStrataManager::GetStratasDescriptions}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00013}00013\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{return}\ StrataDescriptions;\ \ }
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00017}00017\ \textcolor{keywordtype}{void}\ UStrataManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00019}00019\ \ \ \ \ StrataDescriptions.Empty();}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00022}00022\ \textcolor{keywordtype}{void}\ UStrataManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00024}00024\ \ \ \ \ StrataDescriptions\ =\ Scenario-\/>\mbox{\hyperlink{class_u_scenario_a688a2daf11c94ee19da8c53819c8acd5}{StrataDescriptions}};}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{_strata_manager_8cpp_source_l00026}00026\ }
+
+\end{DoxyCode}

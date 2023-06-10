@@ -1,0 +1,56 @@
+\doxysection{Province\+Manager.\+cpp}
+\hypertarget{_province_manager_8cpp_source}{}\label{_province_manager_8cpp_source}\index{Source/MyProject2/Private/Administration/Managers/ProvinceManager.cpp@{Source/MyProject2/Private/Administration/Managers/ProvinceManager.cpp}}
+\mbox{\hyperlink{_province_manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_manager_8h}{Administration/Managers/ProvinceManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_level_game_state_8h}{LevelsOverides/Game/GameLevelGameState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00007}\mbox{\hyperlink{class_u_province_manager_a64b084ab37a39ecbe0fe7d789375423d}{00007}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_province_manager_a64b084ab37a39ecbe0fe7d789375423d}{UProvinceManager::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00009}00009\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00010}00010\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00013}\mbox{\hyperlink{class_u_province_manager_acb88a4e0b6bc09a83f26a263774cc2fe}{00013}}\ \mbox{\hyperlink{class_u_province}{UProvince}}*\ \mbox{\hyperlink{class_u_province_manager_acb88a4e0b6bc09a83f26a263774cc2fe}{UProvinceManager::GetProvince}}(\textcolor{keyword}{const}\ FColor\&\ Color)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00014}00014\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (GEngine\ \&\&\ !ProvinceMap.Contains(Color))}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ GEngine-\/>AddOnScreenDebugMessage(-\/1,\ 10,\ FColor::Blue,\ Color.ToString());}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{return}\ ProvinceMap[Color];}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00023}\mbox{\hyperlink{class_u_province_manager_a3d7c0734dff6d60df8035d2dc8c5a434}{00023}}\ \textcolor{keyword}{const}\ TArray<UProvince*>\&\ \mbox{\hyperlink{class_u_province_manager_a3d7c0734dff6d60df8035d2dc8c5a434}{UProvinceManager::GetAllProvinces}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00024}00024\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ ProvincesArray;}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00028}00028\ \textcolor{keywordtype}{void}\ UProvinceManager::Clear()}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Province:\ ProvincesArray)}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ Province-\/>MarkAsGarbage();}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00034}00034\ \ \ \ \ ProvinceMap.Empty();}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00035}00035\ \ \ \ \ ProvincesArray.Empty();}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00038}00038\ \textcolor{keywordtype}{void}\ UProvinceManager::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781fa59716c97497eb9694541f7c3d37b1a4d}{Country}},\ List]:\ Scenario-\/>ProvincesDescriptions)\ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Description:\ List-\/>Provinces)}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_province}{UProvince}}*\ Province\ =\ NewObject<UProvince>(\textcolor{keyword}{this});\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ Province-\/>\mbox{\hyperlink{class_u_province_a0d0882060612b55cf8482fa21a678905}{Init}}(Description);\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ ProvinceMap.Add(Description-\/>Color,\ Province);}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00048}00048\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00049}00049\ \ \ \ \ ProvinceMap.GenerateValueArray(ProvincesArray);}
+\DoxyCodeLine{\Hypertarget{_province_manager_8cpp_source_l00050}00050\ \}}
+
+\end{DoxyCode}

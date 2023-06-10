@@ -1,0 +1,48 @@
+\doxysection{Map\+Actor.\+h}
+\hypertarget{_map_actor_8h_source}{}\label{_map_actor_8h_source}\index{Source/MyProject2/Public/Characters/Components/MapActor.h@{Source/MyProject2/Public/Characters/Components/MapActor.h}}
+\mbox{\hyperlink{_map_actor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_actor_8generated_8h}{MapActor.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00005}00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}};}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00006}00006\ UCLASS()}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00007}\mbox{\hyperlink{class_a_map_actor}{00007}}\ class\ \mbox{\hyperlink{class_a_map_actor}{AMapActor}}:\ public\ AActor}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00009}00009\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00010}00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00011}00011\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00012}\mbox{\hyperlink{class_a_map_actor_a968856f8c5affb17127bc0f97174a557}{00012}}\ \ \ \ \ UMaterialInterface*\ TerrainMapMaterialInterface;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00014}00014\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00015}\mbox{\hyperlink{class_a_map_actor_a3d971a6ae8a68a5cc13c78d1b8149632}{00015}}\ \ \ \ \ UMaterialInterface*\ MapsMaterialInterface;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00017}00017\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00018}\mbox{\hyperlink{class_a_map_actor_a4da3fda29e98eecca5a36b622535ac45}{00018}}\ \ \ \ \ UMaterialInstanceDynamic*\ TerrainMapMaterialInstanceDynamic;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00020}00020\ \ \ \ \ UPROPERTY(EditAnywhere,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00021}\mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{00021}}\ \ \ \ \ UMaterialInstanceDynamic*\ MapsMaterialInstanceDynamic;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00023}00023\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00024}\mbox{\hyperlink{class_a_map_actor_a626b6695283a48d7e706d4dfd1e23d19}{00024}}\ \ \ \ \ UStaticMeshComponent*\ TerrainStaticMeshComponent;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00026}00026\ \ \ \ \ UPROPERTY(EditDefaultsOnly,\ BlueprintReadWrite)}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00027}\mbox{\hyperlink{class_a_map_actor_af19e5a8c3b4a67d1d28a8a57c264a660}{00027}}\ \ \ \ \ UStaticMeshComponent*\ MapsStaticMeshComponent;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{class_a_map_actor}{AMapActor}}();}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00031}00031\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_human_player_pawn_aa03a06b46ca7476c2f942caf6ca9d5e1}{BeginPlay}}()\ override;}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00033}00033\ \ \ \ \ virtual\ FVector3d\ GetNewPosition(FVector3d\ Position,\ FVector3d\ Direction,\ FRotator\ Rotation,\ \textcolor{keywordtype}{float}\ Lenght);}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00035}00035\ \ \ \ \ virtual\ FQuat\ GetNewRotation(FVector3d\ Position,\ FVector3d\ NewPosition,\ FQuat\ Rotation);}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00036}00036\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00037}00037\ \ \ \ \ virtual\ FVector2d\ GetMapPosition(APawn*\ Pawn);}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00038}00038\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00039}00039\ \ \ \ \ virtual\ FVector2d\ GetMapPosition(FVector3d\ WorldPosition);}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00041}00041\ \ \ \ \ virtual\ FVector3d\ GetWorldPosition(FVector2d\ MapPosition);}
+\DoxyCodeLine{\Hypertarget{_map_actor_8h_source_l00042}00042\ \};}
+
+\end{DoxyCode}

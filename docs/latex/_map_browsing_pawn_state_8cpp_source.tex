@@ -1,0 +1,60 @@
+\doxysection{Map\+Browsing\+Pawn\+State.\+cpp}
+\hypertarget{_map_browsing_pawn_state_8cpp_source}{}\label{_map_browsing_pawn_state_8cpp_source}\index{Source/MyProject2/Private/Characters/StateMachine/MapBrowsingPawnState.cpp@{Source/MyProject2/Private/Characters/StateMachine/MapBrowsingPawnState.cpp}}
+\mbox{\hyperlink{_map_browsing_pawn_state_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_browsing_pawn_state_8h}{Characters/StateMachine/MapBrowsingPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_state_8h}{Administration/Instances/State.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_h_u_d_8h}{Characters/HUDs/HumanPlayerHUD.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_diplomacy_pawn_state_8h}{Characters/StateMachine/CountryDiplomacyPawnState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selection_map_8h}{Maps/Selection/SelectionMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00009}\mbox{\hyperlink{class_f_map_browsing_pawn_state_a230a615dd424fa408439094deb42a031}{00009}}\ TSharedPtr<FPawnState>\ \mbox{\hyperlink{class_f_map_browsing_pawn_state_a230a615dd424fa408439094deb42a031}{FMapBrowsingPawnState::GetInstance}}()}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Instance)}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ Instance\ =\ TSharedPtr<FMapBrowsingPawnState>(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_f_map_browsing_pawn_state}{FMapBrowsingPawnState}});}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00014}00014\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00016}00016\ \}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00018}\mbox{\hyperlink{class_f_map_browsing_pawn_state_ae0d81eb52a3b005dd824ef360bc29b53}{00018}}\ TSharedPtr<FPawnState>\ \mbox{\hyperlink{class_f_map_browsing_pawn_state_ae0d81eb52a3b005dd824ef360bc29b53}{FMapBrowsingPawnState::LeftClick}}(APawn*\ ProvidedPawn)}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_a_human_player_pawn}{AHumanPlayerPawn}}*\ Pawn\ =\ Cast<AHumanPlayerPawn>(ProvidedPawn);}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{class_u_selection_map}{USelectionMap}}*\ SelectionMap\ =\ Pawn-\/>GetWorld()-\/>GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_selection_map}{USelectionMap}}>();}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{class_u_province}{UProvince}}*\ Province\ =\ SelectionMap-\/>\mbox{\hyperlink{class_u_selection_map_a83e936f6458d3b3a0eeb1af422b942b8}{SelectProvince}}(Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a943df117e90e74b2acbe21c4872ed8fd}{MapActor}}-\/>\mbox{\hyperlink{class_a_map_actor_a98a08b3a098872514854648ca3bd4e59}{GetMapPosition}}(Pawn));}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_a_human_player_h_u_d}{AHumanPlayerHUD}}*\ HUD\ =\ Pawn-\/>GetController<APlayerController>()-\/>GetHUD<AHumanPlayerHUD>();}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_u_province_data_widget}{UProvinceDataWidget}}*\ ProvinceDataWidget\ =\ HUD-\/>\mbox{\hyperlink{class_a_human_player_h_u_d_ab669762414580104b6cf8983ddf06947}{GetProvinceDataWidget}}();}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00030}00030\ \ \ \ \ ProvinceDataWidget-\/>\mbox{\hyperlink{class_u_province_data_widget_a261eb73c062645ff38c983a8671a950b}{SetNewProvince}}(Province);}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00032}00032\ \ \ \ \ Pawn-\/>\mbox{\hyperlink{class_a_human_player_pawn_a29514d76191f6383752cde9c7decf02d}{UnitSelectionComponent}}-\/>\mbox{\hyperlink{class_u_units_selection_component_a76930e17cc9fa079f31fba0fcb1b9c29}{ClearSelectedUnits}}();}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00033}00033\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{return}\ Instance;}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00037}\mbox{\hyperlink{class_f_map_browsing_pawn_state_af599ca1fee914c451c55657dd5f77e05}{00037}}\ TSharedPtr<FPawnState>\ \mbox{\hyperlink{class_f_map_browsing_pawn_state_af599ca1fee914c451c55657dd5f77e05}{FMapBrowsingPawnState::RightClick}}(APawn*\ ProvidedPawn)}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_f_country_diplomacy_pawn_state_a561c1a075ecec5e5e9a8804fde960683}{FCountryDiplomacyPawnState::GetInstance}}()-\/>RightClick(ProvidedPawn);}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00042}\mbox{\hyperlink{class_f_map_browsing_pawn_state_a9e45b634c65c18e1b42f42663ff3b02c}{00042}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_map_browsing_pawn_state_a9e45b634c65c18e1b42f42663ff3b02c}{FMapBrowsingPawnState::MustWidgetBeVisible}}(UUserWidget*\ Widget)}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{class_u_province_data_widget}{UProvinceDataWidget}}*\textcolor{keyword}{>}(Widget)\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00047}\mbox{\hyperlink{class_f_map_browsing_pawn_state_acb2f56d7f993ce095c0eaf2734c58d2c}{00047}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_f_map_browsing_pawn_state_acb2f56d7f993ce095c0eaf2734c58d2c}{FMapBrowsingPawnState::CanWidgetBeVisible}}(UUserWidget*\ Widget)}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00052}00052\ FMapBrowsingPawnState::FMapBrowsingPawnState()}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00053}00053\ \{}
+\DoxyCodeLine{\Hypertarget{_map_browsing_pawn_state_8cpp_source_l00054}00054\ \}}
+
+\end{DoxyCode}

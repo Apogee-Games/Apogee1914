@@ -1,0 +1,29 @@
+\doxysection{War\+Declaration\+Observable.\+cpp}
+\hypertarget{_war_declaration_observable_8cpp_source}{}\label{_war_declaration_observable_8cpp_source}\index{Source/MyProject2/Private/Diplomacy/Interfaces/Observables/WarDeclarationObservable.cpp@{Source/MyProject2/Private/Diplomacy/Interfaces/Observables/WarDeclarationObservable.cpp}}
+\mbox{\hyperlink{_war_declaration_observable_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_war_declaration_observable_8h}{Diplomacy/Interfaces/Observables/WarDeclarationObservable.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00003}\mbox{\hyperlink{class_i_war_declaration_observable_abffc0d0156093c7f10c3ccf2fc4282be}{00003}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_war_declaration_observable_abffc0d0156093c7f10c3ccf2fc4282be}{IWarDeclarationObservable::NotifyWarDeclaration}}(\mbox{\hyperlink{class_u_war}{UWar}}*\ \mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66}{War}})}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ Observer:\ Observers)}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00006}00006\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ Observer-\/>WarWasDeclared(\mbox{\hyperlink{_relationships_manager_8h_a3aeeb05afaeb0cd71e2c0ae1a027e04ca49a75be0186e05c1820bf6788de39c66}{War}});}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00008}00008\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00009}00009\ \}}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00011}\mbox{\hyperlink{class_i_war_declaration_observable_a591a7684ee79d1e50f9a985f6ca4e499}{00011}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_war_declaration_observable_a591a7684ee79d1e50f9a985f6ca4e499}{IWarDeclarationObservable::AddWarDeclarationObserver}}(\mbox{\hyperlink{class_i_war_declaration_observer}{IWarDeclarationObserver}}*\ Observer)}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (Observers.Contains(Observer))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00014}00014\ \ \ \ \ Observers.Add(Observer);}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00016}00016\ \}}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00018}\mbox{\hyperlink{class_i_war_declaration_observable_ace94ba7736baaa87d7fa40440e5ebd7b}{00018}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_i_war_declaration_observable_ace94ba7736baaa87d7fa40440e5ebd7b}{IWarDeclarationObservable::RemoveWarDeclarationObserver}}(\mbox{\hyperlink{class_i_war_declaration_observer}{IWarDeclarationObserver}}*\ Observer)}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Observers.Contains(Observer))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00021}00021\ \ \ \ \ Observers.Remove(Observer);}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_war_declaration_observable_8cpp_source_l00023}00023\ \}}
+
+\end{DoxyCode}

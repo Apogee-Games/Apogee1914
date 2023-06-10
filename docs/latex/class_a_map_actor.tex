@@ -1,0 +1,212 @@
+\doxysection{AMap\+Actor Class Reference}
+\hypertarget{class_a_map_actor}{}\label{class_a_map_actor}\index{AMapActor@{AMapActor}}
+
+
+{\ttfamily \#include $<$Map\+Actor.\+h$>$}
+
+Inheritance diagram for AMap\+Actor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_map_actor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_a_map_actor_a14d63c13e84ca6e985133719450df193}{AMap\+Actor}} ()
+\item 
+virtual void \mbox{\hyperlink{class_a_map_actor_a31f045a7304915a6dea703dd762b2e7b}{Begin\+Play}} () override
+\item 
+virtual FVector3d \mbox{\hyperlink{class_a_map_actor_a835d2881328dc0b18f48aee6258207f6}{Get\+New\+Position}} (FVector3d Position, FVector3d Direction, FRotator Rotation, float Lenght)
+\item 
+virtual FQuat \mbox{\hyperlink{class_a_map_actor_ab0e93d875b0e2208eed4ccdd032c5ac0}{Get\+New\+Rotation}} (FVector3d Position, FVector3d New\+Position, FQuat Rotation)
+\item 
+virtual FVector2d \mbox{\hyperlink{class_a_map_actor_a98a08b3a098872514854648ca3bd4e59}{Get\+Map\+Position}} (APawn \texorpdfstring{$\ast$}{*}Pawn)
+\item 
+virtual FVector2d \mbox{\hyperlink{class_a_map_actor_ab8b6f328e26362a58cfab7e6642aa4fb}{Get\+Map\+Position}} (FVector3d World\+Position)
+\item 
+virtual FVector3d \mbox{\hyperlink{class_a_map_actor_aeade2980cd862fbfc7619ad7337772bc}{Get\+World\+Position}} (FVector2d Map\+Position)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+UMaterial\+Interface \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a968856f8c5affb17127bc0f97174a557}{Terrain\+Map\+Material\+Interface}}
+\item 
+UMaterial\+Interface \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a3d971a6ae8a68a5cc13c78d1b8149632}{Maps\+Material\+Interface}}
+\item 
+UMaterial\+Instance\+Dynamic \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a4da3fda29e98eecca5a36b622535ac45}{Terrain\+Map\+Material\+Instance\+Dynamic}}
+\item 
+UMaterial\+Instance\+Dynamic \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}{Maps\+Material\+Instance\+Dynamic}}
+\item 
+UStatic\+Mesh\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_a626b6695283a48d7e706d4dfd1e23d19}{Terrain\+Static\+Mesh\+Component}}
+\item 
+UStatic\+Mesh\+Component \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_a_map_actor_af19e5a8c3b4a67d1d28a8a57c264a660}{Maps\+Static\+Mesh\+Component}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00007}{7}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_map_actor_a14d63c13e84ca6e985133719450df193}\label{class_a_map_actor_a14d63c13e84ca6e985133719450df193} 
+\index{AMapActor@{AMapActor}!AMapActor@{AMapActor}}
+\index{AMapActor@{AMapActor}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{AMapActor()}{AMapActor()}}
+{\footnotesize\ttfamily AMap\+Actor\+::\+AMap\+Actor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_map_actor_a31f045a7304915a6dea703dd762b2e7b}\label{class_a_map_actor_a31f045a7304915a6dea703dd762b2e7b} 
+\index{AMapActor@{AMapActor}!BeginPlay@{BeginPlay}}
+\index{BeginPlay@{BeginPlay}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{BeginPlay()}{BeginPlay()}}
+{\footnotesize\ttfamily void AMap\+Actor\+::\+Begin\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_map_actor_a98a08b3a098872514854648ca3bd4e59}\label{class_a_map_actor_a98a08b3a098872514854648ca3bd4e59} 
+\index{AMapActor@{AMapActor}!GetMapPosition@{GetMapPosition}}
+\index{GetMapPosition@{GetMapPosition}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{GetMapPosition()}{GetMapPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FVector2d AMap\+Actor\+::\+Get\+Map\+Position (\begin{DoxyParamCaption}\item[{APawn \texorpdfstring{$\ast$}{*}}]{Pawn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_map_actor_ab8b6f328e26362a58cfab7e6642aa4fb}\label{class_a_map_actor_ab8b6f328e26362a58cfab7e6642aa4fb} 
+\index{AMapActor@{AMapActor}!GetMapPosition@{GetMapPosition}}
+\index{GetMapPosition@{GetMapPosition}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{GetMapPosition()}{GetMapPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FVector2d AMap\+Actor\+::\+Get\+Map\+Position (\begin{DoxyParamCaption}\item[{FVector3d}]{World\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_plane_map_actor_a3d2bffcdd6ed4975c80fe6f4ff4c8c4d}{APlane\+Map\+Actor}}, and \mbox{\hyperlink{class_a_sphere_map_actor_ad2e33b22938ef4b62c97c12b6fa38862}{ASphere\+Map\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_map_actor_a835d2881328dc0b18f48aee6258207f6}\label{class_a_map_actor_a835d2881328dc0b18f48aee6258207f6} 
+\index{AMapActor@{AMapActor}!GetNewPosition@{GetNewPosition}}
+\index{GetNewPosition@{GetNewPosition}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{GetNewPosition()}{GetNewPosition()}}
+{\footnotesize\ttfamily FVector3d AMap\+Actor\+::\+Get\+New\+Position (\begin{DoxyParamCaption}\item[{FVector3d}]{Position,  }\item[{FVector3d}]{Direction,  }\item[{FRotator}]{Rotation,  }\item[{float}]{Lenght }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_plane_map_actor_a8fe72d0031658c214c8202307e19accd}{APlane\+Map\+Actor}}, and \mbox{\hyperlink{class_a_sphere_map_actor_a4e74eb27bf6cee44fd28e2985ee277de}{ASphere\+Map\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_map_actor_ab0e93d875b0e2208eed4ccdd032c5ac0}\label{class_a_map_actor_ab0e93d875b0e2208eed4ccdd032c5ac0} 
+\index{AMapActor@{AMapActor}!GetNewRotation@{GetNewRotation}}
+\index{GetNewRotation@{GetNewRotation}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{GetNewRotation()}{GetNewRotation()}}
+{\footnotesize\ttfamily FQuat AMap\+Actor\+::\+Get\+New\+Rotation (\begin{DoxyParamCaption}\item[{FVector3d}]{Position,  }\item[{FVector3d}]{New\+Position,  }\item[{FQuat}]{Rotation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_plane_map_actor_a9a65026ec9d2a8f74435be51b538b958}{APlane\+Map\+Actor}}, and \mbox{\hyperlink{class_a_sphere_map_actor_adad0b33f205378f6baeca6f73863b318}{ASphere\+Map\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+\Hypertarget{class_a_map_actor_aeade2980cd862fbfc7619ad7337772bc}\label{class_a_map_actor_aeade2980cd862fbfc7619ad7337772bc} 
+\index{AMapActor@{AMapActor}!GetWorldPosition@{GetWorldPosition}}
+\index{GetWorldPosition@{GetWorldPosition}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{GetWorldPosition()}{GetWorldPosition()}}
+{\footnotesize\ttfamily FVector3d AMap\+Actor\+::\+Get\+World\+Position (\begin{DoxyParamCaption}\item[{FVector2d}]{Map\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_a_plane_map_actor_a621e4c1f612e4417565f42525f4735c1}{APlane\+Map\+Actor}}, and \mbox{\hyperlink{class_a_sphere_map_actor_a4c7c3db1c1fad9c27e0e08b6a721063d}{ASphere\+Map\+Actor}}.
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{_map_actor_8cpp_source}{Map\+Actor.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126}\label{class_a_map_actor_ae18338c7364ac8a17d1c2c75d58c8126} 
+\index{AMapActor@{AMapActor}!MapsMaterialInstanceDynamic@{MapsMaterialInstanceDynamic}}
+\index{MapsMaterialInstanceDynamic@{MapsMaterialInstanceDynamic}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{MapsMaterialInstanceDynamic}{MapsMaterialInstanceDynamic}}
+{\footnotesize\ttfamily UMaterial\+Instance\+Dynamic\texorpdfstring{$\ast$}{*} AMap\+Actor\+::\+Maps\+Material\+Instance\+Dynamic}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00021}{21}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_map_actor_a3d971a6ae8a68a5cc13c78d1b8149632}\label{class_a_map_actor_a3d971a6ae8a68a5cc13c78d1b8149632} 
+\index{AMapActor@{AMapActor}!MapsMaterialInterface@{MapsMaterialInterface}}
+\index{MapsMaterialInterface@{MapsMaterialInterface}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{MapsMaterialInterface}{MapsMaterialInterface}}
+{\footnotesize\ttfamily UMaterial\+Interface\texorpdfstring{$\ast$}{*} AMap\+Actor\+::\+Maps\+Material\+Interface}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00015}{15}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_map_actor_af19e5a8c3b4a67d1d28a8a57c264a660}\label{class_a_map_actor_af19e5a8c3b4a67d1d28a8a57c264a660} 
+\index{AMapActor@{AMapActor}!MapsStaticMeshComponent@{MapsStaticMeshComponent}}
+\index{MapsStaticMeshComponent@{MapsStaticMeshComponent}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{MapsStaticMeshComponent}{MapsStaticMeshComponent}}
+{\footnotesize\ttfamily UStatic\+Mesh\+Component\texorpdfstring{$\ast$}{*} AMap\+Actor\+::\+Maps\+Static\+Mesh\+Component}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00027}{27}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_map_actor_a4da3fda29e98eecca5a36b622535ac45}\label{class_a_map_actor_a4da3fda29e98eecca5a36b622535ac45} 
+\index{AMapActor@{AMapActor}!TerrainMapMaterialInstanceDynamic@{TerrainMapMaterialInstanceDynamic}}
+\index{TerrainMapMaterialInstanceDynamic@{TerrainMapMaterialInstanceDynamic}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{TerrainMapMaterialInstanceDynamic}{TerrainMapMaterialInstanceDynamic}}
+{\footnotesize\ttfamily UMaterial\+Instance\+Dynamic\texorpdfstring{$\ast$}{*} AMap\+Actor\+::\+Terrain\+Map\+Material\+Instance\+Dynamic}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00018}{18}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_map_actor_a968856f8c5affb17127bc0f97174a557}\label{class_a_map_actor_a968856f8c5affb17127bc0f97174a557} 
+\index{AMapActor@{AMapActor}!TerrainMapMaterialInterface@{TerrainMapMaterialInterface}}
+\index{TerrainMapMaterialInterface@{TerrainMapMaterialInterface}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{TerrainMapMaterialInterface}{TerrainMapMaterialInterface}}
+{\footnotesize\ttfamily UMaterial\+Interface\texorpdfstring{$\ast$}{*} AMap\+Actor\+::\+Terrain\+Map\+Material\+Interface}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00012}{12}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+\Hypertarget{class_a_map_actor_a626b6695283a48d7e706d4dfd1e23d19}\label{class_a_map_actor_a626b6695283a48d7e706d4dfd1e23d19} 
+\index{AMapActor@{AMapActor}!TerrainStaticMeshComponent@{TerrainStaticMeshComponent}}
+\index{TerrainStaticMeshComponent@{TerrainStaticMeshComponent}!AMapActor@{AMapActor}}
+\doxysubsubsection{\texorpdfstring{TerrainStaticMeshComponent}{TerrainStaticMeshComponent}}
+{\footnotesize\ttfamily UStatic\+Mesh\+Component\texorpdfstring{$\ast$}{*} AMap\+Actor\+::\+Terrain\+Static\+Mesh\+Component}
+
+
+
+Definition at line \mbox{\hyperlink{_map_actor_8h_source_l00024}{24}} of file \mbox{\hyperlink{_map_actor_8h_source}{Map\+Actor.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Characters/\+Components/\mbox{\hyperlink{_map_actor_8h}{Map\+Actor.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Characters/\+Components/\mbox{\hyperlink{_map_actor_8cpp}{Map\+Actor.\+cpp}}\end{DoxyCompactItemize}

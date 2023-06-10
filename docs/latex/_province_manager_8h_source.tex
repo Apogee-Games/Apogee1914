@@ -1,0 +1,35 @@
+\doxysection{Province\+Manager.\+h}
+\hypertarget{_province_manager_8h_source}{}\label{_province_manager_8h_source}\index{Source/MyProject2/Public/Administration/Managers/ProvinceManager.h@{Source/MyProject2/Public/Administration/Managers/ProvinceManager.h}}
+\mbox{\hyperlink{_province_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scenario_8h}{Scenario.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_8h}{Administration/Instances/Province.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_controlling_country_observable_8h}{Administration/Interfaces/Observable/ProvinceControllingCountryObservable.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_manager_8generated_8h}{ProvinceManager.generated.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00007}00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_u_unit}{UUnit}};}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00009}00009\ UCLASS(Abstract,\ Blueprintable)}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00010}\mbox{\hyperlink{class_u_province_manager}{00010}}\ class\ \mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}\ :\ public\ UGameInstanceSubsystem,\ public\ \mbox{\hyperlink{class_i_province_controlling_country_observable}{IProvinceControllingCountryObservable}}}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00012}00012\ \ \ \ \ GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{void}\ SetScenario(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario);}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{class_u_province}{UProvince}}*\ GetProvince(\textcolor{keyword}{const}\ FColor\&\ Color)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{const}\ TArray<UProvince*>\&\ GetAllProvinces()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00019}00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00020}00020\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00021}00021\ \ \ \ \ TMap<FColor,\ UProvince*>\ ProvinceMap;}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00023}00023\ \ \ \ \ UPROPERTY()}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00024}00024\ \ \ \ \ TArray<UProvince*>\ ProvincesArray;}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordtype}{void}\ Clear();}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_unit_ab855480bb8b5260492711ed8d39ff030}{Init}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario);}
+\DoxyCodeLine{\Hypertarget{_province_manager_8h_source_l00029}00029\ \};}
+
+\end{DoxyCode}

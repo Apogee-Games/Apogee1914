@@ -1,0 +1,68 @@
+\doxysection{Music\+Controller\+Widget.\+cpp}
+\hypertarget{_music_controller_widget_8cpp_source}{}\label{_music_controller_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Music/MusicControllerWidget.cpp@{Source/MyProject2/Private/Widgets/Music/MusicControllerWidget.cpp}}
+\mbox{\hyperlink{_music_controller_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_music_controller_widget_8h}{Widgets/Music/MusicControllerWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_songs_group_widget_8h}{Widgets/Music/SongsGroupWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00007}\mbox{\hyperlink{class_u_music_controller_widget_a7eb6b49e8049d4e1b755bfdf6f1ee968}{00007}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_music_controller_widget_a7eb6b49e8049d4e1b755bfdf6f1ee968}{UMusicControllerWidget::Init}}(\textcolor{keyword}{const}\ TArray<USongsGroup*>\&\ SongsGroups)}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_u_music_controller_widget_af7fb17533a26427f58de7fe3eaf0bce4}{PlayMusicButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMusicControllerWidget::OnPlayMusicButton);}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_u_music_controller_widget_a7f02f5580c626bad364b0dee9428926c}{ViewMusicListButton}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&UMusicControllerWidget::OnViewMusicListButtonClick);}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00012}00012\ \ \ \ \ GetWorld()-\/>GetTimerManager().SetTimer(TimerHandle,\ \textcolor{keyword}{this},\ \&UMusicControllerWidget::UpdateProgress,1,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Group:\ SongsGroups)}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_songs_group_widget}{USongsGroupWidget}}*\ SongsGroupWidget\ =\ CreateWidget<USongsGroupWidget>(GetOwningPlayer(),\ \mbox{\hyperlink{class_u_music_controller_widget_a8090fb376c6047fd28bae0b77e44d4a7}{SongsGroupWidgetClass}});}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ SongsGroupWidget-\/>\mbox{\hyperlink{class_u_songs_group_widget_ae129b96869b5eaead9184fd6cadb29b0}{Init}}(Group,\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_music_controller_widget_a7466700dea3e7736bca2520a03a0dca5}{SongsGroupsScrollBox}}-\/>AddChild(SongsGroupWidget);}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00022}\mbox{\hyperlink{class_u_music_controller_widget_a8dab1bdda71384a426510265a064818a}{00022}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_music_controller_widget_a8dab1bdda71384a426510265a064818a}{UMusicControllerWidget::Select}}(\mbox{\hyperlink{class_u_song_description_widget}{USongDescriptionWidget}}*\ SongDescriptionWidget)}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (SelectedSong)}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00025}00025\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ SelectedSong-\/>\mbox{\hyperlink{class_u_song_description_widget_aa4f9a66baf49082dc90df3dc49f48638}{UnSelect}}();}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00029}00029\ \ \ \ \ SelectedSong\ =\ SongDescriptionWidget;}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00031}00031\ \ \ \ \ SelectedSong-\/>\mbox{\hyperlink{class_u_song_description_widget_acea695289664e76046cec9bdf9d910cf}{Select}}();}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_u_music_controller_widget_a191bf3d8fcec2c3192e70f3401461f84}{CurrentSongNameTextBlock}}-\/>SetText(SelectedSong-\/>\mbox{\hyperlink{class_u_song_description_widget_a300dbb6855cd8a5ff71e42636ea9fc0d}{GetSongDescription}}()-\/>\mbox{\hyperlink{class_u_song_description_a57dbdbcfb3ccd55fe2b8cde933937ea2}{Name}});}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00035}00035\ \ \ \ \ CurrentProgress\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00036}00036\ \ \ \ \ IsPaused\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00038}00038\ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>Play(SelectedSong-\/>\mbox{\hyperlink{class_u_song_description_widget_a300dbb6855cd8a5ff71e42636ea9fc0d}{GetSongDescription}}()-\/>\mbox{\hyperlink{class_u_song_description_a6a9277c6619685dd985fe665d47157dc}{Song}});}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00041}00041\ \textcolor{keywordtype}{void}\ UMusicControllerWidget::OnViewMusicListButtonClick()}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ IsHidden\ =\ \mbox{\hyperlink{class_u_music_controller_widget_a4511135eca25af1bbd265788dd67a6cc}{MusicDescriptionWidgetSwitcher}}-\/>GetActiveWidgetIndex()\ ==\ 1;}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{class_u_music_controller_widget_a4511135eca25af1bbd265788dd67a6cc}{MusicDescriptionWidgetSwitcher}}-\/>SetActiveWidgetIndex(!IsHidden);}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00047}00047\ \textcolor{keywordtype}{void}\ UMusicControllerWidget::OnPlayMusicButton()}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (SelectedSong)}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ IsPaused\ =\ !IsPaused;}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>SetIsAudioPaused(IsPaused);}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00056}00056\ \textcolor{keywordtype}{void}\ UMusicControllerWidget::UpdateProgress()}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00057}00057\ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (SelectedSong\ \&\&\ !IsPaused)\ \{}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ CurrentProgress++;}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_music_controller_widget_ae51792a1feca5f2f37af83f61e8abf1a}{SongPlaybackProgressTextBlock}}-\/>SetText(FText::FromString(FString::FromInt(CurrentProgress)));}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_music_controller_widget_8cpp_source_l00062}00062\ \}}
+
+\end{DoxyCode}

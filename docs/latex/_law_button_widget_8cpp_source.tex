@@ -1,0 +1,21 @@
+\doxysection{Law\+Button\+Widget.\+cpp}
+\hypertarget{_law_button_widget_8cpp_source}{}\label{_law_button_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Administration/Laws/LawButtonWidget.cpp@{Source/MyProject2/Private/Widgets/Administration/Laws/LawButtonWidget.cpp}}
+\mbox{\hyperlink{_law_button_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_law_button_widget_8h}{Widgets/Administration/Laws/LawButtonWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_h_u_d_8h}{Characters/HUDs/HumanPlayerHUD.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00004}\mbox{\hyperlink{class_u_law_button_widget_a005e34c6bf2d5671da2a22624525bc0b}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_law_button_widget_a005e34c6bf2d5671da2a22624525bc0b}{ULawButtonWidget::Init}}(\mbox{\hyperlink{class_u_law_description}{ULawDescription}}*\ ProvidedLaw,\ \mbox{\hyperlink{class_u_law_description_widget}{ULawDescriptionWidget}}*\ ProvidedLawsSubgroupWidget)}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00006}00006\ \ \ \ \ \mbox{\hyperlink{class_u_law_button_widget_a2fd96f57f12dbc812e8a6b40076c8a98}{Button}}-\/>OnClicked.AddDynamic(\textcolor{keyword}{this},\ \&ULawButtonWidget::OnButtonClick);}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00007}00007\ \ \ \ \ Law\ =\ ProvidedLaw;}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_u_law_button_widget_a1d960da5fef23f6f9b4dca14a17b17a7}{LawNameTextBlock}}-\/>SetText(Law-\/>\mbox{\hyperlink{class_u_law_description_aef58bccc77b108381fcd83a90488cbd0}{Name}});}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00009}00009\ \ \ \ \ LawDescriptionWidget\ =\ ProvidedLawsSubgroupWidget;}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00012}00012\ \textcolor{keywordtype}{void}\ ULawButtonWidget::OnButtonClick()}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00014}00014\ \ \ \ \ LawDescriptionWidget-\/>\mbox{\hyperlink{class_u_law_description_widget_a9e39828825e7b49c245d5ac381d40835}{SetLaw}}(Law);}
+\DoxyCodeLine{\Hypertarget{_law_button_widget_8cpp_source_l00015}00015\ \}}
+
+\end{DoxyCode}

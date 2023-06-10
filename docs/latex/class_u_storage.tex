@@ -1,0 +1,124 @@
+\doxysection{UStorage Class Reference}
+\hypertarget{class_u_storage}{}\label{class_u_storage}\index{UStorage@{UStorage}}
+
+
+{\ttfamily \#include $<$Storage.\+h$>$}
+
+Inheritance diagram for UStorage\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_storage}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_u_storage_a613525a74c899fa7f56b9e00568099b5}{Init}} (\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781f}{EStorage\+Type}} Provided\+Type)
+\item 
+void \mbox{\hyperlink{class_u_storage_a2e282da531aa3c40d41c2212f8705a4a}{Init}} (const FName \&Strata\+Type)
+\item 
+void \mbox{\hyperlink{class_u_storage_a11476d87f2f51674eb340f7222edcd46}{Supply}} (\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}Good, const int32 Amount)
+\item 
+float \mbox{\hyperlink{class_u_storage_a6d12e803b9fa8a4616513bf8fe479cf2}{Estimate}} (\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}Good, const int32 Amount)
+\item 
+float \mbox{\hyperlink{class_u_storage_a3f809ca1438c9dfa99fbb6baf4afd12c}{Get\+Good\+Amount}} (\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}GoodN) const
+\item 
+float \mbox{\hyperlink{class_u_storage_a412d2d7acb3462e5eb94c478c51e6fac}{Demand}} (\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}Good, const int32 Amount)
+\item 
+\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781f}{EStorage\+Type}} \mbox{\hyperlink{class_u_storage_a3fdf76fdba7f5ece86a1e36387b99e80}{Get\+Type}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_i_storage_observable}{IStorage\+Observable}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_i_storage_observable_a46a93201440a454a7c42ac8b35a84e2b}{Notify\+Good\+Update}} (\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781f}{EStorage\+Type}} Storage\+Type, \mbox{\hyperlink{class_u_stored_good}{UStored\+Good}} \texorpdfstring{$\ast$}{*}Good)
+\item 
+bool \mbox{\hyperlink{class_i_storage_observable_abf0f13ac35f6a107a36b97d54f0f6d30}{Add\+Storage\+Observer}} (\mbox{\hyperlink{class_i_storage_observer}{IStorage\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\item 
+bool \mbox{\hyperlink{class_i_storage_observable_ad5a6e1366282ab587c3a7b370e3595e8}{Remove\+Storage\+Observer}} (\mbox{\hyperlink{class_i_storage_observer}{IStorage\+Observer}} \texorpdfstring{$\ast$}{*}Observer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_storage_8h_source_l00019}{19}} of file \mbox{\hyperlink{_storage_8h_source}{Storage.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_u_storage_a412d2d7acb3462e5eb94c478c51e6fac}\label{class_u_storage_a412d2d7acb3462e5eb94c478c51e6fac} 
+\index{UStorage@{UStorage}!Demand@{Demand}}
+\index{Demand@{Demand}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{Demand()}{Demand()}}
+{\footnotesize\ttfamily float UStorage\+::\+Demand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}}]{Good,  }\item[{const int32}]{Amount }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+\Hypertarget{class_u_storage_a6d12e803b9fa8a4616513bf8fe479cf2}\label{class_u_storage_a6d12e803b9fa8a4616513bf8fe479cf2} 
+\index{UStorage@{UStorage}!Estimate@{Estimate}}
+\index{Estimate@{Estimate}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{Estimate()}{Estimate()}}
+{\footnotesize\ttfamily float UStorage\+::\+Estimate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}}]{Good,  }\item[{const int32}]{Amount }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+\Hypertarget{class_u_storage_a3f809ca1438c9dfa99fbb6baf4afd12c}\label{class_u_storage_a3f809ca1438c9dfa99fbb6baf4afd12c} 
+\index{UStorage@{UStorage}!GetGoodAmount@{GetGoodAmount}}
+\index{GetGoodAmount@{GetGoodAmount}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{GetGoodAmount()}{GetGoodAmount()}}
+{\footnotesize\ttfamily float UStorage\+::\+Get\+Good\+Amount (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}}]{GoodN }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+\Hypertarget{class_u_storage_a3fdf76fdba7f5ece86a1e36387b99e80}\label{class_u_storage_a3fdf76fdba7f5ece86a1e36387b99e80} 
+\index{UStorage@{UStorage}!GetType@{GetType}}
+\index{GetType@{GetType}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{GetType()}{GetType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781f}{EStorage\+Type}} UStorage\+::\+Get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+\Hypertarget{class_u_storage_a2e282da531aa3c40d41c2212f8705a4a}\label{class_u_storage_a2e282da531aa3c40d41c2212f8705a4a} 
+\index{UStorage@{UStorage}!Init@{Init}}
+\index{Init@{Init}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void UStorage\+::\+Init (\begin{DoxyParamCaption}\item[{const FName \&}]{Strata\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+\Hypertarget{class_u_storage_a613525a74c899fa7f56b9e00568099b5}\label{class_u_storage_a613525a74c899fa7f56b9e00568099b5} 
+\index{UStorage@{UStorage}!Init@{Init}}
+\index{Init@{Init}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void UStorage\+::\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_storage_8h_a2cfda13081c4c553930c143cb047781f}{EStorage\+Type}}}]{Provided\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+\Hypertarget{class_u_storage_a11476d87f2f51674eb340f7222edcd46}\label{class_u_storage_a11476d87f2f51674eb340f7222edcd46} 
+\index{UStorage@{UStorage}!Supply@{Supply}}
+\index{Supply@{Supply}!UStorage@{UStorage}}
+\doxysubsubsection{\texorpdfstring{Supply()}{Supply()}}
+{\footnotesize\ttfamily void UStorage\+::\+Supply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_u_good_description}{UGood\+Description}} \texorpdfstring{$\ast$}{*}}]{Good,  }\item[{const int32}]{Amount }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_storage_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{_storage_8cpp_source}{Storage.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Economics/\+Instances/\mbox{\hyperlink{_storage_8h}{Storage.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Economics/\+Instances/\mbox{\hyperlink{_storage_8cpp}{Storage.\+cpp}}\end{DoxyCompactItemize}

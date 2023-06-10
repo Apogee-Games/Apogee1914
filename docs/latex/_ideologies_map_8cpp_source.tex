@@ -1,0 +1,51 @@
+\doxysection{Ideologies\+Map.\+cpp}
+\hypertarget{_ideologies_map_8cpp_source}{}\label{_ideologies_map_8cpp_source}\index{Source/MyProject2/Private/Maps/Ideologies/IdeologiesMap.cpp@{Source/MyProject2/Private/Maps/Ideologies/IdeologiesMap.cpp}}
+\mbox{\hyperlink{_ideologies_map_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ideologies_map_8h}{Maps/Ideologies/IdeologiesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_8h}{Administration/Instances/Country.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_8h}{Administration/Instances/Province.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_manager_8h}{Administration/Managers/ProvinceManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_provinces_map_8h}{Maps/Precalculations/ProvincesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_utils_8h}{Utils/TextureUtils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00009}\mbox{\hyperlink{class_u_ideologies_map_a433957d245135dd2a253796bf893049d}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_ideologies_map_a433957d245135dd2a253796bf893049d}{UIdeologiesMap::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00011}00011\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00012}00012\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00015}\mbox{\hyperlink{class_u_ideologies_map_a3a2e52da0a77f5fcb266fe77a25600dd}{00015}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_ideologies_map_a3a2e52da0a77f5fcb266fe77a25600dd}{UIdeologiesMap::UpdateMap}}()}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{const}\ TArray<UProvince*>\ Provinces\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}>()-\/>GetAllProvinces();}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_u_provinces_map}{UProvincesMap}}*\ ProvincesMap\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_provinces_map}{UProvincesMap}}>();}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00021}00021\ \ \ \ \ FColor*\ Colors\ =\ \mbox{\hyperlink{class_f_texture_utils_a8c1159b872ca709a8afb50e8c6d52bdf}{FTextureUtils::GetPixels}}(IdeologiesMapTexture,\ LOCK\_READ\_WRITE);}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Province:\ Provinces)}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ FColor\ Color\ =\ Province-\/>GetCountryController()-\/>GetIdeology()-\/>Color;}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Position:\ ProvincesMap-\/>\mbox{\hyperlink{class_u_provinces_map_a4f9126a0cda71089f2c0d14c956c94cd}{GetProvincePositions}}(Province-\/>GetId()))}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ Colors[Position]\ =\ Color;}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{class_f_texture_utils_aeb5cc9c4bf836375685c81435835c4e5}{FTextureUtils::UnlockPixels}}(IdeologiesMapTexture);}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00033}00033\ \ \ \ \ IdeologiesMapTexture-\/>UpdateResource();}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00036}00036\ \textcolor{keywordtype}{void}\ UIdeologiesMap::Clear()}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00038}00038\ \ \ \ \ IdeologiesMapTexture\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00041}00041\ \textcolor{keywordtype}{void}\ UIdeologiesMap::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00043}00043\ \ \ \ \ IdeologiesMapTexture\ =\ Scenario-\/>\mbox{\hyperlink{class_u_scenario_aac9173255adde7e0f1257b29a71fb7d8}{IdeologiesMapTexture}};}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{class_u_ideologies_map_a3a2e52da0a77f5fcb266fe77a25600dd}{UpdateMap}}();}
+\DoxyCodeLine{\Hypertarget{_ideologies_map_8cpp_source_l00045}00045\ \}}
+
+\end{DoxyCode}

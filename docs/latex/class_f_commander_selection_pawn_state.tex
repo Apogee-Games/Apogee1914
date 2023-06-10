@@ -1,0 +1,123 @@
+\doxysection{FCommander\+Selection\+Pawn\+State Class Reference}
+\hypertarget{class_f_commander_selection_pawn_state}{}\label{class_f_commander_selection_pawn_state}\index{FCommanderSelectionPawnState@{FCommanderSelectionPawnState}}
+
+
+{\ttfamily \#include $<$Commander\+Selection\+Pawn\+State.\+h$>$}
+
+Inheritance diagram for FCommander\+Selection\+Pawn\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_commander_selection_pawn_state}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ \mbox{\hyperlink{class_f_commander_selection_pawn_state_a24245bfeb66d9afbad9d40802343094d}{Left\+Click}} (APawn \texorpdfstring{$\ast$}{*}Provided\+Pawn) override
+\item 
+virtual TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ \mbox{\hyperlink{class_f_commander_selection_pawn_state_abfaf4a0e0fe4e3afc057b105253873c7}{Right\+Click}} (APawn \texorpdfstring{$\ast$}{*}Provided\+Pawn) override
+\item 
+virtual bool \mbox{\hyperlink{class_f_commander_selection_pawn_state_ace766ba1557cf85e58c0052344bcf13e}{Must\+Widget\+Be\+Visible}} (UUser\+Widget \texorpdfstring{$\ast$}{*}Widget) override
+\item 
+virtual bool \mbox{\hyperlink{class_f_commander_selection_pawn_state_a5fd3d17fe3b02b7f2645f6343a1ac495}{Can\+Widget\+Be\+Visible}} (UUser\+Widget \texorpdfstring{$\ast$}{*}Widget) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_f_pawn_state_a84319043e13add17bf95960ec6c3ea2d}{\texorpdfstring{$\sim$}{\string~}\+FPawn\+State}} ()=default
+\item 
+virtual TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ \mbox{\hyperlink{class_f_pawn_state_a850ebd01cdc0176caf38ff67e72d128b}{Left\+Click}} (APawn \texorpdfstring{$\ast$}{*}Provided\+Pawn)=0
+\item 
+virtual TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ \mbox{\hyperlink{class_f_pawn_state_a5c9c93041be343a7a38c5b58e650dc3a}{Right\+Click}} (APawn \texorpdfstring{$\ast$}{*}Provided\+Pawn)=0
+\item 
+virtual bool \mbox{\hyperlink{class_f_pawn_state_aa707028ffdeb93cd125077ab4b5f16f8}{Must\+Widget\+Be\+Visible}} (UUser\+Widget \texorpdfstring{$\ast$}{*}Widget)=0
+\item 
+virtual bool \mbox{\hyperlink{class_f_pawn_state_a3a94d4f23a6e422e9b4290142a4aaf8e}{Can\+Widget\+Be\+Visible}} (UUser\+Widget \texorpdfstring{$\ast$}{*}Widget)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ \mbox{\hyperlink{class_f_commander_selection_pawn_state_adb2f4dedae12c5fcd118684fd8fc9396}{Get\+Instance}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_commander_selection_pawn_state_8h_source_l00004}{4}} of file \mbox{\hyperlink{_commander_selection_pawn_state_8h_source}{Commander\+Selection\+Pawn\+State.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_f_commander_selection_pawn_state_a5fd3d17fe3b02b7f2645f6343a1ac495}\label{class_f_commander_selection_pawn_state_a5fd3d17fe3b02b7f2645f6343a1ac495} 
+\index{FCommanderSelectionPawnState@{FCommanderSelectionPawnState}!CanWidgetBeVisible@{CanWidgetBeVisible}}
+\index{CanWidgetBeVisible@{CanWidgetBeVisible}!FCommanderSelectionPawnState@{FCommanderSelectionPawnState}}
+\doxysubsubsection{\texorpdfstring{CanWidgetBeVisible()}{CanWidgetBeVisible()}}
+{\footnotesize\ttfamily bool FCommander\+Selection\+Pawn\+State\+::\+Can\+Widget\+Be\+Visible (\begin{DoxyParamCaption}\item[{UUser\+Widget \texorpdfstring{$\ast$}{*}}]{Widget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_f_pawn_state_a3a94d4f23a6e422e9b4290142a4aaf8e}{FPawn\+State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source}{Commander\+Selection\+Pawn\+State.\+cpp}}.
+
+\Hypertarget{class_f_commander_selection_pawn_state_adb2f4dedae12c5fcd118684fd8fc9396}\label{class_f_commander_selection_pawn_state_adb2f4dedae12c5fcd118684fd8fc9396} 
+\index{FCommanderSelectionPawnState@{FCommanderSelectionPawnState}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!FCommanderSelectionPawnState@{FCommanderSelectionPawnState}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ FCommander\+Selection\+Pawn\+State\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source}{Commander\+Selection\+Pawn\+State.\+cpp}}.
+
+\Hypertarget{class_f_commander_selection_pawn_state_a24245bfeb66d9afbad9d40802343094d}\label{class_f_commander_selection_pawn_state_a24245bfeb66d9afbad9d40802343094d} 
+\index{FCommanderSelectionPawnState@{FCommanderSelectionPawnState}!LeftClick@{LeftClick}}
+\index{LeftClick@{LeftClick}!FCommanderSelectionPawnState@{FCommanderSelectionPawnState}}
+\doxysubsubsection{\texorpdfstring{LeftClick()}{LeftClick()}}
+{\footnotesize\ttfamily TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ FCommander\+Selection\+Pawn\+State\+::\+Left\+Click (\begin{DoxyParamCaption}\item[{APawn \texorpdfstring{$\ast$}{*}}]{Provided\+Pawn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_f_pawn_state_a850ebd01cdc0176caf38ff67e72d128b}{FPawn\+State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source}{Commander\+Selection\+Pawn\+State.\+cpp}}.
+
+\Hypertarget{class_f_commander_selection_pawn_state_ace766ba1557cf85e58c0052344bcf13e}\label{class_f_commander_selection_pawn_state_ace766ba1557cf85e58c0052344bcf13e} 
+\index{FCommanderSelectionPawnState@{FCommanderSelectionPawnState}!MustWidgetBeVisible@{MustWidgetBeVisible}}
+\index{MustWidgetBeVisible@{MustWidgetBeVisible}!FCommanderSelectionPawnState@{FCommanderSelectionPawnState}}
+\doxysubsubsection{\texorpdfstring{MustWidgetBeVisible()}{MustWidgetBeVisible()}}
+{\footnotesize\ttfamily bool FCommander\+Selection\+Pawn\+State\+::\+Must\+Widget\+Be\+Visible (\begin{DoxyParamCaption}\item[{UUser\+Widget \texorpdfstring{$\ast$}{*}}]{Widget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_f_pawn_state_aa707028ffdeb93cd125077ab4b5f16f8}{FPawn\+State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source}{Commander\+Selection\+Pawn\+State.\+cpp}}.
+
+\Hypertarget{class_f_commander_selection_pawn_state_abfaf4a0e0fe4e3afc057b105253873c7}\label{class_f_commander_selection_pawn_state_abfaf4a0e0fe4e3afc057b105253873c7} 
+\index{FCommanderSelectionPawnState@{FCommanderSelectionPawnState}!RightClick@{RightClick}}
+\index{RightClick@{RightClick}!FCommanderSelectionPawnState@{FCommanderSelectionPawnState}}
+\doxysubsubsection{\texorpdfstring{RightClick()}{RightClick()}}
+{\footnotesize\ttfamily TShared\+Ptr$<$ \mbox{\hyperlink{class_f_pawn_state}{FPawn\+State}} $>$ FCommander\+Selection\+Pawn\+State\+::\+Right\+Click (\begin{DoxyParamCaption}\item[{APawn \texorpdfstring{$\ast$}{*}}]{Provided\+Pawn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_f_pawn_state_a5c9c93041be343a7a38c5b58e650dc3a}{FPawn\+State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_commander_selection_pawn_state_8cpp_source}{Commander\+Selection\+Pawn\+State.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Characters/\+State\+Machine/\mbox{\hyperlink{_commander_selection_pawn_state_8h}{Commander\+Selection\+Pawn\+State.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Characters/\+State\+Machine/\mbox{\hyperlink{_commander_selection_pawn_state_8cpp}{Commander\+Selection\+Pawn\+State.\+cpp}}\end{DoxyCompactItemize}

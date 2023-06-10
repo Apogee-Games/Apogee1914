@@ -1,0 +1,77 @@
+\doxysection{FStability\+Outcome\+Applier Class Reference}
+\hypertarget{class_f_stability_outcome_applier}{}\label{class_f_stability_outcome_applier}\index{FStabilityOutcomeApplier@{FStabilityOutcomeApplier}}
+
+
+{\ttfamily \#include $<$Stability\+Outcome\+Applier.\+h$>$}
+
+Inheritance diagram for FStability\+Outcome\+Applier\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_stability_outcome_applier}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_stability_outcome_applier_a5e026eb8751ac758d59bef98321a87b9}{FStability\+Outcome\+Applier}} (\mbox{\hyperlink{class_a_game_level_game_state}{AGame\+Level\+Game\+State}} \texorpdfstring{$\ast$}{*}Game\+State)
+\item 
+virtual void \mbox{\hyperlink{class_f_stability_outcome_applier_a87f4bc4683c195c6a1352fe950dca7d0}{Apply}} (const TMap$<$ FName, FString $>$ \&Values) override
+\item 
+virtual \mbox{\hyperlink{class_f_stability_outcome_applier_a66c06d5aaf4594f6abafd1678f6bb0aa}{\texorpdfstring{$\sim$}{\string~}\+FStability\+Outcome\+Applier}} () override=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_f_outcome_applier}{FOutcome\+Applier}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_f_outcome_applier_a83e8dbed6b70eabaca35dba2df84bcd5}{Apply}} (const TMap$<$ FName, FString $>$ \&Values)=0
+\item 
+virtual \mbox{\hyperlink{class_f_outcome_applier_ad561837922315ac63e89a36b67315fe9}{\texorpdfstring{$\sim$}{\string~}\+FOutcome\+Applier}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used for testing Updates stability 
+
+Definition at line \mbox{\hyperlink{_stability_outcome_applier_8h_source_l00009}{9}} of file \mbox{\hyperlink{_stability_outcome_applier_8h_source}{Stability\+Outcome\+Applier.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_f_stability_outcome_applier_a5e026eb8751ac758d59bef98321a87b9}\label{class_f_stability_outcome_applier_a5e026eb8751ac758d59bef98321a87b9} 
+\index{FStabilityOutcomeApplier@{FStabilityOutcomeApplier}!FStabilityOutcomeApplier@{FStabilityOutcomeApplier}}
+\index{FStabilityOutcomeApplier@{FStabilityOutcomeApplier}!FStabilityOutcomeApplier@{FStabilityOutcomeApplier}}
+\doxysubsubsection{\texorpdfstring{FStabilityOutcomeApplier()}{FStabilityOutcomeApplier()}}
+{\footnotesize\ttfamily FStability\+Outcome\+Applier\+::\+FStability\+Outcome\+Applier (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_a_game_level_game_state}{AGame\+Level\+Game\+State}} \texorpdfstring{$\ast$}{*}}]{Game\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Outcome applier needs Game\+State to access stability field 
+
+Definition at line \mbox{\hyperlink{_stability_outcome_applier_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_stability_outcome_applier_8cpp_source}{Stability\+Outcome\+Applier.\+cpp}}.
+
+\Hypertarget{class_f_stability_outcome_applier_a66c06d5aaf4594f6abafd1678f6bb0aa}\label{class_f_stability_outcome_applier_a66c06d5aaf4594f6abafd1678f6bb0aa} 
+\index{FStabilityOutcomeApplier@{FStabilityOutcomeApplier}!````~FStabilityOutcomeApplier@{\texorpdfstring{$\sim$}{\string~}FStabilityOutcomeApplier}}
+\index{````~FStabilityOutcomeApplier@{\texorpdfstring{$\sim$}{\string~}FStabilityOutcomeApplier}!FStabilityOutcomeApplier@{FStabilityOutcomeApplier}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FStabilityOutcomeApplier()}{\string~FStabilityOutcomeApplier()}}
+{\footnotesize\ttfamily virtual FStability\+Outcome\+Applier\+::\texorpdfstring{$\sim$}{\string~}\+FStability\+Outcome\+Applier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_f_stability_outcome_applier_a87f4bc4683c195c6a1352fe950dca7d0}\label{class_f_stability_outcome_applier_a87f4bc4683c195c6a1352fe950dca7d0} 
+\index{FStabilityOutcomeApplier@{FStabilityOutcomeApplier}!Apply@{Apply}}
+\index{Apply@{Apply}!FStabilityOutcomeApplier@{FStabilityOutcomeApplier}}
+\doxysubsubsection{\texorpdfstring{Apply()}{Apply()}}
+{\footnotesize\ttfamily void FStability\+Outcome\+Applier\+::\+Apply (\begin{DoxyParamCaption}\item[{const TMap$<$ FName, FString $>$ \&}]{Values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Method updates stability with provided values 
+
+Implements \mbox{\hyperlink{class_f_outcome_applier_a83e8dbed6b70eabaca35dba2df84bcd5}{FOutcome\+Applier}}.
+
+
+
+Definition at line \mbox{\hyperlink{_stability_outcome_applier_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{_stability_outcome_applier_8cpp_source}{Stability\+Outcome\+Applier.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+My\+Project2/\+Public/\+Actions/\+Outcome\+Appliers/\mbox{\hyperlink{_stability_outcome_applier_8h}{Stability\+Outcome\+Applier.\+h}}\item 
+Source/\+My\+Project2/\+Private/\+Actions/\+Outcome\+Appliers/\mbox{\hyperlink{_stability_outcome_applier_8cpp}{Stability\+Outcome\+Applier.\+cpp}}\end{DoxyCompactItemize}

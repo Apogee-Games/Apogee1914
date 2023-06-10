@@ -1,0 +1,94 @@
+\doxysection{Countries\+Map.\+cpp}
+\hypertarget{_countries_map_8cpp_source}{}\label{_countries_map_8cpp_source}\index{Source/MyProject2/Private/Maps/Countries/CountriesMap.cpp@{Source/MyProject2/Private/Maps/Countries/CountriesMap.cpp}}
+\mbox{\hyperlink{_countries_map_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_countries_map_8h}{Maps/Countries/CountriesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_my_game_instance_8h}{MyGameInstance.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_province_manager_8h}{Administration/Managers/ProvinceManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_level_game_state_8h}{LevelsOverides/Game/GameLevelGameState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_map_updater_8h}{Maps/Countries/CountryMapUpdater.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_provinces_map_8h}{Maps/Precalculations/ProvincesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_distances_map_8h}{Maps/Precalculations/Distances/DistancesMap.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_utils_8h}{Utils/TextureUtils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00012}\mbox{\hyperlink{class_u_countries_map_a4e91bf1534ff8b8e5d92a1ebb976e4f8}{00012}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_a4e91bf1534ff8b8e5d92a1ebb976e4f8}{UCountriesMap::Initialize}}(FSubsystemCollectionBase\&\ Collection)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00014}00014\ \ \ \ \ Super::Initialize(Collection);}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00015}00015\ \ \ \ \ Collection.InitializeDependency(Cast<UMyGameInstance>(GetGameInstance())-\/>ProvinceManagerClass);}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00016}00016\ \ \ \ \ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_province_manager}{UProvinceManager}}>()-\/>AddProvinceControllingCountryObserver(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00017}00017\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00019}\mbox{\hyperlink{class_u_countries_map_a6f34681d47aa208950ecb070b9ee9687}{00019}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_a6f34681d47aa208950ecb070b9ee9687}{UCountriesMap::Tick}}()}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (IsUpdated)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00022}00022\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ CountriesMapTexture-\/>UpdateResource();}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ IsUpdated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00028}\mbox{\hyperlink{class_u_countries_map_af6e962344c278c58ee0c80781824df34}{00028}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_af6e962344c278c58ee0c80781824df34}{UCountriesMap::SetScenario}}(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00030}00030\ \ \ \ \ Clear();}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00031}00031\ \ \ \ \ Init(Scenario);}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00034}\mbox{\hyperlink{class_u_countries_map_a414278b3edbf4ae103841559bada0f3f}{00034}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_a414278b3edbf4ae103841559bada0f3f}{UCountriesMap::UpdateCountriesMapColors}}(\textcolor{keyword}{const}\ TArray<UProvince*>\&\ Provinces)\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00036}00036\ \ \ \ \ TArray<FRunnableThread*>\ Threads;}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00038}00038\ \ \ \ \ FColor*\ CountriesColors\ =\ \mbox{\hyperlink{class_f_texture_utils_a8c1159b872ca709a8afb50e8c6d52bdf}{FTextureUtils::GetPixels}}(CountriesMapTexture,\ LOCK\_READ\_WRITE);}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00039}00039\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Province:\ Provinces)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00041}00041\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ Threads.Add(UpdateCountryColor(Province,\ CountriesColors));}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00044}00044\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Thread:\ Threads)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ Thread-\/>WaitForCompletion();}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00049}00049\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{class_f_texture_utils_aeb5cc9c4bf836375685c81435835c4e5}{FTextureUtils::UnlockPixels}}(CountriesMapTexture);}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00051}00051\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00052}00052\ \ \ \ \ IsUpdated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00055}\mbox{\hyperlink{class_u_countries_map_a33ea7554ca730ccb400c9c43bb38c563}{00055}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_a33ea7554ca730ccb400c9c43bb38c563}{UCountriesMap::UpdateAllCountriesMapColors}}()}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00056}00056\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00059}\mbox{\hyperlink{class_u_countries_map_a9850ba0937a4375de855210667a195da}{00059}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_a9850ba0937a4375de855210667a195da}{UCountriesMap::ProvinceHasNewControllingCountry}}(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00061}00061\ \ \ \ \ \mbox{\hyperlink{class_u_countries_map_a414278b3edbf4ae103841559bada0f3f}{UpdateCountriesMapColors}}(\{Province\});}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00064}\mbox{\hyperlink{class_u_countries_map_a78651748d693c9afe4b3eec365fb7a47}{00064}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_countries_map_a78651748d693c9afe4b3eec365fb7a47}{UCountriesMap::CountryDistancesWereUpdated}}(\textcolor{keyword}{const}\ TArray<UProvince*>\&\ Provinces)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{class_u_countries_map_a33ea7554ca730ccb400c9c43bb38c563}{UpdateAllCountriesMapColors}}();\ \textcolor{comment}{//\ TODO:\ Is\ this\ correct?\ :)}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00069}00069\ FRunnableThread*\ UCountriesMap::UpdateCountryColor(\mbox{\hyperlink{class_u_province}{UProvince}}*\ Province,\ FColor*\ CountriesColor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00070}00070\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{const}\ TArray<int32>\&\ PixelsToUpdate\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_provinces_map}{UProvincesMap}}>()-\/>GetProvincePositions(Province-\/>\mbox{\hyperlink{class_u_province_aa0107d3d955b779232d2bbda861cc232}{GetId}}());}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{const}\ TArray<int32>\&\ Distances\ =\ GetGameInstance()-\/>GetSubsystem<\mbox{\hyperlink{class_u_distances_map}{UDistancesMap}}>()-\/>GetCountriesDistances();}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00073}00073\ \ \ \ \ \mbox{\hyperlink{class_f_country_map_updater}{FCountryMapUpdater}}*\ Updater\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_f_country_map_updater}{FCountryMapUpdater}}(CountriesColor,\ PixelsToUpdate,\ Province,\ Distances,\ SizeVector,\ \mbox{\hyperlink{class_u_countries_map_a5a545374f5b53afa6f4ce8848c5639f9}{CrossLineWidth}});}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{return}\ FRunnableThread::Create(Updater,\ *Province-\/>\mbox{\hyperlink{class_u_province_a07652749e2275af3adc975438dca430a}{GetName}}().ToString());\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00075}00075\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00077}00077\ \textcolor{keywordtype}{void}\ UCountriesMap::Clear()}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00078}00078\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00079}00079\ \ \ \ \ CountriesMapTexture\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00080}00080\ \}}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00082}00082\ \textcolor{keywordtype}{void}\ UCountriesMap::Init(\mbox{\hyperlink{class_u_scenario}{UScenario}}*\ Scenario)}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00083}00083\ \{}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00084}00084\ \ \ \ \ CountriesMapTexture\ =\ Scenario-\/>\mbox{\hyperlink{class_u_scenario_a5059966029888f3cffcc7890e6fe6d18}{CountriesMapTexture}};}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00085}00085\ \ \ \ \ SizeVector\ =\ \mbox{\hyperlink{class_f_texture_utils_acf015f4d7f91a2c03a508f23f86cbe84}{FTextureUtils::GetTextureSizeVector}}(CountriesMapTexture);}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00086}00086\ \ \ \ \ \mbox{\hyperlink{class_u_countries_map_a414278b3edbf4ae103841559bada0f3f}{UpdateCountriesMapColors}}(GetGameInstance()-\/>GetSubsystem<UProvinceManager>()-\/>GetAllProvinces());}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00087}00087\ \ \ \ \ CountriesMapTexture-\/>UpdateResource();}
+\DoxyCodeLine{\Hypertarget{_countries_map_8cpp_source_l00088}00088\ \}}
+
+\end{DoxyCode}

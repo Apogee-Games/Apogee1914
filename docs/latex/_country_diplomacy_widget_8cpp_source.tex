@@ -1,0 +1,49 @@
+\doxysection{Country\+Diplomacy\+Widget.\+cpp}
+\hypertarget{_country_diplomacy_widget_8cpp_source}{}\label{_country_diplomacy_widget_8cpp_source}\index{Source/MyProject2/Private/Widgets/Diplomacy/Menu/CountryDiplomacyWidget.cpp@{Source/MyProject2/Private/Widgets/Diplomacy/Menu/CountryDiplomacyWidget.cpp}}
+\mbox{\hyperlink{_country_diplomacy_widget_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_country_diplomacy_widget_8h}{Widgets/Diplomacy/Menu/CountryDiplomacyWidget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_human_player_pawn_8h}{Characters/Pawns/HumanPlayerPawn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00004}\mbox{\hyperlink{class_u_country_diplomacy_widget_add32165c59dc9212163d0ba26cb0620c}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_country_diplomacy_widget_add32165c59dc9212163d0ba26cb0620c}{UCountryDiplomacyWidget::Init}}()}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00006}00006\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_abfe93222db4c77581fe41c8ac0806670}{DiplomaticPactsWidget}}-\/>\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_ab592780138164e95a307fa7733e8c27d}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00007}00007\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a4d8357dbf84b055def175b7a313e00d1}{WarManagementWidget}}-\/>\mbox{\hyperlink{class_u_war_management_widget_ac734f7a58dc569ed3e610e0d11b15a8d}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a91a48275d442137509a198e0fc82cc71}{RelationsListWidget}}-\/>\mbox{\hyperlink{class_u_relations_list_widget_adf571c402cb8077c1116c63c435afe57}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a4c9b434a3c4796350108cd4bee5a3e83}{AllianceManagementWidget}}-\/>\mbox{\hyperlink{class_u_alliance_management_widget_aaf548ae89da6e09b86394c41d1419be5}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00010}00010\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00011}00011\ \ \ \ \ OwnerCountry\ =\ GetOwningPlayerPawn<AHumanPlayerPawn>()-\/>GetRuledCountry();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00014}\mbox{\hyperlink{class_u_country_diplomacy_widget_af2a4b0c57e79764d13bf08325561eead}{00014}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_country_diplomacy_widget_af2a4b0c57e79764d13bf08325561eead}{UCountryDiplomacyWidget::SetCountry}}(\mbox{\hyperlink{class_u_country}{UCountry}}*\ ProvidedCountry)}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00016}00016\ \ \ \ \ Country\ =\ ProvidedCountry;}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_abfe93222db4c77581fe41c8ac0806670}{DiplomaticPactsWidget}}-\/>\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a71ab3c7e691e84152d89cbe4990e6a71}{SetCountry}}(ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a4d8357dbf84b055def175b7a313e00d1}{WarManagementWidget}}-\/>\mbox{\hyperlink{class_u_war_management_widget_a9c1d64601dccd05aaf5779d360054e90}{SetCountry}}(ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a91a48275d442137509a198e0fc82cc71}{RelationsListWidget}}-\/>\mbox{\hyperlink{class_u_relations_list_widget_af73de6a5781d80235d08e37591c33d08}{SetCountry}}(ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a4c9b434a3c4796350108cd4bee5a3e83}{AllianceManagementWidget}}-\/>\mbox{\hyperlink{class_u_alliance_management_widget_a067ea82ca12c991ab4596c8ac478e03f}{SetCountry}}(ProvidedCountry);}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00023}00023\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a391d0a7fbe0ed31c6d8f6845ee2764a4}{RefreshData}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00026}\mbox{\hyperlink{class_u_country_diplomacy_widget_a391d0a7fbe0ed31c6d8f6845ee2764a4}{00026}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_u_country_diplomacy_widget_a391d0a7fbe0ed31c6d8f6845ee2764a4}{UCountryDiplomacyWidget::RefreshData}}()}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a4c9b434a3c4796350108cd4bee5a3e83}{AllianceManagementWidget}}-\/>\mbox{\hyperlink{class_u_alliance_management_widget_ae68379a7a9a634f4f2e8776ed53fa75f}{RefreshData}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (Country\ ==\ OwnerCountry)}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a348930f2846beb943a61beb372b389b5}{WidgetSwitcher}}-\/>SetActiveWidgetIndex(0);}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00033}00033\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a348930f2846beb943a61beb372b389b5}{WidgetSwitcher}}-\/>SetActiveWidgetIndex(1);}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_abfe93222db4c77581fe41c8ac0806670}{DiplomaticPactsWidget}}-\/>\mbox{\hyperlink{class_u_diplomatic_pacts_widgets_a8ccf87d278d183411ac1f7f0dc414c10}{RefreshData}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a4d8357dbf84b055def175b7a313e00d1}{WarManagementWidget}}-\/>\mbox{\hyperlink{class_u_war_management_widget_a049039ca7a8b65e641e298976c387df7}{RefreshData}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_a91a48275d442137509a198e0fc82cc71}{RelationsListWidget}}-\/>\mbox{\hyperlink{class_u_relations_list_widget_a549f8bc4ac870d2a9453f3ecda459f09}{RefreshData}}();}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_aa44723cd632ff7448bf83661774fc0a5}{CountryFlag}}-\/>SetBrushResourceObject(Country-\/>\mbox{\hyperlink{class_u_country_a16735b2d91e920dbc49fff8e48567929}{GetFlag}}());}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{class_u_country_diplomacy_widget_af4f4f206f9440d1c6202f2edf0def9aa}{CountryNameTextBlock}}-\/>SetText(Country-\/>\mbox{\hyperlink{class_u_country_afb442bf07ae5b28548391b1e2e0f8b7e}{GetName}}());}
+\DoxyCodeLine{\Hypertarget{_country_diplomacy_widget_8cpp_source_l00043}00043\ \}}
+
+\end{DoxyCode}
