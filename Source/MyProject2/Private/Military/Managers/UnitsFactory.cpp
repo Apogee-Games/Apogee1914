@@ -169,6 +169,21 @@ const TArray<UUnitDescription*>& UUnitsFactory::GetUnitsDescriptions() const
 	return UnitDescriptions;
 }
 
+const TArray<UUnit*>& UUnitsFactory::GetUnits() const
+{
+	return Units;
+}
+
+const TArray<UUnitsCollection*>& UUnitsFactory::GetUnitsCollections() const
+{
+	return UnitsCollections;
+}
+
+const TArray<UUnitsCollectionGroup*>& UUnitsFactory::GetUnitsCollectionsGroups() const
+{
+	return UnitsCollectionGroups;
+}
+
 void UUnitsFactory::Clear()
 {
 	for (const auto& Unit: Units)

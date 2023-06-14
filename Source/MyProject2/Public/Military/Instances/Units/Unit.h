@@ -47,6 +47,8 @@ public:
 
 	float GetManpower() const;
 
+	UUnitDescription* GetUnitDescription() const;
+
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);

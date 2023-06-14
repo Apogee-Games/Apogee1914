@@ -23,7 +23,11 @@ AProvinceActor::AProvinceActor()
 void AProvinceActor::Init(const FText& ProvinceName, FVector2d TopLeft, FVector2d BottomRight)
 {
 	WidgetComponent->InitWidget();
-	GetWidget<UUnitInformationListWidget>()->SetVisibility(ESlateVisibility::Hidden);
+	Widget = GetWidget<UUnitInformationListWidget>();
+	if (Widget)
+	{
+		Widget->SetVisibility(ESlateVisibility::Hidden);
+	}
 	
 	FVector2d Box = BottomRight - TopLeft;
 
@@ -72,8 +76,10 @@ void AProvinceActor::AddUnit(UUnit* Unit)
 	Units.Add(Unit);
 
 	UpdateWidgetVisibility();
-	
-	GetWidget<UUnitInformationListWidget>()->AddUnit(Unit);
+
+	if (Widget) {
+		Widget->AddUnit(Unit);
+	}
 }
 
 void AProvinceActor::RemoveUnit(UUnit* Unit)
@@ -81,8 +87,11 @@ void AProvinceActor::RemoveUnit(UUnit* Unit)
 	Units.Remove(Unit);
 
 	UpdateWidgetVisibility();
-	
-	GetWidget<UUnitInformationListWidget>()->RemoveUnit(Unit);
+
+	if (Widget)
+	{
+		Widget->RemoveUnit(Unit);
+	}
 }
 
 void AProvinceActor::UpdateWidgetVisibility() const
@@ -90,11 +99,17 @@ void AProvinceActor::UpdateWidgetVisibility() const
 	if (Units.Num() == 0)
 	{
 		StaticMeshComponent->SetVisibility(false);
-		GetWidget<UUnitInformationListWidget>()->SetVisibility(ESlateVisibility::Hidden);
+		if (Widget)
+		{
+			Widget->SetVisibility(ESlateVisibility::Hidden);
+		}
 	}
 	else if (Units.Num() == 1)
 	{
 		StaticMeshComponent->SetVisibility(true);
-		GetWidget<UUnitInformationListWidget>()->SetVisibility(ESlateVisibility::Visible);
+		if (Widget)
+		{
+			Widget->SetVisibility(ESlateVisibility::Visible);
+		}
 	}
 }

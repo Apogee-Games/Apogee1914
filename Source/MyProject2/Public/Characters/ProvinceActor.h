@@ -4,6 +4,7 @@
 #include "Engine/StaticMeshActor.h"
 #include "ProvinceActor.generated.h"
 
+class UUnitInformationListWidget;
 class UUnit;
 
 UCLASS()
@@ -45,6 +46,9 @@ private:
 	template <class T>
 	T* GetWidget() const;
 
+	UPROPERTY()
+	UUnitInformationListWidget* Widget;
+	
 	void UpdateWidgetVisibility() const;
 };
 

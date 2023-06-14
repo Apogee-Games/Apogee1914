@@ -150,7 +150,11 @@ void UProvince::AddUnit(UUnit* Unit)
 	{
 		Attackers.Add(Unit);
 		ProvinceActor->AddAttacker(Unit);
-		if (Attackers.Num() == 1)
+		
+		if (Units.IsEmpty())
+		{
+			TakeControl(Unit->GetCountryController());
+		} else
 		{
 			GetWorld()->GetGameInstance()->GetSubsystem<UBattlesManager>()->AddBattle(this);
 		}

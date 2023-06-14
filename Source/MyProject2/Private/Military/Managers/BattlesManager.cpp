@@ -15,6 +15,7 @@ void UBattlesManager::SetScenario(UScenario* Scenario)
 
 void UBattlesManager::AddBattle(UProvince* Province)
 {
+	// TODO: Check if battle is ongoing :)
 	Provinces.Add(Province);
 	UUnitsMover* UnitsMover = GetGameInstance()->GetSubsystem<UUnitsMover>();
 	/*for (const auto& Unit: Province->GetAttackers())

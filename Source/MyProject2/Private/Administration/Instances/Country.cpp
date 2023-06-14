@@ -63,7 +63,14 @@ UStorage* UCountry::GetStorage() const
 void UCountry::SetIdeology(UIdeologyDescription* ProvidedIdeology)
 {
 	Ideology = ProvidedIdeology;
-	Ruler = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPerson(IdeologiesParameters[ProvidedIdeology].Ruler);
+	UPeopleManager* PeopleManager = GetWorld()->GetGameInstance()->GetSubsystem<UPeopleManager>();
+	if (PeopleManager) {
+		UPersonDescription* PersonDescription = IdeologiesParameters[ProvidedIdeology].Ruler;
+		if (PersonDescription)
+		{
+			Ruler = PeopleManager->GetPerson(PersonDescription);
+		}
+	}
 }
 
 UPerson* UCountry::GetRuler() const

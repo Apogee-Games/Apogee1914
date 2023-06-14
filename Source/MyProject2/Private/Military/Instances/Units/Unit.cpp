@@ -136,3 +136,8 @@ float UUnit::GetManpower() const
 	return Manpower;
 }
 
+UUnitDescription* UUnit::GetUnitDescription() const
+{
+	return UnitDescription;
+}
+

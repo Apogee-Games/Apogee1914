@@ -5,7 +5,7 @@
 
 #include "CountriesManager.generated.h"
 
-UCLASS(Abstract, Blueprintable)
+UCLASS(Blueprintable)
 class UCountriesManager: public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
