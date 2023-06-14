@@ -1,2 +1,29 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=24c2b489_002Deb65_002D4f79_002D9577_002Dc6d2a28edcce/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UnitsFactoryTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::Tests.UnitsFactoryTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d6f21b2e_002Da63c_002D461e_002Da675_002D11d11e74cc15/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::Tests.UnitCreationTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::Tests.UnitsFactoryTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f7d2745b_002D8932_002D4fb3_002D8b94_002De5a45f53e603/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UnitCreationTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.TwoUnitsInDifferentProvinces&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.TwoDifferentUnitsInDifferentProvinces&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.TwoDifferentUnitsInOneProvinces&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.OneUnit&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.MultipleUnitsInOneProvince&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.OneUnitInAnotherCountyProvince&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.OneUnitsCollection&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.OneUnitsCollectionGroup&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.OneUnitsCollectionWithUnits&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;UnrealTest::8559029B-3E9B-D092-E05C-7AE53D70D612::::UnitsFactory.OneUnitsCollectionGroupWithUnitsCollections&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Commandable/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
