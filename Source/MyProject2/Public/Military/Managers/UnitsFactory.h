@@ -47,6 +47,9 @@ public:
 	const TArray<UMilitaryBranchDescription*>& GetMilitaryBranches() const;
 
 	const TArray<UUnitDescription*>& GetUnitsDescriptions() const;
+
+	const TArray<UUnit*>& GetUnits() const;
+
 private:
 	UPROPERTY()
 	TArray<UUnitDescription*> UnitDescriptions;

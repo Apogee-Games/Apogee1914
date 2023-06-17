@@ -139,8 +139,8 @@ void UBoxesMap::CalculateProvinceCorners()
 			const FVector2d Position = FTextureUtils::GetPositionVector(Index, SizeVector);
 			LeftTopCorner.X = FMath::Min(LeftTopCorner.X, Position.X);
 			LeftTopCorner.Y = FMath::Min(LeftTopCorner.Y, Position.Y);
-			RightBottomCorner.X = FMath::Max(RightBottomCorner.X, Position.X);
-			RightBottomCorner.Y = FMath::Max(RightBottomCorner.Y, Position.Y);
+			RightBottomCorner.X = FMath::Max(RightBottomCorner.X, Position.X + 1.0);
+			RightBottomCorner.Y = FMath::Max(RightBottomCorner.Y, Position.Y + 1.0);
 		}
 		
 		LeftTopCorners.Add(Province, LeftTopCorner);

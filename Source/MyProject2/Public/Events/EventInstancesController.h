@@ -1,8 +1,5 @@
 #pragma once
-#include "EditorSubsystem.h"
 #include "Scenario.h"
-#include "Administration/Instances/Country.h"
-#include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Description/EventDescription.h"
 #include "Widgets/Events/EventWidget.h"
 #include "EventInstancesController.generated.h"

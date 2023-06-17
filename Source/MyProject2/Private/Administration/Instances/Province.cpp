@@ -61,7 +61,9 @@ void UProvince::InitProvinceActor(FVector Location, FVector2d TopLeft, FVector2d
 	Parameters.Name = FName(Name.ToString() + ControllerCountry->GetId()->Tag.ToString());
 	ProvinceActor = GetWorld()->SpawnActor<AProvinceActor>(GetWorld()->GetGameInstance<UMyGameInstance>()->ProvinceActorClass, Parameters);
 	ProvinceActor->Init(Name, TopLeft, BottomRight);
+#if WITH_EDITOR
 	ProvinceActor->SetActorLabel(Name.ToString() + ControllerCountry->GetId()->Tag.ToString());
+#endif
 	ProvinceActor->SetActorLocation(Location);
 }
 

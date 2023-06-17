@@ -3,6 +3,7 @@
 
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "EngineUtils.h"
+#include "JsonObjectConverter.h"
 #include "Characters/HUDs//HumanPlayerHUD.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Characters/Components/PlaneMapActor.h"
@@ -16,6 +17,9 @@
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
 #include "Characters/StateMachine/UnitCreationPawnState.h"
 #include "Components/AudioComponent.h"
+#include "Military/Managers/UnitsFactory.h"
+#include "Save/GmaeSave.h"
+#include "Serialization/AsyncPackageLoader.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()
@@ -173,6 +177,22 @@ void AHumanPlayerPawn::Tick(float DeltaTime)
 	MovementComponent->Move(DeltaTime);
 }
 
+void AHumanPlayerPawn::SaveGame()
+{
+	if (UGameSave* Save = Cast<UGameSave>(UGameplayStatics::CreateSaveGameObject(UGameSave::StaticClass())))
+	{
+		Save->Units.Append(GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetUnits());			
+
+		if (UGameplayStatics::SaveGameToSlot(Save, "Game", 0))
+		{
+			UE_LOG(LogTemp, Log, TEXT("Succeeded to save game"))
+		} else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Faild to save game"))
+		}
+	}
+}
+
 void AHumanPlayerPawn::ShiftReleased()
 {
 	bIsShiftPressed = false;
@@ -247,6 +267,7 @@ void AHumanPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("PKey"), IE_Pressed, this, &AHumanPlayerPawn::SwitchSupplyBrowsingState);
 	PlayerInputComponent->BindAction(TEXT("BKey"), IE_Pressed, this, &AHumanPlayerPawn::SwitchBuildingCreationState);
 	PlayerInputComponent->BindAction(TEXT("Menu"), IE_Pressed, this, &AHumanPlayerPawn::SwitchPause);
+	PlayerInputComponent->BindAction(TEXT("Save"), IE_Pressed, this, &AHumanPlayerPawn::SaveGame);
 }
 
 void AHumanPlayerPawn::SwitchCountryManagementState()
