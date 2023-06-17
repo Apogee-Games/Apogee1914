@@ -244,6 +244,11 @@ const TArray<UProvince*>& UCountry::GetProvinces() const
 	return Provinces;
 }
 
+const UCountryDescription* UCountry::GetDescription() const
+{
+	return CountryDescription;
+}
+
 void UCountry::InitStrata()
 {
 	LowerStrata = NewObject<UStrata>(this);

@@ -23,6 +23,16 @@ const TArray<UPerson*>& UPeopleManager::GetPeopleByProfession(UProfessionDescrip
 	return CountryProfessionPeople[Country][Profession];
 }
 
+const TMap<UProfessionDescription*, TArray<UPerson*>>& UPeopleManager::GetCountryPeople(UCountryDescription* Country) const
+{
+	return CountryProfessionPeople[Country];
+}
+
+const TMap<UPersonDescription*, UPerson*>& UPeopleManager::GetPeople() const
+{
+	return People;
+}
+
 void UPeopleManager::Clear()
 {
 	for (const auto& [Name, Person] : People)

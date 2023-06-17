@@ -14,6 +14,10 @@ public:
 	UPerson* GetPerson(UPersonDescription* PersonDescription) const;
 	
 	const TArray<UPerson*>& GetPeopleByProfession(UProfessionDescription* Profession, UCountryDescription* Country);
+
+	const TMap<UProfessionDescription*, TArray<UPerson*>>& GetCountryPeople(UCountryDescription* Country) const;
+
+	const TMap<UPersonDescription*, UPerson*>& GetPeople() const;
 private:
 	UPROPERTY()
 	TMap<UPersonDescription*, UPerson*> People;

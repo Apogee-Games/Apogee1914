@@ -95,6 +95,8 @@ public:
 	void RemoveProvince(UProvince* Province);
 
 	const TArray<UProvince*>& GetProvinces() const;
+
+	const UCountryDescription* GetDescription() const;
 private:
 	UPROPERTY()
 	UCountryDescription* CountryDescription;
