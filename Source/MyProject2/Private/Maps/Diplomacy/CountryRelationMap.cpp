@@ -57,6 +57,11 @@ void UCountryRelationMap::AllianceWasCreated(UAlliance* Alliance)
 	UpdateMap();
 }
 
+ELoadStage UCountryRelationMap::GetLoadStage()
+{
+	return ELoadStage::CountryRelationMap;
+}
+
 void UCountryRelationMap::Clear()
 {
 	CountryRelationMap = nullptr;

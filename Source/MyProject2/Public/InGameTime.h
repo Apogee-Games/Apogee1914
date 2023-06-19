@@ -1,14 +1,14 @@
 #pragma once
 #include "Scenario.h"
-#include "Widgets/TimeControllerWidget.h"
+#include "Interfaces/BaseManager.h"
 #include "InGameTime.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UInGameTime: public UGameInstanceSubsystem
+class UInGameTime: public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	virtual void Tick(float DeltaTime);
 	
@@ -38,6 +38,8 @@ public:
 	void RegisterListener(T* Object, void (T::*Function)(), FTimespan Delta);
 	
 	void RegisterListener(UObject* Object, void (UObject::*Function)(), FTimespan Delta);
+	
+	virtual ELoadStage GetLoadStage() override;
 private:
 	TMap<int32, UObject*> Objects;
 

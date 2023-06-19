@@ -1,15 +1,18 @@
 #pragma once
 #include "Scenario.h"
+#include "Interfaces/BaseManager.h"
 #include "OutlineMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UOutlineMap: public UGameInstanceSubsystem
+class UOutlineMap: public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	void CreateOutline();
+
+	virtual ELoadStage GetLoadStage() override;
 
 	UPROPERTY(EditDefaultsOnly)
 	FColor OutlineColor = FColor(0, 0, 0);

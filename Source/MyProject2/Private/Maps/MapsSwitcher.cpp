@@ -1,5 +1,7 @@
 ﻿#include "Maps/MapsSwitcher.h"
 
+#include "Interfaces/BaseManager.h"
+
 void UMapsSwitcher::SetScenario(UScenario* ProvidedScenario)
 {
 	Scenario = ProvidedScenario;
@@ -57,5 +59,10 @@ void UMapsSwitcher::SetApplySelectionMap(AHumanPlayerPawn* Pawn, bool Flag)
 	{
 		MapsMaterial->SetTextureParameterValue(TEXT("Selection"), BlankMapTexture);
 	}
+}
+
+ELoadStage UMapsSwitcher::GetLoadStage()
+{
+	return ELoadStage::MapsSwitcher;
 }
 

@@ -14,6 +14,11 @@ UGoodDescription* UGoodsManager::GetGoodDescription(const FName& GoodName) const
 	return GoodsDescriptions[GoodName];
 }
 
+ELoadStage UGoodsManager::GetLoadStage()
+{
+	return ELoadStage::GoodsManager;
+}
+
 void UGoodsManager::Clear()
 {
 	GoodsDescriptions.Empty();

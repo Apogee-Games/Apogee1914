@@ -66,6 +66,11 @@ void URelationshipsManager::CreateAlliance(UCountry* Country, const FText& Allia
 	NotifyAllianceCreation(Alliance);
 }
 
+ELoadStage URelationshipsManager::GetLoadStage()
+{
+	return ELoadStage::RelationshipsManager;
+}
+
 void URelationshipsManager::Clear()
 {
 	

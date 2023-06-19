@@ -3,21 +3,23 @@
 #include "FlagsMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UFlagsMap: public UGameInstanceSubsystem, public IBoxObserver
+class UFlagsMap: public UBaseManager, public IBoxObserver
 {
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	void Tick();
-	
-	void SetScenario(UScenario* Scenario);
+
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	void UpdateAllBoxes();
 	
 	void UpdateBoxes(const TArray<TSharedPtr<FProvincesBox>>& Boxes);
 
 	virtual void BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box) override;
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	bool IsUpdated = true;
 	

@@ -75,6 +75,11 @@ FColor USelectionMap::GetProvinceColor(const FVector2d& Point) const
 	return GetGameInstance()->GetSubsystem<UProvincesMap>()->GetColor(Position);
 }
 
+ELoadStage USelectionMap::GetLoadStage()
+{
+	return ELoadStage::SelectionMap;
+}
+
 UProvince* USelectionMap::GetProvince(const FVector2d& Point) const
 {
 	const FColor Color = GetProvinceColor(Point);

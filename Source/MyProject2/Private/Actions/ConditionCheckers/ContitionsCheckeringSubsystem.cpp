@@ -48,6 +48,11 @@ bool UConditionsCheckingSubsystem::CheckCondition(FCondition& Condition, UCountr
 	return HasPassed;
 }
 
+ELoadStage UConditionsCheckingSubsystem::GetLoadStage()
+{
+	return ELoadStage::ConditionsCheckingSubsystem;
+}
+
 void UConditionsCheckingSubsystem::Clear()
 {
 	ConditionsCheckers.Empty();

@@ -59,6 +59,11 @@ void UProvincesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 	NotifyCountryDistancesUpdateForProvince(Province);*/
 }
 
+ELoadStage UProvincesMap::GetLoadStage()
+{
+	return ELoadStage::ProvincesMap;
+}
+
 void UProvincesMap::CalculateMappers(UTexture2D* ProvinceMap)
 {
 	const FColor* Colors = FTextureUtils::GetPixels(ProvinceMap, LOCK_READ_WRITE);

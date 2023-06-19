@@ -174,6 +174,11 @@ const TArray<UUnit*>& UUnitsFactory::GetUnits() const
 	return Units;
 }
 
+ELoadStage UUnitsFactory::GetLoadStage()
+{
+	return ELoadStage::UnitsFactory;
+}
+
 void UUnitsFactory::Clear()
 {
 	for (const auto& Unit: Units)

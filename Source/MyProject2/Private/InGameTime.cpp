@@ -43,6 +43,11 @@ void UInGameTime::RegisterListener(UObject* Object, void (UObject::*Function)(),
 	++TotalObjectNumber;
 }
 
+ELoadStage UInGameTime::GetLoadStage()
+{
+	return ELoadStage::InGameTime;
+}
+
 void UInGameTime::Clear()
 {
 	Objects.Empty();

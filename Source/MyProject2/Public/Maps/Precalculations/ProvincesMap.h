@@ -1,16 +1,17 @@
 #pragma once
 #include "Scenario.h"
 #include "Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
+#include "Interfaces/BaseManager.h"
 #include "Interfaces/FOnFullInitialization.h"
 
 #include "ProvincesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UProvincesMap: public UGameInstanceSubsystem, public IProvinceOwningCountryObserver
+class UProvincesMap: public UBaseManager, public IProvinceOwningCountryObserver
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	FVector2d GetSizeVector() const;
 
@@ -27,6 +28,8 @@ public:
 	const TArray<int32>& GetProvincePositions(const FColor& Color) const;
 
 	virtual void ProvinceHasNewOwningCountry(UProvince* Province) override;
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	UPROPERTY()
 	UTexture2D* ProvincesMapTexture;

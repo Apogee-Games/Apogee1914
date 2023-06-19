@@ -39,6 +39,11 @@ void UBuildingManager::DestroyBuilding(UBuilding* Building)
 	Building->GetProvince()->RemoveBuilding(Building);
 }
 
+ELoadStage UBuildingManager::GetLoadStage()
+{
+	return ELoadStage::BuildingManager;
+}
+
 void UBuildingManager::Clear()
 {
 	Buildings.Empty();

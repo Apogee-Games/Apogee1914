@@ -54,6 +54,10 @@ void UAlliancesMap::CountryHasJoinedAlliance(UCountry* Country)
 	UpdateMap();
 }
 
+ELoadStage UAlliancesMap::GetLoadStage()
+{
+	return ELoadStage::AlliancesMap;
+}
 
 void UAlliancesMap::Clear()
 {

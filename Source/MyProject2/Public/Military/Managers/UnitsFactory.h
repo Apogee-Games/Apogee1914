@@ -1,5 +1,6 @@
 #pragma once
 #include "Scenario.h"
+#include "Interfaces/BaseManager.h"
 #include "Military/Instances/Units/BranchUnits/Division.h"
 #include "Military/Instances/Units/BranchUnits/Flight.h"
 #include "Military/Instances/Units/BranchUnits/Squadron.h"
@@ -18,11 +19,11 @@ class UUnit;
 #include "UnitsFactory.generated.h"
 
 UCLASS()
-class UUnitsFactory : public UGameInstanceSubsystem, public IUnitsCreationObservable, public IUnitRemovalObservable, public IUnitsCollectionCreationObservable, public IUnitsCollectionGroupCreationObservable,public IUnitsCollectionRemovalObservable, public IUnitsCollectionGroupRemovalObservable
+class UUnitsFactory : public UBaseManager, public IUnitsCreationObservable, public IUnitRemovalObservable, public IUnitsCollectionCreationObservable, public IUnitsCollectionGroupCreationObservable,public IUnitsCollectionRemovalObservable, public IUnitsCollectionGroupRemovalObservable
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 
 	UUnit* CreateUnit(UUnitDescription* Description, UProvince* Province);
 	
@@ -50,6 +51,7 @@ public:
 
 	const TArray<UUnit*>& GetUnits() const;
 
+	virtual ELoadStage GetLoadStage() override;
 private:
 	UPROPERTY()
 	TArray<UUnitDescription*> UnitDescriptions;

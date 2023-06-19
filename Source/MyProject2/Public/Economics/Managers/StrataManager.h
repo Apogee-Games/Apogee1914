@@ -1,16 +1,19 @@
 ﻿#pragma once
 #include "Scenario.h"
 #include "Economics/Description/StrataDescription.h"
+#include "Interfaces/BaseManager.h"
 #include "StrataManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UStrataManager : public UGameInstanceSubsystem
+class UStrataManager : public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	const TArray<UStrataDescription*>& GetStratasDescriptions() const;
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	TArray<UStrataDescription*> StrataDescriptions;
 

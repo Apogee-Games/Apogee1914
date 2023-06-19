@@ -37,6 +37,11 @@ void UOutlineMap::CreateOutline()
 	OutlinesMapTexture->UpdateResource();
 }
 
+ELoadStage UOutlineMap::GetLoadStage()
+{
+	return ELoadStage::OutlineMap;
+}
+
 void UOutlineMap::Clear()
 {
 	OutlinesMapTexture = nullptr;

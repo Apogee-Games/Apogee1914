@@ -29,6 +29,11 @@ void UUnitsSupplyController::Supply()
 	}
 }
 
+ELoadStage UUnitsSupplyController::GetLoadStage()
+{
+	return ELoadStage::UnitsSupplyController;
+}
+
 void UUnitsSupplyController::Clear()
 {
 	for (const auto& [Country, Supplier]: CountrySupplier)

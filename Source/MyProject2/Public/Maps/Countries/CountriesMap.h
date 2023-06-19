@@ -5,15 +5,15 @@
 #include "CountriesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UCountriesMap: public UGameInstanceSubsystem, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
+class UCountriesMap: public UBaseManager, public IProvinceControllingCountryObserver, public ICountryDistancesObserver
 {
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	void Tick();
-	
-	void SetScenario(UScenario* Scenario);
+
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	void UpdateCountriesMapColors(const TArray<UProvince*>& Provinces);
 
@@ -23,6 +23,8 @@ public:
 	
 	virtual void CountryDistancesWereUpdated(const TArray<UProvince*>& Provinces) override;
 
+	virtual ELoadStage GetLoadStage() override;
+	
 	UPROPERTY(EditDefaultsOnly)
 	int32 CrossLineWidth = 10;
 private:

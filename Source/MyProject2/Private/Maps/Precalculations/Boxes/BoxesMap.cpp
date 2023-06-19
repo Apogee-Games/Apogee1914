@@ -44,6 +44,10 @@ void UBoxesMap::ProvinceHasNewControllingCountry(UProvince* Province)
 	CreateNewBox(Province);
 }
 
+ELoadStage UBoxesMap::GetLoadStage()
+{
+	return ELoadStage::BoxesMap;
+}
 
 void UBoxesMap::RemoveProvinceFromBox(UProvince* Province)
 {

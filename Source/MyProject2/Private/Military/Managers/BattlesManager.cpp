@@ -36,6 +36,11 @@ void UBattlesManager::Tick()
 	RemoveFinishedBattles();
 }
 
+ELoadStage UBattlesManager::GetLoadStage()
+{
+	return ELoadStage::BattlesManager;
+}
+
 void UBattlesManager::Clear()
 {
 	Provinces.Empty();

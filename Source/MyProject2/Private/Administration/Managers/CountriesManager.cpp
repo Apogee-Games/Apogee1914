@@ -85,6 +85,11 @@ const TMap<UCountryDescription*, UCountry*>& UCountriesManager::GetCountryMap() 
 	return CountryMap;
 }
 
+ELoadStage UCountriesManager::GetLoadStage()
+{
+	return ELoadStage::CountriesManager;
+}
+
 void UCountriesManager::Clear()
 {
 	for (const auto& [Name, Country]: CountryMap)
