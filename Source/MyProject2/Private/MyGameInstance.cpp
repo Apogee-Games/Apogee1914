@@ -97,10 +97,13 @@ bool UMyGameInstance::IsCountryRuledByPlayer(UCountryDescription* CountryDescrip
 
 void UMyGameInstance::InitializeActiveScenario()
 {
-	OnStageLoadFinished.Broadcast(ELoadStage::Initial);
-
 	AsyncTask(ENamedThreads::AnyThread, [this]()
 	{
+		AsyncTask(ENamedThreads::GameThread, [this]()
+		{
+			OnStageLoadFinished.Broadcast(ELoadStage::Initial);
+		});
+		
 		for (const auto& Manager: Managers)
 		{
 			Manager->SetScenario(ActiveScenario);
@@ -109,7 +112,10 @@ void UMyGameInstance::InitializeActiveScenario()
 				OnStageLoadFinished.Broadcast(Manager->GetLoadStage());
 			});
 		}
-	});
 
-	OnStageLoadFinished.Broadcast(ELoadStage::Finished);
+		AsyncTask(ENamedThreads::GameThread, [this]()
+		{
+			OnStageLoadFinished.Broadcast(ELoadStage::Finished);
+		});
+	});
 }
