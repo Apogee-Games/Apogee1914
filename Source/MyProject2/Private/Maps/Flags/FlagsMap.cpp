@@ -118,3 +118,8 @@ void UFlagsMap::BoxWasUpdated(const TSharedPtr<FProvincesBox>& Box)
 
 	IsUpdated = true;
 }
+
+ELoadStage UFlagsMap::GetLoadStage()
+{
+	return ELoadStage::FlagsMap;
+}

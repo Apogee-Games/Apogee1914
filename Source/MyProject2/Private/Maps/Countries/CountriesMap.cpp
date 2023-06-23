@@ -66,6 +66,11 @@ void UCountriesMap::CountryDistancesWereUpdated(const TArray<UProvince*>& Provin
 	UpdateAllCountriesMapColors(); // TODO: Is this correct? :)
 }
 
+ELoadStage UCountriesMap::GetLoadStage()
+{
+	return ELoadStage::CountriesMap;
+}
+
 FRunnableThread* UCountriesMap::UpdateCountryColor(UProvince* Province, FColor* CountriesColor) const
 {
 	const TArray<int32>& PixelsToUpdate = GetGameInstance()->GetSubsystem<UProvincesMap>()->GetProvincePositions(Province->GetId());

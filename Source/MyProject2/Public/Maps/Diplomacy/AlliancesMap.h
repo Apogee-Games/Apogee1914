@@ -3,11 +3,12 @@
 #include "Diplomacy/Interfaces/Observers/AllianceCreationObserver.h"
 #include "Diplomacy/Interfaces/Observers/AllianceMembersObserver.h"
 #include "Administration/Instances/Province.h"
+#include "Interfaces/BaseManager.h"
 #include "AlliancesMap.generated.h"
 
 
 UCLASS(Abstract, Blueprintable)
-class UAlliancesMap: public UGameInstanceSubsystem, public IAllianceCreationObserver, public IAllianceMembersObserver
+class UAlliancesMap: public UBaseManager, public IAllianceCreationObserver, public IAllianceMembersObserver
 {
 	GENERATED_BODY()
 public:
@@ -18,8 +19,8 @@ public:
 	FColor NonAlignedCountryColor;
 	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	
-	void SetScenario(UScenario* Scenario);
+
+	virtual void SetScenario(UScenario* Scenario) override;
 
 	void UpdateMap();
 
@@ -27,6 +28,7 @@ public:
 	
 	virtual void CountryHasJoinedAlliance(UCountry* Country) override;
 
+	virtual ELoadStage GetLoadStage() override;
 private:
 	UPROPERTY()
 	UTexture2D* AlliancesMapTexture;

@@ -7,7 +7,7 @@
 #include "Economics/Description/StrataDescription.h"
 #include "Economics/Description/Buildings/BuildingDescription.h"
 #include "Economics/Description/Goods/GoodDescription.h"
-#include "Engine/DataTable.h"
+#include "Engine/DataAsset.h"
 #include "Events/Description/EventDescription.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Music/Description/SongsGroup.h"
@@ -68,6 +68,9 @@ public:
 	UTexture2D* ProvincesMapTexture;
 
 	UPROPERTY(EditDefaultsOnly)
+	UTextureRenderTarget2D* ProvincesIdsLookUpTexture;
+	
+	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* OutlinesMapTexture;
 
 	UPROPERTY(EditDefaultsOnly)
@@ -76,6 +79,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* CountriesMapTexture;
 
+	UPROPERTY(EditDefaultsOnly)
+	UTextureRenderTarget2D* CountriesColorsLookUpTexture;
+	
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* CountryRelationMapTexture;
 

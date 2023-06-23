@@ -1,5 +1,7 @@
 ﻿#include "Military/Managers/CommandersManager.h"
 
+#include "Interfaces/BaseManager.h"
+
 void UCommandersManager::SetScenario(UScenario* Scenario)
 {
 	Clear();
@@ -24,6 +26,11 @@ void UCommandersManager::RemoveCommander(ICommandable* Commandable)
 	if (!Commandable->GetCommander()) return;
 	CommanderCommandable.Remove(Commandable->GetCommander());
 	Commandable->SetCommander(nullptr);
+}
+
+ELoadStage UCommandersManager::GetLoadStage()
+{
+	return ELoadStage::CommandersManager;
 }
 
 void UCommandersManager::Clear()

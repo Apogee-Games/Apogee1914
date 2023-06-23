@@ -55,6 +55,11 @@ void UDistancesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 	CalculateCountriesDistances()->WaitForCompletion();
 }
 
+ELoadStage UDistancesMap::GetLoadStage()
+{
+	return ELoadStage::DistancesMap;
+}
+
 void UDistancesMap::CalculateDistances()
 {
 	TArray<FRunnableThread*> Threads;

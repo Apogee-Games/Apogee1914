@@ -7,13 +7,13 @@
 #include "BoxesMap.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UBoxesMap: public UGameInstanceSubsystem, public IProvinceControllingCountryObserver, public IBoxObservable
+class UBoxesMap: public UBaseManager, public IProvinceControllingCountryObserver, public IBoxObservable
 {
 	GENERATED_BODY()
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	
-	void SetScenario(UScenario* Scenario);
+
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	const TArray<TSharedPtr<FProvincesBox>>& GetBoxes() const;
 
@@ -22,6 +22,8 @@ public:
 	const FVector2d& GetRightBottomCorner(UProvince* Province) const;
 
 	virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
+	
+	virtual ELoadStage GetLoadStage() override;
 private:
 	FVector2d SizeVector;
 	

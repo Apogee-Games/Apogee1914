@@ -1,9 +1,7 @@
 #pragma once
-#include "EditorSubsystem.h"
 #include "Scenario.h"
-#include "Administration/Instances/Country.h"
-#include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Description/EventDescription.h"
+#include "Interfaces/BaseManager.h"
 #include "Widgets/Events/EventWidget.h"
 #include "EventInstancesController.generated.h"
 
@@ -11,7 +9,7 @@
  * Class used to control all events instances
  */
 UCLASS(Abstract, Blueprintable)
-class UEventInstancesController: public UGameInstanceSubsystem
+class UEventInstancesController: public UBaseManager
 {
 	GENERATED_BODY()
 public:
@@ -21,7 +19,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTimespan MinDeltaBetweenEventChecks = FTimespan(24, 0, 0);
 
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	virtual void Tick(float DeltaTime);
 	
@@ -35,6 +33,7 @@ public:
 
 	void SetEventWidgetClass(const TSubclassOf<UEventWidget>& NewEventWidgetClass);
 
+	virtual ELoadStage GetLoadStage() override;
 private:
 	TSet<TPair<UEventDescription*, UCountryDescription*>> FiredEvents;
 

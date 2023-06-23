@@ -1,11 +1,12 @@
 ﻿#pragma once
 #include "Scenario.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Interfaces/BaseManager.h"
 
 #include "MapsSwitcher.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UMapsSwitcher: public UGameInstanceSubsystem
+class UMapsSwitcher: public UBaseManager
 {
 	GENERATED_BODY()
 public:
@@ -14,8 +15,8 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	UScenario* Scenario;
-	
-	void SetScenario(UScenario* ProvidedScenario);
+
+	virtual void SetScenario(UScenario* ProvidedScenario) override;
 
 	void SelectAllianceMap(AHumanPlayerPawn* Pawn);
 	
@@ -30,4 +31,6 @@ public:
 	void SetApplyProvinceOutlineMap(AHumanPlayerPawn* Pawn, bool Flag);
 
 	void SetApplySelectionMap(AHumanPlayerPawn* Pawn, bool Flag);
+
+	virtual ELoadStage GetLoadStage() override;
 };

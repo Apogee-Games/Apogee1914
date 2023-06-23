@@ -2,15 +2,16 @@
 #include "Scenario.h"
 #include "Administration/Instances/Country.h"
 #include "Administration/Instances/Province.h"
+#include "Interfaces/BaseManager.h"
 
 #include "CountriesManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UCountriesManager: public UGameInstanceSubsystem
+class UCountriesManager: public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	const TArray<UCountryDescription*>& GetCountriesDescriptions();
 	
@@ -37,6 +38,8 @@ public:
 	UCountry* GetCountry(UCountryDescription* CountryDescription);
 
 	const TMap<UCountryDescription*, UCountry*>& GetCountryMap() const;
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	UPROPERTY()
 	TMap<UCountryDescription*, UCountry*> CountryMap;

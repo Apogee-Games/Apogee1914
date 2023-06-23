@@ -127,6 +127,11 @@ void UEventInstancesController::SetEventWidgetClass(const TSubclassOf<UEventWidg
 	EventWidgetClass = NewEventWidgetClass;
 }
 
+ELoadStage UEventInstancesController::GetLoadStage()
+{
+	return ELoadStage::EventInstancesController;
+}
+
 void UEventInstancesController::Tick(float DeltaTime)
 {
 	for (const auto& Pair : WidgetsInstances)

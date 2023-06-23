@@ -37,6 +37,11 @@ void UOutcomesApplierSubsystem::ApplyOutcomes(TArray<FOutcome>& Outcomes, UCount
 	}
 }
 
+ELoadStage UOutcomesApplierSubsystem::GetLoadStage()
+{
+	return ELoadStage::OutcomesApplierSubsystem;
+}
+
 void UOutcomesApplierSubsystem::Clear()
 {
 	OutcomeAppliers.Empty();

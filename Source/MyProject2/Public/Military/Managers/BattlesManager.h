@@ -13,19 +13,20 @@
  * 
  */
 UCLASS(Abstract, Blueprintable)
-class MYPROJECT2_API UBattlesManager : public UGameInstanceSubsystem
+class MYPROJECT2_API UBattlesManager : public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 
 	void AddBattle(UProvince* Province);
 
 	void Tick();
 
+	virtual ELoadStage GetLoadStage() override;
+	
 	UPROPERTY(EditDefaultsOnly)
 	FTimespan BattleUpdateMidDelta = FTimespan(1, 0, 0);
-	
 private:
 	UPROPERTY()
 	TArray<UProvince*> Provinces;

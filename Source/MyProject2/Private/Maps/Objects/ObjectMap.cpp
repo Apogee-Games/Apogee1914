@@ -51,3 +51,8 @@ FVector2d UObjectMap::GetProvinceCenter(const FColor& Color)
 {
 	return ProvinceCenters[Color];
 }
+
+ELoadStage UObjectMap::GetLoadStage()
+{
+	return ELoadStage::ObjectMap;
+}

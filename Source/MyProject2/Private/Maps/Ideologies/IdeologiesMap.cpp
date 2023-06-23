@@ -33,6 +33,11 @@ void UIdeologiesMap::UpdateMap()
 	IdeologiesMapTexture->UpdateResource();
 }
 
+ELoadStage UIdeologiesMap::GetLoadStage()
+{
+	return ELoadStage::IdeologiesMap;
+}
+
 void UIdeologiesMap::Clear()
 {
 	IdeologiesMapTexture = nullptr;

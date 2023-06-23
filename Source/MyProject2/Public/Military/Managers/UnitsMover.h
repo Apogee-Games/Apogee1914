@@ -9,11 +9,11 @@
 #include "UnitsMover.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UUnitsMover: public UGameInstanceSubsystem, public IUnitMovementObservable
+class UUnitsMover: public UBaseManager, public IUnitMovementObservable
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	const FGraph& GetGraph() const;
 
@@ -39,9 +39,10 @@ public:
 
 	bool Retreat(UUnit* Unit);
 
+	virtual ELoadStage GetLoadStage() override;
+
 	UPROPERTY(EditDefaultsOnly)
 	FTimespan UnitMoveTimeDelta = FTimespan(1, 0, 0);
-	
 private:
 	FGraph Graph;
 

@@ -5,11 +5,11 @@
 #include "StateManager.generated.h"
 
 UCLASS(Abstract, Blueprintable)
-class UStateManager: public UGameInstanceSubsystem
+class UStateManager: public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	UState* GetState(UStateDescription* StateDescription) const;
 	
@@ -20,6 +20,8 @@ public:
 	bool AreProvincesNotInTheSameState(const FColor& ProvinceAColor, const FColor& ProvinceBColor) const;
 	
 	bool AreProvincesNotInTheSameState(const UProvince* ProvinceA, const UProvince* ProvinceB) const;
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	UPROPERTY()
 	TMap<UStateDescription*, UState*> StateMap;

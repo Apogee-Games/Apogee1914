@@ -32,9 +32,8 @@
 #include "Particles/ParticleSystem.h"
 #include "MyGameInstance.generated.h"
 
-/**
- * 
- */
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnStageLoadFinished, ELoadStage)
+
 UCLASS()
 class MYPROJECT2_API UMyGameInstance : public UGameInstance
 {
@@ -64,7 +63,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AProvinceActor> ProvinceActorClass;
+
+	FOnStageLoadFinished OnStageLoadFinished;
 private:
+	UPROPERTY()
+	TArray<UBaseManager*> Managers;
+	
 	UPROPERTY()
 	TMap<int32, UCountry*> PlayersRuledCountries;
 

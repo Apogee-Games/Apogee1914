@@ -105,6 +105,11 @@ bool UUnitsMover::Retreat(UUnit* Unit)
 	return !Path.IsEmpty();
 }
 
+ELoadStage UUnitsMover::GetLoadStage()
+{
+	return ELoadStage::UnitsMover;
+}
+
 void UUnitsMover::Clear()
 {
 	Paths.Empty();

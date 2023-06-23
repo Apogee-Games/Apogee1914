@@ -1,9 +1,11 @@
 
 #include "Maps/Precalculations/ProvincesMap.h"
 
+#include "CanvasTypes.h"
 #include "MyGameInstance.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Administration/Managers/StateManager.h"
+#include "Engine/TextureRenderTarget2D.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
 #include "Utils/TextureUtils.h"
 
@@ -45,9 +47,14 @@ bool UProvincesMap::HasProvincePosition(const FColor& Color) const
 
 const TArray<int32>& UProvincesMap::GetProvincePositions(const FColor& Color) const
 {
-	if (GEngine && !ColorPosition.Contains(Color))
+	if (!ColorPosition.Contains(Color))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, Color.ToHex());
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, Color.ToHex());
+		}
+
+		static TArray<int32> Array;
+		return Array;
 	}
 	return ColorPosition[Color];
 }
@@ -57,6 +64,11 @@ void UProvincesMap::ProvinceHasNewOwningCountry(UProvince* Province)
 	// TODO: DO staff :)
 	/*UpdateCountriesDistances(Province);
 	NotifyCountryDistancesUpdateForProvince(Province);*/
+}
+
+ELoadStage UProvincesMap::GetLoadStage()
+{
+	return ELoadStage::ProvincesMap;
 }
 
 void UProvincesMap::CalculateMappers(UTexture2D* ProvinceMap)
@@ -191,6 +203,33 @@ void UProvincesMap::Init(UScenario* Scenario)
 	ProvincesMapTexture = Scenario->ProvincesMapTexture;
 	SizeVector = FTextureUtils::GetTextureSizeVector(ProvincesMapTexture);
 
+	UProvinceManager* ProvinceManager = GetGameInstance()->GetSubsystem<UProvinceManager>();
+	const TArray<UProvince*>& Provinces = ProvinceManager->GetAllProvinces();
+
+	UTextureRenderTarget2D* ProvincesIdsLookUpTexture = Scenario->ProvincesIdsLookUpTexture;
+	ProvincesIdsLookUpTexture->ResizeTarget(Provinces.Num(), 256);
+
+	FCanvas CanvasProvincesIdsLookUpTexture(ProvincesIdsLookUpTexture->GameThread_GetRenderTargetResource(), nullptr, GetWorld(), ERHIFeatureLevel::SM5);
+	
+	for (int i = 0; i < Provinces.Num(); ++i)
+	{
+		CanvasProvincesIdsLookUpTexture.DrawTile(i, 0, 1, 256, 0, 0, 1, 1, Provinces[i]->GetId());
+	}
+
+	CanvasProvincesIdsLookUpTexture.Flush_GameThread(true);
+
+	UTextureRenderTarget2D* CountriesColorsLookUpTexture = Scenario->CountriesColorsLookUpTexture;
+	CountriesColorsLookUpTexture->ResizeTarget(Provinces.Num(), 256);
+
+	FCanvas CanvasCountriesColorsLookUpTexture(CountriesColorsLookUpTexture->GameThread_GetRenderTargetResource(), nullptr, GetWorld(), ERHIFeatureLevel::SM5);
+	
+	for (int i = 0; i < Provinces.Num(); ++i)
+	{
+		CanvasCountriesColorsLookUpTexture.DrawTile(i, 0, 1, 256, 0, 0, 1, 1, Provinces[i]->GetCountryController()->GetColor());
+	}
+
+	CanvasCountriesColorsLookUpTexture.Flush_GameThread(true);
+	
 	PositionColor.SetNum(SizeVector.X * SizeVector.Y);
 	
 	CalculateMappers(ProvincesMapTexture);

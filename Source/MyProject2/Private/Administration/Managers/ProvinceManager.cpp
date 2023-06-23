@@ -25,6 +25,11 @@ const TArray<UProvince*>& UProvinceManager::GetAllProvinces() const
 	return ProvincesArray;
 }
 
+ELoadStage UProvinceManager::GetLoadStage()
+{
+	return ELoadStage::ProvinceManager;
+}
+
 void UProvinceManager::Clear()
 {
 	for (const auto& Province: ProvincesArray)

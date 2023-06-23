@@ -4,6 +4,7 @@
 #include "Diplomacy/Interfaces/Observables/AllianceCreationObservable.h"
 #include "Diplomacy/Interfaces/Observables/WarDeclarationObservable.h"
 #include "Diplomacy/Interfaces/Observables/AllianceMembersObservable.h"
+#include "Interfaces/BaseManager.h"
 #include "Widgets/Diplomacy/Menu/DiplomaticPactsWidgets.h"
 
 #include "RelationshipsManager.generated.h"
@@ -20,11 +21,11 @@ enum ERelationType {
 class UCountry;
 
 UCLASS(Abstract, Blueprintable)
-class URelationshipsManager: public UGameInstanceSubsystem, public IWarDeclarationObservable, public IAllianceCreationObservable, public IAllianceMembersObservable
+class URelationshipsManager: public UBaseManager, public IWarDeclarationObservable, public IAllianceCreationObservable, public IAllianceMembersObservable
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	void DeclareWar(UCountry* CountryA, UCountry* CountryB);
 
@@ -39,6 +40,8 @@ public:
 	void CreateAlliance(UCountry* Country, const FText& AllianceName);
 
 	void CreateAlliance(UCountry* Country, const FText& AllianceName, const TArray<UCountry*>& InvitedCountries);
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	void Clear();
 

@@ -14,6 +14,10 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 private:
+	FTimerHandle TimerHandle;
+
 	UPROPERTY()
 	UMainMenuWidget* MainMenuWidget;
+
+	void InitializeGame();
 };
