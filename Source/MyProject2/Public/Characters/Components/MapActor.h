@@ -9,27 +9,10 @@ class AMapActor: public AActor
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	UMaterialInterface* TerrainMapMaterialInterface;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	UMaterialInterface* MapsMaterialInterface;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UMaterialInstanceDynamic* TerrainMapMaterialInstanceDynamic;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UMaterialInstanceDynamic* MapsMaterialInstanceDynamic;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	UStaticMeshComponent* TerrainStaticMeshComponent;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	UStaticMeshComponent* MapsStaticMeshComponent;
 
 	AMapActor();
 
-	virtual void BeginPlay() override;
-	
 	virtual FVector3d GetNewPosition(FVector3d Position, FVector3d Direction, FRotator Rotation, float Lenght);
 
 	virtual FQuat GetNewRotation(FVector3d Position, FVector3d NewPosition, FQuat Rotation);

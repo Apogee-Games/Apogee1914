@@ -1,13 +1,13 @@
 #pragma once
-#include "Administration/Instances/Country.h"
 #include "Administration/Instances/Province.h"
 
+class UMapsDataGatherer;
 class UBoxesMap;
 
 class FProvincesBox
 {
 public:
-	explicit FProvincesBox(UBoxesMap* BoxesMap, UCountry* Country);
+	explicit FProvincesBox(UMapsDataGatherer* MapsDataGatherer, UCountry* Country);
 
 	void AddProvince(UProvince* Province);
 
@@ -33,11 +33,10 @@ public:
 	}
 	
 	~FProvincesBox();
-
 private:
 	FVector2d SizeVector;
 
-	const UBoxesMap* BoxesMap;
+	const UMapsDataGatherer* MapsDataGatherer;
 	
 	UCountry* Country;
 

@@ -14,20 +14,10 @@ enum class ELoadStage: int32
 	ProvinceManager,
 	StateManager,
 
-	ProvincesMap,
-	DistancesMap,
-	BoxesMap,
-	OutlineMap,
-	ObjectMap,
-	FlagsMap,
-	CountriesMap,
-	SelectionMap,
-
-	CountryRelationMap,
-	AlliancesMap,
-
+	MapsDataGatherer,
+	MapController,
+	
 	RelationshipsManager,
-	IdeologiesMap,
 	MapsSwitcher,
 
 	GoodsManager,
@@ -46,6 +36,8 @@ enum class ELoadStage: int32
 
 	Finished
 };
+
+class UScenario;
 
 UCLASS(Abstract, Blueprintable)
 class UBaseManager: public UGameInstanceSubsystem

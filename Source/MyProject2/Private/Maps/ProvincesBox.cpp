@@ -1,10 +1,7 @@
+#include "Maps/ProvincesBox.h"
+#include "Maps/MapsDataGatherer.h"
 
-#include "Maps/Precalculations/Boxes/ProvincesBox.h"
-
-#include "Maps/Precalculations/ProvincesMap.h"
-#include "Maps/Precalculations/Boxes/BoxesMap.h"
-
-FProvincesBox::FProvincesBox(UBoxesMap* BoxesMap, UCountry* Country): BoxesMap(BoxesMap), Country(Country)
+FProvincesBox::FProvincesBox(UMapsDataGatherer* MapsDataGatherer, UCountry* Country): MapsDataGatherer(MapsDataGatherer), Country(Country)
 {
 	ResetCorners();
 }
@@ -64,8 +61,8 @@ FProvincesBox::~FProvincesBox()
 
 void FProvincesBox::AddProvincePositions(UProvince* Province)
 {
-	const FVector2d& ProvinceLeftTopCorner = BoxesMap->GetLeftTopCorner(Province);
-	const FVector2d& ProvinceRightBottomCorner = BoxesMap->GetRightBottomCorner(Province);
+	const FVector2d& ProvinceLeftTopCorner = MapsDataGatherer->GetLeftTopCorner(Province);
+	const FVector2d& ProvinceRightBottomCorner = MapsDataGatherer->GetRightBottomCorner(Province);
 	LeftTopCorner.X = FMath::Min(LeftTopCorner.X, ProvinceLeftTopCorner.X);
 	LeftTopCorner.Y = FMath::Min(LeftTopCorner.Y, ProvinceLeftTopCorner.Y);
 	RightBottomCorner.X = FMath::Max(RightBottomCorner.X, ProvinceRightBottomCorner.X);

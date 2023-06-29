@@ -14,7 +14,6 @@ UProvince* UProvinceManager::GetProvince(const FColor& Color) const
 {
 	if (GEngine && !ProvinceMap.Contains(Color))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Blue, Color.ToString());
 		return nullptr;
 	}
 	return ProvinceMap[Color];

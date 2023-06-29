@@ -5,6 +5,7 @@
 
 #include "MyGameInstance.h"
 #include "Characters/AIPlayerPawn.h"
+#include "Maps/MapsDataGatherer.h"
 #include "Military/Managers/UnitsFactory.h"
 
 EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
@@ -16,15 +17,13 @@ EBTNodeResult::Type UTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8*
 
 	UMyGameInstance* GameInstance = GetWorld()->GetGameInstance<UMyGameInstance>();
 
-	
-	UBoxesMap* BoxesMap = GameInstance->GetSubsystem<UBoxesMap>();
-	UProvincesMap* ProvincesMap = GameInstance->GetSubsystem<UProvincesMap>();
+	UMapsDataGatherer* MapsDataGatherer = GameInstance->GetSubsystem<UMapsDataGatherer>();
 	UUnitsFactory* Factory = GameInstance->GetSubsystem<UUnitsFactory>();
 
 	
-	const TMap<UProvince*, TSet<UProvince*>>& Neigbours = ProvincesMap->GetNeighbourProvinces();
+	const TMap<UProvince*, TSet<UProvince*>>& Neigbours = MapsDataGatherer->GetNeighbourProvinces();
 
-	for (const auto& Box: BoxesMap->GetBoxes())
+	for (const auto& Box: MapsDataGatherer->GetBoxes())
 	{
 		if (Box->GetCountry() == Country)
 		{

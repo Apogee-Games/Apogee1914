@@ -6,6 +6,7 @@
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
 #include "Military/Interfaces/Observables/UnitMovementObservable.h"
+#include "Interfaces/BaseManager.h"
 #include "UnitsMover.generated.h"
 
 UCLASS(Abstract, Blueprintable)

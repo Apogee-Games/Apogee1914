@@ -3,6 +3,8 @@
 class FTextureUtils
 {
 public:
+	static int32 GetPixelPosition(const FVector2f& ImagePosition, const FVector2d& SizeVector);
+
 	static int32 GetPixelPosition(const FVector2d& ImagePosition, const FVector2d& SizeVector);
 
 	static FVector2d GetPositionVector(int32 Position, const FVector2d& SizeVector);

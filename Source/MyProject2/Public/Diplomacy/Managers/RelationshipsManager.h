@@ -1,16 +1,13 @@
 ﻿#pragma once
-#include "Scenario.h"
-#include "Components/ListView.h"
 #include "Diplomacy/Interfaces/Observables/AllianceCreationObservable.h"
 #include "Diplomacy/Interfaces/Observables/WarDeclarationObservable.h"
 #include "Diplomacy/Interfaces/Observables/AllianceMembersObservable.h"
 #include "Interfaces/BaseManager.h"
-#include "Widgets/Diplomacy/Menu/DiplomaticPactsWidgets.h"
 
 #include "RelationshipsManager.generated.h"
 
 UENUM()
-enum ERelationType { 
+enum class ERelationType: int8 { 
 	Neutral = 1,
 	NonAggressionPact = 2,
 	War = 4,

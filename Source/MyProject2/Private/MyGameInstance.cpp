@@ -7,7 +7,8 @@
 #include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
-#include "Maps/Diplomacy/CountryRelationMap.h"
+#include "Maps/MapController.h"
+#include "Maps/MapsDataGatherer.h"
 #include "Military/Managers/BattlesManager.h"
 #include "Military/Managers/CommandersManager.h"
 #include "Military/Managers/UnitsFactory.h"
@@ -26,21 +27,10 @@ void UMyGameInstance::OnStart()
 		GetSubsystem<UProvinceManager>(),
 		GetSubsystem<UStateManager>(),
 
-		GetSubsystem<UProvincesMap>(),
-		GetSubsystem<UDistancesMap>(),
-		GetSubsystem<UBoxesMap>(),
-		GetSubsystem<UOutlineMap>(),
-		GetSubsystem<UObjectMap>(),
-		GetSubsystem<UFlagsMap>(),
-		GetSubsystem<UCountriesMap>(),
-		GetSubsystem<USelectionMap>(),
+		GetSubsystem<UMapsDataGatherer>(),
+		GetSubsystem<UMapController>(),
 
-		GetSubsystem<UCountryRelationMap>(),
-		GetSubsystem<UAlliancesMap>(),
 		GetSubsystem<URelationshipsManager>(),
-		GetSubsystem<UIdeologiesMap>(),
-
-		GetSubsystem<UMapsSwitcher>(),
 
 		GetSubsystem<UGoodsManager>(),
 		GetSubsystem<UStrataManager>(),
@@ -95,17 +85,26 @@ bool UMyGameInstance::IsCountryRuledByPlayer(UCountryDescription* CountryDescrip
 
 }
 
+void UMyGameInstance::NotifyStageIsLoaded(ELoadStage Stage)
+{
+	AsyncTask(ENamedThreads::GameThread, [this, Stage]()
+	{
+		OnStageLoadFinished.Broadcast(Stage);
+	});
+}
+
 void UMyGameInstance::InitializeActiveScenario()
 {
-	// TODO: Add proper loading back
-	
-	OnStageLoadFinished.Broadcast(ELoadStage::Initial);
-
-	for (const auto& Manager: Managers)
+	AsyncTask(ENamedThreads::AnyThread, [this]()
 	{
-		Manager->SetScenario(ActiveScenario);
-		OnStageLoadFinished.Broadcast(Manager->GetLoadStage());
-	}
+		NotifyStageIsLoaded(ELoadStage::Initial);
+		
+		for (const auto& Manager: Managers)
+		{
+			Manager->SetScenario(ActiveScenario);
+			NotifyStageIsLoaded(Manager->GetLoadStage());
+		}
 
-	OnStageLoadFinished.Broadcast(ELoadStage::Finished);
+		NotifyStageIsLoaded(ELoadStage::Finished);
+	});
 }

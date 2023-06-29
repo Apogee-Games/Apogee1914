@@ -4,7 +4,7 @@
 #include "Administration/Instances/State.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/StateMachine/CountryDiplomacyPawnState.h"
-#include "Maps/Selection/SelectionMap.h"
+#include "Maps/MapController.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 {
@@ -19,9 +19,7 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(APawn* ProvidedPawn)
 {
 	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
-
-	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
+	UProvince* Province =  Pawn->GetWorld()->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	AHumanPlayerHUD* HUD = Pawn->GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>();
 

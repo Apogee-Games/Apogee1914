@@ -93,12 +93,12 @@ bool UCountry::IsInAlliance() const
 
 ERelationType UCountry::GetRelation(UCountry* Country)
 {
-	return Relations.Contains(Country) ? Relations[Country] : Neutral;
+	return Relations.Contains(Country) ? Relations[Country] : ERelationType::Neutral;
 }
 
 void UCountry::SetRelation(UCountry* Country, ERelationType Relation)
 {
-	if (Relation == Neutral)
+	if (Relation == ERelationType::Neutral)
 	{
 		Relations.Remove(Country);
 	} else {
@@ -108,47 +108,47 @@ void UCountry::SetRelation(UCountry* Country, ERelationType Relation)
 
 bool UCountry::CanDeclareWarOn(UCountry* Country)
 {
-	return (CanDeclareWarList & GetRelation(Country));
+	return (CanDeclareWarList & static_cast<int32>(GetRelation(Country)));
 }
 
 bool UCountry::CanCreateNonAggressionPactWith(UCountry* Country)
 {
-	return (CanCreateNonAggressionPactList & GetRelation(Country));
+	return (CanCreateNonAggressionPactList & static_cast<int32>(GetRelation(Country)));
 }
 
 bool UCountry::CanCreateDefencivePactWith(UCountry* Country)
 {
-	return (CanCreateDefencivePactList & GetRelation(Country)) && !bIsNonAligned;
+	return (CanCreateDefencivePactList & static_cast<int32>(GetRelation(Country))) && !bIsNonAligned;
 }
 
 bool UCountry::CanCreateAllianceWith(UCountry* Country)
 {
-	return (CanCreateAllianceList & GetRelation(Country))  && !bIsNonAligned;
+	return (CanCreateAllianceList & static_cast<int32>(GetRelation(Country))) && !bIsNonAligned;
 }
 
 bool UCountry::MustHelpInDefenciveWar(UCountry* Country)
 {
-	return (MustHelpInDefenciveWarList & GetRelation(Country));
+	return (MustHelpInDefenciveWarList & static_cast<int32>(GetRelation(Country)));
 }
 
 bool UCountry::MustHelpInAggressiveWar(UCountry* Country)
 {
-	return (MustHelpInAggressiveWarList & GetRelation(Country));
+	return (MustHelpInAggressiveWarList & static_cast<int32>(GetRelation(Country)));
 }
 
 bool UCountry::CanJoinCountryWar(UCountry* Country)
 {
-	return (CanJoinCountriesWarList & GetRelation(Country));
+	return (CanJoinCountriesWarList & static_cast<int32>(GetRelation(Country)));
 }
 
 bool UCountry::HasNonAggressionPactWith(UCountry* Country)
 {
-	return Relations.Contains(Country) && Relations[Country] == NonAggressionPact;
+	return Relations.Contains(Country) && Relations[Country] == ERelationType::NonAggressionPact;
 }
 
 bool UCountry::HasDefencivePactWith(UCountry* Country)
 {
-	return Relations.Contains(Country) && Relations[Country] == DefencivePact;
+	return Relations.Contains(Country) && Relations[Country] == ERelationType::DefencivePact;
 }
 
 const TMap<UCountry*, ERelationType>& UCountry::GetRelations() const
@@ -190,7 +190,7 @@ bool UCountry::CanCountryJoinOneOfOurWars(UCountry* Country) const
 
 bool UCountry::IsInWarWith(UCountry* Country)
 {
-	return Relations.Contains(Country) && Relations[Country] == War;
+	return Relations.Contains(Country) && Relations[Country] == ERelationType::War;
 }
 
 UParliament* UCountry::GetFirstChamber() const

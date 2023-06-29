@@ -4,6 +4,7 @@
 #include "AI/Tasks/AdvanceTroopsTask.h"
 
 #include "MyGameInstance.h"
+#include "Maps/MapsDataGatherer.h"
 
 EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
@@ -13,10 +14,9 @@ EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& Owne
 	}
 	
 	UMyGameInstance* GameInstance = GetWorld()->GetGameInstance<UMyGameInstance>();
-	UProvincesMap* ProvincesMap = GameInstance->GetSubsystem<UProvincesMap>();
 	UUnitsMover* UnitsMover = GameInstance->GetSubsystem<UUnitsMover>();
 	
-	const TMap<UProvince*, TSet<UProvince*>>& Neigbours = ProvincesMap->GetNeighbourProvinces();
+	const TMap<UProvince*, TSet<UProvince*>>& Neigbours = GameInstance->GetSubsystem<UMapsDataGatherer>()->GetNeighbourProvinces();
 
 	TArray<UUnit*> MovableUnits;
 	TArray<UProvince*> Provinces;

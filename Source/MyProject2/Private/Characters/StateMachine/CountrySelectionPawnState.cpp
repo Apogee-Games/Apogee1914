@@ -3,7 +3,7 @@
 #include "MyGameInstance.h"
 #include "Characters/HUDs/CountrySelectionHUD.h"
 #include "Characters/Pawns/CountrySelectionPawn.h"
-#include "Maps/Selection/SelectionMap.h"
+#include "Maps/MapController.h"
 
 TSharedPtr<FPawnState> FCountrySelectionPawnState::GetInstance()
 {
@@ -18,11 +18,9 @@ TSharedPtr<FPawnState> FCountrySelectionPawnState::LeftClick(APawn* ProvidedPawn
 {
 	ACountrySelectionPawn* Pawn = Cast<ACountrySelectionPawn>(ProvidedPawn);
 	
-	USelectionMap* SelectionMap = ProvidedPawn->GetGameInstance()->GetSubsystem<USelectionMap>();
-
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 	
-	UProvince* Province = SelectionMap->GetProvince(Point);
+	UProvince* Province = ProvidedPawn->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Point);
 
 	if (Province && Province->GetOwnerCountry())
 	{

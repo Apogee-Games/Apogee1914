@@ -1,6 +1,6 @@
 ﻿#include "Widgets/Maps/MapsSwitcherWidget.h"
 
-#include "Maps/MapsSwitcher.h"
+#include "Maps/MapController.h"
 
 void UMapsSwitcherWidget::NativeConstruct()
 {
@@ -10,41 +10,35 @@ void UMapsSwitcherWidget::NativeConstruct()
 	RelationsMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnRelationsMapButtonClick);
 	AlliancesMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnAlliancesMapButton);
 	IdeologyMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnIdeologyMapButtonClick);
-	SelectionMapCheckBox->OnCheckStateChanged.AddDynamic(this, &UMapsSwitcherWidget::OnSelectionMapCheckBoxCheck);
 	ProvinceOutlineMapCheckBox->OnCheckStateChanged.AddDynamic(this, &UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck);
 }
 
 void UMapsSwitcherWidget::OnFlagsMapButtonClick()
 {
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SelectFlagsMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
+	//GetGameInstance()->GetSubsystem<UMapController>()->SelectFlagsMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
 }
 
 void UMapsSwitcherWidget::OnCountriesMapButtonClick()
 {
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SelectCountriesMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
+	GetGameInstance()->GetSubsystem<UMapController>()->SetCountriesMapAll();
 }
 
 void UMapsSwitcherWidget::OnRelationsMapButtonClick()
 {
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SelectRelationMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
+	GetGameInstance()->GetSubsystem<UMapController>()->SetCountryRelationMapAll();
 }
 
 void UMapsSwitcherWidget::OnAlliancesMapButton()
 {
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SelectAllianceMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
+	GetGameInstance()->GetSubsystem<UMapController>()->SetAlliancesMapAll();
 }
 
 void UMapsSwitcherWidget::OnIdeologyMapButtonClick()
 {
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SelectIdeologyMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
-}
-
-void UMapsSwitcherWidget::OnSelectionMapCheckBoxCheck(bool Value)
-{
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SetApplySelectionMap(GetOwningPlayerPawn<AHumanPlayerPawn>(), Value);
+	GetGameInstance()->GetSubsystem<UMapController>()->SetIdeologiesMapAll();
 }
 
 void UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck(bool Value)
 {
-	GetGameInstance()->GetSubsystem<UMapsSwitcher>()->SetApplyProvinceOutlineMap(GetOwningPlayerPawn<AHumanPlayerPawn>(), Value);
+	GetGameInstance()->GetSubsystem<UMapController>()->SetOutlineEnabled(Value);
 }
