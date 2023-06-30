@@ -26,13 +26,9 @@ public:
 	UButton* IdeologyMapButton;
 	
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UCheckBox* SelectionMapCheckBox;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UCheckBox* ProvinceOutlineMapCheckBox;
 
 	virtual void NativeConstruct() override;
-
 private:
 	UFUNCTION()
 	void OnFlagsMapButtonClick();
@@ -49,9 +45,6 @@ private:
 	UFUNCTION()
 	void OnIdeologyMapButtonClick();
 	
-	UFUNCTION()
-	void OnSelectionMapCheckBoxCheck(bool Value);
-
 	UFUNCTION()
 	void OnProvinceOutlineMapCheckBoxCheck(bool Value);
 };

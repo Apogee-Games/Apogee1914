@@ -9,21 +9,8 @@ AMapActor::AMapActor()
 {
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	
-	TerrainStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Terrain"));
-	TerrainStaticMeshComponent->SetupAttachment(RootComponent);
-	
 	MapsStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Maps"));
 	MapsStaticMeshComponent->SetupAttachment(RootComponent);
-}
-
-void AMapActor::BeginPlay()
-{
-	Super::BeginPlay();
-	TerrainMapMaterialInstanceDynamic = UMaterialInstanceDynamic::Create(TerrainMapMaterialInterface, this);
-	TerrainStaticMeshComponent->SetMaterial(0, TerrainMapMaterialInstanceDynamic);
-
-	MapsMaterialInstanceDynamic = UMaterialInstanceDynamic::Create(MapsMaterialInterface, this);
-	MapsStaticMeshComponent->SetMaterial(0, MapsMaterialInstanceDynamic);
 }
 
 FVector3d AMapActor::GetNewPosition(FVector3d Position, FVector3d Direction, FRotator Rotation, float Lenght)

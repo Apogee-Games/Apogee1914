@@ -4,8 +4,6 @@
 #include "Administration/Managers/CountriesManager.h"
 #include "Diplomacy/Instances/Alliance.h"
 #include "Diplomacy/Instances/War.h"
-#include "Maps/Diplomacy/AlliancesMap.h"
-#include "Maps/Diplomacy/CountryRelationMap.h"
 
 void URelationshipsManager::SetScenario(UScenario* Scenario)
 {
@@ -24,28 +22,28 @@ void URelationshipsManager::DeclareWar(UCountry* CountryA, UCountry* CountryB)
 
 void URelationshipsManager::CreateNonAggressionPact(UCountry* CountryA, UCountry* CountryB)
 {
-	CountryA->SetRelation(CountryB, NonAggressionPact);
-	CountryB->SetRelation(CountryA, NonAggressionPact);
+	CountryA->SetRelation(CountryB, ERelationType::NonAggressionPact);
+	CountryB->SetRelation(CountryA, ERelationType::NonAggressionPact);
 }
 
 void URelationshipsManager::BreakNonAggressionPact(UCountry* CountryA, UCountry* CountryB)
 {
 	// TODO: Add some logic to make a it a bit painful :)
-	CountryA->SetRelation(CountryB, Neutral);
-	CountryB->SetRelation(CountryA, Neutral);
+	CountryA->SetRelation(CountryB, ERelationType::Neutral);
+	CountryB->SetRelation(CountryA, ERelationType::Neutral);
 }
 
 void URelationshipsManager::CreateDefencivePact(UCountry* CountryA, UCountry* CountryB)
 {
-	CountryA->SetRelation(CountryB, DefencivePact);
-	CountryB->SetRelation(CountryA, DefencivePact);
+	CountryA->SetRelation(CountryB, ERelationType::DefencivePact);
+	CountryB->SetRelation(CountryA, ERelationType::DefencivePact);
 }
 
 void URelationshipsManager::BreakDefencivePact(UCountry* CountryA, UCountry* CountryB)
 {
 	// TODO: Add some logic to make a it a bit painful :)
-	CountryA->SetRelation(CountryB, Neutral);
-	CountryB->SetRelation(CountryA, Neutral);
+	CountryA->SetRelation(CountryB, ERelationType::Neutral);
+	CountryB->SetRelation(CountryA, ERelationType::Neutral);
 }
 
 void URelationshipsManager::CreateAlliance(UCountry* Country, const FText& AllianceName)
@@ -66,6 +64,11 @@ void URelationshipsManager::CreateAlliance(UCountry* Country, const FText& Allia
 	NotifyAllianceCreation(Alliance);
 }
 
+ELoadStage URelationshipsManager::GetLoadStage()
+{
+	return ELoadStage::RelationshipsManager;
+}
+
 void URelationshipsManager::Clear()
 {
 	
@@ -77,6 +80,4 @@ void URelationshipsManager::Init(UScenario* Scenario)
 //	UCountry* Spain = GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountry("SPA");
 //	DeclareWar(France, Spain);
 
-	GetGameInstance()->GetSubsystem<UCountryRelationMap>()->UpdateMap();
-	GetGameInstance()->GetSubsystem<UAlliancesMap>()->UpdateMap();
 }

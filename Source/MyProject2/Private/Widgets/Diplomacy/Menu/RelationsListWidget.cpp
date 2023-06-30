@@ -3,10 +3,10 @@
 
 void URelationsListWidget::Init()
 {
-	Lists.Add(War, EnemyCountriesListView);
-	Lists.Add(NonAggressionPact, NonAggressionPactCountriesListView);
-	Lists.Add(DefencivePact, DefencivePactCountriesListView);
-	Lists.Add(Allied, AlliedCountriesListView);
+	Lists.Add(ERelationType::War, EnemyCountriesListView);
+	Lists.Add(ERelationType::NonAggressionPact, NonAggressionPactCountriesListView);
+	Lists.Add(ERelationType::DefencivePact, DefencivePactCountriesListView);
+	Lists.Add(ERelationType::Allied, AlliedCountriesListView);
 }
 
 void URelationsListWidget::SetCountry(UCountry* ProvidedCountry)
@@ -24,7 +24,7 @@ void URelationsListWidget::RefreshData()
 
 	for (const auto& [AnotherCountry, Relation] : Country->GetRelations())
 	{
-		if (Relation == Neutral) continue;
+		if (Relation == ERelationType::Neutral) continue;
 		Lists[Relation]->AddItem(AnotherCountry);
 	}
 }

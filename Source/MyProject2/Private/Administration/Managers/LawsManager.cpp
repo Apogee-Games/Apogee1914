@@ -26,6 +26,10 @@ const TArray<ULawsGroup*>& ULawsManager::GetCountrySpecificLaw(UCountryDescripti
 	return CountrySpecificLawsGroups[CountryDescription];
 }
 
+ELoadStage ULawsManager::GetLoadStage()
+{
+	return ELoadStage::LawsManager;
+}
 
 void ULawsManager::Clear()
 {

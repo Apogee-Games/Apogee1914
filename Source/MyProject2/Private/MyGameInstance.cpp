@@ -7,7 +7,8 @@
 #include "Actions/OutcomeAppliers/OutcomesApplierSubsystem.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "GameFramework/PlayerState.h"
-#include "Maps/Diplomacy/CountryRelationMap.h"
+#include "Maps/MapController.h"
+#include "Maps/MapsDataGatherer.h"
 #include "Military/Managers/BattlesManager.h"
 #include "Military/Managers/CommandersManager.h"
 #include "Military/Managers/UnitsFactory.h"
@@ -16,6 +17,35 @@
 void UMyGameInstance::OnStart()
 {
 	Super::OnStart();
+	
+	Managers = {
+		GetSubsystem<UInGameTime>(),
+		
+		GetSubsystem<ULawsManager>(),
+		GetSubsystem<UPeopleManager>(),
+		GetSubsystem<UCountriesManager>(),
+		GetSubsystem<UProvinceManager>(),
+		GetSubsystem<UStateManager>(),
+
+		GetSubsystem<UMapsDataGatherer>(),
+		GetSubsystem<UMapController>(),
+
+		GetSubsystem<URelationshipsManager>(),
+
+		GetSubsystem<UGoodsManager>(),
+		GetSubsystem<UStrataManager>(),
+		GetSubsystem<UBuildingManager>(),
+		
+		GetSubsystem<UUnitsFactory>(),
+		GetSubsystem<UUnitsMover>(),
+		GetSubsystem<UCommandersManager>(),
+		GetSubsystem<UUnitsSupplyController>(),
+		GetSubsystem<UBattlesManager>(),
+
+		GetSubsystem<UConditionsCheckingSubsystem>(),
+		GetSubsystem<UEventInstancesController>(),
+		GetSubsystem<UOutcomesApplierSubsystem>()
+	};
 }
 
 void UMyGameInstance::SetScenario(UScenario* Scenario)
@@ -55,46 +85,26 @@ bool UMyGameInstance::IsCountryRuledByPlayer(UCountryDescription* CountryDescrip
 
 }
 
+void UMyGameInstance::NotifyStageIsLoaded(ELoadStage Stage)
+{
+	AsyncTask(ENamedThreads::GameThread, [this, Stage]()
+	{
+		OnStageLoadFinished.Broadcast(Stage);
+	});
+}
+
 void UMyGameInstance::InitializeActiveScenario()
 {
-	GetSubsystem<UInGameTime>()->SetScenario(ActiveScenario);
+	AsyncTask(ENamedThreads::AnyThread, [this]()
+	{
+		NotifyStageIsLoaded(ELoadStage::Initial);
+		
+		for (const auto& Manager: Managers)
+		{
+			Manager->SetScenario(ActiveScenario);
+			NotifyStageIsLoaded(Manager->GetLoadStage());
+		}
 
-	GetSubsystem<ULawsManager>()->SetScenario(ActiveScenario);
-	
-	GetSubsystem<UPeopleManager>()->SetScenario(ActiveScenario);
-
-	GetSubsystem<UCountriesManager>()->SetScenario(ActiveScenario);
-	GetSubsystem<UProvinceManager>()->SetScenario(ActiveScenario);
-	GetSubsystem<UStateManager>()->SetScenario(ActiveScenario);
-
-	GetSubsystem<UProvincesMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UDistancesMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UBoxesMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UOutlineMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UObjectMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UFlagsMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UCountriesMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<USelectionMap>()->SetScenario(ActiveScenario);
-
-	GetSubsystem<UCountryRelationMap>()->SetScenario(ActiveScenario);
-	GetSubsystem<UAlliancesMap>()->SetScenario(ActiveScenario);
-
-	GetSubsystem<URelationshipsManager>()->SetScenario(ActiveScenario);
-	GetSubsystem<UIdeologiesMap>()->SetScenario(ActiveScenario);
-
-	GetSubsystem<UMapsSwitcher>()->SetScenario(ActiveScenario);
-
-	GetSubsystem<UGoodsManager>()->SetScenario(ActiveScenario);
-	GetSubsystem<UStrataManager>()->SetScenario(ActiveScenario);
-	GetSubsystem<UBuildingManager>()->SetScenario(ActiveScenario);
-	
-	GetSubsystem<UUnitsFactory>()->SetScenario(ActiveScenario);
-	GetSubsystem<UUnitsMover>()->SetScenario(ActiveScenario);
-	GetSubsystem<UCommandersManager>()->SetScenario(ActiveScenario);
-	GetSubsystem<UUnitsSupplyController>()->SetScenario(ActiveScenario);
-	GetSubsystem<UBattlesManager>()->SetScenario(ActiveScenario);
-	
-	GetSubsystem<UConditionsCheckingSubsystem>()->SetScenario(ActiveScenario);
-	GetSubsystem<UEventInstancesController>()->SetScenario(ActiveScenario);
-	GetSubsystem<UOutcomesApplierSubsystem>()->SetScenario(ActiveScenario);
+		NotifyStageIsLoaded(ELoadStage::Finished);
+	});
 }

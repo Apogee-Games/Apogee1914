@@ -8,11 +8,11 @@
  * Class manages separate conditions checkers and allows to check event and choice conditions
  */
 UCLASS()
-class UConditionsCheckingSubsystem: public UGameInstanceSubsystem
+class UConditionsCheckingSubsystem: public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	/**
 	 *	Method used to add event condition checker
@@ -26,6 +26,7 @@ public:
 
 	bool CheckCondition(FCondition& Condition, UCountryDescription* CountryDescription);
 
+	virtual ELoadStage GetLoadStage() override;
 private:
 	TMap<FName, FConditionChecker*> ConditionsCheckers;
 

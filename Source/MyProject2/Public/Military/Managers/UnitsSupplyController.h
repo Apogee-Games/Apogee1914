@@ -1,5 +1,6 @@
 #pragma once
 #include "Scenario.h"
+#include "Interfaces/BaseManager.h"
 #include "Military/Instances/CountryUnitsSupplier.h"
 #include "Military/Interfaces/Observables/UnitSupplyObservable.h"
 #include "Military/Interfaces/Observers/UnitCreationObserver.h"
@@ -8,11 +9,11 @@
 
 
 UCLASS(Abstract, Blueprintable)
-class UUnitsSupplyController: public UGameInstanceSubsystem, public IUnitCreationObserver, public IUnitSupplyObservable, public IUnitRemovalObserver
+class UUnitsSupplyController: public UBaseManager, public IUnitCreationObserver, public IUnitSupplyObservable, public IUnitRemovalObserver
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	UPROPERTY(EditDefaultsOnly)
 	FTimespan SupplyTimeDelta = FTimespan(1, 0, 0, 0);
@@ -22,6 +23,8 @@ public:
 	virtual void UnitIsRemoved(UUnit* Unit) override;
 
 	void Supply();
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	UPROPERTY()
 	TMap<UCountry*, UCountryUnitsSupplier*> CountrySupplier;

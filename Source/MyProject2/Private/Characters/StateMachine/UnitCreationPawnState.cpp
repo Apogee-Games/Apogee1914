@@ -1,8 +1,8 @@
 #include "Characters/StateMachine/UnitCreationPawnState.h"
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
-#include "Maps/Selection/SelectionMap.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Maps/MapController.h"
 #include "Military/Managers/UnitsFactory.h"
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
 
@@ -21,9 +21,7 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(APawn* ProvidedPawn)
 	
 	if (!Pawn->GetSelectedUnitDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<USelectionMap>();
-
-	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
+	UProvince* Province = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	if (Pawn->GetRuledCountry() != Province->GetCountryController()) return Instance;
 

@@ -11,7 +11,6 @@ AMainMenuGameMode::AMainMenuGameMode()
 void AMainMenuGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	GetGameInstance<UMyGameInstance>()->InitializeActiveScenario();
 }
 
 void AMainMenuGameMode::PostLogin(APlayerController* NewPlayer)

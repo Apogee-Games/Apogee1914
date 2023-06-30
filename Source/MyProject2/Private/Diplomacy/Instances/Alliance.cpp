@@ -24,8 +24,8 @@ void UAlliance::AddMember(UCountry* Country)
 {
 	for (const auto& Member: Members)
 	{
-		Member->SetRelation(Country, Allied);
-		Country->SetRelation(Member, Allied);
+		Member->SetRelation(Country, ERelationType::Allied);
+		Country->SetRelation(Member, ERelationType::Allied);
 	}
 	
 	Members.Add(Country);
@@ -43,8 +43,8 @@ void UAlliance::RemoveMember(UCountry* Country)
 	
 	for (const auto& Member: Members)
 	{
-		Member->SetRelation(Country, Neutral);
-		Country->SetRelation(Member, Neutral);
+		Member->SetRelation(Country, ERelationType::Neutral);
+		Country->SetRelation(Member, ERelationType::Neutral);
 	}
 }
 
@@ -91,8 +91,8 @@ void UAlliance::Dissolve()
 	{
 		for (const auto& MemberB: Members)
 		{
-			MemberA->SetRelation(MemberB, Neutral);
-			MemberB->SetRelation(MemberA, Neutral);
+			MemberA->SetRelation(MemberB, ERelationType::Neutral);
+			MemberB->SetRelation(MemberA, ERelationType::Neutral);
 		}
 	}
 	

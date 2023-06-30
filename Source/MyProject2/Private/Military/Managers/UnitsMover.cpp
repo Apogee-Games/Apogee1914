@@ -3,7 +3,7 @@
 
 #include "InGameTime.h"
 #include "Administration/Managers/ProvinceManager.h"
-#include "Maps/Precalculations/ProvincesMap.h"
+#include "Maps/MapsDataGatherer.h"
 
 void UUnitsMover::SetScenario(UScenario* Scenario)
 {
@@ -105,6 +105,11 @@ bool UUnitsMover::Retreat(UUnit* Unit)
 	return !Path.IsEmpty();
 }
 
+ELoadStage UUnitsMover::GetLoadStage()
+{
+	return ELoadStage::UnitsMover;
+}
+
 void UUnitsMover::Clear()
 {
 	Paths.Empty();
@@ -115,7 +120,7 @@ void UUnitsMover::Clear()
 void UUnitsMover::Init(UScenario* Scenario)
 {
 	UGameInstance* GameInstance = GetGameInstance();
-	Graph = FGraph(GameInstance->GetSubsystem<UProvincesMap>()->GetNeighbourProvinces());
+	Graph = FGraph(GameInstance->GetSubsystem<UMapsDataGatherer>()->GetNeighbourProvinces());
 	GameInstance->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
 }
 

@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['warparticipantwidget_5feventsetcountry_5fparms_0',['WarParticipantWidget_eventSetCountry_Parms',['../struct_z___construct___u_function___u_war_participant_widget___set_country___statics_1_1_war_par90f43dd243a2bc585aec5117f336d244.html',1,'Z_Construct_UFunction_UWarParticipantWidget_SetCountry_Statics']]],
-  ['warslistitemwidget_5feventsetwar_5fparms_1',['WarsListItemWidget_eventSetWar_Parms',['../struct_z___construct___u_function___u_wars_list_item_widget___set_war___statics_1_1_wars_list_itb189db364c907a88eec50e12a9e3f6f2.html',1,'Z_Construct_UFunction_UWarsListItemWidget_SetWar_Statics']]]
-];

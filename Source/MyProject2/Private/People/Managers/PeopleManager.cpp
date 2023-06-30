@@ -23,6 +23,11 @@ const TArray<UPerson*>& UPeopleManager::GetPeopleByProfession(UProfessionDescrip
 	return CountryProfessionPeople[Country][Profession];
 }
 
+ELoadStage UPeopleManager::GetLoadStage()
+{
+	return ELoadStage::PeopleManager;
+}
+
 void UPeopleManager::Clear()
 {
 	for (const auto& [Name, Person] : People)

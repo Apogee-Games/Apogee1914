@@ -1,6 +1,11 @@
 #include "Utils/TextureUtils.h"
 
 
+int32 FTextureUtils::GetPixelPosition(const FVector2f& ImagePosition, const FVector2d& SizeVector)
+{
+	return static_cast<int32>(ImagePosition.X) + SizeVector.X * static_cast<int32>(ImagePosition.Y);
+}
+
 int32 FTextureUtils::GetPixelPosition(const FVector2d& ImagePosition, const FVector2d& SizeVector)
 {
 	return static_cast<int32>(ImagePosition.X) + SizeVector.X * static_cast<int32>(ImagePosition.Y);

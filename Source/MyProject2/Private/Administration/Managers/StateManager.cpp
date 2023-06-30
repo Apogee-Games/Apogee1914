@@ -43,6 +43,11 @@ bool UStateManager::AreProvincesNotInTheSameState(const UProvince* ProvinceA, co
 	return ProvinceA && ProvinceB && ProvinceA->GetState() != ProvinceB->GetState();
 }
 
+ELoadStage UStateManager::GetLoadStage()
+{
+	return ELoadStage::StateManager;
+}
+
 void UStateManager::Clear()
 {
 	for (const auto& [Name, State]: StateMap)

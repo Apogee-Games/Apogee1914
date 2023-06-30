@@ -3,6 +3,7 @@
 
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "EngineUtils.h"
+#include "JsonObjectConverter.h"
 #include "Characters/HUDs//HumanPlayerHUD.h"
 #include "Administration/Managers/CountriesManager.h"
 #include "Characters/Components/PlaneMapActor.h"
@@ -16,6 +17,8 @@
 #include "Characters/StateMachine/SupplyBrowsingPawnState.h"
 #include "Characters/StateMachine/UnitCreationPawnState.h"
 #include "Components/AudioComponent.h"
+#include "Military/Managers/UnitsFactory.h"
+#include "Serialization/AsyncPackageLoader.h"
 
 // Sets default values
 AHumanPlayerPawn::AHumanPlayerPawn()

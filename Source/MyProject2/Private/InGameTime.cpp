@@ -1,9 +1,6 @@
 #include "InGameTime.h"
 
 #include "Characters/HUDs/HumanPlayerHUD.h"
-#include "Maps/Countries/CountriesMap.h"
-#include "Maps/Flags/FlagsMap.h"
-#include "Maps/Precalculations/Boxes/BoxesMap.h"
 
 void UInGameTime::SetScenario(UScenario* Scenario)
 {
@@ -43,6 +40,11 @@ void UInGameTime::RegisterListener(UObject* Object, void (UObject::*Function)(),
 	++TotalObjectNumber;
 }
 
+ELoadStage UInGameTime::GetLoadStage()
+{
+	return ELoadStage::InGameTime;
+}
+
 void UInGameTime::Clear()
 {
 	Objects.Empty();
@@ -62,9 +64,6 @@ void UInGameTime::Init(UScenario* Scenario)
 	RefreshWidgetSpeed();
 	*/
 	// TODO: Widgets
-	// TODO: Move these
-	RegisterListener(GetWorld()->GetGameInstance()->GetSubsystem<UCountriesMap>(), &UCountriesMap::Tick, FTimespan(1, 0, 0));
-	RegisterListener(GetWorld()->GetGameInstance()->GetSubsystem<UFlagsMap>(), &UFlagsMap::Tick, FTimespan(1, 0, 0));
 }
 
 void UInGameTime::UpdateCurrentTime(const FTimespan& DeltaTimeSpan)

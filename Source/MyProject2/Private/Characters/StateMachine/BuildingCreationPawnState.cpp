@@ -3,7 +3,8 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Economics/Managers/BuildingManager.h"
-#include "Maps/Selection/SelectionMap.h"
+#include "Maps/MapController.h"
+#include "Maps/MapsDataGatherer.h"
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
 
 TSharedPtr<FPawnState> FBuildingCreationPawnState::GetInstance()
@@ -21,9 +22,7 @@ TSharedPtr<FPawnState> FBuildingCreationPawnState::LeftClick(APawn* ProvidedPawn
 	
 	if (!Pawn->GetSelectedBuildingDescription()) return Instance;
 	
-	USelectionMap* SelectionMap = Pawn->GetGameInstance()->GetSubsystem<USelectionMap>();
-
-	UProvince* Province = SelectionMap->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
+	UProvince* Province = Pawn->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Pawn->MapActor->GetMapPosition(Pawn));
 
 	if (Pawn->GetRuledCountry() != Province->GetCountryController()) return Instance;
 

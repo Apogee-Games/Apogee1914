@@ -2,16 +2,17 @@
 #include "OutcomeApplier.h"
 #include "Scenario.h"
 #include "Actions/Description/Outcome.h"
+#include "Interfaces/BaseManager.h"
 #include "OutcomesApplierSubsystem.generated.h"
 /**
  * Class manages separate outcome appliers and allows to apply choice outcomes
  */
 UCLASS()
-class UOutcomesApplierSubsystem: public UGameInstanceSubsystem
+class UOutcomesApplierSubsystem: public UBaseManager
 {
 	GENERATED_BODY()
 public:
-	void SetScenario(UScenario* Scenario);
+	virtual void SetScenario(UScenario* Scenario) override;
 	
 	/**
 	 * Method used to add choice outcome applier
@@ -22,6 +23,8 @@ public:
 	 * Method used to apply event choice outcomes
 	 */
 	void ApplyOutcomes(TArray<FOutcome>& Outcomes, UCountryDescription* CountryDescription);
+
+	virtual ELoadStage GetLoadStage() override;
 private:
 	TMap<FName, FOutcomeApplier*> OutcomeAppliers;
 

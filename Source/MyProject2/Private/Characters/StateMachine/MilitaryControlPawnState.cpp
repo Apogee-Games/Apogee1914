@@ -2,7 +2,7 @@
 
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
-#include "Maps/Selection/SelectionMap.h"
+#include "Maps/MapController.h"
 #include "Military/Managers/UnitsMover.h"
 #include "Widgets/Military/Selection/SelectedUnitsListWidget.h"
 
@@ -32,7 +32,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn
 	
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 
-	UProvince* To = Pawn->GetGameInstance()->GetSubsystem<USelectionMap>()->GetProvince(Point);
+	UProvince* To = Pawn->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Point);
 
 	UUnitsMover* UnitsMover = Pawn->GetGameInstance()->GetSubsystem<UUnitsMover>();
 

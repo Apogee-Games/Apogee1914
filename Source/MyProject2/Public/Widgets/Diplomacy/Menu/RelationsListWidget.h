@@ -31,5 +31,5 @@ private:
 	UCountry* Country;
 	
 	UPROPERTY()
-	TMap<int32, UListView*> Lists;
+	TMap<ERelationType, UListView*> Lists;
 };

@@ -6,8 +6,8 @@ void UWar::Init(UCountry* ProvidedAttackerLeader, UCountry* ProvidedDefenderLead
 	AttackerLeader = ProvidedAttackerLeader;
 	DefenderLeader = ProvidedDefenderLeader;
 	
-	AttackerLeader->SetRelation(DefenderLeader, War);
-	DefenderLeader->SetRelation(AttackerLeader, War);
+	AttackerLeader->SetRelation(DefenderLeader, ERelationType::War);
+	DefenderLeader->SetRelation(AttackerLeader, ERelationType::War);
 
 	AttackerLeader->AddWar(this);
 	DefenderLeader->AddWar(this);
@@ -39,8 +39,8 @@ void UWar::AddAttacker(UCountry* Country)
 
 	for (const auto& Defender: Defenders)
 	{
-		Country->SetRelation(Defender, War);
-		Defender->SetRelation(Country, War);
+		Country->SetRelation(Defender, ERelationType::War);
+		Defender->SetRelation(Country, ERelationType::War);
 	}
 }
 
@@ -51,8 +51,8 @@ void UWar::AddDefender(UCountry* Country)
 	
 	for (const auto& Attacker: Attackers)
 	{
-		Country->SetRelation(Attacker, War);
-		Attacker->SetRelation(Country, War);
+		Country->SetRelation(Attacker, ERelationType::War);
+		Attacker->SetRelation(Country, ERelationType::War);
 	}
 }
 

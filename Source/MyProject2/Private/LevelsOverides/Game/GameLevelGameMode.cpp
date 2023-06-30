@@ -14,6 +14,7 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Events/EventInstancesController.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
+#include "Maps/MapsDataGatherer.h"
 
 AGameLevelGameMode::AGameLevelGameMode()
 {
@@ -39,16 +40,15 @@ void AGameLevelGameMode::BeginPlay()
 
 	Super::BeginPlay();
 
-	UObjectMap* ObjectMap = GetGameInstance()->GetSubsystem<UObjectMap>();
+	UMapsDataGatherer* MapsDataGatherer = GetGameInstance()->GetSubsystem<UMapsDataGatherer>();
 	AMapActor* MapActor = GetWorld()->GetFirstPlayerController()->GetPawn<AHumanPlayerPawn>()->GetMapActor();
-	UBoxesMap* BoxesMap = GetGameInstance()->GetSubsystem<UBoxesMap>();
 	for (const auto& Province : GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces())
 	{
-		const FVector2d MapPosition = ObjectMap->GetProvinceCenter(Province->GetId());
+		const FVector2d MapPosition = MapsDataGatherer->GetProvinceCenter(Province->GetId());
 		const FVector3d WorldPosition = MapActor->GetWorldPosition(MapPosition);
 
-		const FVector2d TopLeft = BoxesMap->GetLeftTopCorner(Province);
-		const FVector2d BottomRight = BoxesMap->GetRightBottomCorner(Province);
+		const FVector2d TopLeft = MapsDataGatherer->GetLeftTopCorner(Province);
+		const FVector2d BottomRight = MapsDataGatherer->GetRightBottomCorner(Province);
 
 		Province->InitProvinceActor(WorldPosition, TopLeft, BottomRight);
 	}

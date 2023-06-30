@@ -4,8 +4,7 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
-#include "Maps/Diplomacy/CountryRelationMap.h"
-#include "Maps/Selection/SelectionMap.h"
+#include "Maps/MapController.h"
 
 TSharedPtr<FPawnState> FCountryDiplomacyPawnState::GetInstance()
 {
@@ -23,13 +22,11 @@ TSharedPtr<FPawnState> FCountryDiplomacyPawnState::LeftClick(APawn* ProvidedPawn
 
 TSharedPtr<FPawnState> FCountryDiplomacyPawnState::RightClick(APawn* ProvidedPawn)
 {
-	USelectionMap* SelectionMap = ProvidedPawn->GetGameInstance()->GetSubsystem<USelectionMap>();
-
 	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
 
 	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
 	
-	UProvince* Province = SelectionMap->GetProvince(Point);
+	UProvince* Province = ProvidedPawn->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Point);
 
 	if (!Province) return Instance;
 
@@ -39,7 +36,7 @@ TSharedPtr<FPawnState> FCountryDiplomacyPawnState::RightClick(APawn* ProvidedPaw
 	
 	Widget->SetCountry(Province->GetCountryController());
 
-	Pawn->GetGameInstance()->GetSubsystem<UCountryRelationMap>()->UpdateMap(); // TODO: Add logic for one country
+	Pawn->GetGameInstance()->GetSubsystem<UMapController>()->SetCountryRelationMapAll(); // TODO: Add logic for one country
 
 	return Instance;
 }

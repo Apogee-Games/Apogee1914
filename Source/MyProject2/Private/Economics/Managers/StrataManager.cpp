@@ -14,6 +14,11 @@ const TArray<UStrataDescription*>& UStrataManager::GetStratasDescriptions() cons
 	return StrataDescriptions;	
 }
 
+ELoadStage UStrataManager::GetLoadStage()
+{
+	return ELoadStage::StrataManager;
+}
+
 void UStrataManager::Clear()
 {
 	StrataDescriptions.Empty();
