@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Administration/Instances/Country.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "CountrySelectionControlsWidget.generated.h"
@@ -16,7 +17,8 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	//TODO: Add logic for disabling play button if a player haven't selected country
+	void CountryWasSelected(int32 PlayerId, UCountry* Country);
+
 	//TODO: Probably make button ready to play which will be accessible after everyone have pressed it :)
 private:
 	UFUNCTION()

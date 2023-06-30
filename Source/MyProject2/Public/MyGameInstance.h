@@ -20,6 +20,7 @@
 #include "MyGameInstance.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnStageLoadFinished, ELoadStage)
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnCountrySelected, int32, UCountry*)
 
 UCLASS()
 class MYPROJECT2_API UMyGameInstance : public UGameInstance
@@ -33,14 +34,11 @@ public:
 	void InitializeActiveScenario();
 
 	UCountry* GetRuledCountry(APlayerController* PlayerController);
-	
 	UCountry* GetRuledCountry(int32 PlayerId);
-
 	void SetRuledCountry(APlayerController* PlayerController, UCountry* Country);
-	
 	void SetRuledCountry(int32 PlayerId, UCountry* Country);
-
 	bool IsCountryRuledByPlayer(UCountryDescription* CountryDescription);
+	void ClearSelectedCountries();
 
 	UPROPERTY(EditDefaultsOnly)
 	TArray<UScenario*> Scenarios;
@@ -52,6 +50,7 @@ public:
 	TSubclassOf<AProvinceActor> ProvinceActorClass;
 
 	FOnStageLoadFinished OnStageLoadFinished;
+	FOnCountrySelected OnCountrySelected;
 private:
 	UPROPERTY()
 	TArray<UBaseManager*> Managers;

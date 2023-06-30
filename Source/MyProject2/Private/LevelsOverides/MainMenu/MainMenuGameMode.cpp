@@ -11,6 +11,7 @@ AMainMenuGameMode::AMainMenuGameMode()
 void AMainMenuGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	GetGameInstance<UMyGameInstance>()->ClearSelectedCountries();
 }
 
 void AMainMenuGameMode::PostLogin(APlayerController* NewPlayer)
