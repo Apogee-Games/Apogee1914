@@ -1,4 +1,5 @@
 #pragma once
+#include "ToolTipWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/ProgressBar.h"
@@ -10,6 +11,12 @@ class MYPROJECT2_API UTimeControllerWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UToolTipWidget> ToolTipWidgetClass;
+
+	UPROPERTY()
+	UToolTipWidget* TimeToolTipWidget;
+	
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* SpeedUpButton;
 	
