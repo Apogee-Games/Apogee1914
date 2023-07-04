@@ -33,11 +33,12 @@ void UInGameTime::UpdateCurrentTime(const float DeltaSeconds)
 
 void UInGameTime::RegisterListener(UObject* Object, void (UObject::*Function)(), FTimespan Delta)
 {
-	Functions.Add(TotalObjectNumber, Function);
-	CurrentDeltas.Add(TotalObjectNumber, Delta.GetTicks());
-	Deltas.Add(TotalObjectNumber, Delta.GetTicks());
-	Objects.Add(TotalObjectNumber, Object);
-	++TotalObjectNumber;
+	Listeners.Add({
+		Object,
+		Function,
+		Delta.GetTicks(),
+		Delta.GetTicks()
+	});
 }
 
 ELoadStage UInGameTime::GetLoadStage()
@@ -45,12 +46,27 @@ ELoadStage UInGameTime::GetLoadStage()
 	return ELoadStage::InGameTime;
 }
 
+void UInGameTime::RemoveAllListeners(UObject* InObject)
+{
+	int32 ObjectId = INDEX_NONE;
+
+	for (int i = 0; i < Listeners.Num(); ++i)
+	{
+		if (Listeners[i].Object == InObject)
+		{
+			ObjectId = i;
+		}
+	}
+	
+	if (ObjectId != INDEX_NONE)
+	{
+		Listeners.RemoveAt(ObjectId);
+	}
+}
+
 void UInGameTime::Clear()
 {
-	Objects.Empty();
-	Functions.Empty();
-	CurrentDeltas.Empty();
-	Deltas.Empty();
+	Listeners.Empty();
 }
 
 void UInGameTime::Init(UScenario* Scenario)
@@ -75,13 +91,13 @@ void UInGameTime::UpdateCurrentTime(const FTimespan& DeltaTimeSpan)
 
 void UInGameTime::CheckDeltas(const FTimespan& DeltaTimeSpan)
 {
-	for (auto& [Id, CurrentDelta] : CurrentDeltas)
+	for (FListener& Listener : Listeners)
 	{
-		CurrentDelta -= DeltaTimeSpan.GetTicks();
-		if (CurrentDelta <= 0)
+		Listener.CurrentDelta -= DeltaTimeSpan.GetTicks();
+		if (Listener.CurrentDelta <= 0)
 		{
-			CurrentDelta = Deltas[Id];
-			(Objects[Id]->*Functions[Id])();
+			Listener.CurrentDelta = Listener.Delta;
+			(Listener.Object->*(Listener.Function))();
 		}
 	}
 }

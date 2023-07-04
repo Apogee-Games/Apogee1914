@@ -1,7 +1,16 @@
 #pragma once
 #include "Scenario.h"
 #include "Interfaces/BaseManager.h"
+#include "Maps/MapController.h"
 #include "InGameTime.generated.h"
+
+struct FListener
+{
+	UObject* Object;
+	void(UObject::*Function)();
+	int64 CurrentDelta;
+	int64 Delta;
+};
 
 UCLASS(Abstract, Blueprintable)
 class UInGameTime: public UBaseManager
@@ -40,14 +49,10 @@ public:
 	void RegisterListener(UObject* Object, void (UObject::*Function)(), FTimespan Delta);
 	
 	virtual ELoadStage GetLoadStage() override;
+	
+	void RemoveAllListeners(UObject* InObject);
 private:
-	TMap<int32, UObject*> Objects;
-
-	TMap<int32, void(UObject::*)()> Functions;
-
-	TMap<int32, int64> CurrentDeltas;
-
-	TMap<int32, int64> Deltas;
+	TArray<FListener> Listeners;
 	
 	FDateTime CurrentTime;
 	
@@ -55,8 +60,6 @@ private:
 
 	int32 TimeSpeed = 1;
 	
-	int32 TotalObjectNumber = 1;
-
 	int32 MaxTimeSpeed;
 
 	float SpeedMultiplier;

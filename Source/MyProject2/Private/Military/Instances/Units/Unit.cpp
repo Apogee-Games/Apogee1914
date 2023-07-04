@@ -33,10 +33,13 @@ void UUnit::RemoveTransportedUnit(UUnit* Unit)
 
 void UUnit::Move(UProvince* NewProvince)
 {
-	Province->RemoveUnit(this);
-	NewProvince->AddUnit(this);
+	if (NewProvince)
+	{
+		Province->RemoveUnit(this);
+		NewProvince->AddUnit(this);
 
-	Province = NewProvince;
+		Province = NewProvince;
+	}
 }
 
 UProvince* UUnit::GetPosition() const

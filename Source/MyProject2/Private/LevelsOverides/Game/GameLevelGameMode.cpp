@@ -14,6 +14,7 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Events/EventInstancesController.h"
 #include "LevelsOverides/Game/GameLevelGameState.h"
+#include "Maps/MapController.h"
 #include "Maps/MapsDataGatherer.h"
 
 AGameLevelGameMode::AGameLevelGameMode()
@@ -28,8 +29,11 @@ AGameLevelGameMode::AGameLevelGameMode()
 void AGameLevelGameMode::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	GetGameInstance()->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
-	GetGameInstance()->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
+	
+	UGameInstance* GameInstance = GetGameInstance();
+	GameInstance->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
+	GameInstance->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
+	GameInstance->GetSubsystem<UMapController>()->RefreshLookUpTexture();
 }
 
 void AGameLevelGameMode::BeginPlay()
