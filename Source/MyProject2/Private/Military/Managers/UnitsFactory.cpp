@@ -179,6 +179,19 @@ ELoadStage UUnitsFactory::GetLoadStage()
 	return ELoadStage::UnitsFactory;
 }
 
+TArray<UUnit*> UUnitsFactory::GetCountryControlledUnits(UCountry* Country)
+{
+	TArray<UUnit*> FoundUnits;
+	for (UUnit* Unit: Units)
+	{
+		if (Unit->GetCountryController() == Country)
+		{
+			Units.Add(Unit);
+		}
+	}
+	return FoundUnits;
+}
+
 void UUnitsFactory::Clear()
 {
 	for (const auto& Unit: Units)

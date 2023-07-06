@@ -47,7 +47,7 @@ public:
 private:
 	FGraph Graph;
 
-	TMap<UUnit*, TArray<TPair<UProvince*, int32>>> Paths;
+	TMap<UUnit*, TArray<FPathElement>> Paths;
 
 	UPROPERTY()
 	TMap<UUnit*, int32> Positions;

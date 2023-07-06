@@ -23,29 +23,23 @@ EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& Owne
 	
 	for (const auto& Province: Country->GetProvinces())
 	{
-		TArray<UUnit*> Units = Province->GetUnits();
-
-		if (Units.IsEmpty()) continue;
-		
-		bool HasEnemyNeighbour = false;
-		
 		for (const auto& Neighbour: Neigbours[Province])
 		{
 			if (Neighbour && Neighbour->GetCountryController()->IsInWarWith(Country))
 			{
-				HasEnemyNeighbour = true;
 				Provinces.Add(Neighbour);
 			} 
 		}
+		
+		TArray<UUnit*> Units = Province->GetUnits();
 
-		if (HasEnemyNeighbour)
+		if (Units.IsEmpty()) continue;
+
+		for (const auto& Unit: Units)
 		{
-			for (const auto& Unit: Units)
+			if (Unit->GetManpower())
 			{
-				if (Unit->GetManpower())
-				{
-					MovableUnits.Add(Unit);
-				}
+				MovableUnits.Add(Unit);
 			}
 		}
 	}
@@ -74,6 +68,5 @@ EBTNodeResult::Type UAdvanceTroopsTask::ExecuteTask(UBehaviorTreeComponent& Owne
 		}
 	}
 	
-
 	return EBTNodeResult::Succeeded;
 }

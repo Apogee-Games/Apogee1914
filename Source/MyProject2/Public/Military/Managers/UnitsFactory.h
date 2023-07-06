@@ -52,6 +52,8 @@ public:
 	const TArray<UUnit*>& GetUnits() const;
 
 	virtual ELoadStage GetLoadStage() override;
+
+	TArray<UUnit*> GetCountryControlledUnits(UCountry* Country);
 private:
 	UPROPERTY()
 	TArray<UUnitDescription*> UnitDescriptions;

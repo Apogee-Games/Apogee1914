@@ -31,7 +31,7 @@ public:
 	const FVector2d& GetLeftTopCorner(UProvince* Province) const;
 	const FVector2d& GetRightBottomCorner(UProvince* Province) const;
 
-	FVector2d GetProvinceCenter(const FColor& Color);
+	FORCEINLINE FVector2d GetProvinceCenter(const FColor& Color);
 	
 	virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
 	

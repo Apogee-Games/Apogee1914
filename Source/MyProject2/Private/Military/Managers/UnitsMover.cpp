@@ -19,9 +19,13 @@ const FGraph& UUnitsMover::GetGraph() const
 void UUnitsMover::MoveUnit(UUnit* Unit, UProvince* To)
 {
 	if (RetreatingUnits.Contains(Unit)) return;
-	const TArray<TPair<UProvince*, int32>>& Path = Graph.FindPath(Unit->GetPosition(), To);
-	Paths.Add(Unit, Path);
-	Positions.Add(Unit, 0);
+	const TArray<FPathElement>& Path = Graph.FindPath(Unit->GetPosition(), To);
+	if (!Path.IsEmpty())
+	{
+		Paths.Add(Unit, Path);
+		Positions.Add(Unit, 0);
+		Unit->SetIsUnitMoving(true);
+	}
 }
 
 void UUnitsMover::MoveUnits(const TSet<UUnit*>& Units, UProvince* To)
@@ -68,7 +72,7 @@ void UUnitsMover::MoveUnits(const TMap<UMilitaryBranchDescription*, FUnitsSelect
 
 int32 UUnitsMover::Estimate(UUnit* Unit, UProvince* To)
 {
-	const TArray<TPair<UProvince*, int32>> Path = Graph.FindPath(Unit->GetPosition(), To);
+	const TArray<FPathElement> Path = Graph.FindPath(Unit->GetPosition(), To);
 	return Unit->Estimate(Path);
 }
 
@@ -86,7 +90,7 @@ void UUnitsMover::SuspendMovement(UUnit* Unit)
 void UUnitsMover::UnSuspendMovement(UUnit* Unit)
 {
 	SuspendedUnits.Remove(Unit);
-	if (Paths[Unit][Positions[Unit]].Value == 0)
+	if (Paths[Unit][Positions[Unit]].Cost == 0)
 	{
 		Paths.Remove(Unit);
 		Positions.Remove(Unit);
@@ -95,7 +99,7 @@ void UUnitsMover::UnSuspendMovement(UUnit* Unit)
 
 bool UUnitsMover::Retreat(UUnit* Unit)
 {
-	TArray<TPair<UProvince*, int32>> Path = Graph.CreateRetreatPath(Unit->GetPosition(), Unit->GetCountryController());
+	TArray<FPathElement> Path = Graph.CreateRetreatPath(Unit->GetPosition(), Unit->GetCountryController());
 	if (!Path.IsEmpty())
 	{
 		Paths.Add(Unit, Path);
@@ -120,7 +124,7 @@ void UUnitsMover::Clear()
 void UUnitsMover::Init(UScenario* Scenario)
 {
 	UGameInstance* GameInstance = GetGameInstance();
-	Graph = FGraph(GameInstance->GetSubsystem<UMapsDataGatherer>()->GetNeighbourProvinces());
+	Graph = FGraph(GameInstance->GetSubsystem<UMapsDataGatherer>()->GetNeighbourProvinces(), GameInstance->GetSubsystem<UMapsDataGatherer>());
 	GameInstance->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsMover::DoUnitMovement, UnitMoveTimeDelta);
 }
 
@@ -142,11 +146,11 @@ void UUnitsMover::MoveUnits()
 	for (const auto& [Unit, Position]: Positions)
 	{
 		if (SuspendedUnits.Contains(Unit)) continue;
-		Paths[Unit][Position].Value--;
-		if (Paths[Unit][Position].Value == 0)
+		Paths[Unit][Position].Cost--;
+		if (Paths[Unit][Position].Cost == 0)
 		{
-			NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].Key);
-			Unit->Move(Paths[Unit][Position].Key);
+			NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].To);
+			Unit->Move(Paths[Unit][Position].To);
 			Positions[Unit]++;
 			if (Positions[Unit] >= Paths[Unit].Num()) UnitsArrived.Enqueue(Unit);
 		}

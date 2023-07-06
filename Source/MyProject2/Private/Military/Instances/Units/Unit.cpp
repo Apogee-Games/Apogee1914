@@ -2,6 +2,7 @@
 
 #include "Administration/Managers/CountriesManager.h"
 #include "Economics/Description/Goods/MilitaryGoodDescription.h"
+#include "Maps/Graph.h"
 
 void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince)
 {
@@ -47,13 +48,13 @@ UProvince* UUnit::GetPosition() const
 	return Province;
 }
 
-int32 UUnit::Estimate(const TArray<TPair<UProvince*, int>>& Path)
+int32 UUnit::Estimate(const TArray<FPathElement>& Path)
 {
 	//TODO: Add additional logic for better estimation
 	int32 Result = 0;
 	for (const auto& Pair : Path)
 	{
-		Result += Pair.Value;
+		Result += Pair.Cost;
 	}
 	return Result;
 }
@@ -90,7 +91,7 @@ UUnitsCollection* UUnit::GetUnitsCollection() const
 
 float UUnit::GetAttackScore()
 {
-	float EquipmentSupplyScale = FMath::Max(0.1, SupplyNeeds->GetSupplyPercentage());
+	float EquipmentSupplyScale = FMath::Max(0.1f, SupplyNeeds->GetSupplyPercentage());
 	
 	float Score = UnitDescription->Attack * Manpower * (Training + 1) * EquipmentSupplyScale;
 
@@ -109,7 +110,7 @@ float UUnit::GetAttackScore()
 
 float UUnit::GetDefenceScore()
 {
-	float EquipmentSupplyScale = FMath::Max(0.1, SupplyNeeds->GetSupplyPercentage());
+	float EquipmentSupplyScale = FMath::Max(0.1f, SupplyNeeds->GetSupplyPercentage());
 
 	float Score = UnitDescription->Defence * Manpower * (Training + 1) * EquipmentSupplyScale;
 
@@ -137,5 +138,15 @@ float UUnit::Damage(float DamageScore)
 float UUnit::GetManpower() const
 {
 	return Manpower;
+}
+
+void UUnit::SetIsUnitMoving(bool InbIsUnitMoving)
+{
+	bIsUnitMoving = InbIsUnitMoving;
+}
+
+bool UUnit::IsUnitMoving() const
+{
+	return bIsUnitMoving;
 }
 
