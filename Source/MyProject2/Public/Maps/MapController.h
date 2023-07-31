@@ -8,6 +8,17 @@
 #include "Interfaces/BaseManager.h"
 #include "MapController.generated.h"
 
+UENUM()
+enum class EMapMode
+{
+	CountriesMap,
+	AlliancesMap,
+	RelationsMap,
+	IdeologiesMap
+};
+
+ENUM_RANGE_BY_FIRST_AND_LAST(EMapMode, EMapMode::CountriesMap, EMapMode::IdeologiesMap)
+
 UCLASS()
 class MYPROJECT2_API UMapController : public UBaseManager
 {

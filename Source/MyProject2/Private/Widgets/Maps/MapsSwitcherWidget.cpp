@@ -1,23 +1,66 @@
 ﻿#include "Widgets/Maps/MapsSwitcherWidget.h"
 
+#include "Blueprint/WidgetTree.h"
+#include "Components/ComboBox.h"
+#include "Components/ComboBoxKey.h"
+#include "Components/ComboBoxString.h"
+#include "Components/Image.h"
+#include "Components/TextBlock.h"
+#include "Framework/Styling/ComboButtonWidgetStyle.h"
+#include "Kismet/KismetStringLibrary.h"
 #include "Maps/MapController.h"
 
 void UMapsSwitcherWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	FlagsMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnFlagsMapButtonClick);
-	CountriesMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnCountriesMapButtonClick);
-	RelationsMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnRelationsMapButtonClick);
-	AlliancesMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnAlliancesMapButton);
-	IdeologyMapButton->OnClicked.AddDynamic(this, &UMapsSwitcherWidget::OnIdeologyMapButtonClick);
-	ProvinceOutlineMapCheckBox->OnCheckStateChanged.AddDynamic(this, &UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck);
+
+	for (int32 i = 0; i < 5; ++i)
+	{
+		UComboBoxKey* ComboBox = WidgetTree->ConstructWidget<UComboBoxKey>();
+		for (const auto& MapMode: TEnumRange<EMapMode>())
+		{
+			if (MapModesNames.Contains(MapMode)) {
+				ComboBox->AddOption(FName(MapModesNames[MapMode]));
+			}
+		}
+		
+		ComboBox->OnGenerateContentWidget.BindDynamic(this, &ThisClass::CreateContentWidget);
+		ComboBox->OnGenerateItemWidget.BindDynamic(this, &ThisClass::CreateItemWidget);
+		MapOptions->AddChildToHorizontalBox(ComboBox);
+	}
 }
 
-void UMapsSwitcherWidget::OnFlagsMapButtonClick()
+UWidget* UMapsSwitcherWidget::CreateContentWidget(FName Item)
 {
-	//GetGameInstance()->GetSubsystem<UMapController>()->SelectFlagsMap(GetOwningPlayerPawn<AHumanPlayerPawn>());
+	for (EMapMode MapMode : TEnumRange<EMapMode>())
+	{
+		if (FName(MapModesNames[MapMode]) == Item)
+		{
+			UImage* Image = WidgetTree->ConstructWidget<UImage>();
+			Image->SetBrushResourceObject(MapModesIcons[MapMode]);
+			return Image;
+		}
+	}
+	
+	return nullptr;
 }
 
+UWidget* UMapsSwitcherWidget::CreateItemWidget(FName Item)
+{
+	for (EMapMode MapMode : TEnumRange<EMapMode>())
+	{
+		if (FName(MapModesNames[MapMode]) == Item)
+		{
+			UImage* Image = WidgetTree->ConstructWidget<UImage>();
+			Image->SetBrushResourceObject(MapModesIcons[MapMode]);
+			return Image;
+		}
+	}
+	
+	return nullptr;
+}
+
+/*
 void UMapsSwitcherWidget::OnCountriesMapButtonClick()
 {
 	GetGameInstance()->GetSubsystem<UMapController>()->SetCountriesMapAll();
@@ -36,9 +79,4 @@ void UMapsSwitcherWidget::OnAlliancesMapButton()
 void UMapsSwitcherWidget::OnIdeologyMapButtonClick()
 {
 	GetGameInstance()->GetSubsystem<UMapController>()->SetIdeologiesMapAll();
-}
-
-void UMapsSwitcherWidget::OnProvinceOutlineMapCheckBoxCheck(bool Value)
-{
-	GetGameInstance()->GetSubsystem<UMapController>()->SetOutlineEnabled(Value);
-}
+}*/
