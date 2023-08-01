@@ -209,7 +209,7 @@ void UUnitsSelectionComponent::UpdatePawnState() const
 
 void UUnitsSelectionComponent::ClearSelectionIfNeeded(bool AddToExisting)
 {
-	if (GetOwner<AHumanPlayerPawn>()->IsShiftPressed() || AddToExisting) return; // TODO: Do I need Shift here now? 
+	if (GetOwner<AHumanPlayerPawn>()->ShouldAppend() || AddToExisting) return; // TODO: Do I need Shift here now? 
 
 	ClearSelectedUnits();
 }

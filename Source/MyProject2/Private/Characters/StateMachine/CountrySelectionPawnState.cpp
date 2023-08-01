@@ -18,7 +18,7 @@ TSharedPtr<FPawnState> FCountrySelectionPawnState::LeftClick(APawn* ProvidedPawn
 {
 	ACountrySelectionPawn* Pawn = Cast<ACountrySelectionPawn>(ProvidedPawn);
 	
-	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
+	FVector2d Point = Pawn->GetMapActor()->GetMapPosition(Pawn);
 	
 	UProvince* Province = ProvidedPawn->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Point);
 

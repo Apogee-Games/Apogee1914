@@ -14,7 +14,7 @@ public:
 	
 	int32 AddSupply(UGoodDescription* GoodDescription, int32 AmountOfGood);
 
-	TArray<TPair<FName, int32>> GetSortedDemands();
+	TArray<TPair<FString, int32>> GetSortedDemands();
 	
 private:
 	UGoodBalance* GetBalanceInstanceOrElseInit(UGoodDescription* GoodDescription);

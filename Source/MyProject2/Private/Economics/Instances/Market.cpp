@@ -28,21 +28,23 @@ int32 UMarket::AddSupply(UGoodDescription* GoodDescription, const int32 AmountOf
 	
 }
 
-TArray<TPair<FName, int32>> UMarket::GetSortedDemands()
+TArray<TPair<FString, int32>> UMarket::GetSortedDemands()
 {
-	TArray<TPair<FName, int32>> SortedDemands;
+	TArray<TPair<FString, int32>> SortedDemands;
 
 	for(const auto &[GoodName, GoodBalance] : Balances)
 	{
 		const int32 Balance = GoodBalance->GetBalance();
 		if(Balance < 0)
 		{
-			SortedDemands.Add({GoodName, Balance});
+			SortedDemands.Add({GoodName.ToString(), Balance});
 		}
 	}
 	SortedDemands.HeapSort(
-		[](const TPair<FName, int32>& p1, const TPair<FName, int32>& p2)
-		{return p1 > p2;});
+		[](const TPair<FString, int32>& p1, const TPair<FString, int32>& p2)
+		{
+			return p1 > p2;
+		});
 	return SortedDemands;
 }
 
