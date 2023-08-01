@@ -2,6 +2,7 @@
 #pragma once
 #include "Administration/Instances/Province.h"
 #include "Interfaces/Ownable.h"
+#include "Maps/Graph.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/UnitSupplyNeeds.h"
 #include "Unit.generated.h"
@@ -25,7 +26,7 @@ public:
 
 	UProvince* GetPosition() const;
 	
-	int32 Estimate(const TArray<TPair<UProvince*, int32>>& Path);
+	int32 Estimate(const TArray<FPathElement>& Path);
 
 	int32 GetUnitTypeEquipmentRequirement(UGoodDescription* Good) const;
 
@@ -47,6 +48,8 @@ public:
 
 	float GetManpower() const;
 
+	void SetIsUnitMoving(bool InbIsUnitMoving);
+	bool IsUnitMoving() const;
 	// bool CanAccessProvince(UProvince* Province);
 
 	// FString GetProvinceAccessType(UProvince* Province);
@@ -67,6 +70,8 @@ private:
 	UPROPERTY()
 	UProvince* Province;
 
+	bool bIsUnitMoving = false;
+	
 	float Manpower;
 
 	float Training = 0;

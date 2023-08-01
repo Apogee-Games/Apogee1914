@@ -1,19 +1,30 @@
 #pragma once
 
+#include "MapsDataGatherer.h"
 #include "Administration/Interfaces/Observable/ProvinceOwningCountryObservable.h"
 
 class UProvince;
+
+struct FPathElement
+{
+	UProvince* To;
+	int32 Cost;
+};
 
 class FGraph
 {
 public:
 	FGraph();
 
-	explicit FGraph(const TMap<UProvince*, TSet<UProvince*>>& AdjacencyList);
+	FGraph(const TMap<UProvince*, TSet<UProvince*>>& AdjacencyList, UMapsDataGatherer* DataGatherer);
 
-	TArray<TPair<UProvince*, int32>> FindPath(UProvince* From, UProvince* To);
+	TArray<FPathElement> FindPath(UProvince* From, UProvince* To);
 
-	TArray<TPair<UProvince*, int32>> CreateRetreatPath(UProvince* From, UCountry* Country);
+	TArray<FPathElement> CreateRetreatPath(UProvince* From, UCountry* Country);
 private:
 	TMap<UProvince*, TSet<UProvince*>> AdjacencyList;
+
+	UMapsDataGatherer* DataGatherer;
+
+	TArray<FPathElement> FindPathInternal(UProvince* From, UProvince* To);
 };
