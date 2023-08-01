@@ -21,8 +21,8 @@ void UPlayerMovementComponent::Move(float DeltaTime)
 
 void UPlayerMovementComponent::Scroll(float Value)
 {
-	MovementDirection.X = FMath::Clamp(Value, -1, 1);
-	RotationDirection.Pitch = FMath::Clamp(Value, -1, 1);
+	MovementDirection.X = FMath::Clamp(Value, -1.0f, 1.0f);
+	RotationDirection.Pitch = FMath::Clamp(Value, -1.0f, 1.0f);
 }
 
 void UPlayerMovementComponent::MoveUp(float Value)

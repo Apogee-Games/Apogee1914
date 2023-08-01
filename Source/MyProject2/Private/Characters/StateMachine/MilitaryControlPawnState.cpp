@@ -30,7 +30,7 @@ TSharedPtr<FPawnState> FMilitaryControlPawnState::RightClick(APawn* ProvidedPawn
 		return FMapBrowsingPawnState::GetInstance()->RightClick(ProvidedPawn);
 	}
 	
-	FVector2d Point = Pawn->MapActor->GetMapPosition(Pawn);
+	FVector2d Point = Pawn->GetMapActor()->GetMapPosition(Pawn);
 
 	UProvince* To = Pawn->GetGameInstance()->GetSubsystem<UMapController>()->SelectProvince(Point);
 

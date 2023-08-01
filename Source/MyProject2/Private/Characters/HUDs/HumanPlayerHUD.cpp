@@ -138,7 +138,7 @@ void AHumanPlayerHUD::UpdateWidgetsVisibility()
 			continue;
 		}
 		
-		Widget->RemoveFromViewport();
+		Widget->RemoveFromParent();
 	}
 }
 

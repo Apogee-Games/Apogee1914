@@ -1,5 +1,14 @@
 ﻿#include "Widgets/TopPanelWidget.h"
+
+#include "Administration/Instances/Country.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Characters/StateMachine/BuildingCreationPawnState.h"
+#include "Characters/StateMachine/CountryManagementPawnState.h"
+#include "Characters/StateMachine/LawsBrowsingPawnState.h"
+#include "Characters/StateMachine/ProductionBrowsingPawnState.h"
+#include "Characters/StateMachine/StorageBrowsingPawnState.h"
+#include "Characters/StateMachine/SupplyBrowsingPawnState.h"
+#include "Characters/StateMachine/UnitCreationPawnState.h"
 
 void UTopPanelWidget::NativeConstruct()
 {
@@ -20,35 +29,35 @@ void UTopPanelWidget::NativeConstruct()
 
 void UTopPanelWidget::OnUnitCreationButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchUnitCreationState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FUnitCreationPawnState>();
 }
 
 void UTopPanelWidget::OnStorageBrowsingButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchStorageBrowsingState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FStorageBrowsingPawnState>();
 }
 
 void UTopPanelWidget::OnSupplyBrowsingButton()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchSupplyBrowsingState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FSupplyBrowsingPawnState>();
 }
 
 void UTopPanelWidget::OnBuildingCreationButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchBuildingCreationState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FBuildingCreationPawnState>();
 }
 
 void UTopPanelWidget::OnCountryFlagButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchCountryManagementState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FCountryManagementPawnState>();
 }
 
 void UTopPanelWidget::OnLawsBrowsingButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchLawsBrowsingState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FLawsBrowsingPawnState>();
 }
 
 void UTopPanelWidget::OnProductionBrowsingButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchProductionBrowsingState();
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->SwitchState<FProductionBrowsingPawnState>();
 }
