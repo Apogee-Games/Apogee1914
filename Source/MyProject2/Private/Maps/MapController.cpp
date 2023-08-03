@@ -19,6 +19,17 @@ void UMapController::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
+void UMapController::SetMapMode(EMapMode MapMode)
+{
+	switch (MapMode)
+	{
+	case EMapMode::AlliancesMap: SetAlliancesMapAll(); break;
+	case EMapMode::IdeologiesMap: SetIdeologiesMapAll(); break;
+	case EMapMode::CountriesMap: SetCountriesMapAll(); break;
+	case EMapMode::RelationsMap: SetCountryRelationMapAll(); break;
+	}
+}
+
 void UMapController::SetCountriesMapAll()
 {
 	ColorGetter = [this](UProvince* Province)
@@ -126,7 +137,7 @@ ELoadStage UMapController::GetLoadStage()
 
 void UMapController::Clear()
 {
-	
+	MapItems.Empty();
 }
 
 void UMapController::Init(UScenario* Scenario)
@@ -147,6 +158,14 @@ void UMapController::Init(UScenario* Scenario)
 		Scenario->ProvincesColorsLookUpTexture->ResizeTarget(Provinces.Num(), 1);
 
 		SetCountriesMapAll();
+
+		// TODO: Remove this hard code and add save/load
+		
+		MapItems.Init(EMapMode::None, 5);
+		MapItems[0] = EMapMode::CountriesMap;
+		SelectedMapItem = 0;
+
+		bOutlineEnabled = false;
 	});
 }
 

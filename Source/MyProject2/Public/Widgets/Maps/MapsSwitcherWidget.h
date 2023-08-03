@@ -1,9 +1,10 @@
 ﻿#pragma once
 #include "Blueprint/UserWidget.h"
-#include "Components/Button.h"
-#include "Components/CheckBox.h"
-
+#include "Maps/MapController.h"
 #include "MapsSwitcherWidget.generated.h"
+
+class UMapModeItemWidget;
+class UMapModeComboBox;
 
 UCLASS()
 class UMapsSwitcherWidget: public UUserWidget
@@ -11,40 +12,42 @@ class UMapsSwitcherWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* FlagsMapButton;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* CountriesMapButton;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* RelationsMapButton;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* AlliancesMapButton;
-
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UButton* IdeologyMapButton;
+	UHorizontalBox* MapOptions;
 	
-	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UCheckBox* ProvinceOutlineMapCheckBox;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMapModeComboBox> MapModeComboBoxClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UMapModeItemWidget> MapModeItemWidgetClass;
 
 	virtual void NativeConstruct() override;
-private:
-	UFUNCTION()
-	void OnFlagsMapButtonClick();
+protected:
+	void RefreshOptions(const TArray<EMapMode>& MapItems);
 
 	UFUNCTION()
-	void OnCountriesMapButtonClick();
+	UWidget* OnCreateContentWidget(EMapMode Item);
 
 	UFUNCTION()
-	void OnRelationsMapButtonClick();
+	UWidget* OnCreateItemWidget(EMapMode Item);
 
 	UFUNCTION()
-	void OnAlliancesMapButton();
+	void OnItemSelected(EMapMode SelectedItem, ESelectInfo::Type SelectionType);
 
 	UFUNCTION()
-	void OnIdeologyMapButtonClick();
+	void OnMapModeSelected(EMapMode MapMode);
+
+	void CreateWidgets();
+	void CreateComboBoxes(const TArray<EMapMode>& MapItems);
+
+	UPROPERTY()
+	UMapModeItemWidget* NoneMapModeContentWidget;
 	
-	UFUNCTION()
-	void OnProvinceOutlineMapCheckBoxCheck(bool Value);
+	UPROPERTY()
+	TArray<UMapModeComboBox*> ComboBoxes; 
+	
+	UPROPERTY()
+	TMap<EMapMode, UMapModeItemWidget*> Widgets;
+	
+	UPROPERTY()
+	UMapController* MapController;
 };
