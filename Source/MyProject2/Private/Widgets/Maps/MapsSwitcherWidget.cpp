@@ -1,82 +1,137 @@
 ﻿#include "Widgets/Maps/MapsSwitcherWidget.h"
-
 #include "Blueprint/WidgetTree.h"
-#include "Components/ComboBox.h"
-#include "Components/ComboBoxKey.h"
-#include "Components/ComboBoxString.h"
-#include "Components/Image.h"
-#include "Components/TextBlock.h"
-#include "Framework/Styling/ComboButtonWidgetStyle.h"
-#include "Kismet/KismetStringLibrary.h"
+#include "Components/HorizontalBox.h"
 #include "Maps/MapController.h"
+#include "Widgets/Maps/MapModeComboBox.h"
+#include "Widgets/Maps/MapModeItemWidget.h"
 
 void UMapsSwitcherWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	for (int32 i = 0; i < 5; ++i)
+	MapController = GetGameInstance()->GetSubsystem<UMapController>();
+	TArray<EMapMode>& MapItems = MapController->GetMapItems();
+	
+	CreateWidgets();
+	CreateComboBoxes(MapItems);
+	RefreshOptions(MapItems);
+}
+
+UWidget* UMapsSwitcherWidget::OnCreateContentWidget(EMapMode Item)
+{
+	if (Item == EMapMode::None)
 	{
-		UComboBoxKey* ComboBox = WidgetTree->ConstructWidget<UComboBoxKey>();
-		for (const auto& MapMode: TEnumRange<EMapMode>())
+		return NoneMapModeContentWidget;
+	}
+	
+	UMapModeItemWidget* Widget = Widgets[Item];
+	Widget->SetIsContentMode(true);
+	return Widget;
+}
+
+UWidget* UMapsSwitcherWidget::OnCreateItemWidget(EMapMode Item)
+{
+	UMapModeItemWidget* Widget = Widgets[Item];
+	Widget->SetIsContentMode(false);
+	return Widget;
+}
+
+void UMapsSwitcherWidget::OnItemSelected(EMapMode SelectedItem, ESelectInfo::Type SelectionType)
+{
+	TArray<EMapMode>& MapItems = MapController->GetMapItems();
+
+	int32 Index = INDEX_NONE;
+
+	for (int32 i = 0; i < MapItems.Num(); ++i)
+	{
+		if (ComboBoxes[i]->GetSelectedOption() != MapItems[i])
 		{
-			if (MapModesNames.Contains(MapMode)) {
-				ComboBox->AddOption(FName(MapModesNames[MapMode]));
-			}
+			Index = i;
+			break;
 		}
+	}
+
+	if (Index != INDEX_NONE)
+	{
+		MapItems[Index] = SelectedItem;
 		
-		ComboBox->OnGenerateContentWidget.BindDynamic(this, &ThisClass::CreateContentWidget);
-		ComboBox->OnGenerateItemWidget.BindDynamic(this, &ThisClass::CreateItemWidget);
+		RefreshOptions(MapItems);
+	}
+}
+
+void UMapsSwitcherWidget::OnMapModeSelected(EMapMode MapMode)
+{
+	MapController->SetMapMode(MapMode);
+}
+
+void UMapsSwitcherWidget::CreateWidgets()
+{
+	for (EMapMode MapMode: TEnumRange<EMapMode>())
+	{
+		UMapModeItemWidget* Widget = WidgetTree->ConstructWidget<UMapModeItemWidget>(MapModeItemWidgetClass);
+		Widget->SetMapMode(MapMode);
+		Widgets.Add(MapMode, Widget);
+	}
+
+	NoneMapModeContentWidget = WidgetTree->ConstructWidget<UMapModeItemWidget>(MapModeItemWidgetClass);
+	NoneMapModeContentWidget->SetMapMode(EMapMode::None);
+	NoneMapModeContentWidget->SetIsContentMode(true);
+}
+
+void UMapsSwitcherWidget::CreateComboBoxes(const TArray<EMapMode>& MapItems)
+{
+	for (int32 i = 0; i < MapItems.Num(); ++i)
+	{
+		UMapModeComboBox* ComboBox = WidgetTree->ConstructWidget<UMapModeComboBox>(MapModeComboBoxClass);
+
+		ComboBox->OnLeftMouseClick.BindDynamic(this, &ThisClass::OnMapModeSelected);
+		ComboBox->OnGenerateContentWidget.BindDynamic(this, &ThisClass::OnCreateContentWidget);
+		ComboBox->OnGenerateItemWidget.BindDynamic(this, &ThisClass::OnCreateItemWidget);
+		ComboBox->OnSelectionChanged.AddDynamic(this, &ThisClass::OnItemSelected);
+
+		ComboBox->AddOption(EMapMode::None);
+		ComboBox->SetSelectedOption(EMapMode::None);
+		
 		MapOptions->AddChildToHorizontalBox(ComboBox);
+		ComboBoxes.Add(ComboBox);
 	}
 }
 
-UWidget* UMapsSwitcherWidget::CreateContentWidget(FName Item)
+void UMapsSwitcherWidget::RefreshOptions(const TArray<EMapMode>& MapItems)
 {
-	for (EMapMode MapMode : TEnumRange<EMapMode>())
+	TSet<EMapMode> TakenMapModes;
+	for (EMapMode MapMode: MapItems)
 	{
-		if (FName(MapModesNames[MapMode]) == Item)
+		if (MapMode != EMapMode::None)
 		{
-			UImage* Image = WidgetTree->ConstructWidget<UImage>();
-			Image->SetBrushResourceObject(MapModesIcons[MapMode]);
-			return Image;
+			TakenMapModes.Add(MapMode);
 		}
 	}
-	
-	return nullptr;
-}
 
-UWidget* UMapsSwitcherWidget::CreateItemWidget(FName Item)
-{
-	for (EMapMode MapMode : TEnumRange<EMapMode>())
+	TArray<EMapMode> Options;
+	for (EMapMode MapMode: TEnumRange<EMapMode>())
 	{
-		if (FName(MapModesNames[MapMode]) == Item)
+		if (!TakenMapModes.Contains(MapMode))
 		{
-			UImage* Image = WidgetTree->ConstructWidget<UImage>();
-			Image->SetBrushResourceObject(MapModesIcons[MapMode]);
-			return Image;
+			Options.Add(MapMode);
 		}
 	}
-	
-	return nullptr;
-}
 
-/*
-void UMapsSwitcherWidget::OnCountriesMapButtonClick()
-{
-	GetGameInstance()->GetSubsystem<UMapController>()->SetCountriesMapAll();
-}
+	for (int32 i = 0; i < MapItems.Num(); ++i)
+	{
+		UMapModeComboBox* ComboBoxKey = ComboBoxes[i];
 
-void UMapsSwitcherWidget::OnRelationsMapButtonClick()
-{
-	GetGameInstance()->GetSubsystem<UMapController>()->SetCountryRelationMapAll();
-}
+		ComboBoxKey->OnSelectionChanged.RemoveAll(this);
 
-void UMapsSwitcherWidget::OnAlliancesMapButton()
-{
-	GetGameInstance()->GetSubsystem<UMapController>()->SetAlliancesMapAll();
-}
+		ComboBoxKey->ClearOptions();
 
-void UMapsSwitcherWidget::OnIdeologyMapButtonClick()
-{
-	GetGameInstance()->GetSubsystem<UMapController>()->SetIdeologiesMapAll();
-}*/
+		for (EMapMode Option: Options)
+		{
+			ComboBoxKey->AddOption(Option);
+		}
+
+		ComboBoxKey->SetSelectedOption(MapItems[i]);
+
+		ComboBoxKey->OnSelectionChanged.AddDynamic(this, &ThisClass::OnItemSelected);
+	}
+}

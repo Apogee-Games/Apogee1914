@@ -8,16 +8,17 @@
 #include "Interfaces/BaseManager.h"
 #include "MapController.generated.h"
 
-UENUM()
-enum class EMapMode
+UENUM(BlueprintType)
+enum class EMapMode : uint8
 {
+	None,
 	CountriesMap,
 	AlliancesMap,
 	RelationsMap,
 	IdeologiesMap
 };
 
-ENUM_RANGE_BY_FIRST_AND_LAST(EMapMode, EMapMode::CountriesMap, EMapMode::IdeologiesMap)
+ENUM_RANGE_BY_FIRST_AND_LAST(EMapMode, EMapMode::None, EMapMode::IdeologiesMap)
 
 UCLASS()
 class MYPROJECT2_API UMapController : public UBaseManager
@@ -26,6 +27,8 @@ class MYPROJECT2_API UMapController : public UBaseManager
 public:
 	virtual void SetScenario(UScenario* Scenario) override;
 
+	void SetMapMode(EMapMode MapMode);
+	
 	void SetCountriesMapAll();
 	void SetAlliancesMapAll();
 	void SetCountryRelationMapAll();
@@ -39,6 +42,11 @@ public:
 	
 	void SetOutlineEnabled(bool InbOutlineEnabled);
 
+	int32 GetSelectedMapItem() const { return SelectedMapItem; }
+	void SetSelectedMapItem(int32 InSelectedMapItem) { SelectedMapItem = InSelectedMapItem; }
+
+	TArray<EMapMode>& GetMapItems() { return MapItems; }
+	
 	virtual ELoadStage GetLoadStage() override;
 private:
 	FVector2d SizeVector;
@@ -55,7 +63,10 @@ private:
 	UPROPERTY()
 	TArray<UProvince*> Provinces;
 	
-	std::function<FLinearColor(UProvince*)> ColorGetter;
+	TFunction<FLinearColor(UProvince*)> ColorGetter;
+
+	TArray<EMapMode> MapItems;
+	int32 SelectedMapItem = 0;
 
 	bool bOutlineEnabled = false;
 	
