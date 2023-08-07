@@ -97,17 +97,31 @@ void UProvince::UpdateControllerCountry()
 
 void UProvince::TakeControl(UCountry* Country)
 {
+	UCountry* PreviousController = ControllerCountry;
+	
 	ControllerCountry->RemoveProvince(this);
 	Country->AddProvince(this);
 	ControllerCountry = Country;
-	Cast<UProvinceManager>(GetOuter())->NotifyProvinceNewControllingCountry(this);
+
+	FOnProvinceHasNewController& OnProvinceHasNewController = Cast<UProvinceManager>(GetOuter())->OnProvinceHasNewController;
+	if (OnProvinceHasNewController.IsBound())
+	{
+		OnProvinceHasNewController.Broadcast(this, PreviousController, Country);
+	}
 }
 
 void UProvince::Conquer(UCountry* Country)
 {
+	UCountry* PreviousOwner = OwnerCountry;
+	
 	OwnerCountry = Country;
 	ControllerCountry = Country;
-	//Cast<UProvinceManager>(GetOuter())->NotifyProvinceNewOwningCountry(this);
+
+	FOnProvinceHasNewOwner& OnProvinceHasNewOwner = Cast<UProvinceManager>(GetOuter())->OnProvinceHasNewOwner;
+	if (OnProvinceHasNewOwner.IsBound())
+	{
+		OnProvinceHasNewOwner.Broadcast(this, PreviousOwner, Country);
+	}
 }
 
 UStateDescription* UProvince::GetState() const

@@ -6,41 +6,35 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 
-void UAllianceCreationWidget::Init()
-{
-	CreateAllianceButton->OnClicked.AddDynamic(this, &UAllianceCreationWidget::OnCreateAllianceButtonClick);
-}
-
 void UAllianceCreationWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	AHumanPlayerPawn* HumanPlayerPawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	HumanPlayerPawn->OnCountryToBeInvitedToAllianceStatusChanged.AddUObject(this, &ThisClass::OnCountryToBeInvitedToAllianceStatusChanged);
+	
+	CreateAllianceButton->OnClicked.AddDynamic(this, &UAllianceCreationWidget::OnCreateAllianceButtonClick);
 	
 	InvitationalCountriesListView->ClearListItems();
 	ToBeInvitedCountriesListView->ClearListItems();
 	
-	TArray<UCountry*> Countries;
-	GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountryMap().GenerateValueArray(Countries);
-
 	UCountry* OwnersCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
 	
-	for (const auto& Country: Countries)
+	for (const auto& [Description, Country]: GetGameInstance()->GetSubsystem<UCountriesManager>()->GetCountryMap())
 	{
 		if (Country == OwnersCountry) continue;
-		InvitationalCountriesListView->AddItem(Country);
+		InvitationalCountriesListView->AddItem(Country); // TODO: Add filtering of some sort
 	}
 }
 
-void UAllianceCreationWidget::AddToBeInvitedCountry(UCountry* Country)
+void UAllianceCreationWidget::NativeDestruct()
 {
-	InvitationalCountriesListView->RemoveItem(Country);
-	ToBeInvitedCountriesListView->AddItem(Country);
-}
+	Super::NativeDestruct();
 
-void UAllianceCreationWidget::RemoveToBeInvitedCountry(UCountry* Country)
-{
-	InvitationalCountriesListView->AddItem(Country);
-	ToBeInvitedCountriesListView->RemoveItem(Country);
+	CreateAllianceButton->OnClicked.RemoveAll(this);
+
+	AHumanPlayerPawn* HumanPlayerPawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	HumanPlayerPawn->OnCountryToBeInvitedToAllianceStatusChanged.RemoveAll(this);
 }
 
 void UAllianceCreationWidget::OnCreateAllianceButtonClick()
@@ -62,4 +56,18 @@ void UAllianceCreationWidget::OnCreateAllianceButtonClick()
 	RelationshipsManager->CreateAlliance(AllianceLeader, AllianceName, InvitedCountries);
 
 	Pawn->SetPawnState(FMapBrowsingPawnState::GetInstance());
+}
+
+void UAllianceCreationWidget::OnCountryToBeInvitedToAllianceStatusChanged(UCountry* Country, EToBeInvitedCountryStatus ToBeInvitedCountryStatus)
+{
+	if (ToBeInvitedCountryStatus == EToBeInvitedCountryStatus::Added)
+	{
+		InvitationalCountriesListView->RemoveItem(Country);
+		ToBeInvitedCountriesListView->AddItem(Country);
+	}
+	if (ToBeInvitedCountryStatus == EToBeInvitedCountryStatus::Removed)
+	{
+		InvitationalCountriesListView->AddItem(Country);
+		ToBeInvitedCountriesListView->RemoveItem(Country);
+	}
 }

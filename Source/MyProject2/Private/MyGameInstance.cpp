@@ -77,7 +77,7 @@ void UMyGameInstance::SetRuledCountry(const int32 PlayerId, UCountry* Country)
 	if (PlayersRuledCountries.Contains(PlayerId)) CountriesRuledByPlayers[PlayersRuledCountries[PlayerId]->GetId()]--;
 	PlayersRuledCountries.Add(PlayerId, Country);
 	CountriesRuledByPlayers.Add(Country->GetId(), CountriesRuledByPlayers.Contains(Country->GetId()) ? CountriesRuledByPlayers[Country->GetId()] + 1 : 1);
-	OnCountrySelected.Broadcast(PlayerId, Country);
+	OnRuledCountrySelected.Broadcast(PlayerId, Country);
 }
 
 bool UMyGameInstance::IsCountryRuledByPlayer(UCountryDescription* CountryDescription)

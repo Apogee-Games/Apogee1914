@@ -34,16 +34,18 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UWidgetSwitcher* WidgetSwitcher;
-	
-	void Init();
-	
-	void SetCountry(UCountry* ProvidedCountry);
 
-	void RefreshData();
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 private:
 	UPROPERTY()
 	UCountry* OwnerCountry;
 
 	UPROPERTY()
 	UCountry* Country;
+
+	UFUNCTION()
+	void OnCountrySelected(UCountry* InCountry);
+
+	void RefreshData();
 };

@@ -73,6 +73,7 @@ FVector2d UMapsDataGatherer::GetProvinceCenter(const FColor& Color)
 	return ProvinceCenters[Color];
 }
 
+/*
 void UMapsDataGatherer::ProvinceHasNewControllingCountry(UProvince* Province)
 {
 	RemoveProvinceFromBox(Province);
@@ -80,7 +81,7 @@ void UMapsDataGatherer::ProvinceHasNewControllingCountry(UProvince* Province)
 	if (AddProvinceToNeighbourBoxes(Province)) return;
 
 	CreateNewBox(Province);
-}
+}*/
 
 ELoadStage UMapsDataGatherer::GetLoadStage()
 {

@@ -45,6 +45,6 @@ void UCountryUnitsSupplier::Supply(UUnit* Unit)
 
 	if (IsUnitUpdated)
 	{
-		Cast<UUnitsSupplyController>(GetOuter())->NotifyUnitSupply(Unit);
+		Cast<UUnitsSupplyController>(GetOuter())->OnUnitSupplied.Broadcast(Unit);
 	}
 }

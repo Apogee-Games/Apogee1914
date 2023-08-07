@@ -20,5 +20,5 @@ void UToBeInvitedCountryWidget::RefreshData()
 
 void UToBeInvitedCountryWidget::OnButtonClick()
 {
-	GetOwningPlayer<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetAllianceCreationWidget()->RemoveToBeInvitedCountry(Country);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->RemoveToBeInvitedCountry(Country);
 }

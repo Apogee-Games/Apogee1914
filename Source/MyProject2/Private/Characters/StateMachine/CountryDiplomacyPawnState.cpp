@@ -5,6 +5,7 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 #include "Maps/MapController.h"
+#include "MyProject2/MyProject2.h"
 
 TSharedPtr<FPawnState> FCountryDiplomacyPawnState::GetInstance()
 {
@@ -30,11 +31,7 @@ TSharedPtr<FPawnState> FCountryDiplomacyPawnState::RightClick(APawn* ProvidedPaw
 
 	if (!Province) return Instance;
 
-	AHumanPlayerHUD* HUD = Pawn->GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>();
-	
-	UCountryDiplomacyWidget* Widget = HUD->GetCountryDiplomacyWidget();
-	
-	Widget->SetCountry(Province->GetCountryController());
+	FGlobalUIDelegates::OnCountrySelected.Broadcast(Province->GetCountryController());
 
 	Pawn->GetGameInstance()->GetSubsystem<UMapController>()->SetCountryRelationMapAll(); // TODO: Add logic for one country
 

@@ -16,14 +16,16 @@ public:
 	UButton* BackButton;
 
 	virtual void NativeConstruct() override;
-
-	void CountryWasSelected(int32 PlayerId, UCountry* Country);
-
-	//TODO: Probably make button ready to play which will be accessible after everyone have pressed it :)
+	virtual void NativeDestruct() override;
 private:
 	UFUNCTION()
 	void OnPlayButtonClick();
 
 	UFUNCTION()
 	void OnBackButtonClick();
+
+	UFUNCTION()
+	void CountryWasSelected(int32 PlayerId, UCountry* Country);
+	
+	//TODO: Probably make button ready to play which will be accessible after everyone have pressed it :)
 };

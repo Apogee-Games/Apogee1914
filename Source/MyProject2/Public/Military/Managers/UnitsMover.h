@@ -5,12 +5,13 @@
 #include "Military/Instances/Units/Unit.h"
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
 #include "Military/Instances/Units/Collections/UnitsCollectionGroup.h"
-#include "Military/Interfaces/Observables/UnitMovementObservable.h"
 #include "Interfaces/BaseManager.h"
 #include "UnitsMover.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnUnitMoved, UUnit*, UProvince*, UProvince*)
+
 UCLASS(Abstract, Blueprintable)
-class UUnitsMover: public UBaseManager, public IUnitMovementObservable
+class UUnitsMover: public UBaseManager
 {
 	GENERATED_BODY()
 public:
@@ -21,13 +22,9 @@ public:
 	virtual void MoveUnit(UUnit* Unit, UProvince* To);
 
 	virtual void MoveUnits(const TSet<UUnit*>& Units, UProvince* To);
-
 	virtual void MoveUnits(const TArray<UUnit*>& Units, UProvince* To);
-
 	virtual void MoveUnits(const TSet<UUnitsCollection*>& UnitsCollections, UProvince* To);
-
 	virtual void MoveUnits(const TSet<UUnitsCollectionGroup*>& UnitsCollectionGroups, UProvince* To);
-
 	virtual void MoveUnits(const TMap<UMilitaryBranchDescription*, FUnitsSelection>& Selections, UProvince* To);
 	
 	virtual int32 Estimate(UUnit* Unit, UProvince* To);
@@ -35,7 +32,6 @@ public:
 	virtual void DoUnitMovement();
 	
 	void SuspendMovement(UUnit* Unit);
-
 	void UnSuspendMovement(UUnit* Unit);
 
 	bool Retreat(UUnit* Unit);
@@ -44,6 +40,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	FTimespan UnitMoveTimeDelta = FTimespan(1, 0, 0);
+
+	FOnUnitMoved OnUnitMoved;
 private:
 	FGraph Graph;
 

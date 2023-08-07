@@ -1,18 +1,24 @@
 ﻿#pragma once
 #include "Blueprint/UserWidget.h"
 #include "Components/ListView.h"
-#include "Economics/Interfaces/Observers/BuildingCreationObserver.h"
+#include "Economics/Instances/Buildings/Building.h"
+#include "Economics/Managers/BuildingManager.h"
 #include "ProductionListWidget.generated.h"
 
 UCLASS()
-class UProductionListWidget: public UUserWidget, public IBuildingCreationObserver
+class UProductionListWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* FactoriesListView;
 
-	void Init();
-
-	virtual void BuildingIsCreated(UBuilding* Building) override;
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+private:
+	UPROPERTY()
+	UCountry* OwnerCountry;
+	
+	UFUNCTION()
+	void OnBuildingStatusChanged(UBuilding* Building, EBuildingStatus BuildingStatus);
 };

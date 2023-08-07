@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Administration/Instances/Country.h"
 #include "Blueprint/UserWidget.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Components/Button.h"
 #include "Components/EditableTextBox.h"
 #include "Components/ListView.h"
@@ -24,17 +25,12 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UButton* CreateAllianceButton;
 
-	void Init();
-
 	virtual void NativeConstruct() override;
-
-	void SetCountry(UCountry* Country);
-
-	void AddToBeInvitedCountry(UCountry* Country);
-
-	void RemoveToBeInvitedCountry(UCountry* Country);
-
+	virtual void NativeDestruct() override;
 private:
 	UFUNCTION()
 	void OnCreateAllianceButtonClick();
+
+	UFUNCTION()
+	void OnCountryToBeInvitedToAllianceStatusChanged(UCountry* Country, EToBeInvitedCountryStatus ToBeInvitedCountryStatus);
 };

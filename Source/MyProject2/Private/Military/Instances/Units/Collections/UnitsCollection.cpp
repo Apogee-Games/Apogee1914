@@ -1,6 +1,34 @@
 
 #include "Military/Instances/Units/Collections/UnitsCollection.h"
 
+#include "Military/Managers/UnitsFactory.h"
+
+void UUnitsCollection::Init(UMilitaryBranchDescription* ProvidedMilitaryBranch)
+{
+	TFMilitaryCollection<UUnit*>::Init(ProvidedMilitaryBranch);
+	FOnUnitsCollectionStatusChanged& OnUnitsCollectionStatusChanged = Cast<UUnitsFactory>(GetOuter())->OnUnitsCollectionStatusChanged;
+	if (OnUnitsCollectionStatusChanged.IsBound())
+	{
+		OnUnitsCollectionStatusChanged.Broadcast(this, EUnitStatus::Formed);
+	}
+}
+
+void UUnitsCollection::Dissolve()
+{
+	FOnUnitsCollectionStatusChanged& OnUnitsCollectionStatusChanged = Cast<UUnitsFactory>(GetOuter())->OnUnitsCollectionStatusChanged;
+	if (OnUnitsCollectionStatusChanged.IsBound())
+	{
+		OnUnitsCollectionStatusChanged.Broadcast(this, EUnitStatus::Dissolved);
+	}
+	
+    if (UnitsCollectionGroup)
+    {
+    	UnitsCollectionGroup->Remove(this);
+    }
+    
+    ClearUnits();
+}
+
 bool UUnitsCollection::Add(UUnit* Unit)
 {
 	if (Unit->GetMilitaryBranch() != MilitaryBranch) return false;

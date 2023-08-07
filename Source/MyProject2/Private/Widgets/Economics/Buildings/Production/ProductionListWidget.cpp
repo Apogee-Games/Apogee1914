@@ -1,17 +1,44 @@
 ﻿#include "Widgets/Economics/Buildings/Production/ProductionListWidget.h"
-
+#include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Economics/Instances/Buildings/FactoryBuilding.h"
 #include "Economics/Managers/BuildingManager.h"
 
-void UProductionListWidget::Init()
+void UProductionListWidget::NativeConstruct()
 {
-	GetGameInstance()->GetSubsystem<UBuildingManager>()->AddBuildingCreationObserver(this);
+	Super::NativeConstruct();
+	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+	
+	UBuildingManager* BuildingManager = GetGameInstance()->GetSubsystem<UBuildingManager>();
+	BuildingManager->OnBuildingStatusChanged.AddUObject(this, &ThisClass::OnBuildingStatusChanged);
+
+	FactoriesListView->ClearListItems();
+	for (UBuilding* Building: BuildingManager->GetBuildings()) // TODO: Make "get" by country
+	{
+		if (Building->GetProvince()->GetCountryController() == OwnerCountry)
+		{
+			FactoriesListView->AddItem(Building);
+		}
+	}
 }
 
-void UProductionListWidget::BuildingIsCreated(UBuilding* Building)
+void UProductionListWidget::NativeDestruct()
 {
-	if (Cast<UFactoryBuilding>(Building))
+	Super::NativeDestruct();
+	GetGameInstance()->GetSubsystem<UBuildingManager>()->OnBuildingStatusChanged.RemoveAll(this);
+}
+
+void UProductionListWidget::OnBuildingStatusChanged(UBuilding* Building, EBuildingStatus BuildingStatus)
+{
+	if (Building->GetClass()->IsChildOf(UFactoryBuilding::StaticClass()) && OwnerCountry == Building->GetCountryController())
 	{
-		FactoriesListView->AddItem(Building);
+		if (BuildingStatus == EBuildingStatus::Constructed)
+		{
+			FactoriesListView->AddItem(Building);
+		}
+
+		if (BuildingStatus == EBuildingStatus::Destroyed)
+		{
+			FactoriesListView->RemoveItem(Building);
+		}
 	}
 }

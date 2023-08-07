@@ -10,6 +10,9 @@ class UUnitsCollection: public UObject, public TFMilitaryCollection<UUnit*>, pub
 {
 	GENERATED_BODY()
 public:
+	virtual void Init(UMilitaryBranchDescription* ProvidedMilitaryBranch) override;
+	void Dissolve();
+	
 	virtual bool Add(UUnit* Unit) override;
 	
 	virtual bool Remove(UUnit* Unit) override;

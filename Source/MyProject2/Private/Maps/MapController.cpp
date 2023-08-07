@@ -8,6 +8,7 @@
 #include "Administration/Instances/Province.h"
 #include "Administration/Managers/ProvinceManager.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Diplomacy/Instances/Alliance.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Maps/MapsDataGatherer.h"
 #include "Utils/TextureUtils.h"

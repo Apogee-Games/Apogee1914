@@ -3,21 +3,39 @@
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
+#include "MyProject2/MyProject2.h"
 
-void UDiplomaticPactsWidgets::Init()
+
+void UDiplomaticPactsWidgets::NativeConstruct()
 {
-	CreateNonAggressionPactButton->OnClicked.AddDynamic(this, &UDiplomaticPactsWidgets::OnCreateNonAggressionPactButtonClick);
-	BreakNonAggressionPactButton->OnClicked.AddDynamic(this, &UDiplomaticPactsWidgets::OnBreakNonAggressionPactButtonClick);
-	CreateDefencivePactButton->OnClicked.AddDynamic(this, &UDiplomaticPactsWidgets::OnCreateDefencivePactButtonClick);
-	BreakDefencivePactButton->OnClicked.AddDynamic(this, &UDiplomaticPactsWidgets::OnBreakDefencivePactButtonClick);
+	Super::NativeConstruct();
+
+	FGlobalUIDelegates::OnCountrySelected.AddUObject(this, &ThisClass::OnCountrySelected);
 	
-	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+	CreateNonAggressionPactButton->OnClicked.AddDynamic(this, &ThisClass::OnCreateNonAggressionPactButtonClick);
+	BreakNonAggressionPactButton->OnClicked.AddDynamic(this, &ThisClass::OnBreakNonAggressionPactButtonClick);
+	CreateDefencivePactButton->OnClicked.AddDynamic(this, &ThisClass::OnCreateDefencivePactButtonClick);
+	BreakDefencivePactButton->OnClicked.AddDynamic(this, &ThisClass::OnBreakDefencivePactButtonClick);
+
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->OnCountryRelationsTypeChanged.AddUObject(this, &ThisClass::OnCountryRelationsTypeChanged);
+	
+	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	OwnerCountry = Pawn->GetRuledCountry();
+	OnCountrySelected(Pawn->GetSelectedCountry());
 }
 
-void UDiplomaticPactsWidgets::SetCountry(UCountry* ProvidedCountry)
+void UDiplomaticPactsWidgets::NativeDestruct()
 {
-	Country = ProvidedCountry;
-	RefreshData();
+	Super::NativeDestruct();
+
+	FGlobalUIDelegates::OnCountrySelected.RemoveAll(this);
+
+	CreateNonAggressionPactButton->OnClicked.RemoveAll(this);
+	BreakNonAggressionPactButton->OnClicked.RemoveAll(this);
+	CreateDefencivePactButton->OnClicked.RemoveAll(this);
+	BreakDefencivePactButton->OnClicked.RemoveAll(this);
+	
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->OnCountryRelationsTypeChanged.RemoveAll(this);
 }
 
 void UDiplomaticPactsWidgets::RefreshData()
@@ -30,7 +48,7 @@ void UDiplomaticPactsWidgets::RefreshData()
 		NonAggressionPactCreationRemovalWidgetSwitcher->SetActiveWidgetIndex(0);
 		CreateNonAggressionPactButton->SetIsEnabled(OwnerCountry->CanCreateNonAggressionPactWith(Country));
 	}
-	
+
 	if (OwnerCountry->HasDefencivePactWith(Country))
 	{
 		DefencivePactCreationRemovalWidgetSwitcher->SetActiveWidgetIndex(1);
@@ -44,24 +62,34 @@ void UDiplomaticPactsWidgets::RefreshData()
 
 void UDiplomaticPactsWidgets::OnCreateNonAggressionPactButtonClick()
 {
-	GetGameInstance()->GetSubsystem<URelationshipsManager>()->CreateNonAggressionPact(OwnerCountry, Country);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
+	OwnerCountry->CreateNonAggressionPactWith(Country);
 }
 
 void UDiplomaticPactsWidgets::OnBreakNonAggressionPactButtonClick()
 {
-	GetGameInstance()->GetSubsystem<URelationshipsManager>()->BreakNonAggressionPact(OwnerCountry, Country);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
+	OwnerCountry->BreakNonAggressionPactWith(Country);
 }
 
 void UDiplomaticPactsWidgets::OnCreateDefencivePactButtonClick()
 {
-	GetGameInstance()->GetSubsystem<URelationshipsManager>()->CreateDefencivePact(OwnerCountry, Country);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
+	OwnerCountry->CreateDefencivePactWith(Country);
 }
 
 void UDiplomaticPactsWidgets::OnBreakDefencivePactButtonClick()
 {
-	GetGameInstance()->GetSubsystem<URelationshipsManager>()->BreakDefencivePact(OwnerCountry, Country);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
+	OwnerCountry->BreakDefencivePactWith(Country);
+}
+
+void UDiplomaticPactsWidgets::OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation)
+{
+	if (ProbableOwner == OwnerCountry && ProbableCountry == Country)
+	{
+		RefreshData();
+	}
+}
+
+void UDiplomaticPactsWidgets::OnCountrySelected(UCountry* InCountry)
+{
+	Country = InCountry;
+	RefreshData();
 }

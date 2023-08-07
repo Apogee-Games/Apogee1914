@@ -9,6 +9,9 @@ class UUnitsCollectionGroup: public UObject, public TFMilitaryCollection<UUnitsC
 {
 	GENERATED_BODY()
 public:
+	virtual void Init(UMilitaryBranchDescription* ProvidedMilitaryBranch) override;
+	void Dissolve();
+	
 	virtual bool Add(UUnitsCollection* Collection) override;
 	
 	virtual bool Remove(UUnitsCollection* Collection) override;

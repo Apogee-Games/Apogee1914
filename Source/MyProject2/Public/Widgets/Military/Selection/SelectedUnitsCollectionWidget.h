@@ -3,12 +3,11 @@
 #include "Components/Image.h"
 #include "Components/ListView.h"
 #include "Components/TextBlock.h"
-#include "Military/Instances/Units/Collections/UnitsCollection.h"
-#include "Military/Interfaces/Observers/UnitRemovalObserver.h"
+#include "Military/Managers/UnitsFactory.h"
 #include "SelectedUnitsCollectionWidget.generated.h"
 
 UCLASS()
-class USelectedUnitsCollectionWidget: public UUserWidget, public IUnitRemovalObserver
+class USelectedUnitsCollectionWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
@@ -45,12 +44,13 @@ public:
 	void RefreshData();
 
 	virtual void NativeDestruct() override;
-	
-	virtual void UnitIsRemoved(UUnit* Unit) override;
 private:
 	UPROPERTY()
 	UUnitsCollection* UnitsCollection;
 
+	UPROPERTY()
+	UUnitsFactory* UnitsFactory;
+	
 	UFUNCTION()
 	void OnButtonClick();
 
@@ -59,4 +59,7 @@ private:
 
 	UFUNCTION()
 	void OnCommanderButtonClick();
+
+	UFUNCTION()
+	void OnUnitStatusChanged(UUnit* Unit, EUnitStatus UnitStatus);
 };

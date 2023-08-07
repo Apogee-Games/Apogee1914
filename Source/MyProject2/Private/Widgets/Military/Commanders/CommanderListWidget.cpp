@@ -4,10 +4,13 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "People/Managers/PeopleManager.h"
 
-void UCommanderListWidget::Init()
+void UCommanderListWidget::NativeConstruct()
 {
-	UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
+	Super::NativeConstruct();
 	
+	CommandersListView->ClearListItems();
+	
+	UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
 	const TArray<UPerson*> People = GetGameInstance()->GetSubsystem<UPeopleManager>()->GetPeopleByProfession(CommanderProfession, CountryDescription);
 	for (const auto& Person: People)
 	{

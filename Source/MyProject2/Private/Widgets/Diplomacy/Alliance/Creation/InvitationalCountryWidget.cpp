@@ -7,6 +7,12 @@ void UInvitationalCountryWidget::NativeConstruct()
 	Button->OnClicked.AddDynamic(this, &UInvitationalCountryWidget::OnButtonClick);
 }
 
+void UInvitationalCountryWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+	Button->OnClicked.RemoveAll(this);
+}
+
 void UInvitationalCountryWidget::SetCountry(UObject* ProvidedCountry)
 {
 	Country = Cast<UCountry>(ProvidedCountry);
@@ -20,5 +26,5 @@ void UInvitationalCountryWidget::RefreshData()
 
 void UInvitationalCountryWidget::OnButtonClick()
 {
-	GetOwningPlayer<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetAllianceCreationWidget()->AddToBeInvitedCountry(Country);
+	GetOwningPlayerPawn<AHumanPlayerPawn>()->AddToBeInvitedCountry(Country);
 }

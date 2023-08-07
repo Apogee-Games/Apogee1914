@@ -24,5 +24,10 @@ void UWarsListItemWidget::OnButtonClick()
 {
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
 	Pawn->SetPawnState(FWarDescriptionBrowsingPawnState::GetInstance());
-	Pawn->GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetWarDescriptionWidget()->SetWar(War);
+	
+	FOnWarSelected& OnWarSelected = Pawn->OnWarSelected;
+	if (OnWarSelected.IsBound())
+	{
+		OnWarSelected.Broadcast(War);
+	}
 }

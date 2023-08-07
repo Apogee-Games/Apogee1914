@@ -17,7 +17,8 @@ class UUnit: public UObject, public IOwnable
 	GENERATED_BODY()
 public:
 	virtual void Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince);
-
+	void Dissolve();
+	
 	bool CanTransportUnits() const;
 
 	// TODO: Think about transportation

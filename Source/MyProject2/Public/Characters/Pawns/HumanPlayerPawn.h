@@ -7,8 +7,20 @@
 #include "Characters/Components/UnitsSelectionComponent.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/Units/Unit.h"
+#include "Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListItemWidget.h"
 #include "Widgets/Economics/Buildings/Production/FactoryProductionWidget.h"
 #include "HumanPlayerPawn.generated.h"
+
+UENUM()
+enum class EToBeInvitedCountryStatus
+{
+	Added,
+	Removed
+};
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnCountryToBeInvitedToAllianceStatusChanged, UCountry*, EToBeInvitedCountryStatus)
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnWarSelected, UWar*)
+
 
 UCLASS()
 class MYPROJECT2_API AHumanPlayerPawn : public APlayablePawn
@@ -24,6 +36,7 @@ public:
 	UAudioComponent* AudioComponent;
 	
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -39,7 +52,11 @@ public:
 
 	void SetCommandable(ICommandable* Commandable);
 	ICommandable* GetSelectedCommandable() const;
-		
+
+	void AddToBeInvitedCountry(UCountry* Country);
+	void RemoveToBeInvitedCountry(UCountry* Country);
+	TArray<UCountry*>& GetToBeInvitedCountries();
+	
 	void Play(USoundBase* Song);
 
 	void SetIsAudioPaused(bool IsAudioPaused);
@@ -47,14 +64,32 @@ public:
 	void SetProductionSelectionFactory(UFactoryBuilding* Factory);
 
 	UFactoryBuilding* GetSelectedFactory() const;
+	
+	void SelectWar(UWar* War);
+	void SelectCountry(UCountry* Country);
+	void SelectProvince(UProvince* Province);
+
+	UWar* GetSelectedWar();
+	UCountry* GetSelectedCountry();
+	UProvince* GetSelectedProvince();
+	
+	FOnCountryToBeInvitedToAllianceStatusChanged OnCountryToBeInvitedToAllianceStatusChanged;
+	
+	FOnWarSelected OnWarSelected;
 private:
 	UPROPERTY() UCountry* RuledCountry;
+	
+	UPROPERTY() UCountry* SelectedCountry; // Used for UI stuff :)
+	UPROPERTY() UProvince* SelectedProvince;
+	UPROPERTY() UWar* SelectedWar;
 	
 	UPROPERTY() UUnitDescription* SelectedUnitDescription;
 	UPROPERTY() UBuildingDescription* SelectedBuildingDescription;
 	ICommandable* SelectedCommandable;
 
 	UPROPERTY() UFactoryBuilding* SelectedFactory;
+
+	UPROPERTY() TArray<UCountry*> ToBeInvitedCountry;
 
 	void PawnStateChanged(TSharedPtr<FPawnState> NewPawnState);
 

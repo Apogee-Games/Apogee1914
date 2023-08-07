@@ -37,7 +37,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<USongsGroupWidget> SongsGroupWidgetClass; 
 	
-	void Init(const TArray<USongsGroup*>& SongsGroups);
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 	
 	void Select(USongDescriptionWidget* SongDescriptionWidget);
 private:

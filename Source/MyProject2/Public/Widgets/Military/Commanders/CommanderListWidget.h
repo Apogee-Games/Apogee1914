@@ -15,5 +15,5 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UProfessionDescription* CommanderProfession;
 	
-	void Init();
+	virtual void NativeConstruct() override;
 };

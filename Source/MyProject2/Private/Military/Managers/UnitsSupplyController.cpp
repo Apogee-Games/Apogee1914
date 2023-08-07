@@ -11,16 +11,6 @@ void UUnitsSupplyController::SetScenario(UScenario* Scenario)
 	Init(Scenario);
 }
 
-void UUnitsSupplyController::UnitIsCreated(UUnit* Unit)
-{
-	CountrySupplier[Unit->GetCountryController()]->AddUnit(Unit);
-}
-
-void UUnitsSupplyController::UnitIsRemoved(UUnit* Unit)
-{
-	CountrySupplier[Unit->GetCountryController()]->RemoveUnit(Unit);
-}
-
 void UUnitsSupplyController::Supply()
 {
 	for (auto& [Country, Supplier]: CountrySupplier)
@@ -41,7 +31,8 @@ void UUnitsSupplyController::Clear()
 		Supplier->MarkAsGarbage();
 	}
 	CountrySupplier.Empty();
-	GetGameInstance()->GetSubsystem<UUnitsFactory>()->RemoveUnitCreationObserver(this);
+	
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->OnUnitStatusChanged.RemoveAll(this);
 }
 
 void UUnitsSupplyController::Init(UScenario* Scenario)
@@ -55,7 +46,18 @@ void UUnitsSupplyController::Init(UScenario* Scenario)
 		CountrySupplier.Add(Country, Supplier);
 	}
 
-	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
+	GameInstance->GetSubsystem<UUnitsFactory>()->OnUnitStatusChanged.AddUObject(this, &ThisClass::OnUnitStatusChanged);
 	GameInstance->GetSubsystem<UInGameTime>()->RegisterListener(this, &UUnitsSupplyController::Supply, SupplyTimeDelta);
+}
+
+void UUnitsSupplyController::OnUnitStatusChanged(UUnit* Unit, EUnitStatus UnitStatus)
+{
+	if (UnitStatus == EUnitStatus::Formed)
+	{
+		CountrySupplier[Unit->GetCountryController()]->AddUnit(Unit);
+	}
+	if (UnitStatus == EUnitStatus::Dissolved)
+	{
+		CountrySupplier[Unit->GetCountryController()]->RemoveUnit(Unit);
+	}
 }

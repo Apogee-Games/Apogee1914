@@ -5,16 +5,12 @@ void UUnitsCollectionsListWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	UGameInstance* GameInstance = GetGameInstance();
+	UnitsFactory = GetGameInstance()->GetSubsystem<UUnitsFactory>();
 
-	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionCreationObserver(this);
-	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionRemovalObserver(this);
+	UnitsFactory->OnUnitsCollectionStatusChanged.AddUObject(this, &ThisClass::OnUnitsCollectionStatusChanged);
+	UnitsFactory->OnUnitsCollectionGroupStatusChanged.AddUObject(this, &ThisClass::OnUnitsCollectionGroupStatusChanged);
 	
-	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupCreationObserver(this);
-	GameInstance->GetSubsystem<UUnitsFactory>()->AddUnitsCollectionGroupRemovalObserver(this);
-
-	
-	const TArray<UMilitaryBranchDescription*> MilitaryBranches = GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetMilitaryBranches();
+	const TArray<UMilitaryBranchDescription*> MilitaryBranches = UnitsFactory->GetMilitaryBranches();
 
 	for (const auto& MilitaryBranch: MilitaryBranches)
 	{
@@ -25,35 +21,34 @@ void UUnitsCollectionsListWidget::NativeConstruct()
 	}
 }
 
-void UUnitsCollectionsListWidget::UnitsCollectionIsCreated(UUnitsCollection* UnitsCollection)
-{
-	MilitaryBranchUnitsCollectionsListWidget[UnitsCollection->GetMilitaryBranch()]->AddUnitsCollection(UnitsCollection);
-}
-
-void UUnitsCollectionsListWidget::UnitsCollectionGroupIsCreated(UUnitsCollectionGroup* UnitsCollectionGroup)
-{
-	MilitaryBranchUnitsCollectionsListWidget[UnitsCollectionGroup->GetMilitaryBranch()]->AddUnitsCollectionGroup(UnitsCollectionGroup);
-}
-
-void UUnitsCollectionsListWidget::UnitsCollectionIsRemoved(UUnitsCollection* UnitsCollection)
-{
-	MilitaryBranchUnitsCollectionsListWidget[UnitsCollection->GetMilitaryBranch()]->RemoveUnistCollection(UnitsCollection);
-}
-
-void UUnitsCollectionsListWidget::UnitsCollectionGroupIsRemoved(UUnitsCollectionGroup* UnitsCollectionGroup)
-{
-	MilitaryBranchUnitsCollectionsListWidget[UnitsCollectionGroup->GetMilitaryBranch()]->RemoveUnitsCollectionGroup(UnitsCollectionGroup);
-}
-
 void UUnitsCollectionsListWidget::NativeDestruct()
 {
 	Super::NativeDestruct();
 
-	UGameInstance* GameInstance = GetGameInstance();
+	UnitsFactory->OnUnitsCollectionStatusChanged.RemoveAll(this);
+	UnitsFactory->OnUnitsCollectionGroupStatusChanged.RemoveAll(this);
+}
 
-	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionCreationObserver(this);
-	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionRemovalObserver(this);
-	
-	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupCreationObserver(this);
-	GameInstance->GetSubsystem<UUnitsFactory>()->RemoveUnitsCollectionGroupRemovalObserver(this);
+void UUnitsCollectionsListWidget::OnUnitsCollectionStatusChanged(UUnitsCollection* UnitsCollection, EUnitStatus UnitStatus)
+{
+	if (UnitStatus == EUnitStatus::Formed)
+	{
+		MilitaryBranchUnitsCollectionsListWidget[UnitsCollection->GetMilitaryBranch()]->AddUnitsCollection(UnitsCollection);
+	}
+	if (UnitStatus == EUnitStatus::Dissolved)
+	{
+		MilitaryBranchUnitsCollectionsListWidget[UnitsCollection->GetMilitaryBranch()]->RemoveUnistCollection(UnitsCollection);
+	}
+}
+
+void UUnitsCollectionsListWidget::OnUnitsCollectionGroupStatusChanged(UUnitsCollectionGroup* UnitsCollectionGroup, EUnitStatus UnitStatus)
+{
+	if (UnitStatus == EUnitStatus::Formed)
+	{
+		MilitaryBranchUnitsCollectionsListWidget[UnitsCollectionGroup->GetMilitaryBranch()]->AddUnitsCollectionGroup(UnitsCollectionGroup);
+	}
+	if (UnitStatus == EUnitStatus::Dissolved)
+	{
+		MilitaryBranchUnitsCollectionsListWidget[UnitsCollectionGroup->GetMilitaryBranch()]->RemoveUnitsCollectionGroup(UnitsCollectionGroup);
+	}
 }

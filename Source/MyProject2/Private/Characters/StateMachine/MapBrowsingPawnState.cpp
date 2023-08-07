@@ -1,10 +1,10 @@
 #include "Characters/StateMachine/MapBrowsingPawnState.h"
 
 #include "Characters/Pawns/HumanPlayerPawn.h"
-#include "Administration/Instances/State.h"
 #include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/StateMachine/CountryDiplomacyPawnState.h"
 #include "Maps/MapController.h"
+#include "MyProject2/MyProject2.h"
 
 TSharedPtr<FPawnState> FMapBrowsingPawnState::GetInstance()
 {
@@ -20,13 +20,9 @@ TSharedPtr<FPawnState> FMapBrowsingPawnState::LeftClick(APawn* ProvidedPawn)
 	AHumanPlayerPawn* Pawn = Cast<AHumanPlayerPawn>(ProvidedPawn);
 
 	UMapController* MapController = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<UMapController>();
-	UProvince* Province =  MapController->SelectProvince(Pawn->GetMapActor()->GetMapPosition(Pawn));
+	UProvince* Province = MapController->SelectProvince(Pawn->GetMapActor()->GetMapPosition(Pawn));
 
-	AHumanPlayerHUD* HUD = Pawn->GetController<APlayerController>()->GetHUD<AHumanPlayerHUD>();
-
-	UProvinceDataWidget* ProvinceDataWidget = HUD->GetProvinceDataWidget();
-
-	ProvinceDataWidget->SetNewProvince(Province);
+	FGlobalUIDelegates::OnProvinceSelected.Broadcast(Province);
 
 	Pawn->UnitSelectionComponent->ClearSelectedUnits();
 	

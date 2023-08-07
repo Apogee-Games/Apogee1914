@@ -1,11 +1,15 @@
 #include "Widgets/Economics/Buildings/Creation/BuildingsTypesListWidget.h"
+#include "MyGameInstance.h"
 
-
-void UBuildingsTypesListWidget::Init(const TArray<UBuildingDescription*>& BuildingDescriptions)
+void UBuildingsTypesListWidget::NativeConstruct()
 {
-	for (const auto& Building: BuildingDescriptions)
+	Super::NativeConstruct();
+	if (!BuildingsDescriptionScrollBox->GetChildrenCount())
 	{
-		AddBuilding(Building);
+		for (const auto& Building: GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptions)
+		{
+			AddBuilding(Building);
+		}
 	}
 }
 

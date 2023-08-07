@@ -19,6 +19,7 @@
 #include "Characters/StateMachine/UnitCreationPawnState.h"
 #include "Components/AudioComponent.h"
 #include "Military/Managers/UnitsFactory.h"
+#include "MyProject2/MyProject2.h"
 #include "Serialization/AsyncPackageLoader.h"
 
 // Sets default values
@@ -39,8 +40,19 @@ void AHumanPlayerPawn::BeginPlay()
 
 	OnPawnStateChanged.AddUObject(this, &ThisClass::PawnStateChanged);
 	OnPauseChanged.AddUObject(this, &ThisClass::PauseChanged);
+
+	FGlobalUIDelegates::OnCountrySelected.AddUObject(this, &ThisClass::SelectCountry);
+	FGlobalUIDelegates::OnProvinceSelected.AddUObject(this, &ThisClass::SelectProvince);
 	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
+}
+
+void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	
+	FGlobalUIDelegates::OnCountrySelected.RemoveAll(this);
+	FGlobalUIDelegates::OnProvinceSelected.RemoveAll(this);
 }
 
 void AHumanPlayerPawn::SetRuledCountry(UCountry* Country)
@@ -66,6 +78,23 @@ void AHumanPlayerPawn::SetCommandable(ICommandable* Commandable)
 ICommandable* AHumanPlayerPawn::GetSelectedCommandable() const
 {
 	return SelectedCommandable;
+}
+
+void AHumanPlayerPawn::AddToBeInvitedCountry(UCountry* Country)
+{
+	ToBeInvitedCountry.Add(Country);
+	OnCountryToBeInvitedToAllianceStatusChanged.Broadcast(Country, EToBeInvitedCountryStatus::Added);
+}
+
+void AHumanPlayerPawn::RemoveToBeInvitedCountry(UCountry* Country)
+{
+	ToBeInvitedCountry.Remove(Country);
+	OnCountryToBeInvitedToAllianceStatusChanged.Broadcast(Country, EToBeInvitedCountryStatus::Removed);
+}
+
+TArray<UCountry*>& AHumanPlayerPawn::GetToBeInvitedCountries()
+{
+	return ToBeInvitedCountry;
 }
 
 UUnitDescription* AHumanPlayerPawn::GetSelectedUnitDescription() const
@@ -140,4 +169,35 @@ void AHumanPlayerPawn::SetProductionSelectionFactory(UFactoryBuilding* Factory)
 UFactoryBuilding* AHumanPlayerPawn::GetSelectedFactory() const
 {
 	return SelectedFactory;
+}
+
+void AHumanPlayerPawn::SelectWar(UWar* War)
+{
+	SelectedWar = War;
+	OnWarSelected.Broadcast(War);
+}
+
+void AHumanPlayerPawn::SelectCountry(UCountry* Country)
+{
+	SelectedCountry = Country;
+}
+
+void AHumanPlayerPawn::SelectProvince(UProvince* Province)
+{
+	SelectedProvince = Province;
+}
+
+UWar* AHumanPlayerPawn::GetSelectedWar()
+{
+	return SelectedWar;
+}
+
+UCountry* AHumanPlayerPawn::GetSelectedCountry()
+{
+	return SelectedCountry;
+}
+
+UProvince* AHumanPlayerPawn::GetSelectedProvince()
+{
+	return SelectedProvince;
 }

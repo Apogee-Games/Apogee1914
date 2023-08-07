@@ -1,16 +1,24 @@
 #pragma once
 #include "StorageGoodWidget.h"
+#include "Administration/Instances/Country.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ListView.h"
-#include "Economics/Interfaces/Observers/StorageObserver.h"
 #include "StorageGoodsListWidget.generated.h"
+
 UCLASS()
-class UStorageGoodsListWidget: public UUserWidget, public IStorageObserver
+class UStorageGoodsListWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* GoodsListView;
 
-	virtual void GoodIsUpdated(EStorageType StorageType, UStoredGood* Good) override;
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+private:
+	UPROPERTY()
+	UCountry* OwnerCounty;
+	
+	UFUNCTION()
+	void GoodIsUpdated(EStorageType StorageType, UStoredGood* Good);
 };

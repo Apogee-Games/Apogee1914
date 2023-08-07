@@ -1,41 +1,39 @@
 ﻿#include "Widgets/Diplomacy/Menu/CountryDiplomacyWidget.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "MyProject2/MyProject2.h"
 
-void UCountryDiplomacyWidget::Init()
+void UCountryDiplomacyWidget::NativeConstruct()
 {
-	DiplomaticPactsWidget->Init();
-	WarManagementWidget->Init();
-	RelationsListWidget->Init();
-	AllianceManagementWidget->Init();
+	Super::NativeConstruct();
+
+	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	OwnerCountry = Pawn->GetRuledCountry();
+	OnCountrySelected(Pawn->GetSelectedCountry());
 	
-	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+	FGlobalUIDelegates::OnCountrySelected.AddUObject(this, &ThisClass::OnCountrySelected);
 }
 
-void UCountryDiplomacyWidget::SetCountry(UCountry* ProvidedCountry)
+void UCountryDiplomacyWidget::NativeDestruct()
 {
-	Country = ProvidedCountry;
+	Super::NativeDestruct();
 
-	DiplomaticPactsWidget->SetCountry(ProvidedCountry);
-	WarManagementWidget->SetCountry(ProvidedCountry);
-	RelationsListWidget->SetCountry(ProvidedCountry);
-	AllianceManagementWidget->SetCountry(ProvidedCountry);
-	
+	FGlobalUIDelegates::OnCountrySelected.RemoveAll(this);
+}
+
+void UCountryDiplomacyWidget::OnCountrySelected(UCountry* InCountry)
+{
+	Country = InCountry;
 	RefreshData();
 }
 
 void UCountryDiplomacyWidget::RefreshData()
 {
-	AllianceManagementWidget->RefreshData();
-
 	if (Country == OwnerCountry)
 	{
 		WidgetSwitcher->SetActiveWidgetIndex(0);
 	} else
 	{
 		WidgetSwitcher->SetActiveWidgetIndex(1);
-		DiplomaticPactsWidget->RefreshData();
-		WarManagementWidget->RefreshData();
-		RelationsListWidget->RefreshData();
 	}
 	
 	CountryFlag->SetBrushResourceObject(Country->GetFlag());

@@ -19,7 +19,6 @@ UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Provi
 
 	Unit->Init(Description, Province);
 	
-	NotifyUnitCreation(Unit);
 	Units.Add(Unit);
 	
 	return Unit;
@@ -38,7 +37,6 @@ UUnit* UUnitsFactory::CreateUnit(UUnitDescription* Description, UProvince* Provi
 	
 	Unit->Init(Description, Province);
 	
-	NotifyUnitCreation(Unit);
 	Units.Add(Unit);
 
 	return Unit;
@@ -64,7 +62,6 @@ UUnitsCollection* UUnitsFactory::CreateUnitCollection(UMilitaryBranchDescription
 
 	UnitCollection->Init(MilitaryBranch);
 
-	NotifyUnitsCollectionCreation(UnitCollection);
 	UnitsCollections.Add(UnitCollection);
 	return UnitCollection;
 }
@@ -89,7 +86,6 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(UMilitaryBranchD
 
 	UnitCollectionGroup->Init(MilitaryBranch);
 
-	NotifyUnitsCollectionGroupCreation(UnitCollectionGroup);
 	UnitsCollectionGroups.Add(UnitCollectionGroup);
 	return UnitCollectionGroup;
 }
@@ -104,49 +100,31 @@ void UUnitsFactory::RemoveUnits(const TArray<UUnit*>& UnitsToRemove, bool IsClea
 
 void UUnitsFactory::RemoveUnit(UUnit* Unit, bool IsClearing)
 {
-	NotifyUnitRemoval(Unit);
+	Unit->Dissolve();
 	
-	UUnitsCollection* Collection = Unit->GetUnitsCollection();
-	if (Collection)
-	{
-		Collection->Remove(Unit);
-	}
-
-	Unit->GetPosition()->RemoveUnit(Unit);
-
 	if (!IsClearing)
 	{
 		Units.Remove(Unit);
 	}
-	
 	
 	Unit->MarkAsGarbage();
 }
 
 void UUnitsFactory::RemoveUnitCollection(UUnitsCollection* UnitsCollection, bool IsClearing)
 {
-	NotifyUnitsCollectionRemoval(UnitsCollection);
-
-	UUnitsCollectionGroup* CollectionGroup = UnitsCollection->GetUnitsCollectionGroup();
-	if (CollectionGroup)
-	{
-		CollectionGroup->Remove(UnitsCollection);
-	}
-
-	UnitsCollection->ClearUnits();
+	UnitsCollection->Dissolve();
 
 	if (!IsClearing)
 	{
 		UnitsCollections.Remove(UnitsCollection);
 	}
 
-	
 	UnitsCollection->MarkAsGarbage();
 }
 
 void UUnitsFactory::RemoveUnitCollectionGroup(UUnitsCollectionGroup* UnitsCollectionGroup, bool IsClearing)
 {
-	NotifyUnitsCollectionGroupRemoval(UnitsCollectionGroup);
+	UnitsCollectionGroup->Dissolve();
 
 	UnitsCollectionGroup->ClearCollections();
 

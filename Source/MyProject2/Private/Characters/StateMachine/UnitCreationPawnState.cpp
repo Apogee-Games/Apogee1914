@@ -24,7 +24,7 @@ TSharedPtr<FPawnState> FUnitCreationPawnState::LeftClick(APawn* ProvidedPawn)
 	UMapController* MapController = Pawn->GetWorld()->GetGameInstance()->GetSubsystem<UMapController>();
 	UProvince* Province = MapController->SelectProvince(Pawn->GetMapActor()->GetMapPosition(Pawn));
 
-	if (Pawn->GetRuledCountry() != Province->GetCountryController()) return Instance;
+	if (!Province || Pawn->GetRuledCountry() != Province->GetCountryController()) return Instance;
 
 	UUnitsFactory* UnitsFactory = Pawn->GetGameInstance()->GetSubsystem<UUnitsFactory>();
 

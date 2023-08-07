@@ -1,6 +1,25 @@
 ﻿#include "Widgets/Diplomacy/Wars/Description/WarDescriptionWidget.h"
 
-void UWarDescriptionWidget::SetWar(UWar* War)
+#include "Administration/Instances/Country.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
+
+void UWarDescriptionWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+	
+	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	Pawn->OnWarSelected.AddUObject(this, &ThisClass::OnWarSelected);
+}
+
+void UWarDescriptionWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+
+	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	Pawn->OnWarSelected.RemoveAll(this);
+}
+
+void UWarDescriptionWidget::OnWarSelected(UWar* War)
 {
 	WarNameTextBlock->SetText(FText::FromString(War->GetName()));
 

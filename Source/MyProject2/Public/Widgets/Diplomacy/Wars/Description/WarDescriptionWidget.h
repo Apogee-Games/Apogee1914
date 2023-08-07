@@ -20,5 +20,9 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* AttackersListView;
 
-	void SetWar(UWar* War);
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+private:
+	UFUNCTION()
+	void OnWarSelected(UWar* War);
 };
