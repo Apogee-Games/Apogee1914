@@ -108,11 +108,7 @@ void UCountry::SetRelation(UCountry* Country, ERelationType Relation)
 	}
 
 	URelationshipsManager* RelationshipsManager = GetWorld()->GetGameInstance()->GetSubsystem<URelationshipsManager>();
-	FOnCountryRelationsTypeChanged& OnCountryRelationsTypeChanged = RelationshipsManager->OnCountryRelationsTypeChanged;
-	if (OnCountryRelationsTypeChanged.IsBound())
-	{
-		OnCountryRelationsTypeChanged.Broadcast(this, Country, Relation);
-	}
+	RelationshipsManager->OnCountryRelationsTypeChanged.Broadcast(this, Country, Relation);
 }
 
 bool UCountry::CreateNonAggressionPactWith(UCountry* Country)

@@ -43,6 +43,7 @@ void AHumanPlayerPawn::BeginPlay()
 
 	FGlobalUIDelegates::OnCountrySelected.AddUObject(this, &ThisClass::SelectCountry);
 	FGlobalUIDelegates::OnProvinceSelected.AddUObject(this, &ThisClass::SelectProvince);
+	FGlobalUIDelegates::OnWarSelected.AddUObject(this, &ThisClass::SelectWar);
 	
 	SetPawnState(FMapBrowsingPawnState::GetInstance());
 }
@@ -53,6 +54,7 @@ void AHumanPlayerPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	
 	FGlobalUIDelegates::OnCountrySelected.RemoveAll(this);
 	FGlobalUIDelegates::OnProvinceSelected.RemoveAll(this);
+	FGlobalUIDelegates::OnWarSelected.RemoveAll(this);
 }
 
 void AHumanPlayerPawn::SetRuledCountry(UCountry* Country)
@@ -174,7 +176,6 @@ UFactoryBuilding* AHumanPlayerPawn::GetSelectedFactory() const
 void AHumanPlayerPawn::SelectWar(UWar* War)
 {
 	SelectedWar = War;
-	OnWarSelected.Broadcast(War);
 }
 
 void AHumanPlayerPawn::SelectCountry(UCountry* Country)

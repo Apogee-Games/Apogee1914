@@ -1,6 +1,7 @@
 ﻿#include "Characters/HUDs/HumanPlayerHUD.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/WarDescriptionBrowsingPawnState.h"
+#include "MyProject2/MyProject2.h"
 #include "Widgets/Diplomacy/Wars/List/WarsListItemWidget.h"
 
 void UWarsListItemWidget::NativeConstruct()
@@ -25,9 +26,5 @@ void UWarsListItemWidget::OnButtonClick()
 	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
 	Pawn->SetPawnState(FWarDescriptionBrowsingPawnState::GetInstance());
 	
-	FOnWarSelected& OnWarSelected = Pawn->OnWarSelected;
-	if (OnWarSelected.IsBound())
-	{
-		OnWarSelected.Broadcast(War);
-	}
+	FGlobalUIDelegates::OnWarSelected.Broadcast(War);
 }

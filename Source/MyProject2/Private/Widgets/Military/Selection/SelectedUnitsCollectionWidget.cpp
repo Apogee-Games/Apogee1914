@@ -17,6 +17,17 @@ void USelectedUnitsCollectionWidget::NativeConstruct()
 	UnitsFactory->OnUnitStatusChanged.AddUObject(this, &ThisClass::OnUnitStatusChanged);
 }
 
+void USelectedUnitsCollectionWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+
+	Button->OnClicked.RemoveAll(this);
+	RemoveUnitsCollectionButton->OnClicked.RemoveAll(this);
+	CommanderButton->OnClicked.RemoveAll(this);
+	
+	UnitsFactory->OnUnitStatusChanged.RemoveAll(this);
+}
+
 void USelectedUnitsCollectionWidget::SetSelectedUnits(UObject* ProvidedUnitsCollection)
 {
 	UnitsCollection = Cast<UUnitsCollection>(ProvidedUnitsCollection);
@@ -44,12 +55,6 @@ void USelectedUnitsCollectionWidget::RefreshData()
 		CommanderImage->SetBrushResourceObject(nullptr);
 		CommanderNameTextBlock->SetText(FText::FromString(TEXT("None")));
 	}
-}
-
-void USelectedUnitsCollectionWidget::NativeDestruct()
-{
-	Super::NativeDestruct();
-	UnitsFactory->OnUnitStatusChanged.RemoveAll(this);
 }
 
 void USelectedUnitsCollectionWidget::OnButtonClick()

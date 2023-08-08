@@ -7,7 +7,6 @@
 #include "Characters/Components/UnitsSelectionComponent.h"
 #include "Military/Descriptions/UnitDescription.h"
 #include "Military/Instances/Units/Unit.h"
-#include "Widgets/Diplomacy/Wars/Join/OurWar/OurWarsListItemWidget.h"
 #include "Widgets/Economics/Buildings/Production/FactoryProductionWidget.h"
 #include "HumanPlayerPawn.generated.h"
 
@@ -19,8 +18,6 @@ enum class EToBeInvitedCountryStatus
 };
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnCountryToBeInvitedToAllianceStatusChanged, UCountry*, EToBeInvitedCountryStatus)
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnWarSelected, UWar*)
-
 
 UCLASS()
 class MYPROJECT2_API AHumanPlayerPawn : public APlayablePawn
@@ -74,12 +71,10 @@ public:
 	UProvince* GetSelectedProvince();
 	
 	FOnCountryToBeInvitedToAllianceStatusChanged OnCountryToBeInvitedToAllianceStatusChanged;
-	
-	FOnWarSelected OnWarSelected;
 private:
 	UPROPERTY() UCountry* RuledCountry;
 	
-	UPROPERTY() UCountry* SelectedCountry; // Used for UI stuff :)
+	UPROPERTY() UCountry* SelectedCountry; // Used for UI stuff :) TODO: Move it :)
 	UPROPERTY() UProvince* SelectedProvince;
 	UPROPERTY() UWar* SelectedWar;
 	

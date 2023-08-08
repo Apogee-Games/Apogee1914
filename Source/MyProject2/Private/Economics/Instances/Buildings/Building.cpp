@@ -7,20 +7,14 @@ void UBuilding::Init(UBuildingDescription* ProvidedBuildingDescription, UProvinc
 	BuildingDescription = ProvidedBuildingDescription;	
 	Province = ProvidedProvince;
 
-	FOnBuildingStatusChanged& OnBuildingStatusChanged = Cast<UBuildingManager>(GetOuter())->OnBuildingStatusChanged;
-	if (OnBuildingStatusChanged.IsBound())
-	{
-		OnBuildingStatusChanged.Broadcast(this, EBuildingStatus::Constructed);
-	}
+	UBuildingManager* BuildingManager = Cast<UBuildingManager>(GetOuter());
+	BuildingManager->OnBuildingStatusChanged.Broadcast(this, EBuildingStatus::Constructed);
 }
 
 void UBuilding::Destroy()
 {
-	FOnBuildingStatusChanged& OnBuildingStatusChanged = Cast<UBuildingManager>(GetOuter())->OnBuildingStatusChanged;
-	if (OnBuildingStatusChanged.IsBound())
-	{
-		OnBuildingStatusChanged.Broadcast(this, EBuildingStatus::Destroyed);
-	}
+	UBuildingManager* BuildingManager = Cast<UBuildingManager>(GetOuter());
+	BuildingManager->OnBuildingStatusChanged.Broadcast(this, EBuildingStatus::Destroyed);
 }
 
 UBuildingDescription* UBuilding::GetDescription() const

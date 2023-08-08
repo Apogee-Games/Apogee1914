@@ -7,3 +7,4 @@ IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, MyProject2, "MyProject2" 
 
 FGlobalUIDelegates::FOnCountrySelected FGlobalUIDelegates::OnCountrySelected;
 FGlobalUIDelegates::FOnProvinceSelected FGlobalUIDelegates::OnProvinceSelected;
+FGlobalUIDelegates::FOnWarSelected FGlobalUIDelegates::OnWarSelected;

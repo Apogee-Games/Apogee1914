@@ -5,20 +5,16 @@
 void UUnitsCollectionGroup::Init(UMilitaryBranchDescription* ProvidedMilitaryBranch)
 {
 	TFMilitaryCollection<UUnitsCollection*>::Init(ProvidedMilitaryBranch);
-	FOnUnitsCollectionGroupStatusChanged& OnUnitsCollectionGroupStatusChanged = Cast<UUnitsFactory>(GetOuter())->OnUnitsCollectionGroupStatusChanged;
-	if (OnUnitsCollectionGroupStatusChanged.IsBound())
-	{
-		OnUnitsCollectionGroupStatusChanged.Broadcast(this, EUnitStatus::Formed);
-	}
+	UUnitsFactory* UnitsFactory = Cast<UUnitsFactory>(GetOuter());
+	UnitsFactory->OnUnitsCollectionGroupStatusChanged.Broadcast(this, EUnitStatus::Formed);
 }
 
 void UUnitsCollectionGroup::Dissolve()
 {
-	FOnUnitsCollectionGroupStatusChanged& OnUnitsCollectionGroupStatusChanged = Cast<UUnitsFactory>(GetOuter())->OnUnitsCollectionGroupStatusChanged;
-	if (OnUnitsCollectionGroupStatusChanged.IsBound())
-	{
-		OnUnitsCollectionGroupStatusChanged.Broadcast(this, EUnitStatus::Dissolved);
-	}
+	UUnitsFactory* UnitsFactory = Cast<UUnitsFactory>(GetOuter());
+	UnitsFactory->OnUnitsCollectionGroupStatusChanged.Broadcast(this, EUnitStatus::Dissolved);
+
+	ClearCollections();
 }
 
 bool UUnitsCollectionGroup::Add(UUnitsCollection* Collection)

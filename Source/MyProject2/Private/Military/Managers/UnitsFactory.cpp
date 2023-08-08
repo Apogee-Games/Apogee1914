@@ -79,7 +79,7 @@ UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(UMilitaryBranchD
 
 UUnitsCollectionGroup* UUnitsFactory::CreateUnitCollectionGroup(UMilitaryBranchDescription* MilitaryBranch, UCountry* CountryOwner)
 {
-	UUnitsCollectionGroup* UnitCollectionGroup = NewObject<UUnitsCollectionGroup>();
+	UUnitsCollectionGroup* UnitCollectionGroup = NewObject<UUnitsCollectionGroup>(this);
 	
 	UnitCollectionGroup->SetCountryOwner(CountryOwner);
 	UnitCollectionGroup->SetCountryController(CountryOwner);

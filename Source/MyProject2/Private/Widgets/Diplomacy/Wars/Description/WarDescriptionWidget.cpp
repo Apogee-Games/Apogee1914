@@ -2,21 +2,22 @@
 
 #include "Administration/Instances/Country.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "MyProject2/MyProject2.h"
 
 void UWarDescriptionWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	
-	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
-	Pawn->OnWarSelected.AddUObject(this, &ThisClass::OnWarSelected);
+	OnWarSelected(GetOwningPlayerPawn<AHumanPlayerPawn>()->GetSelectedWar());
+	
+	FGlobalUIDelegates::OnWarSelected.AddUObject(this, &ThisClass::OnWarSelected);
 }
 
 void UWarDescriptionWidget::NativeDestruct()
 {
 	Super::NativeDestruct();
 
-	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
-	Pawn->OnWarSelected.RemoveAll(this);
+	FGlobalUIDelegates::OnWarSelected.RemoveAll(this);
 }
 
 void UWarDescriptionWidget::OnWarSelected(UWar* War)

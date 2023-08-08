@@ -86,11 +86,7 @@ void UAllianceManagementWidget::OnCreateAllianceWithAnotherCountryButtonClick()
 	AHumanPlayerPawn* HumanPlayerPawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
 	HumanPlayerPawn->SetPawnState(FAllianceCreationPawnState::GetInstance());
 
-	FOnCountryToBeInvitedToAllianceStatusChanged& CountryToBeInvitedToAllianceStatusChanged = HumanPlayerPawn->OnCountryToBeInvitedToAllianceStatusChanged;
-	if (CountryToBeInvitedToAllianceStatusChanged.IsBound())
-	{
-		CountryToBeInvitedToAllianceStatusChanged.Broadcast(Country, EToBeInvitedCountryStatus::Added);
-	}
+	HumanPlayerPawn->OnCountryToBeInvitedToAllianceStatusChanged.Broadcast(Country, EToBeInvitedCountryStatus::Added);
 }
 
 void UAllianceManagementWidget::OnCreateAllianceButtonClick()

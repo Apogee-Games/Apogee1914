@@ -14,20 +14,14 @@ void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedP
 	Province->AddUnit(this);
 	Manpower = UnitDescription->ManpowerRequirements;
 
-	FOnUnitStatusChanged& OnUnitStatusChanged = Cast<UUnitsFactory>(GetOuter())->OnUnitStatusChanged;
-	if (OnUnitStatusChanged.IsBound())
-	{
-		OnUnitStatusChanged.Broadcast(this, EUnitStatus::Formed);
-	}
+	UUnitsFactory* UnitsFactory = Cast<UUnitsFactory>(GetOuter());
+	UnitsFactory->OnUnitStatusChanged.Broadcast(this, EUnitStatus::Formed);
 }
 
 void UUnit::Dissolve()
 {
-	FOnUnitStatusChanged& OnUnitStatusChanged = Cast<UUnitsFactory>(GetOuter())->OnUnitStatusChanged;
-	if (OnUnitStatusChanged.IsBound())
-	{
-		OnUnitStatusChanged.Broadcast(this, EUnitStatus::Dissolved);
-	}
+	UUnitsFactory* UnitsFactory = Cast<UUnitsFactory>(GetOuter());
+	UnitsFactory->OnUnitStatusChanged.Broadcast(this, EUnitStatus::Dissolved);
 	
 	if (UnitsCollection)
 	{

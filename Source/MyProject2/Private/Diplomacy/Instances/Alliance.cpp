@@ -11,11 +11,8 @@ void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAlli
 		AddMember(InvitedCountry);
 	}
 	
-	FOnAllianceStatusChanged& OnAllianceStatusChanged = Cast<URelationshipsManager>(GetOuter())->OnAllianceStatusChanged;
-	if (OnAllianceStatusChanged.IsBound())
-	{
-		OnAllianceStatusChanged.Broadcast(this, EAlliancesStatus::Created);
-	}
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceStatusChanged.Broadcast(this, EAlliancesStatus::Created);
 }
 
 void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName)
@@ -37,11 +34,8 @@ void UAlliance::AddMember(UCountry* Country)
 	Members.Add(Country);
 	Country->SetAlliance(this);
 	
-	FOnAllianceMemberStatusChanged& OnAllianceMemberStatusChanged = Cast<URelationshipsManager>(GetOuter())->OnAllianceMemberStatusChanged;
-	if (OnAllianceMemberStatusChanged.IsBound())
-	{
-		OnAllianceMemberStatusChanged.Broadcast(this, Country, EAllianceMemberStatus::Joining);
-	}
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceMemberStatusChanged.Broadcast(this, Country, EAllianceMemberStatus::Joining);
 }
 
 void UAlliance::RemoveMember(UCountry* Country)
@@ -57,11 +51,8 @@ void UAlliance::RemoveMember(UCountry* Country)
 		Country->SetRelation(Member, ERelationType::Neutral);
 	}
 
-	FOnAllianceMemberStatusChanged& OnAllianceMemberStatusChanged = Cast<URelationshipsManager>(GetOuter())->OnAllianceMemberStatusChanged;
-	if (OnAllianceMemberStatusChanged.IsBound())
-	{
-		OnAllianceMemberStatusChanged.Broadcast(this, Country, EAllianceMemberStatus::Joining);
-	}
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceMemberStatusChanged.Broadcast(this, Country, EAllianceMemberStatus::Leaving);
 }
 
 const FText& UAlliance::GetName() const
@@ -117,12 +108,8 @@ void UAlliance::Dissolve()
 		Member->SetAlliance(nullptr);
 	}
 
-	
-	FOnAllianceStatusChanged& OnAllianceStatusChanged = Cast<URelationshipsManager>(GetOuter())->OnAllianceStatusChanged;
-	if (OnAllianceStatusChanged.IsBound())
-	{
-		OnAllianceStatusChanged.Broadcast(this, EAlliancesStatus::Dissolved);
-	}
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceStatusChanged.Broadcast(this, EAlliancesStatus::Dissolved);
 }
 
 int UAlliance::Size() const

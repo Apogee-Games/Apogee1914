@@ -31,11 +31,8 @@ void UWar::Init(UCountry* ProvidedAttackerLeader, UCountry* ProvidedDefenderLead
 		}
 	}
 
-	FOnWarStatusChanged& OnWarStatusChanged = Cast<URelationshipsManager>(GetOuter())->OnWarStatusChanged;
-	if (OnWarStatusChanged.IsBound())
-	{
-		OnWarStatusChanged.Broadcast(this, EWarStatus::Declared);
-	}
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnWarStatusChanged.Broadcast(this, EWarStatus::Declared);
 }
 
 void UWar::AddAttacker(UCountry* Country)
@@ -109,9 +106,6 @@ void UWar::End()
 		}
 	}
 	
-	FOnWarStatusChanged& OnWarStatusChanged = Cast<URelationshipsManager>(GetOuter())->OnWarStatusChanged;
-	if (OnWarStatusChanged.IsBound())
-	{
-		OnWarStatusChanged.Broadcast(this, EWarStatus::Ended);
-	}
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnWarStatusChanged.Broadcast(this, EWarStatus::Ended);
 }
