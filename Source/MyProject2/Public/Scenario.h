@@ -71,6 +71,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UTextureRenderTarget2D* ProvincesColorsLookUpTexture;
 
+	UPROPERTY(EditDefaultsOnly)
+	UTextureRenderTarget2D* MiniMapTexture;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Time")
 	FDateTime StartTime = FDateTime(1914, 1, 1);
 
@@ -90,11 +93,21 @@ public:
 	FColor NonAlliedCountryColor = FColor(200, 200, 200);
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Maps | Relation")
-	TMap<ERelationType, FColor> ColorsMapping = {
+	TMap<ERelationType, FColor> RelationsColors = {
 		{ERelationType::Neutral, FColor(30, 30, 30)},
 		{ERelationType::NonAggressionPact, FColor(0, 30, 30)},
 		{ERelationType::War, FColor(150, 10, 10)},
 		{ERelationType::DefencivePact, FColor(30, 150, 30)},
 		{ERelationType::Allied, FColor(30, 100, 150)}
 	};
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Maps | Relation")
+	TMap<ERelationType, FColor> MiniMapColors = {
+		{ERelationType::Neutral, FColor(150, 150, 150)},
+		{ERelationType::NonAggressionPact, FColor(150, 200, 150)},
+		{ERelationType::War, FColor(200, 10, 10)},
+		{ERelationType::DefencivePact, FColor(0, 200, 200)},
+		{ERelationType::Allied, FColor(0, 0, 200)}
+	};
+	
 };
