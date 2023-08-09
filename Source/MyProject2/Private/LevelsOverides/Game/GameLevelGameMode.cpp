@@ -33,7 +33,10 @@ void AGameLevelGameMode::Tick(float DeltaSeconds)
 	UGameInstance* GameInstance = GetGameInstance();
 	GameInstance->GetSubsystem<UEventInstancesController>()->Tick(DeltaSeconds);
 	GameInstance->GetSubsystem<UInGameTime>()->Tick(DeltaSeconds);
-	GameInstance->GetSubsystem<UMapController>()->RefreshLookUpTexture();
+
+	UMapController* MapController = GameInstance->GetSubsystem<UMapController>();
+	MapController->RefreshLookUpTexture();
+	MapController->RefreshMiniMap();
 }
 
 void AGameLevelGameMode::BeginPlay()

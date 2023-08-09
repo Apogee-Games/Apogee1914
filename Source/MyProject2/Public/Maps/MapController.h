@@ -6,6 +6,7 @@
 #include "Administration/Instances/Province.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
 #include "Interfaces/BaseManager.h"
+#include "Military/Managers/UnitsFactory.h"
 #include "MapController.generated.h"
 
 UENUM(BlueprintType)
@@ -39,6 +40,8 @@ public:
 	void SelectProvince(UProvince* Province);
 	
 	void RefreshLookUpTexture();
+	void RefreshMiniMap();
+
 	
 	void SetOutlineEnabled(bool InbOutlineEnabled);
 
@@ -49,9 +52,22 @@ public:
 	
 	virtual ELoadStage GetLoadStage() override;
 private:
+	UPROPERTY()
+	UMapsDataGatherer* MapsDataGatherer;
+
+	UPROPERTY()
+	UUnitsFactory* UnitsFactory;
+
+	UPROPERTY()
+	TMap<ERelationType, FColor> MiniMapColors;
+	
 	FVector2d SizeVector;
+	FVector2d MiniMapSizeVector;
+
+	FLinearColor MiniMapClearColor;
 	
 	TUniquePtr<FCanvas> Canvas;
+	TUniquePtr<FCanvas> MiniMapCanvas;
 
 	FColor SelectionHighlight;
 	int32 SelectedProvinceIndex = INDEX_NONE;

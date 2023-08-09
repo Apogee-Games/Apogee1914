@@ -11,6 +11,7 @@
 #include "Diplomacy/Instances/Alliance.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Maps/MapsDataGatherer.h"
+#include "Military/Managers/UnitsFactory.h"
 #include "Utils/TextureUtils.h"
 
 void UMapController::SetScenario(UScenario* Scenario)
@@ -96,10 +97,9 @@ UProvince* UMapController::GetProvince(FVector2d Point)
 	const FVector2d ImagePosition = Point * SizeVector;
 	const int32 Position = FTextureUtils::GetPixelPosition(ImagePosition, SizeVector);
 
-	UGameInstance* GameInstance = GetGameInstance();
-	FColor Color = GameInstance->GetSubsystem<UMapsDataGatherer>()->GetColor(Position);
+	FColor Color = MapsDataGatherer->GetColor(Position);
 
-	return GameInstance->GetSubsystem<UProvinceManager>()->GetProvince(Color);
+	return GetGameInstance()->GetSubsystem<UProvinceManager>()->GetProvince(Color);
 }
 
 UProvince* UMapController::SelectProvince(FVector2d Point)
@@ -145,12 +145,17 @@ void UMapController::Init(UScenario* Scenario)
 {
 	AsyncTask(ENamedThreads::GameThread, [this, Scenario]()
 	{
+		UGameInstance* GameInstance = GetGameInstance();
+
+		MapsDataGatherer = GameInstance->GetSubsystem<UMapsDataGatherer>();
+		UnitsFactory = GameInstance->GetSubsystem<UUnitsFactory>();
+		
 		SelectionHighlight = Scenario->SelectionHighlight;
 		NonAlignedCountryColor = Scenario->NonAlignedCountryColor;
 		NonAlliedCountryColor = Scenario->NonAlliedCountryColor;
-		ColorsMapping = Scenario->ColorsMapping;
+		ColorsMapping = Scenario->RelationsColors;
 		
-		Provinces = GetGameInstance()->GetSubsystem<UProvinceManager>()->GetAllProvinces();
+		Provinces = GameInstance->GetSubsystem<UProvinceManager>()->GetAllProvinces();
 		SizeVector = FTextureUtils::GetTextureSizeVector(Scenario->ProvincesMapTexture);
 
 		DrawProvincesIdsMap(Scenario->ProvincesIdsLookUpTexture);
@@ -167,6 +172,14 @@ void UMapController::Init(UScenario* Scenario)
 		SelectedMapItem = 0;
 
 		bOutlineEnabled = false;
+
+		MiniMapCanvas = MakeUnique<FCanvas>(Scenario->MiniMapTexture->GameThread_GetRenderTargetResource(), nullptr, GetWorld(), ERHIFeatureLevel::SM5);
+		MiniMapSizeVector.X = Scenario->MiniMapTexture->SizeX;
+		MiniMapSizeVector.Y = Scenario->MiniMapTexture->SizeY;
+
+		MiniMapClearColor = Scenario->MiniMapTexture->ClearColor;
+		
+		MiniMapColors = Scenario->MiniMapColors;
 	});
 }
 
@@ -181,4 +194,23 @@ void UMapController::DrawProvincesIdsMap(UTextureRenderTarget2D* ProvincesIdsLoo
 	}
 			
 	CanvasProvincesIdsLookUpTexture.Flush_GameThread(true);
+}
+
+void UMapController::RefreshMiniMap()
+{
+	if (AHumanPlayerPawn* Pawn = GetGameInstance()->GetFirstLocalPlayerController()->GetPawn<AHumanPlayerPawn>())
+	{
+		if (UCountry* PlayerCountry = Pawn->GetRuledCountry())
+		{
+			MiniMapCanvas->Clear(MiniMapClearColor);
+			for (UUnit* Unit: UnitsFactory->GetUnits())
+			{
+				FColor Color = MiniMapColors[Unit->GetCountryController()->GetRelation(PlayerCountry)];
+				FVector2d UnitPosition = MapsDataGatherer->GetProvinceCenter(Unit->GetPosition());
+				FVector2d Position = UnitPosition * MiniMapSizeVector;
+				MiniMapCanvas->DrawTile(Position.X - 4, Position.Y - 4, 8, 8, 0, 0, 1, 1, Color);
+			}
+			MiniMapCanvas->Flush_GameThread(true);
+		}
+	}
 }

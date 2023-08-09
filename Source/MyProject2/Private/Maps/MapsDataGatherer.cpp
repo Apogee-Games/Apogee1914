@@ -73,6 +73,11 @@ FVector2d UMapsDataGatherer::GetProvinceCenter(const FColor& Color)
 	return ProvinceCenters[Color];
 }
 
+FVector2d UMapsDataGatherer::GetProvinceCenter(UProvince* Province)
+{
+	return ProvinceCenters[Province->GetId()];
+}
+
 /*
 void UMapsDataGatherer::ProvinceHasNewControllingCountry(UProvince* Province)
 {

@@ -8,12 +8,13 @@ class UAlliance;
 class UWar;
 
 UENUM()
-enum class ERelationType: int8 { 
+enum class ERelationType: int8 {
 	Neutral = 1,
 	NonAggressionPact = 2,
 	War = 4,
 	DefencivePact = 8,
-	Allied = 16
+	Allied = 16,
+	Self = 32
 };
 
 UENUM()

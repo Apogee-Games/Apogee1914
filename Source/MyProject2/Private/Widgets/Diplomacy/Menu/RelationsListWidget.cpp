@@ -49,14 +49,17 @@ void URelationsListWidget::OnCountrySelected(UCountry* InCountry)
 
 void URelationsListWidget::RefreshData()
 {
-	for (const auto& [Relation, List] : Lists)
+	if (Country)
 	{
-		List->ClearListItems();
-	}
+		for (const auto& [Relation, List] : Lists)
+		{
+			List->ClearListItems();
+		}
 
-	for (const auto& [AnotherCountry, Relation] : Country->GetRelations())
-	{
-		if (Relation == ERelationType::Neutral) continue;
-		Lists[Relation]->AddItem(AnotherCountry);
+		for (const auto& [AnotherCountry, Relation] : Country->GetRelations())
+		{
+			if (Relation == ERelationType::Neutral) continue;
+			Lists[Relation]->AddItem(AnotherCountry);
+		}
 	}
 }
