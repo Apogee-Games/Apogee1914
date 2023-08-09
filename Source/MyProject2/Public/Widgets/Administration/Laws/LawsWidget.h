@@ -29,8 +29,10 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ULawsGroupWidget> LawsGroupWidgetClass;
 
-	void Init();
+	virtual void NativeConstruct() override;
 private:
+	bool bIsInitialized = false;
+	
 	int GroupsCount = 0;
 	
 	void AddLawsGroup(ULawsGroup* LawsGroup);

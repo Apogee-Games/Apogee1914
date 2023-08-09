@@ -149,7 +149,8 @@ void UUnitsMover::MoveUnits()
 		Paths[Unit][Position].Cost--;
 		if (Paths[Unit][Position].Cost == 0)
 		{
-			NotifyUnitMovement(Unit, Unit->GetPosition(), Paths[Unit][Position].To);
+			OnUnitMoved.Broadcast(Unit, Unit->GetPosition(), Paths[Unit][Position].To);
+
 			Unit->Move(Paths[Unit][Position].To);
 			Positions[Unit]++;
 			if (Positions[Unit] >= Paths[Unit].Num()) UnitsArrived.Enqueue(Unit);

@@ -8,53 +8,44 @@
 void AHumanPlayerHUD::BeginPlay()
 {
 	Super::BeginPlay();
-	InitProvinceDataWidget();
-	InitUnitTypesListWidget();
-	InitBuildingsTypesListWidget();
-	InitStorageGoodsListWidget();
-	InitUnitsSupplyListWidget();
-	InitUnitInstancesListDescriptionWidget();
+
+	TArray<TSubclassOf<UUserWidget>> WidgetClasses = {
+		ProvinceDataWidgetClass,
+		UnitTypesListWidgetClass,
+		BuildingsTypesListWidgetClass,
+		StorageGoodsListWidgetClass,
+		UnitsSupplyListWidgetClass,
+		UnitInstancesListDescriptionWidgetClass,
+		CommanderListWidgetClass,
+		CountryDiplomacyWidgetClass,
+		WarDescriptionWidgetClass,
+		AllianceCreationWidgetClass,
+		OurWarsListWidgetClass,
+		TheirWarsListWidgetClass,
+		CountryManagementWidgetClass,
+		LawsWidgetClass,
+		ProductionListWidgetClass,
+		ProducibleGoodsListWidgetClass
+	};
+
+	for (TSubclassOf<UUserWidget> WidgetClass: WidgetClasses)
+	{
+		if (WidgetClass)
+		{
+			if (UUserWidget* Widget = CreateWidget<UUserWidget>(GetOwningPlayerController(),  WidgetClass))
+			{
+				Widgets.Add(Widget);
+			}
+		}
+	}
+	
 	InitTimeControllerWidget();
 	InitUnitsCollectionsListWidget();
-	InitCommanderListWidget();
 	InitMenuWidget();
 	InitTopPanelWidget();
-	InitCountryDiplomacyWidget();
 	InitWarsListWidget();
-	InitWarDescriptionWidget();
 	InitMapsSwitcher();
-	InitAllianceCreationWidget();
-	InitWarsLists();
-	InitCountryManagementWidget();
-	InitLawsWidget();
 	InitMusicControllerWidget();
-	InitProductionListWidget();
-	InitProducibleGoodsListWidget();
-}
-
-UProvinceDataWidget* AHumanPlayerHUD::GetProvinceDataWidget() const
-{
-	return ProvinceDataWidget;
-}
-
-UUnitTypesListWidget* AHumanPlayerHUD::GetUnitTypesListWidget() const
-{
-	return UnitTypesListWidget;
-}
-
-UStorageGoodsListWidget* AHumanPlayerHUD::GetStorageGoodsListWidget() const
-{
-	return StorageGoodsListWidget;
-}
-
-UUnitsSupplyListWidget* AHumanPlayerHUD::GetUnitsSupplyListWidget() const
-{
-	return UnitsSupplyListWidget;
-}
-
-USelectedUnitsListWidget* AHumanPlayerHUD::GetUnitInstancesListDescriptionWidget() const
-{
-	return UnitInstancesListDescriptionWidget;
 }
 
 UTimeControllerWidget* AHumanPlayerHUD::GetTimeControllerWidget()
@@ -66,19 +57,9 @@ UTimeControllerWidget* AHumanPlayerHUD::GetTimeControllerWidget()
 	return TimeControllerWidget;
 }
 
-UBuildingsTypesListWidget* AHumanPlayerHUD::GetBuildingsTypesListWidget() const
-{
-	return BuildingsTypesListWidget;
-}
-
 UUnitsCollectionsListWidget* AHumanPlayerHUD::GetUnitsCollectionsListWidget() const
 {
 	return UnitsCollectionsListWidget;
-}
-
-UCommanderListWidget* AHumanPlayerHUD::GetCommanderListWidget() const
-{
-	return CommanderListWidget;
 }
 
 UMenuWidget* AHumanPlayerHUD::GetMenuWidget() const
@@ -91,34 +72,9 @@ UTopPanelWidget* AHumanPlayerHUD::GetTopPanelWidget() const
 	return TopPanelWidget;
 }
 
-UCountryDiplomacyWidget* AHumanPlayerHUD::GetCountryDiplomacyWidget() const
-{
-	return CountryDiplomacyWidget;
-}
-
 UWarsListWidget* AHumanPlayerHUD::GetWarsListWidget() const
 {
 	return WarsListWidget;
-}
-
-UWarDescriptionWidget* AHumanPlayerHUD::GetWarDescriptionWidget() const
-{
-	return WarDescriptionWidget;
-}
-
-UAllianceCreationWidget* AHumanPlayerHUD::GetAllianceCreationWidget() const
-{
-	return AllianceCreationWidget;
-}
-
-UOurWarsListWidget* AHumanPlayerHUD::GetOurWarsListWidget() const
-{
-	return OurWarsListWidget;
-}
-
-UTheirWarsListWidget* AHumanPlayerHUD::GetTheirWarsListWidget() const
-{
-	return TheirWarsListWidget;
 }
 
 void AHumanPlayerHUD::UpdateWidgetsVisibility()
@@ -176,93 +132,6 @@ void AHumanPlayerHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	}
 }
 
-void AHumanPlayerHUD::InitProvinceDataWidget()
-{
-	if (ProvinceDataWidgetClass)
-	{
-		ProvinceDataWidget = CreateWidget<UProvinceDataWidget>(GetOwningPlayerController(), ProvinceDataWidgetClass);
-		if (ProvinceDataWidget)
-		{
-			Widgets.Add(ProvinceDataWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitUnitTypesListWidget()
-{
-	if (UnitTypesListWidgetClass)
-	{
-		UnitTypesListWidget = CreateWidget<UUnitTypesListWidget>(GetOwningPlayerController(), UnitTypesListWidgetClass);
-		
-		if (UnitTypesListWidget)
-		{
-			UnitTypesListWidget->Init();
-			Widgets.Add(UnitTypesListWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitStorageGoodsListWidget()
-{
-	if (StorageGoodsListWidgetClass)
-	{
-		StorageGoodsListWidget = CreateWidget<UStorageGoodsListWidget>(GetOwningPlayerController(), StorageGoodsListWidgetClass);
-		if (StorageGoodsListWidget)
-		{
-			const UCountry* Country = Cast<AHumanPlayerPawn>(GetOwningPawn())->GetRuledCountry();
-
-			for (const auto& Storage: Country->GetStorages())
-			{
-				Storage->AddStorageObserver(StorageGoodsListWidget);
-			}
-
-			Widgets.Add(StorageGoodsListWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitUnitsSupplyListWidget()
-{
-	if (UnitsSupplyListWidgetClass)
-	{
-		UnitsSupplyListWidget = CreateWidget<UUnitsSupplyListWidget>(GetOwningPlayerController(), UnitsSupplyListWidgetClass);
-		if (UnitsSupplyListWidget)
-		{
-			UnitsSupplyListWidget->Init();
-			Widgets.Add(UnitsSupplyListWidget);
-		}
-	}
-}
-
-
-void AHumanPlayerHUD::InitUnitInstancesListDescriptionWidget()
-{
-	if (UnitInstancesListDescriptionWidgetClass)
-	{
-		UnitInstancesListDescriptionWidget = CreateWidget<USelectedUnitsListWidget>(GetOwningPlayerController(), UnitInstancesListDescriptionWidgetClass);
-		if (UnitInstancesListDescriptionWidget)
-		{
-			UnitInstancesListDescriptionWidget->Init();
-			Widgets.Add(UnitInstancesListDescriptionWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitBuildingsTypesListWidget()
-{
-	if (BuildingsTypesListWidgetClass)
-	{
-		BuildingsTypesListWidget = CreateWidget<UBuildingsTypesListWidget>(GetOwningPlayerController(), BuildingsTypesListWidgetClass);
-		
-		if (BuildingsTypesListWidget)
-		{
-			BuildingsTypesListWidget->Init(GetGameInstance<UMyGameInstance>()->ActiveScenario->BuildingsDescriptions);
-			Widgets.Add(BuildingsTypesListWidget);
-		}
-	}
-	
-}
-
 void AHumanPlayerHUD::InitTimeControllerWidget()
 {
 	if (!TimeControllerWidget && TimeControllerClass)
@@ -286,28 +155,11 @@ void AHumanPlayerHUD::InitUnitsCollectionsListWidget()
 	}
 }
 
-void AHumanPlayerHUD::InitCommanderListWidget()
-{
-	if (CommanderListWidgetClass)
-	{
-		CommanderListWidget = CreateWidget<UCommanderListWidget>(GetOwningPlayerController(), CommanderListWidgetClass);
-		if (CommanderListWidget)
-		{
-			CommanderListWidget->Init();
-			Widgets.Add(CommanderListWidget);
-		}	
-	}
-}
-
 void AHumanPlayerHUD::InitMenuWidget()
 {
 	if (MenuWidgetClass)
 	{
 		MenuWidget = CreateWidget<UMenuWidget>(GetOwningPlayerController(), MenuWidgetClass);
-		if (MenuWidget)
-		{
-			MenuWidget->Init();
-		}
 	}
 }
 
@@ -319,19 +171,6 @@ void AHumanPlayerHUD::InitTopPanelWidget()
 		if (TopPanelWidget)
 		{
 			TopPanelWidget->AddToPlayerScreen(1);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitCountryDiplomacyWidget()
-{
-	if (CountryDiplomacyWidgetClass)
-	{
-		CountryDiplomacyWidget = CreateWidget<UCountryDiplomacyWidget>(GetOwningPlayerController(), CountryDiplomacyWidgetClass);
-		if (CountryDiplomacyWidget)
-		{
-			CountryDiplomacyWidget->Init();
-			Widgets.Add(CountryDiplomacyWidget);
 		}
 	}
 }
@@ -348,18 +187,6 @@ void AHumanPlayerHUD::InitWarsListWidget()
 	}
 }
 
-void AHumanPlayerHUD::InitWarDescriptionWidget()
-{
-	if (WarDescriptionWidgetClass)
-	{
-		WarDescriptionWidget = CreateWidget<UWarDescriptionWidget>(GetOwningPlayerController(), WarDescriptionWidgetClass);
-		if (WarDescriptionWidget)
-		{
-			Widgets.Add(WarDescriptionWidget);
-		}
-	}
-}
-
 void AHumanPlayerHUD::InitMapsSwitcher()
 {
 	if (MapsSwitcherWidgetClass)
@@ -372,64 +199,6 @@ void AHumanPlayerHUD::InitMapsSwitcher()
 	}
 }
 
-void AHumanPlayerHUD::InitAllianceCreationWidget()
-{
-	if (AllianceCreationWidgetClass)
-	{
-		AllianceCreationWidget = CreateWidget<UAllianceCreationWidget>(GetOwningPlayerController(), AllianceCreationWidgetClass);
-		if (AllianceCreationWidget)
-		{
-			AllianceCreationWidget->Init();
-			Widgets.Add(AllianceCreationWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitWarsLists()
-{
-	if (OurWarsListWidgetClass)
-	{
-		OurWarsListWidget = CreateWidget<UOurWarsListWidget>(GetOwningPlayerController(), OurWarsListWidgetClass);
-		if (OurWarsListWidget)
-		{
-			Widgets.Add(OurWarsListWidget);
-		}
-	}
-	if (TheirWarsListWidgetClass)
-	{
-		TheirWarsListWidget = CreateWidget<UTheirWarsListWidget>(GetOwningPlayerController(), TheirWarsListWidgetClass);
-		if (TheirWarsListWidget)
-		{
-			Widgets.Add(TheirWarsListWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitCountryManagementWidget()
-{
-	if (CountryManagementWidgetClass)
-	{
-		CountryManagementWidget = CreateWidget<UCountryManagementWidget>(GetOwningPlayerController(), CountryManagementWidgetClass);
-		if (CountryManagementWidget)
-		{
-			Widgets.Add(CountryManagementWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitLawsWidget()
-{
-	if (LawsWidgetClass)
-	{
-		LawsWidget = CreateWidget<ULawsWidget>(GetOwningPlayerController(), LawsWidgetClass);
-		if (LawsWidget)
-		{
-			LawsWidget->Init();
-			Widgets.Add(LawsWidget);
-		}
-	}
-}
-
 void AHumanPlayerHUD::InitMusicControllerWidget()
 {
 	if (MusicControllerWidgetClass)
@@ -437,33 +206,8 @@ void AHumanPlayerHUD::InitMusicControllerWidget()
 		MusicControllerWidget = CreateWidget<UMusicControllerWidget>(GetOwningPlayerController(), MusicControllerWidgetClass);
 		if (MusicControllerWidget)
 		{
-			MusicControllerWidget->Init(GetGameInstance<UMyGameInstance>()->ActiveScenario->SongsGroups);
 			MusicControllerWidget->AddToPlayerScreen(1);
 		}
 	}
 }
 
-void AHumanPlayerHUD::InitProductionListWidget()
-{
-	if (ProductionListWidgetClass)
-	{
-		ProductionListWidget = CreateWidget<UProductionListWidget>(GetOwningPlayerController(), ProductionListWidgetClass);
-		if (ProductionListWidget)
-		{
-			ProductionListWidget->Init();
-			Widgets.Add(ProductionListWidget);
-		}
-	}
-}
-
-void AHumanPlayerHUD::InitProducibleGoodsListWidget()
-{
-	if (ProducibleGoodsListWidgetClass)
-	{
-		ProducibleGoodsListWidget = CreateWidget<UProducibleGoodsListWidget>(GetOwningPlayerController(), ProducibleGoodsListWidgetClass);
-		if (ProducibleGoodsListWidget)
-		{
-			Widgets.Add(ProducibleGoodsListWidget);
-		}
-	}
-}

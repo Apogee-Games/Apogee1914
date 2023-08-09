@@ -1,9 +1,20 @@
 ﻿#include "Economics/Instances/Buildings/Building.h"
 
+#include "Economics/Managers/BuildingManager.h"
+
 void UBuilding::Init(UBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince)
 {
 	BuildingDescription = ProvidedBuildingDescription;	
 	Province = ProvidedProvince;
+
+	UBuildingManager* BuildingManager = Cast<UBuildingManager>(GetOuter());
+	BuildingManager->OnBuildingStatusChanged.Broadcast(this, EBuildingStatus::Constructed);
+}
+
+void UBuilding::Destroy()
+{
+	UBuildingManager* BuildingManager = Cast<UBuildingManager>(GetOuter());
+	BuildingManager->OnBuildingStatusChanged.Broadcast(this, EBuildingStatus::Destroyed);
 }
 
 UBuildingDescription* UBuilding::GetDescription() const

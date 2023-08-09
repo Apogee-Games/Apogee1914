@@ -19,8 +19,6 @@ UBuilding* UBuildingManager::BuildBuilding(UBuildingDescription* Description, UP
 
 	Buildings.Add(Building);
 	Province->AddBuilding(Building);
-
-	NotifyBuildingCreation(Building);
 	
 	return Building;
 }
@@ -35,6 +33,7 @@ void UBuildingManager::Tick()
 
 void UBuildingManager::DestroyBuilding(UBuilding* Building)
 {
+	Building->Destroy();
 	Buildings.Remove(Building);
 	Building->GetProvince()->RemoveBuilding(Building);
 }

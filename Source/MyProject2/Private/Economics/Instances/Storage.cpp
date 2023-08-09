@@ -1,7 +1,4 @@
-
-
 #include "Economics/Instances/Storage.h"
-
 #include "Economics/Description/Goods/GoodDescription.h"
 
 void UStorage::Init(EStorageType ProvidedType)
@@ -18,7 +15,7 @@ void UStorage::Supply(UGoodDescription* Good, const int32 Amount)
 {
 	AddGoodIfNotPresent(Good);
 	Goods[Good]->Supply(Amount);
-	NotifyGoodUpdate(Type, Goods[Good]);
+	OnStorageGoodUpdated.Broadcast(Type, Goods[Good]);
 }
 
 float UStorage::Estimate(UGoodDescription* Good, const int32 Amount)
@@ -36,7 +33,7 @@ float UStorage::Demand(UGoodDescription* Good, const int32 Amount)
 {
 	AddGoodIfNotPresent(Good);
 	const int32 CanProvide = Goods[Good]->Demand(Amount);
-	NotifyGoodUpdate(Type, Goods[Good]);
+	OnStorageGoodUpdated.Broadcast(Type, Goods[Good]);
 	return CanProvide;
 }
 

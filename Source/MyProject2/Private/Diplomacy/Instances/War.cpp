@@ -30,6 +30,9 @@ void UWar::Init(UCountry* ProvidedAttackerLeader, UCountry* ProvidedDefenderLead
 			AddAttacker(Country);
 		}
 	}
+
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnWarStatusChanged.Broadcast(this, EWarStatus::Declared);
 }
 
 void UWar::AddAttacker(UCountry* Country)
@@ -90,4 +93,19 @@ void UWar::AddCountryOnSide(UCountry* Country, UCountry* OnSideOfCountry)
 	{
 		AddDefender(Country);
 	}
+}
+
+void UWar::End()
+{
+	for (UCountry* Defender: Defenders)
+	{
+		for (UCountry* Attacker: Attackers)
+		{
+			Defender->SetRelation(Attacker, ERelationType::Neutral);
+			Attacker->SetRelation(Defender, ERelationType::Neutral);
+		}
+	}
+	
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnWarStatusChanged.Broadcast(this, EWarStatus::Ended);
 }

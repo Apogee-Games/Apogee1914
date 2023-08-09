@@ -25,6 +25,8 @@ public:
 	bool IsMember(UCountry* Country) const;
 
 	void AddCountryOnSide(UCountry* Country, UCountry* OnSideOfCountry);
+
+	void End();
 private:
 	UPROPERTY()
 	UCountry* AttackerLeader;

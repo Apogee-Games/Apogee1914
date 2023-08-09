@@ -4,9 +4,16 @@
 #include "Administration/Instances/Country.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
-void ULawDescriptionWidget::Init()
+void ULawDescriptionWidget::NativeConstruct()
 {
+	Super::NativeConstruct();
 	PassLawButton->OnClicked.AddDynamic(this, &ULawDescriptionWidget::OnPassLawButtonClick);
+}
+
+void ULawDescriptionWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+	PassLawButton->OnClicked.RemoveAll(this);
 }
 
 void ULawDescriptionWidget::SetLaw(ULawDescription* ProvidedLawDescription)

@@ -5,25 +5,46 @@
 #include "Military/Managers/UnitsFactory.h"
 #include "Military/Managers/UnitsSupplyController.h"
 
-void UUnitsSupplyListWidget::Init()
+void UUnitsSupplyListWidget::NativeConstruct()
 {
-	Country = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
-	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitCreationObserver(this);
-	GetGameInstance()->GetSubsystem<UUnitsFactory>()->AddUnitRemovalObserver(this);
-}
+	Super::NativeConstruct();
 
-void UUnitsSupplyListWidget::UnitIsCreated(UUnit* Unit)
-{
-	if (Country == Unit->GetCountryOwner())
+	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+
+	UUnitsFactory* UnitsFactory = GetGameInstance()->GetSubsystem<UUnitsFactory>();
+	UnitsFactory->OnUnitStatusChanged.AddUObject(this, &ThisClass::OnUnitStatusChanged);
+
+	UnitsListView->ClearListItems();
+	for (UUnit* Unit: UnitsFactory->GetUnits())
 	{
-		UnitsListView->AddItem(Unit);
+		if (Unit->GetCountryController() == OwnerCountry)
+		{
+			UnitsListView->AddItem(Unit);
+		}
 	}
 }
 
-void UUnitsSupplyListWidget::UnitIsRemoved(UUnit* Unit)
+void UUnitsSupplyListWidget::NativeDestruct()
 {
-	if (Country == Unit->GetCountryOwner())
+	Super::NativeDestruct();
+	GetGameInstance()->GetSubsystem<UUnitsFactory>()->OnUnitStatusChanged.RemoveAll(this);
+}
+
+void UUnitsSupplyListWidget::OnUnitStatusChanged(UUnit* Unit, EUnitStatus UnitStatus)
+{
+	if (UnitStatus == EUnitStatus::Formed)
 	{
-		UnitsListView->RemoveItem(Unit);
+		if (OwnerCountry == Unit->GetCountryOwner())
+		{
+			UnitsListView->AddItem(Unit);
+		}
+	}
+
+	if (UnitStatus == EUnitStatus::Dissolved)
+	{
+		if (OwnerCountry == Unit->GetCountryOwner())
+		{
+			UnitsListView->RemoveItem(Unit);
+		}
 	}
 }

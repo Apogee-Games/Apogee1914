@@ -11,7 +11,9 @@ class UBuilding : public UObject, public IOwnable
 	GENERATED_BODY()
 public:
 	virtual void Init(UBuildingDescription* ProvidedBuildingDescription, UProvince* ProvidedProvince);
-	
+
+	void Destroy();
+
 	UBuildingDescription* GetDescription() const;
 
 	template<class T>

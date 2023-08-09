@@ -13,6 +13,9 @@ struct FUnitsSelection
 	GENERATED_BODY()
 
 	UPROPERTY()
+	UMilitaryBranchDescription* MilitaryBranch;
+	
+	UPROPERTY()
 	TSet<UUnit*> SelectedUnits;
 	
 	UPROPERTY()
@@ -26,6 +29,8 @@ struct FUnitsSelection
 		return SelectedUnits.IsEmpty() && SelectedUnitsCollections.IsEmpty() && SelectedUnitsCollectionGroups.IsEmpty();
 	}
 };
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnSelectionUpdated, FUnitsSelection)
 
 UCLASS()
 class UUnitsSelectionComponent: public USceneComponent
@@ -63,6 +68,8 @@ public:
 	void UnSelectUnit(UUnit* Unit, bool NotifyAboutUpdate = false);
 	
 	bool HasSelectedUnits() const;
+
+	FOnSelectionUpdated OnSelectionUpdated;
 private:
 	UPROPERTY()
 	TMap<UMilitaryBranchDescription*, FUnitsSelection> Selections;

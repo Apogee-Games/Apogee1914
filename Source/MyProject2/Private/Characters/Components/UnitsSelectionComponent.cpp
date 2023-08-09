@@ -10,7 +10,9 @@ void UUnitsSelectionComponent::BeginPlay()
 	const TArray<UMilitaryBranchDescription*> MilitaryBranches = GetWorld()->GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetMilitaryBranches();
 	for (auto& MilitaryBranch: MilitaryBranches)
 	{
-		Selections.Add(MilitaryBranch, FUnitsSelection());
+		FUnitsSelection Selection;
+		Selection.MilitaryBranch = MilitaryBranch;
+		Selections.Add(MilitaryBranch, Selection);
 	}
 }
 
@@ -196,9 +198,13 @@ bool UUnitsSelectionComponent::HasSelectedUnits() const
 
 void UUnitsSelectionComponent::SelectedUnitsWereUpdated() const
 {
-	APlayerController* PlayerController = GetOwner<AHumanPlayerPawn>()->GetController<APlayerController>();
-	AHumanPlayerHUD* HUD = PlayerController->GetHUD<AHumanPlayerHUD>();
-	HUD->GetUnitInstancesListDescriptionWidget()->SetSelections(Selections);
+	if (OnSelectionUpdated.IsBound())
+	{
+		for (auto& [MilitaryBranch, Selection]: Selections) // TODO: Will be fixed soon :)
+		{
+			OnSelectionUpdated.Broadcast(Selection);
+		}
+	}
 	// TODO: Think if it worth to add logic for separation adding units to selection or making new selection :) 
 }
 

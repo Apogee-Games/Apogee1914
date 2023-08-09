@@ -4,21 +4,38 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/JoinOurWarPawnState.h"
 #include "Characters/StateMachine/JoinTheirWarPawnState.h"
+#include "Diplomacy/Instances/Alliance.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
+#include "MyProject2/MyProject2.h"
 
-void UWarManagementWidget::Init()
+void UWarManagementWidget::NativeConstruct()
 {
-	DeclareWarButton->OnClicked.AddDynamic(this, &UWarManagementWidget::OnDeclareWarButtonClick);
-	AskThemToJoinWarButton->OnClicked.AddDynamic(this, &UWarManagementWidget::OnAskThemToJoinWarButtonClick);
-	AskToJoinTheirWarButton->OnClicked.AddDynamic(this, &UWarManagementWidget::OnAskToJoinTheirWarButtonClick);
+	Super::NativeConstruct();
 
-	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+	FGlobalUIDelegates::OnCountrySelected.AddUObject(this, &ThisClass::OnCountrySelected);
+	
+	DeclareWarButton->OnClicked.AddDynamic(this, &ThisClass::OnDeclareWarButtonClick);
+	AskThemToJoinWarButton->OnClicked.AddDynamic(this, &ThisClass::OnAskThemToJoinWarButtonClick);
+	AskToJoinTheirWarButton->OnClicked.AddDynamic(this, &ThisClass::OnAskToJoinTheirWarButtonClick);
+
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->OnCountryRelationsTypeChanged.AddUObject(this, &ThisClass::OnCountryRelationsTypeChanged);
+	
+	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	OwnerCountry = Pawn->GetRuledCountry();
+	OnCountrySelected(Pawn->GetSelectedCountry());
 }
 
-void UWarManagementWidget::SetCountry(UCountry* ProvidedCountry)
+void UWarManagementWidget::NativeDestruct()
 {
-	Country = ProvidedCountry;
-	RefreshData();
+	Super::NativeDestruct();
+
+	FGlobalUIDelegates::OnCountrySelected.RemoveAll(this);
+	
+	DeclareWarButton->OnClicked.RemoveAll(this);
+	AskThemToJoinWarButton->OnClicked.RemoveAll(this);
+	AskToJoinTheirWarButton->OnClicked.RemoveAll(this);
+
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->OnCountryRelationsTypeChanged.RemoveAll(this);
 }
 
 void UWarManagementWidget::RefreshData()
@@ -47,11 +64,23 @@ void UWarManagementWidget::OnDeclareWarButtonClick()
 void UWarManagementWidget::OnAskToJoinTheirWarButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FJoinTheirWarPawnState::GetInstance());
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetTheirWarsListWidget()->SetCountry(Country);
 }
 
 void UWarManagementWidget::OnAskThemToJoinWarButtonClick()
 {
 	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FJoinOurWarPawnState::GetInstance());
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetOurWarsListWidget()->SetCountry(Country);
+}
+
+void UWarManagementWidget::OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation)
+{
+	if (OwnerCountry == ProbableOwner && Country == ProbableCountry)
+	{
+		RefreshData();
+	}
+}
+
+void UWarManagementWidget::OnCountrySelected(UCountry* InCountry)
+{
+	Country = InCountry;
+	RefreshData();
 }

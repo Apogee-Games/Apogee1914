@@ -34,11 +34,10 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UWidgetSwitcher* AllianceCreationDeletionWidgetSwitcher;
 
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+	
 	void SetCountry(UCountry* ProvidedCountry);
-	
-	void Init();
-	
-	void RefreshData();
 private:
 	UPROPERTY()
 	UCountry* OwnerCountry;
@@ -63,4 +62,12 @@ private:
 
 	UFUNCTION()
 	void OnDissolveAllianceButtonClick();
+
+	UFUNCTION()
+	void OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation);
+
+	UFUNCTION()
+	void OnCountrySelected(UCountry* InCountry);
+	
+	void RefreshData();
 };

@@ -2,9 +2,11 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/WidgetSwitcher.h"
+#include "Diplomacy/Managers/RelationshipsManager.h"
 #include "DiplomaticPactsWidgets.generated.h"
 
 class UCountry;
+
 UCLASS()
 class UDiplomaticPactsWidgets: public UUserWidget
 {
@@ -27,13 +29,9 @@ public:
 
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UWidgetSwitcher* DefencivePactCreationRemovalWidgetSwitcher;
-	
-	void Init();
-	
-	void SetCountry(UCountry* ProvidedCountry);
 
-	void RefreshData();
-	
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 private:
 	UPROPERTY()
 	UCountry* OwnerCountry;
@@ -52,4 +50,12 @@ private:
 
 	UFUNCTION()
 	void OnBreakDefencivePactButtonClick();
+
+	UFUNCTION()
+	void OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation);
+
+	UFUNCTION()
+	void OnCountrySelected(UCountry* InCountry);
+	
+	void RefreshData();
 };

@@ -6,22 +6,20 @@
 #include "Administration/Instances/Country.h"
 #include "Administration/Instances/State.h"
 #include "Administration/Managers/StateManager.h"
+#include "Characters/Pawns/HumanPlayerPawn.h"
+#include "MyProject2/MyProject2.h"
 
-void UProvinceDataWidget::SetNewProvince(UProvince* Province)
+void UProvinceDataWidget::NativeConstruct()
 {
-	if (!Province) return;
+	Super::NativeConstruct();
+	FGlobalUIDelegates::OnProvinceSelected.AddUObject(this, &ThisClass::OnProvinceSelected);
+	OnProvinceSelected(GetOwningPlayerPawn<AHumanPlayerPawn>()->GetSelectedProvince());
+}
 
-	ProvinceNameTextBlock->SetText(Province->GetName());
-
-	SetPopulationNumber(Province->GetPopulation()->GetPopulation());
-
-	SetResources(Province);
-
-	SetBuildings(Province);
-
-	SetState(Province);
-
-	SetCountries(Province);
+void UProvinceDataWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+	FGlobalUIDelegates::OnProvinceSelected.RemoveAll(this);
 }
 
 void UProvinceDataWidget::SetPopulationNumber(int32 Population) const
@@ -77,3 +75,19 @@ void UProvinceDataWidget::SetCountries(UProvince* Province) const
 	}
 }
 
+void UProvinceDataWidget::OnProvinceSelected(UProvince* Province)
+{
+	if (!Province) return;
+
+	ProvinceNameTextBlock->SetText(Province->GetName());
+
+	SetPopulationNumber(Province->GetPopulation()->GetPopulation());
+
+	SetResources(Province);
+
+	SetBuildings(Province);
+
+	SetState(Province);
+
+	SetCountries(Province);
+}

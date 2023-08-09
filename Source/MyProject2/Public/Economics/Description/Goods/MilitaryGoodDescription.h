@@ -1,9 +1,9 @@
 ﻿#pragma once
-#include "GoodDescription.h"
+#include "CookedGoodDescription.h"
 #include "MilitaryGoodDescription.generated.h"
 
 UCLASS()
-class UMilitaryGoodDescription : public UGoodDescription
+class UMilitaryGoodDescription : public UCookedGoodDescription
 {
 	GENERATED_BODY()
 public:

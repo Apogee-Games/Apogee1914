@@ -1,24 +1,36 @@
 #pragma once
-#include "Scenario.h"
 #include "Economics/Instances/Buildings/Building.h"
-#include "Economics/Interfaces/Observables/BuildingCreationObservable.h"
 #include "Interfaces/BaseManager.h"
 #include "BuildingManager.generated.h"
 
+UENUM()
+enum class EBuildingStatus
+{
+	StartedConstruction,
+	Constructed,
+	StartedDestruction,
+	Destroyed
+};
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnBuildingStatusChanged, UBuilding*, EBuildingStatus)
+
 UCLASS(Abstract, Blueprintable)
-class UBuildingManager: public UBaseManager, public IBuildingCreationObservable
+class UBuildingManager: public UBaseManager
 {
 	GENERATED_BODY()
 public:
 	virtual void SetScenario(UScenario* Scenario) override;
-	
-	UBuilding* BuildBuilding(UBuildingDescription* Description, UProvince* Province);
 
 	void Tick();
 
+	UBuilding* BuildBuilding(UBuildingDescription* Description, UProvince* Province);
 	void DestroyBuilding(UBuilding* Building);
 
 	virtual ELoadStage GetLoadStage() override;
+
+	FOnBuildingStatusChanged OnBuildingStatusChanged;
+
+	const TArray<UBuilding*>& GetBuildings() const { return Buildings; }
 private:
 	UPROPERTY()
 	TArray<UBuilding*> Buildings;

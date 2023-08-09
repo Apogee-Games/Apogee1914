@@ -18,7 +18,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TMap<FName, TSubclassOf<UBuildingTypeDescriptionWidget>> WidgetsClasses;
 
-	void Init(const TArray<UBuildingDescription*>& BuildingDescriptions);
+	virtual void NativeConstruct() override;
 private:
 	void AddBuilding(UBuildingDescription* BuildingDescription);
 };

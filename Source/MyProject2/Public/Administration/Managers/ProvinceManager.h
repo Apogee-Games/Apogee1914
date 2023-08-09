@@ -1,14 +1,16 @@
 ﻿#pragma once
 #include "Scenario.h"
 #include "Administration/Instances/Province.h"
-#include "Administration/Interfaces/Observable/ProvinceControllingCountryObservable.h"
 #include "Interfaces/BaseManager.h"
 #include "ProvinceManager.generated.h"
 
 class UUnit;
 
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnProvinceHasNewOwner, UProvince*, UCountry*, UCountry*) 
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnProvinceHasNewController, UProvince*, UCountry*, UCountry*)
+
 UCLASS(Abstract, Blueprintable)
-class UProvinceManager : public UBaseManager, public IProvinceControllingCountryObservable
+class UProvinceManager : public UBaseManager
 {
 	GENERATED_BODY()
 public:
@@ -19,6 +21,9 @@ public:
 	const TArray<UProvince*>& GetAllProvinces() const;
 
 	virtual ELoadStage GetLoadStage() override;
+
+	FOnProvinceHasNewOwner OnProvinceHasNewOwner;
+	FOnProvinceHasNewController OnProvinceHasNewController;
 private:
 	UPROPERTY()
 	TMap<FColor, UProvince*> ProvinceMap;

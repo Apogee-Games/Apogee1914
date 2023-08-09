@@ -47,10 +47,13 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UImage* CountryControllerFlagImage;
-	
-	void SetNewProvince(UProvince* Province);
-	
+
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 private:
+	UFUNCTION()
+	void OnProvinceSelected(UProvince* Province);
+
 	void SetPopulationNumber(int32 Population) const;
 
 	void SetResources(UProvince* Province) const;

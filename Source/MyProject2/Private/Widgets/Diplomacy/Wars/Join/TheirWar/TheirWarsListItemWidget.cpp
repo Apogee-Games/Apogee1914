@@ -21,5 +21,5 @@ void UTheirWarsListItemWidget::RefreshData()
 
 void UTheirWarsListItemWidget::OnButtonClick()
 {
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetTheirWarsListWidget()->SetSelectedWar(War);
+//	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetTheirWarsListWidget()->SetSelectedWar(War); //TODO: FIX IT
 }

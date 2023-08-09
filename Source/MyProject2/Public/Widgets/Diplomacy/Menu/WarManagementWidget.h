@@ -22,11 +22,8 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UWidgetSwitcher* WidgetSwitcher;
 
-	void Init();
-
-	void SetCountry(UCountry* ProvidedCountry);
-
-	void RefreshData();
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 private:
 	UPROPERTY()
 	UCountry* OwnerCountry;
@@ -42,4 +39,12 @@ private:
 
 	UFUNCTION()
 	void OnAskThemToJoinWarButtonClick();
+
+	UFUNCTION()
+	void OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation);
+
+	UFUNCTION()
+	void OnCountrySelected(UCountry* InCountry);
+	
+	void RefreshData();
 };

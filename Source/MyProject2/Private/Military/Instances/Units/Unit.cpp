@@ -3,6 +3,7 @@
 #include "Administration/Managers/CountriesManager.h"
 #include "Economics/Description/Goods/MilitaryGoodDescription.h"
 #include "Maps/Graph.h"
+#include "Military/Managers/UnitsFactory.h"
 
 void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedProvince)
 {
@@ -12,6 +13,22 @@ void UUnit::Init(UUnitDescription* ProvidedUnitDescription, UProvince* ProvidedP
 	SupplyNeeds->Init(ProvidedUnitDescription->EquipmentRequirements);
 	Province->AddUnit(this);
 	Manpower = UnitDescription->ManpowerRequirements;
+
+	UUnitsFactory* UnitsFactory = Cast<UUnitsFactory>(GetOuter());
+	UnitsFactory->OnUnitStatusChanged.Broadcast(this, EUnitStatus::Formed);
+}
+
+void UUnit::Dissolve()
+{
+	UUnitsFactory* UnitsFactory = Cast<UUnitsFactory>(GetOuter());
+	UnitsFactory->OnUnitStatusChanged.Broadcast(this, EUnitStatus::Dissolved);
+	
+	if (UnitsCollection)
+	{
+		UnitsCollection->Remove(this);
+	}
+
+	Province->RemoveUnit(this);
 }
 
 bool UUnit::CanTransportUnits() const

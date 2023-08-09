@@ -12,7 +12,7 @@ class UMapsSwitcherWidget: public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
-	UHorizontalBox* MapOptions;
+	class UHorizontalBox* MapOptions;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UMapModeComboBox> MapModeComboBoxClass;

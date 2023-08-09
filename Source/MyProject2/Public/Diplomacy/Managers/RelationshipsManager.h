@@ -1,10 +1,11 @@
 ﻿#pragma once
-#include "Diplomacy/Interfaces/Observables/AllianceCreationObservable.h"
-#include "Diplomacy/Interfaces/Observables/WarDeclarationObservable.h"
-#include "Diplomacy/Interfaces/Observables/AllianceMembersObservable.h"
 #include "Interfaces/BaseManager.h"
 
 #include "RelationshipsManager.generated.h"
+
+class UCountry;
+class UAlliance;
+class UWar;
 
 UENUM()
 enum class ERelationType: int8 { 
@@ -15,30 +16,52 @@ enum class ERelationType: int8 {
 	Allied = 16
 };
 
-class UCountry;
+UENUM()
+enum class EAllianceMemberStatus
+{
+	Joining,
+	Leaving
+};
+
+
+UENUM()
+enum class EAlliancesStatus
+{
+	Created,
+	Dissolved
+};
+
+UENUM()
+enum class EWarStatus
+{
+	Declared,
+	Ended
+};
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnAllianceStatusChanged, UAlliance*, EAlliancesStatus)
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnWarStatusChanged, UWar*, EWarStatus) 
+
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnAllianceMemberStatusChanged, UAlliance*, UCountry*, EAllianceMemberStatus)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnCountryRelationsTypeChanged, UCountry*, UCountry*, ERelationType)
+
 
 UCLASS(Abstract, Blueprintable)
-class URelationshipsManager: public UBaseManager, public IWarDeclarationObservable, public IAllianceCreationObservable, public IAllianceMembersObservable
+class URelationshipsManager: public UBaseManager
 {
 	GENERATED_BODY()
 public:
 	virtual void SetScenario(UScenario* Scenario) override;
 	
 	void DeclareWar(UCountry* CountryA, UCountry* CountryB);
-
-	void CreateNonAggressionPact(UCountry* CountryA, UCountry* CountryB);
-
-	void BreakNonAggressionPact(UCountry* CountryA, UCountry* CountryB);
-
-	void CreateDefencivePact(UCountry* CountryA, UCountry* CountryB);
-
-	void BreakDefencivePact(UCountry* CountryA, UCountry* CountryB);
-
-	void CreateAlliance(UCountry* Country, const FText& AllianceName);
-
-	void CreateAlliance(UCountry* Country, const FText& AllianceName, const TArray<UCountry*>& InvitedCountries);
+	void CreateAlliance(UCountry* Country, const FText& AllianceName, const TArray<UCountry*>& InvitedCountries = {});
 
 	virtual ELoadStage GetLoadStage() override;
+
+	FOnAllianceStatusChanged OnAllianceStatusChanged;
+	FOnWarStatusChanged OnWarStatusChanged;
+	
+	FOnAllianceMemberStatusChanged OnAllianceMemberStatusChanged;
+	FOnCountryRelationsTypeChanged OnCountryRelationsTypeChanged;
 private:
 	void Clear();
 

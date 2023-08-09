@@ -36,9 +36,10 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ULawOutcomeWidget> LawOutcomeWidgetClass; 
 
-	void Init();
-		
-	void SetLaw(ULawDescription* ProvidedLawDescription);
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
+	
+	void SetLaw(ULawDescription* ProvidedLawDescription); // TODO: Selection delegate ?
 
 	void RefreshData();
 private:

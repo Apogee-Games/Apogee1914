@@ -1,18 +1,17 @@
-
 #include "Widgets/Military/Creation/UnitTypesListWidget.h"
-
 #include "Military/Managers/UnitsFactory.h"
 
-void UUnitTypesListWidget::Init()
+void UUnitTypesListWidget::NativeConstruct()
 {
-	const TArray<UUnitDescription*>& UnitDescriptions = GetGameInstance()->GetSubsystem<UUnitsFactory>()->GetUnitsDescriptions();
-	for (const auto& UnitDescription: UnitDescriptions)
+	Super::NativeConstruct();
+	
+	if (!UnitDescriptionListView->GetNumItems())
 	{
-		AddUnitType(UnitDescription);
+		UUnitsFactory* UnitsFactory = GetGameInstance()->GetSubsystem<UUnitsFactory>();
+		const TArray<UUnitDescription*>& UnitDescriptions = UnitsFactory->GetUnitsDescriptions();
+		for (const auto& UnitDescription: UnitDescriptions)
+		{
+			UnitDescriptionListView->AddItem(UnitDescription);
+		}
 	}
-}
-
-void UUnitTypesListWidget::AddUnitType(UUnitDescription* UnitDescription)
-{
-	UnitDescriptionListView->AddItem(UnitDescription);
 }

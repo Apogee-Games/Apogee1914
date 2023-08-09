@@ -1,7 +1,5 @@
 #pragma once
-
 #include "MapsDataGatherer.h"
-#include "Administration/Interfaces/Observable/ProvinceOwningCountryObservable.h"
 
 class UProvince;
 

@@ -21,6 +21,7 @@ public:
 	UButton* Button;
 
 	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 
 	UFUNCTION(BlueprintCallable)
 	void SetCountry(UObject* ProvidedCountry);

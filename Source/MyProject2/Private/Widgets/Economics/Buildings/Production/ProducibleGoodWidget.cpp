@@ -9,8 +9,10 @@ void UProducibleGoodWidget::SetGood(UObject* ProvidedGood)
 
 void UProducibleGoodWidget::RefreshData()
 {
-	GoodImage->SetBrushResourceObject(Good->Image);
-	GoodNameTextBlock->SetText(Good->NameText);
+	if (Good) {
+		GoodImage->SetBrushResourceObject(Good->Image);
+		GoodNameTextBlock->SetText(Good->NameText);
+	}
 }
 
 void UProducibleGoodWidget::NativeConstruct()

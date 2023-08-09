@@ -102,70 +102,23 @@ public:
 	
 	virtual void BeginPlay() override;
 	
-	UProvinceDataWidget* GetProvinceDataWidget() const;
-
-	UUnitTypesListWidget* GetUnitTypesListWidget() const;
-
-	UStorageGoodsListWidget* GetStorageGoodsListWidget() const;
-
-	UUnitsSupplyListWidget* GetUnitsSupplyListWidget() const;
-
-	USelectedUnitsListWidget* GetUnitInstancesListDescriptionWidget() const;
-
 	UTimeControllerWidget* GetTimeControllerWidget();
-
-	UBuildingsTypesListWidget* GetBuildingsTypesListWidget() const;
-	
-	UUnitsCollectionsListWidget* GetUnitsCollectionsListWidget() const;
-
-	UCommanderListWidget* GetCommanderListWidget() const;
+	UTopPanelWidget* GetTopPanelWidget() const;
 
 	UMenuWidget* GetMenuWidget() const;
 
-	UTopPanelWidget* GetTopPanelWidget() const;
-
-	UCountryDiplomacyWidget* GetCountryDiplomacyWidget() const;
-
 	UWarsListWidget* GetWarsListWidget() const;
-	
-	UWarDescriptionWidget* GetWarDescriptionWidget() const;
-
-	UAllianceCreationWidget* GetAllianceCreationWidget() const;
-
-	UOurWarsListWidget* GetOurWarsListWidget() const;
-
-	UTheirWarsListWidget* GetTheirWarsListWidget() const;
+	UUnitsCollectionsListWidget* GetUnitsCollectionsListWidget() const;
 
 	void UpdateWidgetsVisibility();
 	
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 private:
 	UPROPERTY()
-	UProvinceDataWidget* ProvinceDataWidget;
-
-	UPROPERTY()
-	UUnitTypesListWidget* UnitTypesListWidget;
-	
-	UPROPERTY()
-	UBuildingsTypesListWidget* BuildingsTypesListWidget;
-	
-	UPROPERTY()
-	UStorageGoodsListWidget* StorageGoodsListWidget;
-
-	UPROPERTY()
-	UUnitsSupplyListWidget* UnitsSupplyListWidget;
-
-	UPROPERTY()
-	USelectedUnitsListWidget* UnitInstancesListDescriptionWidget; 
-
-	UPROPERTY()
 	UTimeControllerWidget* TimeControllerWidget;
 
 	UPROPERTY()
 	UUnitsCollectionsListWidget* UnitsCollectionsListWidget;
-
-	UPROPERTY()
-	UCommanderListWidget* CommanderListWidget;
 
 	UPROPERTY()
 	UMenuWidget* MenuWidget;
@@ -174,85 +127,22 @@ private:
 	UTopPanelWidget* TopPanelWidget;
 
 	UPROPERTY()
-	UCountryDiplomacyWidget* CountryDiplomacyWidget;
-
-	UPROPERTY()
 	UWarsListWidget* WarsListWidget;
-
-	UPROPERTY()
-	UWarDescriptionWidget* WarDescriptionWidget;
 
 	UPROPERTY()
 	UMapsSwitcherWidget* MapsSwitcherWidget;
 
 	UPROPERTY()
-	UAllianceCreationWidget* AllianceCreationWidget;
-
-	UPROPERTY()
-	UOurWarsListWidget* OurWarsListWidget;
-
-	UPROPERTY()
-	UTheirWarsListWidget* TheirWarsListWidget;
-
-	UPROPERTY()
-	UCountryManagementWidget* CountryManagementWidget;
-
-	UPROPERTY()
-	ULawsWidget* LawsWidget;
-
-	UPROPERTY()
 	UMusicControllerWidget* MusicControllerWidget;
 
 	UPROPERTY()
-	UProductionListWidget* ProductionListWidget;
-
-	UPROPERTY()
-	UProducibleGoodsListWidget* ProducibleGoodsListWidget;
-	
-	UPROPERTY()
 	TArray<UUserWidget*> Widgets;
 
-	void InitProvinceDataWidget();
-
-	void InitUnitTypesListWidget();
-	
-	void InitStorageGoodsListWidget();
-
-	void InitUnitsSupplyListWidget();
-
-	void InitUnitInstancesListDescriptionWidget();
-
-	void InitBuildingsTypesListWidget();
-	
 	void InitTimeControllerWidget();
-
 	void InitUnitsCollectionsListWidget();
-
-	void InitCommanderListWidget();
-
 	void InitMenuWidget();
-
 	void InitTopPanelWidget();
-
-	void InitCountryDiplomacyWidget();
-
 	void InitWarsListWidget();
-
-	void InitWarDescriptionWidget();
-
 	void InitMapsSwitcher();
-
-	void InitAllianceCreationWidget();
-
-	void InitWarsLists();
-
-	void InitCountryManagementWidget();
-
-	void InitLawsWidget();
-
 	void InitMusicControllerWidget();
-
-	void InitProductionListWidget();
-
-	void InitProducibleGoodsListWidget();
 };

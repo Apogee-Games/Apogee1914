@@ -10,6 +10,9 @@ void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAlli
 	{
 		AddMember(InvitedCountry);
 	}
+	
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceStatusChanged.Broadcast(this, EAlliancesStatus::Created);
 }
 
 void UAlliance::Init(UCountry* ProvidedAllianceLeader, const FText& ProvidedAllianceName)
@@ -30,8 +33,9 @@ void UAlliance::AddMember(UCountry* Country)
 	
 	Members.Add(Country);
 	Country->SetAlliance(this);
-	Cast<URelationshipsManager>(GetOuter())->NotifyMemberJoining(Country);
 	
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceMemberStatusChanged.Broadcast(this, Country, EAllianceMemberStatus::Joining);
 }
 
 void UAlliance::RemoveMember(UCountry* Country)
@@ -46,6 +50,9 @@ void UAlliance::RemoveMember(UCountry* Country)
 		Member->SetRelation(Country, ERelationType::Neutral);
 		Country->SetRelation(Member, ERelationType::Neutral);
 	}
+
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceMemberStatusChanged.Broadcast(this, Country, EAllianceMemberStatus::Leaving);
 }
 
 const FText& UAlliance::GetName() const
@@ -101,7 +108,8 @@ void UAlliance::Dissolve()
 		Member->SetAlliance(nullptr);
 	}
 
-	// TODO: Add removal observer :)
+	URelationshipsManager* RelationshipsManager = Cast<URelationshipsManager>(GetOuter());
+	RelationshipsManager->OnAllianceStatusChanged.Broadcast(this, EAlliancesStatus::Dissolved);
 }
 
 int UAlliance::Size() const

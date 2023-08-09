@@ -3,23 +3,50 @@
 #include "Characters/Pawns/HumanPlayerPawn.h"
 #include "Characters/StateMachine/AllianceCreationPawnState.h"
 #include "Characters/StateMachine/CountryDiplomacyPawnState.h"
+#include "Diplomacy/Instances/Alliance.h"
 #include "Diplomacy/Managers/RelationshipsManager.h"
+#include "MyProject2/MyProject2.h"
 
-void UAllianceManagementWidget::SetCountry(UCountry* ProvidedCountry)
+void UAllianceManagementWidget::NativeConstruct()
 {
-	Country = ProvidedCountry;
-	RefreshData();
-}
+	Super::NativeConstruct();
 
-void UAllianceManagementWidget::Init()
-{
+	FGlobalUIDelegates::OnCountrySelected.AddUObject(this, &ThisClass::OnCountrySelected);
+	
 	CreateAllianceWithAnotherCountryButton->OnClicked.AddDynamic(this, &UAllianceManagementWidget::OnCreateAllianceWithAnotherCountryButtonClick);
 	CreateAllianceButton->OnClicked.AddDynamic(this, &UAllianceManagementWidget::OnCreateAllianceButtonClick);
 	AskThemToJoinAllianceButton->OnClicked.AddDynamic(this, &UAllianceManagementWidget::OnAskThemToJoinAllianceButtonClick);
 	AskToJoinTheirAllianceButton->OnClicked.AddDynamic(this, &UAllianceManagementWidget::OnAskToJoinTheirAllianceButtonClick);
 	LeaveAllianceButton->OnClicked.AddDynamic(this, &UAllianceManagementWidget::OnLeaveAllianceButtonClick);
 	DissolveAllianceButton->OnClicked.AddDynamic(this, &UAllianceManagementWidget::OnDissolveAllianceButtonClick);
-	OwnerCountry = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry();
+
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->OnCountryRelationsTypeChanged.AddUObject(this, &ThisClass::OnCountryRelationsTypeChanged);
+	
+	AHumanPlayerPawn* Pawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	OwnerCountry = Pawn->GetRuledCountry();
+	OnCountrySelected(Pawn->GetSelectedCountry());
+}
+
+void UAllianceManagementWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+
+	FGlobalUIDelegates::OnCountrySelected.RemoveAll(this);
+	
+	CreateAllianceWithAnotherCountryButton->OnClicked.RemoveAll(this);
+	CreateAllianceButton->OnClicked.RemoveAll(this);
+	AskThemToJoinAllianceButton->OnClicked.RemoveAll(this);
+	AskToJoinTheirAllianceButton->OnClicked.RemoveAll(this);
+	LeaveAllianceButton->OnClicked.RemoveAll(this);
+	DissolveAllianceButton->OnClicked.RemoveAll(this);
+
+	GetGameInstance()->GetSubsystem<URelationshipsManager>()->OnCountryRelationsTypeChanged.RemoveAll(this);
+}
+
+void UAllianceManagementWidget::SetCountry(UCountry* ProvidedCountry)
+{
+	Country = ProvidedCountry;
+	RefreshData();
 }
 
 void UAllianceManagementWidget::RefreshData()
@@ -56,8 +83,10 @@ void UAllianceManagementWidget::RefreshData()
 
 void UAllianceManagementWidget::OnCreateAllianceWithAnotherCountryButtonClick()
 {
-	GetOwningPlayerPawn<AHumanPlayerPawn>()->SetPawnState(FAllianceCreationPawnState::GetInstance());
-	GetOwningPlayer<APlayerController>()->GetHUD<AHumanPlayerHUD>()->GetAllianceCreationWidget()->AddToBeInvitedCountry(Country);
+	AHumanPlayerPawn* HumanPlayerPawn = GetOwningPlayerPawn<AHumanPlayerPawn>();
+	HumanPlayerPawn->SetPawnState(FAllianceCreationPawnState::GetInstance());
+
+	HumanPlayerPawn->OnCountryToBeInvitedToAllianceStatusChanged.Broadcast(Country, EToBeInvitedCountryStatus::Added);
 }
 
 void UAllianceManagementWidget::OnCreateAllianceButtonClick()
@@ -68,23 +97,33 @@ void UAllianceManagementWidget::OnCreateAllianceButtonClick()
 void UAllianceManagementWidget::OnAskThemToJoinAllianceButtonClick()
 {
 	OwnerCountry->GetAlliance()->AddMember(Country);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }
 
 void UAllianceManagementWidget::OnAskToJoinTheirAllianceButtonClick()
 {
 	Country->GetAlliance()->AddMember(OwnerCountry);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }
 
 void UAllianceManagementWidget::OnLeaveAllianceButtonClick()
 {
 	OwnerCountry->GetAlliance()->RemoveMember(OwnerCountry);
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
 }
 
 void UAllianceManagementWidget::OnDissolveAllianceButtonClick()
 {
 	OwnerCountry->GetAlliance()->Dissolve();
-	GetOwningPlayer()->GetHUD<AHumanPlayerHUD>()->GetCountryDiplomacyWidget()->RefreshData();
+}
+
+void UAllianceManagementWidget::OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation)
+{
+	if (OwnerCountry == ProbableOwner && Country == ProbableCountry)
+	{
+		RefreshData();
+	}
+}
+
+void UAllianceManagementWidget::OnCountrySelected(UCountry* InCountry)
+{
+	Country = InCountry;
+	RefreshData();
 }

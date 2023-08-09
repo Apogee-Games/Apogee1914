@@ -21,15 +21,23 @@ public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* AlliedCountriesListView;
 
-	void Init();
-
-	void SetCountry(UCountry* ProvidedCountry);
-	
-	void RefreshData();
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 private:
+	UPROPERTY()
+	UCountry* OwnerCountry;
+	
 	UPROPERTY()
 	UCountry* Country;
 	
 	UPROPERTY()
 	TMap<ERelationType, UListView*> Lists;
+
+	UFUNCTION()
+	void OnCountryRelationsTypeChanged(UCountry* ProbableOwner, UCountry* ProbableCountry, ERelationType Relation);
+
+	UFUNCTION()
+	void OnCountrySelected(UCountry* InCountry);
+	
+	void RefreshData();
 };

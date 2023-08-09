@@ -38,23 +38,23 @@ public:
 	ERelationType GetRelation(UCountry* Country);
 
 	void SetRelation(UCountry* Country, ERelationType Relation);
-
-	bool CanDeclareWarOn(UCountry* Country);
-
+	
 	bool CanCreateNonAggressionPactWith(UCountry* Country);
+	bool CreateNonAggressionPactWith(UCountry* Country);
+	void BreakNonAggressionPactWith(UCountry* Country);
 
 	bool CanCreateDefencivePactWith(UCountry* Country);
-
+	bool CreateDefencivePactWith(UCountry* Country);
+	void BreakDefencivePactWith(UCountry* Country);
+	
+	bool CanDeclareWarOn(UCountry* Country);
 	bool CanCreateAllianceWith(UCountry* Country);
 
 	bool MustHelpInDefenciveWar(UCountry* Country);
-
 	bool MustHelpInAggressiveWar(UCountry* Country);
 
 	bool CanJoinCountryWar(UCountry* Country);
-
 	bool HasNonAggressionPactWith(UCountry* Country);
-
 	bool HasDefencivePactWith(UCountry* Country);
 	
 	const TMap<UCountry*, ERelationType>& GetRelations() const;

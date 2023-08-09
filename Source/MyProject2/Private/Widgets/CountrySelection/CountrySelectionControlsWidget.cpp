@@ -12,7 +12,14 @@ void UCountrySelectionControlsWidget::NativeConstruct()
 
 	PlayButton->SetIsEnabled(false);
 	
-	GetGameInstance<UMyGameInstance>()->OnCountrySelected.AddUObject(this, &UCountrySelectionControlsWidget::CountryWasSelected);
+	GetGameInstance<UMyGameInstance>()->OnRuledCountrySelected.AddUObject(this, &UCountrySelectionControlsWidget::CountryWasSelected);
+}
+
+void UCountrySelectionControlsWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+
+	GetGameInstance<UMyGameInstance>()->OnRuledCountrySelected.RemoveAll(this);
 }
 
 void UCountrySelectionControlsWidget::CountryWasSelected(int32 PlayerId, UCountry* Country)

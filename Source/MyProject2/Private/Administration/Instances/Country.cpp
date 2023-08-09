@@ -1,5 +1,7 @@
 #include "Administration/Instances/Country.h"
 
+#include "Diplomacy/Instances/Alliance.h"
+#include "Diplomacy/Instances/War.h"
 #include "People/Managers/PeopleManager.h"
 
 void UCountry::Init(UCountryDescription* ProvidedCountryDescription)
@@ -104,6 +106,27 @@ void UCountry::SetRelation(UCountry* Country, ERelationType Relation)
 	} else {
 		Relations.Add(Country, Relation);
 	}
+
+	URelationshipsManager* RelationshipsManager = GetWorld()->GetGameInstance()->GetSubsystem<URelationshipsManager>();
+	RelationshipsManager->OnCountryRelationsTypeChanged.Broadcast(this, Country, Relation);
+}
+
+bool UCountry::CreateNonAggressionPactWith(UCountry* Country)
+{
+	if (CanCreateNonAggressionPactWith(Country))
+	{
+		SetRelation(Country, ERelationType::NonAggressionPact);
+		Country->SetRelation(this, ERelationType::NonAggressionPact);
+		return true;
+	}
+	
+	return false;
+}
+
+void UCountry::BreakNonAggressionPactWith(UCountry* Country)
+{
+	SetRelation(Country, ERelationType::Neutral);
+	Country->SetRelation(this, ERelationType::Neutral);
 }
 
 bool UCountry::CanDeclareWarOn(UCountry* Country)
@@ -119,6 +142,23 @@ bool UCountry::CanCreateNonAggressionPactWith(UCountry* Country)
 bool UCountry::CanCreateDefencivePactWith(UCountry* Country)
 {
 	return (CanCreateDefencivePactList & static_cast<int32>(GetRelation(Country))) && !bIsNonAligned;
+}
+
+bool UCountry::CreateDefencivePactWith(UCountry* Country)
+{
+	if (CanCreateDefencivePactWith(Country))
+	{
+		SetRelation(Country, ERelationType::DefencivePact);
+		Country->SetRelation(this, ERelationType::DefencivePact);
+		return true;
+	}
+	return false;
+}
+
+void UCountry::BreakDefencivePactWith(UCountry* Country)
+{
+	SetRelation(Country, ERelationType::Neutral);
+	Country->SetRelation(this, ERelationType::Neutral);
 }
 
 bool UCountry::CanCreateAllianceWith(UCountry* Country)

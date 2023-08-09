@@ -1,23 +1,29 @@
 ﻿
 #include "Widgets/Administration/Laws/LawsWidget.h"
+
+#include "MyGameInstance.h"
 #include "Administration/Managers/LawsManager.h"
 #include "Characters/Pawns/HumanPlayerPawn.h"
 
-void ULawsWidget::Init()
+void ULawsWidget::NativeConstruct()
 {
-	LawDescriptionWidget->Init();
-
-	ULawsManager* LawsManager = GetGameInstance()->GetSubsystem<ULawsManager>();
+	Super::NativeConstruct();
 	
-	for (const auto& LawsGroup: LawsManager->GetCommonLaws())
+	if (!bIsInitialized)
 	{
-		AddLawsGroup(LawsGroup);
-	}
+		ULawsManager* LawsManager = GetGameInstance()->GetSubsystem<ULawsManager>(); // TODO: Do I need this way of adding it ?
+		for (const auto& LawsGroup: LawsManager->GetCommonLaws())
+		{
+			AddLawsGroup(LawsGroup);
+		}
 	
-	UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
-	for (const auto& LawsGroup: LawsManager->GetCountrySpecificLaw(CountryDescription))
-	{
-		AddLawsGroup(LawsGroup);
+		UCountryDescription* CountryDescription = GetOwningPlayerPawn<AHumanPlayerPawn>()->GetRuledCountry()->GetId();
+		for (const auto& LawsGroup: LawsManager->GetCountrySpecificLaw(CountryDescription))
+		{
+			AddLawsGroup(LawsGroup);
+		}
+		
+		bIsInitialized = true;
 	}
 }
 

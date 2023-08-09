@@ -1,13 +1,23 @@
 ﻿#include "Widgets/Menu/MenuWidget.h"
-
 #include "Characters/Pawns/HumanPlayerPawn.h"
+#include "Kismet/GameplayStatics.h"
 
-
-void UMenuWidget::Init()
+void UMenuWidget::NativeConstruct()
 {
+	Super::NativeConstruct();
+
 	ResumeButton->OnClicked.AddDynamic(this, &UMenuWidget::OnResumeButtonClick);
 	MainMenuButton->OnClicked.AddDynamic(this, &UMenuWidget::OnMainMenuButtonClick);
 	ExitGameButton->OnClicked.AddDynamic(this, &UMenuWidget::OnExitGameButtonClick);
+}
+
+void UMenuWidget::NativeDestruct()
+{
+	Super::NativeDestruct();
+	
+	ResumeButton->OnClicked.RemoveAll(this);
+	MainMenuButton->OnClicked.RemoveAll(this);
+	ExitGameButton->OnClicked.RemoveAll(this);
 }
 
 void UMenuWidget::OnResumeButtonClick()

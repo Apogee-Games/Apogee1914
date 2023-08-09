@@ -2,14 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "Administration/Managers/ProvinceManager.h"
-#include "Administration/Interfaces/Observer/ProvinceControllingCountryObserver.h"
-#include "Administration/Interfaces/Observer/ProvinceOwningCountryObserver.h"
 #include "Interfaces/BaseManager.h"
 #include "ProvincesBox.h"
 #include "MapsDataGatherer.generated.h"
 
 UCLASS()
-class MYPROJECT2_API UMapsDataGatherer : public UBaseManager, public IProvinceControllingCountryObserver
+class MYPROJECT2_API UMapsDataGatherer : public UBaseManager
 {
 	GENERATED_BODY()
 public:
@@ -33,7 +31,7 @@ public:
 
 	FORCEINLINE FVector2d GetProvinceCenter(const FColor& Color);
 	
-	virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
+	//virtual void ProvinceHasNewControllingCountry(UProvince* Province) override;
 	
 	virtual ELoadStage GetLoadStage() override;
 private:

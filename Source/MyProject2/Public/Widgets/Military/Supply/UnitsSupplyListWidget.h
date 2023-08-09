@@ -2,25 +2,23 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/ListView.h"
 #include "Military/Instances/Units/Unit.h"
-#include "Military/Interfaces/Observers/UnitCreationObserver.h"
-#include "Military/Interfaces/Observers/UnitRemovalObserver.h"
-
+#include "Military/Managers/UnitsFactory.h"
 #include "UnitsSupplyListWidget.generated.h"
 
 UCLASS()
-class UUnitsSupplyListWidget: public UUserWidget, public IUnitCreationObserver, public IUnitRemovalObserver
+class UUnitsSupplyListWidget: public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta=(BindWidget))
 	UListView* UnitsListView;
 
-	void Init();
-	
-	virtual void UnitIsCreated(UUnit* Unit) override;
-
-	virtual void UnitIsRemoved(UUnit* Unit) override;
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 private:
 	UPROPERTY()
-	UCountry* Country;
+	UCountry* OwnerCountry;
+
+	UFUNCTION()
+	void OnUnitStatusChanged(UUnit* Unit, EUnitStatus UnitStatus);
 };
